@@ -1,0 +1,1554 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Gemforce Team" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Administrator Guide - Gemforce Documentation</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Administrator Guide";
+        var mkdocs_page_input_path = "gemforce-administrator-guide.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Gemforce Documentation
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../gemforce-system-architecture/">System Architecture</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">API Documentation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../gemforce-api-documentation/">Full API Reference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../gemforce-api-quick-reference/">Quick Reference</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">User Guides</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Administrator Guide</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#table-of-contents">Table of Contents</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#system-overview">System Overview</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#architecture-components">Architecture Components</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#component-relationships">Component Relationships</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#infrastructure-requirements">Infrastructure Requirements</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#security-model-overview">Security Model Overview</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#installation-and-configuration">Installation and Configuration</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#prerequisites">Prerequisites</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#environment-variables">Environment Variables</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#network-settings">Network Settings</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#database-configuration">Database Configuration</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#external-service-connections">External Service Connections</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#security-settings">Security Settings</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#user-management">User Management</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#user-roles-and-permissions">User Roles and Permissions</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#adding-and-removing-users">Adding and Removing Users</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#adding-users">Adding Users</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#removing-users">Removing Users</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#role-assignment">Role Assignment</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#identity-verification-processes">Identity Verification Processes</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#managing-trusted-issuers">Managing Trusted Issuers</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#monitoring-and-alerts">Monitoring and Alerts</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#system-health-checks">System Health Checks</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#performance-metrics">Performance Metrics</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#log-management">Log Management</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#alert-configuration">Alert Configuration</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#common-warning-signs">Common Warning Signs</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#dashboards-setup">Dashboards Setup</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#backup-and-recovery">Backup and Recovery</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#backup-procedures">Backup Procedures</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#recovery-procedures">Recovery Procedures</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#disaster-recovery-planning">Disaster Recovery Planning</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#security-management">Security Management</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#access-control">Access Control</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#api-key-rotation">API Key Rotation</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#audit-logging">Audit Logging</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#security-incident-response">Security Incident Response</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#compliance-considerations">Compliance Considerations</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#troubleshooting">Troubleshooting</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#common-issues-and-solutions">Common Issues and Solutions</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#diagnostic-tools">Diagnostic Tools</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#error-codes-explanation">Error Codes Explanation</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#support-escalation-procedures">Support Escalation Procedures</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#service-dependencies">Service Dependencies</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#maintenance-procedures">Maintenance Procedures</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#routine-maintenance-tasks">Routine Maintenance Tasks</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#update-procedures">Update Procedures</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#database-optimization">Database Optimization</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#cache-management">Cache Management</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#system-scaling-procedures">System Scaling Procedures</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#performance-optimization">Performance Optimization</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#database-tuning">Database Tuning</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#cache-configuration">Cache Configuration</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#rate-limiting-configuration">Rate Limiting Configuration</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#resource-allocation-guidelines">Resource Allocation Guidelines</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../gemforce-deployer-guide/">Deployer Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../gemforce-integrator-guide/">Integrator Guide</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../gemforce-external-services/">External Services</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../documentation-plan/">Documentation Plan</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Gemforce Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">User Guides</li>
+      <li class="breadcrumb-item active">Administrator Guide</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="gemforce-administrator-guide">Gemforce Administrator Guide<a class="headerlink" href="#gemforce-administrator-guide" title="Permanent link">&para;</a></h1>
+<h2 id="table-of-contents">Table of Contents<a class="headerlink" href="#table-of-contents" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="#system-overview">System Overview</a></li>
+<li><a href="#installation-and-configuration">Installation and Configuration</a></li>
+<li><a href="#user-management">User Management</a></li>
+<li><a href="#monitoring-and-alerts">Monitoring and Alerts</a></li>
+<li><a href="#backup-and-recovery">Backup and Recovery</a></li>
+<li><a href="#security-management">Security Management</a></li>
+<li><a href="#troubleshooting">Troubleshooting</a></li>
+<li><a href="#maintenance-procedures">Maintenance Procedures</a></li>
+<li><a href="#performance-optimization">Performance Optimization</a></li>
+</ul>
+<h2 id="system-overview">System Overview<a class="headerlink" href="#system-overview" title="Permanent link">&para;</a></h2>
+<h3 id="architecture-components">Architecture Components<a class="headerlink" href="#architecture-components" title="Permanent link">&para;</a></h3>
+<p>The Gemforce platform consists of the following major components:</p>
+<ol>
+<li><strong>Blockchain Smart Contracts</strong></li>
+<li>Diamond contracts (EIP-2535 implementation)</li>
+<li>Identity management contracts</li>
+<li>Token management contracts</li>
+<li>
+<p>Carbon credit contracts</p>
+</li>
+<li>
+<p><strong>Cloud Services</strong></p>
+</li>
+<li>Parse Server backend</li>
+<li>Database (MongoDB)</li>
+<li>File storage</li>
+<li>
+<p>Cloud functions</p>
+</li>
+<li>
+<p><strong>External Service Integrations</strong></p>
+</li>
+<li>DFNS wallet-as-a-service</li>
+<li>Bridge API</li>
+<li>SendGrid email service</li>
+<li>
+<p>Blockchain RPC providers</p>
+</li>
+<li>
+<p><strong>Client Applications</strong></p>
+</li>
+<li>Web applications</li>
+<li>Mobile applications</li>
+<li>API integrations</li>
+</ol>
+<h3 id="component-relationships">Component Relationships<a class="headerlink" href="#component-relationships" title="Permanent link">&para;</a></h3>
+<p>The Gemforce system follows a layered architecture:</p>
+<div class="codehilite"><pre><span></span><code>Client Applications
+        ↓↑
+Cloud Services (Parse Server)
+        ↓↑
+External Services ⟷ Blockchain Contracts
+</code></pre></div>
+
+<ul>
+<li>Client applications interact with the Parse Server via REST API</li>
+<li>Parse Server executes cloud functions that interact with blockchain contracts and external services</li>
+<li>External services provide specialized functionality (wallet management, financial operations, etc.)</li>
+<li>Blockchain contracts store and manage on-chain data and logic</li>
+</ul>
+<h3 id="infrastructure-requirements">Infrastructure Requirements<a class="headerlink" href="#infrastructure-requirements" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Blockchain Nodes</strong>: Access to Ethereum-compatible blockchain nodes</li>
+<li><strong>Server Hardware</strong>: </li>
+<li>Minimum: 4 CPU cores, 8GB RAM, 100GB SSD</li>
+<li>Recommended: 8 CPU cores, 16GB RAM, 250GB SSD</li>
+<li><strong>Database</strong>: MongoDB 4.4+</li>
+<li><strong>Network</strong>: Reliable internet connection with low latency to blockchain nodes</li>
+<li><strong>SSL Certificate</strong>: Valid SSL certificate for secure API access</li>
+</ul>
+<h3 id="security-model-overview">Security Model Overview<a class="headerlink" href="#security-model-overview" title="Permanent link">&para;</a></h3>
+<p>Gemforce implements a multi-layered security approach:</p>
+<ol>
+<li><strong>Authentication and Authorization</strong></li>
+<li>User authentication via Parse Server</li>
+<li>Role-based access control</li>
+<li>API key authentication for B2B integrations</li>
+<li>
+<p>DFNS WebAuthn for wallet operations</p>
+</li>
+<li>
+<p><strong>Smart Contract Security</strong></p>
+</li>
+<li>Role-based access control</li>
+<li>Function-level permissions</li>
+<li>
+<p>Upgradeability via Diamond pattern</p>
+</li>
+<li>
+<p><strong>Data Protection</strong></p>
+</li>
+<li>Encrypted data at rest</li>
+<li>TLS for data in transit</li>
+<li>
+<p>Private key management via DFNS</p>
+</li>
+<li>
+<p><strong>Monitoring and Auditing</strong></p>
+</li>
+<li>Comprehensive logging</li>
+<li>Activity tracking</li>
+<li>Alert systems</li>
+</ol>
+<h2 id="installation-and-configuration">Installation and Configuration<a class="headerlink" href="#installation-and-configuration" title="Permanent link">&para;</a></h2>
+<h3 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h3>
+<p>Before installing Gemforce, ensure you have:</p>
+<ul>
+<li>Node.js 16.x or higher</li>
+<li>MongoDB 4.4 or higher</li>
+<li>Access to blockchain nodes (RPC endpoints)</li>
+<li>API keys for external services</li>
+<li>Domain name with SSL certificate</li>
+<li>Git access to the Gemforce repositories</li>
+</ul>
+<h3 id="environment-variables">Environment Variables<a class="headerlink" href="#environment-variables" title="Permanent link">&para;</a></h3>
+<p>The Gemforce system requires several environment variables to be set. Create a <code>.env</code> file with the following variables:</p>
+<div class="codehilite"><pre><span></span><code><span class="err">#</span><span class="w"> </span><span class="nf">Parse</span><span class="w"> </span><span class="n">Server</span><span class="w"> </span><span class="n">Configuration</span>
+<span class="n">APP_ID</span><span class="o">=</span><span class="n">your_app_id</span>
+<span class="n">MASTER_KEY</span><span class="o">=</span><span class="n">your_master_key</span>
+<span class="n">DATABASE_URI</span><span class="o">=</span><span class="nl">mongodb</span><span class="p">:</span><span class="o">//</span><span class="nl">username</span><span class="p">:</span><span class="n">password</span><span class="nv">@host</span><span class="err">:</span><span class="n">port</span><span class="o">/</span><span class="k">database</span>
+<span class="n">SERVER_URL</span><span class="o">=</span><span class="nl">https</span><span class="p">:</span><span class="o">//</span><span class="n">your</span><span class="o">-</span><span class="n">server</span><span class="o">-</span><span class="n">url</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="nf">parse</span>
+<span class="n">PROJECT_WIZARD_URL</span><span class="o">=</span><span class="nl">https</span><span class="p">:</span><span class="o">//</span><span class="n">your</span><span class="o">-</span><span class="n">server</span><span class="o">-</span><span class="n">url</span><span class="p">.</span><span class="n">com</span>
+
+<span class="err">#</span><span class="w"> </span><span class="n">Blockchain</span><span class="w"> </span><span class="n">Configuration</span>
+<span class="n">ETH_NODE_URI_MAINNET</span><span class="o">=</span><span class="nl">https</span><span class="p">:</span><span class="o">//</span><span class="n">mainnet</span><span class="p">.</span><span class="n">infura</span><span class="p">.</span><span class="n">io</span><span class="o">/</span><span class="n">v3</span><span class="o">/</span><span class="n">your</span><span class="o">-</span><span class="k">key</span>
+<span class="n">ETH_NODE_URI_BASESEP</span><span class="o">=</span><span class="nl">https</span><span class="p">:</span><span class="o">//</span><span class="n">sepolia</span><span class="p">.</span><span class="n">base</span><span class="p">.</span><span class="n">org</span>
+<span class="n">CHAIN_ID</span><span class="o">=</span><span class="n">base</span><span class="o">-</span><span class="n">sepolia</span>
+<span class="n">METADATA_BASE_URI</span><span class="o">=</span><span class="nl">https</span><span class="p">:</span><span class="o">//</span><span class="n">your</span><span class="o">-</span><span class="n">metadata</span><span class="o">-</span><span class="n">url</span><span class="p">.</span><span class="n">com</span><span class="o">/</span>
+
+<span class="err">#</span><span class="w"> </span><span class="n">DFNS</span><span class="w"> </span><span class="n">Configuration</span>
+<span class="n">DFNS_APP_ID</span><span class="o">=</span><span class="n">your_dfns_app_id</span>
+<span class="n">DFNS_API_URL</span><span class="o">=</span><span class="nl">https</span><span class="p">:</span><span class="o">//</span><span class="n">api</span><span class="p">.</span><span class="n">dfns</span><span class="p">.</span><span class="n">io</span>
+<span class="n">DFNS_CRED_ID</span><span class="o">=</span><span class="n">your_dfns_credential_id</span>
+<span class="n">DFNS_AUTH_TOKEN</span><span class="o">=</span><span class="n">your_dfns_auth_token</span>
+
+<span class="err">#</span><span class="w"> </span><span class="n">Bridge</span><span class="w"> </span><span class="n">API</span><span class="w"> </span><span class="n">Configuration</span>
+<span class="n">BASE_BRIDGE_URL</span><span class="o">=</span><span class="nl">https</span><span class="p">:</span><span class="o">//</span><span class="n">api</span><span class="p">.</span><span class="n">bridge</span><span class="o">-</span><span class="n">api</span><span class="p">.</span><span class="n">com</span>
+<span class="n">BRIDGE_API_KEY</span><span class="o">=</span><span class="n">your_bridge_api_key</span>
+
+<span class="err">#</span><span class="w"> </span><span class="n">Email</span><span class="w"> </span><span class="n">Configuration</span>
+<span class="n">SENDGRID_API_KEY</span><span class="o">=</span><span class="n">your_sendgrid_key</span>
+<span class="n">FROM_EMAIL</span><span class="o">=</span><span class="n">noreply</span><span class="nv">@your</span><span class="o">-</span><span class="k">domain</span><span class="p">.</span><span class="n">com</span>
+
+<span class="err">#</span><span class="w"> </span><span class="n">Security</span><span class="w"> </span><span class="n">Configuration</span>
+<span class="n">AUTH_SECRET_KEY</span><span class="o">=</span><span class="n">your_auth_secret_key</span>
+</code></pre></div>
+
+<h3 id="network-settings">Network Settings<a class="headerlink" href="#network-settings" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Firewall Configuration</strong>:</li>
+<li>Allow inbound connections on ports 80 (HTTP), 443 (HTTPS), and your Parse Server port</li>
+<li>
+<p>Allow outbound connections to MongoDB, blockchain nodes, and external APIs</p>
+</li>
+<li>
+<p><strong>Load Balancer Configuration</strong> (if applicable):</p>
+</li>
+<li>Configure health checks to the Parse Server health endpoint</li>
+<li>Set appropriate timeouts (at least 30 seconds for blockchain operations)</li>
+<li>
+<p>Enable SSL termination</p>
+</li>
+<li>
+<p><strong>DNS Configuration</strong>:</p>
+</li>
+<li>Set up A records for your domain</li>
+<li>Configure CNAME records for subdomains if needed</li>
+</ol>
+<h3 id="database-configuration">Database Configuration<a class="headerlink" href="#database-configuration" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>MongoDB Setup</strong>:</li>
+</ol>
+<p><code>bash
+   # Create a MongoDB user for the Gemforce database
+   mongo admin -u admin -p admin
+   use gemforce
+   db.createUser({
+     user: "gemforce_user",
+     pwd: "secure_password",
+     roles: [{ role: "readWrite", db: "gemforce" }]
+   })</code></p>
+<ol>
+<li><strong>Indexes</strong>:</li>
+</ol>
+<p>Ensure the following indexes are created for optimal performance:</p>
+<p>```javascript
+   // User collection indexes
+   db.User.createIndex({ email: 1 }, { unique: true })
+   db.User.createIndex({ username: 1 }, { unique: true })
+   db.User.createIndex({ walletAddress: 1 })</p>
+<p>// Identity collection indexes
+   db.Identity.createIndex({ walletAddress: 1 }, { unique: true })</p>
+<p>// Transaction collection indexes
+   db.Transaction.createIndex({ hash: 1 }, { unique: true })
+   db.Transaction.createIndex({ user: 1 })
+   db.Transaction.createIndex({ createdAt: 1 })
+   ```</p>
+<h3 id="external-service-connections">External Service Connections<a class="headerlink" href="#external-service-connections" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>DFNS Setup</strong>:</li>
+<li>Create a DFNS account at https://dashboard.dfns.io</li>
+<li>Create an application and credential</li>
+<li>Copy the App ID and Credential ID to your environment variables</li>
+<li>
+<p>Store the private key in <code>dfns_private.key</code></p>
+</li>
+<li>
+<p><strong>Bridge API Setup</strong>:</p>
+</li>
+<li>Obtain API credentials from Bridge API</li>
+<li>Configure webhooks for notifications (if needed)</li>
+<li>
+<p>Set rate limiting based on expected traffic</p>
+</li>
+<li>
+<p><strong>SendGrid Setup</strong>:</p>
+</li>
+<li>Create a SendGrid account</li>
+<li>Set up sender authentication for your domain</li>
+<li>Create email templates for verification, password reset, etc.</li>
+<li>Generate API key and add to environment variables</li>
+</ol>
+<h3 id="security-settings">Security Settings<a class="headerlink" href="#security-settings" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>API Key Management</strong>:</li>
+<li>Rotate API keys periodically (recommended every 90 days)</li>
+<li>Store API keys securely using environment variables</li>
+<li>
+<p>Never expose API keys in client-side code</p>
+</li>
+<li>
+<p><strong>Cross-Origin Resource Sharing (CORS)</strong>:</p>
+</li>
+</ol>
+<p>Configure CORS settings in the Parse Server configuration:</p>
+<p><code>javascript
+   const corsConfig = {
+     allowOrigin: ['https://your-domain.com', 'https://app.your-domain.com'],
+     allowHeaders: ['X-Parse-Application-Id', 'X-Parse-REST-API-Key', 'Content-Type'],
+     allowMethods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
+   };</code></p>
+<ol>
+<li><strong>Rate Limiting</strong>:</li>
+</ol>
+<p>Configure rate limiting to prevent abuse:</p>
+<p><code>javascript
+   const rateLimitConfig = {
+     rateLimit: 1000,  // requests per minute
+     burstLimit: 50,   // concurrent requests
+     expiration: 60    // seconds until reset
+   };</code></p>
+<h2 id="user-management">User Management<a class="headerlink" href="#user-management" title="Permanent link">&para;</a></h2>
+<h3 id="user-roles-and-permissions">User Roles and Permissions<a class="headerlink" href="#user-roles-and-permissions" title="Permanent link">&para;</a></h3>
+<p>Gemforce implements role-based access control with the following default roles:</p>
+<ol>
+<li><strong>Admin</strong>:</li>
+<li>Full access to all functions</li>
+<li>Can manage users and roles</li>
+<li>
+<p>Can deploy and update contracts</p>
+</li>
+<li>
+<p><strong>CentralAuthority</strong>:</p>
+</li>
+<li>Can manage trusted issuers</li>
+<li>Can add claim topics</li>
+<li>
+<p>Can manage identities</p>
+</li>
+<li>
+<p><strong>TrustedIssuer</strong>:</p>
+</li>
+<li>Can issue claims to identities</li>
+<li>Can verify identities</li>
+<li>
+<p>Limited access to identity management</p>
+</li>
+<li>
+<p><strong>User</strong>:</p>
+</li>
+<li>Can manage own wallet</li>
+<li>Can view own transactions</li>
+<li>Can participate in marketplace</li>
+</ol>
+<h3 id="adding-and-removing-users">Adding and Removing Users<a class="headerlink" href="#adding-and-removing-users" title="Permanent link">&para;</a></h3>
+<h4 id="adding-users">Adding Users<a class="headerlink" href="#adding-users" title="Permanent link">&para;</a></h4>
+<ol>
+<li><strong>Via Admin Dashboard</strong>:</li>
+<li>Navigate to User Management</li>
+<li>Click "Add User"</li>
+<li>Enter user details (email, name, role)</li>
+<li>
+<p>System will send invitation email</p>
+</li>
+<li>
+<p><strong>Via API</strong>:</p>
+</li>
+</ol>
+<p>```javascript
+   // Example using Parse JavaScript SDK
+   const user = new Parse.User();
+   user.set("username", "user@example.com");
+   user.set("password", "securePassword");
+   user.set("email", "user@example.com");
+   user.set("firstName", "John");
+   user.set("lastName", "Doe");</p>
+<p>await user.signUp();
+   ```</p>
+<ol>
+<li><strong>Via Cloud Function</strong>:</li>
+</ol>
+<p><code>javascript
+   // Using the registerUser cloud function
+   Parse.Cloud.run("registerUser", {
+     username: "user@example.com",
+     password: "securePassword",
+     email: "user@example.com",
+     firstName: "John",
+     lastName: "Doe",
+     company: "Example Inc"
+   });</code></p>
+<h4 id="removing-users">Removing Users<a class="headerlink" href="#removing-users" title="Permanent link">&para;</a></h4>
+<ol>
+<li><strong>Via Admin Dashboard</strong>:</li>
+<li>Navigate to User Management</li>
+<li>Select user(s) to remove</li>
+<li>
+<p>Click "Delete" or "Deactivate"</p>
+</li>
+<li>
+<p><strong>Via API</strong>:</p>
+</li>
+</ol>
+<p><code>javascript
+   // Example using Parse JavaScript SDK
+   const query = new Parse.Query(Parse.User);
+   query.equalTo("email", "user@example.com");
+   const user = await query.first({ useMasterKey: true });
+   await user.destroy({ useMasterKey: true });</code></p>
+<h3 id="role-assignment">Role Assignment<a class="headerlink" href="#role-assignment" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Assigning Roles to Users</strong>:</li>
+</ol>
+<p>```javascript
+   // Example using Parse JavaScript SDK
+   const userQuery = new Parse.Query(Parse.User);
+   userQuery.equalTo("email", "user@example.com");
+   const user = await userQuery.first({ useMasterKey: true });</p>
+<p>const roleQuery = new Parse.Query(Parse.Role);
+   roleQuery.equalTo("name", "TrustedIssuer");
+   const role = await roleQuery.first({ useMasterKey: true });</p>
+<p>role.getUsers().add(user);
+   await role.save(null, { useMasterKey: true });
+   ```</p>
+<ol>
+<li><strong>Creating New Roles</strong>:</li>
+</ol>
+<p>```javascript
+   // Example using Parse JavaScript SDK
+   const acl = new Parse.ACL();
+   acl.setPublicReadAccess(true);</p>
+<p>const role = new Parse.Role("CustomRole", acl);
+   await role.save(null, { useMasterKey: true });
+   ```</p>
+<h3 id="identity-verification-processes">Identity Verification Processes<a class="headerlink" href="#identity-verification-processes" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>KYC Verification</strong>:</li>
+<li>Initiate via <code>generateKycLink</code> cloud function</li>
+<li>User completes KYC via Bridge API</li>
+<li>Webhook notification sent back to Gemforce</li>
+<li>
+<p>Identity status updated accordingly</p>
+</li>
+<li>
+<p><strong>Trusted Issuer Verification</strong>:</p>
+</li>
+<li>Trusted Issuer reviews identity information</li>
+<li>Issues verification claim to user identity</li>
+<li>Claim is written to blockchain</li>
+<li>Identity state is updated to "verified"</li>
+</ol>
+<h3 id="managing-trusted-issuers">Managing Trusted Issuers<a class="headerlink" href="#managing-trusted-issuers" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Adding a Trusted Issuer</strong>:</li>
+</ol>
+<p>```javascript
+   // Using the dfnsAddTrustedIssuerInit/Complete cloud functions
+   const { challenge, requestBody } = await Parse.Cloud.run("dfnsAddTrustedIssuerInit", {
+     trustedIssuer: "0x1234...",  // Issuer wallet address
+     claimTopics: [1, 2, 3],      // Claim topics this issuer can verify
+     walletId: "wallet_id",
+     dfns_token: "dfns_token"
+   });</p>
+<p>// Sign the challenge client-side
+   const signedChallenge = await signChallenge(challenge);</p>
+<p>// Complete the transaction
+   await Parse.Cloud.run("dfnsAddTrustedIssuerComplete", {
+     walletId: "wallet_id",
+     dfns_token: "dfns_token",
+     signedChallenge: signedChallenge,
+     requestBody: requestBody
+   });
+   ```</p>
+<ol>
+<li><strong>Removing a Trusted Issuer</strong>:</li>
+</ol>
+<p>Use the <code>dfnsRemoveTrustedIssuerInit/Complete</code> cloud functions following the same pattern as above.</p>
+<ol>
+<li><strong>Updating Trusted Issuer Claim Topics</strong>:</li>
+</ol>
+<p>Use the <code>dfnsUpdateIssuerClaimTopicsInit/Complete</code> cloud functions.</p>
+<h2 id="monitoring-and-alerts">Monitoring and Alerts<a class="headerlink" href="#monitoring-and-alerts" title="Permanent link">&para;</a></h2>
+<h3 id="system-health-checks">System Health Checks<a class="headerlink" href="#system-health-checks" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Parse Server Health Check</strong>:</li>
+<li>Endpoint: <code>/parse/health</code></li>
+<li>Expected response: <code>{"status":"ok"}</code></li>
+<li>
+<p>Monitor response time (should be &lt; 200ms)</p>
+</li>
+<li>
+<p><strong>Database Health Check</strong>:</p>
+</li>
+<li>Query execution time</li>
+<li>Connection pool status</li>
+<li>
+<p>Replica set status (if applicable)</p>
+</li>
+<li>
+<p><strong>Blockchain Connectivity</strong>:</p>
+</li>
+<li>RPC endpoint response time</li>
+<li>Block height synchronization</li>
+<li>Transaction submission success rate</li>
+</ol>
+<h3 id="performance-metrics">Performance Metrics<a class="headerlink" href="#performance-metrics" title="Permanent link">&para;</a></h3>
+<p>Key metrics to monitor:</p>
+<ol>
+<li><strong>API Performance</strong>:</li>
+<li>Request latency (avg, p95, p99)</li>
+<li>Request throughput</li>
+<li>
+<p>Error rate</p>
+</li>
+<li>
+<p><strong>Database Performance</strong>:</p>
+</li>
+<li>Query execution time</li>
+<li>Index usage</li>
+<li>
+<p>Connection count</p>
+</li>
+<li>
+<p><strong>Blockchain Performance</strong>:</p>
+</li>
+<li>Gas costs per transaction type</li>
+<li>Transaction confirmation time</li>
+<li>Failed transaction rate</li>
+</ol>
+<h3 id="log-management">Log Management<a class="headerlink" href="#log-management" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Log Aggregation</strong>:</li>
+<li>Implement centralized logging (e.g., ELK Stack, Splunk)</li>
+<li>Include correlation IDs across service boundaries</li>
+<li>
+<p>Implement structured logging for easier querying</p>
+</li>
+<li>
+<p><strong>Log Levels</strong>:</p>
+</li>
+<li>ERROR: Issues requiring immediate attention</li>
+<li>WARN: Potential issues to investigate</li>
+<li>INFO: Normal operations</li>
+<li>
+<p>DEBUG: Detailed information for troubleshooting</p>
+</li>
+<li>
+<p><strong>Key Events to Log</strong>:</p>
+</li>
+<li>Authentication events</li>
+<li>User management operations</li>
+<li>Blockchain transactions</li>
+<li>External API calls</li>
+</ol>
+<h3 id="alert-configuration">Alert Configuration<a class="headerlink" href="#alert-configuration" title="Permanent link">&para;</a></h3>
+<p>Configure alerts for the following scenarios:</p>
+<ol>
+<li><strong>Critical Alerts</strong> (immediate action required):</li>
+<li>Parse Server unavailability</li>
+<li>Database connection failures</li>
+<li>High error rates (&gt;5%)</li>
+<li>
+<p>Failed blockchain transactions</p>
+</li>
+<li>
+<p><strong>Warning Alerts</strong> (investigation needed):</p>
+</li>
+<li>Elevated API latency (&gt;500ms)</li>
+<li>Increased error rates (&gt;1%)</li>
+<li>Low disk space (&lt;20%)</li>
+<li>
+<p>Delayed blockchain confirmations</p>
+</li>
+<li>
+<p><strong>Notification Channels</strong>:</p>
+</li>
+<li>Email</li>
+<li>SMS/Text</li>
+<li>Slack/Teams</li>
+<li>PagerDuty or similar service</li>
+</ol>
+<h3 id="common-warning-signs">Common Warning Signs<a class="headerlink" href="#common-warning-signs" title="Permanent link">&para;</a></h3>
+<p>Watch for these indicators of potential issues:</p>
+<ol>
+<li><strong>Increasing API Latency</strong>: May indicate database issues or resource constraints</li>
+<li><strong>Growing Database Size</strong>: May require indexing or cleanup</li>
+<li><strong>Increasing Error Rates</strong>: May indicate bugs or external service issues</li>
+<li><strong>Blockchain Transaction Failures</strong>: May indicate gas price issues or contract bugs</li>
+<li><strong>Declining User Activity</strong>: May indicate UX issues or service degradation</li>
+</ol>
+<h3 id="dashboards-setup">Dashboards Setup<a class="headerlink" href="#dashboards-setup" title="Permanent link">&para;</a></h3>
+<p>Implement monitoring dashboards that show:</p>
+<ol>
+<li><strong>System Overview</strong>:</li>
+<li>Overall health status</li>
+<li>Current alert status</li>
+<li>
+<p>Key metrics summary</p>
+</li>
+<li>
+<p><strong>API Performance</strong>:</p>
+</li>
+<li>Request volume</li>
+<li>Response time by endpoint</li>
+<li>
+<p>Error rate by endpoint</p>
+</li>
+<li>
+<p><strong>User Activity</strong>:</p>
+</li>
+<li>Active users</li>
+<li>Registration rate</li>
+<li>
+<p>Transaction volume</p>
+</li>
+<li>
+<p><strong>Blockchain Activity</strong>:</p>
+</li>
+<li>Transaction success rate</li>
+<li>Gas costs</li>
+<li>Contract interactions</li>
+</ol>
+<h2 id="backup-and-recovery">Backup and Recovery<a class="headerlink" href="#backup-and-recovery" title="Permanent link">&para;</a></h2>
+<h3 id="backup-procedures">Backup Procedures<a class="headerlink" href="#backup-procedures" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Database Backups</strong>:</li>
+</ol>
+<p>```bash
+   # MongoDB backup command
+   mongodump --uri="mongodb://username:password@host:port/database" --out=/backup/path/$(date +%Y-%m-%d)</p>
+<p># Compress the backup
+   tar -zcvf /backup/path/$(date +%Y-%m-%d).tar.gz /backup/path/$(date +%Y-%m-%d)
+   ```</p>
+<p><strong>Schedule</strong>:
+   - Full backup: Daily
+   - Incremental backup: Hourly</p>
+<ol>
+<li><strong>Configuration Backups</strong>:</li>
+</ol>
+<p><code>bash
+   # Back up environment variables and config files
+   cp .env /backup/config/$(date +%Y-%m-%d)-env
+   cp gemforce.config.ts /backup/config/$(date +%Y-%m-%d)-gemforce-config.ts</code></p>
+<p><strong>Schedule</strong>: After any configuration change</p>
+<ol>
+<li><strong>Contract Deployment Records</strong>:</li>
+</ol>
+<p><code>bash
+   # Back up deployment records
+   cp ./deployments /backup/deployments/$(date +%Y-%m-%d) -r
+   cp deployed.json /backup/deployments/$(date +%Y-%m-%d)-deployed.json</code></p>
+<p><strong>Schedule</strong>: After any contract deployment</p>
+<h3 id="recovery-procedures">Recovery Procedures<a class="headerlink" href="#recovery-procedures" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Database Recovery</strong>:</li>
+</ol>
+<p><code>bash
+   # Restore MongoDB database
+   mongorestore --uri="mongodb://username:password@host:port/database" --drop /backup/path/YYYY-MM-DD</code></p>
+<ol>
+<li><strong>Configuration Recovery</strong>:</li>
+</ol>
+<p><code>bash
+   # Restore configuration files
+   cp /backup/config/YYYY-MM-DD-env .env
+   cp /backup/config/YYYY-MM-DD-gemforce-config.ts gemforce.config.ts</code></p>
+<ol>
+<li><strong>Contract Redeployment</strong>:</li>
+<li>Restore deployment records</li>
+<li>Use the DiamondFactory to recreate diamonds if needed</li>
+<li>Verify contract states</li>
+</ol>
+<h3 id="disaster-recovery-planning">Disaster Recovery Planning<a class="headerlink" href="#disaster-recovery-planning" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Disaster Recovery Scenarios</strong>:</li>
+<li>Database corruption</li>
+<li>Server hardware failure</li>
+<li>Cloud provider outage</li>
+<li>
+<p>Security breach</p>
+</li>
+<li>
+<p><strong>Recovery Time Objectives (RTO)</strong>:</p>
+</li>
+<li>Critical systems: 4 hours</li>
+<li>
+<p>Non-critical systems: 24 hours</p>
+</li>
+<li>
+<p><strong>Recovery Point Objectives (RPO)</strong>:</p>
+</li>
+<li>Database: 1 hour</li>
+<li>
+<p>Configuration: 24 hours</p>
+</li>
+<li>
+<p><strong>Disaster Recovery Runbook</strong>:</p>
+</li>
+<li>Maintain up-to-date documentation</li>
+<li>Conduct periodic recovery tests</li>
+<li>Automate recovery procedures where possible</li>
+</ol>
+<h2 id="security-management">Security Management<a class="headerlink" href="#security-management" title="Permanent link">&para;</a></h2>
+<h3 id="access-control">Access Control<a class="headerlink" href="#access-control" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>API Key Management</strong>:</li>
+<li>Generate strong API keys (min 32 characters)</li>
+<li>Store securely (environment variables, secret management service)</li>
+<li>Implement key rotation (90-day cycle)</li>
+<li>
+<p>Revoke compromised keys immediately</p>
+</li>
+<li>
+<p><strong>User Authentication Controls</strong>:</p>
+</li>
+<li>Enforce strong password policies</li>
+<li>Implement account lockout after failed attempts</li>
+<li>Consider implementing MFA for admin accounts</li>
+<li>
+<p>Session timeout (default: 24 hours)</p>
+</li>
+<li>
+<p><strong>Role-Based Access Control</strong>:</p>
+</li>
+<li>Limit permissions to minimum required</li>
+<li>Regularly audit role assignments</li>
+<li>Implement principle of least privilege</li>
+</ol>
+<h3 id="api-key-rotation">API Key Rotation<a class="headerlink" href="#api-key-rotation" title="Permanent link">&para;</a></h3>
+<p>Implement a process for rotating API keys:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Example: Rotate Bridge API key</span>
+<span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">rotateBridgeAPIKey</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// Generate a new API key (provider-specific)</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">newKey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">generateNewBridgeAPIKey</span><span class="p">();</span>
+
+<span class="w">  </span><span class="c1">// Update environment variable</span>
+<span class="w">  </span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">BRIDGE_API_KEY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">newKey</span><span class="p">;</span>
+
+<span class="w">  </span><span class="c1">// Update configuration in database</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">config</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">Config</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;bridgeAPIKey&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">config</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s2">&quot;value&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">newKey</span><span class="p">);</span>
+<span class="w">  </span><span class="k">await</span><span class="w"> </span><span class="nx">config</span><span class="p">.</span><span class="nx">save</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">useMasterKey</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">});</span>
+
+<span class="w">  </span><span class="c1">// Log the rotation</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Bridge API key rotated at </span><span class="si">${</span><span class="ow">new</span><span class="w"> </span><span class="nb">Date</span><span class="p">().</span><span class="nx">toISOString</span><span class="p">()</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="audit-logging">Audit Logging<a class="headerlink" href="#audit-logging" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Security Events to Log</strong>:</li>
+<li>Authentication attempts (successful and failed)</li>
+<li>Authorization changes</li>
+<li>User creation/deletion</li>
+<li>Role assignment</li>
+<li>API key usage</li>
+<li>
+<p>Admin actions</p>
+</li>
+<li>
+<p><strong>Log Format</strong>:</p>
+</li>
+</ol>
+<p><code>json
+   {
+     "timestamp": "2025-02-25T13:51:49.123Z",
+     "event": "user.login",
+     "success": true,
+     "userId": "user123",
+     "ipAddress": "192.168.1.1",
+     "userAgent": "Mozilla/5.0...",
+     "additionalDetails": {}
+   }</code></p>
+<ol>
+<li><strong>Log Retention</strong>:</li>
+<li>Security logs: 12 months minimum</li>
+<li>Normal operation logs: 3 months</li>
+</ol>
+<h3 id="security-incident-response">Security Incident Response<a class="headerlink" href="#security-incident-response" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Incident Classification</strong>:</li>
+<li>P1: Critical (data breach, service unavailable)</li>
+<li>P2: High (limited breach, partial service degradation)</li>
+<li>P3: Medium (minor security issue, limited impact)</li>
+<li>
+<p>P4: Low (potential vulnerability, no active exploitation)</p>
+</li>
+<li>
+<p><strong>Response Procedure</strong>:</p>
+</li>
+<li>Identify and classify the incident</li>
+<li>Contain the incident</li>
+<li>Eradicate the cause</li>
+<li>Recover systems</li>
+<li>
+<p>Conduct post-incident analysis</p>
+</li>
+<li>
+<p><strong>Contact List</strong>:</p>
+</li>
+<li>Security team</li>
+<li>IT operations</li>
+<li>Legal department</li>
+<li>Executive leadership</li>
+<li>External security consultants (if applicable)</li>
+</ol>
+<h3 id="compliance-considerations">Compliance Considerations<a class="headerlink" href="#compliance-considerations" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Data Privacy</strong>:</li>
+<li>Identify personal data stored in the system</li>
+<li>Implement data minimization</li>
+<li>Configure data retention policies</li>
+<li>
+<p>Provide data export/deletion capabilities</p>
+</li>
+<li>
+<p><strong>Regulatory Compliance</strong>:</p>
+</li>
+<li>KYC/AML requirements</li>
+<li>Financial regulations</li>
+<li>Industry-specific regulations</li>
+<li>Cross-border data transfer requirements</li>
+</ol>
+<h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
+<h3 id="common-issues-and-solutions">Common Issues and Solutions<a class="headerlink" href="#common-issues-and-solutions" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>API Request Failures</strong>:</li>
+<li><strong>Symptom</strong>: HTTP 400/500 errors</li>
+<li><strong>Check</strong>: API logs, request parameters</li>
+<li>
+<p><strong>Solution</strong>: Verify request format, check server logs for details</p>
+</li>
+<li>
+<p><strong>Blockchain Transaction Failures</strong>:</p>
+</li>
+<li><strong>Symptom</strong>: Transaction hash returned but transaction fails</li>
+<li><strong>Check</strong>: Gas price, contract state, transaction parameters</li>
+<li>
+<p><strong>Solution</strong>: Adjust gas price, verify contract accepts the transaction</p>
+</li>
+<li>
+<p><strong>Database Connection Issues</strong>:</p>
+</li>
+<li><strong>Symptom</strong>: Cannot connect to database error</li>
+<li><strong>Check</strong>: MongoDB status, network connectivity</li>
+<li>
+<p><strong>Solution</strong>: Restart MongoDB, check firewall rules</p>
+</li>
+<li>
+<p><strong>DFNS Integration Issues</strong>:</p>
+</li>
+<li><strong>Symptom</strong>: "Cannot sign transaction" errors</li>
+<li><strong>Check</strong>: DFNS credentials, WebAuthn support</li>
+<li><strong>Solution</strong>: Verify DFNS credentials, ensure browser supports WebAuthn</li>
+</ol>
+<h3 id="diagnostic-tools">Diagnostic Tools<a class="headerlink" href="#diagnostic-tools" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Log Analysis</strong>:
+   ```bash
+   # Search for errors in logs
+   grep "ERROR" /var/log/gemforce/app.log</li>
+</ol>
+<p># Find recent activity for a specific user
+   grep "userId\":\"user123" /var/log/gemforce/app.log
+   ```</p>
+<ol>
+<li><strong>Database Queries</strong>:
+   ```javascript
+   // Check user status
+   db.User.findOne({ email: "user@example.com" })</li>
+</ol>
+<p>// Look for recent errors
+   db.ErrorLog.find().sort({ createdAt: -1 }).limit(10)
+   ```</p>
+<ol>
+<li><strong>Blockchain Explorers</strong>:</li>
+<li>Use block explorers to verify transaction status</li>
+<li>Check contract events for expected emissions</li>
+<li>Verify contract state after transactions</li>
+</ol>
+<h3 id="error-codes-explanation">Error Codes Explanation<a class="headerlink" href="#error-codes-explanation" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>HTTP Status Codes</strong>:</li>
+<li>400: Bad Request (invalid parameters)</li>
+<li>401: Unauthorized (missing/invalid authentication)</li>
+<li>403: Forbidden (insufficient permissions)</li>
+<li>404: Not Found (resource doesn't exist)</li>
+<li>429: Too Many Requests (rate limit exceeded)</li>
+<li>
+<p>500: Internal Server Error (server-side issue)</p>
+</li>
+<li>
+<p><strong>Parse Error Codes</strong>:</p>
+</li>
+<li>101: Object not found</li>
+<li>141: Missing required field</li>
+<li>
+<p>209: Invalid session token</p>
+</li>
+<li>
+<p><strong>Blockchain Error Codes</strong>:</p>
+</li>
+<li>"gas required exceeds allowance": Insufficient gas</li>
+<li>"execution reverted": Contract condition not met</li>
+<li>"nonce too low": Transaction nonce issue</li>
+</ol>
+<h3 id="support-escalation-procedures">Support Escalation Procedures<a class="headerlink" href="#support-escalation-procedures" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Tier 1 Support</strong>:</li>
+<li>Initial triage</li>
+<li>Common issue resolution</li>
+<li>
+<p>Escalation timeframe: 30 minutes</p>
+</li>
+<li>
+<p><strong>Tier 2 Support</strong>:</p>
+</li>
+<li>Technical investigation</li>
+<li>Complex issue resolution</li>
+<li>
+<p>Escalation timeframe: 2 hours</p>
+</li>
+<li>
+<p><strong>Tier 3 Support</strong>:</p>
+</li>
+<li>Engineering team involvement</li>
+<li>Critical issue resolution</li>
+<li>
+<p>Escalation timeframe: 4 hours</p>
+</li>
+<li>
+<p><strong>Escalation Contact Information</strong>:</p>
+</li>
+<li>Tier 1: support@gemforce.com</li>
+<li>Tier 2: tech-support@gemforce.com</li>
+<li>Tier 3: engineering@gemforce.com</li>
+<li>Emergency: +1-555-123-4567</li>
+</ol>
+<h3 id="service-dependencies">Service Dependencies<a class="headerlink" href="#service-dependencies" title="Permanent link">&para;</a></h3>
+<p>Map of service dependencies to check during outages:</p>
+<ol>
+<li><strong>Parse Server depends on</strong>:</li>
+<li>MongoDB</li>
+<li>File storage</li>
+<li>DFNS API</li>
+<li>Bridge API</li>
+<li>
+<p>Blockchain RPC nodes</p>
+</li>
+<li>
+<p><strong>Blockchain operations depend on</strong>:</p>
+</li>
+<li>RPC node availability</li>
+<li>Gas price oracle</li>
+<li>
+<p>Contract state</p>
+</li>
+<li>
+<p><strong>User authentication depends on</strong>:</p>
+</li>
+<li>Parse Server</li>
+<li>Email service</li>
+<li>DFNS (for wallet operations)</li>
+</ol>
+<h2 id="maintenance-procedures">Maintenance Procedures<a class="headerlink" href="#maintenance-procedures" title="Permanent link">&para;</a></h2>
+<h3 id="routine-maintenance-tasks">Routine Maintenance Tasks<a class="headerlink" href="#routine-maintenance-tasks" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Daily Tasks</strong>:</li>
+<li>Review error logs</li>
+<li>Check backup status</li>
+<li>
+<p>Monitor system performance</p>
+</li>
+<li>
+<p><strong>Weekly Tasks</strong>:</p>
+</li>
+<li>Analyze API usage patterns</li>
+<li>Review security logs</li>
+<li>
+<p>Check disk space usage</p>
+</li>
+<li>
+<p><strong>Monthly Tasks</strong>:</p>
+</li>
+<li>User access review</li>
+<li>API key rotation</li>
+<li>Performance optimization</li>
+<li>Database maintenance</li>
+</ol>
+<h3 id="update-procedures">Update Procedures<a class="headerlink" href="#update-procedures" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Parse Server Updates</strong>:</li>
+</ol>
+<p>```bash
+   # Update Parse Server
+   npm update parse-server</p>
+<p># Restart Parse Server
+   pm2 restart parse-server
+   ```</p>
+<ol>
+<li><strong>Node.js Updates</strong>:</li>
+</ol>
+<p>```bash
+   # Update Node.js using NVM
+   nvm install 16.x
+   nvm use 16.x</p>
+<p># Verify version
+   node -v
+   ```</p>
+<ol>
+<li><strong>Cloud Function Updates</strong>:</li>
+</ol>
+<p>```bash
+   # Pull latest changes
+   git pull origin main</p>
+<p># Install dependencies
+   npm install</p>
+<p># Build the project
+   npm run build</p>
+<p># Restart the server
+   pm2 restart gemforce
+   ```</p>
+<h3 id="database-optimization">Database Optimization<a class="headerlink" href="#database-optimization" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Index Optimization</strong>:</li>
+</ol>
+<p>```javascript
+   // Analyze query performance
+   db.User.find({ walletAddress: { $exists: true } }).explain("executionStats")</p>
+<p>// Add missing indexes
+   db.User.createIndex({ walletAddress: 1 })
+   ```</p>
+<ol>
+<li><strong>Data Archiving</strong>:</li>
+</ol>
+<p>```javascript
+   // Move old logs to archive collection
+   db.SystemLog.aggregate([
+     { $match: { createdAt: { $lt: new Date(Date.now() - 90 * 24 * 60 * 60 * 1000) } } },
+     { $out: "SystemLogArchive" }
+   ])</p>
+<p>// Remove archived logs
+   db.SystemLog.deleteMany({ createdAt: { $lt: new Date(Date.now() - 90 * 24 * 60 * 60 * 1000) } })
+   ```</p>
+<ol>
+<li><strong>Database Maintenance</strong>:</li>
+</ol>
+<p>```javascript
+   // Repair database
+   db.repairDatabase()</p>
+<p>// Compact collections
+   db.runCommand({ compact: "User" })
+   ```</p>
+<h3 id="cache-management">Cache Management<a class="headerlink" href="#cache-management" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Redis Cache Configuration</strong> (if applicable):</li>
+</ol>
+<p><code>javascript
+   // Example cache configuration
+   const redisCache = {
+     host: "localhost",
+     port: 6379,
+     ttl: 600 // 10 minutes
+   };</code></p>
+<ol>
+<li><strong>Cache Invalidation</strong>:</li>
+</ol>
+<p>```javascript
+   // Invalidate specific keys
+   redisClient.del("user_123_profile")</p>
+<p>// Invalidate pattern
+   redisClient.keys("user_*_profile", (err, keys) =&gt; {
+     if (keys.length &gt; 0) redisClient.del(keys);
+   })
+   ```</p>
+<ol>
+<li><strong>Cache Monitoring</strong>:</li>
+</ol>
+<p>```bash
+   # Check Redis info
+   redis-cli info</p>
+<p># Monitor cache hit rate
+   redis-cli info stats | grep hit_rate
+   ```</p>
+<h3 id="system-scaling-procedures">System Scaling Procedures<a class="headerlink" href="#system-scaling-procedures" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Horizontal Scaling</strong>:</li>
+<li>Add more Parse Server instances</li>
+<li>Configure load balancer</li>
+<li>
+<p>Update DNS if needed</p>
+</li>
+<li>
+<p><strong>Vertical Scaling</strong>:</p>
+</li>
+<li>Upgrade server resources</li>
+<li>Schedule downtime for migration</li>
+<li>
+<p>Verify performance after upgrade</p>
+</li>
+<li>
+<p><strong>Database Scaling</strong>:</p>
+</li>
+<li>Implement MongoDB replica set</li>
+<li>Consider sharding for large deployments</li>
+<li>Optimize query patterns</li>
+</ol>
+<h2 id="performance-optimization">Performance Optimization<a class="headerlink" href="#performance-optimization" title="Permanent link">&para;</a></h2>
+<h3 id="database-tuning">Database Tuning<a class="headerlink" href="#database-tuning" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Query Optimization</strong>:</li>
+<li>Use explain plan to analyze queries</li>
+<li>Ensure proper indexes are in place</li>
+<li>Limit returned fields using projection</li>
+<li>
+<p>Use aggregation pipeline for complex queries</p>
+</li>
+<li>
+<p><strong>Connection Pooling</strong>:</p>
+</li>
+</ol>
+<p><code>javascript
+   // Example MongoDB connection pool configuration
+   const mongoConfig = {
+     uri: process.env.DATABASE_URI,
+     options: {
+       maxPoolSize: 50,
+       minPoolSize: 10,
+       socketTimeoutMS: 30000,
+       connectTimeoutMS: 30000
+     }
+   };</code></p>
+<ol>
+<li><strong>Index Analysis</strong>:</li>
+</ol>
+<p>```javascript
+   // Check index usage
+   db.User.aggregate([
+     { $indexStats: {} }
+   ])</p>
+<p>// Remove unused indexes
+   db.User.dropIndex("unusedIndex")
+   ```</p>
+<h3 id="cache-configuration">Cache Configuration<a class="headerlink" href="#cache-configuration" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Cacheable Data Types</strong>:</li>
+<li>User profiles</li>
+<li>Contract metadata</li>
+<li>Configuration settings</li>
+<li>
+<p>Static content</p>
+</li>
+<li>
+<p><strong>Cache Strategy</strong>:</p>
+</li>
+<li>Cache-aside: Application checks cache before database</li>
+<li>TTL-based expiration</li>
+<li>
+<p>Event-based invalidation</p>
+</li>
+<li>
+<p><strong>Example Redis Configuration</strong>:</p>
+</li>
+</ol>
+<p><code>javascript
+   // Redis cache configuration
+   const redisOptions = {
+     host: process.env.REDIS_HOST || "localhost",
+     port: process.env.REDIS_PORT || 6379,
+     password: process.env.REDIS_PASSWORD,
+     db: 0,
+     ttl: 3600 // 1 hour
+   };</code></p>
+<h3 id="rate-limiting-configuration">Rate Limiting Configuration<a class="headerlink" href="#rate-limiting-configuration" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>API Rate Limits</strong>:</li>
+</ol>
+<p><code>javascript
+   // Example rate limiting configuration
+   const rateLimits = {
+     global: {
+       windowMs: 60 * 1000, // 1 minute
+       max: 1000 // limit each IP to 1000 requests per minute
+     },
+     login: {
+       windowMs: 60 * 1000, // 1 minute
+       max: 10 // limit each IP to 10 login attempts per minute
+     },
+     createUser: {
+       windowMs: 60 * 60 * 1000, // 1 hour
+       max: 50 // limit each IP to 50 user creations per hour
+     }
+   };</code></p>
+<ol>
+<li><strong>Rate Limit Response</strong>:</li>
+</ol>
+<p><code>javascript
+   // Example rate limit exceeded response
+   {
+     "status": "error",
+     "code": 429,
+     "message": "Rate limit exceeded. Try again in X seconds.",
+     "retryAfter": 30
+   }</code></p>
+<ol>
+<li><strong>Rate Limit Monitoring</strong>:</li>
+<li>Track rate limit hits</li>
+<li>Alert on sustained high rejection rates</li>
+<li>Analyze traffic patterns to adjust limits</li>
+</ol>
+<h3 id="resource-allocation-guidelines">Resource Allocation Guidelines<a class="headerlink" href="#resource-allocation-guidelines" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Server Resources</strong>:</li>
+</ol>
+<p>Guidelines for allocating resources based on load:</p>
+<table>
+<thead>
+<tr>
+<th>Load Level</th>
+<th>Users</th>
+<th>API Requests/min</th>
+<th>CPU Cores</th>
+<th>RAM</th>
+<th>Disk</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Small</td>
+<td>&lt;1k</td>
+<td>&lt;100</td>
+<td>2</td>
+<td>4GB</td>
+<td>20GB</td>
+</tr>
+<tr>
+<td>Medium</td>
+<td>&lt;10k</td>
+<td>&lt;1k</td>
+<td>4</td>
+<td>8GB</td>
+<td>50GB</td>
+</tr>
+<tr>
+<td>Large</td>
+<td>&lt;100k</td>
+<td>&lt;10k</td>
+<td>8</td>
+<td>16GB</td>
+<td>100GB</td>
+</tr>
+<tr>
+<td>X-Large</td>
+<td>&gt;100k</td>
+<td>&gt;10k</td>
+<td>16+</td>
+<td>32GB+</td>
+<td>200GB+</td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li><strong>Database Resources</strong>:</li>
+</ol>
+<p>Guidelines for MongoDB resources:</p>
+<table>
+<thead>
+<tr>
+<th>Load Level</th>
+<th>Documents</th>
+<th>Indexes</th>
+<th>RAM</th>
+<th>Disk</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Small</td>
+<td>&lt;1M</td>
+<td>&lt;20</td>
+<td>2GB</td>
+<td>10GB</td>
+</tr>
+<tr>
+<td>Medium</td>
+<td>&lt;10M</td>
+<td>&lt;50</td>
+<td>4GB</td>
+<td>50GB</td>
+</tr>
+<tr>
+<td>Large</td>
+<td>&lt;100M</td>
+<td>&lt;100</td>
+<td>16GB</td>
+<td>200GB</td>
+</tr>
+<tr>
+<td>X-Large</td>
+<td>&gt;100M</td>
+<td>&gt;100</td>
+<td>32GB+</td>
+<td>500GB+</td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li><strong>Blockchain Node Resources</strong>:</li>
+</ol>
+<p>Consider using managed node providers for production environments.</p>
+<p>If running your own nodes:</p>
+<table>
+<thead>
+<tr>
+<th>Network</th>
+<th>Disk</th>
+<th>RAM</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ethereum</td>
+<td>&gt;2TB</td>
+<td>16GB</td>
+<td>Full node, growing rapidly</td>
+</tr>
+<tr>
+<td>BaseSepolia</td>
+<td>&gt;100GB</td>
+<td>8GB</td>
+<td>Testnet, moderate growth</td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li><strong>Resource Scaling Triggers</strong>:</li>
+<li>CPU usage consistently &gt;70%</li>
+<li>RAM usage consistently &gt;80%</li>
+<li>Disk usage &gt;85%</li>
+<li>Response time increasing trend</li>
+<li>Error rate increasing trend</li>
+</ol>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../gemforce-api-quick-reference/" class="btn btn-neutral float-left" title="Quick Reference"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../gemforce-deployer-guide/" class="btn btn-neutral float-right" title="Deployer Guide">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../gemforce-api-quick-reference/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../gemforce-deployer-guide/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
