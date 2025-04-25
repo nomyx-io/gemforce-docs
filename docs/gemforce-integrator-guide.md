@@ -7,6 +7,7 @@
 - [REST API Integration](./integrator-guide/rest-api.md)
 - [Smart Contract Integration](./integrator-guide/smart-contracts.md)
 - [DFNS Wallet Integration](./integrator-guide/dfns.md)
+- [Parse Server Integration](./integrator-guide/parse-server.md)
 - [Webhook Implementation](./integrator-guide/webhooks.md)
 - [Error Handling and Logging](./integrator-guide/error-handling.md)
 - [Sample Integration Code](./integrator-guide/sample-code.md)
