@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Gemforce Team" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Authentication Functions - Gemforce Documentation</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Authentication Functions";
+        var mkdocs_page_input_path = "cloud-functions/authentication.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Gemforce Documentation
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../developer-setup-guide/">Developer Setup Guide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../system-architecture/gemforce-system-architecture/">System Architecture</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Smart Contracts</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../smart-contracts/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../smart-contracts/diamond/">Diamond Contract</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Facets</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/marketplace-facet/">Marketplace Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/trade-deal-management-facet/">Trade Deal Management Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/carbon-credit-facet/">Carbon Credit Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/identity-registry-facet/">Identity Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/trusted-issuers-registry-facet/">Trusted Issuers Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/fee-distributor-facet/">Fee Distributor Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/gemforce-minter-facet/">Gemforce Minter Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/multi-sale-facet/">Multi Sale Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/svg-templates-facet/">SVG Templates Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/trade-deal-admin-facet/">Trade Deal Admin Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/trade-deal-operations-facet/">Trade Deal Operations Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/collateral-token-factory-facet/">Collateral Token Factory Facet</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Interfaces</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/idiamond/">IDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/imarketplace/">IMarketplace</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/itradedeal/">ITradeDeal</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/icarbon-credit/">ICarbonCredit</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/ierc1155-mint/">IERC1155Mint</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/ierc734/">IERC734</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/ierc735/">IERC735</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Libraries</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/carbon-credit-lib/">Carbon Credit Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/trade-deal-lib/">Trade Deal Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/multi-sale-lib/">Multi Sale Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/diamond-factory-lib/">Diamond Factory Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/svg-templates-lib/">SVG Templates Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/attribute-lib/">Attribute Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/variable-price-lib/">Variable Price Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/merkle-prover/">Merkle Prover</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/fee-distributor-lib/">Fee Distributor Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/lib-diamond/">LibDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/diamond-lib/">DiamondLib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/erc721a-lib/">ERC721A Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/erc721a-enumeration-lib/">ERC721A Enumeration Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/strings-lib/">Strings Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/metadata-lib/">Metadata Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/trusted-issuer-lib/">Trusted Issuer Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/set-libraries/">Set Libraries</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Cloud Functions</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../blockchain/">Blockchain Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../dfns/">DFNS Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../contracts/">Contract Functions</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Authentication Functions</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#module-details">Module Details</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#key-features">Key Features</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#user-registration-verification">🔹 User Registration &amp; Verification</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#password-management">🔹 Password Management</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#user-account-management">🔹 User Account Management</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#email-integration">🔹 Email Integration</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#cloud-functions">Cloud Functions</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#user-registration-functions">User Registration Functions</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#registeruser">registerUser</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#verifyemail">verifyEmail</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#retrieveemailfromtoken">retrieveEmailFromToken</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#password-management-functions">Password Management Functions</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#requestpasswordreset">requestPasswordReset</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#resetpassword">resetPassword</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#user-management-functions">User Management Functions</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#updateuserbyemail">updateUserByEmail</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#isuseronboarded">isUserOnboarded</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#getuserswithidentitywallets">getUsersWithIdentityWallets</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#administrative-functions">Administrative Functions</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#setupadminuipassword">setupAdminUIPassword</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#generateonboardinglink">generateOnboardingLink</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#email-templates-and-integration">Email Templates and Integration</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#sendgrid-configuration">SendGrid Configuration</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#email-types">Email Types</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#verification-email">Verification Email</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#password-reset-email">Password Reset Email</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#password-reset-success-email">Password Reset Success Email</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#admin-ui-password-setup-email">Admin UI Password Setup Email</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#integration-examples">Integration Examples</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#user-registration-flow">User Registration Flow</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#password-reset-flow">Password Reset Flow</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#user-onboarding-integration">User Onboarding Integration</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#admin-user-management">Admin User Management</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#security-considerations">Security Considerations</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#token-security">Token Security</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#access-control">Access Control</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data-protection">Data Protection</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#email-security">Email Security</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#error-handling">Error Handling</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#validation-errors">Validation Errors</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#user-errors">User Errors</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#system-errors">System Errors</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#testing-considerations">Testing Considerations</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#unit-tests">Unit Tests</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#integration-tests">Integration Tests</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#security-tests">Security Tests</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#related-documentation">Related Documentation</a>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">API Documentation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api-documentation/gemforce-api-documentation/">Full API Reference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api-documentation/gemforce-api-quick-reference/">Quick Reference</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">EIPs (Ethereum Improvement Proposals)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../eips/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../eips/EIP-DRAFT-Diamond-Enhanced-Marketplace/">Diamond-Enhanced Marketplace</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../eips/EIP-DRAFT-Multi-Token-Sale-Standard/">Multi-Token Sale Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../eips/EIP-DRAFT-Collateralized-Trade-Deal-Standard/">Collateralized Trade Deal Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../eips/EIP-DRAFT-Enhanced-Identity-System/">Enhanced Identity System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../eips/EIP-DRAFT-Diamond-Factory-Standard/">Diamond Factory Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../eips/EIP-DRAFT-Carbon-Credit-Standard/">Carbon Credit Standard</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">User Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../gemforce-administrator-guide/">Administrator Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../gemforce-deployer-guide/">Deployer Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../gemforce-integrator-guide/">Integrator Guide</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../external-services/gemforce-external-services/">External Services</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../gemforce-documentation-gap-analysis/">Documentation Gap Analysis</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../documentation-progress-summary/">Documentation Progress Summary</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../documentation-plan/">Documentation Plan</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Gemforce Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Cloud Functions</li>
+      <li class="breadcrumb-item active">Authentication Functions</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="authentication-cloud-functions">Authentication Cloud Functions<a class="headerlink" href="#authentication-cloud-functions" title="Permanent link">&para;</a></h1>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>The <a href="/Users/sschepis/Development/gem-base/src/cloud-functions/authFunctions.ts"><code>authFunctions.ts</code></a> module provides comprehensive user authentication and account management functionality for the Gemforce platform. This module handles user registration, email verification, password management, and administrative functions through Parse Server cloud functions.</p>
+<h2 id="module-details">Module Details<a class="headerlink" href="#module-details" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>File</strong>: <code>src/cloud-functions/authFunctions.ts</code></li>
+<li><strong>Framework</strong>: Parse Server Cloud Functions</li>
+<li><strong>Language</strong>: TypeScript</li>
+<li><strong>Dependencies</strong>: crypto, ejs, jsonwebtoken, @sendgrid/mail</li>
+</ul>
+<h2 id="key-features">Key Features<a class="headerlink" href="#key-features" title="Permanent link">&para;</a></h2>
+<h3 id="user-registration-verification">🔹 User Registration &amp; Verification<a class="headerlink" href="#user-registration-verification" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Secure user registration with email verification</li>
+<li>Duplicate email prevention</li>
+<li>Role-based access control setup</li>
+<li>Automated verification email sending</li>
+</ul>
+<h3 id="password-management">🔹 Password Management<a class="headerlink" href="#password-management" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Password reset request and processing</li>
+<li>Secure token-based password reset</li>
+<li>Email notifications for password changes</li>
+<li>Admin UI password setup</li>
+</ul>
+<h3 id="user-account-management">🔹 User Account Management<a class="headerlink" href="#user-account-management" title="Permanent link">&para;</a></h3>
+<ul>
+<li>User profile updates with field validation</li>
+<li>Onboarding status tracking</li>
+<li>Wallet and identity integration</li>
+<li>Administrative user management</li>
+</ul>
+<h3 id="email-integration">🔹 Email Integration<a class="headerlink" href="#email-integration" title="Permanent link">&para;</a></h3>
+<ul>
+<li>SendGrid email service integration</li>
+<li>EJS template-based email rendering</li>
+<li>Multiple email types (verification, reset, success)</li>
+<li>Professional email templates</li>
+</ul>
+<h2 id="cloud-functions">Cloud Functions<a class="headerlink" href="#cloud-functions" title="Permanent link">&para;</a></h2>
+<h3 id="user-registration-functions">User Registration Functions<a class="headerlink" href="#user-registration-functions" title="Permanent link">&para;</a></h3>
+<h4 id="registeruser"><code>registerUser</code><a class="headerlink" href="#registeruser" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s2">&quot;registerUser&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">(</span><span class="nx">request</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">username</span><span class="p">,</span><span class="w"> </span><span class="nx">password</span><span class="p">,</span><span class="w"> </span><span class="nx">email</span><span class="p">,</span><span class="w"> </span><span class="nx">company</span><span class="p">,</span><span class="w"> </span><span class="nx">firstName</span><span class="p">,</span><span class="w"> </span><span class="nx">lastName</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">request</span><span class="p">.</span><span class="nx">params</span><span class="p">;</span>
+<span class="w">  </span><span class="c1">// Implementation details...</span>
+<span class="p">});</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Registers a new user account with email verification.</p>
+<p><strong>Parameters</strong>:
+- <code>username</code> (string): Unique username for the account
+- <code>password</code> (string): User's password
+- <code>email</code> (string): User's email address
+- <code>company</code> (string, optional): User's company name
+- <code>firstName</code> (string, optional): User's first name
+- <code>lastName</code> (string, optional): User's last name</p>
+<p><strong>Returns</strong>: Success message with verification instructions</p>
+<p><strong>Process</strong>:
+1. Validates required fields (username, password, email)
+2. Checks for existing users with the same email
+3. Creates new Parse User with provided information
+4. Sets up role-based ACL (user + admin access)
+5. Generates secure verification token (24-hour expiry)
+6. Sends verification email via SendGrid
+7. Returns success response</p>
+<p><strong>Access Control</strong>: 
+- User gets read/write access to their own data
+- Admin role gets read/write access to user data</p>
+<p><strong>Example Usage</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="s2">&quot;registerUser&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">username</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;john.doe&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">password</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;SecurePassword123!&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">email</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;john.doe@example.com&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">company</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Acme Corp&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">firstName</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;John&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">lastName</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Doe&quot;</span>
+<span class="p">});</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span><span class="w"> </span><span class="c1">// &quot;User registered successfully. Please verify your email.&quot;</span>
+</code></pre></div>
+
+<p><strong>Error Conditions</strong>:
+- Missing required fields
+- Email already exists
+- Admin role not found
+- Email sending failure</p>
+<hr />
+<h4 id="verifyemail"><code>verifyEmail</code><a class="headerlink" href="#verifyemail" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s2">&quot;verifyEmail&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">(</span><span class="nx">request</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">token</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">request</span><span class="p">.</span><span class="nx">params</span><span class="p">;</span>
+<span class="w">  </span><span class="c1">// Implementation details...</span>
+<span class="p">});</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Verifies user email address using verification token.</p>
+<p><strong>Parameters</strong>:
+- <code>token</code> (string): Email verification token</p>
+<p><strong>Returns</strong>: Success message confirming email verification</p>
+<p><strong>Process</strong>:
+1. Validates token parameter
+2. Finds user associated with the token
+3. Checks token expiration (24-hour limit)
+4. Sets emailVerified flag to true
+5. Removes verification token and expiration
+6. Saves user with verified status</p>
+<p><strong>Example Usage</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="s2">&quot;verifyEmail&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">token</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;abc123def456...&quot;</span>
+<span class="p">});</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span><span class="w"> </span><span class="c1">// &quot;Email verified successfully.&quot;</span>
+</code></pre></div>
+
+<p><strong>Error Conditions</strong>:
+- Missing token
+- Invalid or expired token
+- Token expiration exceeded</p>
+<hr />
+<h4 id="retrieveemailfromtoken"><code>retrieveEmailFromToken</code><a class="headerlink" href="#retrieveemailfromtoken" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s2">&quot;retrieveEmailFromToken&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">(</span><span class="nx">request</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">token</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">request</span><span class="p">.</span><span class="nx">params</span><span class="p">;</span>
+<span class="w">  </span><span class="c1">// Implementation details...</span>
+<span class="p">});</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Retrieves email address associated with a verification token.</p>
+<p><strong>Parameters</strong>:
+- <code>token</code> (string): Verification token</p>
+<p><strong>Returns</strong>: Email address associated with the token</p>
+<p><strong>Example Usage</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="s2">&quot;retrieveEmailFromToken&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">token</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;abc123def456...&quot;</span>
+<span class="p">});</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">email</span><span class="p">);</span><span class="w"> </span><span class="c1">// &quot;john.doe@example.com&quot;</span>
+</code></pre></div>
+
+<h3 id="password-management-functions">Password Management Functions<a class="headerlink" href="#password-management-functions" title="Permanent link">&para;</a></h3>
+<h4 id="requestpasswordreset"><code>requestPasswordReset</code><a class="headerlink" href="#requestpasswordreset" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s2">&quot;requestPasswordReset&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">(</span><span class="nx">request</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">email</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">request</span><span class="p">.</span><span class="nx">params</span><span class="p">;</span>
+<span class="w">  </span><span class="c1">// Implementation details...</span>
+<span class="p">});</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Initiates password reset process by sending reset email.</p>
+<p><strong>Parameters</strong>:
+- <code>email</code> (string): Email address of the account to reset</p>
+<p><strong>Returns</strong>: Success message confirming reset email sent</p>
+<p><strong>Process</strong>:
+1. Validates email parameter
+2. Finds user by email address
+3. Generates secure reset token (1-hour expiry)
+4. Saves token and expiration to user account
+5. Sends password reset email with reset link
+6. Returns success confirmation</p>
+<p><strong>Example Usage</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="s2">&quot;requestPasswordReset&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">email</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;john.doe@example.com&quot;</span>
+<span class="p">});</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span><span class="w"> </span><span class="c1">// &quot;Password reset email sent successfully.&quot;</span>
+</code></pre></div>
+
+<p><strong>Error Conditions</strong>:
+- Missing email parameter
+- No user found with email
+- Email sending failure</p>
+<hr />
+<h4 id="resetpassword"><code>resetPassword</code><a class="headerlink" href="#resetpassword" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s2">&quot;resetPassword&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">(</span><span class="nx">request</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">token</span><span class="p">,</span><span class="w"> </span><span class="nx">newPassword</span><span class="p">,</span><span class="w"> </span><span class="nx">skipEmail</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">request</span><span class="p">.</span><span class="nx">params</span><span class="p">;</span>
+<span class="w">  </span><span class="c1">// Implementation details...</span>
+<span class="p">});</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Completes password reset using reset token and new password.</p>
+<p><strong>Parameters</strong>:
+- <code>token</code> (string): Password reset token
+- <code>newPassword</code> (string): New password for the account
+- <code>skipEmail</code> (boolean, optional): Skip sending success email</p>
+<p><strong>Returns</strong>: Success message confirming password update</p>
+<p><strong>Process</strong>:
+1. Validates token and new password
+2. Finds user with valid, non-expired token
+3. Updates user password
+4. Clears reset token and expiration
+5. Optionally sends success confirmation email
+6. Returns success response</p>
+<p><strong>Example Usage</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="s2">&quot;resetPassword&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">token</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;reset123token456...&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">newPassword</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;NewSecurePassword123!&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">skipEmail</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="p">});</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span><span class="w"> </span><span class="c1">// &quot;Password updated successfully. A confirmation email has been sent.&quot;</span>
+</code></pre></div>
+
+<p><strong>Error Conditions</strong>:
+- Missing token or new password
+- Invalid or expired token
+- Password update failure</p>
+<h3 id="user-management-functions">User Management Functions<a class="headerlink" href="#user-management-functions" title="Permanent link">&para;</a></h3>
+<h4 id="updateuserbyemail"><code>updateUserByEmail</code><a class="headerlink" href="#updateuserbyemail" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s2">&quot;updateUserByEmail&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">(</span><span class="nx">request</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">email</span><span class="p">,</span><span class="w"> </span><span class="nx">updates</span><span class="p">,</span><span class="w"> </span><span class="nx">secretKey</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">request</span><span class="p">.</span><span class="nx">params</span><span class="p">;</span>
+<span class="w">  </span><span class="c1">// Implementation details...</span>
+<span class="p">});</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Updates user account information using email and secret key authentication.</p>
+<p><strong>Parameters</strong>:
+- <code>email</code> (string): Email address of user to update
+- <code>updates</code> (object): Object containing fields to update
+- <code>secretKey</code> (string): Pre-shared secret key for authorization</p>
+<p><strong>Allowed Update Fields</strong>:
+- <code>termsAccepted</code> (Date): Terms acceptance timestamp
+- <code>email</code> (string): Email address
+- <code>walletAddress</code> (string): Blockchain wallet address
+- <code>walletId</code> (string): Wallet identifier
+- <code>walletPreference</code> (string): Preferred wallet type
+- <code>personaReferenceId</code> (string): Persona verification ID
+- <code>username</code> (string): Username</p>
+<p><strong>Returns</strong>: Success message with updated user data</p>
+<p><strong>Security</strong>: Requires valid secret key matching <code>AUTH_SECRET_KEY</code> environment variable</p>
+<p><strong>Example Usage</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="s2">&quot;updateUserByEmail&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">email</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;john.doe@example.com&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">updates</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">walletAddress</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;0x1234567890123456789012345678901234567890&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">termsAccepted</span><span class="o">:</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Date</span><span class="p">().</span><span class="nx">toISOString</span><span class="p">()</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nx">secretKey</span><span class="o">:</span><span class="w"> </span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">AUTH_SECRET_KEY</span>
+<span class="p">});</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span><span class="w"> </span><span class="c1">// &quot;User updated successfully.&quot;</span>
+</code></pre></div>
+
+<p><strong>Error Conditions</strong>:
+- Unauthorized secret key
+- Missing email or updates
+- User not found
+- Invalid field updates
+- Invalid date format for termsAccepted</p>
+<hr />
+<h4 id="isuseronboarded"><code>isUserOnboarded</code><a class="headerlink" href="#isuseronboarded" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s2">&quot;isUserOnboarded&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">(</span><span class="nx">request</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">email</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">request</span><span class="p">.</span><span class="nx">params</span><span class="p">;</span>
+<span class="w">  </span><span class="c1">// Implementation details...</span>
+<span class="p">});</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Checks if user has completed onboarding process.</p>
+<p><strong>Parameters</strong>:
+- <code>email</code> (string): Email address to check</p>
+<p><strong>Returns</strong>: Boolean indicating onboarding completion status</p>
+<p><strong>Onboarding Criteria</strong>: User is considered onboarded if they have both:
+- <code>walletAddress</code> set (not null/undefined)
+- <code>personaReferenceId</code> set (not null/undefined)</p>
+<p><strong>Example Usage</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="s2">&quot;isUserOnboarded&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">email</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;john.doe@example.com&quot;</span>
+<span class="p">});</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">result</span><span class="p">);</span><span class="w"> </span><span class="c1">// true if onboarded, false otherwise</span>
+</code></pre></div>
+
+<hr />
+<h4 id="getuserswithidentitywallets"><code>getUsersWithIdentityWallets</code><a class="headerlink" href="#getuserswithidentitywallets" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s2">&quot;getUsersWithIdentityWallets&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">(</span><span class="nx">request</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// Implementation details...</span>
+<span class="p">});</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Retrieves users who have wallet addresses matching Identity table records.</p>
+<p><strong>Returns</strong>: Array of user objects with wallet addresses and emails</p>
+<p><strong>Process</strong>:
+1. Queries Identity table for all wallet addresses
+2. Queries User table for users with matching wallet addresses
+3. Returns filtered list with wallet address and email</p>
+<p><strong>Example Usage</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">users</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="s2">&quot;getUsersWithIdentityWallets&quot;</span><span class="p">);</span>
+
+<span class="nx">users</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">user</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`User: </span><span class="si">${</span><span class="nx">user</span><span class="p">.</span><span class="nx">email</span><span class="si">}</span><span class="sb">, Wallet: </span><span class="si">${</span><span class="nx">user</span><span class="p">.</span><span class="nx">walletAddress</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div>
+
+<h3 id="administrative-functions">Administrative Functions<a class="headerlink" href="#administrative-functions" title="Permanent link">&para;</a></h3>
+<h4 id="setupadminuipassword"><code>setupAdminUIPassword</code><a class="headerlink" href="#setupadminuipassword" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s2">&quot;setupAdminUIPassword&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">(</span><span class="nx">request</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">email</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">request</span><span class="p">.</span><span class="nx">params</span><span class="p">;</span>
+<span class="w">  </span><span class="c1">// Implementation details...</span>
+<span class="p">});</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Initiates admin UI password setup for existing users.</p>
+<p><strong>Parameters</strong>:
+- <code>email</code> (string): Email address of admin user</p>
+<p><strong>Returns</strong>: Success message confirming setup email sent</p>
+<p><strong>Process</strong>:
+1. Finds user by email address
+2. Generates secure setup token (1-hour expiry)
+3. Saves token to user account
+4. Sends admin UI password setup email
+5. Returns success confirmation</p>
+<p><strong>Example Usage</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="s2">&quot;setupAdminUIPassword&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">email</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;admin@example.com&quot;</span>
+<span class="p">});</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span><span class="w"> </span><span class="c1">// &quot;Setup Admin UI password email sent successfully.&quot;</span>
+</code></pre></div>
+
+<hr />
+<h4 id="generateonboardinglink"><code>generateOnboardingLink</code><a class="headerlink" href="#generateonboardinglink" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s2">&quot;generateOnboardingLink&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">(</span><span class="nx">request</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">jwtToken</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">request</span><span class="p">.</span><span class="nx">params</span><span class="p">;</span>
+<span class="w">  </span><span class="c1">// Implementation details...</span>
+<span class="p">});</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Creates user account and generates onboarding link from JWT token.</p>
+<p><strong>Parameters</strong>:
+- <code>jwtToken</code> (string): JWT token containing user information</p>
+<p><strong>JWT Payload Structure</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nx">email</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">firstName</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">lastName</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Returns</strong>: Onboarding link for email verification</p>
+<p><strong>Process</strong>:
+1. Verifies JWT token with secret key
+2. Extracts user information from token
+3. Checks for existing user with same email
+4. Creates new user account with default password
+5. Sets up ACL permissions
+6. Generates verification token
+7. Returns onboarding link</p>
+<p><strong>Example Usage</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">payload</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">email</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;newuser@example.com&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">firstName</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;New&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">lastName</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;User&quot;</span>
+<span class="p">};</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">jwtToken</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">jwt</span><span class="p">.</span><span class="nx">sign</span><span class="p">(</span><span class="nx">payload</span><span class="p">,</span><span class="w"> </span><span class="nx">secretKey</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">expiresIn</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;1h&#39;</span><span class="w"> </span><span class="p">});</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="s2">&quot;generateOnboardingLink&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">jwtToken</span><span class="o">:</span><span class="w"> </span><span class="nx">jwtToken</span>
+<span class="p">});</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">result</span><span class="p">);</span><span class="w"> </span><span class="c1">// &quot;https://app.example.com/verify-email/abc123...&quot;</span>
+</code></pre></div>
+
+<h2 id="email-templates-and-integration">Email Templates and Integration<a class="headerlink" href="#email-templates-and-integration" title="Permanent link">&para;</a></h2>
+<h3 id="sendgrid-configuration">SendGrid Configuration<a class="headerlink" href="#sendgrid-configuration" title="Permanent link">&para;</a></h3>
+<p>The module uses SendGrid for email delivery with the following configuration:
+- <strong>Sender</strong>: <code>NomyxID.Registrations@nomyx.io</code>
+- <strong>Templates</strong>: EJS-based HTML templates
+- <strong>Template Location</strong>: <code>src/utils/emailTemplate/</code></p>
+<h3 id="email-types">Email Types<a class="headerlink" href="#email-types" title="Permanent link">&para;</a></h3>
+<h4 id="verification-email">Verification Email<a class="headerlink" href="#verification-email" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Template</strong>: <code>verifyEmailTemplate.ejs</code></li>
+<li><strong>Purpose</strong>: Email address verification</li>
+<li><strong>Link</strong>: <code>${PROJECT_WIZARD_URL}/verify-email/${token}</code></li>
+</ul>
+<h4 id="password-reset-email">Password Reset Email<a class="headerlink" href="#password-reset-email" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Template</strong>: <code>resetPasswordTemplate.ejs</code></li>
+<li><strong>Purpose</strong>: Password reset request</li>
+<li><strong>Link</strong>: <code>${PROJECT_WIZARD_URL}/reset-password/${token}</code></li>
+</ul>
+<h4 id="password-reset-success-email">Password Reset Success Email<a class="headerlink" href="#password-reset-success-email" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Template</strong>: <code>resetPasswordSuccessTemplate.ejs</code></li>
+<li><strong>Purpose</strong>: Password reset confirmation</li>
+<li><strong>Content</strong>: Success notification</li>
+</ul>
+<h4 id="admin-ui-password-setup-email">Admin UI Password Setup Email<a class="headerlink" href="#admin-ui-password-setup-email" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Template</strong>: <code>createPasswordTemplate.ejs</code></li>
+<li><strong>Purpose</strong>: Admin UI password setup</li>
+<li><strong>Link</strong>: <code>${ADMIN_UI_URL}/create-password/${token}</code></li>
+</ul>
+<h2 id="integration-examples">Integration Examples<a class="headerlink" href="#integration-examples" title="Permanent link">&para;</a></h2>
+<h3 id="user-registration-flow">User Registration Flow<a class="headerlink" href="#user-registration-flow" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Complete user registration and verification flow</span>
+<span class="kd">class</span><span class="w"> </span><span class="nx">UserRegistrationService</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">async</span><span class="w"> </span><span class="nx">registerNewUser</span><span class="p">(</span><span class="nx">userData</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="c1">// Step 1: Register user</span>
+<span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">registrationResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="s2">&quot;registerUser&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">username</span><span class="o">:</span><span class="w"> </span><span class="nx">userData</span><span class="p">.</span><span class="nx">username</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">password</span><span class="o">:</span><span class="w"> </span><span class="nx">userData</span><span class="p">.</span><span class="nx">password</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">email</span><span class="o">:</span><span class="w"> </span><span class="nx">userData</span><span class="p">.</span><span class="nx">email</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">company</span><span class="o">:</span><span class="w"> </span><span class="nx">userData</span><span class="p">.</span><span class="nx">company</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">firstName</span><span class="o">:</span><span class="w"> </span><span class="nx">userData</span><span class="p">.</span><span class="nx">firstName</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">lastName</span><span class="o">:</span><span class="w"> </span><span class="nx">userData</span><span class="p">.</span><span class="nx">lastName</span>
+<span class="w">      </span><span class="p">});</span>
+
+<span class="w">      </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Registration successful:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">registrationResult</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+
+<span class="w">      </span><span class="c1">// Step 2: User receives email and clicks verification link</span>
+<span class="w">      </span><span class="c1">// This would be handled by frontend calling verifyEmail</span>
+
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">success</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">message</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Registration initiated. Please check email for verification.&quot;</span>
+<span class="w">      </span><span class="p">};</span>
+
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;Registration failed:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+<span class="w">      </span><span class="k">throw</span><span class="w"> </span><span class="nx">error</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="k">async</span><span class="w"> </span><span class="nx">verifyUserEmail</span><span class="p">(</span><span class="nx">token</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="s2">&quot;verifyEmail&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">token</span><span class="w"> </span><span class="p">});</span>
+<span class="w">      </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Email verified:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">result</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="nx">result</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;Verification failed:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+<span class="w">      </span><span class="k">throw</span><span class="w"> </span><span class="nx">error</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="password-reset-flow">Password Reset Flow<a class="headerlink" href="#password-reset-flow" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Complete password reset workflow</span>
+<span class="kd">class</span><span class="w"> </span><span class="nx">PasswordResetService</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">async</span><span class="w"> </span><span class="nx">initiatePasswordReset</span><span class="p">(</span><span class="nx">email</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="s2">&quot;requestPasswordReset&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">email</span><span class="w"> </span><span class="p">});</span>
+<span class="w">      </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Reset email sent:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">result</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="nx">result</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;Reset request failed:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+<span class="w">      </span><span class="k">throw</span><span class="w"> </span><span class="nx">error</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="k">async</span><span class="w"> </span><span class="nx">completePasswordReset</span><span class="p">(</span><span class="nx">token</span><span class="p">,</span><span class="w"> </span><span class="nx">newPassword</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="s2">&quot;resetPassword&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">token</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">newPassword</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">skipEmail</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">      </span><span class="p">});</span>
+<span class="w">      </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Password reset successful:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">result</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="nx">result</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;Password reset failed:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+<span class="w">      </span><span class="k">throw</span><span class="w"> </span><span class="nx">error</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="user-onboarding-integration">User Onboarding Integration<a class="headerlink" href="#user-onboarding-integration" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// User onboarding with wallet and identity integration</span>
+<span class="kd">class</span><span class="w"> </span><span class="nx">OnboardingService</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">async</span><span class="w"> </span><span class="nx">checkOnboardingStatus</span><span class="p">(</span><span class="nx">email</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="s2">&quot;isUserOnboarded&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">email</span><span class="w"> </span><span class="p">});</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">result</span><span class="p">.</span><span class="nx">result</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="k">async</span><span class="w"> </span><span class="nx">completeOnboarding</span><span class="p">(</span><span class="nx">email</span><span class="p">,</span><span class="w"> </span><span class="nx">walletAddress</span><span class="p">,</span><span class="w"> </span><span class="nx">personaId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="s2">&quot;updateUserByEmail&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">email</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">updates</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nx">walletAddress</span><span class="p">,</span>
+<span class="w">          </span><span class="nx">personaReferenceId</span><span class="o">:</span><span class="w"> </span><span class="nx">personaId</span><span class="p">,</span>
+<span class="w">          </span><span class="nx">termsAccepted</span><span class="o">:</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Date</span><span class="p">().</span><span class="nx">toISOString</span><span class="p">()</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nx">secretKey</span><span class="o">:</span><span class="w"> </span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">AUTH_SECRET_KEY</span>
+<span class="w">      </span><span class="p">});</span>
+
+<span class="w">      </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Onboarding completed:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">result</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="nx">result</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;Onboarding failed:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+<span class="w">      </span><span class="k">throw</span><span class="w"> </span><span class="nx">error</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="admin-user-management">Admin User Management<a class="headerlink" href="#admin-user-management" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Administrative user management functions</span>
+<span class="kd">class</span><span class="w"> </span><span class="nx">AdminUserService</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">async</span><span class="w"> </span><span class="nx">setupAdminPassword</span><span class="p">(</span><span class="nx">email</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="s2">&quot;setupAdminUIPassword&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">email</span><span class="w"> </span><span class="p">});</span>
+<span class="w">      </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Admin setup initiated:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">result</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="nx">result</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;Admin setup failed:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+<span class="w">      </span><span class="k">throw</span><span class="w"> </span><span class="nx">error</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="k">async</span><span class="w"> </span><span class="nx">getIdentityUsers</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">users</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="s2">&quot;getUsersWithIdentityWallets&quot;</span><span class="p">);</span>
+<span class="w">      </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Found </span><span class="si">${</span><span class="nx">users</span><span class="p">.</span><span class="nx">length</span><span class="si">}</span><span class="sb"> users with identity wallets`</span><span class="p">);</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="nx">users</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;Failed to get identity users:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+<span class="w">      </span><span class="k">throw</span><span class="w"> </span><span class="nx">error</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="security-considerations">Security Considerations<a class="headerlink" href="#security-considerations" title="Permanent link">&para;</a></h2>
+<h3 id="token-security">Token Security<a class="headerlink" href="#token-security" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Cryptographically secure token generation using <code>crypto.randomBytes(32)</code></li>
+<li>Time-limited tokens (24 hours for verification, 1 hour for password reset)</li>
+<li>Tokens are single-use and cleared after successful operations</li>
+</ul>
+<h3 id="access-control">Access Control<a class="headerlink" href="#access-control" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Role-based ACL system with user and admin permissions</li>
+<li>Secret key authentication for sensitive operations</li>
+<li>Email-based user identification and validation</li>
+</ul>
+<h3 id="data-protection">Data Protection<a class="headerlink" href="#data-protection" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Password hashing handled by Parse Server</li>
+<li>Sensitive operations require email verification</li>
+<li>Field validation for user updates</li>
+</ul>
+<h3 id="email-security">Email Security<a class="headerlink" href="#email-security" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Professional email templates to prevent phishing</li>
+<li>Secure token-based links</li>
+<li>Clear expiration times for all tokens</li>
+</ul>
+<h2 id="error-handling">Error Handling<a class="headerlink" href="#error-handling" title="Permanent link">&para;</a></h2>
+<h3 id="validation-errors">Validation Errors<a class="headerlink" href="#validation-errors" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Missing required fields validation</li>
+<li>Email format validation</li>
+<li>Token expiration checking</li>
+</ul>
+<h3 id="user-errors">User Errors<a class="headerlink" href="#user-errors" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Duplicate email registration prevention</li>
+<li>Invalid token handling</li>
+<li>User not found scenarios</li>
+</ul>
+<h3 id="system-errors">System Errors<a class="headerlink" href="#system-errors" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Email sending failure handling</li>
+<li>Database operation error handling</li>
+<li>JWT token verification errors</li>
+</ul>
+<h2 id="testing-considerations">Testing Considerations<a class="headerlink" href="#testing-considerations" title="Permanent link">&para;</a></h2>
+<h3 id="unit-tests">Unit Tests<a class="headerlink" href="#unit-tests" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Individual function testing</li>
+<li>Parameter validation testing</li>
+<li>Error condition handling</li>
+<li>Token generation and validation</li>
+</ul>
+<h3 id="integration-tests">Integration Tests<a class="headerlink" href="#integration-tests" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Complete registration flow</li>
+<li>Password reset workflow</li>
+<li>Email delivery testing</li>
+<li>ACL permission verification</li>
+</ul>
+<h3 id="security-tests">Security Tests<a class="headerlink" href="#security-tests" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Token security validation</li>
+<li>Access control testing</li>
+<li>Email template security</li>
+<li>Secret key validation</li>
+</ul>
+<h2 id="related-documentation">Related Documentation<a class="headerlink" href="#related-documentation" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../blockchain/">Blockchain Cloud Functions</a> - Network integration</li>
+<li><a href="../dfns/">DFNS Cloud Functions</a> - Wallet integration</li>
+<li><a href="../contracts/">Contract Cloud Functions</a> - Smart contract integration</li>
+<li><a href="../guides/user-management.md">User Management Guide</a> - Implementation guide</li>
+<li><a href="../guides/security.md">Security Guide</a> - Security best practices</li>
+</ul>
+<hr />
+<p><em>These authentication functions provide the foundation for secure user management within the Gemforce platform, supporting complete user lifecycle management from registration through onboarding and ongoing account management.</em></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../contracts/" class="btn btn-neutral float-left" title="Contract Functions"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../api-documentation/gemforce-api-documentation/" class="btn btn-neutral float-right" title="Full API Reference">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../contracts/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../api-documentation/gemforce-api-documentation/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

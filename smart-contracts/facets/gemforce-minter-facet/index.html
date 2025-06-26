@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Gemforce Team" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>Gemforce Minter Facet - Gemforce Documentation</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Gemforce Minter Facet";
+        var mkdocs_page_input_path = "smart-contracts/facets/gemforce-minter-facet.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../.." class="icon icon-home"> Gemforce Documentation
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../developer-setup-guide/">Developer Setup Guide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../system-architecture/gemforce-system-architecture/">System Architecture</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Smart Contracts</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../diamond/">Diamond Contract</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" >Facets</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" href="../marketplace-facet/">Marketplace Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../trade-deal-management-facet/">Trade Deal Management Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../carbon-credit-facet/">Carbon Credit Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../identity-registry-facet/">Identity Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../trusted-issuers-registry-facet/">Trusted Issuers Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../fee-distributor-facet/">Fee Distributor Facet</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">Gemforce Minter Facet</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#overview">Overview</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#contract-details">Contract Details</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#key-features">Key Features</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#attribute-rich-token-minting">🔹 Attribute-Rich Token Minting</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#diamond-integration">🔹 Diamond Integration</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#owner-controlled-minting">🔹 Owner-Controlled Minting</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#metadata-management">🔹 Metadata Management</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#core-data-structures">Core Data Structures</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#attribute-structure">Attribute Structure</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#storage-integration">Storage Integration</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#core-functions">Core Functions</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#token-minting-functions">Token Minting Functions</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#integration-examples">Integration Examples</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#environmental-asset-minting">Environmental Asset Minting</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#trade-deal-collateral-minting">Trade Deal Collateral Minting</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#marketplace-item-minting">Marketplace Item Minting</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#batch-minting-system">Batch Minting System</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#dynamic-attribute-minting">Dynamic Attribute Minting</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#metadata-validation-system">Metadata Validation System</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#events">Events</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#minting-events">Minting Events</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#security-considerations">Security Considerations</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#access-control">Access Control</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#data-integrity">Data Integrity</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#attribute-validation">Attribute Validation</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#gas-optimization">Gas Optimization</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#single-transaction-minting">Single Transaction Minting</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#storage-efficiency">Storage Efficiency</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#error-handling">Error Handling</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#access-control-errors">Access Control Errors</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#minting-errors">Minting Errors</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#testing-considerations">Testing Considerations</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#unit-tests">Unit Tests</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#integration-tests">Integration Tests</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#related-documentation">Related Documentation</a>
+    </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../multi-sale-facet/">Multi Sale Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../svg-templates-facet/">SVG Templates Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../trade-deal-admin-facet/">Trade Deal Admin Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../trade-deal-operations-facet/">Trade Deal Operations Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../collateral-token-factory-facet/">Collateral Token Factory Facet</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Interfaces</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/idiamond/">IDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/imarketplace/">IMarketplace</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/itradedeal/">ITradeDeal</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/icarbon-credit/">ICarbonCredit</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ierc1155-mint/">IERC1155Mint</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ierc734/">IERC734</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ierc735/">IERC735</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Libraries</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/carbon-credit-lib/">Carbon Credit Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/trade-deal-lib/">Trade Deal Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/multi-sale-lib/">Multi Sale Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/diamond-factory-lib/">Diamond Factory Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/svg-templates-lib/">SVG Templates Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/attribute-lib/">Attribute Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/variable-price-lib/">Variable Price Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/merkle-prover/">Merkle Prover</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/fee-distributor-lib/">Fee Distributor Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/lib-diamond/">LibDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/diamond-lib/">DiamondLib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/erc721a-lib/">ERC721A Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/erc721a-enumeration-lib/">ERC721A Enumeration Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/strings-lib/">Strings Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/metadata-lib/">Metadata Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/trusted-issuer-lib/">Trusted Issuer Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/set-libraries/">Set Libraries</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Cloud Functions</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/blockchain/">Blockchain Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/dfns/">DFNS Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/contracts/">Contract Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/authentication/">Authentication Functions</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">API Documentation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../api-documentation/gemforce-api-documentation/">Full API Reference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../api-documentation/gemforce-api-quick-reference/">Quick Reference</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">EIPs (Ethereum Improvement Proposals)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Diamond-Enhanced-Marketplace/">Diamond-Enhanced Marketplace</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Multi-Token-Sale-Standard/">Multi-Token Sale Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Collateralized-Trade-Deal-Standard/">Collateralized Trade Deal Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Enhanced-Identity-System/">Enhanced Identity System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Diamond-Factory-Standard/">Diamond Factory Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Carbon-Credit-Standard/">Carbon Credit Standard</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">User Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-administrator-guide/">Administrator Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-deployer-guide/">Deployer Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-integrator-guide/">Integrator Guide</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../external-services/gemforce-external-services/">External Services</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-documentation-gap-analysis/">Documentation Gap Analysis</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../documentation-progress-summary/">Documentation Progress Summary</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../documentation-plan/">Documentation Plan</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">Gemforce Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Smart Contracts</li>
+          <li class="breadcrumb-item">Facets</li>
+      <li class="breadcrumb-item active">Gemforce Minter Facet</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="gemforceminterfacet">GemforceMinterFacet<a class="headerlink" href="#gemforceminterfacet" title="Permanent link">&para;</a></h1>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>The <a href="/Users/sschepis/Development/gem-base/contracts/facets/GemforceMinterFacet.sol"><code>GemforceMinterFacet.sol</code></a> provides specialized token minting functionality within the Gemforce diamond system. This facet enables the creation of NFTs with customizable attributes in a single transaction, supporting rich metadata and flexible token properties for various use cases including environmental assets, trade deals, and marketplace items.</p>
+<h2 id="contract-details">Contract Details<a class="headerlink" href="#contract-details" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Contract Name</strong>: <code>GemforceMinterFacet</code></li>
+<li><strong>Inheritance</strong>: <code>Modifiers</code>, <code>IGemforceMinterFacet</code></li>
+<li><strong>License</strong>: MIT</li>
+<li><strong>Solidity Version</strong>: ^0.8.6</li>
+</ul>
+<h2 id="key-features">Key Features<a class="headerlink" href="#key-features" title="Permanent link">&para;</a></h2>
+<h3 id="attribute-rich-token-minting">🔹 Attribute-Rich Token Minting<a class="headerlink" href="#attribute-rich-token-minting" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Mint tokens with custom attributes in single transaction</li>
+<li>Flexible metadata system using trait types and values</li>
+<li>Support for complex token properties and characteristics</li>
+<li>Efficient batch attribute assignment</li>
+</ul>
+<h3 id="diamond-integration">🔹 Diamond Integration<a class="headerlink" href="#diamond-integration" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Seamless integration with diamond storage pattern</li>
+<li>Access to identity system for token management</li>
+<li>Consistent token ID generation and tracking</li>
+<li>Event-driven architecture for transparency</li>
+</ul>
+<h3 id="owner-controlled-minting">🔹 Owner-Controlled Minting<a class="headerlink" href="#owner-controlled-minting" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Secure owner-only minting functionality</li>
+<li>Controlled token supply management</li>
+<li>Administrative oversight of token creation</li>
+<li>Integration with access control systems</li>
+</ul>
+<h3 id="metadata-management">🔹 Metadata Management<a class="headerlink" href="#metadata-management" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Rich attribute system for token metadata</li>
+<li>Support for various data types and formats</li>
+<li>Extensible attribute framework</li>
+<li>On-chain metadata storage</li>
+</ul>
+<h2 id="core-data-structures">Core Data Structures<a class="headerlink" href="#core-data-structures" title="Permanent link">&para;</a></h2>
+<h3 id="attribute-structure">Attribute Structure<a class="headerlink" href="#attribute-structure" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">struct</span><span class="w"> </span><span class="nv">Attribute</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">string</span><span class="w"> </span><span class="nv">traitType</span><span class="p">;</span><span class="w">    </span><span class="c1">// The type/category of the attribute</span>
+<span class="w">    </span><span class="kt">string</span><span class="w"> </span><span class="nv">value</span><span class="p">;</span><span class="w">        </span><span class="c1">// The value of the attribute</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="storage-integration">Storage Integration<a class="headerlink" href="#storage-integration" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Identity System Storage</strong>: Token state and ownership management</li>
+<li><strong>Attribute Storage</strong>: Token metadata and attribute management</li>
+<li><strong>Diamond Storage</strong>: Persistent storage across contract upgrades</li>
+</ul>
+<h2 id="core-functions">Core Functions<a class="headerlink" href="#core-functions" title="Permanent link">&para;</a></h2>
+<h3 id="token-minting-functions">Token Minting Functions<a class="headerlink" href="#token-minting-functions" title="Permanent link">&para;</a></h3>
+<h4 id="gemforcemint"><code>gemforceMint()</code><a class="headerlink" href="#gemforcemint" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">gemforceMint</span><span class="p">(</span>Attribute<span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>metadata<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>override<span class="w"> </span>onlyOwner<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Mints a new token with customizable attributes in a single transaction.</p>
+<p><strong>Parameters</strong>:
+- <code>metadata</code> (Attribute[]): Array of attribute structs to assign to the token</p>
+<p><strong>Returns</strong>:
+- <code>tokenId</code> (uint256): ID of the newly minted token</p>
+<p><strong>Access Control</strong>: Owner only</p>
+<p><strong>Process</strong>:
+1. Gets next available token ID from identity system
+2. Emits GemforceMinted event before state changes
+3. Mints token to the caller (owner)
+4. Assigns all specified attributes to the token
+5. Returns the new token ID</p>
+<p><strong>Events</strong>: <code>GemforceMinted(tokenId, recipient, metadata)</code></p>
+<p><strong>Example Usage</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Mint environmental asset NFT with attributes</span>
+Attribute<span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>attributes<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span>Attribute<span class="p">[](</span><span class="m m-Decimal">5</span><span class="p">);</span>
+attributes<span class="p">[</span><span class="m m-Decimal">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>Attribute<span class="p">(</span><span class="s2">&quot;Asset Type&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Carbon Credit&quot;</span><span class="p">);</span>
+attributes<span class="p">[</span><span class="m m-Decimal">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>Attribute<span class="p">(</span><span class="s2">&quot;Project&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Amazon Rainforest Conservation&quot;</span><span class="p">);</span>
+attributes<span class="p">[</span><span class="m m-Decimal">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>Attribute<span class="p">(</span><span class="s2">&quot;Credits&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;1000&quot;</span><span class="p">);</span>
+attributes<span class="p">[</span><span class="m m-Decimal">3</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>Attribute<span class="p">(</span><span class="s2">&quot;Vintage&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;2024&quot;</span><span class="p">);</span>
+attributes<span class="p">[</span><span class="m m-Decimal">4</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>Attribute<span class="p">(</span><span class="s2">&quot;Standard&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;VCS&quot;</span><span class="p">);</span>
+
+<span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>IGemforceMinterFacet<span class="p">(</span>diamond<span class="p">).</span>gemforceMint<span class="p">(</span>attributes<span class="p">);</span>
+console<span class="p">.</span>log<span class="p">(</span><span class="s2">&quot;Minted environmental asset with ID:&quot;</span><span class="p">,</span><span class="w"> </span>tokenId<span class="p">);</span>
+</code></pre></div>
+
+<p><strong>Gas Optimization</strong>: Single transaction for minting and attribute assignment reduces gas costs compared to separate operations.</p>
+<p><strong>Security Features</strong>:
+- Owner-only access prevents unauthorized minting
+- Event emission before state changes ensures transparency
+- Atomic operation ensures all-or-nothing minting</p>
+<h2 id="integration-examples">Integration Examples<a class="headerlink" href="#integration-examples" title="Permanent link">&para;</a></h2>
+<h3 id="environmental-asset-minting">Environmental Asset Minting<a class="headerlink" href="#environmental-asset-minting" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Mint carbon credit NFTs with environmental attributes</span>
+<span class="k">contract</span><span class="w"> </span><span class="ni">EnvironmentalAssetMinter</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">mintCarbonCreditAsset</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>projectName<span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">creditAmount</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>vintage<span class="p">,</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>standard<span class="p">,</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>location
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyAuthorized<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>Attribute<span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>attributes<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span>Attribute<span class="p">[](</span><span class="m m-Decimal">6</span><span class="p">);</span>
+<span class="w">        </span>attributes<span class="p">[</span><span class="m m-Decimal">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>Attribute<span class="p">(</span><span class="s2">&quot;Asset Type&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Carbon Credit&quot;</span><span class="p">);</span>
+<span class="w">        </span>attributes<span class="p">[</span><span class="m m-Decimal">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>Attribute<span class="p">(</span><span class="s2">&quot;Project&quot;</span><span class="p">,</span><span class="w"> </span>projectName<span class="p">);</span>
+<span class="w">        </span>attributes<span class="p">[</span><span class="m m-Decimal">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>Attribute<span class="p">(</span><span class="s2">&quot;Credits&quot;</span><span class="p">,</span><span class="w"> </span>creditAmount<span class="p">.</span>toString<span class="p">());</span>
+<span class="w">        </span>attributes<span class="p">[</span><span class="m m-Decimal">3</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>Attribute<span class="p">(</span><span class="s2">&quot;Vintage&quot;</span><span class="p">,</span><span class="w"> </span>vintage<span class="p">);</span>
+<span class="w">        </span>attributes<span class="p">[</span><span class="m m-Decimal">4</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>Attribute<span class="p">(</span><span class="s2">&quot;Standard&quot;</span><span class="p">,</span><span class="w"> </span>standard<span class="p">);</span>
+<span class="w">        </span>attributes<span class="p">[</span><span class="m m-Decimal">5</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>Attribute<span class="p">(</span><span class="s2">&quot;Location&quot;</span><span class="p">,</span><span class="w"> </span>location<span class="p">);</span>
+
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>IGemforceMinterFacet<span class="p">(</span>diamond<span class="p">).</span>gemforceMint<span class="p">(</span>attributes<span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Initialize carbon credits for the token</span>
+<span class="w">        </span>ICarbonCredit<span class="p">(</span>diamond<span class="p">).</span>initializeCarbonCredit<span class="p">(</span>tokenId<span class="p">,</span><span class="w"> </span>creditAmount<span class="p">);</span>
+
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>tokenId<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="trade-deal-collateral-minting">Trade Deal Collateral Minting<a class="headerlink" href="#trade-deal-collateral-minting" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Mint collateral tokens for trade deals</span>
+<span class="k">contract</span><span class="w"> </span><span class="ni">TradeDealCollateralMinter</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">mintCollateralToken</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>collateralType<span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">value</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>description
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyTradeDealManager<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>Attribute<span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>attributes<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span>Attribute<span class="p">[](</span><span class="m m-Decimal">5</span><span class="p">);</span>
+<span class="w">        </span>attributes<span class="p">[</span><span class="m m-Decimal">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>Attribute<span class="p">(</span><span class="s2">&quot;Asset Type&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Trade Deal Collateral&quot;</span><span class="p">);</span>
+<span class="w">        </span>attributes<span class="p">[</span><span class="m m-Decimal">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>Attribute<span class="p">(</span><span class="s2">&quot;Trade Deal ID&quot;</span><span class="p">,</span><span class="w"> </span>tradeDealId<span class="p">.</span>toString<span class="p">());</span>
+<span class="w">        </span>attributes<span class="p">[</span><span class="m m-Decimal">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>Attribute<span class="p">(</span><span class="s2">&quot;Collateral Type&quot;</span><span class="p">,</span><span class="w"> </span>collateralType<span class="p">);</span>
+<span class="w">        </span>attributes<span class="p">[</span><span class="m m-Decimal">3</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>Attribute<span class="p">(</span><span class="s2">&quot;Value&quot;</span><span class="p">,</span><span class="w"> </span>value<span class="p">.</span>toString<span class="p">());</span>
+<span class="w">        </span>attributes<span class="p">[</span><span class="m m-Decimal">4</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>Attribute<span class="p">(</span><span class="s2">&quot;Description&quot;</span><span class="p">,</span><span class="w"> </span>description<span class="p">);</span>
+
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>IGemforceMinterFacet<span class="p">(</span>diamond<span class="p">).</span>gemforceMint<span class="p">(</span>attributes<span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Link token to trade deal</span>
+<span class="w">        </span>ITradeDeal<span class="p">(</span>diamond<span class="p">).</span>addCollateralToken<span class="p">(</span>tradeDealId<span class="p">,</span><span class="w"> </span>tokenId<span class="p">);</span>
+
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>tokenId<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="marketplace-item-minting">Marketplace Item Minting<a class="headerlink" href="#marketplace-item-minting" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Mint marketplace items with rich metadata</span>
+<span class="k">contract</span><span class="w"> </span><span class="ni">MarketplaceItemMinter</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">mintMarketplaceItem</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>itemName<span class="p">,</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>category<span class="p">,</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>description<span class="p">,</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>imageURI<span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">price</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyMerchant<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>Attribute<span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>attributes<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span>Attribute<span class="p">[](</span><span class="m m-Decimal">6</span><span class="p">);</span>
+<span class="w">        </span>attributes<span class="p">[</span><span class="m m-Decimal">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>Attribute<span class="p">(</span><span class="s2">&quot;Item Type&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Marketplace Item&quot;</span><span class="p">);</span>
+<span class="w">        </span>attributes<span class="p">[</span><span class="m m-Decimal">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>Attribute<span class="p">(</span><span class="s2">&quot;Name&quot;</span><span class="p">,</span><span class="w"> </span>itemName<span class="p">);</span>
+<span class="w">        </span>attributes<span class="p">[</span><span class="m m-Decimal">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>Attribute<span class="p">(</span><span class="s2">&quot;Category&quot;</span><span class="p">,</span><span class="w"> </span>category<span class="p">);</span>
+<span class="w">        </span>attributes<span class="p">[</span><span class="m m-Decimal">3</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>Attribute<span class="p">(</span><span class="s2">&quot;Description&quot;</span><span class="p">,</span><span class="w"> </span>description<span class="p">);</span>
+<span class="w">        </span>attributes<span class="p">[</span><span class="m m-Decimal">4</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>Attribute<span class="p">(</span><span class="s2">&quot;Image&quot;</span><span class="p">,</span><span class="w"> </span>imageURI<span class="p">);</span>
+<span class="w">        </span>attributes<span class="p">[</span><span class="m m-Decimal">5</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>Attribute<span class="p">(</span><span class="s2">&quot;Price&quot;</span><span class="p">,</span><span class="w"> </span>price<span class="p">.</span>toString<span class="p">());</span>
+
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>IGemforceMinterFacet<span class="p">(</span>diamond<span class="p">).</span>gemforceMint<span class="p">(</span>attributes<span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// List item on marketplace</span>
+<span class="w">        </span>IMarketplace<span class="p">(</span>diamond<span class="p">).</span>listItem<span class="p">(</span>
+<span class="w">            </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">),</span>
+<span class="w">            </span><span class="kt">payable</span><span class="p">(</span><span class="k">msg.sender</span><span class="p">),</span>
+<span class="w">            </span>tokenId<span class="p">,</span>
+<span class="w">            </span>price<span class="p">,</span>
+<span class="w">            </span><span class="kt">false</span><span class="p">,</span>
+<span class="w">            </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">)</span>
+<span class="w">        </span><span class="p">);</span>
+
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>tokenId<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="batch-minting-system">Batch Minting System<a class="headerlink" href="#batch-minting-system" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Efficient batch minting for multiple tokens</span>
+<span class="k">contract</span><span class="w"> </span><span class="ni">BatchMintingSystem</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">batchMintTokens</span><span class="p">(</span>
+<span class="w">        </span>Attribute<span class="p">[][]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>tokenAttributes
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyOwner<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>tokenIds<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[](</span>tokenAttributes<span class="p">.</span>length<span class="p">);</span>
+
+<span class="w">        </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>tokenAttributes<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>tokenIds<span class="p">[</span>i<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>IGemforceMinterFacet<span class="p">(</span>diamond<span class="p">).</span>gemforceMint<span class="p">(</span>
+<span class="w">                </span>tokenAttributes<span class="p">[</span>i<span class="p">]</span>
+<span class="w">            </span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>tokenIds<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">mintTokenCollection</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>collectionName<span class="p">,</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>baseImageURI<span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">quantity</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyOwner<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>tokenIds<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[](</span>quantity<span class="p">);</span>
+
+<span class="w">        </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>quantity<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>Attribute<span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>attributes<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span>Attribute<span class="p">[](</span><span class="m m-Decimal">4</span><span class="p">);</span>
+<span class="w">            </span>attributes<span class="p">[</span><span class="m m-Decimal">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>Attribute<span class="p">(</span><span class="s2">&quot;Collection&quot;</span><span class="p">,</span><span class="w"> </span>collectionName<span class="p">);</span>
+<span class="w">            </span>attributes<span class="p">[</span><span class="m m-Decimal">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>Attribute<span class="p">(</span><span class="s2">&quot;Edition&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span>i<span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m m-Decimal">1</span><span class="p">).</span>toString<span class="p">());</span>
+<span class="w">            </span>attributes<span class="p">[</span><span class="m m-Decimal">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>Attribute<span class="p">(</span><span class="s2">&quot;Total Supply&quot;</span><span class="p">,</span><span class="w"> </span>quantity<span class="p">.</span>toString<span class="p">());</span>
+<span class="w">            </span>attributes<span class="p">[</span><span class="m m-Decimal">3</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>Attribute<span class="p">(</span><span class="s2">&quot;Image&quot;</span><span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="p">(</span>abi<span class="p">.</span>encodePacked<span class="p">(</span>baseImageURI<span class="p">,</span><span class="w"> </span><span class="p">(</span>i<span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m m-Decimal">1</span><span class="p">).</span>toString<span class="p">())));</span>
+
+<span class="w">            </span>tokenIds<span class="p">[</span>i<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>IGemforceMinterFacet<span class="p">(</span>diamond<span class="p">).</span>gemforceMint<span class="p">(</span>attributes<span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>tokenIds<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="dynamic-attribute-minting">Dynamic Attribute Minting<a class="headerlink" href="#dynamic-attribute-minting" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Mint tokens with dynamic attributes based on conditions</span>
+<span class="k">contract</span><span class="w"> </span><span class="ni">DynamicAttributeMinter</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">mintDynamicToken</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>tokenType<span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">rarity</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">isSpecial</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyOwner<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Base attributes</span>
+<span class="w">        </span>Attribute<span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>attributes<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span>Attribute<span class="p">[](</span>isSpecial<span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="m m-Decimal">6</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="m m-Decimal">4</span><span class="p">);</span>
+<span class="w">        </span>attributes<span class="p">[</span><span class="m m-Decimal">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>Attribute<span class="p">(</span><span class="s2">&quot;Type&quot;</span><span class="p">,</span><span class="w"> </span>tokenType<span class="p">);</span>
+<span class="w">        </span>attributes<span class="p">[</span><span class="m m-Decimal">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>Attribute<span class="p">(</span><span class="s2">&quot;Rarity&quot;</span><span class="p">,</span><span class="w"> </span>getRarityString<span class="p">(</span>rarity<span class="p">));</span>
+<span class="w">        </span>attributes<span class="p">[</span><span class="m m-Decimal">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>Attribute<span class="p">(</span><span class="s2">&quot;Minted At&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">block.timestamp</span><span class="p">.</span>toString<span class="p">());</span>
+<span class="w">        </span>attributes<span class="p">[</span><span class="m m-Decimal">3</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>Attribute<span class="p">(</span><span class="s2">&quot;Minted By&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Gemforce System&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Add special attributes if applicable</span>
+<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>isSpecial<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>attributes<span class="p">[</span><span class="m m-Decimal">4</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>Attribute<span class="p">(</span><span class="s2">&quot;Special&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;true&quot;</span><span class="p">);</span>
+<span class="w">            </span>attributes<span class="p">[</span><span class="m m-Decimal">5</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>Attribute<span class="p">(</span><span class="s2">&quot;Special Type&quot;</span><span class="p">,</span><span class="w"> </span>getSpecialType<span class="p">(</span>rarity<span class="p">));</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>IGemforceMinterFacet<span class="p">(</span>diamond<span class="p">).</span>gemforceMint<span class="p">(</span>attributes<span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Apply special properties if needed</span>
+<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>isSpecial<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>applySpecialProperties<span class="p">(</span>tokenId<span class="p">,</span><span class="w"> </span>rarity<span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>tokenId<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getRarityString</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">rarity</span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>pure<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>rarity<span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="m m-Decimal">90</span><span class="p">)</span><span class="w"> </span><span class="kt">return</span><span class="w"> </span><span class="s2">&quot;Legendary&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>rarity<span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="m m-Decimal">70</span><span class="p">)</span><span class="w"> </span><span class="kt">return</span><span class="w"> </span><span class="s2">&quot;Epic&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>rarity<span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="m m-Decimal">50</span><span class="p">)</span><span class="w"> </span><span class="kt">return</span><span class="w"> </span><span class="s2">&quot;Rare&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>rarity<span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="m m-Decimal">30</span><span class="p">)</span><span class="w"> </span><span class="kt">return</span><span class="w"> </span><span class="s2">&quot;Uncommon&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span><span class="s2">&quot;Common&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getSpecialType</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">rarity</span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>pure<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>rarity<span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="m m-Decimal">95</span><span class="p">)</span><span class="w"> </span><span class="kt">return</span><span class="w"> </span><span class="s2">&quot;Mythic&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>rarity<span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="m m-Decimal">90</span><span class="p">)</span><span class="w"> </span><span class="kt">return</span><span class="w"> </span><span class="s2">&quot;Legendary&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span><span class="s2">&quot;Special Edition&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="metadata-validation-system">Metadata Validation System<a class="headerlink" href="#metadata-validation-system" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Validate and standardize metadata before minting</span>
+<span class="k">contract</span><span class="w"> </span><span class="ni">MetadataValidationMinter</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">bool</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>validTraitTypes<span class="p">;</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">string</span><span class="p">[])</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>validTraitValues<span class="p">;</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">setValidTraitTypes</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>traitTypes<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyOwner<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>traitTypes<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>validTraitTypes<span class="p">[</span>traitTypes<span class="p">[</span>i<span class="p">]]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">true</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">setValidTraitValues</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>traitType<span class="p">,</span>
+<span class="w">        </span><span class="kt">string</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>values
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyOwner<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>validTraitValues<span class="p">[</span>traitType<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>values<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">mintValidatedToken</span><span class="p">(</span>
+<span class="w">        </span>Attribute<span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>attributes
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyOwner<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Validate all attributes</span>
+<span class="w">        </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>attributes<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">require</span><span class="p">(</span>
+<span class="w">                </span>validTraitTypes<span class="p">[</span>attributes<span class="p">[</span>i<span class="p">].</span>traitType<span class="p">],</span>
+<span class="w">                </span><span class="s2">&quot;Invalid trait type&quot;</span>
+<span class="w">            </span><span class="p">);</span>
+
+<span class="w">            </span><span class="c1">// Validate trait values if specified</span>
+<span class="w">            </span><span class="kt">string</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>validValues<span class="w"> </span><span class="o">=</span><span class="w"> </span>validTraitValues<span class="p">[</span>attributes<span class="p">[</span>i<span class="p">].</span>traitType<span class="p">];</span>
+<span class="w">            </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>validValues<span class="p">.</span>length<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="kt">bool</span><span class="w"> </span><span class="nv">isValid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">false</span><span class="p">;</span>
+<span class="w">                </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>j<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>validValues<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>j<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span><span class="nb">keccak256</span><span class="p">(</span><span class="kt">bytes</span><span class="p">(</span>validValues<span class="p">[</span>j<span class="p">]))</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">keccak256</span><span class="p">(</span><span class="kt">bytes</span><span class="p">(</span>attributes<span class="p">[</span>i<span class="p">].</span>value<span class="p">)))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                        </span>isValid<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">true</span><span class="p">;</span>
+<span class="w">                        </span><span class="kt">break</span><span class="p">;</span>
+<span class="w">                    </span><span class="p">}</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">                </span><span class="kt">require</span><span class="p">(</span>isValid<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Invalid trait value&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>IGemforceMinterFacet<span class="p">(</span>diamond<span class="p">).</span>gemforceMint<span class="p">(</span>attributes<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="events">Events<a class="headerlink" href="#events" title="Permanent link">&para;</a></h2>
+<h3 id="minting-events">Minting Events<a class="headerlink" href="#minting-events" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">event</span><span class="w"> </span><span class="nv">GemforceMinted</span><span class="p">(</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>tokenId<span class="p">,</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>recipient<span class="p">,</span>
+<span class="w">    </span>Attribute<span class="p">[]</span><span class="w"> </span>metadata
+<span class="p">);</span>
+</code></pre></div>
+
+<p><strong>Event Details</strong>:
+- <code>tokenId</code>: ID of the newly minted token
+- <code>recipient</code>: Address that received the token (always the owner)
+- <code>metadata</code>: Array of attributes assigned to the token</p>
+<h2 id="security-considerations">Security Considerations<a class="headerlink" href="#security-considerations" title="Permanent link">&para;</a></h2>
+<h3 id="access-control">Access Control<a class="headerlink" href="#access-control" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Only contract owner can mint tokens</li>
+<li>Prevents unauthorized token creation</li>
+<li>Integration with diamond access control system</li>
+</ul>
+<h3 id="data-integrity">Data Integrity<a class="headerlink" href="#data-integrity" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Atomic minting and attribute assignment</li>
+<li>Event emission before state changes</li>
+<li>Consistent token ID generation</li>
+</ul>
+<h3 id="attribute-validation">Attribute Validation<a class="headerlink" href="#attribute-validation" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Flexible attribute system supports various data types</li>
+<li>On-chain storage ensures data persistence</li>
+<li>Integration with attribute library for consistency</li>
+</ul>
+<h2 id="gas-optimization">Gas Optimization<a class="headerlink" href="#gas-optimization" title="Permanent link">&para;</a></h2>
+<h3 id="single-transaction-minting">Single Transaction Minting<a class="headerlink" href="#single-transaction-minting" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Combines token minting and attribute assignment</li>
+<li>Reduces gas costs compared to separate operations</li>
+<li>Efficient batch attribute processing</li>
+</ul>
+<h3 id="storage-efficiency">Storage Efficiency<a class="headerlink" href="#storage-efficiency" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Uses diamond storage pattern for optimal storage</li>
+<li>Minimal storage footprint per token</li>
+<li>Efficient attribute storage through library</li>
+</ul>
+<h2 id="error-handling">Error Handling<a class="headerlink" href="#error-handling" title="Permanent link">&para;</a></h2>
+<h3 id="access-control-errors">Access Control Errors<a class="headerlink" href="#access-control-errors" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Owner-only function restrictions</li>
+<li>Unauthorized access prevention</li>
+</ul>
+<h3 id="minting-errors">Minting Errors<a class="headerlink" href="#minting-errors" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Token creation failures</li>
+<li>Attribute assignment failures</li>
+<li>Storage operation errors</li>
+</ul>
+<h2 id="testing-considerations">Testing Considerations<a class="headerlink" href="#testing-considerations" title="Permanent link">&para;</a></h2>
+<h3 id="unit-tests">Unit Tests<a class="headerlink" href="#unit-tests" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Token minting functionality</li>
+<li>Attribute assignment accuracy</li>
+<li>Access control validation</li>
+<li>Event emission verification</li>
+</ul>
+<h3 id="integration-tests">Integration Tests<a class="headerlink" href="#integration-tests" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Diamond storage integration</li>
+<li>Attribute library integration</li>
+<li>Multi-facet workflows</li>
+<li>Gas optimization validation</li>
+</ul>
+<h2 id="related-documentation">Related Documentation<a class="headerlink" href="#related-documentation" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../interfaces/igemforce-minter-facet.md">IGemforceMinterFacet</a> - Minter interface</li>
+<li><a href="../../libraries/attribute-lib/">AttributeLib</a> - Attribute management library</li>
+<li><a href="../libraries/identity-system-storage.md">IdentitySystemStorage</a> - Storage library</li>
+<li><a href="../carbon-credit-facet/">CarbonCreditFacet</a> - Environmental asset integration</li>
+<li><a href="../marketplace-facet/">MarketplaceFacet</a> - Marketplace integration</li>
+<li><a href="../../guides/token-minting.md">Token Minting Guide</a> - Implementation guide</li>
+</ul>
+<hr />
+<p><em>This facet provides the foundation for creating rich, attribute-enabled NFTs within the Gemforce platform, supporting diverse use cases from environmental assets to marketplace items with comprehensive metadata management.</em></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../fee-distributor-facet/" class="btn btn-neutral float-left" title="Fee Distributor Facet"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../multi-sale-facet/" class="btn btn-neutral float-right" title="Multi Sale Facet">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../fee-distributor-facet/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../multi-sale-facet/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

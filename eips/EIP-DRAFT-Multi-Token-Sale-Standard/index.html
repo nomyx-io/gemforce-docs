@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Gemforce Team" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Multi-Token Sale Standard - Gemforce Documentation</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Multi-Token Sale Standard";
+        var mkdocs_page_input_path = "eips/EIP-DRAFT-Multi-Token-Sale-Standard.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Gemforce Documentation
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../developer-setup-guide/">Developer Setup Guide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../system-architecture/gemforce-system-architecture/">System Architecture</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Smart Contracts</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../smart-contracts/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../smart-contracts/diamond/">Diamond Contract</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Facets</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/marketplace-facet/">Marketplace Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/trade-deal-management-facet/">Trade Deal Management Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/carbon-credit-facet/">Carbon Credit Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/identity-registry-facet/">Identity Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/trusted-issuers-registry-facet/">Trusted Issuers Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/fee-distributor-facet/">Fee Distributor Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/gemforce-minter-facet/">Gemforce Minter Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/multi-sale-facet/">Multi Sale Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/svg-templates-facet/">SVG Templates Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/trade-deal-admin-facet/">Trade Deal Admin Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/trade-deal-operations-facet/">Trade Deal Operations Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/collateral-token-factory-facet/">Collateral Token Factory Facet</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Interfaces</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/idiamond/">IDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/imarketplace/">IMarketplace</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/itradedeal/">ITradeDeal</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/icarbon-credit/">ICarbonCredit</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/ierc1155-mint/">IERC1155Mint</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/ierc734/">IERC734</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/ierc735/">IERC735</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Libraries</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/carbon-credit-lib/">Carbon Credit Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/trade-deal-lib/">Trade Deal Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/multi-sale-lib/">Multi Sale Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/diamond-factory-lib/">Diamond Factory Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/svg-templates-lib/">SVG Templates Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/attribute-lib/">Attribute Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/variable-price-lib/">Variable Price Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/merkle-prover/">Merkle Prover</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/fee-distributor-lib/">Fee Distributor Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/lib-diamond/">LibDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/diamond-lib/">DiamondLib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/erc721a-lib/">ERC721A Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/erc721a-enumeration-lib/">ERC721A Enumeration Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/strings-lib/">Strings Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/metadata-lib/">Metadata Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/trusted-issuer-lib/">Trusted Issuer Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/set-libraries/">Set Libraries</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Cloud Functions</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/blockchain/">Blockchain Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/dfns/">DFNS Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/contracts/">Contract Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/authentication/">Authentication Functions</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">API Documentation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api-documentation/gemforce-api-documentation/">Full API Reference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api-documentation/gemforce-api-quick-reference/">Quick Reference</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">EIPs (Ethereum Improvement Proposals)</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../EIP-DRAFT-Diamond-Enhanced-Marketplace/">Diamond-Enhanced Marketplace</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Multi-Token Sale Standard</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#simple-summary">Simple Summary</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#abstract">Abstract</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#motivation">Motivation</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#specification">Specification</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#core-interface">Core Interface</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#key-features">Key Features</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#1-multi-token-support">1. Multi-Token Support</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#2-proof-based-purchases">2. Proof-Based Purchases</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#3-payment-flexibility">3. Payment Flexibility</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#4-purchase-controls">4. Purchase Controls</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#proof-system">Proof System</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#rationale">Rationale</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#unified-interface">Unified Interface</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#proof-based-access-control">Proof-Based Access Control</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#flexible-payment-system">Flexible Payment System</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#modular-design">Modular Design</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#implementation-details">Implementation Details</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#token-minting-strategy">Token Minting Strategy</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#security-considerations">Security Considerations</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#gas-optimization">Gas Optimization</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#backwards-compatibility">Backwards Compatibility</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#test-cases">Test Cases</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#reference-implementation">Reference Implementation</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#copyright">Copyright</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../EIP-DRAFT-Collateralized-Trade-Deal-Standard/">Collateralized Trade Deal Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../EIP-DRAFT-Enhanced-Identity-System/">Enhanced Identity System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../EIP-DRAFT-Diamond-Factory-Standard/">Diamond Factory Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../EIP-DRAFT-Carbon-Credit-Standard/">Carbon Credit Standard</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">User Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../gemforce-administrator-guide/">Administrator Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../gemforce-deployer-guide/">Deployer Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../gemforce-integrator-guide/">Integrator Guide</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../external-services/gemforce-external-services/">External Services</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../gemforce-documentation-gap-analysis/">Documentation Gap Analysis</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../documentation-progress-summary/">Documentation Progress Summary</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../documentation-plan/">Documentation Plan</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Gemforce Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">EIPs (Ethereum Improvement Proposals)</li>
+      <li class="breadcrumb-item active">Multi-Token Sale Standard</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="eip-draft-multi-token-sale-standard-with-proof-based-purchases">EIP-DRAFT: Multi-Token Sale Standard with Proof-Based Purchases<a class="headerlink" href="#eip-draft-multi-token-sale-standard-with-proof-based-purchases" title="Permanent link">&para;</a></h1>
+<h2 id="simple-summary">Simple Summary<a class="headerlink" href="#simple-summary" title="Permanent link">&para;</a></h2>
+<p>A standardized interface for conducting token sales that supports multiple token types (ERC20, ERC721, ERC1155), multiple payment methods, and cryptographic proof-based purchases for allowlists and presales.</p>
+<h2 id="abstract">Abstract<a class="headerlink" href="#abstract" title="Permanent link">&para;</a></h2>
+<p>This EIP proposes a comprehensive standard for token sales that enables:
+- Sales of ERC20, ERC721, and ERC1155 tokens through a unified interface
+- Support for ETH and ERC20 token payments
+- Cryptographic proof-based purchases (e.g., Merkle proofs for allowlists)
+- Per-account purchase limits
+- Variable pricing mechanisms
+- Integration with identity systems for access control</p>
+<h2 id="motivation">Motivation<a class="headerlink" href="#motivation" title="Permanent link">&para;</a></h2>
+<p>Current token sale implementations are fragmented across different token types and lack standardization for advanced features like proof-based purchases and multi-payment support. This standard provides a unified approach that can handle various token sale scenarios while maintaining security and flexibility.</p>
+<h2 id="specification">Specification<a class="headerlink" href="#specification" title="Permanent link">&para;</a></h2>
+<h3 id="core-interface">Core Interface<a class="headerlink" href="#core-interface" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code>interface<span class="w"> </span>IMultiTokenSale<span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">enum</span><span class="w"> </span><span class="nv">TokenType</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>ERC20<span class="p">,</span><span class="w"> </span>ERC721<span class="p">,</span><span class="w"> </span>ERC1155<span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="kt">enum</span><span class="w"> </span><span class="nv">PaymentMethod</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>ETH<span class="p">,</span><span class="w"> </span>ERC20<span class="w"> </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">PriceSettings</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">price</span><span class="p">;</span>
+<span class="w">        </span><span class="c1">// Additional price configuration can be extended</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">MultiSaleSettings</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">token</span><span class="p">;</span>
+<span class="w">        </span>TokenType<span class="w"> </span>tokenType<span class="p">;</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">owner</span><span class="p">;</span>
+<span class="w">        </span>PriceSettings<span class="w"> </span>price<span class="p">;</span>
+<span class="w">        </span>PaymentMethod<span class="w"> </span>paymentMethod<span class="p">;</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">paymentToken</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">maxQuantityPerAccount</span><span class="p">;</span>
+<span class="w">        </span><span class="c1">// Additional settings...</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">MultiSalePurchase</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">multiSaleId</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">purchaser</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">receiver</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">quantity</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">MultiSaleProof</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">proof</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">data</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Events</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">MultiSaleCreated</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>tokenSaleId<span class="p">,</span><span class="w"> </span>MultiSaleSettings<span class="w"> </span>settings<span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">MultiSaleUpdated</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>tokenSaleId<span class="p">,</span><span class="w"> </span>MultiSaleSettings<span class="w"> </span>settings<span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">MultiSaleSold</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>multiSaleId<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>purchaser<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span>tokenIds<span class="p">,</span><span class="w"> </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">data</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Core Functions</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">createTokenSale</span><span class="p">(</span>MultiSaleSettings<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>tokenSaleInit<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenSaleId</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">updateTokenSaleSettings</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenSaleId</span><span class="p">,</span><span class="w"> </span>MultiSaleSettings<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>settings<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">purchaseProof</span><span class="p">(</span>MultiSalePurchase<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>purchaseInfo<span class="p">,</span><span class="w"> </span>MultiSaleProof<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>purchaseProofParam<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">payable</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>ids<span class="p">);</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">purchase</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">multiSaleId</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">purchaser</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">receiver</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">quantity</span><span class="p">,</span><span class="w"> </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>data<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">payable</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>ids<span class="p">);</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getTokenSaleSettings</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenSaleId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>MultiSaleSettings<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>settings<span class="p">);</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getTokenSaleIds</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">listTokenSales</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>MultiSaleSettings<span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="key-features">Key Features<a class="headerlink" href="#key-features" title="Permanent link">&para;</a></h3>
+<h4 id="1-multi-token-support">1. Multi-Token Support<a class="headerlink" href="#1-multi-token-support" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>ERC20</strong>: Fungible token sales with quantity-based purchases</li>
+<li><strong>ERC721</strong>: NFT sales with unique token ID generation</li>
+<li><strong>ERC1155</strong>: Semi-fungible token sales with ID-based minting</li>
+</ul>
+<h4 id="2-proof-based-purchases">2. Proof-Based Purchases<a class="headerlink" href="#2-proof-based-purchases" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Support for cryptographic proofs (e.g., Merkle proofs)</li>
+<li>Enables allowlist functionality</li>
+<li>Presale and whitelist implementations</li>
+<li>Flexible proof validation system</li>
+</ul>
+<h4 id="3-payment-flexibility">3. Payment Flexibility<a class="headerlink" href="#3-payment-flexibility" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Native ETH payments with automatic refunds</li>
+<li>ERC20 token payments with approval-based transfers</li>
+<li>Per-sale payment method configuration</li>
+</ul>
+<h4 id="4-purchase-controls">4. Purchase Controls<a class="headerlink" href="#4-purchase-controls" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Per-account quantity limits</li>
+<li>Total sale quantity tracking</li>
+<li>Owner-based access control for sale management</li>
+</ul>
+<h3 id="proof-system">Proof System<a class="headerlink" href="#proof-system" title="Permanent link">&para;</a></h3>
+<p>The proof system enables sophisticated access control:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Example Merkle proof verification</span>
+<span class="kt">function</span><span class="w"> </span><span class="nv">verifyMerkleProof</span><span class="p">(</span><span class="kt">bytes32</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>proof<span class="p">,</span><span class="w"> </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">root</span><span class="p">,</span><span class="w"> </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">leaf</span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>pure<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bool</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">computedHash</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>leaf<span class="p">;</span>
+<span class="w">    </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>proof<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">proofElement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>proof<span class="p">[</span>i<span class="p">];</span>
+<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>computedHash<span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span>proofElement<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>computedHash<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">keccak256</span><span class="p">(</span>abi<span class="p">.</span>encodePacked<span class="p">(</span>computedHash<span class="p">,</span><span class="w"> </span>proofElement<span class="p">));</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="kt">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>computedHash<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">keccak256</span><span class="p">(</span>abi<span class="p">.</span>encodePacked<span class="p">(</span>proofElement<span class="p">,</span><span class="w"> </span>computedHash<span class="p">));</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="kt">return</span><span class="w"> </span>computedHash<span class="w"> </span><span class="o">==</span><span class="w"> </span>root<span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="rationale">Rationale<a class="headerlink" href="#rationale" title="Permanent link">&para;</a></h2>
+<h3 id="unified-interface">Unified Interface<a class="headerlink" href="#unified-interface" title="Permanent link">&para;</a></h3>
+<p>A single interface for multiple token types reduces complexity and improves interoperability between different sale implementations.</p>
+<h3 id="proof-based-access-control">Proof-Based Access Control<a class="headerlink" href="#proof-based-access-control" title="Permanent link">&para;</a></h3>
+<p>Cryptographic proofs enable sophisticated access control without requiring on-chain storage of allowlists, reducing gas costs.</p>
+<h3 id="flexible-payment-system">Flexible Payment System<a class="headerlink" href="#flexible-payment-system" title="Permanent link">&para;</a></h3>
+<p>Supporting both ETH and ERC20 payments provides maximum flexibility for different use cases and user preferences.</p>
+<h3 id="modular-design">Modular Design<a class="headerlink" href="#modular-design" title="Permanent link">&para;</a></h3>
+<p>The standard is designed to be extensible, allowing implementations to add custom features while maintaining compatibility.</p>
+<h2 id="implementation-details">Implementation Details<a class="headerlink" href="#implementation-details" title="Permanent link">&para;</a></h2>
+<h3 id="token-minting-strategy">Token Minting Strategy<a class="headerlink" href="#token-minting-strategy" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">_mintPurchasedTokens</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">multiSaleId</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">recipient</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">amount</span><span class="p">,</span><span class="w"> </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>data<span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>tokenIds<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>MultiSaleContract<span class="w"> </span>storage<span class="w"> </span>sale<span class="w"> </span><span class="o">=</span><span class="w"> </span>_tokenSales<span class="p">[</span>multiSaleId<span class="p">];</span>
+
+<span class="w">    </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>sale<span class="p">.</span>settings<span class="p">.</span>tokenType<span class="w"> </span><span class="o">==</span><span class="w"> </span>TokenType<span class="p">.</span>ERC20<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>IERC20Mint<span class="p">(</span>sale<span class="p">.</span>settings<span class="p">.</span>token<span class="p">).</span>mintTo<span class="p">(</span>recipient<span class="p">,</span><span class="w"> </span>amount<span class="p">);</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[](</span><span class="m m-Decimal">0</span><span class="p">);</span><span class="w"> </span><span class="c1">// No specific token IDs for ERC20</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="kt">else</span><span class="w"> </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>sale<span class="p">.</span>settings<span class="p">.</span>tokenType<span class="w"> </span><span class="o">==</span><span class="w"> </span>TokenType<span class="p">.</span>ERC721<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>tokenIds<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[](</span>amount<span class="p">);</span>
+<span class="w">        </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>amount<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>_getNextTokenId<span class="p">();</span>
+<span class="w">            </span>IERC721Mint<span class="p">(</span>sale<span class="p">.</span>settings<span class="p">.</span>token<span class="p">).</span>mintTo<span class="p">(</span>recipient<span class="p">,</span><span class="w"> </span><span class="m m-Decimal">1</span><span class="p">,</span><span class="w"> </span>data<span class="p">);</span>
+<span class="w">            </span>tokenIds<span class="p">[</span>i<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>tokenId<span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="kt">else</span><span class="w"> </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>sale<span class="p">.</span>settings<span class="p">.</span>tokenType<span class="w"> </span><span class="o">==</span><span class="w"> </span>TokenType<span class="p">.</span>ERC1155<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>tokenIds<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[](</span><span class="m m-Decimal">1</span><span class="p">);</span>
+<span class="w">        </span>tokenIds<span class="p">[</span><span class="m m-Decimal">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>sale<span class="p">.</span>nonce<span class="o">++</span><span class="p">;</span>
+<span class="w">        </span>IERC1155Mint<span class="p">(</span>sale<span class="p">.</span>settings<span class="p">.</span>token<span class="p">).</span>mintTo<span class="p">(</span>recipient<span class="p">,</span><span class="w"> </span>tokenIds<span class="p">[</span><span class="m m-Decimal">0</span><span class="p">],</span><span class="w"> </span>amount<span class="p">,</span><span class="w"> </span>data<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="security-considerations">Security Considerations<a class="headerlink" href="#security-considerations" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Reentrancy Protection</strong>: All purchase functions must use reentrancy guards</li>
+<li><strong>Integer Overflow</strong>: Use SafeMath or Solidity 0.8+ overflow protection</li>
+<li><strong>Access Control</strong>: Proper validation of sale ownership and permissions</li>
+<li><strong>Payment Validation</strong>: Verify payment amounts and handle excess payments</li>
+<li><strong>Proof Validation</strong>: Secure implementation of proof verification systems</li>
+</ol>
+<h3 id="gas-optimization">Gas Optimization<a class="headerlink" href="#gas-optimization" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Batch operations where possible</li>
+<li>Efficient storage patterns</li>
+<li>Minimal external calls during purchases</li>
+<li>Optimized proof verification algorithms</li>
+</ul>
+<h2 id="backwards-compatibility">Backwards Compatibility<a class="headerlink" href="#backwards-compatibility" title="Permanent link">&para;</a></h2>
+<p>This standard is designed to work with existing ERC20, ERC721, and ERC1155 token contracts that implement the respective minting interfaces.</p>
+<h2 id="test-cases">Test Cases<a class="headerlink" href="#test-cases" title="Permanent link">&para;</a></h2>
+<p>Comprehensive test cases should cover:
+- Multi-token type sales
+- Proof-based purchase validation
+- Payment method handling
+- Purchase limit enforcement
+- Access control mechanisms
+- Edge cases and error conditions</p>
+<h2 id="reference-implementation">Reference Implementation<a class="headerlink" href="#reference-implementation" title="Permanent link">&para;</a></h2>
+<p>The reference implementation includes:
+- <a href="../contracts/facets/MultiSaleFacet.sol"><code>MultiSaleFacet.sol</code></a> - Core multi-sale functionality
+- <a href="../contracts/interfaces/IMultiSale.sol"><code>IMultiSale.sol</code></a> - Interface definition
+- <a href="../contracts/libraries/MultiSaleLib.sol"><code>MultiSaleLib.sol</code></a> - Supporting library functions</p>
+<h2 id="copyright">Copyright<a class="headerlink" href="#copyright" title="Permanent link">&para;</a></h2>
+<p>Copyright and related rights waived via <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../EIP-DRAFT-Diamond-Enhanced-Marketplace/" class="btn btn-neutral float-left" title="Diamond-Enhanced Marketplace"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../EIP-DRAFT-Collateralized-Trade-Deal-Standard/" class="btn btn-neutral float-right" title="Collateralized Trade Deal Standard">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../EIP-DRAFT-Diamond-Enhanced-Marketplace/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../EIP-DRAFT-Collateralized-Trade-Deal-Standard/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

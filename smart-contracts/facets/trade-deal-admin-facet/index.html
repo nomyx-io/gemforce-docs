@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Gemforce Team" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>Trade Deal Admin Facet - Gemforce Documentation</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Trade Deal Admin Facet";
+        var mkdocs_page_input_path = "smart-contracts/facets/trade-deal-admin-facet.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../.." class="icon icon-home"> Gemforce Documentation
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../developer-setup-guide/">Developer Setup Guide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../system-architecture/gemforce-system-architecture/">System Architecture</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Smart Contracts</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../diamond/">Diamond Contract</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" >Facets</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" href="../marketplace-facet/">Marketplace Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../trade-deal-management-facet/">Trade Deal Management Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../carbon-credit-facet/">Carbon Credit Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../identity-registry-facet/">Identity Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../trusted-issuers-registry-facet/">Trusted Issuers Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../fee-distributor-facet/">Fee Distributor Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../gemforce-minter-facet/">Gemforce Minter Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../multi-sale-facet/">Multi Sale Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../svg-templates-facet/">SVG Templates Facet</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">Trade Deal Admin Facet</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#overview">Overview</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#contract-details">Contract Details</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#key-features">Key Features</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#participant-management">🔹 Participant Management</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#interest-distribution">🔹 Interest Distribution</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#configuration-management">🔹 Configuration Management</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#administrative-controls">🔹 Administrative Controls</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#core-functions">Core Functions</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#participant-management-functions">Participant Management Functions</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#interest-distribution-functions">Interest Distribution Functions</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#configuration-management-functions">Configuration Management Functions</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#integration-examples">Integration Examples</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#trade-deal-participant-management">Trade Deal Participant Management</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#automated-interest-distribution-system">Automated Interest Distribution System</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#trade-deal-configuration-manager">Trade Deal Configuration Manager</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#interest-distribution-analytics">Interest Distribution Analytics</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#events">Events</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#participant-management-events">Participant Management Events</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#interest-distribution-events">Interest Distribution Events</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#configuration-events">Configuration Events</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#security-considerations">Security Considerations</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#access-control">Access Control</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#interest-distribution-security">Interest Distribution Security</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#configuration-security">Configuration Security</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#gas-optimization">Gas Optimization</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#batch-operations">Batch Operations</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#efficient-storage">Efficient Storage</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#error-handling">Error Handling</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#common-errors">Common Errors</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#best-practices">Best Practices</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#testing-considerations">Testing Considerations</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#unit-tests">Unit Tests</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#integration-tests">Integration Tests</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#related-documentation">Related Documentation</a>
+    </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../trade-deal-operations-facet/">Trade Deal Operations Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../collateral-token-factory-facet/">Collateral Token Factory Facet</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Interfaces</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/idiamond/">IDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/imarketplace/">IMarketplace</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/itradedeal/">ITradeDeal</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/icarbon-credit/">ICarbonCredit</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ierc1155-mint/">IERC1155Mint</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ierc734/">IERC734</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ierc735/">IERC735</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Libraries</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/carbon-credit-lib/">Carbon Credit Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/trade-deal-lib/">Trade Deal Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/multi-sale-lib/">Multi Sale Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/diamond-factory-lib/">Diamond Factory Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/svg-templates-lib/">SVG Templates Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/attribute-lib/">Attribute Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/variable-price-lib/">Variable Price Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/merkle-prover/">Merkle Prover</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/fee-distributor-lib/">Fee Distributor Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/lib-diamond/">LibDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/diamond-lib/">DiamondLib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/erc721a-lib/">ERC721A Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/erc721a-enumeration-lib/">ERC721A Enumeration Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/strings-lib/">Strings Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/metadata-lib/">Metadata Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/trusted-issuer-lib/">Trusted Issuer Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/set-libraries/">Set Libraries</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Cloud Functions</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/blockchain/">Blockchain Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/dfns/">DFNS Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/contracts/">Contract Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/authentication/">Authentication Functions</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">API Documentation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../api-documentation/gemforce-api-documentation/">Full API Reference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../api-documentation/gemforce-api-quick-reference/">Quick Reference</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">EIPs (Ethereum Improvement Proposals)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Diamond-Enhanced-Marketplace/">Diamond-Enhanced Marketplace</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Multi-Token-Sale-Standard/">Multi-Token Sale Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Collateralized-Trade-Deal-Standard/">Collateralized Trade Deal Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Enhanced-Identity-System/">Enhanced Identity System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Diamond-Factory-Standard/">Diamond Factory Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Carbon-Credit-Standard/">Carbon Credit Standard</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">User Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-administrator-guide/">Administrator Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-deployer-guide/">Deployer Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-integrator-guide/">Integrator Guide</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../external-services/gemforce-external-services/">External Services</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-documentation-gap-analysis/">Documentation Gap Analysis</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../documentation-progress-summary/">Documentation Progress Summary</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../documentation-plan/">Documentation Plan</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">Gemforce Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Smart Contracts</li>
+          <li class="breadcrumb-item">Facets</li>
+      <li class="breadcrumb-item active">Trade Deal Admin Facet</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="tradedealadminfacet">TradeDealAdminFacet<a class="headerlink" href="#tradedealadminfacet" title="Permanent link">&para;</a></h1>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>The <a href="/Users/sschepis/Development/gem-base/contracts/facets/TradeDealAdminFacet.sol"><code>TradeDealAdminFacet.sol</code></a> provides administrative functionality for managing trade deals within the Gemforce diamond system. This facet handles participant management, interest distribution, claim topic configuration, and token address management for trade deal operations.</p>
+<h2 id="contract-details">Contract Details<a class="headerlink" href="#contract-details" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Contract Name</strong>: <code>TradeDealAdminFacet</code></li>
+<li><strong>Inheritance</strong>: <code>Modifiers</code></li>
+<li><strong>License</strong>: MIT</li>
+<li><strong>Solidity Version</strong>: ^0.8.0</li>
+</ul>
+<h2 id="key-features">Key Features<a class="headerlink" href="#key-features" title="Permanent link">&para;</a></h2>
+<h3 id="participant-management">🔹 Participant Management<a class="headerlink" href="#participant-management" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Add and remove trade deal participants</li>
+<li>Access control for participant operations</li>
+<li>Event-driven participant tracking</li>
+<li>Integration with identity verification</li>
+</ul>
+<h3 id="interest-distribution">🔹 Interest Distribution<a class="headerlink" href="#interest-distribution" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Automated interest calculation and distribution</li>
+<li>Multi-pool interest allocation</li>
+<li>Token minting for interest payments</li>
+<li>Transparent distribution tracking</li>
+</ul>
+<h3 id="configuration-management">🔹 Configuration Management<a class="headerlink" href="#configuration-management" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Set required claim topics for verification</li>
+<li>Configure token addresses for trade deals</li>
+<li>Update trade deal parameters</li>
+<li>Backward compatibility support</li>
+</ul>
+<h3 id="administrative-controls">🔹 Administrative Controls<a class="headerlink" href="#administrative-controls" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Owner-only access for sensitive operations</li>
+<li>Comprehensive event logging</li>
+<li>Integration with TradeDealLib utilities</li>
+<li>Secure parameter validation</li>
+</ul>
+<h2 id="core-functions">Core Functions<a class="headerlink" href="#core-functions" title="Permanent link">&para;</a></h2>
+<h3 id="participant-management-functions">Participant Management Functions<a class="headerlink" href="#participant-management-functions" title="Permanent link">&para;</a></h3>
+<h4 id="addtradedealparticipant"><code>addTradeDealParticipant()</code><a class="headerlink" href="#addtradedealparticipant" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">addTradeDealParticipant</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">participant</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyOwner
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Adds a new participant to an existing trade deal.</p>
+<p><strong>Parameters</strong>:
+- <code>tradeDealId</code> (uint256): ID of the trade deal
+- <code>participant</code> (address): Address of the participant to add</p>
+<p><strong>Access Control</strong>: Owner only</p>
+<p><strong>Process</strong>:
+1. Validates trade deal exists and is active
+2. Checks participant eligibility and identity verification
+3. Adds participant to trade deal participant list
+4. Updates participant tracking and permissions
+5. Emits TradeDealParticipantAdded event</p>
+<p><strong>Events</strong>: <code>TradeDealParticipantAdded(tradeDealId, participant)</code></p>
+<p><strong>Example Usage</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Add verified participant to trade deal</span>
+<span class="kt">address</span><span class="w"> </span><span class="nv">newParticipant</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x742d35Cc6634C0532925a3b8D0C9e3e0C8b0e5e1</span><span class="p">;</span>
+<span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">1</span><span class="p">;</span>
+
+ITradeDealAdmin<span class="p">(</span>diamond<span class="p">).</span>addTradeDealParticipant<span class="p">(</span>tradeDealId<span class="p">,</span><span class="w"> </span>newParticipant<span class="p">);</span>
+console<span class="p">.</span>log<span class="p">(</span><span class="s2">&quot;Participant added to trade deal:&quot;</span><span class="p">,</span><span class="w"> </span>tradeDealId<span class="p">);</span>
+</code></pre></div>
+
+<p><strong>Requirements</strong>:
+- Trade deal must exist and be active
+- Participant must not already be in the trade deal
+- Participant must meet identity verification requirements
+- Caller must be contract owner</p>
+<hr />
+<h4 id="removetradedealparticipant"><code>removeTradeDealParticipant()</code><a class="headerlink" href="#removetradedealparticipant" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">removeTradeDealParticipant</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">participant</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyOwner
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Removes a participant from an existing trade deal.</p>
+<p><strong>Parameters</strong>:
+- <code>tradeDealId</code> (uint256): ID of the trade deal
+- <code>participant</code> (address): Address of the participant to remove</p>
+<p><strong>Access Control</strong>: Owner only</p>
+<p><strong>Process</strong>:
+1. Validates trade deal exists
+2. Confirms participant is currently in the trade deal
+3. Checks for outstanding obligations or positions
+4. Removes participant from trade deal
+5. Updates tracking and revokes permissions
+6. Emits TradeDealParticipantRemoved event</p>
+<p><strong>Events</strong>: <code>TradeDealParticipantRemoved(tradeDealId, participant)</code></p>
+<p><strong>Example Usage</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Remove participant from trade deal</span>
+<span class="kt">address</span><span class="w"> </span><span class="nv">participantToRemove</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x742d35Cc6634C0532925a3b8D0C9e3e0C8b0e5e1</span><span class="p">;</span>
+<span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">1</span><span class="p">;</span>
+
+ITradeDealAdmin<span class="p">(</span>diamond<span class="p">).</span>removeTradeDealParticipant<span class="p">(</span>tradeDealId<span class="p">,</span><span class="w"> </span>participantToRemove<span class="p">);</span>
+console<span class="p">.</span>log<span class="p">(</span><span class="s2">&quot;Participant removed from trade deal:&quot;</span><span class="p">,</span><span class="w"> </span>tradeDealId<span class="p">);</span>
+</code></pre></div>
+
+<p><strong>Requirements</strong>:
+- Trade deal must exist
+- Participant must be currently in the trade deal
+- Participant must not have outstanding obligations
+- Caller must be contract owner</p>
+<h3 id="interest-distribution-functions">Interest Distribution Functions<a class="headerlink" href="#interest-distribution-functions" title="Permanent link">&para;</a></h3>
+<h4 id="tddistributeinterest"><code>tdDistributeInterest()</code><a class="headerlink" href="#tddistributeinterest" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">tdDistributeInterest</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyOwner
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Distributes accumulated interest for a specific trade deal across multiple pools and participants.</p>
+<p><strong>Parameters</strong>:
+- <code>tradeDealId</code> (uint256): ID of the trade deal for interest distribution</p>
+<p><strong>Access Control</strong>: Owner only</p>
+<p><strong>Process</strong>:
+1. Calculates total accumulated interest for the trade deal
+2. Distributes interest across different pools:
+   - Invoice pool interest
+   - Interest pool allocation
+   - Participant distributions
+3. Mints interest tokens as needed
+4. Updates interest tracking and balances
+5. Emits InterestDistributedForTradeDeal event</p>
+<p><strong>Events</strong>: <code>InterestDistributedForTradeDeal(tradeDealId, totalInterest, invoicePoolInterest, interestInterest, interestTokensMinted)</code></p>
+<p><strong>Example Usage</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Distribute interest for trade deal</span>
+<span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">1</span><span class="p">;</span>
+
+ITradeDealAdmin<span class="p">(</span>diamond<span class="p">).</span>tdDistributeInterest<span class="p">(</span>tradeDealId<span class="p">);</span>
+console<span class="p">.</span>log<span class="p">(</span><span class="s2">&quot;Interest distributed for trade deal:&quot;</span><span class="p">,</span><span class="w"> </span>tradeDealId<span class="p">);</span>
+</code></pre></div>
+
+<p><strong>Interest Distribution Breakdown</strong>:
+- <strong>Total Interest</strong>: Complete interest amount calculated
+- <strong>Invoice Pool Interest</strong>: Portion allocated to invoice backing
+- <strong>Interest Interest</strong>: Compound interest on existing interest
+- <strong>Interest Tokens Minted</strong>: New tokens created for distribution</p>
+<p><strong>Requirements</strong>:
+- Trade deal must exist and be active
+- Interest must have accumulated since last distribution
+- Trade deal must have active participants
+- Caller must be contract owner</p>
+<h3 id="configuration-management-functions">Configuration Management Functions<a class="headerlink" href="#configuration-management-functions" title="Permanent link">&para;</a></h3>
+<h4 id="settradedealrequiredclaimtopics"><code>setTradeDealRequiredClaimTopics()</code><a class="headerlink" href="#settradedealrequiredclaimtopics" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">setTradeDealRequiredClaimTopics</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>claimTopics<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyOwner
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Sets the required identity claim topics for trade deal participation.</p>
+<p><strong>Parameters</strong>:
+- <code>tradeDealId</code> (uint256): ID of the trade deal
+- <code>claimTopics</code> (uint256[]): Array of claim topic IDs required for participation</p>
+<p><strong>Access Control</strong>: Owner only</p>
+<p><strong>Process</strong>:
+1. Validates trade deal exists
+2. Updates required claim topics for the trade deal
+3. Applies new requirements to future participants
+4. Existing participants may need re-verification
+5. Emits TradeDealRequiredClaimTopicsSet event</p>
+<p><strong>Events</strong>: <code>TradeDealRequiredClaimTopicsSet(tradeDealId, claimTopics)</code></p>
+<p><strong>Example Usage</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Set KYC and accreditation requirements</span>
+<span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>requiredClaims<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[](</span><span class="m m-Decimal">3</span><span class="p">);</span>
+requiredClaims<span class="p">[</span><span class="m m-Decimal">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">1</span><span class="p">;</span><span class="w"> </span><span class="c1">// KYC verification</span>
+requiredClaims<span class="p">[</span><span class="m m-Decimal">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">2</span><span class="p">;</span><span class="w"> </span><span class="c1">// Accredited investor status</span>
+requiredClaims<span class="p">[</span><span class="m m-Decimal">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">3</span><span class="p">;</span><span class="w"> </span><span class="c1">// Geographic eligibility</span>
+
+ITradeDealAdmin<span class="p">(</span>diamond<span class="p">).</span>setTradeDealRequiredClaimTopics<span class="p">(</span>tradeDealId<span class="p">,</span><span class="w"> </span>requiredClaims<span class="p">);</span>
+console<span class="p">.</span>log<span class="p">(</span><span class="s2">&quot;Claim topics set for trade deal:&quot;</span><span class="p">,</span><span class="w"> </span>tradeDealId<span class="p">);</span>
+</code></pre></div>
+
+<p><strong>Common Claim Topics</strong>:
+- <strong>1</strong>: KYC (Know Your Customer) verification
+- <strong>2</strong>: Accredited investor status
+- <strong>3</strong>: Geographic eligibility
+- <strong>4</strong>: Professional investor qualification
+- <strong>5</strong>: Institutional investor status</p>
+<hr />
+<h4 id="settradedealtokenaddresses"><code>setTradeDealTokenAddresses()</code><a class="headerlink" href="#settradedealtokenaddresses" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">setTradeDealTokenAddresses</span><span class="p">(</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">nftAddress</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">collateralAddress</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">interestAddress</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">usdcAddress</span>
+<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyOwner
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Configures the token contract addresses used by a trade deal.</p>
+<p><strong>Parameters</strong>:
+- <code>tradeDealId</code> (uint256): ID of the trade deal
+- <code>nftAddress</code> (address): Address of the NFT contract (currently unused)
+- <code>collateralAddress</code> (address): Address of the collateral token contract
+- <code>interestAddress</code> (address): Address of the interest token contract
+- <code>usdcAddress</code> (address): Address of the USDC token contract</p>
+<p><strong>Access Control</strong>: Owner only</p>
+<p><strong>Process</strong>:
+1. Validates trade deal exists
+2. Updates token contract addresses in trade deal configuration
+3. Validates token contracts implement required interfaces
+4. Updates trade deal settings and parameters
+5. Emits TradeDealUpdated event with complete configuration</p>
+<p><strong>Events</strong>: <code>TradeDealUpdated(tradeDealId, name, symbol, interestRate, collateralToInterestRatio, active, collateralAddress, interestAddress, usdcAddress)</code></p>
+<p><strong>Example Usage</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Configure token addresses for trade deal</span>
+<span class="kt">address</span><span class="w"> </span><span class="nv">collateralToken</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x1234567890123456789012345678901234567890</span><span class="p">;</span>
+<span class="kt">address</span><span class="w"> </span><span class="nv">interestToken</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x2345678901234567890123456789012345678901</span><span class="p">;</span>
+<span class="kt">address</span><span class="w"> </span><span class="nv">usdcToken</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x3456789012345678901234567890123456789012</span><span class="p">;</span>
+
+ITradeDealAdmin<span class="p">(</span>diamond<span class="p">).</span>setTradeDealTokenAddresses<span class="p">(</span>
+<span class="w">    </span>tradeDealId<span class="p">,</span>
+<span class="w">    </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">),</span><span class="w"> </span><span class="c1">// NFT address not used</span>
+<span class="w">    </span>collateralToken<span class="p">,</span>
+<span class="w">    </span>interestToken<span class="p">,</span>
+<span class="w">    </span>usdcToken
+<span class="p">);</span>
+</code></pre></div>
+
+<p><strong>Token Address Roles</strong>:
+- <strong>Collateral Address</strong>: Token used as collateral backing
+- <strong>Interest Address</strong>: Token used for interest payments
+- <strong>USDC Address</strong>: Stablecoin for value reference and payments</p>
+<hr />
+<h4 id="settradedealnftaddress"><code>setTradeDealNFTAddress()</code><a class="headerlink" href="#settradedealnftaddress" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">setTradeDealNFTAddress</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">nftAddress</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyOwner
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Legacy function maintained for backward compatibility. Currently performs no operation.</p>
+<p><strong>Parameters</strong>:
+- <code>tradeDealId</code> (uint256): ID of the trade deal
+- <code>nftAddress</code> (address): NFT contract address (ignored)</p>
+<p><strong>Access Control</strong>: Owner only</p>
+<p><strong>Note</strong>: This function is a no-op maintained for backward compatibility with older integrations.</p>
+<h2 id="integration-examples">Integration Examples<a class="headerlink" href="#integration-examples" title="Permanent link">&para;</a></h2>
+<h3 id="trade-deal-participant-management">Trade Deal Participant Management<a class="headerlink" href="#trade-deal-participant-management" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Comprehensive participant management system</span>
+<span class="k">contract</span><span class="w"> </span><span class="ni">TradeDealParticipantManager</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">ParticipantInfo</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">participant</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">joinedAt</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span>claimTopics<span class="p">;</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">active</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span>ParticipantInfo<span class="p">))</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>tradeDealParticipants<span class="p">;</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">address</span><span class="p">[])</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>participantLists<span class="p">;</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">addVerifiedParticipant</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">participant</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>verifiedClaims
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyOwner<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Verify participant has required claims</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>requiredClaims<span class="w"> </span><span class="o">=</span><span class="w"> </span>getTradeDealRequiredClaims<span class="p">(</span>tradeDealId<span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>hasRequiredClaims<span class="p">(</span>verifiedClaims<span class="p">,</span><span class="w"> </span>requiredClaims<span class="p">),</span><span class="w"> </span><span class="s2">&quot;Missing required claims&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Add to trade deal</span>
+<span class="w">        </span>ITradeDealAdmin<span class="p">(</span>diamond<span class="p">).</span>addTradeDealParticipant<span class="p">(</span>tradeDealId<span class="p">,</span><span class="w"> </span>participant<span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Track participant info</span>
+<span class="w">        </span>tradeDealParticipants<span class="p">[</span>tradeDealId<span class="p">][</span>participant<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>ParticipantInfo<span class="p">({</span>
+<span class="w">            </span>participant<span class="o">:</span><span class="w"> </span>participant<span class="p">,</span>
+<span class="w">            </span>joinedAt<span class="o">:</span><span class="w"> </span><span class="k">block.timestamp</span><span class="p">,</span>
+<span class="w">            </span>claimTopics<span class="o">:</span><span class="w"> </span>verifiedClaims<span class="p">,</span>
+<span class="w">            </span>active<span class="o">:</span><span class="w"> </span><span class="kt">true</span>
+<span class="w">        </span><span class="p">});</span>
+
+<span class="w">        </span>participantLists<span class="p">[</span>tradeDealId<span class="p">].</span>push<span class="p">(</span>participant<span class="p">);</span>
+
+<span class="w">        </span>emit<span class="w"> </span>ParticipantAdded<span class="p">(</span>tradeDealId<span class="p">,</span><span class="w"> </span>participant<span class="p">,</span><span class="w"> </span>verifiedClaims<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">removeParticipant</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">participant</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyOwner<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>tradeDealParticipants<span class="p">[</span>tradeDealId<span class="p">][</span>participant<span class="p">].</span>active<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Participant not active&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Remove from trade deal</span>
+<span class="w">        </span>ITradeDealAdmin<span class="p">(</span>diamond<span class="p">).</span>removeTradeDealParticipant<span class="p">(</span>tradeDealId<span class="p">,</span><span class="w"> </span>participant<span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Update tracking</span>
+<span class="w">        </span>tradeDealParticipants<span class="p">[</span>tradeDealId<span class="p">][</span>participant<span class="p">].</span>active<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">false</span><span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// Remove from list</span>
+<span class="w">        </span>_removeFromParticipantList<span class="p">(</span>tradeDealId<span class="p">,</span><span class="w"> </span>participant<span class="p">);</span>
+
+<span class="w">        </span>emit<span class="w"> </span>ParticipantRemoved<span class="p">(</span>tradeDealId<span class="p">,</span><span class="w"> </span>participant<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">hasRequiredClaims</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>userClaims<span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>requiredClaims
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>pure<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bool</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>requiredClaims<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">bool</span><span class="w"> </span><span class="nv">hasRequiredClaim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">false</span><span class="p">;</span>
+<span class="w">            </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>j<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>userClaims<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>j<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>userClaims<span class="p">[</span>j<span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span>requiredClaims<span class="p">[</span>i<span class="p">])</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span>hasRequiredClaim<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">true</span><span class="p">;</span>
+<span class="w">                    </span><span class="kt">break</span><span class="p">;</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span>hasRequiredClaim<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="kt">return</span><span class="w"> </span><span class="kt">false</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span><span class="kt">true</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="automated-interest-distribution-system">Automated Interest Distribution System<a class="headerlink" href="#automated-interest-distribution-system" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Automated interest distribution with scheduling</span>
+<span class="k">contract</span><span class="w"> </span><span class="ni">InterestDistributionScheduler</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">DistributionSchedule</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">frequency</span><span class="p">;</span><span class="w"> </span><span class="c1">// in seconds</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">lastDistribution</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">active</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span>DistributionSchedule<span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>distributionSchedules<span class="p">;</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>scheduledTradeDealIds<span class="p">;</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">setDistributionSchedule</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">frequency</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyOwner<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>distributionSchedules<span class="p">[</span>tradeDealId<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>DistributionSchedule<span class="p">({</span>
+<span class="w">            </span>tradeDealId<span class="o">:</span><span class="w"> </span>tradeDealId<span class="p">,</span>
+<span class="w">            </span>frequency<span class="o">:</span><span class="w"> </span>frequency<span class="p">,</span>
+<span class="w">            </span>lastDistribution<span class="o">:</span><span class="w"> </span><span class="k">block.timestamp</span><span class="p">,</span>
+<span class="w">            </span>active<span class="o">:</span><span class="w"> </span><span class="kt">true</span>
+<span class="w">        </span><span class="p">});</span>
+
+<span class="w">        </span>scheduledTradeDealIds<span class="p">.</span>push<span class="p">(</span>tradeDealId<span class="p">);</span>
+<span class="w">        </span>emit<span class="w"> </span>DistributionScheduleSet<span class="p">(</span>tradeDealId<span class="p">,</span><span class="w"> </span>frequency<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">executeScheduledDistributions</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>scheduledTradeDealIds<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>scheduledTradeDealIds<span class="p">[</span>i<span class="p">];</span>
+<span class="w">            </span>DistributionSchedule<span class="w"> </span>storage<span class="w"> </span>schedule<span class="w"> </span><span class="o">=</span><span class="w"> </span>distributionSchedules<span class="p">[</span>tradeDealId<span class="p">];</span>
+
+<span class="w">            </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>schedule<span class="p">.</span>active<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>
+<span class="w">                </span><span class="k">block.timestamp</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span>schedule<span class="p">.</span>lastDistribution<span class="w"> </span><span class="o">+</span><span class="w"> </span>schedule<span class="p">.</span>frequency<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">                </span><span class="c1">// Execute distribution</span>
+<span class="w">                </span>ITradeDealAdmin<span class="p">(</span>diamond<span class="p">).</span>tdDistributeInterest<span class="p">(</span>tradeDealId<span class="p">);</span>
+
+<span class="w">                </span><span class="c1">// Update schedule</span>
+<span class="w">                </span>schedule<span class="p">.</span>lastDistribution<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">block.timestamp</span><span class="p">;</span>
+
+<span class="w">                </span>emit<span class="w"> </span>ScheduledDistributionExecuted<span class="p">(</span>tradeDealId<span class="p">,</span><span class="w"> </span><span class="k">block.timestamp</span><span class="p">);</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getDistributionStatus</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">isDue</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">nextDistribution</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">timeSinceLastDistribution</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>DistributionSchedule<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>schedule<span class="w"> </span><span class="o">=</span><span class="w"> </span>distributionSchedules<span class="p">[</span>tradeDealId<span class="p">];</span>
+
+<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span>schedule<span class="p">.</span>active<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">return</span><span class="w"> </span><span class="p">(</span><span class="kt">false</span><span class="p">,</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">,</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span>timeSinceLastDistribution<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">block.timestamp</span><span class="w"> </span><span class="o">-</span><span class="w"> </span>schedule<span class="p">.</span>lastDistribution<span class="p">;</span>
+<span class="w">        </span>nextDistribution<span class="w"> </span><span class="o">=</span><span class="w"> </span>schedule<span class="p">.</span>lastDistribution<span class="w"> </span><span class="o">+</span><span class="w"> </span>schedule<span class="p">.</span>frequency<span class="p">;</span>
+<span class="w">        </span>isDue<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">block.timestamp</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span>nextDistribution<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="trade-deal-configuration-manager">Trade Deal Configuration Manager<a class="headerlink" href="#trade-deal-configuration-manager" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Comprehensive trade deal configuration management</span>
+<span class="k">contract</span><span class="w"> </span><span class="ni">TradeDealConfigManager</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">TradeDealConfig</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">name</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">symbol</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">interestRate</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">collateralToInterestRatio</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">collateralAddress</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">interestAddress</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">usdcAddress</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span>requiredClaimTopics<span class="p">;</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">active</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span>TradeDealConfig<span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>tradeDealConfigs<span class="p">;</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">configureTradeDeal</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">,</span>
+<span class="w">        </span>TradeDealConfig<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>config
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyOwner<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Set token addresses</span>
+<span class="w">        </span>ITradeDealAdmin<span class="p">(</span>diamond<span class="p">).</span>setTradeDealTokenAddresses<span class="p">(</span>
+<span class="w">            </span>tradeDealId<span class="p">,</span>
+<span class="w">            </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">),</span><span class="w"> </span><span class="c1">// NFT address not used</span>
+<span class="w">            </span>config<span class="p">.</span>collateralAddress<span class="p">,</span>
+<span class="w">            </span>config<span class="p">.</span>interestAddress<span class="p">,</span>
+<span class="w">            </span>config<span class="p">.</span>usdcAddress
+<span class="w">        </span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Set required claim topics</span>
+<span class="w">        </span>ITradeDealAdmin<span class="p">(</span>diamond<span class="p">).</span>setTradeDealRequiredClaimTopics<span class="p">(</span>
+<span class="w">            </span>tradeDealId<span class="p">,</span>
+<span class="w">            </span>config<span class="p">.</span>requiredClaimTopics
+<span class="w">        </span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Store configuration</span>
+<span class="w">        </span>tradeDealConfigs<span class="p">[</span>tradeDealId<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>config<span class="p">;</span>
+
+<span class="w">        </span>emit<span class="w"> </span>TradeDealConfigured<span class="p">(</span>tradeDealId<span class="p">,</span><span class="w"> </span>config<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">updateTradeDealTokens</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">newCollateralAddress</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">newInterestAddress</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">newUsdcAddress</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyOwner<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>TradeDealConfig<span class="w"> </span>storage<span class="w"> </span>config<span class="w"> </span><span class="o">=</span><span class="w"> </span>tradeDealConfigs<span class="p">[</span>tradeDealId<span class="p">];</span>
+
+<span class="w">        </span><span class="c1">// Update addresses</span>
+<span class="w">        </span>ITradeDealAdmin<span class="p">(</span>diamond<span class="p">).</span>setTradeDealTokenAddresses<span class="p">(</span>
+<span class="w">            </span>tradeDealId<span class="p">,</span>
+<span class="w">            </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">),</span>
+<span class="w">            </span>newCollateralAddress<span class="p">,</span>
+<span class="w">            </span>newInterestAddress<span class="p">,</span>
+<span class="w">            </span>newUsdcAddress
+<span class="w">        </span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Update stored config</span>
+<span class="w">        </span>config<span class="p">.</span>collateralAddress<span class="w"> </span><span class="o">=</span><span class="w"> </span>newCollateralAddress<span class="p">;</span>
+<span class="w">        </span>config<span class="p">.</span>interestAddress<span class="w"> </span><span class="o">=</span><span class="w"> </span>newInterestAddress<span class="p">;</span>
+<span class="w">        </span>config<span class="p">.</span>usdcAddress<span class="w"> </span><span class="o">=</span><span class="w"> </span>newUsdcAddress<span class="p">;</span>
+
+<span class="w">        </span>emit<span class="w"> </span>TradeDealTokensUpdated<span class="p">(</span>tradeDealId<span class="p">,</span><span class="w"> </span>newCollateralAddress<span class="p">,</span><span class="w"> </span>newInterestAddress<span class="p">,</span><span class="w"> </span>newUsdcAddress<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">updateRequiredClaims</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>newClaimTopics
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyOwner<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Update claim topics</span>
+<span class="w">        </span>ITradeDealAdmin<span class="p">(</span>diamond<span class="p">).</span>setTradeDealRequiredClaimTopics<span class="p">(</span>tradeDealId<span class="p">,</span><span class="w"> </span>newClaimTopics<span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Update stored config</span>
+<span class="w">        </span>tradeDealConfigs<span class="p">[</span>tradeDealId<span class="p">].</span>requiredClaimTopics<span class="w"> </span><span class="o">=</span><span class="w"> </span>newClaimTopics<span class="p">;</span>
+
+<span class="w">        </span>emit<span class="w"> </span>RequiredClaimsUpdated<span class="p">(</span>tradeDealId<span class="p">,</span><span class="w"> </span>newClaimTopics<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="interest-distribution-analytics">Interest Distribution Analytics<a class="headerlink" href="#interest-distribution-analytics" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Analytics and reporting for interest distributions</span>
+<span class="k">contract</span><span class="w"> </span><span class="ni">InterestDistributionAnalytics</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">DistributionRecord</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">timestamp</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalInterest</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">invoicePoolInterest</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">interestInterest</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">interestTokensMinted</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">participantCount</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span>DistributionRecord<span class="p">[])</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>distributionHistory<span class="p">;</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">uint256</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>totalDistributedInterest<span class="p">;</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">uint256</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>totalTokensMinted<span class="p">;</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">recordDistribution</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalInterest</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">invoicePoolInterest</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">interestInterest</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">interestTokensMinted</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">participantCount</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyAuthorized<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>DistributionRecord<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>record<span class="w"> </span><span class="o">=</span><span class="w"> </span>DistributionRecord<span class="p">({</span>
+<span class="w">            </span>timestamp<span class="o">:</span><span class="w"> </span><span class="k">block.timestamp</span><span class="p">,</span>
+<span class="w">            </span>totalInterest<span class="o">:</span><span class="w"> </span>totalInterest<span class="p">,</span>
+<span class="w">            </span>invoicePoolInterest<span class="o">:</span><span class="w"> </span>invoicePoolInterest<span class="p">,</span>
+<span class="w">            </span>interestInterest<span class="o">:</span><span class="w"> </span>interestInterest<span class="p">,</span>
+<span class="w">            </span>interestTokensMinted<span class="o">:</span><span class="w"> </span>interestTokensMinted<span class="p">,</span>
+<span class="w">            </span>participantCount<span class="o">:</span><span class="w"> </span>participantCount
+<span class="w">        </span><span class="p">});</span>
+
+<span class="w">        </span>distributionHistory<span class="p">[</span>tradeDealId<span class="p">].</span>push<span class="p">(</span>record<span class="p">);</span>
+<span class="w">        </span>totalDistributedInterest<span class="p">[</span>tradeDealId<span class="p">]</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span>totalInterest<span class="p">;</span>
+<span class="w">        </span>totalTokensMinted<span class="p">[</span>tradeDealId<span class="p">]</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span>interestTokensMinted<span class="p">;</span>
+
+<span class="w">        </span>emit<span class="w"> </span>DistributionRecorded<span class="p">(</span>tradeDealId<span class="p">,</span><span class="w"> </span>record<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getDistributionStats</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalDistributions</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalInterestDistributed</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalTokensMintedForInterest</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">averageDistributionAmount</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">lastDistributionTime</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>DistributionRecord<span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>history<span class="w"> </span><span class="o">=</span><span class="w"> </span>distributionHistory<span class="p">[</span>tradeDealId<span class="p">];</span>
+
+<span class="w">        </span>totalDistributions<span class="w"> </span><span class="o">=</span><span class="w"> </span>history<span class="p">.</span>length<span class="p">;</span>
+<span class="w">        </span>totalInterestDistributed<span class="w"> </span><span class="o">=</span><span class="w"> </span>totalDistributedInterest<span class="p">[</span>tradeDealId<span class="p">];</span>
+<span class="w">        </span>totalTokensMintedForInterest<span class="w"> </span><span class="o">=</span><span class="w"> </span>totalTokensMinted<span class="p">[</span>tradeDealId<span class="p">];</span>
+
+<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>totalDistributions<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>averageDistributionAmount<span class="w"> </span><span class="o">=</span><span class="w"> </span>totalInterestDistributed<span class="w"> </span><span class="o">/</span><span class="w"> </span>totalDistributions<span class="p">;</span>
+<span class="w">            </span>lastDistributionTime<span class="w"> </span><span class="o">=</span><span class="w"> </span>history<span class="p">[</span>totalDistributions<span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m m-Decimal">1</span><span class="p">].</span>timestamp<span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getRecentDistributions</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">count</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>DistributionRecord<span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>DistributionRecord<span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>history<span class="w"> </span><span class="o">=</span><span class="w"> </span>distributionHistory<span class="p">[</span>tradeDealId<span class="p">];</span>
+
+<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>history<span class="p">.</span>length<span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">return</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span>DistributionRecord<span class="p">[](</span><span class="m m-Decimal">0</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">startIndex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>history<span class="p">.</span>length<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span>count<span class="w"> </span><span class="o">?</span><span class="w"> </span>history<span class="p">.</span>length<span class="w"> </span><span class="o">-</span><span class="w"> </span>count<span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">resultLength</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>history<span class="p">.</span>length<span class="w"> </span><span class="o">-</span><span class="w"> </span>startIndex<span class="p">;</span>
+
+<span class="w">        </span>DistributionRecord<span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>recent<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span>DistributionRecord<span class="p">[](</span>resultLength<span class="p">);</span>
+
+<span class="w">        </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>resultLength<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>recent<span class="p">[</span>i<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>history<span class="p">[</span>startIndex<span class="w"> </span><span class="o">+</span><span class="w"> </span>i<span class="p">];</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>recent<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="events">Events<a class="headerlink" href="#events" title="Permanent link">&para;</a></h2>
+<h3 id="participant-management-events">Participant Management Events<a class="headerlink" href="#participant-management-events" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">event</span><span class="w"> </span><span class="nv">TradeDealParticipantAdded</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>tradeDealId<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>participant<span class="p">);</span>
+<span class="kt">event</span><span class="w"> </span><span class="nv">TradeDealParticipantRemoved</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>tradeDealId<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>participant<span class="p">);</span>
+</code></pre></div>
+
+<h3 id="interest-distribution-events">Interest Distribution Events<a class="headerlink" href="#interest-distribution-events" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">event</span><span class="w"> </span><span class="nv">InterestDistributedForTradeDeal</span><span class="p">(</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>tradeDealId<span class="p">,</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalInterest</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">invoicePoolInterest</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">interestInterest</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">interestTokensMinted</span>
+<span class="p">);</span>
+</code></pre></div>
+
+<h3 id="configuration-events">Configuration Events<a class="headerlink" href="#configuration-events" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">event</span><span class="w"> </span><span class="nv">TradeDealRequiredClaimTopicsSet</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>tradeDealId<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span>claimTopics<span class="p">);</span>
+<span class="kt">event</span><span class="w"> </span><span class="nv">TradeDealUpdated</span><span class="p">(</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>tradeDealId<span class="p">,</span>
+<span class="w">    </span><span class="kt">string</span><span class="w"> </span><span class="nv">name</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">string</span><span class="w"> </span><span class="nv">symbol</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">interestRate</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">collateralToInterestRatio</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nv">active</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">collateralAddress</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">interestAddress</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">usdcAddress</span>
+<span class="p">);</span>
+</code></pre></div>
+
+<h2 id="security-considerations">Security Considerations<a class="headerlink" href="#security-considerations" title="Permanent link">&para;</a></h2>
+<h3 id="access-control">Access Control<a class="headerlink" href="#access-control" title="Permanent link">&para;</a></h3>
+<ul>
+<li>All functions restricted to contract owner</li>
+<li>Participant validation before addition/removal</li>
+<li>Token address validation before configuration</li>
+<li>Claim topic verification for participants</li>
+</ul>
+<h3 id="interest-distribution-security">Interest Distribution Security<a class="headerlink" href="#interest-distribution-security" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Precise interest calculation validation</li>
+<li>Overflow protection for large distributions</li>
+<li>Token minting authorization checks</li>
+<li>Distribution frequency limits</li>
+</ul>
+<h3 id="configuration-security">Configuration Security<a class="headerlink" href="#configuration-security" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Token contract interface validation</li>
+<li>Address zero checks for critical addresses</li>
+<li>Claim topic existence verification</li>
+<li>Configuration change event logging</li>
+</ul>
+<h2 id="gas-optimization">Gas Optimization<a class="headerlink" href="#gas-optimization" title="Permanent link">&para;</a></h2>
+<h3 id="batch-operations">Batch Operations<a class="headerlink" href="#batch-operations" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Consider batching participant operations</li>
+<li>Optimize interest distribution calculations</li>
+<li>Minimize storage operations</li>
+<li>Use events for off-chain tracking</li>
+</ul>
+<h3 id="efficient-storage">Efficient Storage<a class="headerlink" href="#efficient-storage" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Pack configuration data efficiently</li>
+<li>Use mappings for participant tracking</li>
+<li>Optimize claim topic storage</li>
+<li>Cache frequently accessed data</li>
+</ul>
+<h2 id="error-handling">Error Handling<a class="headerlink" href="#error-handling" title="Permanent link">&para;</a></h2>
+<h3 id="common-errors">Common Errors<a class="headerlink" href="#common-errors" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Trade deal not found</li>
+<li>Participant already exists/doesn't exist</li>
+<li>Invalid token addresses</li>
+<li>Insufficient permissions</li>
+<li>Interest distribution failures</li>
+</ul>
+<h3 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Validate all inputs before processing</li>
+<li>Check trade deal state before operations</li>
+<li>Verify participant eligibility</li>
+<li>Handle token contract failures gracefully</li>
+</ul>
+<h2 id="testing-considerations">Testing Considerations<a class="headerlink" href="#testing-considerations" title="Permanent link">&para;</a></h2>
+<h3 id="unit-tests">Unit Tests<a class="headerlink" href="#unit-tests" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Participant addition and removal</li>
+<li>Interest distribution calculations</li>
+<li>Configuration updates</li>
+<li>Access control enforcement</li>
+</ul>
+<h3 id="integration-tests">Integration Tests<a class="headerlink" href="#integration-tests" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Multi-participant scenarios</li>
+<li>Interest distribution workflows</li>
+<li>Configuration change impacts</li>
+<li>Event emission verification</li>
+</ul>
+<h2 id="related-documentation">Related Documentation<a class="headerlink" href="#related-documentation" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../trade-deal-management-facet/">TradeDealManagementFacet</a> - Core trade deal operations</li>
+<li><a href="../trade-deal-operations-facet/">TradeDealOperationsFacet</a> - Operational functions</li>
+<li><a href="../../libraries/trade-deal-lib/">TradeDealLib</a> - Trade deal utilities</li>
+<li><a href="../identity-registry-facet/">IdentityRegistryFacet</a> - Identity verification</li>
+<li><a href="../../guides/trade-deals.md">Trade Deal Guide</a> - Implementation guide</li>
+</ul>
+<hr />
+<p><em>This facet provides comprehensive administrative functionality for trade deal management within the Gemforce platform, enabling secure participant management, interest distribution, and configuration control.</em></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../svg-templates-facet/" class="btn btn-neutral float-left" title="SVG Templates Facet"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../trade-deal-operations-facet/" class="btn btn-neutral float-right" title="Trade Deal Operations Facet">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../svg-templates-facet/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../trade-deal-operations-facet/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

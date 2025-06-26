@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Gemforce Team" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>Collateral Token Factory Facet - Gemforce Documentation</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Collateral Token Factory Facet";
+        var mkdocs_page_input_path = "smart-contracts/facets/collateral-token-factory-facet.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../.." class="icon icon-home"> Gemforce Documentation
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../developer-setup-guide/">Developer Setup Guide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../system-architecture/gemforce-system-architecture/">System Architecture</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Smart Contracts</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../diamond/">Diamond Contract</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" >Facets</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" href="../marketplace-facet/">Marketplace Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../trade-deal-management-facet/">Trade Deal Management Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../carbon-credit-facet/">Carbon Credit Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../identity-registry-facet/">Identity Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../trusted-issuers-registry-facet/">Trusted Issuers Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../fee-distributor-facet/">Fee Distributor Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../gemforce-minter-facet/">Gemforce Minter Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../multi-sale-facet/">Multi Sale Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../svg-templates-facet/">SVG Templates Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../trade-deal-admin-facet/">Trade Deal Admin Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../trade-deal-operations-facet/">Trade Deal Operations Facet</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">Collateral Token Factory Facet</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#overview">Overview</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#contract-details">Contract Details</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#key-features">Key Features</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#factory-pattern-implementation">🔹 Factory Pattern Implementation</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#restricted-collateral-tokens">🔹 Restricted Collateral Tokens</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#trade-deal-integration">🔹 Trade Deal Integration</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#administrative-controls">🔹 Administrative Controls</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#core-architecture">Core Architecture</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#factory-pattern">Factory Pattern</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#storage-structure">Storage Structure</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#token-restrictions">Token Restrictions</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#core-functions">Core Functions</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#initialization-functions">Initialization Functions</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#token-creation-functions">Token Creation Functions</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#query-functions">Query Functions</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#administrative-functions">Administrative Functions</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#integration-examples">Integration Examples</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#complete-trade-deal-token-lifecycle">Complete Trade Deal Token Lifecycle</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#collateral-token-distribution-system">Collateral Token Distribution System</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#token-restriction-manager">Token Restriction Manager</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#factory-analytics-and-monitoring">Factory Analytics and Monitoring</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#events">Events</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#factory-events">Factory Events</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#token-management-events">Token Management Events</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#security-considerations">Security Considerations</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#factory-security">Factory Security</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#token-security">Token Security</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#integration-security">Integration Security</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#gas-optimization">Gas Optimization</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#factory-efficiency">Factory Efficiency</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#token-operations">Token Operations</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#error-handling">Error Handling</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#common-errors">Common Errors</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#best-practices">Best Practices</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#testing-considerations">Testing Considerations</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#unit-tests">Unit Tests</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#integration-tests">Integration Tests</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#related-documentation">Related Documentation</a>
+    </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Interfaces</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/idiamond/">IDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/imarketplace/">IMarketplace</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/itradedeal/">ITradeDeal</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/icarbon-credit/">ICarbonCredit</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ierc1155-mint/">IERC1155Mint</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ierc734/">IERC734</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ierc735/">IERC735</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Libraries</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/carbon-credit-lib/">Carbon Credit Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/trade-deal-lib/">Trade Deal Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/multi-sale-lib/">Multi Sale Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/diamond-factory-lib/">Diamond Factory Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/svg-templates-lib/">SVG Templates Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/attribute-lib/">Attribute Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/variable-price-lib/">Variable Price Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/merkle-prover/">Merkle Prover</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/fee-distributor-lib/">Fee Distributor Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/lib-diamond/">LibDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/diamond-lib/">DiamondLib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/erc721a-lib/">ERC721A Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/erc721a-enumeration-lib/">ERC721A Enumeration Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/strings-lib/">Strings Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/metadata-lib/">Metadata Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/trusted-issuer-lib/">Trusted Issuer Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/set-libraries/">Set Libraries</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Cloud Functions</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/blockchain/">Blockchain Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/dfns/">DFNS Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/contracts/">Contract Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/authentication/">Authentication Functions</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">API Documentation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../api-documentation/gemforce-api-documentation/">Full API Reference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../api-documentation/gemforce-api-quick-reference/">Quick Reference</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">EIPs (Ethereum Improvement Proposals)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Diamond-Enhanced-Marketplace/">Diamond-Enhanced Marketplace</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Multi-Token-Sale-Standard/">Multi-Token Sale Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Collateralized-Trade-Deal-Standard/">Collateralized Trade Deal Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Enhanced-Identity-System/">Enhanced Identity System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Diamond-Factory-Standard/">Diamond Factory Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Carbon-Credit-Standard/">Carbon Credit Standard</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">User Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-administrator-guide/">Administrator Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-deployer-guide/">Deployer Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-integrator-guide/">Integrator Guide</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../external-services/gemforce-external-services/">External Services</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-documentation-gap-analysis/">Documentation Gap Analysis</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../documentation-progress-summary/">Documentation Progress Summary</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../documentation-plan/">Documentation Plan</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">Gemforce Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Smart Contracts</li>
+          <li class="breadcrumb-item">Facets</li>
+      <li class="breadcrumb-item active">Collateral Token Factory Facet</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="collateraltokenfactoryfacet">CollateralTokenFactoryFacet<a class="headerlink" href="#collateraltokenfactoryfacet" title="Permanent link">&para;</a></h1>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>The <a href="/Users/sschepis/Development/gem-base/contracts/facets/CollateralTokenFactoryFacet.sol"><code>CollateralTokenFactoryFacet.sol</code></a> provides factory functionality for creating and managing restricted collateral tokens within the Gemforce diamond system. This facet enables the creation of ERC20 tokens that represent collateral positions in trade deals, with built-in transfer restrictions and participant validation.</p>
+<h2 id="contract-details">Contract Details<a class="headerlink" href="#contract-details" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Contract Name</strong>: <code>CollateralTokenFactoryFacet</code></li>
+<li><strong>Inheritance</strong>: <code>Modifiers</code></li>
+<li><strong>License</strong>: MIT</li>
+<li><strong>Solidity Version</strong>: ^0.8.0</li>
+</ul>
+<h2 id="key-features">Key Features<a class="headerlink" href="#key-features" title="Permanent link">&para;</a></h2>
+<h3 id="factory-pattern-implementation">🔹 Factory Pattern Implementation<a class="headerlink" href="#factory-pattern-implementation" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Automated factory deployment and initialization</li>
+<li>Template-based token creation using proxy patterns</li>
+<li>Centralized token management and tracking</li>
+<li>Efficient deployment of multiple token instances</li>
+</ul>
+<h3 id="restricted-collateral-tokens">🔹 Restricted Collateral Tokens<a class="headerlink" href="#restricted-collateral-tokens" title="Permanent link">&para;</a></h3>
+<ul>
+<li>ERC20 tokens with transfer restrictions</li>
+<li>Trade deal participant validation</li>
+<li>Configurable restriction enforcement</li>
+<li>Integration with identity verification systems</li>
+</ul>
+<h3 id="trade-deal-integration">🔹 Trade Deal Integration<a class="headerlink" href="#trade-deal-integration" title="Permanent link">&para;</a></h3>
+<ul>
+<li>One-to-one mapping between trade deals and tokens</li>
+<li>Automatic token creation for trade deals</li>
+<li>Participant management integration</li>
+<li>Collateral position tracking</li>
+</ul>
+<h3 id="administrative-controls">🔹 Administrative Controls<a class="headerlink" href="#administrative-controls" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Owner-only token creation and configuration</li>
+<li>Restriction management for existing tokens</li>
+<li>Factory address management</li>
+<li>Comprehensive event logging</li>
+</ul>
+<h2 id="core-architecture">Core Architecture<a class="headerlink" href="#core-architecture" title="Permanent link">&para;</a></h2>
+<h3 id="factory-pattern">Factory Pattern<a class="headerlink" href="#factory-pattern" title="Permanent link">&para;</a></h3>
+<p>The facet implements a factory pattern where:
+- <strong>Factory Contract</strong>: <code>CollateralTokenFactory</code> manages token creation
+- <strong>Implementation Contract</strong>: <code>RestrictedCollateralToken</code> serves as the template
+- <strong>Proxy Pattern</strong>: New tokens are created as minimal proxies to save gas
+- <strong>Diamond Integration</strong>: Factory is managed through the diamond storage</p>
+<h3 id="storage-structure">Storage Structure<a class="headerlink" href="#storage-structure" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">struct</span><span class="w"> </span><span class="nv">CollateralTokenFactoryStorage</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">factoryAddress</span><span class="p">;</span><span class="w">                    </span><span class="c1">// Address of the factory contract</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">address</span><span class="p">)</span><span class="w"> </span>tradeDealToToken<span class="p">;</span><span class="w">  </span><span class="c1">// Trade deal ID to token address mapping</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="token-restrictions">Token Restrictions<a class="headerlink" href="#token-restrictions" title="Permanent link">&para;</a></h3>
+<p>Collateral tokens can enforce restrictions on:
+- <strong>Transfer Limitations</strong>: Only verified participants can transfer tokens
+- <strong>Participant Validation</strong>: Integration with identity verification
+- <strong>Trade Deal Compliance</strong>: Tokens tied to specific trade deal rules
+- <strong>Administrative Controls</strong>: Owner can enable/disable restrictions</p>
+<h2 id="core-functions">Core Functions<a class="headerlink" href="#core-functions" title="Permanent link">&para;</a></h2>
+<h3 id="initialization-functions">Initialization Functions<a class="headerlink" href="#initialization-functions" title="Permanent link">&para;</a></h3>
+<h4 id="collateraltokenfactoryfacet_init"><code>CollateralTokenFactoryFacet_init()</code><a class="headerlink" href="#collateraltokenfactoryfacet_init" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">CollateralTokenFactoryFacet_init</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Initializes the collateral token factory when the facet is added to the diamond.</p>
+<p><strong>Access Control</strong>: Public (with initialization check)</p>
+<p><strong>Process</strong>:
+1. Checks that factory hasn't been initialized already
+2. Deploys a new <code>RestrictedCollateralToken</code> implementation
+3. Creates a <code>CollateralTokenFactory</code> with the implementation
+4. Stores the factory address in diamond storage
+5. Emits CollateralTokenFactoryInitialized event</p>
+<p><strong>Events</strong>: <code>CollateralTokenFactoryInitialized(factoryAddress)</code></p>
+<p><strong>Example Usage</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Called automatically when facet is added to diamond</span>
+<span class="c1">// Or can be called manually if needed</span>
+ICollateralTokenFactory<span class="p">(</span>diamond<span class="p">).</span>CollateralTokenFactoryFacet_init<span class="p">();</span>
+console<span class="p">.</span>log<span class="p">(</span><span class="s2">&quot;Collateral token factory initialized&quot;</span><span class="p">);</span>
+</code></pre></div>
+
+<p><strong>Requirements</strong>:
+- Factory must not be already initialized
+- Caller must have appropriate permissions
+- Sufficient gas for contract deployments</p>
+<hr />
+<h4 id="getcollateraltokenfactory"><code>getCollateralTokenFactory()</code><a class="headerlink" href="#getcollateraltokenfactory" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">getCollateralTokenFactory</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">address</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Returns the address of the deployed CollateralTokenFactory contract.</p>
+<p><strong>Returns</strong>:
+- <code>address</code>: Address of the factory contract</p>
+<p><strong>Example Usage</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="kt">address</span><span class="w"> </span><span class="nv">factoryAddress</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>ICollateralTokenFactory<span class="p">(</span>diamond<span class="p">).</span>getCollateralTokenFactory<span class="p">();</span>
+console<span class="p">.</span>log<span class="p">(</span><span class="s2">&quot;Factory deployed at:&quot;</span><span class="p">,</span><span class="w"> </span>factoryAddress<span class="p">);</span>
+
+<span class="c1">// Use factory directly if needed</span>
+CollateralTokenFactory<span class="w"> </span>factory<span class="w"> </span><span class="o">=</span><span class="w"> </span>CollateralTokenFactory<span class="p">(</span>factoryAddress<span class="p">);</span>
+</code></pre></div>
+
+<h3 id="token-creation-functions">Token Creation Functions<a class="headerlink" href="#token-creation-functions" title="Permanent link">&para;</a></h3>
+<h4 id="createcollateraltoken"><code>createCollateralToken()</code><a class="headerlink" href="#createcollateraltoken" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">createCollateralToken</span><span class="p">(</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_tradeDealId</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>_name<span class="p">,</span>
+<span class="w">    </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>_symbol<span class="p">,</span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nv">_restrictionsEnabled</span>
+<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyOwner<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">address</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Creates a new restricted collateral token for a specific trade deal.</p>
+<p><strong>Parameters</strong>:
+- <code>_tradeDealId</code> (uint256): Unique identifier for the trade deal
+- <code>_name</code> (string): Human-readable name for the token
+- <code>_symbol</code> (string): Token symbol (typically 3-5 characters)
+- <code>_restrictionsEnabled</code> (bool): Whether to enforce transfer restrictions</p>
+<p><strong>Returns</strong>:
+- <code>address</code>: Address of the newly created token contract</p>
+<p><strong>Access Control</strong>: Owner only</p>
+<p><strong>Process</strong>:
+1. Validates factory is initialized
+2. Checks no token exists for the trade deal ID
+3. Calls factory to create new token with specified parameters
+4. Stores token address in trade deal mapping
+5. Emits CollateralTokenCreated event</p>
+<p><strong>Events</strong>: <code>CollateralTokenCreated(tradeDealId, tokenAddress, name, symbol)</code></p>
+<p><strong>Example Usage</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Create collateral token for trade deal</span>
+<span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">1</span><span class="p">;</span>
+<span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>tokenName<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Trade Deal 1 Collateral&quot;</span><span class="p">;</span>
+<span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>tokenSymbol<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;TD1C&quot;</span><span class="p">;</span>
+<span class="kt">bool</span><span class="w"> </span><span class="nv">restrictionsEnabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">true</span><span class="p">;</span>
+
+<span class="kt">address</span><span class="w"> </span><span class="nv">tokenAddress</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>ICollateralTokenFactory<span class="p">(</span>diamond<span class="p">).</span>createCollateralToken<span class="p">(</span>
+<span class="w">    </span>tradeDealId<span class="p">,</span>
+<span class="w">    </span>tokenName<span class="p">,</span>
+<span class="w">    </span>tokenSymbol<span class="p">,</span>
+<span class="w">    </span>restrictionsEnabled
+<span class="p">);</span>
+
+console<span class="p">.</span>log<span class="p">(</span><span class="s2">&quot;Created collateral token:&quot;</span><span class="p">,</span><span class="w"> </span>tokenAddress<span class="p">);</span>
+console<span class="p">.</span>log<span class="p">(</span><span class="s2">&quot;For trade deal:&quot;</span><span class="p">,</span><span class="w"> </span>tradeDealId<span class="p">);</span>
+</code></pre></div>
+
+<p><strong>Token Configuration</strong>:
+- <strong>Name</strong>: Descriptive name for the collateral token
+- <strong>Symbol</strong>: Short identifier for the token
+- <strong>Diamond Address</strong>: Set as the token's diamond for integration
+- <strong>Trade Deal ID</strong>: Links token to specific trade deal
+- <strong>Restrictions</strong>: Controls transfer limitations</p>
+<p><strong>Error Conditions</strong>:
+- <code>"factory not set"</code> - Factory not initialized
+- <code>"token already exists for this trade deal"</code> - Duplicate creation attempt
+- Access control failures for non-owners</p>
+<h3 id="query-functions">Query Functions<a class="headerlink" href="#query-functions" title="Permanent link">&para;</a></h3>
+<h4 id="getcollateraltokenaddress"><code>getCollateralTokenAddress()</code><a class="headerlink" href="#getcollateraltokenaddress" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">getCollateralTokenAddress</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_tradeDealId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">address</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Retrieves the token address for a specific trade deal.</p>
+<p><strong>Parameters</strong>:
+- <code>_tradeDealId</code> (uint256): ID of the trade deal</p>
+<p><strong>Returns</strong>:
+- <code>address</code>: Address of the collateral token (zero address if not found)</p>
+<p><strong>Process</strong>:
+1. Checks local mapping for token address
+2. Falls back to factory lookup if not found locally
+3. Returns zero address if token doesn't exist</p>
+<p><strong>Example Usage</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">1</span><span class="p">;</span>
+<span class="kt">address</span><span class="w"> </span><span class="nv">tokenAddress</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>ICollateralTokenFactory<span class="p">(</span>diamond<span class="p">).</span>getCollateralTokenAddress<span class="p">(</span>tradeDealId<span class="p">);</span>
+
+<span class="kt">if</span><span class="w"> </span><span class="p">(</span>tokenAddress<span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>console<span class="p">.</span>log<span class="p">(</span><span class="s2">&quot;Token found:&quot;</span><span class="p">,</span><span class="w"> </span>tokenAddress<span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Interact with the token</span>
+<span class="w">    </span>IERC20<span class="w"> </span>collateralToken<span class="w"> </span><span class="o">=</span><span class="w"> </span>IERC20<span class="p">(</span>tokenAddress<span class="p">);</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">balance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>collateralToken<span class="p">.</span>balanceOf<span class="p">(</span><span class="k">msg.sender</span><span class="p">);</span>
+<span class="w">    </span>console<span class="p">.</span>log<span class="p">(</span><span class="s2">&quot;My collateral balance:&quot;</span><span class="p">,</span><span class="w"> </span>balance<span class="p">);</span>
+<span class="p">}</span><span class="w"> </span><span class="kt">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>console<span class="p">.</span>log<span class="p">(</span><span class="s2">&quot;No token found for trade deal:&quot;</span><span class="p">,</span><span class="w"> </span>tradeDealId<span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<hr />
+<h4 id="iscollateraltokenparticipant"><code>isCollateralTokenParticipant()</code><a class="headerlink" href="#iscollateraltokenparticipant" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">isCollateralTokenParticipant</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_tradeDealId</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">_address</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bool</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Checks if an address is a verified participant for a trade deal's collateral token.</p>
+<p><strong>Parameters</strong>:
+- <code>_tradeDealId</code> (uint256): ID of the trade deal
+- <code>_address</code> (address): Address to check for participation</p>
+<p><strong>Returns</strong>:
+- <code>bool</code>: True if address is a verified participant</p>
+<p><strong>Process</strong>:
+1. Retrieves token address for the trade deal
+2. Calls token's participant verification function
+3. Returns false if token doesn't exist</p>
+<p><strong>Example Usage</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">1</span><span class="p">;</span>
+<span class="kt">address</span><span class="w"> </span><span class="nv">userAddress</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x742d35Cc6634C0532925a3b8D0C9e3e0C8b0e5e1</span><span class="p">;</span>
+
+<span class="kt">bool</span><span class="w"> </span><span class="nv">isParticipant</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>ICollateralTokenFactory<span class="p">(</span>diamond<span class="p">).</span>isCollateralTokenParticipant<span class="p">(</span>
+<span class="w">    </span>tradeDealId<span class="p">,</span>
+<span class="w">    </span>userAddress
+<span class="p">);</span>
+
+<span class="kt">if</span><span class="w"> </span><span class="p">(</span>isParticipant<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>console<span class="p">.</span>log<span class="p">(</span><span class="s2">&quot;User is verified participant&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// Allow token operations</span>
+<span class="p">}</span><span class="w"> </span><span class="kt">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>console<span class="p">.</span>log<span class="p">(</span><span class="s2">&quot;User is not a participant&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// Restrict token operations</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="administrative-functions">Administrative Functions<a class="headerlink" href="#administrative-functions" title="Permanent link">&para;</a></h3>
+<h4 id="setcollateraltokenrestrictions"><code>setCollateralTokenRestrictions()</code><a class="headerlink" href="#setcollateraltokenrestrictions" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">setCollateralTokenRestrictions</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_tradeDealId</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="nv">_restrictionsEnabled</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyOwner
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Enables or disables transfer restrictions for a collateral token.</p>
+<p><strong>Parameters</strong>:
+- <code>_tradeDealId</code> (uint256): ID of the trade deal
+- <code>_restrictionsEnabled</code> (bool): Whether to enforce restrictions</p>
+<p><strong>Access Control</strong>: Owner only</p>
+<p><strong>Process</strong>:
+1. Retrieves token address for the trade deal
+2. Validates token exists
+3. Calls token's restriction configuration function
+4. Updates restriction status</p>
+<p><strong>Example Usage</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">1</span><span class="p">;</span>
+
+<span class="c1">// Enable restrictions (only participants can transfer)</span>
+ICollateralTokenFactory<span class="p">(</span>diamond<span class="p">).</span>setCollateralTokenRestrictions<span class="p">(</span>tradeDealId<span class="p">,</span><span class="w"> </span><span class="kt">true</span><span class="p">);</span>
+console<span class="p">.</span>log<span class="p">(</span><span class="s2">&quot;Restrictions enabled for trade deal:&quot;</span><span class="p">,</span><span class="w"> </span>tradeDealId<span class="p">);</span>
+
+<span class="c1">// Later, disable restrictions (open transfers)</span>
+ICollateralTokenFactory<span class="p">(</span>diamond<span class="p">).</span>setCollateralTokenRestrictions<span class="p">(</span>tradeDealId<span class="p">,</span><span class="w"> </span><span class="kt">false</span><span class="p">);</span>
+console<span class="p">.</span>log<span class="p">(</span><span class="s2">&quot;Restrictions disabled for trade deal:&quot;</span><span class="p">,</span><span class="w"> </span>tradeDealId<span class="p">);</span>
+</code></pre></div>
+
+<p><strong>Use Cases</strong>:
+- <strong>Enable Restrictions</strong>: During active trade deal phase
+- <strong>Disable Restrictions</strong>: After trade deal completion
+- <strong>Compliance Requirements</strong>: Based on regulatory needs
+- <strong>Emergency Controls</strong>: For security incidents</p>
+<h2 id="integration-examples">Integration Examples<a class="headerlink" href="#integration-examples" title="Permanent link">&para;</a></h2>
+<h3 id="complete-trade-deal-token-lifecycle">Complete Trade Deal Token Lifecycle<a class="headerlink" href="#complete-trade-deal-token-lifecycle" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Comprehensive trade deal collateral token management</span>
+<span class="k">contract</span><span class="w"> </span><span class="ni">TradeDealTokenManager</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">TokenInfo</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">tokenAddress</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">name</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">symbol</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">restrictionsEnabled</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalSupply</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">participantCount</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span>TokenInfo<span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>tradeDealTokens<span class="p">;</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[])</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>userTradeDealIds<span class="p">;</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">createTradeDealWithToken</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>dealName<span class="p">,</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>tokenSymbol<span class="p">,</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">initialRestrictions</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyOwner<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">tokenAddress</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Create collateral token for trade deal</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>tokenName<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">string</span><span class="p">(</span>abi<span class="p">.</span>encodePacked<span class="p">(</span>dealName<span class="p">,</span><span class="w"> </span><span class="s2">&quot; Collateral&quot;</span><span class="p">));</span>
+
+<span class="w">        </span>tokenAddress<span class="w"> </span><span class="o">=</span><span class="w"> </span>ICollateralTokenFactory<span class="p">(</span>diamond<span class="p">).</span>createCollateralToken<span class="p">(</span>
+<span class="w">            </span>tradeDealId<span class="p">,</span>
+<span class="w">            </span>tokenName<span class="p">,</span>
+<span class="w">            </span>tokenSymbol<span class="p">,</span>
+<span class="w">            </span>initialRestrictions
+<span class="w">        </span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Store token information</span>
+<span class="w">        </span>tradeDealTokens<span class="p">[</span>tradeDealId<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>TokenInfo<span class="p">({</span>
+<span class="w">            </span>tradeDealId<span class="o">:</span><span class="w"> </span>tradeDealId<span class="p">,</span>
+<span class="w">            </span>tokenAddress<span class="o">:</span><span class="w"> </span>tokenAddress<span class="p">,</span>
+<span class="w">            </span>name<span class="o">:</span><span class="w"> </span>tokenName<span class="p">,</span>
+<span class="w">            </span>symbol<span class="o">:</span><span class="w"> </span>tokenSymbol<span class="p">,</span>
+<span class="w">            </span>restrictionsEnabled<span class="o">:</span><span class="w"> </span>initialRestrictions<span class="p">,</span>
+<span class="w">            </span>totalSupply<span class="o">:</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">,</span>
+<span class="w">            </span>participantCount<span class="o">:</span><span class="w"> </span><span class="m m-Decimal">0</span>
+<span class="w">        </span><span class="p">});</span>
+
+<span class="w">        </span>emit<span class="w"> </span>TradeDealTokenCreated<span class="p">(</span>tradeDealId<span class="p">,</span><span class="w"> </span>tokenAddress<span class="p">,</span><span class="w"> </span>tokenName<span class="p">,</span><span class="w"> </span>tokenSymbol<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">addParticipantToTradeDeal</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">participant</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyOwner<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>TokenInfo<span class="w"> </span>storage<span class="w"> </span>tokenInfo<span class="w"> </span><span class="o">=</span><span class="w"> </span>tradeDealTokens<span class="p">[</span>tradeDealId<span class="p">];</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>tokenInfo<span class="p">.</span>tokenAddress<span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">),</span><span class="w"> </span><span class="s2">&quot;Trade deal token not found&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Add participant to trade deal (this would integrate with TradeDealAdminFacet)</span>
+<span class="w">        </span><span class="c1">// ITradeDealAdmin(diamond).addTradeDealParticipant(tradeDealId, participant);</span>
+
+<span class="w">        </span><span class="c1">// Track user&#39;s trade deal participation</span>
+<span class="w">        </span>userTradeDealIds<span class="p">[</span>participant<span class="p">].</span>push<span class="p">(</span>tradeDealId<span class="p">);</span>
+<span class="w">        </span>tokenInfo<span class="p">.</span>participantCount<span class="o">++</span><span class="p">;</span>
+
+<span class="w">        </span>emit<span class="w"> </span>ParticipantAdded<span class="p">(</span>tradeDealId<span class="p">,</span><span class="w"> </span>participant<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">updateTokenRestrictions</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">restrictionsEnabled</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyOwner<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>TokenInfo<span class="w"> </span>storage<span class="w"> </span>tokenInfo<span class="w"> </span><span class="o">=</span><span class="w"> </span>tradeDealTokens<span class="p">[</span>tradeDealId<span class="p">];</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>tokenInfo<span class="p">.</span>tokenAddress<span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">),</span><span class="w"> </span><span class="s2">&quot;Trade deal token not found&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Update restrictions through factory facet</span>
+<span class="w">        </span>ICollateralTokenFactory<span class="p">(</span>diamond<span class="p">).</span>setCollateralTokenRestrictions<span class="p">(</span>
+<span class="w">            </span>tradeDealId<span class="p">,</span>
+<span class="w">            </span>restrictionsEnabled
+<span class="w">        </span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Update local tracking</span>
+<span class="w">        </span>tokenInfo<span class="p">.</span>restrictionsEnabled<span class="w"> </span><span class="o">=</span><span class="w"> </span>restrictionsEnabled<span class="p">;</span>
+
+<span class="w">        </span>emit<span class="w"> </span>TokenRestrictionsUpdated<span class="p">(</span>tradeDealId<span class="p">,</span><span class="w"> </span>restrictionsEnabled<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getTokenInfo</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>TokenInfo<span class="w"> </span><span class="kt">memory</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>tradeDealTokens<span class="p">[</span>tradeDealId<span class="p">];</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getUserTradeDealTokens</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">user</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>tradeDealIds<span class="p">,</span>
+<span class="w">        </span><span class="kt">address</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>tokenAddresses<span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>balances
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>userDeals<span class="w"> </span><span class="o">=</span><span class="w"> </span>userTradeDealIds<span class="p">[</span>user<span class="p">];</span>
+
+<span class="w">        </span>tradeDealIds<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[](</span>userDeals<span class="p">.</span>length<span class="p">);</span>
+<span class="w">        </span>tokenAddresses<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="kt">address</span><span class="p">[](</span>userDeals<span class="p">.</span>length<span class="p">);</span>
+<span class="w">        </span>balances<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[](</span>userDeals<span class="p">.</span>length<span class="p">);</span>
+
+<span class="w">        </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>userDeals<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>userDeals<span class="p">[</span>i<span class="p">];</span>
+<span class="w">            </span>TokenInfo<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>tokenInfo<span class="w"> </span><span class="o">=</span><span class="w"> </span>tradeDealTokens<span class="p">[</span>tradeDealId<span class="p">];</span>
+
+<span class="w">            </span>tradeDealIds<span class="p">[</span>i<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>tradeDealId<span class="p">;</span>
+<span class="w">            </span>tokenAddresses<span class="p">[</span>i<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>tokenInfo<span class="p">.</span>tokenAddress<span class="p">;</span>
+
+<span class="w">            </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>tokenInfo<span class="p">.</span>tokenAddress<span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span>balances<span class="p">[</span>i<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>IERC20<span class="p">(</span>tokenInfo<span class="p">.</span>tokenAddress<span class="p">).</span>balanceOf<span class="p">(</span>user<span class="p">);</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="collateral-token-distribution-system">Collateral Token Distribution System<a class="headerlink" href="#collateral-token-distribution-system" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// System for distributing collateral tokens to participants</span>
+<span class="k">contract</span><span class="w"> </span><span class="ni">CollateralTokenDistributor</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">DistributionRecord</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">recipient</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">amount</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">timestamp</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">reason</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span>DistributionRecord<span class="p">[])</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>distributionHistory<span class="p">;</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">uint256</span><span class="p">))</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>totalDistributed<span class="p">;</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">distributeCollateralTokens</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">address</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>recipients<span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>amounts<span class="p">,</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>reason
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyOwner<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>recipients<span class="p">.</span>length<span class="w"> </span><span class="o">==</span><span class="w"> </span>amounts<span class="p">.</span>length<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Array length mismatch&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Get token address</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">tokenAddress</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>ICollateralTokenFactory<span class="p">(</span>diamond<span class="p">).</span>getCollateralTokenAddress<span class="p">(</span>tradeDealId<span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>tokenAddress<span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">),</span><span class="w"> </span><span class="s2">&quot;Token not found for trade deal&quot;</span><span class="p">);</span>
+
+<span class="w">        </span>RestrictedCollateralToken<span class="w"> </span>token<span class="w"> </span><span class="o">=</span><span class="w"> </span>RestrictedCollateralToken<span class="p">(</span>tokenAddress<span class="p">);</span>
+
+<span class="w">        </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>recipients<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">address</span><span class="w"> </span><span class="nv">recipient</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>recipients<span class="p">[</span>i<span class="p">];</span>
+<span class="w">            </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">amount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>amounts<span class="p">[</span>i<span class="p">];</span>
+
+<span class="w">            </span><span class="c1">// Verify recipient is a participant</span>
+<span class="w">            </span><span class="kt">bool</span><span class="w"> </span><span class="nv">isParticipant</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>ICollateralTokenFactory<span class="p">(</span>diamond<span class="p">).</span>isCollateralTokenParticipant<span class="p">(</span>
+<span class="w">                </span>tradeDealId<span class="p">,</span>
+<span class="w">                </span>recipient
+<span class="w">            </span><span class="p">);</span>
+<span class="w">            </span><span class="kt">require</span><span class="p">(</span>isParticipant<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Recipient is not a trade deal participant&quot;</span><span class="p">);</span>
+
+<span class="w">            </span><span class="c1">// Mint tokens to recipient</span>
+<span class="w">            </span>token<span class="p">.</span>mint<span class="p">(</span>recipient<span class="p">,</span><span class="w"> </span>amount<span class="p">);</span>
+
+<span class="w">            </span><span class="c1">// Record distribution</span>
+<span class="w">            </span>distributionHistory<span class="p">[</span>tradeDealId<span class="p">].</span>push<span class="p">(</span>DistributionRecord<span class="p">({</span>
+<span class="w">                </span>tradeDealId<span class="o">:</span><span class="w"> </span>tradeDealId<span class="p">,</span>
+<span class="w">                </span>recipient<span class="o">:</span><span class="w"> </span>recipient<span class="p">,</span>
+<span class="w">                </span>amount<span class="o">:</span><span class="w"> </span>amount<span class="p">,</span>
+<span class="w">                </span>timestamp<span class="o">:</span><span class="w"> </span><span class="k">block.timestamp</span><span class="p">,</span>
+<span class="w">                </span>reason<span class="o">:</span><span class="w"> </span>reason
+<span class="w">            </span><span class="p">}));</span>
+
+<span class="w">            </span>totalDistributed<span class="p">[</span>tradeDealId<span class="p">][</span>recipient<span class="p">]</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span>amount<span class="p">;</span>
+
+<span class="w">            </span>emit<span class="w"> </span>CollateralTokensDistributed<span class="p">(</span>tradeDealId<span class="p">,</span><span class="w"> </span>recipient<span class="p">,</span><span class="w"> </span>amount<span class="p">,</span><span class="w"> </span>reason<span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">batchDistributeEqual</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">address</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>recipients<span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalAmount</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>reason
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyOwner<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>recipients<span class="p">.</span>length<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;No recipients provided&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">amountPerRecipient</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>totalAmount<span class="w"> </span><span class="o">/</span><span class="w"> </span>recipients<span class="p">.</span>length<span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>amounts<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[](</span>recipients<span class="p">.</span>length<span class="p">);</span>
+
+<span class="w">        </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>recipients<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>amounts<span class="p">[</span>i<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>amountPerRecipient<span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span>distributeCollateralTokens<span class="p">(</span>tradeDealId<span class="p">,</span><span class="w"> </span>recipients<span class="p">,</span><span class="w"> </span>amounts<span class="p">,</span><span class="w"> </span>reason<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getDistributionHistory</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>DistributionRecord<span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>distributionHistory<span class="p">[</span>tradeDealId<span class="p">];</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getTotalDistributed</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">recipient</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>totalDistributed<span class="p">[</span>tradeDealId<span class="p">][</span>recipient<span class="p">];</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="token-restriction-manager">Token Restriction Manager<a class="headerlink" href="#token-restriction-manager" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Advanced restriction management for collateral tokens</span>
+<span class="k">contract</span><span class="w"> </span><span class="ni">TokenRestrictionManager</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">RestrictionPolicy</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">transfersEnabled</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">onlyParticipants</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">maxTransferAmount</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">cooldownPeriod</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">emergencyFreeze</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span>RestrictionPolicy<span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>restrictionPolicies<span class="p">;</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">uint256</span><span class="p">))</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>lastTransferTime<span class="p">;</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">setRestrictionPolicy</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">,</span>
+<span class="w">        </span>RestrictionPolicy<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>policy
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyOwner<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>restrictionPolicies<span class="p">[</span>tradeDealId<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>policy<span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// Apply basic restrictions through factory facet</span>
+<span class="w">        </span>ICollateralTokenFactory<span class="p">(</span>diamond<span class="p">).</span>setCollateralTokenRestrictions<span class="p">(</span>
+<span class="w">            </span>tradeDealId<span class="p">,</span>
+<span class="w">            </span>policy<span class="p">.</span>onlyParticipants<span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">!</span>policy<span class="p">.</span>transfersEnabled
+<span class="w">        </span><span class="p">);</span>
+
+<span class="w">        </span>emit<span class="w"> </span>RestrictionPolicyUpdated<span class="p">(</span>tradeDealId<span class="p">,</span><span class="w"> </span>policy<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">validateTransfer</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">from</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">to</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">amount</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bool</span><span class="w"> </span><span class="nv">allowed</span><span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>reason<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>RestrictionPolicy<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>policy<span class="w"> </span><span class="o">=</span><span class="w"> </span>restrictionPolicies<span class="p">[</span>tradeDealId<span class="p">];</span>
+
+<span class="w">        </span><span class="c1">// Check emergency freeze</span>
+<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>policy<span class="p">.</span>emergencyFreeze<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">return</span><span class="w"> </span><span class="p">(</span><span class="kt">false</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Emergency freeze active&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// Check if transfers are enabled</span>
+<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span>policy<span class="p">.</span>transfersEnabled<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">return</span><span class="w"> </span><span class="p">(</span><span class="kt">false</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Transfers disabled&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// Check participant requirement</span>
+<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>policy<span class="p">.</span>onlyParticipants<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">bool</span><span class="w"> </span><span class="nv">fromIsParticipant</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>ICollateralTokenFactory<span class="p">(</span>diamond<span class="p">).</span>isCollateralTokenParticipant<span class="p">(</span>tradeDealId<span class="p">,</span><span class="w"> </span>from<span class="p">);</span>
+<span class="w">            </span><span class="kt">bool</span><span class="w"> </span><span class="nv">toIsParticipant</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>ICollateralTokenFactory<span class="p">(</span>diamond<span class="p">).</span>isCollateralTokenParticipant<span class="p">(</span>tradeDealId<span class="p">,</span><span class="w"> </span>to<span class="p">);</span>
+
+<span class="w">            </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span>fromIsParticipant<span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">!</span>toIsParticipant<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="kt">return</span><span class="w"> </span><span class="p">(</span><span class="kt">false</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Both parties must be participants&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// Check transfer amount limit</span>
+<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>policy<span class="p">.</span>maxTransferAmount<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>amount<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span>policy<span class="p">.</span>maxTransferAmount<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">return</span><span class="w"> </span><span class="p">(</span><span class="kt">false</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Amount exceeds maximum transfer limit&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// Check cooldown period</span>
+<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>policy<span class="p">.</span>cooldownPeriod<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">timeSinceLastTransfer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">block.timestamp</span><span class="w"> </span><span class="o">-</span><span class="w"> </span>lastTransferTime<span class="p">[</span>tradeDealId<span class="p">][</span>from<span class="p">];</span>
+<span class="w">            </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>timeSinceLastTransfer<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>policy<span class="p">.</span>cooldownPeriod<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="kt">return</span><span class="w"> </span><span class="p">(</span><span class="kt">false</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Cooldown period not elapsed&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span><span class="p">(</span><span class="kt">true</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Transfer allowed&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">emergencyFreeze</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="nv">freeze</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyOwner<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>restrictionPolicies<span class="p">[</span>tradeDealId<span class="p">].</span>emergencyFreeze<span class="w"> </span><span class="o">=</span><span class="w"> </span>freeze<span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// Apply emergency restrictions</span>
+<span class="w">        </span>ICollateralTokenFactory<span class="p">(</span>diamond<span class="p">).</span>setCollateralTokenRestrictions<span class="p">(</span>tradeDealId<span class="p">,</span><span class="w"> </span>freeze<span class="p">);</span>
+
+<span class="w">        </span>emit<span class="w"> </span>EmergencyFreezeUpdated<span class="p">(</span>tradeDealId<span class="p">,</span><span class="w"> </span>freeze<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">updateTransferTime</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">user</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyAuthorized<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>lastTransferTime<span class="p">[</span>tradeDealId<span class="p">][</span>user<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">block.timestamp</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="factory-analytics-and-monitoring">Factory Analytics and Monitoring<a class="headerlink" href="#factory-analytics-and-monitoring" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Analytics and monitoring for collateral token factory</span>
+<span class="k">contract</span><span class="w"> </span><span class="ni">CollateralTokenAnalytics</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">TokenMetrics</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">tokenAddress</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalSupply</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">holderCount</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">transferCount</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">creationTime</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">restrictionsActive</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span>TokenMetrics<span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>tokenMetrics<span class="p">;</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">uint256</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>tokenToTradeDeal<span class="p">;</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>allTradeDealIds<span class="p">;</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">trackTokenCreation</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">tokenAddress</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>name<span class="p">,</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>symbol
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyAuthorized<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>tokenMetrics<span class="p">[</span>tradeDealId<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>TokenMetrics<span class="p">({</span>
+<span class="w">            </span>tradeDealId<span class="o">:</span><span class="w"> </span>tradeDealId<span class="p">,</span>
+<span class="w">            </span>tokenAddress<span class="o">:</span><span class="w"> </span>tokenAddress<span class="p">,</span>
+<span class="w">            </span>totalSupply<span class="o">:</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">,</span>
+<span class="w">            </span>holderCount<span class="o">:</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">,</span>
+<span class="w">            </span>transferCount<span class="o">:</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">,</span>
+<span class="w">            </span>creationTime<span class="o">:</span><span class="w"> </span><span class="k">block.timestamp</span><span class="p">,</span>
+<span class="w">            </span>restrictionsActive<span class="o">:</span><span class="w"> </span><span class="kt">true</span>
+<span class="w">        </span><span class="p">});</span>
+
+<span class="w">        </span>tokenToTradeDeal<span class="p">[</span>tokenAddress<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>tradeDealId<span class="p">;</span>
+<span class="w">        </span>allTradeDealIds<span class="p">.</span>push<span class="p">(</span>tradeDealId<span class="p">);</span>
+
+<span class="w">        </span>emit<span class="w"> </span>TokenCreationTracked<span class="p">(</span>tradeDealId<span class="p">,</span><span class="w"> </span>tokenAddress<span class="p">,</span><span class="w"> </span>name<span class="p">,</span><span class="w"> </span>symbol<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">updateTokenMetrics</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>TokenMetrics<span class="w"> </span>storage<span class="w"> </span>metrics<span class="w"> </span><span class="o">=</span><span class="w"> </span>tokenMetrics<span class="p">[</span>tradeDealId<span class="p">];</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>metrics<span class="p">.</span>tokenAddress<span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">),</span><span class="w"> </span><span class="s2">&quot;Token not found&quot;</span><span class="p">);</span>
+
+<span class="w">        </span>IERC20<span class="w"> </span>token<span class="w"> </span><span class="o">=</span><span class="w"> </span>IERC20<span class="p">(</span>metrics<span class="p">.</span>tokenAddress<span class="p">);</span>
+<span class="w">        </span>metrics<span class="p">.</span>totalSupply<span class="w"> </span><span class="o">=</span><span class="w"> </span>token<span class="p">.</span>totalSupply<span class="p">();</span>
+
+<span class="w">        </span><span class="c1">// Update restriction status</span>
+<span class="w">        </span><span class="c1">// This would require additional interface methods on RestrictedCollateralToken</span>
+
+<span class="w">        </span>emit<span class="w"> </span>TokenMetricsUpdated<span class="p">(</span>tradeDealId<span class="p">,</span><span class="w"> </span>metrics<span class="p">.</span>totalSupply<span class="p">,</span><span class="w"> </span>metrics<span class="p">.</span>holderCount<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getFactoryOverview</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalTokens</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalSupplyAcrossTokens</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">averageHoldersPerToken</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokensWithRestrictions</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>totalTokens<span class="w"> </span><span class="o">=</span><span class="w"> </span>allTradeDealIds<span class="p">.</span>length<span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalHolders</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span>
+
+<span class="w">        </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>allTradeDealIds<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>TokenMetrics<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>metrics<span class="w"> </span><span class="o">=</span><span class="w"> </span>tokenMetrics<span class="p">[</span>allTradeDealIds<span class="p">[</span>i<span class="p">]];</span>
+<span class="w">            </span>totalSupplyAcrossTokens<span class="w"> </span><span class="o">+=</span><span class="w"> </span>metrics<span class="p">.</span>totalSupply<span class="p">;</span>
+<span class="w">            </span>totalHolders<span class="w"> </span><span class="o">+=</span><span class="w"> </span>metrics<span class="p">.</span>holderCount<span class="p">;</span>
+
+<span class="w">            </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>metrics<span class="p">.</span>restrictionsActive<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span>tokensWithRestrictions<span class="o">++</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>totalTokens<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>averageHoldersPerToken<span class="w"> </span><span class="o">=</span><span class="w"> </span>totalHolders<span class="w"> </span><span class="o">/</span><span class="w"> </span>totalTokens<span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getTokensByRestrictionStatus</span><span class="p">(</span><span class="kt">bool</span><span class="w"> </span><span class="nv">restrictionsActive</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>matchingTokens<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[](</span>allTradeDealIds<span class="p">.</span>length<span class="p">);</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span>
+
+<span class="w">        </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>allTradeDealIds<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>tokenMetrics<span class="p">[</span>allTradeDealIds<span class="p">[</span>i<span class="p">]].</span>restrictionsActive<span class="w"> </span><span class="o">==</span><span class="w"> </span>restrictionsActive<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span>matchingTokens<span class="p">[</span>count<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>allTradeDealIds<span class="p">[</span>i<span class="p">];</span>
+<span class="w">                </span>count<span class="o">++</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// Resize array to actual count</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>result<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[](</span>count<span class="p">);</span>
+<span class="w">        </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>count<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>result<span class="p">[</span>i<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>matchingTokens<span class="p">[</span>i<span class="p">];</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>result<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="events">Events<a class="headerlink" href="#events" title="Permanent link">&para;</a></h2>
+<h3 id="factory-events">Factory Events<a class="headerlink" href="#factory-events" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">event</span><span class="w"> </span><span class="nv">CollateralTokenFactoryInitialized</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>factoryAddress<span class="p">);</span>
+</code></pre></div>
+
+<h3 id="token-management-events">Token Management Events<a class="headerlink" href="#token-management-events" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">event</span><span class="w"> </span><span class="nv">CollateralTokenCreated</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>tradeDealId<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>tokenAddress<span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">name</span><span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">symbol</span><span class="p">);</span>
+</code></pre></div>
+
+<h2 id="security-considerations">Security Considerations<a class="headerlink" href="#security-considerations" title="Permanent link">&para;</a></h2>
+<h3 id="factory-security">Factory Security<a class="headerlink" href="#factory-security" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Factory initialization protection against re-initialization</li>
+<li>Owner-only access for token creation and configuration</li>
+<li>Validation of trade deal uniqueness</li>
+<li>Proper factory address management</li>
+</ul>
+<h3 id="token-security">Token Security<a class="headerlink" href="#token-security" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Transfer restrictions based on participant verification</li>
+<li>Integration with identity verification systems</li>
+<li>Emergency controls for restriction management</li>
+<li>Proper access control for administrative functions</li>
+</ul>
+<h3 id="integration-security">Integration Security<a class="headerlink" href="#integration-security" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Validation of trade deal existence before token creation</li>
+<li>Proper participant verification before token operations</li>
+<li>Secure storage of factory and token addresses</li>
+<li>Event logging for audit trails</li>
+</ul>
+<h2 id="gas-optimization">Gas Optimization<a class="headerlink" href="#gas-optimization" title="Permanent link">&para;</a></h2>
+<h3 id="factory-efficiency">Factory Efficiency<a class="headerlink" href="#factory-efficiency" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Minimal proxy pattern for token deployment</li>
+<li>Efficient storage layout for mappings</li>
+<li>Batch operations where possible</li>
+<li>Optimized factory initialization</li>
+</ul>
+<h3 id="token-operations">Token Operations<a class="headerlink" href="#token-operations" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Gas-efficient participant verification</li>
+<li>Optimized restriction checking</li>
+<li>Minimal storage operations</li>
+<li>Efficient event emission</li>
+</ul>
+<h2 id="error-handling">Error Handling<a class="headerlink" href="#error-handling" title="Permanent link">&para;</a></h2>
+<h3 id="common-errors">Common Errors<a class="headerlink" href="#common-errors" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>"factory not set"</code> - Factory not initialized</li>
+<li><code>"token already exists for this trade deal"</code> - Duplicate token creation</li>
+<li><code>"token does not exist for this trade deal"</code> - Invalid token reference</li>
+<li>Access control failures for unauthorized operations</li>
+</ul>
+<h3 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Always check factory initialization before operations</li>
+<li>Validate trade deal existence before token creation</li>
+<li>Verify participant status before token operations</li>
+<li>Handle zero address returns gracefully</li>
+</ul>
+<h2 id="testing-considerations">Testing Considerations<a class="headerlink" href="#testing-considerations" title="Permanent link">&para;</a></h2>
+<h3 id="unit-tests">Unit Tests<a class="headerlink" href="#unit-tests" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Factory initialization and configuration</li>
+<li>Token creation and management</li>
+<li>Restriction setting and validation</li>
+<li>Participant verification</li>
+<li>Access control enforcement</li>
+</ul>
+<h3 id="integration-tests">Integration Tests<a class="headerlink" href="#integration-tests" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Trade deal integration workflows</li>
+<li>Participant management integration</li>
+<li>Token distribution scenarios</li>
+<li>Restriction policy enforcement</li>
+</ul>
+<h2 id="related-documentation">Related Documentation<a class="headerlink" href="#related-documentation" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../tokens/restricted-collateral-token.md">RestrictedCollateralToken</a> - Token implementation</li>
+<li><a href="../tokens/collateral-token-factory.md">CollateralTokenFactory</a> - Factory contract</li>
+<li><a href="../trade-deal-admin-facet/">TradeDealAdminFacet</a> - Trade deal administration</li>
+<li><a href="../trade-deal-operations-facet/">TradeDealOperationsFacet</a> - Trade deal operations</li>
+<li><a href="../identity-registry-facet/">IdentityRegistryFacet</a> - Participant verification</li>
+<li><a href="../../guides/token-factory.md">Token Factory Guide</a> - Implementation guide</li>
+</ul>
+<hr />
+<p><em>This facet provides factory functionality for creating and managing restricted collateral tokens within the Gemforce platform, enabling secure and compliant token distribution for trade deal participants.</em></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../trade-deal-operations-facet/" class="btn btn-neutral float-left" title="Trade Deal Operations Facet"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../interfaces/idiamond/" class="btn btn-neutral float-right" title="IDiamond">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../trade-deal-operations-facet/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../interfaces/idiamond/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

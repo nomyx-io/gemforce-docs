@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Gemforce Team" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>Trade Deal Lib - Gemforce Documentation</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Trade Deal Lib";
+        var mkdocs_page_input_path = "smart-contracts/libraries/trade-deal-lib.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../.." class="icon icon-home"> Gemforce Documentation
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../developer-setup-guide/">Developer Setup Guide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../system-architecture/gemforce-system-architecture/">System Architecture</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Smart Contracts</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../diamond/">Diamond Contract</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Facets</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/marketplace-facet/">Marketplace Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trade-deal-management-facet/">Trade Deal Management Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/carbon-credit-facet/">Carbon Credit Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/identity-registry-facet/">Identity Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trusted-issuers-registry-facet/">Trusted Issuers Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/fee-distributor-facet/">Fee Distributor Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/gemforce-minter-facet/">Gemforce Minter Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/multi-sale-facet/">Multi Sale Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/svg-templates-facet/">SVG Templates Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trade-deal-admin-facet/">Trade Deal Admin Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trade-deal-operations-facet/">Trade Deal Operations Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/collateral-token-factory-facet/">Collateral Token Factory Facet</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Interfaces</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/idiamond/">IDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/imarketplace/">IMarketplace</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/itradedeal/">ITradeDeal</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/icarbon-credit/">ICarbonCredit</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ierc1155-mint/">IERC1155Mint</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ierc734/">IERC734</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ierc735/">IERC735</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" >Libraries</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" href="../carbon-credit-lib/">Carbon Credit Lib</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">Trade Deal Lib</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#overview">Overview</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#key-features">Key Features</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#library-definition">Library Definition</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data-structures">Data Structures</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#operationmode-enum">OperationMode Enum</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#role-enum">Role Enum</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#permission-constants">Permission Constants</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#tradedeal-struct">TradeDeal Struct</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#tradedealstorage-struct">TradeDealStorage Struct</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#core-functions">Core Functions</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#trade-deal-creation">Trade Deal Creation</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#trade-deal-management">Trade Deal Management</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#integration-examples">Integration Examples</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#trade-deal-factory-contract">Trade Deal Factory Contract</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#trade-deal-analytics-system">Trade Deal Analytics System</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#role-based-access-control-manager">Role-Based Access Control Manager</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#events">Events</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#core-trade-deal-events">Core Trade Deal Events</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#participant-management-events">Participant Management Events</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#financial-operation-events">Financial Operation Events</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#enhanced-financial-events">Enhanced Financial Events</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#security-considerations">Security Considerations</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#access-control-security">Access Control Security</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#financial-security">Financial Security</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#storage-security">Storage Security</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#gas-optimization">Gas Optimization</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#storage-efficiency">Storage Efficiency</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#function-efficiency">Function Efficiency</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#error-handling">Error Handling</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#common-errors">Common Errors</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#best-practices">Best Practices</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#testing-considerations">Testing Considerations</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#unit-tests">Unit Tests</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#integration-tests">Integration Tests</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#related-documentation">Related Documentation</a>
+    </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../multi-sale-lib/">Multi Sale Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../diamond-factory-lib/">Diamond Factory Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../svg-templates-lib/">SVG Templates Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../attribute-lib/">Attribute Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../variable-price-lib/">Variable Price Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../merkle-prover/">Merkle Prover</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../fee-distributor-lib/">Fee Distributor Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../lib-diamond/">LibDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../diamond-lib/">DiamondLib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../erc721a-lib/">ERC721A Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../erc721a-enumeration-lib/">ERC721A Enumeration Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../strings-lib/">Strings Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../metadata-lib/">Metadata Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../trusted-issuer-lib/">Trusted Issuer Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../set-libraries/">Set Libraries</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Cloud Functions</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/blockchain/">Blockchain Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/dfns/">DFNS Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/contracts/">Contract Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/authentication/">Authentication Functions</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">API Documentation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../api-documentation/gemforce-api-documentation/">Full API Reference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../api-documentation/gemforce-api-quick-reference/">Quick Reference</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">EIPs (Ethereum Improvement Proposals)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Diamond-Enhanced-Marketplace/">Diamond-Enhanced Marketplace</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Multi-Token-Sale-Standard/">Multi-Token Sale Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Collateralized-Trade-Deal-Standard/">Collateralized Trade Deal Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Enhanced-Identity-System/">Enhanced Identity System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Diamond-Factory-Standard/">Diamond Factory Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Carbon-Credit-Standard/">Carbon Credit Standard</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">User Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-administrator-guide/">Administrator Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-deployer-guide/">Deployer Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-integrator-guide/">Integrator Guide</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../external-services/gemforce-external-services/">External Services</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-documentation-gap-analysis/">Documentation Gap Analysis</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../documentation-progress-summary/">Documentation Progress Summary</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../documentation-plan/">Documentation Plan</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">Gemforce Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Smart Contracts</li>
+          <li class="breadcrumb-item">Libraries</li>
+      <li class="breadcrumb-item active">Trade Deal Lib</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="tradedeallib-library">TradeDealLib Library<a class="headerlink" href="#tradedeallib-library" title="Permanent link">&para;</a></h1>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>The <a href="../../../contracts/libraries/TradeDealLib.sol"><code>TradeDealLib</code></a> library provides core utilities and data structures for managing collateralized trade deals within the Gemforce platform. This library implements the Diamond Standard storage pattern and provides essential functions for trade deal creation, management, participant handling, and financial operations including funding, repayment, and collateral management.</p>
+<h2 id="key-features">Key Features<a class="headerlink" href="#key-features" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Diamond Storage Pattern</strong>: Secure storage isolation using Diamond Standard</li>
+<li><strong>Trade Deal Lifecycle Management</strong>: Complete CRUD operations for trade deals</li>
+<li><strong>Role-Based Access Control</strong>: Flexible permission system with multiple operation modes</li>
+<li><strong>Collateral Management</strong>: Invoice NFT collateral handling and redemption</li>
+<li><strong>Financial Operations</strong>: USDC funding, withdrawal, and repayment tracking</li>
+<li><strong>Interest Distribution</strong>: Automated interest calculation and distribution</li>
+<li><strong>Multi-Mode Operations</strong>: Support for centralized, self-service, and hybrid models</li>
+</ul>
+<h2 id="library-definition">Library Definition<a class="headerlink" href="#library-definition" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span><code><span class="c1">// SPDX-License-Identifier: MIT</span>
+<span class="k">pragma solidity</span><span class="w"> </span><span class="o">^</span><span class="k">0.8.0</span><span class="p">;</span>
+
+<span class="kt">library</span><span class="w"> </span>TradeDealLib<span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Enums</span>
+<span class="w">    </span><span class="kt">enum</span><span class="w"> </span><span class="nv">OperationMode</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>CENTRALIZED<span class="p">,</span><span class="w"> </span>SELF_SERVICE<span class="p">,</span><span class="w"> </span>HYBRID<span class="p">,</span><span class="w"> </span>CUSTOM<span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="kt">enum</span><span class="w"> </span><span class="nv">Role</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>NONE<span class="p">,</span><span class="w"> </span>ADMIN<span class="p">,</span><span class="w"> </span>LENDER<span class="p">,</span><span class="w"> </span>BORROWER<span class="p">,</span><span class="w"> </span>UNDERWRITER<span class="p">,</span><span class="w"> </span>LIQUIDATOR<span class="w"> </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Permission constants</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">constant</span><span class="w"> </span>PERMISSION_DEPOSIT_FUNDS<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">1</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">constant</span><span class="w"> </span>PERMISSION_WITHDRAW_FUNDS<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">2</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">constant</span><span class="w"> </span>PERMISSION_DEPOSIT_COLLATERAL<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">4</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">constant</span><span class="w"> </span>PERMISSION_WITHDRAW_COLLATERAL<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">8</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">constant</span><span class="w"> </span>PERMISSION_DISTRIBUTE_INTEREST<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">16</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// Core data structures</span>
+<span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">TradeDeal</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">TradeDealStorage</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">CreateTradeDealParams</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">CreateTradeDealResult</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Core functions</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">_createTradeDeal</span><span class="p">(</span>CreateTradeDealParams<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>params<span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>CreateTradeDealResult<span class="w"> </span><span class="kt">memory</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">_updateTradeDeal</span><span class="p">(...)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>UpdateTradeDealResult<span class="w"> </span><span class="kt">memory</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">_activateTradeDeal</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>TradeDealStateChangeResult<span class="w"> </span><span class="kt">memory</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">_deactivateTradeDeal</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>TradeDealStateChangeResult<span class="w"> </span><span class="kt">memory</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="data-structures">Data Structures<a class="headerlink" href="#data-structures" title="Permanent link">&para;</a></h2>
+<h3 id="operationmode-enum">OperationMode Enum<a class="headerlink" href="#operationmode-enum" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">enum</span><span class="w"> </span><span class="nv">OperationMode</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>CENTRALIZED<span class="p">,</span><span class="w">    </span><span class="c1">// Contract owner manages all fund operations</span>
+<span class="w">    </span>SELF_SERVICE<span class="p">,</span><span class="w">   </span><span class="c1">// Borrowers can directly withdraw/repay funds</span>
+<span class="w">    </span>HYBRID<span class="p">,</span><span class="w">         </span><span class="c1">// Mixed model with configurable permissions</span>
+<span class="w">    </span>CUSTOM<span class="w">          </span><span class="c1">// Fine-grained permission configuration</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Defines the operational model for trade deal management.</p>
+<p><strong>Values</strong>:
+- <code>CENTRALIZED</code> (0): All operations controlled by contract owner/admin
+- <code>SELF_SERVICE</code> (1): Borrowers have direct access to fund operations
+- <code>HYBRID</code> (2): Mixed model with some automated and some manual operations
+- <code>CUSTOM</code> (3): Fine-grained permission configuration per user</p>
+<h3 id="role-enum">Role Enum<a class="headerlink" href="#role-enum" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">enum</span><span class="w"> </span><span class="nv">Role</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>NONE<span class="p">,</span><span class="w">        </span><span class="c1">// No special role (default)</span>
+<span class="w">    </span>ADMIN<span class="p">,</span><span class="w">       </span><span class="c1">// Full control over the trade deal</span>
+<span class="w">    </span>LENDER<span class="p">,</span><span class="w">      </span><span class="c1">// Can deposit funds and receive Collateral tokens</span>
+<span class="w">    </span>BORROWER<span class="p">,</span><span class="w">    </span><span class="c1">// Can deposit invoices and withdraw funds (in self-service)</span>
+<span class="w">    </span>UNDERWRITER<span class="p">,</span><span class="w"> </span><span class="c1">// Can approve/reject deals, modify terms</span>
+<span class="w">    </span>LIQUIDATOR<span class="w">   </span><span class="c1">// Can liquidate collateral if terms are violated</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Defines user roles within the trade deal system.</p>
+<h3 id="permission-constants">Permission Constants<a class="headerlink" href="#permission-constants" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">uint256</span><span class="w"> </span><span class="nv">constant</span><span class="w"> </span>PERMISSION_DEPOSIT_FUNDS<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">1</span><span class="p">;</span>
+<span class="kt">uint256</span><span class="w"> </span><span class="nv">constant</span><span class="w"> </span>PERMISSION_WITHDRAW_FUNDS<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">2</span><span class="p">;</span>
+<span class="kt">uint256</span><span class="w"> </span><span class="nv">constant</span><span class="w"> </span>PERMISSION_DEPOSIT_COLLATERAL<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">4</span><span class="p">;</span>
+<span class="kt">uint256</span><span class="w"> </span><span class="nv">constant</span><span class="w"> </span>PERMISSION_WITHDRAW_COLLATERAL<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">8</span><span class="p">;</span>
+<span class="kt">uint256</span><span class="w"> </span><span class="nv">constant</span><span class="w"> </span>PERMISSION_DISTRIBUTE_INTEREST<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">16</span><span class="p">;</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Bit flags for fine-grained permission control.</p>
+<h3 id="tradedeal-struct">TradeDeal Struct<a class="headerlink" href="#tradedeal-struct" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">struct</span><span class="w"> </span><span class="nv">TradeDeal</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">id</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">string</span><span class="w"> </span><span class="nv">name</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">string</span><span class="w"> </span><span class="nv">symbol</span><span class="p">;</span><span class="w">                      </span><span class="c1">// Symbol for the trade deal Collateral token</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">interestRate</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">collateralToInterestRatio</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nv">active</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span>requiredClaimTopics<span class="p">;</span><span class="w">      </span><span class="c1">// Claim topics required for participation</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">collateralAddress</span><span class="p">;</span><span class="w">          </span><span class="c1">// Address of the Collateral token contract</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">interestAddress</span><span class="p">;</span><span class="w">            </span><span class="c1">// Address of the VABI token contract</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">usdcAddress</span><span class="p">;</span><span class="w">               </span><span class="c1">// Address of the USDC token contract</span>
+<span class="w">    </span>OperationMode<span class="w"> </span>operationMode<span class="p">;</span><span class="w">       </span><span class="c1">// Operation mode for the trade deal</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Core data structure representing a trade deal.</p>
+<p><strong>Key Fields</strong>:
+- <code>id</code>: Unique identifier for the trade deal
+- <code>name</code>: Human-readable name for the trade deal
+- <code>symbol</code>: Symbol used for the associated Collateral token
+- <code>interestRate</code>: Interest rate for the trade deal (basis points)
+- <code>collateralToInterestRatio</code>: Ratio of collateral to interest tokens
+- <code>requiredClaimTopics</code>: Array of claim topics required for participation
+- <code>operationMode</code>: Operational model for the trade deal</p>
+<h3 id="tradedealstorage-struct">TradeDealStorage Struct<a class="headerlink" href="#tradedealstorage-struct" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">struct</span><span class="w"> </span><span class="nv">TradeDealStorage</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Trade deal tracking</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span>TradeDeal<span class="p">)</span><span class="w"> </span>tradeDeals<span class="p">;</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span>tradeDealIds<span class="p">;</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">nextTradeDealId</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// Per-trade deal mappings</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[])</span><span class="w"> </span>tradeDealInvoices<span class="p">;</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">uint256</span><span class="p">)</span><span class="w"> </span>tradeDealUsdcBalances<span class="p">;</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">bool</span><span class="p">))</span><span class="w"> </span>tradeDealParticipants<span class="p">;</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[])</span><span class="w"> </span>tradeDealRequiredClaimTopics<span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// Role-based access control</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span>Role<span class="p">))</span><span class="w"> </span>userRoles<span class="p">;</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">uint256</span><span class="p">))</span><span class="w"> </span>userPermissions<span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// Enhanced functionality</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">uint256</span><span class="p">)</span><span class="w"> </span>tradeDealFundingTargets<span class="p">;</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">bool</span><span class="p">)</span><span class="w"> </span>tradeDealFundingWithdrawn<span class="p">;</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">uint256</span><span class="p">)</span><span class="w"> </span>tradeDealRepaidAmounts<span class="p">;</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">uint256</span><span class="p">)</span><span class="w"> </span>tradeDealTotalDebt<span class="p">;</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">uint256</span><span class="p">)</span><span class="w"> </span>tradeDealTotalWithdrawn<span class="p">;</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">address</span><span class="p">))</span><span class="w"> </span>invoiceDepositors<span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Diamond storage structure for all trade deal data.</p>
+<h2 id="core-functions">Core Functions<a class="headerlink" href="#core-functions" title="Permanent link">&para;</a></h2>
+<h3 id="trade-deal-creation">Trade Deal Creation<a class="headerlink" href="#trade-deal-creation" title="Permanent link">&para;</a></h3>
+<h4 id="_createtradedeal"><code>_createTradeDeal()</code><a class="headerlink" href="#_createtradedeal" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">_createTradeDeal</span><span class="p">(</span>CreateTradeDealParams<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>params<span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>CreateTradeDealResult<span class="w"> </span><span class="kt">memory</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Create a new trade deal with specified parameters.</p>
+<p><strong>Parameters</strong>:
+- <code>params</code> (CreateTradeDealParams): Struct containing all creation parameters</p>
+<p><strong>CreateTradeDealParams Structure</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="kt">struct</span><span class="w"> </span><span class="nv">CreateTradeDealParams</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">string</span><span class="w"> </span><span class="nv">name</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">string</span><span class="w"> </span><span class="nv">symbol</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">interestRate</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">collateralToInterestRatio</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span>requiredClaimTopics<span class="p">;</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">collateralAddress</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">interestAddress</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">usdcAddress</span><span class="p">;</span>
+<span class="w">    </span>OperationMode<span class="w"> </span>operationMode<span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Returns</strong>: <code>CreateTradeDealResult</code> struct with trade deal information</p>
+<p><strong>Key Operations</strong>:
+- Assigns unique trade deal ID
+- Initializes trade deal data structure
+- Creates or assigns collateral token contract
+- Sets up required claim topics
+- Initializes financial tracking (funding targets, repayment amounts)</p>
+<p><strong>Example Usage</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Create a new trade deal</span>
+TradeDealLib<span class="p">.</span>CreateTradeDealParams<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>params<span class="w"> </span><span class="o">=</span><span class="w"> </span>TradeDealLib<span class="p">.</span>CreateTradeDealParams<span class="p">({</span>
+<span class="w">    </span>name<span class="o">:</span><span class="w"> </span><span class="s2">&quot;Invoice Financing Deal #1&quot;</span><span class="p">,</span>
+<span class="w">    </span>symbol<span class="o">:</span><span class="w"> </span><span class="s2">&quot;IFD1&quot;</span><span class="p">,</span>
+<span class="w">    </span>interestRate<span class="o">:</span><span class="w"> </span><span class="m m-Decimal">1200</span><span class="p">,</span><span class="w"> </span><span class="c1">// 12% APR</span>
+<span class="w">    </span>collateralToInterestRatio<span class="o">:</span><span class="w"> </span><span class="m m-Decimal">1000000</span><span class="p">,</span><span class="w"> </span><span class="c1">// 1:1 ratio</span>
+<span class="w">    </span>requiredClaimTopics<span class="o">:</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[](</span><span class="m m-Decimal">1</span><span class="p">),</span>
+<span class="w">    </span>collateralAddress<span class="o">:</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">),</span><span class="w"> </span><span class="c1">// Will create new token</span>
+<span class="w">    </span>interestAddress<span class="o">:</span><span class="w"> </span>interestTokenAddress<span class="p">,</span>
+<span class="w">    </span>usdcAddress<span class="o">:</span><span class="w"> </span>usdcTokenAddress<span class="p">,</span>
+<span class="w">    </span>operationMode<span class="o">:</span><span class="w"> </span>TradeDealLib<span class="p">.</span>OperationMode<span class="p">.</span>SELF_SERVICE
+<span class="p">});</span>
+params<span class="p">.</span>requiredClaimTopics<span class="p">[</span><span class="m m-Decimal">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">1</span><span class="p">;</span><span class="w"> </span><span class="c1">// KYC required</span>
+
+TradeDealLib<span class="p">.</span>CreateTradeDealResult<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>result<span class="w"> </span><span class="o">=</span><span class="w"> </span>TradeDealLib<span class="p">.</span>_createTradeDeal<span class="p">(</span>params<span class="p">);</span>
+</code></pre></div>
+
+<h3 id="trade-deal-management">Trade Deal Management<a class="headerlink" href="#trade-deal-management" title="Permanent link">&para;</a></h3>
+<h4 id="_updatetradedeal"><code>_updateTradeDeal()</code><a class="headerlink" href="#_updatetradedeal" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">_updateTradeDeal</span><span class="p">(</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>name<span class="p">,</span>
+<span class="w">    </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>symbol<span class="p">,</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">interestRate</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">collateralToInterestRatio</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">collateralAddress</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">interestAddress</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">usdcAddress</span>
+<span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>UpdateTradeDealResult<span class="w"> </span><span class="kt">memory</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Update an existing trade deal's parameters.</p>
+<p><strong>Parameters</strong>:
+- <code>tradeDealId</code>: ID of the trade deal to update
+- Various parameters to update (name, symbol, rates, addresses)</p>
+<p><strong>Requirements</strong>:
+- Trade deal must exist
+- Caller must have appropriate permissions</p>
+<p><strong>Example Usage</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Update trade deal interest rate</span>
+TradeDealLib<span class="p">.</span>UpdateTradeDealResult<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>result<span class="w"> </span><span class="o">=</span><span class="w"> </span>TradeDealLib<span class="p">.</span>_updateTradeDeal<span class="p">(</span>
+<span class="w">    </span>tradeDealId<span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;Updated Invoice Financing Deal #1&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;IFD1&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="m m-Decimal">1500</span><span class="p">,</span><span class="w"> </span><span class="c1">// Updated to 15% APR</span>
+<span class="w">    </span><span class="m m-Decimal">1000000</span><span class="p">,</span>
+<span class="w">    </span>collateralAddress<span class="p">,</span>
+<span class="w">    </span>interestAddress<span class="p">,</span>
+<span class="w">    </span>usdcAddress
+<span class="p">);</span>
+</code></pre></div>
+
+<h4 id="_activatetradedeal-_deactivatetradedeal"><code>_activateTradeDeal()</code> / <code>_deactivateTradeDeal()</code><a class="headerlink" href="#_activatetradedeal-_deactivatetradedeal" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">_activateTradeDeal</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>TradeDealStateChangeResult<span class="w"> </span><span class="kt">memory</span><span class="p">)</span>
+<span class="kt">function</span><span class="w"> </span><span class="nv">_deactivateTradeDeal</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>TradeDealStateChangeResult<span class="w"> </span><span class="kt">memory</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Activate or deactivate a trade deal.</p>
+<p><strong>Parameters</strong>:
+- <code>tradeDealId</code>: ID of the trade deal to activate/deactivate</p>
+<p><strong>Requirements</strong>:
+- Trade deal must exist
+- Appropriate permissions required</p>
+<p><strong>Example Usage</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Activate a trade deal</span>
+TradeDealLib<span class="p">.</span>TradeDealStateChangeResult<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>result<span class="w"> </span><span class="o">=</span><span class="w"> </span>TradeDealLib<span class="p">.</span>_activateTradeDeal<span class="p">(</span>tradeDealId<span class="p">);</span>
+
+<span class="c1">// Deactivate a trade deal</span>
+TradeDealLib<span class="p">.</span>TradeDealStateChangeResult<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>result<span class="w"> </span><span class="o">=</span><span class="w"> </span>TradeDealLib<span class="p">.</span>_deactivateTradeDeal<span class="p">(</span>tradeDealId<span class="p">);</span>
+</code></pre></div>
+
+<h2 id="integration-examples">Integration Examples<a class="headerlink" href="#integration-examples" title="Permanent link">&para;</a></h2>
+<h3 id="trade-deal-factory-contract">Trade Deal Factory Contract<a class="headerlink" href="#trade-deal-factory-contract" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Factory contract for creating and managing trade deals</span>
+<span class="k">contract</span><span class="w"> </span><span class="ni">TradeDealFactory</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>using<span class="w"> </span>TradeDealLib<span class="w"> </span><span class="kt">for</span><span class="w"> </span>TradeDealLib<span class="p">.</span>TradeDealStorage<span class="p">;</span>
+
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">TradeDealCreated</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>tradeDealId<span class="p">,</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">name</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>creator<span class="p">,</span>
+<span class="w">        </span>TradeDealLib<span class="p">.</span>OperationMode<span class="w"> </span>operationMode
+<span class="w">    </span><span class="p">);</span>
+
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">TradeDealUpdated</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>tradeDealId<span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">name</span><span class="p">);</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">createStandardTradeDeal</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>name<span class="p">,</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>symbol<span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">interestRate</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">interestTokenAddress</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">usdcTokenAddress</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Prepare creation parameters</span>
+<span class="w">        </span>TradeDealLib<span class="p">.</span>CreateTradeDealParams<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>params<span class="w"> </span><span class="o">=</span><span class="w"> </span>TradeDealLib<span class="p">.</span>CreateTradeDealParams<span class="p">({</span>
+<span class="w">            </span>name<span class="o">:</span><span class="w"> </span>name<span class="p">,</span>
+<span class="w">            </span>symbol<span class="o">:</span><span class="w"> </span>symbol<span class="p">,</span>
+<span class="w">            </span>interestRate<span class="o">:</span><span class="w"> </span>interestRate<span class="p">,</span>
+<span class="w">            </span>collateralToInterestRatio<span class="o">:</span><span class="w"> </span><span class="m m-Decimal">1000000</span><span class="p">,</span><span class="w"> </span><span class="c1">// 1:1 ratio</span>
+<span class="w">            </span>requiredClaimTopics<span class="o">:</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[](</span><span class="m m-Decimal">1</span><span class="p">),</span>
+<span class="w">            </span>collateralAddress<span class="o">:</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">),</span><span class="w"> </span><span class="c1">// Will create new token</span>
+<span class="w">            </span>interestAddress<span class="o">:</span><span class="w"> </span>interestTokenAddress<span class="p">,</span>
+<span class="w">            </span>usdcAddress<span class="o">:</span><span class="w"> </span>usdcTokenAddress<span class="p">,</span>
+<span class="w">            </span>operationMode<span class="o">:</span><span class="w"> </span>TradeDealLib<span class="p">.</span>OperationMode<span class="p">.</span>SELF_SERVICE
+<span class="w">        </span><span class="p">});</span>
+
+<span class="w">        </span><span class="c1">// Set KYC requirement</span>
+<span class="w">        </span>params<span class="p">.</span>requiredClaimTopics<span class="p">[</span><span class="m m-Decimal">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">1</span><span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// Create the trade deal</span>
+<span class="w">        </span>TradeDealLib<span class="p">.</span>CreateTradeDealResult<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>result<span class="w"> </span><span class="o">=</span><span class="w"> </span>TradeDealLib<span class="p">.</span>_createTradeDeal<span class="p">(</span>params<span class="p">);</span>
+
+<span class="w">        </span>emit<span class="w"> </span>TradeDealCreated<span class="p">(</span>
+<span class="w">            </span>result<span class="p">.</span>tradeDealId<span class="p">,</span>
+<span class="w">            </span>result<span class="p">.</span>name<span class="p">,</span>
+<span class="w">            </span><span class="k">msg.sender</span><span class="p">,</span>
+<span class="w">            </span>result<span class="p">.</span>operationMode
+<span class="w">        </span><span class="p">);</span>
+
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>result<span class="p">.</span>tradeDealId<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">createCustomTradeDeal</span><span class="p">(</span>
+<span class="w">        </span>TradeDealLib<span class="p">.</span>CreateTradeDealParams<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>params
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span><span class="kt">bytes</span><span class="p">(</span>params<span class="p">.</span>name<span class="p">).</span>length<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Name cannot be empty&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>params<span class="p">.</span>interestRate<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Interest rate must be positive&quot;</span><span class="p">);</span>
+
+<span class="w">        </span>TradeDealLib<span class="p">.</span>CreateTradeDealResult<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>result<span class="w"> </span><span class="o">=</span><span class="w"> </span>TradeDealLib<span class="p">.</span>_createTradeDeal<span class="p">(</span>params<span class="p">);</span>
+
+<span class="w">        </span>emit<span class="w"> </span>TradeDealCreated<span class="p">(</span>
+<span class="w">            </span>result<span class="p">.</span>tradeDealId<span class="p">,</span>
+<span class="w">            </span>result<span class="p">.</span>name<span class="p">,</span>
+<span class="w">            </span><span class="k">msg.sender</span><span class="p">,</span>
+<span class="w">            </span>result<span class="p">.</span>operationMode
+<span class="w">        </span><span class="p">);</span>
+
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>result<span class="p">.</span>tradeDealId<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">updateTradeDeal</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>name<span class="p">,</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>symbol<span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">interestRate</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyTradeDealAdmin<span class="p">(</span>tradeDealId<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Get current trade deal info</span>
+<span class="w">        </span>TradeDealLib<span class="p">.</span>TradeDeal<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>tradeDeal<span class="w"> </span><span class="o">=</span><span class="w"> </span>getTradeDeal<span class="p">(</span>tradeDealId<span class="p">);</span>
+
+<span class="w">        </span>TradeDealLib<span class="p">.</span>UpdateTradeDealResult<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>result<span class="w"> </span><span class="o">=</span><span class="w"> </span>TradeDealLib<span class="p">.</span>_updateTradeDeal<span class="p">(</span>
+<span class="w">            </span>tradeDealId<span class="p">,</span>
+<span class="w">            </span>name<span class="p">,</span>
+<span class="w">            </span>symbol<span class="p">,</span>
+<span class="w">            </span>interestRate<span class="p">,</span>
+<span class="w">            </span>tradeDeal<span class="p">.</span>collateralToInterestRatio<span class="p">,</span>
+<span class="w">            </span>tradeDeal<span class="p">.</span>collateralAddress<span class="p">,</span>
+<span class="w">            </span>tradeDeal<span class="p">.</span>interestAddress<span class="p">,</span>
+<span class="w">            </span>tradeDeal<span class="p">.</span>usdcAddress
+<span class="w">        </span><span class="p">);</span>
+
+<span class="w">        </span>emit<span class="w"> </span>TradeDealUpdated<span class="p">(</span>tradeDealId<span class="p">,</span><span class="w"> </span>name<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getTradeDeal</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>TradeDealLib<span class="p">.</span>TradeDeal<span class="w"> </span><span class="kt">memory</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Implementation would access storage and return trade deal</span>
+<span class="w">        </span><span class="c1">// This is a simplified example</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">modifier</span><span class="w"> </span>onlyTradeDealAdmin<span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Implementation would check if caller has admin role for the trade deal</span>
+<span class="w">        </span>_<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="trade-deal-analytics-system">Trade Deal Analytics System<a class="headerlink" href="#trade-deal-analytics-system" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Analytics system for trade deal performance tracking</span>
+<span class="k">contract</span><span class="w"> </span><span class="ni">TradeDealAnalytics</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>using<span class="w"> </span>TradeDealLib<span class="w"> </span><span class="kt">for</span><span class="w"> </span>TradeDealLib<span class="p">.</span>TradeDealStorage<span class="p">;</span>
+
+<span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">TradeDealMetrics</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalFunded</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalRepaid</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalInterestEarned</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">averageInterestRate</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">defaultRate</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">averageFundingTime</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">TradeDealPerformance</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">fundingTarget</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">currentFunding</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">repaidAmount</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">outstandingDebt</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">daysActive</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">fullyFunded</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">fullyRepaid</span><span class="p">;</span>
+<span class="w">        </span>TradeDealLib<span class="p">.</span>OperationMode<span class="w"> </span>operationMode<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">uint256</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>tradeDealCreationTime<span class="p">;</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">uint256</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>tradeDealFundingTime<span class="p">;</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">uint256</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>tradeDealRepaymentTime<span class="p">;</span>
+
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">MetricsUpdated</span><span class="p">(</span>TradeDealMetrics<span class="w"> </span>metrics<span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">PerformanceCalculated</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>tradeDealId<span class="p">,</span><span class="w"> </span>TradeDealPerformance<span class="w"> </span>performance<span class="p">);</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">calculateTradeDealPerformance</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>TradeDealPerformance<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>performance<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Get trade deal information</span>
+<span class="w">        </span>TradeDealLib<span class="p">.</span>TradeDeal<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>tradeDeal<span class="w"> </span><span class="o">=</span><span class="w"> </span>getTradeDeal<span class="p">(</span>tradeDealId<span class="p">);</span>
+
+<span class="w">        </span>performance<span class="p">.</span>tradeDealId<span class="w"> </span><span class="o">=</span><span class="w"> </span>tradeDealId<span class="p">;</span>
+<span class="w">        </span>performance<span class="p">.</span>operationMode<span class="w"> </span><span class="o">=</span><span class="w"> </span>tradeDeal<span class="p">.</span>operationMode<span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// Get financial metrics from storage</span>
+<span class="w">        </span>performance<span class="p">.</span>fundingTarget<span class="w"> </span><span class="o">=</span><span class="w"> </span>getFundingTarget<span class="p">(</span>tradeDealId<span class="p">);</span>
+<span class="w">        </span>performance<span class="p">.</span>currentFunding<span class="w"> </span><span class="o">=</span><span class="w"> </span>getCurrentFunding<span class="p">(</span>tradeDealId<span class="p">);</span>
+<span class="w">        </span>performance<span class="p">.</span>repaidAmount<span class="w"> </span><span class="o">=</span><span class="w"> </span>getRepaidAmount<span class="p">(</span>tradeDealId<span class="p">);</span>
+<span class="w">        </span>performance<span class="p">.</span>outstandingDebt<span class="w"> </span><span class="o">=</span><span class="w"> </span>getOutstandingDebt<span class="p">(</span>tradeDealId<span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Calculate status</span>
+<span class="w">        </span>performance<span class="p">.</span>fullyFunded<span class="w"> </span><span class="o">=</span><span class="w"> </span>performance<span class="p">.</span>currentFunding<span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span>performance<span class="p">.</span>fundingTarget<span class="p">;</span>
+<span class="w">        </span>performance<span class="p">.</span>fullyRepaid<span class="w"> </span><span class="o">=</span><span class="w"> </span>performance<span class="p">.</span>repaidAmount<span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span>performance<span class="p">.</span>outstandingDebt<span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// Calculate days active</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">creationTime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>tradeDealCreationTime<span class="p">[</span>tradeDealId<span class="p">];</span>
+<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>creationTime<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>performance<span class="p">.</span>daysActive<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="k">block.timestamp</span><span class="w"> </span><span class="o">-</span><span class="w"> </span>creationTime<span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m m-Decimal">1</span><span class="w"> </span>days<span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">calculateOverallMetrics</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>TradeDealMetrics<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>metrics<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>allTradeDealIds<span class="w"> </span><span class="o">=</span><span class="w"> </span>getAllTradeDealIds<span class="p">();</span>
+
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalDeals</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>allTradeDealIds<span class="p">.</span>length<span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalInterestRateSum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">defaultedDeals</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalFundingTimeSum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">fundedDealsCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span>
+
+<span class="w">        </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>totalDeals<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>allTradeDealIds<span class="p">[</span>i<span class="p">];</span>
+<span class="w">            </span>TradeDealLib<span class="p">.</span>TradeDeal<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>tradeDeal<span class="w"> </span><span class="o">=</span><span class="w"> </span>getTradeDeal<span class="p">(</span>tradeDealId<span class="p">);</span>
+
+<span class="w">            </span><span class="c1">// Accumulate metrics</span>
+<span class="w">            </span>totalInterestRateSum<span class="w"> </span><span class="o">+=</span><span class="w"> </span>tradeDeal<span class="p">.</span>interestRate<span class="p">;</span>
+<span class="w">            </span>metrics<span class="p">.</span>totalFunded<span class="w"> </span><span class="o">+=</span><span class="w"> </span>getCurrentFunding<span class="p">(</span>tradeDealId<span class="p">);</span>
+<span class="w">            </span>metrics<span class="p">.</span>totalRepaid<span class="w"> </span><span class="o">+=</span><span class="w"> </span>getRepaidAmount<span class="p">(</span>tradeDealId<span class="p">);</span>
+
+<span class="w">            </span><span class="c1">// Calculate funding time if deal is funded</span>
+<span class="w">            </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">creationTime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>tradeDealCreationTime<span class="p">[</span>tradeDealId<span class="p">];</span>
+<span class="w">            </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">fundingTime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>tradeDealFundingTime<span class="p">[</span>tradeDealId<span class="p">];</span>
+
+<span class="w">            </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>fundingTime<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span>creationTime<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span>totalFundingTimeSum<span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="p">(</span>fundingTime<span class="w"> </span><span class="o">-</span><span class="w"> </span>creationTime<span class="p">);</span>
+<span class="w">                </span>fundedDealsCount<span class="o">++</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+
+<span class="w">            </span><span class="c1">// Check for defaults (simplified logic)</span>
+<span class="w">            </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>isDefaulted<span class="p">(</span>tradeDealId<span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span>defaultedDeals<span class="o">++</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// Calculate averages</span>
+<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>totalDeals<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>metrics<span class="p">.</span>averageInterestRate<span class="w"> </span><span class="o">=</span><span class="w"> </span>totalInterestRateSum<span class="w"> </span><span class="o">/</span><span class="w"> </span>totalDeals<span class="p">;</span>
+<span class="w">            </span>metrics<span class="p">.</span>defaultRate<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span>defaultedDeals<span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m m-Decimal">10000</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span>totalDeals<span class="p">;</span><span class="w"> </span><span class="c1">// Basis points</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>fundedDealsCount<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>metrics<span class="p">.</span>averageFundingTime<span class="w"> </span><span class="o">=</span><span class="w"> </span>totalFundingTimeSum<span class="w"> </span><span class="o">/</span><span class="w"> </span>fundedDealsCount<span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span>metrics<span class="p">.</span>totalInterestEarned<span class="w"> </span><span class="o">=</span><span class="w"> </span>metrics<span class="p">.</span>totalRepaid<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span>metrics<span class="p">.</span>totalFunded<span class="w"> </span>
+<span class="w">            </span><span class="o">?</span><span class="w"> </span>metrics<span class="p">.</span>totalRepaid<span class="w"> </span><span class="o">-</span><span class="w"> </span>metrics<span class="p">.</span>totalFunded<span class="w"> </span>
+<span class="w">            </span><span class="o">:</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span>
+
+<span class="w">        </span>emit<span class="w"> </span>MetricsUpdated<span class="p">(</span>metrics<span class="p">);</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>metrics<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getTradeDealsByOperationMode</span><span class="p">(</span>
+<span class="w">        </span>TradeDealLib<span class="p">.</span>OperationMode<span class="w"> </span>mode
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>tradeDealIds<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>allIds<span class="w"> </span><span class="o">=</span><span class="w"> </span>getAllTradeDealIds<span class="p">();</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// Count matching trade deals</span>
+<span class="w">        </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>allIds<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>TradeDealLib<span class="p">.</span>TradeDeal<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>tradeDeal<span class="w"> </span><span class="o">=</span><span class="w"> </span>getTradeDeal<span class="p">(</span>allIds<span class="p">[</span>i<span class="p">]);</span>
+<span class="w">            </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>tradeDeal<span class="p">.</span>operationMode<span class="w"> </span><span class="o">==</span><span class="w"> </span>mode<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span>count<span class="o">++</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// Create result array</span>
+<span class="w">        </span>tradeDealIds<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[](</span>count<span class="p">);</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">index</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span>
+
+<span class="w">        </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>allIds<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>TradeDealLib<span class="p">.</span>TradeDeal<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>tradeDeal<span class="w"> </span><span class="o">=</span><span class="w"> </span>getTradeDeal<span class="p">(</span>allIds<span class="p">[</span>i<span class="p">]);</span>
+<span class="w">            </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>tradeDeal<span class="p">.</span>operationMode<span class="w"> </span><span class="o">==</span><span class="w"> </span>mode<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span>tradeDealIds<span class="p">[</span>index<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>allIds<span class="p">[</span>i<span class="p">];</span>
+<span class="w">                </span>index<span class="o">++</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Helper functions (would be implemented to access actual storage)</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getTradeDeal</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>TradeDealLib<span class="p">.</span>TradeDeal<span class="w"> </span><span class="kt">memory</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Implementation would access Diamond storage</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getFundingTarget</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Implementation would access storage</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getCurrentFunding</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Implementation would access storage</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getRepaidAmount</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Implementation would access storage</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getOutstandingDebt</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Implementation would access storage</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getAllTradeDealIds</span><span class="p">()</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Implementation would access storage</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">isDefaulted</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bool</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Implementation would check default conditions</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="role-based-access-control-manager">Role-Based Access Control Manager<a class="headerlink" href="#role-based-access-control-manager" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Manager for trade deal roles and permissions</span>
+<span class="k">contract</span><span class="w"> </span><span class="ni">TradeDealAccessManager</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>using<span class="w"> </span>TradeDealLib<span class="w"> </span><span class="kt">for</span><span class="w"> </span>TradeDealLib<span class="p">.</span>TradeDealStorage<span class="p">;</span>
+
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">RoleAssigned</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>tradeDealId<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>user<span class="p">,</span><span class="w"> </span>TradeDealLib<span class="p">.</span>Role<span class="w"> </span>role<span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">PermissionGranted</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>tradeDealId<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>user<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">permission</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">PermissionRevoked</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>tradeDealId<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>user<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">permission</span><span class="p">);</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">assignRole</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">user</span><span class="p">,</span>
+<span class="w">        </span>TradeDealLib<span class="p">.</span>Role<span class="w"> </span>role
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyTradeDealAdmin<span class="p">(</span>tradeDealId<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Set user role in storage</span>
+<span class="w">        </span>setUserRole<span class="p">(</span>tradeDealId<span class="p">,</span><span class="w"> </span>user<span class="p">,</span><span class="w"> </span>role<span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Assign default permissions based on role</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">defaultPermissions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>getDefaultPermissionsForRole<span class="p">(</span>role<span class="p">);</span>
+<span class="w">        </span>setUserPermissions<span class="p">(</span>tradeDealId<span class="p">,</span><span class="w"> </span>user<span class="p">,</span><span class="w"> </span>defaultPermissions<span class="p">);</span>
+
+<span class="w">        </span>emit<span class="w"> </span>RoleAssigned<span class="p">(</span>tradeDealId<span class="p">,</span><span class="w"> </span>user<span class="p">,</span><span class="w"> </span>role<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">grantPermission</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">user</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">permission</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyTradeDealAdmin<span class="p">(</span>tradeDealId<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">currentPermissions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>getUserPermissions<span class="p">(</span>tradeDealId<span class="p">,</span><span class="w"> </span>user<span class="p">);</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">newPermissions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>currentPermissions<span class="w"> </span><span class="o">|</span><span class="w"> </span>permission<span class="p">;</span>
+
+<span class="w">        </span>setUserPermissions<span class="p">(</span>tradeDealId<span class="p">,</span><span class="w"> </span>user<span class="p">,</span><span class="w"> </span>newPermissions<span class="p">);</span>
+
+<span class="w">        </span>emit<span class="w"> </span>PermissionGranted<span class="p">(</span>tradeDealId<span class="p">,</span><span class="w"> </span>user<span class="p">,</span><span class="w"> </span>permission<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">revokePermission</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">user</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">permission</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyTradeDealAdmin<span class="p">(</span>tradeDealId<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">currentPermissions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>getUserPermissions<span class="p">(</span>tradeDealId<span class="p">,</span><span class="w"> </span>user<span class="p">);</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">newPermissions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>currentPermissions<span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="o">~</span>permission<span class="p">;</span>
+
+<span class="w">        </span>setUserPermissions<span class="p">(</span>tradeDealId<span class="p">,</span><span class="w"> </span>user<span class="p">,</span><span class="w"> </span>newPermissions<span class="p">);</span>
+
+<span class="w">        </span>emit<span class="w"> </span>PermissionRevoked<span class="p">(</span>tradeDealId<span class="p">,</span><span class="w"> </span>user<span class="p">,</span><span class="w"> </span>permission<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">hasPermission</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">user</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">permission</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bool</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">userPermissions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>getUserPermissions<span class="p">(</span>tradeDealId<span class="p">,</span><span class="w"> </span>user<span class="p">);</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span><span class="p">(</span>userPermissions<span class="w"> </span><span class="o">&amp;</span><span class="w"> </span>permission<span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getDefaultPermissionsForRole</span><span class="p">(</span>
+<span class="w">        </span>TradeDealLib<span class="p">.</span>Role<span class="w"> </span>role
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>pure<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">permissions</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>role<span class="w"> </span><span class="o">==</span><span class="w"> </span>TradeDealLib<span class="p">.</span>Role<span class="p">.</span>ADMIN<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>permissions<span class="w"> </span><span class="o">=</span><span class="w"> </span>TradeDealLib<span class="p">.</span>PERMISSION_DEPOSIT_FUNDS<span class="w"> </span><span class="o">|</span>
+<span class="w">                         </span>TradeDealLib<span class="p">.</span>PERMISSION_WITHDRAW_FUNDS<span class="w"> </span><span class="o">|</span>
+<span class="w">                         </span>TradeDealLib<span class="p">.</span>PERMISSION_DEPOSIT_COLLATERAL<span class="w"> </span><span class="o">|</span>
+<span class="w">                         </span>TradeDealLib<span class="p">.</span>PERMISSION_WITHDRAW_COLLATERAL<span class="w"> </span><span class="o">|</span>
+<span class="w">                         </span>TradeDealLib<span class="p">.</span>PERMISSION_DISTRIBUTE_INTEREST<span class="p">;</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="kt">else</span><span class="w"> </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>role<span class="w"> </span><span class="o">==</span><span class="w"> </span>TradeDealLib<span class="p">.</span>Role<span class="p">.</span>LENDER<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>permissions<span class="w"> </span><span class="o">=</span><span class="w"> </span>TradeDealLib<span class="p">.</span>PERMISSION_DEPOSIT_FUNDS<span class="p">;</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="kt">else</span><span class="w"> </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>role<span class="w"> </span><span class="o">==</span><span class="w"> </span>TradeDealLib<span class="p">.</span>Role<span class="p">.</span>BORROWER<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>permissions<span class="w"> </span><span class="o">=</span><span class="w"> </span>TradeDealLib<span class="p">.</span>PERMISSION_DEPOSIT_COLLATERAL<span class="w"> </span><span class="o">|</span>
+<span class="w">                         </span>TradeDealLib<span class="p">.</span>PERMISSION_WITHDRAW_FUNDS<span class="p">;</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="kt">else</span><span class="w"> </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>role<span class="w"> </span><span class="o">==</span><span class="w"> </span>TradeDealLib<span class="p">.</span>Role<span class="p">.</span>UNDERWRITER<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>permissions<span class="w"> </span><span class="o">=</span><span class="w"> </span>TradeDealLib<span class="p">.</span>PERMISSION_DEPOSIT_FUNDS<span class="w"> </span><span class="o">|</span>
+<span class="w">                         </span>TradeDealLib<span class="p">.</span>PERMISSION_DISTRIBUTE_INTEREST<span class="p">;</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="kt">else</span><span class="w"> </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>role<span class="w"> </span><span class="o">==</span><span class="w"> </span>TradeDealLib<span class="p">.</span>Role<span class="p">.</span>LIQUIDATOR<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>permissions<span class="w"> </span><span class="o">=</span><span class="w"> </span>TradeDealLib<span class="p">.</span>PERMISSION_WITHDRAW_COLLATERAL<span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="c1">// NONE role gets no permissions</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getUserAccessSummary</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">user</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>
+<span class="w">        </span>TradeDealLib<span class="p">.</span>Role<span class="w"> </span>role<span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">permissions</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">canDepositFunds</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">canWithdrawFunds</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">canDepositCollateral</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">canWithdrawCollateral</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">canDistributeInterest</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>role<span class="w"> </span><span class="o">=</span><span class="w"> </span>getUserRole<span class="p">(</span>tradeDealId<span class="p">,</span><span class="w"> </span>user<span class="p">);</span>
+<span class="w">        </span>permissions<span class="w"> </span><span class="o">=</span><span class="w"> </span>getUserPermissions<span class="p">(</span>tradeDealId<span class="p">,</span><span class="w"> </span>user<span class="p">);</span>
+
+<span class="w">        </span>canDepositFunds<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span>permissions<span class="w"> </span><span class="o">&amp;</span><span class="w"> </span>TradeDealLib<span class="p">.</span>PERMISSION_DEPOSIT_FUNDS<span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span>
+<span class="w">        </span>canWithdrawFunds<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span>permissions<span class="w"> </span><span class="o">&amp;</span><span class="w"> </span>TradeDealLib<span class="p">.</span>PERMISSION_WITHDRAW_FUNDS<span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span>
+<span class="w">        </span>canDepositCollateral<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span>permissions<span class="w"> </span><span class="o">&amp;</span><span class="w"> </span>TradeDealLib<span class="p">.</span>PERMISSION_DEPOSIT_COLLATERAL<span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span>
+<span class="w">        </span>canWithdrawCollateral<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span>permissions<span class="w"> </span><span class="o">&amp;</span><span class="w"> </span>TradeDealLib<span class="p">.</span>PERMISSION_WITHDRAW_COLLATERAL<span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span>
+<span class="w">        </span>canDistributeInterest<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span>permissions<span class="w"> </span><span class="o">&amp;</span><span class="w"> </span>TradeDealLib<span class="p">.</span>PERMISSION_DISTRIBUTE_INTEREST<span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Helper functions (would access Diamond storage)</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">setUserRole</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">user</span><span class="p">,</span><span class="w"> </span>TradeDealLib<span class="p">.</span>Role<span class="w"> </span>role<span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Implementation would access storage</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getUserRole</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">user</span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>TradeDealLib<span class="p">.</span>Role<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Implementation would access storage</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">setUserPermissions</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">user</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">permissions</span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Implementation would access storage</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getUserPermissions</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">user</span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Implementation would access storage</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">modifier</span><span class="w"> </span>onlyTradeDealAdmin<span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>
+<span class="w">            </span>getUserRole<span class="p">(</span>tradeDealId<span class="p">,</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span>TradeDealLib<span class="p">.</span>Role<span class="p">.</span>ADMIN<span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;Only trade deal admin can perform this action&quot;</span>
+<span class="w">        </span><span class="p">);</span>
+<span class="w">        </span>_<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="events">Events<a class="headerlink" href="#events" title="Permanent link">&para;</a></h2>
+<p>The library defines comprehensive events for trade deal lifecycle tracking:</p>
+<h3 id="core-trade-deal-events">Core Trade Deal Events<a class="headerlink" href="#core-trade-deal-events" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">event</span><span class="w"> </span><span class="nv">TradeDealCreated</span><span class="p">(</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>tradeDealId<span class="p">,</span>
+<span class="w">    </span><span class="kt">string</span><span class="w"> </span><span class="nv">name</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">string</span><span class="w"> </span><span class="nv">symbol</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">interestRate</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">collateralToInterestRatio</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nv">active</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">nftAddress</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">collateralAddress</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">interestAddress</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">usdcAddress</span>
+<span class="p">);</span>
+
+<span class="kt">event</span><span class="w"> </span><span class="nv">TradeDealActivated</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>tradeDealId<span class="p">);</span>
+<span class="kt">event</span><span class="w"> </span><span class="nv">TradeDealDeactivated</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>tradeDealId<span class="p">);</span>
+</code></pre></div>
+
+<h3 id="participant-management-events">Participant Management Events<a class="headerlink" href="#participant-management-events" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">event</span><span class="w"> </span><span class="nv">TradeDealParticipantAdded</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>tradeDealId<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>participant<span class="p">);</span>
+<span class="kt">event</span><span class="w"> </span><span class="nv">TradeDealParticipantRemoved</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>tradeDealId<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>participant<span class="p">);</span>
+<span class="kt">event</span><span class="w"> </span><span class="nv">TradeDealRequiredClaimTopicsSet</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>tradeDealId<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span>claimTopics<span class="p">);</span>
+</code></pre></div>
+
+<h3 id="financial-operation-events">Financial Operation Events<a class="headerlink" href="#financial-operation-events" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">event</span><span class="w"> </span><span class="nv">InvoiceDepositedToTradeDeal</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>tradeDealId<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>tokenId<span class="p">);</span>
+<span class="kt">event</span><span class="w"> </span><span class="nv">InvoiceWithdrawnFromTradeDeal</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>tradeDealId<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>tokenId<span class="p">);</span>
+<span class="kt">event</span><span class="w"> </span><span class="nv">USDCDepositedToTradeDeal</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>tradeDealId<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">amount</span><span class="p">);</span>
+<span class="kt">event</span><span class="w"> </span><span class="nv">USDCWithdrawnFromTradeDeal</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>tradeDealId<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">amount</span><span class="p">);</span>
+<span class="kt">event</span><span class="w"> </span><span class="nv">InterestDistributedForTradeDeal</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>tradeDealId<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalInterest</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">invoicePoolInterest</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">interestInterest</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">interestTokensMinted</span><span class="p">);</span>
+</code></pre></div>
+
+<h3 id="enhanced-financial-events">Enhanced Financial Events<a class="headerlink" href="#enhanced-financial-events" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">event</span><span class="w"> </span><span class="nv">TradeDealFullyFunded</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>tradeDealId<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">fundingTarget</span><span class="p">);</span>
+<span class="kt">event</span><span class="w"> </span><span class="nv">TradeDealFundingWithdrawn</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>tradeDealId<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>recipient<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">amount</span><span class="p">);</span>
+<span class="kt">event</span><span class="w"> </span><span class="nv">TradeDealRepaid</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>tradeDealId<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>repayer<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">amount</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="nv">fullyRepaid</span><span class="p">);</span>
+<span class="kt">event</span><span class="w"> </span><span class="nv">CollateralTokensRedeemed</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>tradeDealId<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>redeemer<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">collateralAmount</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">usdcAmount</span><span class="p">);</span>
+</code></pre></div>
+
+<h2 id="security-considerations">Security Considerations<a class="headerlink" href="#security-considerations" title="Permanent link">&para;</a></h2>
+<h3 id="access-control-security">Access Control Security<a class="headerlink" href="#access-control-security" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Role-based permissions with fine-grained control</li>
+<li>Operation mode validation for different access patterns</li>
+<li>Participant verification through claim topics</li>
+<li>Admin-only functions for critical operations</li>
+</ul>
+<h3 id="financial-security">Financial Security<a class="headerlink" href="#financial-security" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Precise tracking of funding, withdrawals, and repayments</li>
+<li>Collateral validation and ownership verification</li>
+<li>Interest calculation accuracy and overflow protection</li>
+<li>Secure token transfer mechanisms</li>
+</ul>
+<h3 id="storage-security">Storage Security<a class="headerlink" href="#storage-security" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Diamond Standard storage pattern for isolation</li>
+<li>Consistent state management across operations</li>
+<li>Prevention of storage collisions</li>
+<li>Secure access to storage slots</li>
+</ul>
+<h2 id="gas-optimization">Gas Optimization<a class="headerlink" href="#gas-optimization" title="Permanent link">&para;</a></h2>
+<h3 id="storage-efficiency">Storage Efficiency<a class="headerlink" href="#storage-efficiency" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Optimized storage layout for trade deal data</li>
+<li>Efficient mapping structures for lookups</li>
+<li>Minimal storage writes during operations</li>
+<li>Packed data structures where possible</li>
+</ul>
+<h3 id="function-efficiency">Function Efficiency<a class="headerlink" href="#function-efficiency" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Internal functions for gas savings</li>
+<li>Batch operations for multiple updates</li>
+<li>Efficient event emission patterns</li>
+<li>Optimized validation logic</li>
+</ul>
+<h2 id="error-handling">Error Handling<a class="headerlink" href="#error-handling" title="Permanent link">&para;</a></h2>
+<h3 id="common-errors">Common Errors<a class="headerlink" href="#common-errors" title="Permanent link">&para;</a></h3>
+<ul>
+<li>"Trade deal does not exist" - Operating on non-existent trade deal</li>
+<li>Permission denied errors for unauthorized operations</li>
+<li>Invalid parameter errors during creation/updates</li>
+<li>Insufficient balance errors during financial operations</li>
+<li>Claim topic validation failures</li>
+</ul>
+<h3 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Validate trade deal existence before operations</li>
+<li>Check permissions before executing functions</li>
+<li>Validate all input parameters</li>
+<li>Handle edge cases gracefully</li>
+<li>Provide clear error messages for debugging</li>
+</ul>
+<h2 id="testing-considerations">Testing Considerations<a class="headerlink" href="#testing-considerations" title="Permanent link">&para;</a></h2>
+<h3 id="unit-tests">Unit Tests<a class="headerlink" href="#unit-tests" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Trade deal creation and management functions</li>
+<li>Role and permission system testing</li>
+<li>Financial operation validation</li>
+<li>Storage pattern implementation</li>
+<li>Event emission verification</li>
+</ul>
+<h3 id="integration-tests">Integration Tests<a class="headerlink" href="#integration-tests" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Diamond facet integration</li>
+<li>Multi-user workflow testing</li>
+<li>Financial operation sequences</li>
+<li>Access control scenarios</li>
+<li>Cross-contract interactions</li>
+</ul>
+<h2 id="related-documentation">Related Documentation<a class="headerlink" href="#related-documentation" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../../interfaces/itradedeal/">ITradeDeal Interface</a> - Trade deal interface definition</li>
+<li><a href="../../facets/trade-deal-management-facet/">TradeDealManagementFacet</a> - Trade deal management implementation</li>
+<li><a href="../../facets/trade-deal-admin-facet/">TradeDealAdminFacet</a> - Administrative functions</li>
+<li><a href="../../facets/trade-deal-operations-facet/">TradeDealOperationsFacet</a> - Operational functions</li>
+<li><a href="../../guides/diamond-standard.md">Diamond Standard Guide</a> - Diamond pattern implementation</li>
+<li><a href="../../guides/trade-deals.md">Trade Deal Guide</a> - Implementation guide for trade deals</li>
+</ul>
+<hr />
+<p><em>This library provides the core utilities and data structures for trade deal management within the Gemforce platform, implementing secure storage patterns, role-based access control, and comprehensive financial operations for collateralized finance instruments.</em></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../carbon-credit-lib/" class="btn btn-neutral float-left" title="Carbon Credit Lib"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../multi-sale-lib/" class="btn btn-neutral float-right" title="Multi Sale Lib">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../carbon-credit-lib/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../multi-sale-lib/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

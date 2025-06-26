@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Gemforce Team" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>Marketplace Facet - Gemforce Documentation</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Marketplace Facet";
+        var mkdocs_page_input_path = "smart-contracts/facets/marketplace-facet.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../.." class="icon icon-home"> Gemforce Documentation
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../developer-setup-guide/">Developer Setup Guide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../system-architecture/gemforce-system-architecture/">System Architecture</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Smart Contracts</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../diamond/">Diamond Contract</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" >Facets</a>
+    <ul class="current">
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">Marketplace Facet</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#overview">Overview</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#contract-details">Contract Details</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#key-features">Key Features</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#multi-payment-support">🔹 Multi-Payment Support</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#configurable-fee-distribution">🔹 Configurable Fee Distribution</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#identity-based-access-control">🔹 Identity-Based Access Control</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#security-features">🔹 Security Features</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#core-data-structures">Core Data Structures</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#feereceiver">FeeReceiver</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#marketitem">MarketItem</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#core-functions">Core Functions</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#initialization">Initialization</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#listing-management">Listing Management</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#utility-functions">Utility Functions</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#payment-distribution-system">Payment Distribution System</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#fee-calculation">Fee Calculation</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#distribution-process">Distribution Process</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#security-considerations">Security Considerations</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#reentrancy-protection">Reentrancy Protection</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#access-control">Access Control</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#payment-security">Payment Security</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#input-validation">Input Validation</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#gas-optimization">Gas Optimization</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#storage-efficiency">Storage Efficiency</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#function-optimization">Function Optimization</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#integration-examples">Integration Examples</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#initialize-marketplace">Initialize Marketplace</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#list-nft-for-sale">List NFT for Sale</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#purchase-nft">Purchase NFT</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#purchase-with-erc20-token">Purchase with ERC20 Token</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#events">Events</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#marketplaceinitialized">MarketplaceInitialized</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#paymentdistributed">PaymentDistributed</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#listings">Listings</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#sales">Sales</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#delisted">Delisted</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#error-handling">Error Handling</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#common-errors">Common Errors</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#testing-considerations">Testing Considerations</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#unit-tests">Unit Tests</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#integration-tests">Integration Tests</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#related-documentation">Related Documentation</a>
+    </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../trade-deal-management-facet/">Trade Deal Management Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../carbon-credit-facet/">Carbon Credit Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../identity-registry-facet/">Identity Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../trusted-issuers-registry-facet/">Trusted Issuers Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../fee-distributor-facet/">Fee Distributor Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../gemforce-minter-facet/">Gemforce Minter Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../multi-sale-facet/">Multi Sale Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../svg-templates-facet/">SVG Templates Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../trade-deal-admin-facet/">Trade Deal Admin Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../trade-deal-operations-facet/">Trade Deal Operations Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../collateral-token-factory-facet/">Collateral Token Factory Facet</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Interfaces</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/idiamond/">IDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/imarketplace/">IMarketplace</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/itradedeal/">ITradeDeal</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/icarbon-credit/">ICarbonCredit</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ierc1155-mint/">IERC1155Mint</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ierc734/">IERC734</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ierc735/">IERC735</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Libraries</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/carbon-credit-lib/">Carbon Credit Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/trade-deal-lib/">Trade Deal Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/multi-sale-lib/">Multi Sale Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/diamond-factory-lib/">Diamond Factory Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/svg-templates-lib/">SVG Templates Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/attribute-lib/">Attribute Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/variable-price-lib/">Variable Price Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/merkle-prover/">Merkle Prover</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/fee-distributor-lib/">Fee Distributor Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/lib-diamond/">LibDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/diamond-lib/">DiamondLib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/erc721a-lib/">ERC721A Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/erc721a-enumeration-lib/">ERC721A Enumeration Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/strings-lib/">Strings Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/metadata-lib/">Metadata Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/trusted-issuer-lib/">Trusted Issuer Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/set-libraries/">Set Libraries</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Cloud Functions</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/blockchain/">Blockchain Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/dfns/">DFNS Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/contracts/">Contract Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/authentication/">Authentication Functions</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">API Documentation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../api-documentation/gemforce-api-documentation/">Full API Reference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../api-documentation/gemforce-api-quick-reference/">Quick Reference</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">EIPs (Ethereum Improvement Proposals)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Diamond-Enhanced-Marketplace/">Diamond-Enhanced Marketplace</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Multi-Token-Sale-Standard/">Multi-Token Sale Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Collateralized-Trade-Deal-Standard/">Collateralized Trade Deal Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Enhanced-Identity-System/">Enhanced Identity System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Diamond-Factory-Standard/">Diamond Factory Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Carbon-Credit-Standard/">Carbon Credit Standard</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">User Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-administrator-guide/">Administrator Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-deployer-guide/">Deployer Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-integrator-guide/">Integrator Guide</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../external-services/gemforce-external-services/">External Services</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-documentation-gap-analysis/">Documentation Gap Analysis</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../documentation-progress-summary/">Documentation Progress Summary</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../documentation-plan/">Documentation Plan</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">Gemforce Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Smart Contracts</li>
+          <li class="breadcrumb-item">Facets</li>
+      <li class="breadcrumb-item active">Marketplace Facet</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="marketplacefacet">MarketplaceFacet<a class="headerlink" href="#marketplacefacet" title="Permanent link">&para;</a></h1>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>The <a href="/Users/sschepis/Development/gem-base/contracts/facets/MarketplaceFacet.sol"><code>MarketplaceFacet.sol</code></a> provides comprehensive NFT marketplace functionality for the Gemforce diamond system. This facet enables users to list, purchase, and manage NFT sales with support for both ETH and ERC20 token payments, featuring a sophisticated fee distribution system.</p>
+<h2 id="contract-details">Contract Details<a class="headerlink" href="#contract-details" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Contract Name</strong>: <code>MarketplaceFacet</code></li>
+<li><strong>Inheritance</strong>: <code>IMarketplace</code>, <code>Modifiers</code>, <code>ReentrancyGuard</code></li>
+<li><strong>License</strong>: MIT</li>
+<li><strong>Solidity Version</strong>: ^0.8.4</li>
+</ul>
+<h2 id="key-features">Key Features<a class="headerlink" href="#key-features" title="Permanent link">&para;</a></h2>
+<h3 id="multi-payment-support">🔹 Multi-Payment Support<a class="headerlink" href="#multi-payment-support" title="Permanent link">&para;</a></h3>
+<ul>
+<li>ETH payments for traditional transactions</li>
+<li>ERC20 token payments for flexible payment options</li>
+<li>Automatic payment validation and processing</li>
+</ul>
+<h3 id="configurable-fee-distribution">🔹 Configurable Fee Distribution<a class="headerlink" href="#configurable-fee-distribution" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Parts-per-million precision fee system (1,000,000 = 100%)</li>
+<li>Multiple fee receivers per transaction</li>
+<li>Transparent fee distribution with events</li>
+</ul>
+<h3 id="identity-based-access-control">🔹 Identity-Based Access Control<a class="headerlink" href="#identity-based-access-control" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Integration with Gemforce identity system</li>
+<li>Buyer registration requirements</li>
+<li>Permissioned NFT transfers</li>
+</ul>
+<h3 id="security-features">🔹 Security Features<a class="headerlink" href="#security-features" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Reentrancy protection via <code>ReentrancyGuard</code></li>
+<li>Checks-effects-interactions pattern</li>
+<li>Price protection mechanisms</li>
+</ul>
+<h2 id="core-data-structures">Core Data Structures<a class="headerlink" href="#core-data-structures" title="Permanent link">&para;</a></h2>
+<h3 id="feereceiver">FeeReceiver<a class="headerlink" href="#feereceiver" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">struct</span><span class="w"> </span><span class="nv">FeeReceiver</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">receiver</span><span class="p">;</span><span class="w">        </span><span class="c1">// Address receiving the fee</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">sharePerMillion</span><span class="p">;</span><span class="w"> </span><span class="c1">// Fee share in parts per million</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Usage</strong>: Defines fee distribution recipients and their percentage shares.</p>
+<h3 id="marketitem">MarketItem<a class="headerlink" href="#marketitem" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">struct</span><span class="w"> </span><span class="nv">MarketItem</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">nftContract</span><span class="p">;</span><span class="w">  </span><span class="c1">// Contract address of the NFT</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">;</span><span class="w">      </span><span class="c1">// Token ID of the NFT</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">seller</span><span class="p">;</span><span class="w">       </span><span class="c1">// Original seller address</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">owner</span><span class="p">;</span><span class="w">        </span><span class="c1">// Current owner address</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">price</span><span class="p">;</span><span class="w">        </span><span class="c1">// Listing price</span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nv">sold</span><span class="p">;</span><span class="w">           </span><span class="c1">// Sale status</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">receiver</span><span class="p">;</span><span class="w">     </span><span class="c1">// Payment receiver address</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">paymentToken</span><span class="p">;</span><span class="w"> </span><span class="c1">// Payment token (address(0) for ETH)</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Usage</strong>: Stores complete listing information for marketplace items.</p>
+<h2 id="core-functions">Core Functions<a class="headerlink" href="#core-functions" title="Permanent link">&para;</a></h2>
+<h3 id="initialization">Initialization<a class="headerlink" href="#initialization" title="Permanent link">&para;</a></h3>
+<h4 id="initializemarketplace"><code>initializeMarketplace()</code><a class="headerlink" href="#initializemarketplace" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">initializeMarketplace</span><span class="p">(</span>FeeReceiver<span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>_feeReceivers<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyOwner
+</code></pre></div>
+
+<p><strong>Purpose</strong>: One-time initialization of the marketplace fee distribution system.</p>
+<p><strong>Parameters</strong>:
+- <code>_feeReceivers</code>: Array of fee receivers with their respective shares</p>
+<p><strong>Access Control</strong>: Owner only</p>
+<p><strong>Validation</strong>:
+- Can only be called once
+- Fee receiver addresses must be valid (non-zero)
+- Share amounts must be greater than zero
+- Total shares cannot exceed 100% (1,000,000 parts per million)</p>
+<p><strong>Events</strong>: Emits <code>MarketplaceInitialized(feeReceivers)</code></p>
+<h3 id="listing-management">Listing Management<a class="headerlink" href="#listing-management" title="Permanent link">&para;</a></h3>
+<h4 id="listitem"><code>listItem()</code><a class="headerlink" href="#listitem" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">listItem</span><span class="p">(</span>
+<span class="w">    </span><span class="kt">address</span><span class="p">,</span><span class="w">                </span><span class="c1">// Unused parameter for interface compatibility</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">payable</span><span class="w"> </span>receiver<span class="p">,</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">price</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nv">transferNFT</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">paymentToken</span>
+<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">payable</span><span class="w"> </span>nonReentrant
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Lists an NFT for sale in the marketplace.</p>
+<p><strong>Parameters</strong>:
+- <code>receiver</code>: Address that will receive payment when item is sold
+- <code>tokenId</code>: ID of the NFT being listed
+- <code>price</code>: Listing price in wei (ETH) or token units
+- <code>transferNFT</code>: Whether to transfer NFT to contract (true) or keep with seller (false)
+- <code>paymentToken</code>: ERC20 token address for payment, or <code>address(0)</code> for ETH</p>
+<p><strong>Access Control</strong>: NFT owner only</p>
+<p><strong>Validation</strong>:
+- Caller must own the NFT
+- Price must be greater than zero
+- Item must not already be listed
+- No ETH should be sent with listing</p>
+<p><strong>Process</strong>:
+1. Validates ownership and listing status
+2. Optionally transfers NFT to contract
+3. Creates market item entry
+4. Updates listing status
+5. Adds to items array</p>
+<p><strong>Events</strong>: Emits <code>Listings</code> event with listing details</p>
+<h4 id="purchaseitem"><code>purchaseItem()</code><a class="headerlink" href="#purchaseitem" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">purchaseItem</span><span class="p">(</span>
+<span class="w">    </span><span class="kt">address</span><span class="p">,</span><span class="w">        </span><span class="c1">// Unused parameter for interface compatibility</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">maxPrice</span>
+<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">payable</span><span class="w"> </span>nonReentrant
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Purchases a listed NFT from the marketplace.</p>
+<p><strong>Parameters</strong>:
+- <code>tokenId</code>: ID of the NFT to purchase
+- <code>maxPrice</code>: Maximum price buyer is willing to pay (price protection)</p>
+<p><strong>Access Control</strong>: Registered users only</p>
+<p><strong>Validation</strong>:
+- Item must be listed and not sold
+- Buyer must be registered in identity system
+- Sufficient payment must be provided
+- Price must not exceed maxPrice</p>
+<p><strong>Process</strong>:
+1. Validates listing status and buyer registration
+2. Checks payment sufficiency
+3. Marks item as sold
+4. Transfers NFT to buyer
+5. Distributes payment to fee receivers
+6. Sends remaining payment to receiver</p>
+<p><strong>Events</strong>: Emits <code>Sales</code> event upon successful purchase</p>
+<h3 id="utility-functions">Utility Functions<a class="headerlink" href="#utility-functions" title="Permanent link">&para;</a></h3>
+<h4 id="delistitem"><code>delistItem()</code><a class="headerlink" href="#delistitem" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">delistItem</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>nonReentrant
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Removes an NFT listing from the marketplace.</p>
+<p><strong>Parameters</strong>:
+- <code>tokenId</code>: ID of the NFT to delist</p>
+<p><strong>Access Control</strong>: NFT owner only</p>
+<p><strong>Process</strong>:
+1. Validates ownership
+2. Transfers NFT back to owner (if held by contract)
+3. Updates listing status
+4. Clears market item data</p>
+<p><strong>Events</strong>: Emits <code>Delisted</code> event</p>
+<h2 id="payment-distribution-system">Payment Distribution System<a class="headerlink" href="#payment-distribution-system" title="Permanent link">&para;</a></h2>
+<h3 id="fee-calculation">Fee Calculation<a class="headerlink" href="#fee-calculation" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">uint256</span><span class="w"> </span><span class="k">private </span><span class="nv">constant</span><span class="w"> </span>SHARE_PRECISION<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">1</span>_000_000<span class="p">;</span><span class="w"> </span><span class="c1">// 100% = 1,000,000</span>
+</code></pre></div>
+
+<p><strong>Example Fee Structure</strong>:
+- Platform fee: 25,000 parts per million (2.5%)
+- Community treasury: 10,000 parts per million (1.0%)
+- Creator royalty: 50,000 parts per million (5.0%)
+- <strong>Total fees</strong>: 85,000 parts per million (8.5%)
+- <strong>Seller receives</strong>: 915,000 parts per million (91.5%)</p>
+<h3 id="distribution-process">Distribution Process<a class="headerlink" href="#distribution-process" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Calculate total fees</strong>: Sum all fee receiver shares</li>
+<li><strong>Distribute to fee receivers</strong>: Transfer calculated amounts</li>
+<li><strong>Transfer remainder</strong>: Send remaining payment to listing receiver</li>
+<li><strong>Emit events</strong>: Log all payment distributions</li>
+</ol>
+<h2 id="security-considerations">Security Considerations<a class="headerlink" href="#security-considerations" title="Permanent link">&para;</a></h2>
+<h3 id="reentrancy-protection">Reentrancy Protection<a class="headerlink" href="#reentrancy-protection" title="Permanent link">&para;</a></h3>
+<ul>
+<li>All state-changing functions use <code>nonReentrant</code> modifier</li>
+<li>Follows checks-effects-interactions pattern</li>
+<li>State updates before external calls</li>
+</ul>
+<h3 id="access-control">Access Control<a class="headerlink" href="#access-control" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Owner-only initialization</li>
+<li>NFT owner validation for listings</li>
+<li>Identity system integration for purchases</li>
+</ul>
+<h3 id="payment-security">Payment Security<a class="headerlink" href="#payment-security" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Price validation and protection</li>
+<li>Overflow protection in fee calculations</li>
+<li>Safe token transfers using OpenZeppelin's SafeERC20</li>
+</ul>
+<h3 id="input-validation">Input Validation<a class="headerlink" href="#input-validation" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Non-zero price requirements</li>
+<li>Valid address checks</li>
+<li>Listing status validation</li>
+</ul>
+<h2 id="gas-optimization">Gas Optimization<a class="headerlink" href="#gas-optimization" title="Permanent link">&para;</a></h2>
+<h3 id="storage-efficiency">Storage Efficiency<a class="headerlink" href="#storage-efficiency" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Packed structs for market items</li>
+<li>Efficient mapping usage</li>
+<li>Minimal storage operations</li>
+</ul>
+<h3 id="function-optimization">Function Optimization<a class="headerlink" href="#function-optimization" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Early validation returns</li>
+<li>Batch operations where possible</li>
+<li>Optimized fee distribution loops</li>
+</ul>
+<h2 id="integration-examples">Integration Examples<a class="headerlink" href="#integration-examples" title="Permanent link">&para;</a></h2>
+<h3 id="initialize-marketplace">Initialize Marketplace<a class="headerlink" href="#initialize-marketplace" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Set up fee distribution</span>
+IMarketplace<span class="p">.</span>FeeReceiver<span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>feeReceivers<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span>IMarketplace<span class="p">.</span>FeeReceiver<span class="p">[](</span><span class="m m-Decimal">2</span><span class="p">);</span>
+
+feeReceivers<span class="p">[</span><span class="m m-Decimal">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>IMarketplace<span class="p">.</span>FeeReceiver<span class="p">({</span>
+<span class="w">    </span>receiver<span class="o">:</span><span class="w"> </span>platformTreasury<span class="p">,</span>
+<span class="w">    </span>sharePerMillion<span class="o">:</span><span class="w"> </span><span class="m m-Decimal">25000</span><span class="w"> </span><span class="c1">// 2.5%</span>
+<span class="p">});</span>
+
+feeReceivers<span class="p">[</span><span class="m m-Decimal">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>IMarketplace<span class="p">.</span>FeeReceiver<span class="p">({</span>
+<span class="w">    </span>receiver<span class="o">:</span><span class="w"> </span>communityTreasury<span class="p">,</span>
+<span class="w">    </span>sharePerMillion<span class="o">:</span><span class="w"> </span><span class="m m-Decimal">10000</span><span class="w"> </span><span class="c1">// 1.0%</span>
+<span class="p">});</span>
+
+IMarketplace<span class="p">(</span>diamond<span class="p">).</span>initializeMarketplace<span class="p">(</span>feeReceivers<span class="p">);</span>
+</code></pre></div>
+
+<h3 id="list-nft-for-sale">List NFT for Sale<a class="headerlink" href="#list-nft-for-sale" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// List NFT for 1 ETH, keeping NFT with seller</span>
+IMarketplace<span class="p">(</span>diamond<span class="p">).</span>listItem<span class="p">(</span>
+<span class="w">    </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">),</span><span class="w">           </span><span class="c1">// Unused parameter</span>
+<span class="w">    </span><span class="kt">payable</span><span class="p">(</span>seller<span class="p">),</span><span class="w">      </span><span class="c1">// Payment receiver</span>
+<span class="w">    </span>tokenId<span class="p">,</span><span class="w">              </span><span class="c1">// NFT token ID</span>
+<span class="w">    </span><span class="m m-Decimal">1</span><span class="w"> </span>ether<span class="p">,</span><span class="w">              </span><span class="c1">// Price in wei</span>
+<span class="w">    </span><span class="kt">false</span><span class="p">,</span><span class="w">                </span><span class="c1">// Don&#39;t transfer NFT to contract</span>
+<span class="w">    </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">)</span><span class="w">            </span><span class="c1">// ETH payment</span>
+<span class="p">);</span>
+</code></pre></div>
+
+<h3 id="purchase-nft">Purchase NFT<a class="headerlink" href="#purchase-nft" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Purchase NFT with ETH</span>
+IMarketplace<span class="p">(</span>diamond<span class="p">).</span>purchaseItem<span class="p">{</span>value<span class="o">:</span><span class="w"> </span><span class="m m-Decimal">1</span><span class="w"> </span>ether<span class="p">}(</span>
+<span class="w">    </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">),</span><span class="w">           </span><span class="c1">// Unused parameter</span>
+<span class="w">    </span>tokenId<span class="p">,</span><span class="w">              </span><span class="c1">// NFT token ID</span>
+<span class="w">    </span><span class="m m-Decimal">1</span><span class="p">.</span><span class="m m-Decimal">1</span><span class="w"> </span>ether<span class="w">            </span><span class="c1">// Maximum price willing to pay</span>
+<span class="p">);</span>
+</code></pre></div>
+
+<h3 id="purchase-with-erc20-token">Purchase with ERC20 Token<a class="headerlink" href="#purchase-with-erc20-token" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Approve token spending first</span>
+IERC20<span class="p">(</span>paymentToken<span class="p">).</span>approve<span class="p">(</span>diamond<span class="p">,</span><span class="w"> </span>price<span class="p">);</span>
+
+<span class="c1">// Purchase with ERC20 token</span>
+IMarketplace<span class="p">(</span>diamond<span class="p">).</span>purchaseItem<span class="p">(</span>
+<span class="w">    </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">),</span><span class="w">           </span><span class="c1">// Unused parameter</span>
+<span class="w">    </span>tokenId<span class="p">,</span><span class="w">              </span><span class="c1">// NFT token ID</span>
+<span class="w">    </span>price<span class="w">                 </span><span class="c1">// Maximum price</span>
+<span class="p">);</span>
+</code></pre></div>
+
+<h2 id="events">Events<a class="headerlink" href="#events" title="Permanent link">&para;</a></h2>
+<h3 id="marketplaceinitialized">MarketplaceInitialized<a class="headerlink" href="#marketplaceinitialized" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">event</span><span class="w"> </span><span class="nv">MarketplaceInitialized</span><span class="p">(</span>FeeReceiver<span class="p">[]</span><span class="w"> </span>feeReceivers<span class="p">);</span>
+</code></pre></div>
+
+<p>Emitted when marketplace is initialized with fee receivers.</p>
+<h3 id="paymentdistributed">PaymentDistributed<a class="headerlink" href="#paymentdistributed" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">event</span><span class="w"> </span><span class="nv">PaymentDistributed</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">token</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">receiver</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">amount</span><span class="p">);</span>
+</code></pre></div>
+
+<p>Emitted for each payment distribution during a sale.</p>
+<h3 id="listings">Listings<a class="headerlink" href="#listings" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">event</span><span class="w"> </span><span class="nv">Listings</span><span class="p">(</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>nftContract<span class="p">,</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>tokenId<span class="p">,</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>seller<span class="p">,</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">receiver</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">buyer</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">price</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nv">sold</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">paymentToken</span>
+<span class="p">);</span>
+</code></pre></div>
+
+<p>Emitted when an NFT is listed for sale.</p>
+<h3 id="sales">Sales<a class="headerlink" href="#sales" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">event</span><span class="w"> </span><span class="nv">Sales</span><span class="p">(</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>nftContract<span class="p">,</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>tokenId<span class="p">,</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>buyer
+<span class="p">);</span>
+</code></pre></div>
+
+<p>Emitted when an NFT is successfully purchased.</p>
+<h3 id="delisted">Delisted<a class="headerlink" href="#delisted" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">event</span><span class="w"> </span><span class="nv">Delisted</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>tokenId<span class="p">);</span>
+</code></pre></div>
+
+<p>Emitted when an NFT listing is removed.</p>
+<h2 id="error-handling">Error Handling<a class="headerlink" href="#error-handling" title="Permanent link">&para;</a></h2>
+<h3 id="common-errors">Common Errors<a class="headerlink" href="#common-errors" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>"Marketplace already initialized"</code>: Attempting to initialize twice</li>
+<li><code>"MARKETPLACE: NOT_OWNER"</code>: Non-owner trying to list NFT</li>
+<li><code>"MARKETPLACE: SALE_COMPLETED"</code>: Attempting to purchase already sold item</li>
+<li><code>"MARKETPLACE: INVALID_LISTING"</code>: Trying to purchase non-existent listing</li>
+<li><code>"Price must be greater than 0"</code>: Invalid pricing</li>
+<li><code>"Total shares exceed 100%"</code>: Invalid fee configuration</li>
+</ul>
+<h2 id="testing-considerations">Testing Considerations<a class="headerlink" href="#testing-considerations" title="Permanent link">&para;</a></h2>
+<h3 id="unit-tests">Unit Tests<a class="headerlink" href="#unit-tests" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Fee calculation accuracy</li>
+<li>Payment distribution logic</li>
+<li>Access control validation</li>
+<li>State transition correctness</li>
+</ul>
+<h3 id="integration-tests">Integration Tests<a class="headerlink" href="#integration-tests" title="Permanent link">&para;</a></h3>
+<ul>
+<li>End-to-end marketplace flows</li>
+<li>Multi-token payment scenarios</li>
+<li>Identity system integration</li>
+<li>Error condition handling</li>
+</ul>
+<h2 id="related-documentation">Related Documentation<a class="headerlink" href="#related-documentation" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../../interfaces/imarketplace/">IMarketplace</a> - Marketplace interface</li>
+<li><a href="../identity/identity-storage.md">IdentityStorage</a> - Identity system integration</li>
+<li><a href="../../diamond/">Diamond</a> - Core diamond contract</li>
+<li><a href="../../../eips/EIP-DRAFT-Diamond-Enhanced-Marketplace/">EIP-DRAFT-Diamond-Enhanced-Marketplace</a> - EIP specification</li>
+</ul>
+<hr />
+<p><em>This facet implements the Diamond-Enhanced NFT Marketplace standard as defined in the Gemforce EIP suite.</em></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../diamond/" class="btn btn-neutral float-left" title="Diamond Contract"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../trade-deal-management-facet/" class="btn btn-neutral float-right" title="Trade Deal Management Facet">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../../diamond/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../trade-deal-management-facet/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Gemforce Team" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>SVG Templates Facet - Gemforce Documentation</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "SVG Templates Facet";
+        var mkdocs_page_input_path = "smart-contracts/facets/svg-templates-facet.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../.." class="icon icon-home"> Gemforce Documentation
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../developer-setup-guide/">Developer Setup Guide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../system-architecture/gemforce-system-architecture/">System Architecture</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Smart Contracts</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../diamond/">Diamond Contract</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" >Facets</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" href="../marketplace-facet/">Marketplace Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../trade-deal-management-facet/">Trade Deal Management Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../carbon-credit-facet/">Carbon Credit Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../identity-registry-facet/">Identity Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../trusted-issuers-registry-facet/">Trusted Issuers Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../fee-distributor-facet/">Fee Distributor Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../gemforce-minter-facet/">Gemforce Minter Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../multi-sale-facet/">Multi Sale Facet</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">SVG Templates Facet</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#overview">Overview</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#contract-details">Contract Details</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#key-features">Key Features</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#svg-template-management">🔹 SVG Template Management</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#dynamic-graphics-generation">🔹 Dynamic Graphics Generation</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#manager-based-architecture">🔹 Manager-Based Architecture</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#core-architecture">Core Architecture</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#svg-manager-integration">SVG Manager Integration</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#template-storage-pattern">Template Storage Pattern</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#core-functions">Core Functions</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#management-functions">Management Functions</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#query-functions">Query Functions</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#integration-examples">Integration Examples</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#nft-metadata-generation">NFT Metadata Generation</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#template-based-rendering-system">Template-Based Rendering System</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#dynamic-badge-system">Dynamic Badge System</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#template-management-system">Template Management System</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#on-chain-art-gallery">On-Chain Art Gallery</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#events">Events</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#template-management-events">Template Management Events</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#security-considerations">Security Considerations</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#access-control">Access Control</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#template-validation">Template Validation</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#manager-security">Manager Security</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#gas-optimization">Gas Optimization</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#efficient-queries">Efficient Queries</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#storage-optimization">Storage Optimization</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#error-handling">Error Handling</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#common-errors">Common Errors</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#best-practices">Best Practices</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#testing-considerations">Testing Considerations</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#unit-tests">Unit Tests</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#integration-tests">Integration Tests</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#related-documentation">Related Documentation</a>
+    </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../trade-deal-admin-facet/">Trade Deal Admin Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../trade-deal-operations-facet/">Trade Deal Operations Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../collateral-token-factory-facet/">Collateral Token Factory Facet</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Interfaces</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/idiamond/">IDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/imarketplace/">IMarketplace</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/itradedeal/">ITradeDeal</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/icarbon-credit/">ICarbonCredit</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ierc1155-mint/">IERC1155Mint</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ierc734/">IERC734</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ierc735/">IERC735</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Libraries</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/carbon-credit-lib/">Carbon Credit Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/trade-deal-lib/">Trade Deal Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/multi-sale-lib/">Multi Sale Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/diamond-factory-lib/">Diamond Factory Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/svg-templates-lib/">SVG Templates Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/attribute-lib/">Attribute Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/variable-price-lib/">Variable Price Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/merkle-prover/">Merkle Prover</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/fee-distributor-lib/">Fee Distributor Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/lib-diamond/">LibDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/diamond-lib/">DiamondLib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/erc721a-lib/">ERC721A Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/erc721a-enumeration-lib/">ERC721A Enumeration Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/strings-lib/">Strings Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/metadata-lib/">Metadata Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/trusted-issuer-lib/">Trusted Issuer Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/set-libraries/">Set Libraries</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Cloud Functions</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/blockchain/">Blockchain Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/dfns/">DFNS Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/contracts/">Contract Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/authentication/">Authentication Functions</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">API Documentation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../api-documentation/gemforce-api-documentation/">Full API Reference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../api-documentation/gemforce-api-quick-reference/">Quick Reference</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">EIPs (Ethereum Improvement Proposals)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Diamond-Enhanced-Marketplace/">Diamond-Enhanced Marketplace</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Multi-Token-Sale-Standard/">Multi-Token Sale Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Collateralized-Trade-Deal-Standard/">Collateralized Trade Deal Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Enhanced-Identity-System/">Enhanced Identity System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Diamond-Factory-Standard/">Diamond Factory Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Carbon-Credit-Standard/">Carbon Credit Standard</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">User Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-administrator-guide/">Administrator Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-deployer-guide/">Deployer Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-integrator-guide/">Integrator Guide</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../external-services/gemforce-external-services/">External Services</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-documentation-gap-analysis/">Documentation Gap Analysis</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../documentation-progress-summary/">Documentation Progress Summary</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../documentation-plan/">Documentation Plan</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">Gemforce Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Smart Contracts</li>
+          <li class="breadcrumb-item">Facets</li>
+      <li class="breadcrumb-item active">SVG Templates Facet</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="svgtemplatesfacet">SVGTemplatesFacet<a class="headerlink" href="#svgtemplatesfacet" title="Permanent link">&para;</a></h1>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>The <a href="/Users/sschepis/Development/gem-base/contracts/facets/SVGTemplatesFacet.sol"><code>SVGTemplatesFacet.sol</code></a> provides SVG template management functionality within the Gemforce diamond system. This facet enables the creation, storage, and retrieval of SVG templates that can be used for dynamic NFT metadata generation, visual representations, and on-chain graphics rendering.</p>
+<h2 id="contract-details">Contract Details<a class="headerlink" href="#contract-details" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Contract Name</strong>: <code>SVGTemplatesFacet</code></li>
+<li><strong>Inheritance</strong>: <code>Modifiers</code></li>
+<li><strong>License</strong>: MIT</li>
+<li><strong>Solidity Version</strong>: ^0.8.0</li>
+</ul>
+<h2 id="key-features">Key Features<a class="headerlink" href="#key-features" title="Permanent link">&para;</a></h2>
+<h3 id="svg-template-management">🔹 SVG Template Management<a class="headerlink" href="#svg-template-management" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Create and store SVG templates on-chain</li>
+<li>Retrieve SVG data as strings</li>
+<li>Template address resolution</li>
+<li>Centralized SVG manager integration</li>
+</ul>
+<h3 id="dynamic-graphics-generation">🔹 Dynamic Graphics Generation<a class="headerlink" href="#dynamic-graphics-generation" title="Permanent link">&para;</a></h3>
+<ul>
+<li>On-chain SVG rendering capabilities</li>
+<li>Template-based NFT metadata</li>
+<li>Scalable vector graphics support</li>
+<li>Customizable visual elements</li>
+</ul>
+<h3 id="manager-based-architecture">🔹 Manager-Based Architecture<a class="headerlink" href="#manager-based-architecture" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Delegated SVG management system</li>
+<li>Upgradeable template storage</li>
+<li>Centralized template registry</li>
+<li>Access control for template creation</li>
+</ul>
+<h2 id="core-architecture">Core Architecture<a class="headerlink" href="#core-architecture" title="Permanent link">&para;</a></h2>
+<h3 id="svg-manager-integration">SVG Manager Integration<a class="headerlink" href="#svg-manager-integration" title="Permanent link">&para;</a></h3>
+<p>The facet operates through a manager-based architecture where an external SVG manager contract handles the actual template storage and rendering logic. This design provides:</p>
+<ul>
+<li><strong>Separation of Concerns</strong>: Template logic separated from diamond storage</li>
+<li><strong>Upgradeability</strong>: SVG manager can be updated without affecting the diamond</li>
+<li><strong>Scalability</strong>: Dedicated contract for complex SVG operations</li>
+<li><strong>Modularity</strong>: Clean interface between diamond and SVG functionality</li>
+</ul>
+<h3 id="template-storage-pattern">Template Storage Pattern<a class="headerlink" href="#template-storage-pattern" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// SVG templates are managed through external manager</span>
+<span class="kt">address</span><span class="w"> </span><span class="nv">svgManager</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>SVGTemplatesLib<span class="p">.</span>svgStorage<span class="p">().</span>svgManager<span class="p">;</span>
+
+<span class="c1">// Templates accessed via manager interface</span>
+ISVGTemplate<span class="p">(</span>svgManager<span class="p">).</span>svgString<span class="p">(</span>templateName<span class="p">);</span>
+</code></pre></div>
+
+<h2 id="core-functions">Core Functions<a class="headerlink" href="#core-functions" title="Permanent link">&para;</a></h2>
+<h3 id="management-functions">Management Functions<a class="headerlink" href="#management-functions" title="Permanent link">&para;</a></h3>
+<h4 id="setsvgmanager"><code>setSVGManager()</code><a class="headerlink" href="#setsvgmanager" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">setSVGManager</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">_manager</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyOwner
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Sets the address of the SVG manager contract that handles template operations.</p>
+<p><strong>Parameters</strong>:
+- <code>_manager</code> (address): Address of the SVG manager contract</p>
+<p><strong>Access Control</strong>: Owner only</p>
+<p><strong>Process</strong>:
+1. Updates the SVG manager address in diamond storage
+2. All subsequent SVG operations will use the new manager
+3. Enables upgrading SVG functionality without diamond changes</p>
+<p><strong>Example Usage</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Deploy new SVG manager with enhanced features</span>
+<span class="kt">address</span><span class="w"> </span><span class="nv">newSVGManager</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="kt">new</span><span class="w"> </span>EnhancedSVGManager<span class="p">());</span>
+
+<span class="c1">// Update the diamond to use new manager</span>
+ISVGTemplates<span class="p">(</span>diamond<span class="p">).</span>setSVGManager<span class="p">(</span>newSVGManager<span class="p">);</span>
+console<span class="p">.</span>log<span class="p">(</span><span class="s2">&quot;SVG manager updated to:&quot;</span><span class="p">,</span><span class="w"> </span>newSVGManager<span class="p">);</span>
+</code></pre></div>
+
+<p><strong>Security Considerations</strong>:
+- Only contract owner can change the manager
+- Ensure new manager implements ISVGTemplate interface
+- Verify manager contract before setting</p>
+<hr />
+<h4 id="createsvg"><code>createSVG()</code><a class="headerlink" href="#createsvg" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">createSVG</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>_name<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyOwner<span class="w"> </span><span class="kt">returns</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">_tplAddress</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Creates a new SVG template with the specified name.</p>
+<p><strong>Parameters</strong>:
+- <code>_name</code> (string): Unique name for the SVG template</p>
+<p><strong>Returns</strong>:
+- <code>_tplAddress</code> (address): Address of the created template contract</p>
+<p><strong>Access Control</strong>: Owner only</p>
+<p><strong>Process</strong>:
+1. Delegates template creation to the SVG manager
+2. Manager creates and deploys template contract
+3. Returns template address for future reference
+4. Emits SVGTemplateCreated event</p>
+<p><strong>Events</strong>: <code>SVGTemplateCreated(name, template)</code></p>
+<p><strong>Example Usage</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Create template for NFT badges</span>
+<span class="kt">address</span><span class="w"> </span><span class="nv">badgeTemplate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>ISVGTemplates<span class="p">(</span>diamond<span class="p">).</span>createSVG<span class="p">(</span><span class="s2">&quot;achievement-badge&quot;</span><span class="p">);</span>
+console<span class="p">.</span>log<span class="p">(</span><span class="s2">&quot;Badge template created at:&quot;</span><span class="p">,</span><span class="w"> </span>badgeTemplate<span class="p">);</span>
+
+<span class="c1">// Create template for dynamic backgrounds</span>
+<span class="kt">address</span><span class="w"> </span><span class="nv">bgTemplate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>ISVGTemplates<span class="p">(</span>diamond<span class="p">).</span>createSVG<span class="p">(</span><span class="s2">&quot;gradient-background&quot;</span><span class="p">);</span>
+console<span class="p">.</span>log<span class="p">(</span><span class="s2">&quot;Background template created at:&quot;</span><span class="p">,</span><span class="w"> </span>bgTemplate<span class="p">);</span>
+</code></pre></div>
+
+<p><strong>Error Conditions</strong>:
+- Template name already exists
+- SVG manager not set
+- Template creation failure</p>
+<h3 id="query-functions">Query Functions<a class="headerlink" href="#query-functions" title="Permanent link">&para;</a></h3>
+<h4 id="svgs"><code>svgs()</code><a class="headerlink" href="#svgs" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">svgs</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Returns all SVG template names stored in the system.</p>
+<p><strong>Returns</strong>: Array of template names</p>
+<p><strong>Example Usage</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="kt">string</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>templateNames<span class="w"> </span><span class="o">=</span><span class="w"> </span>ISVGTemplates<span class="p">(</span>diamond<span class="p">).</span>svgs<span class="p">();</span>
+
+console<span class="p">.</span>log<span class="p">(</span><span class="s2">&quot;Available templates:&quot;</span><span class="p">);</span>
+<span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>templateNames<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>console<span class="p">.</span>log<span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">,</span><span class="w"> </span>templateNames<span class="p">[</span>i<span class="p">]);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Use Cases</strong>:
+- UI template selection
+- Template enumeration
+- System inventory
+- Integration discovery</p>
+<hr />
+<h4 id="svgaddress"><code>svgAddress()</code><a class="headerlink" href="#svgaddress" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">svgAddress</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>_name<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">_svgAddress</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Returns the contract address for a specific SVG template.</p>
+<p><strong>Parameters</strong>:
+- <code>_name</code> (string): Name of the SVG template</p>
+<p><strong>Returns</strong>:
+- <code>_svgAddress</code> (address): Contract address of the template</p>
+<p><strong>Example Usage</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="kt">address</span><span class="w"> </span><span class="nv">templateAddress</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>ISVGTemplates<span class="p">(</span>diamond<span class="p">).</span>svgAddress<span class="p">(</span><span class="s2">&quot;achievement-badge&quot;</span><span class="p">);</span>
+
+<span class="kt">if</span><span class="w"> </span><span class="p">(</span>templateAddress<span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>console<span class="p">.</span>log<span class="p">(</span><span class="s2">&quot;Template found at:&quot;</span><span class="p">,</span><span class="w"> </span>templateAddress<span class="p">);</span>
+<span class="w">    </span><span class="c1">// Use template for rendering</span>
+<span class="p">}</span><span class="w"> </span><span class="kt">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>console<span class="p">.</span>log<span class="p">(</span><span class="s2">&quot;Template not found&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Important Notes</strong>:
+- Returns address even if template doesn't exist (may be zero address)
+- Check address validity before using
+- Address doesn't guarantee template functionality</p>
+<hr />
+<h4 id="svgstring"><code>svgString()</code><a class="headerlink" href="#svgstring" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">svgString</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>_name<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>data_<span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Returns the SVG data as a string for the specified template.</p>
+<p><strong>Parameters</strong>:
+- <code>_name</code> (string): Name of the SVG template</p>
+<p><strong>Returns</strong>:
+- <code>data_</code> (string): Complete SVG markup as string</p>
+<p><strong>Example Usage</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>svgData<span class="w"> </span><span class="o">=</span><span class="w"> </span>ISVGTemplates<span class="p">(</span>diamond<span class="p">).</span>svgString<span class="p">(</span><span class="s2">&quot;achievement-badge&quot;</span><span class="p">);</span>
+
+<span class="c1">// Use in NFT metadata</span>
+<span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>metadata<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">string</span><span class="p">(</span>abi<span class="p">.</span>encodePacked<span class="p">(</span>
+<span class="w">    </span><span class="s1">&#39;{&quot;name&quot;:&quot;Achievement Badge&quot;,&quot;image&quot;:&quot;data:image/svg+xml;base64,&#39;</span><span class="p">,</span>
+<span class="w">    </span>Base64<span class="p">.</span>encode<span class="p">(</span><span class="kt">bytes</span><span class="p">(</span>svgData<span class="p">)),</span>
+<span class="w">    </span><span class="s1">&#39;&quot;}&#39;</span>
+<span class="p">));</span>
+</code></pre></div>
+
+<p><strong>Use Cases</strong>:
+- NFT metadata generation
+- On-chain image rendering
+- Dynamic visual content
+- Template preview</p>
+<h2 id="integration-examples">Integration Examples<a class="headerlink" href="#integration-examples" title="Permanent link">&para;</a></h2>
+<h3 id="nft-metadata-generation">NFT Metadata Generation<a class="headerlink" href="#nft-metadata-generation" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Generate dynamic NFT metadata with SVG templates</span>
+<span class="k">contract</span><span class="w"> </span><span class="ni">DynamicNFT</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">tokenURI</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>view<span class="w"> </span>override<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Get achievement level for this token</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>getAchievementLevel<span class="p">(</span>tokenId<span class="p">);</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>templateName<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">string</span><span class="p">(</span>abi<span class="p">.</span>encodePacked<span class="p">(</span><span class="s2">&quot;badge-level-&quot;</span><span class="p">,</span><span class="w"> </span>level<span class="p">.</span>toString<span class="p">()));</span>
+
+<span class="w">        </span><span class="c1">// Get SVG data from template</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>svgData<span class="w"> </span><span class="o">=</span><span class="w"> </span>ISVGTemplates<span class="p">(</span>diamond<span class="p">).</span>svgString<span class="p">(</span>templateName<span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Encode as base64 for data URI</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>imageURI<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">string</span><span class="p">(</span>abi<span class="p">.</span>encodePacked<span class="p">(</span>
+<span class="w">            </span><span class="s2">&quot;data:image/svg+xml;base64,&quot;</span><span class="p">,</span>
+<span class="w">            </span>Base64<span class="p">.</span>encode<span class="p">(</span><span class="kt">bytes</span><span class="p">(</span>svgData<span class="p">))</span>
+<span class="w">        </span><span class="p">));</span>
+
+<span class="w">        </span><span class="c1">// Build complete metadata</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span><span class="kt">string</span><span class="p">(</span>abi<span class="p">.</span>encodePacked<span class="p">(</span>
+<span class="w">            </span><span class="s1">&#39;{&quot;name&quot;:&quot;Achievement Badge #&#39;</span><span class="p">,</span><span class="w"> </span>tokenId<span class="p">.</span>toString<span class="p">(),</span>
+<span class="w">            </span><span class="s1">&#39;&quot;,&quot;description&quot;:&quot;Dynamic achievement badge&quot;,&#39;</span><span class="p">,</span>
+<span class="w">            </span><span class="s1">&#39;&quot;image&quot;:&quot;&#39;</span><span class="p">,</span><span class="w"> </span>imageURI<span class="p">,</span><span class="w"> </span><span class="s1">&#39;&quot;,&#39;</span><span class="p">,</span>
+<span class="w">            </span><span class="s1">&#39;&quot;attributes&quot;:[{&quot;trait_type&quot;:&quot;Level&quot;,&quot;value&quot;:&#39;</span><span class="p">,</span><span class="w"> </span>level<span class="p">.</span>toString<span class="p">(),</span><span class="w"> </span><span class="s1">&#39;}]}&#39;</span>
+<span class="w">        </span><span class="p">));</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="template-based-rendering-system">Template-Based Rendering System<a class="headerlink" href="#template-based-rendering-system" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// System for rendering different visual elements</span>
+<span class="k">contract</span><span class="w"> </span><span class="ni">VisualRenderer</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>templateCategories<span class="p">;</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">setTemplateCategory</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>templateName<span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>category<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyOwner<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>templateCategories<span class="p">[</span>templateName<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>category<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">renderByCategory</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>category<span class="p">,</span><span class="w"> </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>params<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">string</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>allTemplates<span class="w"> </span><span class="o">=</span><span class="w"> </span>ISVGTemplates<span class="p">(</span>diamond<span class="p">).</span>svgs<span class="p">();</span>
+
+<span class="w">        </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>allTemplates<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span><span class="nb">keccak256</span><span class="p">(</span><span class="kt">bytes</span><span class="p">(</span>templateCategories<span class="p">[</span>allTemplates<span class="p">[</span>i<span class="p">]]))</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">keccak256</span><span class="p">(</span><span class="kt">bytes</span><span class="p">(</span>category<span class="p">)))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="kt">return</span><span class="w"> </span>ISVGTemplates<span class="p">(</span>diamond<span class="p">).</span>svgString<span class="p">(</span>allTemplates<span class="p">[</span>i<span class="p">]);</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span>revert<span class="p">(</span><span class="s2">&quot;No template found for category&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getTemplatesByCategory</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>category<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">string</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>allTemplates<span class="w"> </span><span class="o">=</span><span class="w"> </span>ISVGTemplates<span class="p">(</span>diamond<span class="p">).</span>svgs<span class="p">();</span>
+<span class="w">        </span><span class="kt">string</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>categoryTemplates<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="kt">string</span><span class="p">[](</span>allTemplates<span class="p">.</span>length<span class="p">);</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span>
+
+<span class="w">        </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>allTemplates<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span><span class="nb">keccak256</span><span class="p">(</span><span class="kt">bytes</span><span class="p">(</span>templateCategories<span class="p">[</span>allTemplates<span class="p">[</span>i<span class="p">]]))</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">keccak256</span><span class="p">(</span><span class="kt">bytes</span><span class="p">(</span>category<span class="p">)))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span>categoryTemplates<span class="p">[</span>count<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>allTemplates<span class="p">[</span>i<span class="p">];</span>
+<span class="w">                </span>count<span class="o">++</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// Resize array to actual count</span>
+<span class="w">        </span><span class="kt">string</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>result<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="kt">string</span><span class="p">[](</span>count<span class="p">);</span>
+<span class="w">        </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>count<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>result<span class="p">[</span>i<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>categoryTemplates<span class="p">[</span>i<span class="p">];</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>result<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="dynamic-badge-system">Dynamic Badge System<a class="headerlink" href="#dynamic-badge-system" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Create achievement badges with different templates</span>
+<span class="k">contract</span><span class="w"> </span><span class="ni">AchievementSystem</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">Achievement</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">name</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">description</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">svgTemplate</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">requiredPoints</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span>Achievement<span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>achievements<span class="p">;</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">bool</span><span class="p">))</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>userAchievements<span class="p">;</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="k">public </span><span class="nv">achievementCount</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">createAchievement</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>name<span class="p">,</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>description<span class="p">,</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>svgTemplate<span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">requiredPoints</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyOwner<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Verify template exists</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">templateAddr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>ISVGTemplates<span class="p">(</span>diamond<span class="p">).</span>svgAddress<span class="p">(</span>svgTemplate<span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>templateAddr<span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">),</span><span class="w"> </span><span class="s2">&quot;Template not found&quot;</span><span class="p">);</span>
+
+<span class="w">        </span>achievements<span class="p">[</span>achievementCount<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>Achievement<span class="p">({</span>
+<span class="w">            </span>name<span class="o">:</span><span class="w"> </span>name<span class="p">,</span>
+<span class="w">            </span>description<span class="o">:</span><span class="w"> </span>description<span class="p">,</span>
+<span class="w">            </span>svgTemplate<span class="o">:</span><span class="w"> </span>svgTemplate<span class="p">,</span>
+<span class="w">            </span>requiredPoints<span class="o">:</span><span class="w"> </span>requiredPoints
+<span class="w">        </span><span class="p">});</span>
+
+<span class="w">        </span>achievementCount<span class="o">++</span><span class="p">;</span>
+<span class="w">        </span>emit<span class="w"> </span>AchievementCreated<span class="p">(</span>achievementCount<span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m m-Decimal">1</span><span class="p">,</span><span class="w"> </span>name<span class="p">,</span><span class="w"> </span>svgTemplate<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">awardAchievement</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">user</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">achievementId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyOwner<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>achievementId<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>achievementCount<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Invalid achievement&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span><span class="o">!</span>userAchievements<span class="p">[</span>user<span class="p">][</span>achievementId<span class="p">],</span><span class="w"> </span><span class="s2">&quot;Already awarded&quot;</span><span class="p">);</span>
+
+<span class="w">        </span>userAchievements<span class="p">[</span>user<span class="p">][</span>achievementId<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">true</span><span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// Generate badge SVG</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>badgeSVG<span class="w"> </span><span class="o">=</span><span class="w"> </span>ISVGTemplates<span class="p">(</span>diamond<span class="p">).</span>svgString<span class="p">(</span>achievements<span class="p">[</span>achievementId<span class="p">].</span>svgTemplate<span class="p">);</span>
+
+<span class="w">        </span>emit<span class="w"> </span>AchievementAwarded<span class="p">(</span>user<span class="p">,</span><span class="w"> </span>achievementId<span class="p">,</span><span class="w"> </span>badgeSVG<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getUserBadge</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">user</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">achievementId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>userAchievements<span class="p">[</span>user<span class="p">][</span>achievementId<span class="p">],</span><span class="w"> </span><span class="s2">&quot;Achievement not earned&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>ISVGTemplates<span class="p">(</span>diamond<span class="p">).</span>svgString<span class="p">(</span>achievements<span class="p">[</span>achievementId<span class="p">].</span>svgTemplate<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="template-management-system">Template Management System<a class="headerlink" href="#template-management-system" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Advanced template management with versioning</span>
+<span class="k">contract</span><span class="w"> </span><span class="ni">TemplateManager</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">TemplateVersion</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">templateAddress</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">version</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">timestamp</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">active</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span>TemplateVersion<span class="p">[])</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>templateVersions<span class="p">;</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">uint256</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>activeVersionIndex<span class="p">;</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">createTemplateVersion</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>templateName<span class="p">,</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>version
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyOwner<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Create new template</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">templateAddr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>ISVGTemplates<span class="p">(</span>diamond<span class="p">).</span>createSVG<span class="p">(</span>
+<span class="w">            </span><span class="kt">string</span><span class="p">(</span>abi<span class="p">.</span>encodePacked<span class="p">(</span>templateName<span class="p">,</span><span class="w"> </span><span class="s2">&quot;-&quot;</span><span class="p">,</span><span class="w"> </span>version<span class="p">))</span>
+<span class="w">        </span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Store version info</span>
+<span class="w">        </span>templateVersions<span class="p">[</span>templateName<span class="p">].</span>push<span class="p">(</span>TemplateVersion<span class="p">({</span>
+<span class="w">            </span>templateAddress<span class="o">:</span><span class="w"> </span>templateAddr<span class="p">,</span>
+<span class="w">            </span>version<span class="o">:</span><span class="w"> </span>version<span class="p">,</span>
+<span class="w">            </span>timestamp<span class="o">:</span><span class="w"> </span><span class="k">block.timestamp</span><span class="p">,</span>
+<span class="w">            </span>active<span class="o">:</span><span class="w"> </span><span class="kt">false</span>
+<span class="w">        </span><span class="p">}));</span>
+
+<span class="w">        </span>emit<span class="w"> </span>TemplateVersionCreated<span class="p">(</span>templateName<span class="p">,</span><span class="w"> </span>version<span class="p">,</span><span class="w"> </span>templateAddr<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">activateTemplateVersion</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>templateName<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">versionIndex</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyOwner<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>versionIndex<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>templateVersions<span class="p">[</span>templateName<span class="p">].</span>length<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Invalid version&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Deactivate current version</span>
+<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>templateVersions<span class="p">[</span>templateName<span class="p">].</span>length<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>templateVersions<span class="p">[</span>templateName<span class="p">][</span>activeVersionIndex<span class="p">[</span>templateName<span class="p">]].</span>active<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">false</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// Activate new version</span>
+<span class="w">        </span>templateVersions<span class="p">[</span>templateName<span class="p">][</span>versionIndex<span class="p">].</span>active<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">true</span><span class="p">;</span>
+<span class="w">        </span>activeVersionIndex<span class="p">[</span>templateName<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>versionIndex<span class="p">;</span>
+
+<span class="w">        </span>emit<span class="w"> </span>TemplateVersionActivated<span class="p">(</span>templateName<span class="p">,</span><span class="w"> </span>versionIndex<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getActiveTemplate</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>templateName<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>templateVersions<span class="p">[</span>templateName<span class="p">].</span>length<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Template not found&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">activeIndex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>activeVersionIndex<span class="p">[</span>templateName<span class="p">];</span>
+<span class="w">        </span>TemplateVersion<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>activeVersion<span class="w"> </span><span class="o">=</span><span class="w"> </span>templateVersions<span class="p">[</span>templateName<span class="p">][</span>activeIndex<span class="p">];</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>activeVersion<span class="p">.</span>active<span class="p">,</span><span class="w"> </span><span class="s2">&quot;No active version&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>ISVGTemplates<span class="p">(</span>diamond<span class="p">).</span>svgString<span class="p">(</span>
+<span class="w">            </span><span class="kt">string</span><span class="p">(</span>abi<span class="p">.</span>encodePacked<span class="p">(</span>templateName<span class="p">,</span><span class="w"> </span><span class="s2">&quot;-&quot;</span><span class="p">,</span><span class="w"> </span>activeVersion<span class="p">.</span>version<span class="p">))</span>
+<span class="w">        </span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="on-chain-art-gallery">On-Chain Art Gallery<a class="headerlink" href="#on-chain-art-gallery" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Gallery system using SVG templates</span>
+<span class="k">contract</span><span class="w"> </span><span class="ni">ArtGallery</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">Artwork</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">title</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">artist</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">svgTemplate</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">price</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">forSale</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span>Artwork<span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>artworks<span class="p">;</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="k">public </span><span class="nv">artworkCount</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">addArtwork</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>title<span class="p">,</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>artist<span class="p">,</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>svgTemplate<span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">price</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyOwner<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Verify template exists</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>svgData<span class="w"> </span><span class="o">=</span><span class="w"> </span>ISVGTemplates<span class="p">(</span>diamond<span class="p">).</span>svgString<span class="p">(</span>svgTemplate<span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span><span class="kt">bytes</span><span class="p">(</span>svgData<span class="p">).</span>length<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Template not found&quot;</span><span class="p">);</span>
+
+<span class="w">        </span>artworks<span class="p">[</span>artworkCount<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>Artwork<span class="p">({</span>
+<span class="w">            </span>title<span class="o">:</span><span class="w"> </span>title<span class="p">,</span>
+<span class="w">            </span>artist<span class="o">:</span><span class="w"> </span>artist<span class="p">,</span>
+<span class="w">            </span>svgTemplate<span class="o">:</span><span class="w"> </span>svgTemplate<span class="p">,</span>
+<span class="w">            </span>price<span class="o">:</span><span class="w"> </span>price<span class="p">,</span>
+<span class="w">            </span>forSale<span class="o">:</span><span class="w"> </span><span class="kt">true</span>
+<span class="w">        </span><span class="p">});</span>
+
+<span class="w">        </span>artworkCount<span class="o">++</span><span class="p">;</span>
+<span class="w">        </span>emit<span class="w"> </span>ArtworkAdded<span class="p">(</span>artworkCount<span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m m-Decimal">1</span><span class="p">,</span><span class="w"> </span>title<span class="p">,</span><span class="w"> </span>artist<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">previewArtwork</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">artworkId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>artworkId<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>artworkCount<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Artwork not found&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>ISVGTemplates<span class="p">(</span>diamond<span class="p">).</span>svgString<span class="p">(</span>artworks<span class="p">[</span>artworkId<span class="p">].</span>svgTemplate<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">purchaseArtwork</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">artworkId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">payable</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>artworkId<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>artworkCount<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Artwork not found&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>artworks<span class="p">[</span>artworkId<span class="p">].</span>forSale<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Not for sale&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span><span class="k">msg.value</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span>artworks<span class="p">[</span>artworkId<span class="p">].</span>price<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Insufficient payment&quot;</span><span class="p">);</span>
+
+<span class="w">        </span>artworks<span class="p">[</span>artworkId<span class="p">].</span>forSale<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">false</span><span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// Generate NFT with SVG template</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>svgData<span class="w"> </span><span class="o">=</span><span class="w"> </span>ISVGTemplates<span class="p">(</span>diamond<span class="p">).</span>svgString<span class="p">(</span>artworks<span class="p">[</span>artworkId<span class="p">].</span>svgTemplate<span class="p">);</span>
+
+<span class="w">        </span>emit<span class="w"> </span>ArtworkPurchased<span class="p">(</span>artworkId<span class="p">,</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">,</span><span class="w"> </span>svgData<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="events">Events<a class="headerlink" href="#events" title="Permanent link">&para;</a></h2>
+<h3 id="template-management-events">Template Management Events<a class="headerlink" href="#template-management-events" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">event</span><span class="w"> </span><span class="nv">SVGTemplateCreated</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">name</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">template</span><span class="p">);</span>
+</code></pre></div>
+
+<h2 id="security-considerations">Security Considerations<a class="headerlink" href="#security-considerations" title="Permanent link">&para;</a></h2>
+<h3 id="access-control">Access Control<a class="headerlink" href="#access-control" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Only contract owner can set SVG manager</li>
+<li>Only contract owner can create templates</li>
+<li>Manager contract should implement proper access controls</li>
+</ul>
+<h3 id="template-validation">Template Validation<a class="headerlink" href="#template-validation" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Verify SVG manager implements required interface</li>
+<li>Check template existence before operations</li>
+<li>Validate template data integrity</li>
+</ul>
+<h3 id="manager-security">Manager Security<a class="headerlink" href="#manager-security" title="Permanent link">&para;</a></h3>
+<ul>
+<li>SVG manager contract should be audited</li>
+<li>Ensure manager cannot be set to malicious contract</li>
+<li>Consider timelock for manager changes</li>
+</ul>
+<h2 id="gas-optimization">Gas Optimization<a class="headerlink" href="#gas-optimization" title="Permanent link">&para;</a></h2>
+<h3 id="efficient-queries">Efficient Queries<a class="headerlink" href="#efficient-queries" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Batch template operations when possible</li>
+<li>Cache frequently accessed templates</li>
+<li>Use view functions for read operations</li>
+</ul>
+<h3 id="storage-optimization">Storage Optimization<a class="headerlink" href="#storage-optimization" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Delegate storage to manager contract</li>
+<li>Minimize on-chain SVG data when possible</li>
+<li>Use IPFS for large templates if needed</li>
+</ul>
+<h2 id="error-handling">Error Handling<a class="headerlink" href="#error-handling" title="Permanent link">&para;</a></h2>
+<h3 id="common-errors">Common Errors<a class="headerlink" href="#common-errors" title="Permanent link">&para;</a></h3>
+<ul>
+<li>SVG manager not set</li>
+<li>Template not found</li>
+<li>Invalid template name</li>
+<li>Manager interface mismatch</li>
+</ul>
+<h3 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Always check template existence</li>
+<li>Validate manager address before setting</li>
+<li>Handle empty template responses</li>
+</ul>
+<h2 id="testing-considerations">Testing Considerations<a class="headerlink" href="#testing-considerations" title="Permanent link">&para;</a></h2>
+<h3 id="unit-tests">Unit Tests<a class="headerlink" href="#unit-tests" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Template creation and retrieval</li>
+<li>Manager setting and validation</li>
+<li>Access control enforcement</li>
+<li>Error condition handling</li>
+</ul>
+<h3 id="integration-tests">Integration Tests<a class="headerlink" href="#integration-tests" title="Permanent link">&para;</a></h3>
+<ul>
+<li>NFT metadata generation</li>
+<li>Template rendering systems</li>
+<li>Manager upgrade scenarios</li>
+<li>Cross-facet interactions</li>
+</ul>
+<h2 id="related-documentation">Related Documentation<a class="headerlink" href="#related-documentation" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../interfaces/isvg.md">ISVG</a> - SVG interface definitions</li>
+<li><a href="../../libraries/svg-templates-lib/">SVGTemplatesLib</a> - SVG utilities</li>
+<li><a href="../../libraries/strings-lib/">StringsLib</a> - String manipulation</li>
+<li><a href="../gemforce-minter-facet/">GemforceMinterFacet</a> - NFT minting integration</li>
+<li><a href="../../guides/nft-metadata.md">NFT Metadata Guide</a> - Implementation guide</li>
+</ul>
+<hr />
+<p><em>This facet provides SVG template management capabilities within the Gemforce platform, enabling dynamic on-chain graphics generation and template-based visual systems.</em></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../multi-sale-facet/" class="btn btn-neutral float-left" title="Multi Sale Facet"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../trade-deal-admin-facet/" class="btn btn-neutral float-right" title="Trade Deal Admin Facet">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../multi-sale-facet/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../trade-deal-admin-facet/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

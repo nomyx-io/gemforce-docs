@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Gemforce Team" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>Carbon Credit Facet - Gemforce Documentation</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Carbon Credit Facet";
+        var mkdocs_page_input_path = "smart-contracts/facets/carbon-credit-facet.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../.." class="icon icon-home"> Gemforce Documentation
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../developer-setup-guide/">Developer Setup Guide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../system-architecture/gemforce-system-architecture/">System Architecture</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Smart Contracts</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../diamond/">Diamond Contract</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" >Facets</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" href="../marketplace-facet/">Marketplace Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../trade-deal-management-facet/">Trade Deal Management Facet</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">Carbon Credit Facet</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#overview">Overview</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#contract-details">Contract Details</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#key-features">Key Features</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#carbon-credit-lifecycle-management">🔹 Carbon Credit Lifecycle Management</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#erc721-integration">🔹 ERC721 Integration</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#batch-operations">🔹 Batch Operations</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#environmental-compliance">🔹 Environmental Compliance</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#core-data-structures">Core Data Structures</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#carboncreditstatus-enum">CarbonCreditStatus Enum</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#storage-pattern">Storage Pattern</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#core-functions">Core Functions</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#initialization-functions">Initialization Functions</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#credit-management-functions">Credit Management Functions</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#query-functions">Query Functions</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#events">Events</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#carboncreditsinitialized">CarbonCreditsInitialized</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#carboncreditsretired">CarbonCreditsRetired</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#integration-examples">Integration Examples</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#environmental-nft-marketplace">Environmental NFT Marketplace</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#carbon-offset-program">Carbon Offset Program</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#batch-environmental-asset-management">Batch Environmental Asset Management</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#portfolio-tracking">Portfolio Tracking</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#environmental-standards-compliance">Environmental Standards Compliance</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#international-standards">International Standards</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#audit-trail">Audit Trail</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#double-counting-prevention">Double-Counting Prevention</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#security-considerations">Security Considerations</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#access-control">Access Control</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#data-integrity">Data Integrity</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#audit-compliance">Audit Compliance</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#gas-optimization">Gas Optimization</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#batch-operations_1">Batch Operations</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#storage-efficiency">Storage Efficiency</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#error-handling">Error Handling</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#validation-errors">Validation Errors</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#state-errors">State Errors</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#access-errors">Access Errors</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#testing-considerations">Testing Considerations</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#unit-tests">Unit Tests</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#integration-tests">Integration Tests</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#related-documentation">Related Documentation</a>
+    </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../identity-registry-facet/">Identity Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../trusted-issuers-registry-facet/">Trusted Issuers Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../fee-distributor-facet/">Fee Distributor Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../gemforce-minter-facet/">Gemforce Minter Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../multi-sale-facet/">Multi Sale Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../svg-templates-facet/">SVG Templates Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../trade-deal-admin-facet/">Trade Deal Admin Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../trade-deal-operations-facet/">Trade Deal Operations Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../collateral-token-factory-facet/">Collateral Token Factory Facet</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Interfaces</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/idiamond/">IDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/imarketplace/">IMarketplace</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/itradedeal/">ITradeDeal</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/icarbon-credit/">ICarbonCredit</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ierc1155-mint/">IERC1155Mint</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ierc734/">IERC734</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ierc735/">IERC735</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Libraries</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/carbon-credit-lib/">Carbon Credit Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/trade-deal-lib/">Trade Deal Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/multi-sale-lib/">Multi Sale Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/diamond-factory-lib/">Diamond Factory Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/svg-templates-lib/">SVG Templates Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/attribute-lib/">Attribute Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/variable-price-lib/">Variable Price Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/merkle-prover/">Merkle Prover</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/fee-distributor-lib/">Fee Distributor Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/lib-diamond/">LibDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/diamond-lib/">DiamondLib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/erc721a-lib/">ERC721A Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/erc721a-enumeration-lib/">ERC721A Enumeration Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/strings-lib/">Strings Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/metadata-lib/">Metadata Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/trusted-issuer-lib/">Trusted Issuer Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/set-libraries/">Set Libraries</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Cloud Functions</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/blockchain/">Blockchain Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/dfns/">DFNS Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/contracts/">Contract Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/authentication/">Authentication Functions</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">API Documentation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../api-documentation/gemforce-api-documentation/">Full API Reference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../api-documentation/gemforce-api-quick-reference/">Quick Reference</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">EIPs (Ethereum Improvement Proposals)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Diamond-Enhanced-Marketplace/">Diamond-Enhanced Marketplace</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Multi-Token-Sale-Standard/">Multi-Token Sale Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Collateralized-Trade-Deal-Standard/">Collateralized Trade Deal Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Enhanced-Identity-System/">Enhanced Identity System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Diamond-Factory-Standard/">Diamond Factory Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Carbon-Credit-Standard/">Carbon Credit Standard</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">User Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-administrator-guide/">Administrator Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-deployer-guide/">Deployer Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-integrator-guide/">Integrator Guide</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../external-services/gemforce-external-services/">External Services</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-documentation-gap-analysis/">Documentation Gap Analysis</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../documentation-progress-summary/">Documentation Progress Summary</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../documentation-plan/">Documentation Plan</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">Gemforce Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Smart Contracts</li>
+          <li class="breadcrumb-item">Facets</li>
+      <li class="breadcrumb-item active">Carbon Credit Facet</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="carboncreditfacet">CarbonCreditFacet<a class="headerlink" href="#carboncreditfacet" title="Permanent link">&para;</a></h1>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>The <a href="/Users/sschepis/Development/gem-base/contracts/facets/CarbonCreditFacet.sol"><code>CarbonCreditFacet.sol</code></a> provides comprehensive carbon credit management functionality for ERC721 tokens within the Gemforce diamond system. This facet enables the tokenization, tracking, and retirement of environmental assets, supporting carbon offset programs and environmental sustainability initiatives.</p>
+<h2 id="contract-details">Contract Details<a class="headerlink" href="#contract-details" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Contract Name</strong>: <code>CarbonCreditFacet</code></li>
+<li><strong>Inheritance</strong>: <code>ICarbonCredit</code>, <code>Modifiers</code></li>
+<li><strong>License</strong>: MIT</li>
+<li><strong>Solidity Version</strong>: ^0.8.0</li>
+</ul>
+<h2 id="key-features">Key Features<a class="headerlink" href="#key-features" title="Permanent link">&para;</a></h2>
+<h3 id="carbon-credit-lifecycle-management">🔹 Carbon Credit Lifecycle Management<a class="headerlink" href="#carbon-credit-lifecycle-management" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Initialize carbon credit balances for NFTs</li>
+<li>Track available credits per token</li>
+<li>Permanent retirement of credits for offsetting</li>
+<li>Comprehensive status tracking</li>
+</ul>
+<h3 id="erc721-integration">🔹 ERC721 Integration<a class="headerlink" href="#erc721-integration" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Carbon credits attached to specific NFT tokens</li>
+<li>Owner-only retirement permissions</li>
+<li>Token existence validation</li>
+<li>Seamless integration with existing NFT infrastructure</li>
+</ul>
+<h3 id="batch-operations">🔹 Batch Operations<a class="headerlink" href="#batch-operations" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Efficient batch initialization for multiple tokens</li>
+<li>Bulk balance queries</li>
+<li>Gas-optimized operations for large-scale deployments</li>
+</ul>
+<h3 id="environmental-compliance">🔹 Environmental Compliance<a class="headerlink" href="#environmental-compliance" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Permanent retirement prevents double-counting</li>
+<li>Transparent tracking for audit purposes</li>
+<li>Status reporting for compliance verification</li>
+</ul>
+<h2 id="core-data-structures">Core Data Structures<a class="headerlink" href="#core-data-structures" title="Permanent link">&para;</a></h2>
+<h3 id="carboncreditstatus-enum">CarbonCreditStatus Enum<a class="headerlink" href="#carboncreditstatus-enum" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">enum</span><span class="w"> </span><span class="nv">CarbonCreditStatus</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>NONE<span class="p">,</span><span class="w">     </span><span class="c1">// Token has no carbon credits initialized</span>
+<span class="w">    </span>ACTIVE<span class="p">,</span><span class="w">   </span><span class="c1">// Token has available carbon credits</span>
+<span class="w">    </span>RETIRED<span class="w">   </span><span class="c1">// All carbon credits have been retired</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="storage-pattern">Storage Pattern<a class="headerlink" href="#storage-pattern" title="Permanent link">&para;</a></h3>
+<p>The facet uses the CarbonCreditLib library for storage management:
+- Diamond storage pattern prevents storage collisions
+- Efficient mapping of token IDs to credit balances
+- Persistent storage across contract upgrades</p>
+<h2 id="core-functions">Core Functions<a class="headerlink" href="#core-functions" title="Permanent link">&para;</a></h2>
+<h3 id="initialization-functions">Initialization Functions<a class="headerlink" href="#initialization-functions" title="Permanent link">&para;</a></h3>
+<h4 id="initializecarboncredit"><code>initializeCarbonCredit()</code><a class="headerlink" href="#initializecarboncredit" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">initializeCarbonCredit</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">initialBalance</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyOwner
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Initializes carbon credit balance for a specific ERC721 token.</p>
+<p><strong>Parameters</strong>:
+- <code>tokenId</code> (uint256): ID of the ERC721 token to initialize
+- <code>initialBalance</code> (uint256): Initial carbon credit balance (must be &gt; 0)</p>
+<p><strong>Access Control</strong>: Owner only</p>
+<p><strong>Validation</strong>:
+- Token ID must be greater than zero
+- Initial balance must be greater than zero
+- Token must exist (have a valid owner)
+- Token must not already have carbon credits initialized</p>
+<p><strong>Process</strong>:
+1. Validates input parameters
+2. Checks token existence via ERC721 interface
+3. Ensures token hasn't been previously initialized
+4. Sets initial carbon credit balance
+5. Emits CarbonCreditsInitialized event</p>
+<p><strong>Events</strong>: <code>CarbonCreditsInitialized(tokenId, initialBalance)</code></p>
+<p><strong>Example Usage</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Initialize carbon credits for a newly minted environmental NFT</span>
+ICarbonCredit<span class="p">(</span>diamond<span class="p">).</span>initializeCarbonCredit<span class="p">(</span>
+<span class="w">    </span>tokenId<span class="p">,</span>
+<span class="w">    </span><span class="m m-Decimal">1000</span><span class="w">  </span><span class="c1">// 1000 carbon credits</span>
+<span class="p">);</span>
+</code></pre></div>
+
+<p><strong>Error Conditions</strong>:
+- <code>"CARBON_CREDIT: INVALID_TOKEN_ID"</code> - Token ID is zero
+- <code>"CARBON_CREDIT: INVALID_BALANCE"</code> - Initial balance is zero
+- <code>"CARBON_CREDIT: NONEXISTENT_TOKEN"</code> - Token doesn't exist
+- <code>"CARBON_CREDIT: ALREADY_INITIALIZED"</code> - Token already has credits</p>
+<hr />
+<h4 id="batchinitializecarboncredits"><code>batchInitializeCarbonCredits()</code><a class="headerlink" href="#batchinitializecarboncredits" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">batchInitializeCarbonCredits</span><span class="p">(</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span>calldata<span class="w"> </span>tokenIds<span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span>calldata<span class="w"> </span>initialBalances
+<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyOwner
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Efficiently initializes carbon credits for multiple tokens in a single transaction.</p>
+<p><strong>Parameters</strong>:
+- <code>tokenIds</code> (uint256[]): Array of token IDs to initialize
+- <code>initialBalances</code> (uint256[]): Array of initial balances corresponding to token IDs</p>
+<p><strong>Access Control</strong>: Owner only</p>
+<p><strong>Validation</strong>:
+- Arrays must have equal length
+- Each token must exist
+- Standard initialization validation for each token</p>
+<p><strong>Gas Optimization</strong>: More efficient than multiple individual calls</p>
+<p><strong>Example Usage</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Batch initialize multiple environmental NFTs</span>
+<span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>tokenIds<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="m m-Decimal">1</span><span class="p">,</span><span class="w"> </span><span class="m m-Decimal">2</span><span class="p">,</span><span class="w"> </span><span class="m m-Decimal">3</span><span class="p">,</span><span class="w"> </span><span class="m m-Decimal">4</span><span class="p">,</span><span class="w"> </span><span class="m m-Decimal">5</span><span class="p">];</span>
+<span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>balances<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="m m-Decimal">1000</span><span class="p">,</span><span class="w"> </span><span class="m m-Decimal">1500</span><span class="p">,</span><span class="w"> </span><span class="m m-Decimal">800</span><span class="p">,</span><span class="w"> </span><span class="m m-Decimal">1200</span><span class="p">,</span><span class="w"> </span><span class="m m-Decimal">900</span><span class="p">];</span>
+
+ICarbonCredit<span class="p">(</span>diamond<span class="p">).</span>batchInitializeCarbonCredits<span class="p">(</span>tokenIds<span class="p">,</span><span class="w"> </span>balances<span class="p">);</span>
+</code></pre></div>
+
+<h3 id="credit-management-functions">Credit Management Functions<a class="headerlink" href="#credit-management-functions" title="Permanent link">&para;</a></h3>
+<h4 id="retirecarboncredits"><code>retireCarbonCredits()</code><a class="headerlink" href="#retirecarboncredits" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">retireCarbonCredits</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">amount</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyTokenOwner<span class="p">(</span>tokenId<span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Permanently retires carbon credits, representing their use for carbon offsetting.</p>
+<p><strong>Parameters</strong>:
+- <code>tokenId</code> (uint256): ID of the ERC721 token
+- <code>amount</code> (uint256): Amount of carbon credits to retire</p>
+<p><strong>Access Control</strong>: Token owner only</p>
+<p><strong>Validation</strong>:
+- Token ID must be greater than zero
+- Amount must be greater than zero
+- Token must have sufficient credit balance</p>
+<p><strong>Process</strong>:
+1. Validates input parameters
+2. Checks current credit balance
+3. Ensures sufficient credits available
+4. Permanently reduces credit balance
+5. Emits retirement event with remaining balance</p>
+<p><strong>Events</strong>: <code>CarbonCreditsRetired(tokenId, amount, remainingBalance)</code></p>
+<p><strong>Example Usage</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Retire 100 carbon credits for offsetting</span>
+ICarbonCredit<span class="p">(</span>diamond<span class="p">).</span>retireCarbonCredits<span class="p">(</span>tokenId<span class="p">,</span><span class="w"> </span><span class="m m-Decimal">100</span><span class="p">);</span>
+</code></pre></div>
+
+<p><strong>Important</strong>: Retired credits cannot be recovered or reused.</p>
+<h3 id="query-functions">Query Functions<a class="headerlink" href="#query-functions" title="Permanent link">&para;</a></h3>
+<h4 id="getcarboncreditbalance"><code>getCarbonCreditBalance()</code><a class="headerlink" href="#getcarboncreditbalance" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">getCarbonCreditBalance</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Returns the current available carbon credit balance for a token.</p>
+<p><strong>Parameters</strong>:
+- <code>tokenId</code> (uint256): ID of the ERC721 token</p>
+<p><strong>Returns</strong>: Current carbon credit balance (0 if not initialized)</p>
+<p><strong>Example Usage</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="kt">uint256</span><span class="w"> </span><span class="nv">balance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>ICarbonCredit<span class="p">(</span>diamond<span class="p">).</span>getCarbonCreditBalance<span class="p">(</span>tokenId<span class="p">);</span>
+console<span class="p">.</span>log<span class="p">(</span><span class="s2">&quot;Available credits:&quot;</span><span class="p">,</span><span class="w"> </span>balance<span class="p">);</span>
+</code></pre></div>
+
+<hr />
+<h4 id="getcarboncreditstatus"><code>getCarbonCreditStatus()</code><a class="headerlink" href="#getcarboncreditstatus" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">getCarbonCreditStatus</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>CarbonCreditStatus<span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Returns the carbon credit status for a token.</p>
+<p><strong>Parameters</strong>:
+- <code>tokenId</code> (uint256): ID of the ERC721 token</p>
+<p><strong>Returns</strong>: CarbonCreditStatus enum value
+- <code>NONE</code>: No credits initialized
+- <code>ACTIVE</code>: Credits available for retirement
+- <code>RETIRED</code>: All credits have been retired</p>
+<p><strong>Example Usage</strong>:</p>
+<div class="codehilite"><pre><span></span><code>CarbonCreditStatus<span class="w"> </span>status<span class="w"> </span><span class="o">=</span><span class="w"> </span>ICarbonCredit<span class="p">(</span>diamond<span class="p">).</span>getCarbonCreditStatus<span class="p">(</span>tokenId<span class="p">);</span>
+
+<span class="kt">if</span><span class="w"> </span><span class="p">(</span>status<span class="w"> </span><span class="o">==</span><span class="w"> </span>CarbonCreditStatus<span class="p">.</span>ACTIVE<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Credits available for retirement</span>
+<span class="p">}</span><span class="w"> </span><span class="kt">else</span><span class="w"> </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>status<span class="w"> </span><span class="o">==</span><span class="w"> </span>CarbonCreditStatus<span class="p">.</span>RETIRED<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// All credits have been used</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<hr />
+<h4 id="getallcarboncreditbalances"><code>getAllCarbonCreditBalances()</code><a class="headerlink" href="#getallcarboncreditbalances" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">getAllCarbonCreditBalances</span><span class="p">(</span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span>calldata<span class="w"> </span>tokenIds<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Efficiently retrieves carbon credit balances for multiple tokens.</p>
+<p><strong>Parameters</strong>:
+- <code>tokenIds</code> (uint256[]): Array of token IDs to query</p>
+<p><strong>Returns</strong>: Array of balances in the same order as input token IDs</p>
+<p><strong>Gas Optimization</strong>: Single call instead of multiple individual queries</p>
+<p><strong>Example Usage</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>tokenIds<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="m m-Decimal">1</span><span class="p">,</span><span class="w"> </span><span class="m m-Decimal">2</span><span class="p">,</span><span class="w"> </span><span class="m m-Decimal">3</span><span class="p">,</span><span class="w"> </span><span class="m m-Decimal">4</span><span class="p">,</span><span class="w"> </span><span class="m m-Decimal">5</span><span class="p">];</span>
+<span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>balances<span class="w"> </span><span class="o">=</span><span class="w"> </span>ICarbonCredit<span class="p">(</span>diamond<span class="p">).</span>getAllCarbonCreditBalances<span class="p">(</span>tokenIds<span class="p">);</span>
+
+<span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>tokenIds<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>console<span class="p">.</span>log<span class="p">(</span><span class="s2">&quot;Token&quot;</span><span class="p">,</span><span class="w"> </span>tokenIds<span class="p">[</span>i<span class="p">],</span><span class="w"> </span><span class="s2">&quot;has&quot;</span><span class="p">,</span><span class="w"> </span>balances<span class="p">[</span>i<span class="p">],</span><span class="w"> </span><span class="s2">&quot;credits&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="events">Events<a class="headerlink" href="#events" title="Permanent link">&para;</a></h2>
+<h3 id="carboncreditsinitialized">CarbonCreditsInitialized<a class="headerlink" href="#carboncreditsinitialized" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">event</span><span class="w"> </span><span class="nv">CarbonCreditsInitialized</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>tokenId<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">initialBalance</span><span class="p">);</span>
+</code></pre></div>
+
+<p>Emitted when carbon credits are initialized for a token.</p>
+<h3 id="carboncreditsretired">CarbonCreditsRetired<a class="headerlink" href="#carboncreditsretired" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">event</span><span class="w"> </span><span class="nv">CarbonCreditsRetired</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>tokenId<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">amount</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">remainingBalance</span><span class="p">);</span>
+</code></pre></div>
+
+<p>Emitted when carbon credits are retired, including the remaining balance.</p>
+<h2 id="integration-examples">Integration Examples<a class="headerlink" href="#integration-examples" title="Permanent link">&para;</a></h2>
+<h3 id="environmental-nft-marketplace">Environmental NFT Marketplace<a class="headerlink" href="#environmental-nft-marketplace" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// 1. Mint environmental asset NFT</span>
+<span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>IEnvironmentalNFT<span class="p">(</span>diamond<span class="p">).</span>mint<span class="p">(</span>
+<span class="w">    </span>recipient<span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;Forest Conservation Project #1&quot;</span><span class="p">,</span>
+<span class="w">    </span>metadataURI
+<span class="p">);</span>
+
+<span class="c1">// 2. Initialize with carbon credits</span>
+ICarbonCredit<span class="p">(</span>diamond<span class="p">).</span>initializeCarbonCredit<span class="p">(</span>tokenId<span class="p">,</span><span class="w"> </span><span class="m m-Decimal">5000</span><span class="p">);</span>
+
+<span class="c1">// 3. List on marketplace</span>
+IMarketplace<span class="p">(</span>diamond<span class="p">).</span>listItem<span class="p">(</span>
+<span class="w">    </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">),</span>
+<span class="w">    </span><span class="kt">payable</span><span class="p">(</span>seller<span class="p">),</span>
+<span class="w">    </span>tokenId<span class="p">,</span>
+<span class="w">    </span><span class="m m-Decimal">1</span><span class="w"> </span>ether<span class="p">,</span>
+<span class="w">    </span><span class="kt">false</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">)</span>
+<span class="p">);</span>
+</code></pre></div>
+
+<h3 id="carbon-offset-program">Carbon Offset Program<a class="headerlink" href="#carbon-offset-program" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// User purchases environmental NFT and retires credits for offsetting</span>
+<span class="kt">function</span><span class="w"> </span><span class="nv">offsetCarbonFootprint</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">offsetAmount</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Verify user owns the token</span>
+<span class="w">    </span><span class="kt">require</span><span class="p">(</span>IERC721<span class="p">(</span>diamond<span class="p">).</span>ownerOf<span class="p">(</span>tokenId<span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Not token owner&quot;</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Check available credits</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">available</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>ICarbonCredit<span class="p">(</span>diamond<span class="p">).</span>getCarbonCreditBalance<span class="p">(</span>tokenId<span class="p">);</span>
+<span class="w">    </span><span class="kt">require</span><span class="p">(</span>available<span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span>offsetAmount<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Insufficient credits&quot;</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Retire credits for offsetting</span>
+<span class="w">    </span>ICarbonCredit<span class="p">(</span>diamond<span class="p">).</span>retireCarbonCredits<span class="p">(</span>tokenId<span class="p">,</span><span class="w"> </span>offsetAmount<span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Record offset in external system</span>
+<span class="w">    </span>emit<span class="w"> </span>CarbonFootprintOffset<span class="p">(</span><span class="k">msg.sender</span><span class="p">,</span><span class="w"> </span>tokenId<span class="p">,</span><span class="w"> </span>offsetAmount<span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="batch-environmental-asset-management">Batch Environmental Asset Management<a class="headerlink" href="#batch-environmental-asset-management" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Deploy multiple environmental projects</span>
+<span class="kt">function</span><span class="w"> </span><span class="nv">deployEnvironmentalProjects</span><span class="p">(</span>
+<span class="w">    </span><span class="kt">string</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>projectNames<span class="p">,</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>creditAmounts
+<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyOwner<span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>tokenIds<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[](</span>projectNames<span class="p">.</span>length<span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Mint NFTs for each project</span>
+<span class="w">    </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>projectNames<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>tokenIds<span class="p">[</span>i<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>IEnvironmentalNFT<span class="p">(</span>diamond<span class="p">).</span>mint<span class="p">(</span>
+<span class="w">            </span><span class="kt">address</span><span class="p">(</span><span class="kt">this</span><span class="p">),</span>
+<span class="w">            </span>projectNames<span class="p">[</span>i<span class="p">],</span>
+<span class="w">            </span>generateMetadataURI<span class="p">(</span>projectNames<span class="p">[</span>i<span class="p">])</span>
+<span class="w">        </span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Batch initialize carbon credits</span>
+<span class="w">    </span>ICarbonCredit<span class="p">(</span>diamond<span class="p">).</span>batchInitializeCarbonCredits<span class="p">(</span>tokenIds<span class="p">,</span><span class="w"> </span>creditAmounts<span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="portfolio-tracking">Portfolio Tracking<a class="headerlink" href="#portfolio-tracking" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Track carbon credit portfolio</span>
+<span class="kt">function</span><span class="w"> </span><span class="nv">getPortfolioStatus</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">owner</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>tokenIds<span class="p">,</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>balances<span class="p">,</span>
+<span class="w">    </span>CarbonCreditStatus<span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>statuses
+<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Get all tokens owned by user</span>
+<span class="w">    </span>tokenIds<span class="w"> </span><span class="o">=</span><span class="w"> </span>getTokensByOwner<span class="p">(</span>owner<span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Get balances for all tokens</span>
+<span class="w">    </span>balances<span class="w"> </span><span class="o">=</span><span class="w"> </span>ICarbonCredit<span class="p">(</span>diamond<span class="p">).</span>getAllCarbonCreditBalances<span class="p">(</span>tokenIds<span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Get status for each token</span>
+<span class="w">    </span>statuses<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span>CarbonCreditStatus<span class="p">[](</span>tokenIds<span class="p">.</span>length<span class="p">);</span>
+<span class="w">    </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>tokenIds<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>statuses<span class="p">[</span>i<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>ICarbonCredit<span class="p">(</span>diamond<span class="p">).</span>getCarbonCreditStatus<span class="p">(</span>tokenIds<span class="p">[</span>i<span class="p">]);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="environmental-standards-compliance">Environmental Standards Compliance<a class="headerlink" href="#environmental-standards-compliance" title="Permanent link">&para;</a></h2>
+<h3 id="international-standards">International Standards<a class="headerlink" href="#international-standards" title="Permanent link">&para;</a></h3>
+<p>The carbon credit system supports compliance with:
+- <strong>Verified Carbon Standard (VCS)</strong>
+- <strong>Clean Development Mechanism (CDM)</strong>
+- <strong>Gold Standard</strong>
+- <strong>Climate Action Reserve (CAR)</strong></p>
+<h3 id="audit-trail">Audit Trail<a class="headerlink" href="#audit-trail" title="Permanent link">&para;</a></h3>
+<ul>
+<li>All initialization events are permanently recorded</li>
+<li>Retirement events provide complete audit trail</li>
+<li>Status tracking enables compliance verification</li>
+<li>Immutable blockchain records prevent tampering</li>
+</ul>
+<h3 id="double-counting-prevention">Double-Counting Prevention<a class="headerlink" href="#double-counting-prevention" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Credits can only be retired once</li>
+<li>No transfer of retired credits</li>
+<li>Permanent reduction in available balance</li>
+<li>Clear status indication for auditors</li>
+</ul>
+<h2 id="security-considerations">Security Considerations<a class="headerlink" href="#security-considerations" title="Permanent link">&para;</a></h2>
+<h3 id="access-control">Access Control<a class="headerlink" href="#access-control" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Only contract owner can initialize credits</li>
+<li>Only token owner can retire credits</li>
+<li>Token existence validation prevents invalid operations</li>
+</ul>
+<h3 id="data-integrity">Data Integrity<a class="headerlink" href="#data-integrity" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Diamond storage pattern prevents storage collisions</li>
+<li>Immutable retirement records</li>
+<li>Overflow protection in arithmetic operations</li>
+</ul>
+<h3 id="audit-compliance">Audit Compliance<a class="headerlink" href="#audit-compliance" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Complete event logging for all operations</li>
+<li>Transparent balance tracking</li>
+<li>Status verification for compliance reporting</li>
+</ul>
+<h2 id="gas-optimization">Gas Optimization<a class="headerlink" href="#gas-optimization" title="Permanent link">&para;</a></h2>
+<h3 id="batch-operations_1">Batch Operations<a class="headerlink" href="#batch-operations_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>batchInitializeCarbonCredits()</code> for efficient initialization</li>
+<li><code>getAllCarbonCreditBalances()</code> for bulk queries</li>
+<li>Reduced transaction costs for large-scale operations</li>
+</ul>
+<h3 id="storage-efficiency">Storage Efficiency<a class="headerlink" href="#storage-efficiency" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Efficient mapping structures in CarbonCreditLib</li>
+<li>Minimal storage footprint per token</li>
+<li>Optimized for frequent read operations</li>
+</ul>
+<h2 id="error-handling">Error Handling<a class="headerlink" href="#error-handling" title="Permanent link">&para;</a></h2>
+<h3 id="validation-errors">Validation Errors<a class="headerlink" href="#validation-errors" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>"CARBON_CREDIT: INVALID_TOKEN_ID"</code> - Invalid token ID</li>
+<li><code>"CARBON_CREDIT: INVALID_BALANCE"</code> - Invalid balance amount</li>
+<li><code>"CARBON_CREDIT: INVALID_AMOUNT"</code> - Invalid retirement amount</li>
+</ul>
+<h3 id="state-errors">State Errors<a class="headerlink" href="#state-errors" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>"CARBON_CREDIT: NONEXISTENT_TOKEN"</code> - Token doesn't exist</li>
+<li><code>"CARBON_CREDIT: ALREADY_INITIALIZED"</code> - Token already has credits</li>
+<li><code>"CARBON_CREDIT: INSUFFICIENT_BALANCE"</code> - Not enough credits to retire</li>
+</ul>
+<h3 id="access-errors">Access Errors<a class="headerlink" href="#access-errors" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>"Only token owner can call this function"</code> - Unauthorized retirement attempt</li>
+</ul>
+<h2 id="testing-considerations">Testing Considerations<a class="headerlink" href="#testing-considerations" title="Permanent link">&para;</a></h2>
+<h3 id="unit-tests">Unit Tests<a class="headerlink" href="#unit-tests" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Credit initialization with various amounts</li>
+<li>Retirement operations and balance updates</li>
+<li>Status transitions and validation</li>
+<li>Batch operation efficiency</li>
+</ul>
+<h3 id="integration-tests">Integration Tests<a class="headerlink" href="#integration-tests" title="Permanent link">&para;</a></h3>
+<ul>
+<li>NFT marketplace integration</li>
+<li>Multi-token portfolio management</li>
+<li>Environmental compliance workflows</li>
+<li>Audit trail verification</li>
+</ul>
+<h2 id="related-documentation">Related Documentation<a class="headerlink" href="#related-documentation" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../../interfaces/icarbon-credit/">ICarbonCredit</a> - Carbon credit interface</li>
+<li><a href="../../libraries/carbon-credit-lib/">CarbonCreditLib</a> - Carbon credit utility library</li>
+<li><a href="../../../eips/EIP-DRAFT-Carbon-Credit-Standard/">EIP-DRAFT-Carbon-Credit-Standard</a> - EIP specification</li>
+<li><a href="../../guides/environmental-assets.md">Environmental Asset Guide</a> - Implementation guide</li>
+</ul>
+<hr />
+<p><em>This facet implements the Carbon Credit Standard as defined in the Gemforce EIP suite, enabling comprehensive environmental asset management on the blockchain.</em></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../trade-deal-management-facet/" class="btn btn-neutral float-left" title="Trade Deal Management Facet"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../identity-registry-facet/" class="btn btn-neutral float-right" title="Identity Registry Facet">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../trade-deal-management-facet/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../identity-registry-facet/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

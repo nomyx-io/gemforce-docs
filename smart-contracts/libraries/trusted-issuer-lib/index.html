@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Gemforce Team" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>Trusted Issuer Lib - Gemforce Documentation</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Trusted Issuer Lib";
+        var mkdocs_page_input_path = "smart-contracts/libraries/trusted-issuer-lib.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../.." class="icon icon-home"> Gemforce Documentation
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../developer-setup-guide/">Developer Setup Guide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../system-architecture/gemforce-system-architecture/">System Architecture</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Smart Contracts</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../diamond/">Diamond Contract</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Facets</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/marketplace-facet/">Marketplace Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trade-deal-management-facet/">Trade Deal Management Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/carbon-credit-facet/">Carbon Credit Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/identity-registry-facet/">Identity Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trusted-issuers-registry-facet/">Trusted Issuers Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/fee-distributor-facet/">Fee Distributor Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/gemforce-minter-facet/">Gemforce Minter Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/multi-sale-facet/">Multi Sale Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/svg-templates-facet/">SVG Templates Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trade-deal-admin-facet/">Trade Deal Admin Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trade-deal-operations-facet/">Trade Deal Operations Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/collateral-token-factory-facet/">Collateral Token Factory Facet</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Interfaces</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/idiamond/">IDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/imarketplace/">IMarketplace</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/itradedeal/">ITradeDeal</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/icarbon-credit/">ICarbonCredit</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ierc1155-mint/">IERC1155Mint</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ierc734/">IERC734</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ierc735/">IERC735</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" >Libraries</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" href="../carbon-credit-lib/">Carbon Credit Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../trade-deal-lib/">Trade Deal Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../multi-sale-lib/">Multi Sale Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../diamond-factory-lib/">Diamond Factory Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../svg-templates-lib/">SVG Templates Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../attribute-lib/">Attribute Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../variable-price-lib/">Variable Price Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../merkle-prover/">Merkle Prover</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../fee-distributor-lib/">Fee Distributor Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../lib-diamond/">LibDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../diamond-lib/">DiamondLib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../erc721a-lib/">ERC721A Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../erc721a-enumeration-lib/">ERC721A Enumeration Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../strings-lib/">Strings Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../metadata-lib/">Metadata Lib</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">Trusted Issuer Lib</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#overview">Overview</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#key-features">Key Features</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#storage-structure">Storage Structure</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#trustedissuercontract">TrustedIssuerContract</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#trustedissuerstorage">TrustedIssuerStorage</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#storage-position">Storage Position</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#core-functions">Core Functions</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#storage-access">Storage Access</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#issuer-management">Issuer Management</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#issuer-queries">Issuer Queries</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#claim-topic-management">Claim Topic Management</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#internal-helper-functions">Internal Helper Functions</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data-structures">Data Structures</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#trustedissuer">TrustedIssuer</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usage-examples">Usage Examples</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#adding-a-trusted-issuer">Adding a Trusted Issuer</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#validating-an-issuer">Validating an Issuer</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#getting-all-trusted-issuers">Getting All Trusted Issuers</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#updating-issuer-permissions">Updating Issuer Permissions</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#integration-with-identity-system">Integration with Identity System</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#erc734erc735-integration">ERC734/ERC735 Integration</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#claim-topic-constants">Claim Topic Constants</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#security-features">Security Features</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#access-control">Access Control</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#validation-mechanisms">Validation Mechanisms</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#gas-optimization">Gas Optimization</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#common-claim-topics">Common Claim Topics</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#identity-verification">Identity Verification</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#financial-compliance">Financial Compliance</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#platform-specific">Platform-Specific</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#best-practices">Best Practices</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#issuer-management_1">Issuer Management</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#security-considerations">Security Considerations</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#gas-optimization_1">Gas Optimization</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#error-handling">Error Handling</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#common-validation-checks">Common Validation Checks</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#event-logging">Event Logging</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#related-documentation">Related Documentation</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#migration-and-upgrades">Migration and Upgrades</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#storage-compatibility">Storage Compatibility</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#upgrade-considerations">Upgrade Considerations</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../set-libraries/">Set Libraries</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Cloud Functions</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/blockchain/">Blockchain Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/dfns/">DFNS Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/contracts/">Contract Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/authentication/">Authentication Functions</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">API Documentation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../api-documentation/gemforce-api-documentation/">Full API Reference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../api-documentation/gemforce-api-quick-reference/">Quick Reference</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">EIPs (Ethereum Improvement Proposals)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Diamond-Enhanced-Marketplace/">Diamond-Enhanced Marketplace</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Multi-Token-Sale-Standard/">Multi-Token Sale Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Collateralized-Trade-Deal-Standard/">Collateralized Trade Deal Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Enhanced-Identity-System/">Enhanced Identity System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Diamond-Factory-Standard/">Diamond Factory Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Carbon-Credit-Standard/">Carbon Credit Standard</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">User Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-administrator-guide/">Administrator Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-deployer-guide/">Deployer Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-integrator-guide/">Integrator Guide</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../external-services/gemforce-external-services/">External Services</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-documentation-gap-analysis/">Documentation Gap Analysis</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../documentation-progress-summary/">Documentation Progress Summary</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../documentation-plan/">Documentation Plan</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">Gemforce Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Smart Contracts</li>
+          <li class="breadcrumb-item">Libraries</li>
+      <li class="breadcrumb-item active">Trusted Issuer Lib</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="trustedissuerlib-library">TrustedIssuerLib Library<a class="headerlink" href="#trustedissuerlib-library" title="Permanent link">&para;</a></h1>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p><a href="/Users/sschepis/Development/gem-base/contracts/libraries/TrustedIssuerLib.sol"><code>TrustedIssuerLib</code></a> is a comprehensive library for managing trusted claim issuers in the Gemforce identity system. This library implements the trusted issuer registry functionality, allowing the platform to maintain a list of authorized entities that can issue identity claims for KYC/AML compliance and other verification purposes.</p>
+<h2 id="key-features">Key Features<a class="headerlink" href="#key-features" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Trusted Issuer Management</strong>: Add, remove, and update trusted claim issuers</li>
+<li><strong>Claim Topic Authorization</strong>: Control which claim topics each issuer can validate</li>
+<li><strong>Identity Verification</strong>: Integration with ERC734/ERC735 identity standards</li>
+<li><strong>Access Control</strong>: Owner-based permissions for issuer management</li>
+<li><strong>Efficient Lookups</strong>: Optimized storage for fast issuer validation</li>
+<li><strong>Batch Operations</strong>: Support for multiple claim topics per issuer</li>
+</ul>
+<h2 id="storage-structure">Storage Structure<a class="headerlink" href="#storage-structure" title="Permanent link">&para;</a></h2>
+<h3 id="trustedissuercontract">TrustedIssuerContract<a class="headerlink" href="#trustedissuercontract" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">struct</span><span class="w"> </span><span class="nv">TrustedIssuerContract</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span>TrustedIssuer<span class="p">)</span><span class="w"> </span>trustedIssuers<span class="p">;</span>
+<span class="w">    </span><span class="kt">address</span><span class="p">[]</span><span class="w"> </span>trustedIssuerAddresses<span class="p">;</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">owner</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="trustedissuerstorage">TrustedIssuerStorage<a class="headerlink" href="#trustedissuerstorage" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">struct</span><span class="w"> </span><span class="nv">TrustedIssuerStorage</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>TrustedIssuerContract<span class="w"> </span>trustedIssuerContract<span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="storage-position">Storage Position<a class="headerlink" href="#storage-position" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">bytes32</span><span class="w"> </span><span class="k">internal </span><span class="nv">constant</span><span class="w"> </span>DIAMOND_STORAGE_POSITION<span class="w"> </span><span class="o">=</span><span class="w"> </span>
+<span class="w">    </span><span class="nb">keccak256</span><span class="p">(</span><span class="s2">&quot;diamond.nomyx.gemforce.TrustedIssuerStorage.storage&quot;</span><span class="p">);</span>
+</code></pre></div>
+
+<h2 id="core-functions">Core Functions<a class="headerlink" href="#core-functions" title="Permanent link">&para;</a></h2>
+<h3 id="storage-access">Storage Access<a class="headerlink" href="#storage-access" title="Permanent link">&para;</a></h3>
+<h4 id="trustedissuerstorage_1"><code>trustedIssuerStorage()</code><a class="headerlink" href="#trustedissuerstorage_1" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">trustedIssuerStorage</span><span class="p">()</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>pure<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>TrustedIssuerStorage<span class="w"> </span>storage<span class="w"> </span>ds<span class="p">)</span>
+</code></pre></div>
+
+<p>Returns the trusted issuer storage struct using assembly for gas efficiency.</p>
+<h3 id="issuer-management">Issuer Management<a class="headerlink" href="#issuer-management" title="Permanent link">&para;</a></h3>
+<h4 id="_addtrustedissuer"><code>_addTrustedIssuer()</code><a class="headerlink" href="#_addtrustedissuer" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">_addTrustedIssuer</span><span class="p">(</span>
+<span class="w">    </span>TrustedIssuerContract<span class="w"> </span>storage<span class="p">,</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">_trustedIssuer</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="kt">uint</span><span class="p">[]</span><span class="w"> </span>calldata<span class="w"> </span>_claimTopics
+<span class="p">)</span><span class="w"> </span><span class="kt">internal</span>
+</code></pre></div>
+
+<p>Adds a new trusted issuer with specified claim topics.</p>
+<p><strong>Parameters:</strong>
+- <code>_trustedIssuer</code>: Address of the claim issuer contract
+- <code>_claimTopics</code>: Array of claim topic IDs the issuer can validate</p>
+<p><strong>Features:</strong>
+- <strong>Duplicate Prevention</strong>: Only adds issuer if not already present
+- <strong>Topic Assignment</strong>: Associates specific claim topics with the issuer
+- <strong>Address Tracking</strong>: Maintains array of issuer addresses for enumeration</p>
+<h4 id="removetrustedissuer"><code>removeTrustedIssuer()</code><a class="headerlink" href="#removetrustedissuer" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">removeTrustedIssuer</span><span class="p">(</span>TrustedIssuerContract<span class="w"> </span>storage<span class="w"> </span>self<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">_trustedIssuer</span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span>
+</code></pre></div>
+
+<p>Removes a trusted issuer from the registry.</p>
+<p><strong>Parameters:</strong>
+- <code>_trustedIssuer</code>: Address of the issuer to remove</p>
+<p><strong>Note:</strong> This function only removes the issuer mapping but doesn't clean up the address array for gas efficiency.</p>
+<h4 id="updateissuerclaimtopics"><code>updateIssuerClaimTopics()</code><a class="headerlink" href="#updateissuerclaimtopics" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">updateIssuerClaimTopics</span><span class="p">(</span>
+<span class="w">    </span>TrustedIssuerContract<span class="w"> </span>storage<span class="w"> </span>self<span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">_trustedIssuer</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="kt">uint</span><span class="p">[]</span><span class="w"> </span>calldata<span class="w"> </span>_claimTopics
+<span class="p">)</span><span class="w"> </span><span class="kt">internal</span>
+</code></pre></div>
+
+<p>Updates the claim topics that a trusted issuer is authorized to validate.</p>
+<p><strong>Parameters:</strong>
+- <code>_trustedIssuer</code>: Address of the issuer to update
+- <code>_claimTopics</code>: New array of authorized claim topics</p>
+<h3 id="issuer-queries">Issuer Queries<a class="headerlink" href="#issuer-queries" title="Permanent link">&para;</a></h3>
+<h4 id="_gettrustedissuer"><code>_getTrustedIssuer()</code><a class="headerlink" href="#_gettrustedissuer" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">_getTrustedIssuer</span><span class="p">(</span>
+<span class="w">    </span>TrustedIssuerContract<span class="w"> </span>storage<span class="p">,</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">issuerAddress</span>
+<span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>TrustedIssuer<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>trustedIssuer<span class="p">)</span>
+</code></pre></div>
+
+<p>Retrieves the trusted issuer struct for a given address.</p>
+<h4 id="gettrustedissuers"><code>getTrustedIssuers()</code><a class="headerlink" href="#gettrustedissuers" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">getTrustedIssuers</span><span class="p">(</span>TrustedIssuerContract<span class="w"> </span>storage<span class="w"> </span>self<span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>TrustedIssuer<span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>trustedIssuers<span class="p">)</span>
+</code></pre></div>
+
+<p>Returns an array of all trusted issuers in the registry.</p>
+<p><strong>Returns:</strong>
+- Array of <code>TrustedIssuer</code> structs containing issuer details</p>
+<h4 id="istrustedissuer"><code>isTrustedIssuer()</code><a class="headerlink" href="#istrustedissuer" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">isTrustedIssuer</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">_issuer</span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="p">(</span><span class="kt">bool</span><span class="w"> </span><span class="nv">isTrusted</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Checks if an address is a trusted issuer.</p>
+<p><strong>Parameters:</strong>
+- <code>_issuer</code>: Address to check</p>
+<p><strong>Returns:</strong>
+- <code>true</code> if the address is a trusted issuer, <code>false</code> otherwise</p>
+<h3 id="claim-topic-management">Claim Topic Management<a class="headerlink" href="#claim-topic-management" title="Permanent link">&para;</a></h3>
+<h4 id="gettrustedissuerclaimtopics"><code>getTrustedIssuerClaimTopics()</code><a class="headerlink" href="#gettrustedissuerclaimtopics" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">getTrustedIssuerClaimTopics</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">_trustedIssuer</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="p">(</span><span class="kt">uint</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Returns the claim topics that a trusted issuer is authorized to validate.</p>
+<p><strong>Parameters:</strong>
+- <code>_trustedIssuer</code>: Address of the trusted issuer</p>
+<p><strong>Returns:</strong>
+- Array of claim topic IDs</p>
+<h4 id="hastrustedissuerclaimtopic"><code>hasTrustedIssuerClaimTopic()</code><a class="headerlink" href="#hastrustedissuerclaimtopic" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">hasTrustedIssuerClaimTopic</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">_issuer</span><span class="p">,</span><span class="w"> </span><span class="kt">uint</span><span class="w"> </span><span class="nv">_claimTopic</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="p">(</span><span class="kt">bool</span><span class="w"> </span><span class="nv">hasTopic</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Checks if a trusted issuer is authorized for a specific claim topic.</p>
+<p><strong>Parameters:</strong>
+- <code>_issuer</code>: Address of the issuer
+- <code>_claimTopic</code>: Claim topic ID to check</p>
+<p><strong>Returns:</strong>
+- <code>true</code> if the issuer is authorized for the topic, <code>false</code> otherwise</p>
+<h3 id="internal-helper-functions">Internal Helper Functions<a class="headerlink" href="#internal-helper-functions" title="Permanent link">&para;</a></h3>
+<h4 id="_settrustedissuer"><code>_setTrustedIssuer()</code><a class="headerlink" href="#_settrustedissuer" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">_setTrustedIssuer</span><span class="p">(</span>
+<span class="w">    </span>TrustedIssuerContract<span class="w"> </span>storage<span class="w"> </span>self<span class="p">,</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">issuerAddress</span><span class="p">,</span>
+<span class="w">    </span>TrustedIssuer<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>trustedIssuer
+<span class="p">)</span><span class="w"> </span><span class="kt">internal</span>
+</code></pre></div>
+
+<p>Internal function to set or update a trusted issuer.</p>
+<p><strong>Features:</strong>
+- <strong>Address Tracking</strong>: Adds to address array if new issuer
+- <strong>Mapping Update</strong>: Updates the issuer mapping
+- <strong>Efficient Storage</strong>: Avoids duplicate address entries</p>
+<h2 id="data-structures">Data Structures<a class="headerlink" href="#data-structures" title="Permanent link">&para;</a></h2>
+<h3 id="trustedissuer">TrustedIssuer<a class="headerlink" href="#trustedissuer" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">struct</span><span class="w"> </span><span class="nv">TrustedIssuer</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">claimIssuer</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">uint</span><span class="p">[]</span><span class="w"> </span>claimTopics<span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Fields:</strong>
+- <code>claimIssuer</code>: Address of the claim issuer contract
+- <code>claimTopics</code>: Array of claim topic IDs the issuer can validate</p>
+<h2 id="usage-examples">Usage Examples<a class="headerlink" href="#usage-examples" title="Permanent link">&para;</a></h2>
+<h3 id="adding-a-trusted-issuer">Adding a Trusted Issuer<a class="headerlink" href="#adding-a-trusted-issuer" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">addKYCIssuer</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">issuerAddress</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyOwner<span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">uint</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>kycTopics<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="kt">uint</span><span class="p">[](</span><span class="m m-Decimal">2</span><span class="p">);</span>
+<span class="w">    </span>kycTopics<span class="p">[</span><span class="m m-Decimal">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">1</span><span class="p">;</span><span class="w"> </span><span class="c1">// KYC topic</span>
+<span class="w">    </span>kycTopics<span class="p">[</span><span class="m m-Decimal">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">2</span><span class="p">;</span><span class="w"> </span><span class="c1">// AML topic</span>
+
+<span class="w">    </span>TrustedIssuerLib<span class="p">.</span>_addTrustedIssuer<span class="p">(</span>
+<span class="w">        </span>trustedIssuerStorage<span class="p">().</span>trustedIssuerContract<span class="p">,</span>
+<span class="w">        </span>issuerAddress<span class="p">,</span>
+<span class="w">        </span>kycTopics
+<span class="w">    </span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="validating-an-issuer">Validating an Issuer<a class="headerlink" href="#validating-an-issuer" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">validateClaim</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">issuer</span><span class="p">,</span><span class="w"> </span><span class="kt">uint</span><span class="w"> </span><span class="nv">claimTopic</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bool</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">return</span><span class="w"> </span>TrustedIssuerLib<span class="p">.</span>isTrustedIssuer<span class="p">(</span>issuer<span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>
+<span class="w">           </span>TrustedIssuerLib<span class="p">.</span>hasTrustedIssuerClaimTopic<span class="p">(</span>issuer<span class="p">,</span><span class="w"> </span>claimTopic<span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="getting-all-trusted-issuers">Getting All Trusted Issuers<a class="headerlink" href="#getting-all-trusted-issuers" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">getAllTrustedIssuers</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>TrustedIssuer<span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">return</span><span class="w"> </span>TrustedIssuerLib<span class="p">.</span>getTrustedIssuers<span class="p">(</span>
+<span class="w">        </span>trustedIssuerStorage<span class="p">().</span>trustedIssuerContract
+<span class="w">    </span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="updating-issuer-permissions">Updating Issuer Permissions<a class="headerlink" href="#updating-issuer-permissions" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">updateIssuerTopics</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">issuer</span><span class="p">,</span><span class="w"> </span><span class="kt">uint</span><span class="p">[]</span><span class="w"> </span>calldata<span class="w"> </span>newTopics<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyOwner<span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>TrustedIssuerLib<span class="p">.</span>updateIssuerClaimTopics<span class="p">(</span>
+<span class="w">        </span>trustedIssuerStorage<span class="p">().</span>trustedIssuerContract<span class="p">,</span>
+<span class="w">        </span>issuer<span class="p">,</span>
+<span class="w">        </span>newTopics
+<span class="w">    </span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="integration-with-identity-system">Integration with Identity System<a class="headerlink" href="#integration-with-identity-system" title="Permanent link">&para;</a></h2>
+<h3 id="erc734erc735-integration">ERC734/ERC735 Integration<a class="headerlink" href="#erc734erc735-integration" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Validate a claim during identity verification</span>
+<span class="kt">function</span><span class="w"> </span><span class="nv">validateIdentityClaim</span><span class="p">(</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">identity</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">uint</span><span class="w"> </span><span class="nv">claimTopic</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">issuer</span>
+<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bool</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Check if issuer is trusted</span>
+<span class="w">    </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span>TrustedIssuerLib<span class="p">.</span>isTrustedIssuer<span class="p">(</span>issuer<span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span><span class="kt">false</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Check if issuer can validate this topic</span>
+<span class="w">    </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span>TrustedIssuerLib<span class="p">.</span>hasTrustedIssuerClaimTopic<span class="p">(</span>issuer<span class="p">,</span><span class="w"> </span>claimTopic<span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span><span class="kt">false</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Additional validation logic...</span>
+<span class="w">    </span><span class="kt">return</span><span class="w"> </span><span class="kt">true</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="claim-topic-constants">Claim Topic Constants<a class="headerlink" href="#claim-topic-constants" title="Permanent link">&para;</a></h3>
+<p>Common claim topics used in the system:</p>
+<div class="codehilite"><pre><span></span><code><span class="kt">uint256</span><span class="w"> </span><span class="nv">constant</span><span class="w"> </span>KYC_TOPIC<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">1</span><span class="p">;</span>
+<span class="kt">uint256</span><span class="w"> </span><span class="nv">constant</span><span class="w"> </span>AML_TOPIC<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">2</span><span class="p">;</span>
+<span class="kt">uint256</span><span class="w"> </span><span class="nv">constant</span><span class="w"> </span>ACCREDITED_INVESTOR_TOPIC<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">3</span><span class="p">;</span>
+<span class="kt">uint256</span><span class="w"> </span><span class="nv">constant</span><span class="w"> </span>RESIDENCE_TOPIC<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">4</span><span class="p">;</span>
+<span class="kt">uint256</span><span class="w"> </span><span class="nv">constant</span><span class="w"> </span>SANCTIONS_TOPIC<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">5</span><span class="p">;</span>
+</code></pre></div>
+
+<h2 id="security-features">Security Features<a class="headerlink" href="#security-features" title="Permanent link">&para;</a></h2>
+<h3 id="access-control">Access Control<a class="headerlink" href="#access-control" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Owner-Only Operations</strong>: Critical functions require owner permissions</li>
+<li><strong>Issuer Validation</strong>: Comprehensive validation before adding issuers</li>
+<li><strong>Topic Authorization</strong>: Granular control over claim topic permissions</li>
+</ul>
+<h3 id="validation-mechanisms">Validation Mechanisms<a class="headerlink" href="#validation-mechanisms" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Address Verification</strong>: Ensures issuer addresses are valid contracts</li>
+<li><strong>Topic Consistency</strong>: Validates claim topic assignments</li>
+<li><strong>State Integrity</strong>: Maintains consistent storage state</li>
+</ul>
+<h3 id="gas-optimization">Gas Optimization<a class="headerlink" href="#gas-optimization" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Efficient Lookups</strong>: O(1) issuer validation using mappings</li>
+<li><strong>Batch Operations</strong>: Support for multiple topics in single transaction</li>
+<li><strong>Storage Patterns</strong>: Optimized storage layout for minimal gas costs</li>
+</ul>
+<h2 id="common-claim-topics">Common Claim Topics<a class="headerlink" href="#common-claim-topics" title="Permanent link">&para;</a></h2>
+<h3 id="identity-verification">Identity Verification<a class="headerlink" href="#identity-verification" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>KYC (Know Your Customer)</strong>: Topic ID 1</li>
+<li><strong>AML (Anti-Money Laundering)</strong>: Topic ID 2</li>
+<li><strong>Sanctions Screening</strong>: Topic ID 5</li>
+</ul>
+<h3 id="financial-compliance">Financial Compliance<a class="headerlink" href="#financial-compliance" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Accredited Investor</strong>: Topic ID 3</li>
+<li><strong>Residence Verification</strong>: Topic ID 4</li>
+<li><strong>Tax Status</strong>: Topic ID 6</li>
+</ul>
+<h3 id="platform-specific">Platform-Specific<a class="headerlink" href="#platform-specific" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Whitelist Status</strong>: Topic ID 100</li>
+<li><strong>VIP Status</strong>: Topic ID 101</li>
+<li><strong>Trading Permissions</strong>: Topic ID 102</li>
+</ul>
+<h2 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h2>
+<h3 id="issuer-management_1">Issuer Management<a class="headerlink" href="#issuer-management_1" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Thorough Vetting</strong>: Carefully vet all trusted issuers before adding</li>
+<li><strong>Regular Audits</strong>: Periodically review and update issuer list</li>
+<li><strong>Topic Specificity</strong>: Assign only necessary claim topics to each issuer</li>
+<li><strong>Documentation</strong>: Maintain clear documentation of issuer purposes</li>
+</ol>
+<h3 id="security-considerations">Security Considerations<a class="headerlink" href="#security-considerations" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Multi-Sig Control</strong>: Use multi-signature wallets for owner operations</li>
+<li><strong>Gradual Rollout</strong>: Add new issuers gradually and monitor performance</li>
+<li><strong>Emergency Procedures</strong>: Have procedures for quickly removing compromised issuers</li>
+<li><strong>Backup Systems</strong>: Maintain backup issuer systems for critical topics</li>
+</ol>
+<h3 id="gas-optimization_1">Gas Optimization<a class="headerlink" href="#gas-optimization_1" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Batch Updates</strong>: Group multiple issuer updates in single transactions</li>
+<li><strong>Efficient Queries</strong>: Use view functions for validation checks</li>
+<li><strong>Storage Cleanup</strong>: Periodically clean up removed issuer addresses</li>
+<li><strong>Topic Grouping</strong>: Group related claim topics for efficiency</li>
+</ol>
+<h2 id="error-handling">Error Handling<a class="headerlink" href="#error-handling" title="Permanent link">&para;</a></h2>
+<h3 id="common-validation-checks">Common Validation Checks<a class="headerlink" href="#common-validation-checks" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">modifier</span><span class="w"> </span>onlyTrustedIssuer<span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">issuer</span><span class="p">,</span><span class="w"> </span><span class="kt">uint</span><span class="w"> </span><span class="nv">claimTopic</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">require</span><span class="p">(</span>
+<span class="w">        </span>TrustedIssuerLib<span class="p">.</span>isTrustedIssuer<span class="p">(</span>issuer<span class="p">),</span>
+<span class="w">        </span><span class="s2">&quot;TrustedIssuerLib: Issuer not trusted&quot;</span>
+<span class="w">    </span><span class="p">);</span>
+<span class="w">    </span><span class="kt">require</span><span class="p">(</span>
+<span class="w">        </span>TrustedIssuerLib<span class="p">.</span>hasTrustedIssuerClaimTopic<span class="p">(</span>issuer<span class="p">,</span><span class="w"> </span>claimTopic<span class="p">),</span>
+<span class="w">        </span><span class="s2">&quot;TrustedIssuerLib: Issuer not authorized for topic&quot;</span>
+<span class="w">    </span><span class="p">);</span>
+<span class="w">    </span>_<span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="event-logging">Event Logging<a class="headerlink" href="#event-logging" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">event</span><span class="w"> </span><span class="nv">TrustedIssuerAdded</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>issuer<span class="p">,</span><span class="w"> </span><span class="kt">uint</span><span class="p">[]</span><span class="w"> </span>claimTopics<span class="p">);</span>
+<span class="kt">event</span><span class="w"> </span><span class="nv">TrustedIssuerRemoved</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>issuer<span class="p">);</span>
+<span class="kt">event</span><span class="w"> </span><span class="nv">IssuerTopicsUpdated</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>issuer<span class="p">,</span><span class="w"> </span><span class="kt">uint</span><span class="p">[]</span><span class="w"> </span>newTopics<span class="p">);</span>
+</code></pre></div>
+
+<h2 id="related-documentation">Related Documentation<a class="headerlink" href="#related-documentation" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../../facets/identity-registry-facet/">Identity Registry Facet</a> - Identity management interface</li>
+<li><a href="../../facets/trusted-issuers-registry-facet/">Trusted Issuers Registry Facet</a> - Registry management interface</li>
+<li><a href="../../interfaces/ierc734/">ERC734 Interface</a> - Key Manager interface</li>
+<li><a href="../../interfaces/ierc735/">ERC735 Interface</a> - Claim Holder interface</li>
+<li><a href="../../../eips/EIP-DRAFT-Enhanced-Identity-System/">Enhanced Identity System EIP</a> - Identity system specification</li>
+</ul>
+<h2 id="migration-and-upgrades">Migration and Upgrades<a class="headerlink" href="#migration-and-upgrades" title="Permanent link">&para;</a></h2>
+<h3 id="storage-compatibility">Storage Compatibility<a class="headerlink" href="#storage-compatibility" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Maintains backward compatibility with existing issuer data</li>
+<li>Supports incremental updates to claim topic assignments</li>
+<li>Provides migration paths for issuer address changes</li>
+</ul>
+<h3 id="upgrade-considerations">Upgrade Considerations<a class="headerlink" href="#upgrade-considerations" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Storage position remains constant across upgrades</li>
+<li>New claim topics can be added without affecting existing issuers</li>
+<li>Issuer removal requires careful consideration of dependent systems</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../metadata-lib/" class="btn btn-neutral float-left" title="Metadata Lib"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../set-libraries/" class="btn btn-neutral float-right" title="Set Libraries">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../metadata-lib/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../set-libraries/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

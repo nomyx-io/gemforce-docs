@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Gemforce Team" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>DiamondLib - Gemforce Documentation</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "DiamondLib";
+        var mkdocs_page_input_path = "smart-contracts/libraries/diamond-lib.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../.." class="icon icon-home"> Gemforce Documentation
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../developer-setup-guide/">Developer Setup Guide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../system-architecture/gemforce-system-architecture/">System Architecture</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Smart Contracts</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../diamond/">Diamond Contract</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Facets</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/marketplace-facet/">Marketplace Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trade-deal-management-facet/">Trade Deal Management Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/carbon-credit-facet/">Carbon Credit Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/identity-registry-facet/">Identity Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trusted-issuers-registry-facet/">Trusted Issuers Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/fee-distributor-facet/">Fee Distributor Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/gemforce-minter-facet/">Gemforce Minter Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/multi-sale-facet/">Multi Sale Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/svg-templates-facet/">SVG Templates Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trade-deal-admin-facet/">Trade Deal Admin Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trade-deal-operations-facet/">Trade Deal Operations Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/collateral-token-factory-facet/">Collateral Token Factory Facet</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Interfaces</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/idiamond/">IDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/imarketplace/">IMarketplace</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/itradedeal/">ITradeDeal</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/icarbon-credit/">ICarbonCredit</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ierc1155-mint/">IERC1155Mint</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ierc734/">IERC734</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ierc735/">IERC735</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" >Libraries</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" href="../carbon-credit-lib/">Carbon Credit Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../trade-deal-lib/">Trade Deal Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../multi-sale-lib/">Multi Sale Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../diamond-factory-lib/">Diamond Factory Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../svg-templates-lib/">SVG Templates Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../attribute-lib/">Attribute Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../variable-price-lib/">Variable Price Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../merkle-prover/">Merkle Prover</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../fee-distributor-lib/">Fee Distributor Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../lib-diamond/">LibDiamond</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">DiamondLib</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#overview">Overview</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#key-features">Key Features</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#storage-structure">Storage Structure</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#diamond-storage-position">Diamond Storage Position</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#core-functions">Core Functions</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#storage-access">Storage Access</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#dependencies">Dependencies</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#standard-interfaces">Standard Interfaces</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#diamond-interfaces">Diamond Interfaces</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#related-libraries">Related Libraries</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#initialization">Initialization</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usage-patterns">Usage Patterns</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#accessing-diamond-storage">Accessing Diamond Storage</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#integration-with-facets">Integration with Facets</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#storage-architecture">Storage Architecture</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#separation-of-concerns">Separation of Concerns</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#storage-isolation-benefits">Storage Isolation Benefits</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#integration-points">Integration Points</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#core-diamond-system">Core Diamond System</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#token-systems">Token Systems</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#facet-architecture">Facet Architecture</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#best-practices">Best Practices</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#storage-access_1">Storage Access</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#development-patterns">Development Patterns</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#security-considerations">Security Considerations</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#relationship-to-libdiamond">Relationship to LibDiamond</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#migration-and-upgrades">Migration and Upgrades</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#storage-compatibility">Storage Compatibility</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#upgrade-considerations">Upgrade Considerations</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#related-documentation">Related Documentation</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#technical-notes">Technical Notes</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#assembly-usage">Assembly Usage</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#storage-position-calculation">Storage Position Calculation</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../erc721a-lib/">ERC721A Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../erc721a-enumeration-lib/">ERC721A Enumeration Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../strings-lib/">Strings Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../metadata-lib/">Metadata Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../trusted-issuer-lib/">Trusted Issuer Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../set-libraries/">Set Libraries</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Cloud Functions</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/blockchain/">Blockchain Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/dfns/">DFNS Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/contracts/">Contract Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/authentication/">Authentication Functions</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">API Documentation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../api-documentation/gemforce-api-documentation/">Full API Reference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../api-documentation/gemforce-api-quick-reference/">Quick Reference</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">EIPs (Ethereum Improvement Proposals)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Diamond-Enhanced-Marketplace/">Diamond-Enhanced Marketplace</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Multi-Token-Sale-Standard/">Multi-Token Sale Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Collateralized-Trade-Deal-Standard/">Collateralized Trade Deal Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Enhanced-Identity-System/">Enhanced Identity System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Diamond-Factory-Standard/">Diamond Factory Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Carbon-Credit-Standard/">Carbon Credit Standard</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">User Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-administrator-guide/">Administrator Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-deployer-guide/">Deployer Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-integrator-guide/">Integrator Guide</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../external-services/gemforce-external-services/">External Services</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-documentation-gap-analysis/">Documentation Gap Analysis</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../documentation-progress-summary/">Documentation Progress Summary</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../documentation-plan/">Documentation Plan</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">Gemforce Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Smart Contracts</li>
+          <li class="breadcrumb-item">Libraries</li>
+      <li class="breadcrumb-item active">DiamondLib</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="diamondlib-library">DiamondLib Library<a class="headerlink" href="#diamondlib-library" title="Permanent link">&para;</a></h1>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p><a href="/Users/sschepis/Development/gem-base/contracts/libraries/DiamondLib.sol"><code>DiamondLib</code></a> is a specialized diamond storage library that provides access to the Gemforce-specific diamond storage structure. This library extends the standard Diamond pattern with application-specific storage management for the Gemforce platform.</p>
+<h2 id="key-features">Key Features<a class="headerlink" href="#key-features" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Gemforce Diamond Storage</strong>: Provides access to platform-specific diamond storage</li>
+<li><strong>Storage Isolation</strong>: Uses unique storage position for Gemforce diamond data</li>
+<li><strong>ERC Standards Integration</strong>: Imports and integrates with ERC721, ERC165, and other standards</li>
+<li><strong>Diamond Pattern Extension</strong>: Extends the standard diamond pattern for Gemforce use cases</li>
+</ul>
+<h2 id="storage-structure">Storage Structure<a class="headerlink" href="#storage-structure" title="Permanent link">&para;</a></h2>
+<h3 id="diamond-storage-position">Diamond Storage Position<a class="headerlink" href="#diamond-storage-position" title="Permanent link">&para;</a></h3>
+<p>The library uses a unique storage position to avoid conflicts with other diamond implementations:</p>
+<div class="codehilite"><pre><span></span><code><span class="kt">bytes32</span><span class="w"> </span><span class="k">internal </span><span class="nv">constant</span><span class="w"> </span>DIAMOND_STORAGE_POSITION<span class="w"> </span><span class="o">=</span><span class="w"> </span>
+<span class="w">    </span><span class="nb">keccak256</span><span class="p">(</span><span class="s2">&quot;diamond.nextblock.bitgem.app.DiamondStorage.storage&quot;</span><span class="p">);</span>
+</code></pre></div>
+
+<p>This ensures that Gemforce diamond storage is isolated from other diamond implementations that might be used in the same contract ecosystem.</p>
+<h2 id="core-functions">Core Functions<a class="headerlink" href="#core-functions" title="Permanent link">&para;</a></h2>
+<h3 id="storage-access">Storage Access<a class="headerlink" href="#storage-access" title="Permanent link">&para;</a></h3>
+<h4 id="diamondstorage"><code>diamondStorage()</code><a class="headerlink" href="#diamondstorage" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">diamondStorage</span><span class="p">()</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>pure<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>DiamondStorage<span class="w"> </span>storage<span class="w"> </span>ds<span class="p">)</span>
+</code></pre></div>
+
+<p>Returns the Gemforce-specific diamond storage struct using assembly for gas-efficient access.</p>
+<p><strong>Returns:</strong>
+- <code>ds</code>: The diamond storage struct containing all platform-specific data</p>
+<p><strong>Implementation Details:</strong>
+- Uses assembly for direct storage slot access
+- Provides gas-efficient storage access pattern
+- Ensures consistent storage location across all facets</p>
+<h2 id="dependencies">Dependencies<a class="headerlink" href="#dependencies" title="Permanent link">&para;</a></h2>
+<p>The library imports several key interfaces and libraries:</p>
+<h3 id="standard-interfaces">Standard Interfaces<a class="headerlink" href="#standard-interfaces" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>IERC165</strong>: Interface detection standard</li>
+<li><strong>IERC721</strong>: Non-fungible token standard</li>
+<li><strong>IERC721Metadata</strong>: NFT metadata extension</li>
+</ul>
+<h3 id="diamond-interfaces">Diamond Interfaces<a class="headerlink" href="#diamond-interfaces" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>IDiamondCut</strong>: Diamond upgrade operations</li>
+<li><strong>IDiamondLoupe</strong>: Diamond introspection</li>
+<li><strong>IERC173</strong>: Contract ownership standard</li>
+<li><strong>DiamondStorage</strong>: Platform-specific storage structure</li>
+<li><strong>IToken</strong>: Token definition interface</li>
+</ul>
+<h3 id="related-libraries">Related Libraries<a class="headerlink" href="#related-libraries" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>LibDiamond</strong>: Core diamond functionality</li>
+<li><strong>ERC721ALib</strong>: ERC721A implementation library</li>
+</ul>
+<h3 id="initialization">Initialization<a class="headerlink" href="#initialization" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>DiamondInit</strong>: Diamond initialization contract</li>
+</ul>
+<h2 id="usage-patterns">Usage Patterns<a class="headerlink" href="#usage-patterns" title="Permanent link">&para;</a></h2>
+<h3 id="accessing-diamond-storage">Accessing Diamond Storage<a class="headerlink" href="#accessing-diamond-storage" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>DiamondLib<span class="w"> </span><span class="p">}</span><span class="w"> </span>from<span class="w"> </span><span class="s2">&quot;./libraries/DiamondLib.sol&quot;</span><span class="p">;</span>
+
+<span class="k">contract</span><span class="w"> </span><span class="ni">MyFacet</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">someFunction</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>DiamondStorage<span class="w"> </span>storage<span class="w"> </span>ds<span class="w"> </span><span class="o">=</span><span class="w"> </span>DiamondLib<span class="p">.</span>diamondStorage<span class="p">();</span>
+<span class="w">        </span><span class="c1">// Access platform-specific storage</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="integration-with-facets">Integration with Facets<a class="headerlink" href="#integration-with-facets" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// In a facet contract</span>
+<span class="kt">function</span><span class="w"> </span><span class="nv">getPlatformData</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>SomeData<span class="w"> </span><span class="kt">memory</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>DiamondStorage<span class="w"> </span>storage<span class="w"> </span>ds<span class="w"> </span><span class="o">=</span><span class="w"> </span>DiamondLib<span class="p">.</span>diamondStorage<span class="p">();</span>
+<span class="w">    </span><span class="kt">return</span><span class="w"> </span>ds<span class="p">.</span>platformSpecificData<span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="storage-architecture">Storage Architecture<a class="headerlink" href="#storage-architecture" title="Permanent link">&para;</a></h2>
+<h3 id="separation-of-concerns">Separation of Concerns<a class="headerlink" href="#separation-of-concerns" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>LibDiamond</strong>: Handles core diamond functionality (facet management, upgrades)</li>
+<li><strong>DiamondLib</strong>: Manages Gemforce-specific storage and data structures</li>
+<li><strong>Facet Libraries</strong>: Handle domain-specific logic and storage</li>
+</ul>
+<h3 id="storage-isolation-benefits">Storage Isolation Benefits<a class="headerlink" href="#storage-isolation-benefits" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Conflict Prevention</strong>: Unique storage position prevents conflicts</li>
+<li><strong>Upgrade Safety</strong>: Isolated storage reduces upgrade risks</li>
+<li><strong>Platform Specificity</strong>: Allows platform-specific optimizations</li>
+<li><strong>Modularity</strong>: Clean separation between core and platform features</li>
+</ol>
+<h2 id="integration-points">Integration Points<a class="headerlink" href="#integration-points" title="Permanent link">&para;</a></h2>
+<h3 id="core-diamond-system">Core Diamond System<a class="headerlink" href="#core-diamond-system" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Works alongside LibDiamond for complete diamond functionality</li>
+<li>Provides platform-specific storage while LibDiamond handles upgrades</li>
+<li>Integrates with diamond initialization processes</li>
+</ul>
+<h3 id="token-systems">Token Systems<a class="headerlink" href="#token-systems" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Integrates with ERC721A library for NFT functionality</li>
+<li>Supports token definition structures</li>
+<li>Enables platform-specific token features</li>
+</ul>
+<h3 id="facet-architecture">Facet Architecture<a class="headerlink" href="#facet-architecture" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Used by all Gemforce facets for consistent storage access</li>
+<li>Provides unified storage interface across the platform</li>
+<li>Enables cross-facet data sharing</li>
+</ul>
+<h2 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h2>
+<h3 id="storage-access_1">Storage Access<a class="headerlink" href="#storage-access_1" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Consistent Usage</strong>: Always use DiamondLib.diamondStorage() for platform storage</li>
+<li><strong>Gas Efficiency</strong>: Leverage assembly-based storage access for performance</li>
+<li><strong>Storage Isolation</strong>: Keep platform storage separate from facet-specific storage</li>
+</ol>
+<h3 id="development-patterns">Development Patterns<a class="headerlink" href="#development-patterns" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Import Consistency</strong>: Always import DiamondLib in facets needing platform storage</li>
+<li><strong>Storage Structure</strong>: Follow established patterns for storage organization</li>
+<li><strong>Upgrade Compatibility</strong>: Ensure storage changes are upgrade-compatible</li>
+</ol>
+<h3 id="security-considerations">Security Considerations<a class="headerlink" href="#security-considerations" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Storage Position</strong>: Never modify the DIAMOND_STORAGE_POSITION constant</li>
+<li><strong>Access Control</strong>: Implement proper access controls for storage modifications</li>
+<li><strong>Data Integrity</strong>: Validate data before storing in diamond storage</li>
+</ol>
+<h2 id="relationship-to-libdiamond">Relationship to LibDiamond<a class="headerlink" href="#relationship-to-libdiamond" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>LibDiamond</th>
+<th>DiamondLib</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Purpose</strong></td>
+<td>Core diamond functionality</td>
+<td>Platform-specific storage</td>
+</tr>
+<tr>
+<td><strong>Storage</strong></td>
+<td>Standard diamond storage</td>
+<td>Gemforce diamond storage</td>
+</tr>
+<tr>
+<td><strong>Scope</strong></td>
+<td>Universal diamond operations</td>
+<td>Platform-specific operations</td>
+</tr>
+<tr>
+<td><strong>Usage</strong></td>
+<td>Upgrade management</td>
+<td>Application data access</td>
+</tr>
+</tbody>
+</table>
+<h2 id="migration-and-upgrades">Migration and Upgrades<a class="headerlink" href="#migration-and-upgrades" title="Permanent link">&para;</a></h2>
+<h3 id="storage-compatibility">Storage Compatibility<a class="headerlink" href="#storage-compatibility" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Maintains backward compatibility with existing storage layouts</li>
+<li>Supports incremental storage structure updates</li>
+<li>Provides migration paths for storage changes</li>
+</ul>
+<h3 id="upgrade-considerations">Upgrade Considerations<a class="headerlink" href="#upgrade-considerations" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Storage position remains constant across upgrades</li>
+<li>New storage fields can be added safely</li>
+<li>Existing storage fields should not be modified</li>
+</ul>
+<h2 id="related-documentation">Related Documentation<a class="headerlink" href="#related-documentation" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../lib-diamond/">LibDiamond Library</a> - Core diamond functionality</li>
+<li><a href="../../diamond/">Diamond Standard Overview</a> - Diamond pattern implementation</li>
+<li><a href="../../interfaces/idiamond/">IDiamond Interface</a> - Diamond interface specification</li>
+<li><a href="../erc721a-lib/">ERC721A Library</a> - NFT implementation library</li>
+<li><a href="../diamond-factory-lib/">Diamond Factory Library</a> - Diamond deployment utilities</li>
+</ul>
+<h2 id="technical-notes">Technical Notes<a class="headerlink" href="#technical-notes" title="Permanent link">&para;</a></h2>
+<h3 id="assembly-usage">Assembly Usage<a class="headerlink" href="#assembly-usage" title="Permanent link">&para;</a></h3>
+<p>The library uses assembly for storage access to achieve gas efficiency:</p>
+<div class="codehilite"><pre><span></span><code>assembly<span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>ds<span class="p">.</span>slot<span class="w"> </span><span class="o">:=</span><span class="w"> </span>position
+<span class="p">}</span>
+</code></pre></div>
+
+<p>This pattern is safe and widely used in diamond implementations for optimal performance.</p>
+<h3 id="storage-position-calculation">Storage Position Calculation<a class="headerlink" href="#storage-position-calculation" title="Permanent link">&para;</a></h3>
+<p>The storage position is calculated using:</p>
+<div class="codehilite"><pre><span></span><code><span class="nb">keccak256</span><span class="p">(</span><span class="s2">&quot;diamond.nextblock.bitgem.app.DiamondStorage.storage&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p>This ensures a unique, deterministic storage location that won't conflict with other systems.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../lib-diamond/" class="btn btn-neutral float-left" title="LibDiamond"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../erc721a-lib/" class="btn btn-neutral float-right" title="ERC721A Lib">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../lib-diamond/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../erc721a-lib/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

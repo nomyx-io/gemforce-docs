@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Gemforce Team" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>Variable Price Lib - Gemforce Documentation</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Variable Price Lib";
+        var mkdocs_page_input_path = "smart-contracts/libraries/variable-price-lib.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../.." class="icon icon-home"> Gemforce Documentation
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../developer-setup-guide/">Developer Setup Guide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../system-architecture/gemforce-system-architecture/">System Architecture</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Smart Contracts</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../diamond/">Diamond Contract</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Facets</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/marketplace-facet/">Marketplace Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trade-deal-management-facet/">Trade Deal Management Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/carbon-credit-facet/">Carbon Credit Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/identity-registry-facet/">Identity Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trusted-issuers-registry-facet/">Trusted Issuers Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/fee-distributor-facet/">Fee Distributor Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/gemforce-minter-facet/">Gemforce Minter Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/multi-sale-facet/">Multi Sale Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/svg-templates-facet/">SVG Templates Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trade-deal-admin-facet/">Trade Deal Admin Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trade-deal-operations-facet/">Trade Deal Operations Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/collateral-token-factory-facet/">Collateral Token Factory Facet</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Interfaces</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/idiamond/">IDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/imarketplace/">IMarketplace</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/itradedeal/">ITradeDeal</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/icarbon-credit/">ICarbonCredit</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ierc1155-mint/">IERC1155Mint</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ierc734/">IERC734</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ierc735/">IERC735</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" >Libraries</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" href="../carbon-credit-lib/">Carbon Credit Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../trade-deal-lib/">Trade Deal Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../multi-sale-lib/">Multi Sale Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../diamond-factory-lib/">Diamond Factory Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../svg-templates-lib/">SVG Templates Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../attribute-lib/">Attribute Lib</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">Variable Price Lib</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#overview">Overview</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#key-features">Key Features</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#library-definition">Library Definition</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data-structures">Data Structures</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#pricemodifier-enum">PriceModifier Enum</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#variablepricecontract-struct">VariablePriceContract Struct</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#variablepricestorage-struct">VariablePriceStorage Struct</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#core-functions">Core Functions</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#storage-management">Storage Management</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#price-operations">Price Operations</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#price-modification">Price Modification</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#integration-examples">Integration Examples</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#nft-collection-with-bonding-curve">NFT Collection with Bonding Curve</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#gaming-item-marketplace">Gaming Item Marketplace</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#auction-system-with-dynamic-reserve-prices">Auction System with Dynamic Reserve Prices</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#events">Events</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#variable-price-events">Variable Price Events</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#security-considerations">Security Considerations</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#price-manipulation-protection">Price Manipulation Protection</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#overflow-protection">Overflow Protection</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#economic-security">Economic Security</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#gas-optimization">Gas Optimization</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#calculation-efficiency">Calculation Efficiency</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#storage-efficiency">Storage Efficiency</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#error-handling">Error Handling</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#common-errors">Common Errors</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#best-practices">Best Practices</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#testing-considerations">Testing Considerations</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#unit-tests">Unit Tests</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#integration-tests">Integration Tests</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#economic-testing">Economic Testing</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#related-documentation">Related Documentation</a>
+    </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../merkle-prover/">Merkle Prover</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../fee-distributor-lib/">Fee Distributor Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../lib-diamond/">LibDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../diamond-lib/">DiamondLib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../erc721a-lib/">ERC721A Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../erc721a-enumeration-lib/">ERC721A Enumeration Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../strings-lib/">Strings Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../metadata-lib/">Metadata Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../trusted-issuer-lib/">Trusted Issuer Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../set-libraries/">Set Libraries</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Cloud Functions</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/blockchain/">Blockchain Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/dfns/">DFNS Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/contracts/">Contract Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/authentication/">Authentication Functions</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">API Documentation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../api-documentation/gemforce-api-documentation/">Full API Reference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../api-documentation/gemforce-api-quick-reference/">Quick Reference</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">EIPs (Ethereum Improvement Proposals)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Diamond-Enhanced-Marketplace/">Diamond-Enhanced Marketplace</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Multi-Token-Sale-Standard/">Multi-Token Sale Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Collateralized-Trade-Deal-Standard/">Collateralized Trade Deal Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Enhanced-Identity-System/">Enhanced Identity System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Diamond-Factory-Standard/">Diamond Factory Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Carbon-Credit-Standard/">Carbon Credit Standard</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">User Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-administrator-guide/">Administrator Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-deployer-guide/">Deployer Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-integrator-guide/">Integrator Guide</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../external-services/gemforce-external-services/">External Services</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-documentation-gap-analysis/">Documentation Gap Analysis</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../documentation-progress-summary/">Documentation Progress Summary</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../documentation-plan/">Documentation Plan</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">Gemforce Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Smart Contracts</li>
+          <li class="breadcrumb-item">Libraries</li>
+      <li class="breadcrumb-item active">Variable Price Lib</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="variablepricelib-library">VariablePriceLib Library<a class="headerlink" href="#variablepricelib-library" title="Permanent link">&para;</a></h1>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>The <a href="../../../contracts/libraries/VariablePriceLib.sol"><code>VariablePriceLib</code></a> library provides core utilities for managing dynamic pricing mechanisms within the Gemforce platform. This library implements flexible pricing strategies that automatically adjust prices based on configurable modifiers, supporting fixed increments, exponential growth, and inverse logarithmic scaling for various tokenomics scenarios.</p>
+<h2 id="key-features">Key Features<a class="headerlink" href="#key-features" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Dynamic Pricing</strong>: Automatic price adjustments after each transaction</li>
+<li><strong>Multiple Price Modifiers</strong>: Fixed, exponential, and inverse logarithmic pricing strategies</li>
+<li><strong>Configurable Parameters</strong>: Customizable price modifier factors and maximum price limits</li>
+<li><strong>Gas Efficient</strong>: Optimized calculations for on-chain price updates</li>
+<li><strong>Event Tracking</strong>: Price change notifications for external monitoring</li>
+<li><strong>Integration Ready</strong>: Seamless integration with token sales and marketplace systems</li>
+</ul>
+<h2 id="library-definition">Library Definition<a class="headerlink" href="#library-definition" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span><code><span class="c1">// SPDX-License-Identifier: MIT</span>
+<span class="k">pragma solidity</span><span class="w"> </span><span class="o">^</span><span class="k">0.8.0</span><span class="p">;</span>
+
+<span class="kt">library</span><span class="w"> </span>VariablePriceLib<span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Storage management</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">variablePriceStorage</span><span class="p">()</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>pure<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>VariablePriceStorage<span class="w"> </span>storage<span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Price operations</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">_updatePrice</span><span class="p">(</span>VariablePriceContract<span class="w"> </span>storage<span class="w"> </span>self<span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_price</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">updatedPrice</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">_currentPrice</span><span class="p">(</span>VariablePriceContract<span class="w"> </span>storage<span class="w"> </span>self<span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_price</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">_setPrice</span><span class="p">(</span>VariablePriceContract<span class="w"> </span>storage<span class="w"> </span>self<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_price</span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_newPrice</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Price modification</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">_increaseClaimPrice</span><span class="p">(</span>VariablePriceContract<span class="w"> </span>storage<span class="w"> </span>self<span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="data-structures">Data Structures<a class="headerlink" href="#data-structures" title="Permanent link">&para;</a></h2>
+<h3 id="pricemodifier-enum">PriceModifier Enum<a class="headerlink" href="#pricemodifier-enum" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">enum</span><span class="w"> </span><span class="nv">PriceModifier</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>None<span class="p">,</span><span class="w">           </span><span class="c1">// No price modification</span>
+<span class="w">    </span>Fixed<span class="p">,</span><span class="w">          </span><span class="c1">// Fixed amount increase</span>
+<span class="w">    </span>Exponential<span class="p">,</span><span class="w">    </span><span class="c1">// Exponential price growth</span>
+<span class="w">    </span>InverseLog<span class="w">      </span><span class="c1">// Inverse logarithmic scaling</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Defines the pricing strategy for automatic price adjustments.</p>
+<p><strong>Strategies</strong>:
+- <strong>None</strong>: Price remains constant
+- <strong>Fixed</strong>: Price increases by a fixed amount each time
+- <strong>Exponential</strong>: Price increases by a percentage of current price
+- <strong>InverseLog</strong>: Price increases diminish as price grows (dampening effect)</p>
+<h3 id="variablepricecontract-struct">VariablePriceContract Struct<a class="headerlink" href="#variablepricecontract-struct" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">struct</span><span class="w"> </span><span class="nv">VariablePriceContract</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">price</span><span class="p">;</span><span class="w">                      </span><span class="c1">// Current price of the token</span>
+<span class="w">    </span>PriceModifier<span class="w"> </span>priceModifier<span class="p">;</span><span class="w">        </span><span class="c1">// Price modification strategy</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">priceModifierFactor</span><span class="p">;</span><span class="w">        </span><span class="c1">// Factor for price calculations</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">maxPrice</span><span class="p">;</span><span class="w">                   </span><span class="c1">// Maximum price limit</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Complete configuration for variable pricing behavior.</p>
+<p><strong>Components</strong>:
+- <strong>price</strong>: Current token price in wei
+- <strong>priceModifier</strong>: Strategy for price increases
+- <strong>priceModifierFactor</strong>: Calculation parameter for price adjustments
+- <strong>maxPrice</strong>: Upper limit to prevent excessive pricing</p>
+<h3 id="variablepricestorage-struct">VariablePriceStorage Struct<a class="headerlink" href="#variablepricestorage-struct" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">struct</span><span class="w"> </span><span class="nv">VariablePriceStorage</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>VariablePriceContract<span class="w"> </span>variablePrices<span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Diamond storage wrapper for variable pricing data.</p>
+<p><strong>Storage Position</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="kt">bytes32</span><span class="w"> </span><span class="k">internal </span><span class="nv">constant</span><span class="w"> </span>DIAMOND_STORAGE_POSITION<span class="w"> </span><span class="o">=</span><span class="w"> </span>
+<span class="w">    </span><span class="nb">keccak256</span><span class="p">(</span><span class="s2">&quot;diamond.nextblock.bitgem.app.VariablePriceStorage.storage&quot;</span><span class="p">);</span>
+</code></pre></div>
+
+<h2 id="core-functions">Core Functions<a class="headerlink" href="#core-functions" title="Permanent link">&para;</a></h2>
+<h3 id="storage-management">Storage Management<a class="headerlink" href="#storage-management" title="Permanent link">&para;</a></h3>
+<h4 id="variablepricestorage"><code>variablePriceStorage()</code><a class="headerlink" href="#variablepricestorage" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">variablePriceStorage</span><span class="p">()</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>pure<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>VariablePriceStorage<span class="w"> </span>storage<span class="w"> </span>ds<span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Access Diamond storage for variable pricing data using assembly.</p>
+<p><strong>Implementation</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">variablePriceStorage</span><span class="p">()</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>pure<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>VariablePriceStorage<span class="w"> </span>storage<span class="w"> </span>ds<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>DIAMOND_STORAGE_POSITION<span class="p">;</span>
+<span class="w">    </span>assembly<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>ds<span class="p">.</span>slot<span class="w"> </span><span class="o">:=</span><span class="w"> </span>position
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Returns</strong>: Storage reference to variable pricing data</p>
+<p><strong>Usage</strong>: All pricing functions use this to access persistent storage.</p>
+<h3 id="price-operations">Price Operations<a class="headerlink" href="#price-operations" title="Permanent link">&para;</a></h3>
+<h4 id="_updateprice"><code>_updatePrice()</code><a class="headerlink" href="#_updateprice" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">_updatePrice</span><span class="p">(</span>VariablePriceContract<span class="w"> </span>storage<span class="w"> </span>self<span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_price</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">updatedPrice</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Update the price and return both old and new values.</p>
+<p><strong>Parameters</strong>:
+- <code>self</code>: Storage reference to variable price contract</p>
+<p><strong>Returns</strong>:
+- <code>_price</code>: Previous price before update
+- <code>updatedPrice</code>: New price after increase</p>
+<p><strong>Process</strong>:
+1. Capture current price
+2. Apply price increase based on modifier
+3. Return both old and new prices</p>
+<p><strong>Example Usage</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Update price after a sale</span>
+<span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">oldPrice</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">newPrice</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>VariablePriceLib<span class="p">.</span>_updatePrice<span class="p">(</span>priceContract<span class="p">);</span>
+console<span class="p">.</span>log<span class="p">(</span><span class="s2">&quot;Price updated from&quot;</span><span class="p">,</span><span class="w"> </span>oldPrice<span class="p">,</span><span class="w"> </span><span class="s2">&quot;to&quot;</span><span class="p">,</span><span class="w"> </span>newPrice<span class="p">);</span>
+</code></pre></div>
+
+<h4 id="_currentprice"><code>_currentPrice()</code><a class="headerlink" href="#_currentprice" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">_currentPrice</span><span class="p">(</span>VariablePriceContract<span class="w"> </span>storage<span class="w"> </span>self<span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_price</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Get the current price without modification.</p>
+<p><strong>Parameters</strong>:
+- <code>self</code>: Storage reference to variable price contract</p>
+<p><strong>Returns</strong>: Current price in wei</p>
+<p><strong>Example Usage</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Check current price before purchase</span>
+<span class="kt">uint256</span><span class="w"> </span><span class="nv">currentPrice</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>VariablePriceLib<span class="p">.</span>_currentPrice<span class="p">(</span>priceContract<span class="p">);</span>
+<span class="kt">require</span><span class="p">(</span><span class="k">msg.value</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span>currentPrice<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Insufficient payment&quot;</span><span class="p">);</span>
+</code></pre></div>
+
+<h4 id="_setprice"><code>_setPrice()</code><a class="headerlink" href="#_setprice" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">_setPrice</span><span class="p">(</span>VariablePriceContract<span class="w"> </span>storage<span class="w"> </span>self<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_price</span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_newPrice</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Manually set a new price value.</p>
+<p><strong>Parameters</strong>:
+- <code>self</code>: Storage reference to variable price contract
+- <code>_price</code>: New price to set</p>
+<p><strong>Returns</strong>: The newly set price</p>
+<p><strong>Use Cases</strong>:
+- Initial price configuration
+- Administrative price adjustments
+- Price resets or corrections</p>
+<p><strong>Example Usage</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Set initial price for a new token sale</span>
+<span class="kt">uint256</span><span class="w"> </span><span class="nv">initialPrice</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">.</span><span class="m m-Decimal">1</span><span class="w"> </span>ether<span class="p">;</span>
+VariablePriceLib<span class="p">.</span>_setPrice<span class="p">(</span>priceContract<span class="p">,</span><span class="w"> </span>initialPrice<span class="p">);</span>
+</code></pre></div>
+
+<h3 id="price-modification">Price Modification<a class="headerlink" href="#price-modification" title="Permanent link">&para;</a></h3>
+<h4 id="_increaseclaimprice"><code>_increaseClaimPrice()</code><a class="headerlink" href="#_increaseclaimprice" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">_increaseClaimPrice</span><span class="p">(</span>VariablePriceContract<span class="w"> </span>storage<span class="w"> </span>self<span class="p">)</span><span class="w"> </span><span class="kt">internal</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Apply price increase based on the configured price modifier.</p>
+<p><strong>Parameters</strong>:
+- <code>self</code>: Storage reference to variable price contract</p>
+<p><strong>Price Modification Logic</strong>:</p>
+<p><strong>Fixed Modifier</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="kt">if</span><span class="w"> </span><span class="p">(</span>currentModifier<span class="w"> </span><span class="o">==</span><span class="w"> </span>PriceModifier<span class="p">.</span>Fixed<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>currentPrice<span class="w"> </span><span class="o">=</span><span class="w"> </span>currentPrice<span class="w"> </span><span class="o">+</span><span class="w"> </span>currentModifierFactor<span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<ul>
+<li>Increases price by a fixed amount each time</li>
+<li><code>priceModifierFactor</code> = fixed increase amount in wei</li>
+</ul>
+<p><strong>Exponential Modifier</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="kt">else</span><span class="w"> </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>currentModifier<span class="w"> </span><span class="o">==</span><span class="w"> </span>PriceModifier<span class="p">.</span>Exponential<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>currentPrice<span class="w"> </span><span class="o">=</span><span class="w"> </span>currentPrice<span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span>currentPrice<span class="w"> </span><span class="o">/</span><span class="w"> </span>currentModifierFactor<span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<ul>
+<li>Increases price by a percentage of current price</li>
+<li><code>priceModifierFactor</code> = divisor for percentage calculation</li>
+<li>Example: factor of 10 = 10% increase, factor of 5 = 20% increase</li>
+</ul>
+<p><strong>Inverse Logarithmic Modifier</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="kt">else</span><span class="w"> </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>currentModifier<span class="w"> </span><span class="o">==</span><span class="w"> </span>PriceModifier<span class="p">.</span>InverseLog<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>currentPrice<span class="w"> </span><span class="o">=</span><span class="w"> </span>currentPrice<span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span>currentPrice<span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span>currentModifierFactor<span class="w"> </span><span class="o">*</span><span class="w"> </span>currentPrice<span class="p">));</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<ul>
+<li>Diminishing price increases as price grows</li>
+<li>Creates a dampening effect for high-value items</li>
+<li><code>priceModifierFactor</code> affects the rate of dampening</li>
+</ul>
+<p><strong>Example Usage</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Apply price increase after successful purchase</span>
+VariablePriceLib<span class="p">.</span>_increaseClaimPrice<span class="p">(</span>priceContract<span class="p">);</span>
+emit<span class="w"> </span>PriceIncreased<span class="p">(</span>tokenId<span class="p">,</span><span class="w"> </span>newPrice<span class="p">);</span>
+</code></pre></div>
+
+<h2 id="integration-examples">Integration Examples<a class="headerlink" href="#integration-examples" title="Permanent link">&para;</a></h2>
+<h3 id="nft-collection-with-bonding-curve">NFT Collection with Bonding Curve<a class="headerlink" href="#nft-collection-with-bonding-curve" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// NFT collection with exponential pricing</span>
+<span class="k">contract</span><span class="w"> </span><span class="ni">BondingCurveNFT</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>using<span class="w"> </span>VariablePriceLib<span class="w"> </span><span class="kt">for</span><span class="w"> </span>VariablePriceLib<span class="p">.</span>VariablePriceStorage<span class="p">;</span>
+
+<span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">CollectionConfig</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">startPrice</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">maxPrice</span><span class="p">;</span>
+<span class="w">        </span>PriceModifier<span class="w"> </span>priceStrategy<span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">modifierFactor</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">maxSupply</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">currentSupply</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span>CollectionConfig<span class="w"> </span><span class="kt">public</span><span class="w"> </span>config<span class="p">;</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">uint256</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>tokenPrices<span class="p">;</span>
+
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">TokenMinted</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>tokenId<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>to<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">price</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">PriceUpdated</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">oldPrice</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">newPrice</span><span class="p">);</span>
+
+<span class="w">    </span><span class="kt">constructor</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_startPrice</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_maxPrice</span><span class="p">,</span>
+<span class="w">        </span>PriceModifier<span class="w"> </span>_priceStrategy<span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_modifierFactor</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_maxSupply</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>config<span class="w"> </span><span class="o">=</span><span class="w"> </span>CollectionConfig<span class="p">({</span>
+<span class="w">            </span>startPrice<span class="o">:</span><span class="w"> </span>_startPrice<span class="p">,</span>
+<span class="w">            </span>maxPrice<span class="o">:</span><span class="w"> </span>_maxPrice<span class="p">,</span>
+<span class="w">            </span>priceStrategy<span class="o">:</span><span class="w"> </span>_priceStrategy<span class="p">,</span>
+<span class="w">            </span>modifierFactor<span class="o">:</span><span class="w"> </span>_modifierFactor<span class="p">,</span>
+<span class="w">            </span>maxSupply<span class="o">:</span><span class="w"> </span>_maxSupply<span class="p">,</span>
+<span class="w">            </span>currentSupply<span class="o">:</span><span class="w"> </span><span class="m m-Decimal">0</span>
+<span class="w">        </span><span class="p">});</span>
+
+<span class="w">        </span><span class="c1">// Initialize pricing</span>
+<span class="w">        </span>VariablePriceLib<span class="p">.</span>VariablePriceStorage<span class="w"> </span>storage<span class="w"> </span>priceStorage<span class="w"> </span><span class="o">=</span><span class="w"> </span>VariablePriceLib<span class="p">.</span>variablePriceStorage<span class="p">();</span>
+<span class="w">        </span>priceStorage<span class="p">.</span>variablePrices<span class="w"> </span><span class="o">=</span><span class="w"> </span>VariablePriceContract<span class="p">({</span>
+<span class="w">            </span>price<span class="o">:</span><span class="w"> </span>_startPrice<span class="p">,</span>
+<span class="w">            </span>priceModifier<span class="o">:</span><span class="w"> </span>_priceStrategy<span class="p">,</span>
+<span class="w">            </span>priceModifierFactor<span class="o">:</span><span class="w"> </span>_modifierFactor<span class="p">,</span>
+<span class="w">            </span>maxPrice<span class="o">:</span><span class="w"> </span>_maxPrice
+<span class="w">        </span><span class="p">});</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">mint</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">to</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">payable</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>config<span class="p">.</span>currentSupply<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>config<span class="p">.</span>maxSupply<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Max supply reached&quot;</span><span class="p">);</span>
+
+<span class="w">        </span>VariablePriceLib<span class="p">.</span>VariablePriceStorage<span class="w"> </span>storage<span class="w"> </span>priceStorage<span class="w"> </span><span class="o">=</span><span class="w"> </span>VariablePriceLib<span class="p">.</span>variablePriceStorage<span class="p">();</span>
+
+<span class="w">        </span><span class="c1">// Get current price</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">currentPrice</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>VariablePriceLib<span class="p">.</span>_currentPrice<span class="p">(</span>priceStorage<span class="p">.</span>variablePrices<span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span><span class="k">msg.value</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span>currentPrice<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Insufficient payment&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Mint token</span>
+<span class="w">        </span>tokenId<span class="w"> </span><span class="o">=</span><span class="w"> </span>config<span class="p">.</span>currentSupply<span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m m-Decimal">1</span><span class="p">;</span>
+<span class="w">        </span>config<span class="p">.</span>currentSupply<span class="o">++</span><span class="p">;</span>
+<span class="w">        </span>_mint<span class="p">(</span>to<span class="p">,</span><span class="w"> </span>tokenId<span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Record purchase price</span>
+<span class="w">        </span>tokenPrices<span class="p">[</span>tokenId<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>currentPrice<span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// Update price for next mint</span>
+<span class="w">        </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">oldPrice</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">newPrice</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>VariablePriceLib<span class="p">.</span>_updatePrice<span class="p">(</span>priceStorage<span class="p">.</span>variablePrices<span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Refund excess payment</span>
+<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span><span class="k">msg.value</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span>currentPrice<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">payable</span><span class="p">(</span><span class="k">msg.sender</span><span class="p">).</span>transfer<span class="p">(</span><span class="k">msg.value</span><span class="w"> </span><span class="o">-</span><span class="w"> </span>currentPrice<span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span>emit<span class="w"> </span>TokenMinted<span class="p">(</span>tokenId<span class="p">,</span><span class="w"> </span>to<span class="p">,</span><span class="w"> </span>currentPrice<span class="p">);</span>
+<span class="w">        </span>emit<span class="w"> </span>PriceUpdated<span class="p">(</span>oldPrice<span class="p">,</span><span class="w"> </span>newPrice<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getCurrentPrice</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>VariablePriceLib<span class="p">.</span>VariablePriceStorage<span class="w"> </span>storage<span class="w"> </span>priceStorage<span class="w"> </span><span class="o">=</span><span class="w"> </span>VariablePriceLib<span class="p">.</span>variablePriceStorage<span class="p">();</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>VariablePriceLib<span class="p">.</span>_currentPrice<span class="p">(</span>priceStorage<span class="p">.</span>variablePrices<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getNextPrice</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>VariablePriceLib<span class="p">.</span>VariablePriceStorage<span class="w"> </span>storage<span class="w"> </span>priceStorage<span class="w"> </span><span class="o">=</span><span class="w"> </span>VariablePriceLib<span class="p">.</span>variablePriceStorage<span class="p">();</span>
+
+<span class="w">        </span><span class="c1">// Simulate price increase</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">currentPrice</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>priceStorage<span class="p">.</span>variablePrices<span class="p">.</span>price<span class="p">;</span>
+<span class="w">        </span>PriceModifier<span class="w"> </span><span class="kt">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>priceStorage<span class="p">.</span>variablePrices<span class="p">.</span>priceModifier<span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">factor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>priceStorage<span class="p">.</span>variablePrices<span class="p">.</span>priceModifierFactor<span class="p">;</span>
+
+<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span><span class="kt">modifier</span><span class="w"> </span><span class="o">==</span><span class="w"> </span>PriceModifier<span class="p">.</span>Fixed<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">return</span><span class="w"> </span>currentPrice<span class="w"> </span><span class="o">+</span><span class="w"> </span>factor<span class="p">;</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="kt">else</span><span class="w"> </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span><span class="kt">modifier</span><span class="w"> </span><span class="o">==</span><span class="w"> </span>PriceModifier<span class="p">.</span>Exponential<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">return</span><span class="w"> </span>currentPrice<span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span>currentPrice<span class="w"> </span><span class="o">/</span><span class="w"> </span>factor<span class="p">);</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="kt">else</span><span class="w"> </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span><span class="kt">modifier</span><span class="w"> </span><span class="o">==</span><span class="w"> </span>PriceModifier<span class="p">.</span>InverseLog<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">return</span><span class="w"> </span>currentPrice<span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span>currentPrice<span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span>factor<span class="w"> </span><span class="o">*</span><span class="w"> </span>currentPrice<span class="p">));</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>currentPrice<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getPriceHistory</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>prices<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>prices<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[](</span>config<span class="p">.</span>currentSupply<span class="p">);</span>
+<span class="w">        </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">1</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span>config<span class="p">.</span>currentSupply<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>prices<span class="p">[</span>i<span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m m-Decimal">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>tokenPrices<span class="p">[</span>i<span class="p">];</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">_mint</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">to</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// ERC721 mint implementation</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="gaming-item-marketplace">Gaming Item Marketplace<a class="headerlink" href="#gaming-item-marketplace" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Gaming marketplace with dynamic item pricing</span>
+<span class="k">contract</span><span class="w"> </span><span class="ni">GameItemMarketplace</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>using<span class="w"> </span>VariablePriceLib<span class="w"> </span><span class="kt">for</span><span class="w"> </span>VariablePriceLib<span class="p">.</span>VariablePriceStorage<span class="p">;</span>
+
+<span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">ItemType</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">name</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">category</span><span class="p">;</span>
+<span class="w">        </span>VariablePriceContract<span class="w"> </span>pricing<span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalSold</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">active</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">PurchaseHistory</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">itemTypeId</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">price</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">timestamp</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">buyer</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span>ItemType<span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>itemTypes<span class="p">;</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span>PurchaseHistory<span class="p">[])</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>purchaseHistory<span class="p">;</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="k">public </span><span class="nv">nextItemTypeId</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">ItemTypeCreated</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>itemTypeId<span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">name</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">startPrice</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">ItemPurchased</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>itemTypeId<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>buyer<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">price</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">PricingUpdated</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>itemTypeId<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">oldPrice</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">newPrice</span><span class="p">);</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">createItemType</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>name<span class="p">,</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>category<span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">startPrice</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">maxPrice</span><span class="p">,</span>
+<span class="w">        </span>PriceModifier<span class="w"> </span>priceStrategy<span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">modifierFactor</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyGameMaster<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">itemTypeId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>itemTypeId<span class="w"> </span><span class="o">=</span><span class="w"> </span>nextItemTypeId<span class="o">++</span><span class="p">;</span>
+
+<span class="w">        </span>itemTypes<span class="p">[</span>itemTypeId<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>ItemType<span class="p">({</span>
+<span class="w">            </span>name<span class="o">:</span><span class="w"> </span>name<span class="p">,</span>
+<span class="w">            </span>category<span class="o">:</span><span class="w"> </span>category<span class="p">,</span>
+<span class="w">            </span>pricing<span class="o">:</span><span class="w"> </span>VariablePriceContract<span class="p">({</span>
+<span class="w">                </span>price<span class="o">:</span><span class="w"> </span>startPrice<span class="p">,</span>
+<span class="w">                </span>priceModifier<span class="o">:</span><span class="w"> </span>priceStrategy<span class="p">,</span>
+<span class="w">                </span>priceModifierFactor<span class="o">:</span><span class="w"> </span>modifierFactor<span class="p">,</span>
+<span class="w">                </span>maxPrice<span class="o">:</span><span class="w"> </span>maxPrice
+<span class="w">            </span><span class="p">}),</span>
+<span class="w">            </span>totalSold<span class="o">:</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">,</span>
+<span class="w">            </span>active<span class="o">:</span><span class="w"> </span><span class="kt">true</span>
+<span class="w">        </span><span class="p">});</span>
+
+<span class="w">        </span>emit<span class="w"> </span>ItemTypeCreated<span class="p">(</span>itemTypeId<span class="p">,</span><span class="w"> </span>name<span class="p">,</span><span class="w"> </span>startPrice<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">purchaseItem</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">itemTypeId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">payable</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">itemId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>ItemType<span class="w"> </span>storage<span class="w"> </span>itemType<span class="w"> </span><span class="o">=</span><span class="w"> </span>itemTypes<span class="p">[</span>itemTypeId<span class="p">];</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>itemType<span class="p">.</span>active<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Item type not active&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Get current price</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">currentPrice</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>VariablePriceLib<span class="p">.</span>_currentPrice<span class="p">(</span>itemType<span class="p">.</span>pricing<span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span><span class="k">msg.value</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span>currentPrice<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Insufficient payment&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Update price</span>
+<span class="w">        </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">oldPrice</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">newPrice</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>VariablePriceLib<span class="p">.</span>_updatePrice<span class="p">(</span>itemType<span class="p">.</span>pricing<span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Mint item to buyer</span>
+<span class="w">        </span>itemId<span class="w"> </span><span class="o">=</span><span class="w"> </span>_mintGameItem<span class="p">(</span><span class="k">msg.sender</span><span class="p">,</span><span class="w"> </span>itemTypeId<span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Update statistics</span>
+<span class="w">        </span>itemType<span class="p">.</span>totalSold<span class="o">++</span><span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// Record purchase</span>
+<span class="w">        </span>purchaseHistory<span class="p">[</span>itemTypeId<span class="p">].</span>push<span class="p">(</span>PurchaseHistory<span class="p">({</span>
+<span class="w">            </span>itemTypeId<span class="o">:</span><span class="w"> </span>itemTypeId<span class="p">,</span>
+<span class="w">            </span>price<span class="o">:</span><span class="w"> </span>currentPrice<span class="p">,</span>
+<span class="w">            </span>timestamp<span class="o">:</span><span class="w"> </span><span class="k">block.timestamp</span><span class="p">,</span>
+<span class="w">            </span>buyer<span class="o">:</span><span class="w"> </span><span class="k">msg.sender</span>
+<span class="w">        </span><span class="p">}));</span>
+
+<span class="w">        </span><span class="c1">// Refund excess payment</span>
+<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span><span class="k">msg.value</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span>currentPrice<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">payable</span><span class="p">(</span><span class="k">msg.sender</span><span class="p">).</span>transfer<span class="p">(</span><span class="k">msg.value</span><span class="w"> </span><span class="o">-</span><span class="w"> </span>currentPrice<span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span>emit<span class="w"> </span>ItemPurchased<span class="p">(</span>itemTypeId<span class="p">,</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">,</span><span class="w"> </span>currentPrice<span class="p">);</span>
+<span class="w">        </span>emit<span class="w"> </span>PricingUpdated<span class="p">(</span>itemTypeId<span class="p">,</span><span class="w"> </span>oldPrice<span class="p">,</span><span class="w"> </span>newPrice<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getItemPrice</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">itemTypeId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>VariablePriceLib<span class="p">.</span>_currentPrice<span class="p">(</span>itemTypes<span class="p">[</span>itemTypeId<span class="p">].</span>pricing<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getItemPriceInfo</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">itemTypeId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">currentPrice</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">nextPrice</span><span class="p">,</span>
+<span class="w">        </span>PriceModifier<span class="w"> </span>strategy<span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">factor</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">maxPrice</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalSold</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>ItemType<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>itemType<span class="w"> </span><span class="o">=</span><span class="w"> </span>itemTypes<span class="p">[</span>itemTypeId<span class="p">];</span>
+<span class="w">        </span>currentPrice<span class="w"> </span><span class="o">=</span><span class="w"> </span>itemType<span class="p">.</span>pricing<span class="p">.</span>price<span class="p">;</span>
+<span class="w">        </span>strategy<span class="w"> </span><span class="o">=</span><span class="w"> </span>itemType<span class="p">.</span>pricing<span class="p">.</span>priceModifier<span class="p">;</span>
+<span class="w">        </span>factor<span class="w"> </span><span class="o">=</span><span class="w"> </span>itemType<span class="p">.</span>pricing<span class="p">.</span>priceModifierFactor<span class="p">;</span>
+<span class="w">        </span>maxPrice<span class="w"> </span><span class="o">=</span><span class="w"> </span>itemType<span class="p">.</span>pricing<span class="p">.</span>maxPrice<span class="p">;</span>
+<span class="w">        </span>totalSold<span class="w"> </span><span class="o">=</span><span class="w"> </span>itemType<span class="p">.</span>totalSold<span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// Calculate next price</span>
+<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>strategy<span class="w"> </span><span class="o">==</span><span class="w"> </span>PriceModifier<span class="p">.</span>Fixed<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>nextPrice<span class="w"> </span><span class="o">=</span><span class="w"> </span>currentPrice<span class="w"> </span><span class="o">+</span><span class="w"> </span>factor<span class="p">;</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="kt">else</span><span class="w"> </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>strategy<span class="w"> </span><span class="o">==</span><span class="w"> </span>PriceModifier<span class="p">.</span>Exponential<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>nextPrice<span class="w"> </span><span class="o">=</span><span class="w"> </span>currentPrice<span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span>currentPrice<span class="w"> </span><span class="o">/</span><span class="w"> </span>factor<span class="p">);</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="kt">else</span><span class="w"> </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>strategy<span class="w"> </span><span class="o">==</span><span class="w"> </span>PriceModifier<span class="p">.</span>InverseLog<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>nextPrice<span class="w"> </span><span class="o">=</span><span class="w"> </span>currentPrice<span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span>currentPrice<span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span>factor<span class="w"> </span><span class="o">*</span><span class="w"> </span>currentPrice<span class="p">));</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="kt">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>nextPrice<span class="w"> </span><span class="o">=</span><span class="w"> </span>currentPrice<span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// Cap at max price</span>
+<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>nextPrice<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span>maxPrice<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>nextPrice<span class="w"> </span><span class="o">=</span><span class="w"> </span>maxPrice<span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getPurchaseHistory</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">itemTypeId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>PurchaseHistory<span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>purchaseHistory<span class="p">[</span>itemTypeId<span class="p">];</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">updateItemPricing</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">itemTypeId</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">newPrice</span><span class="p">,</span>
+<span class="w">        </span>PriceModifier<span class="w"> </span>newStrategy<span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">newFactor</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">newMaxPrice</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyGameMaster<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>ItemType<span class="w"> </span>storage<span class="w"> </span>itemType<span class="w"> </span><span class="o">=</span><span class="w"> </span>itemTypes<span class="p">[</span>itemTypeId<span class="p">];</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>itemType<span class="p">.</span>active<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Item type not active&quot;</span><span class="p">);</span>
+
+<span class="w">        </span>itemType<span class="p">.</span>pricing<span class="p">.</span>price<span class="w"> </span><span class="o">=</span><span class="w"> </span>newPrice<span class="p">;</span>
+<span class="w">        </span>itemType<span class="p">.</span>pricing<span class="p">.</span>priceModifier<span class="w"> </span><span class="o">=</span><span class="w"> </span>newStrategy<span class="p">;</span>
+<span class="w">        </span>itemType<span class="p">.</span>pricing<span class="p">.</span>priceModifierFactor<span class="w"> </span><span class="o">=</span><span class="w"> </span>newFactor<span class="p">;</span>
+<span class="w">        </span>itemType<span class="p">.</span>pricing<span class="p">.</span>maxPrice<span class="w"> </span><span class="o">=</span><span class="w"> </span>newMaxPrice<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">_mintGameItem</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">to</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">itemTypeId</span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Implementation would mint game item NFT</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span><span class="m m-Decimal">1</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">modifier</span><span class="w"> </span>onlyGameMaster<span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Implementation would check game master role</span>
+<span class="w">        </span>_<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="auction-system-with-dynamic-reserve-prices">Auction System with Dynamic Reserve Prices<a class="headerlink" href="#auction-system-with-dynamic-reserve-prices" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Auction system with variable reserve pricing</span>
+<span class="k">contract</span><span class="w"> </span><span class="ni">DynamicAuction</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>using<span class="w"> </span>VariablePriceLib<span class="w"> </span><span class="kt">for</span><span class="w"> </span>VariablePriceLib<span class="p">.</span>VariablePriceStorage<span class="p">;</span>
+
+<span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">Auction</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">seller</span><span class="p">;</span>
+<span class="w">        </span>VariablePriceContract<span class="w"> </span>reservePricing<span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">startTime</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">endTime</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">highestBidder</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">highestBid</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">ended</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">auctionCount</span><span class="p">;</span><span class="w"> </span><span class="c1">// Number of times this item has been auctioned</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">Bid</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">bidder</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">amount</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">timestamp</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span>Auction<span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>auctions<span class="p">;</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span>Bid<span class="p">[])</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>auctionBids<span class="p">;</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">bool</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>tokenInAuction<span class="p">;</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="k">public </span><span class="nv">nextAuctionId</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">AuctionCreated</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>auctionId<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>tokenId<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">reservePrice</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">BidPlaced</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>auctionId<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>bidder<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">amount</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">AuctionEnded</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>auctionId<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>winner<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">finalPrice</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">ReservePriceUpdated</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>auctionId<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">newReservePrice</span><span class="p">);</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">createAuction</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">duration</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">initialReservePrice</span><span class="p">,</span>
+<span class="w">        </span>PriceModifier<span class="w"> </span>reserveStrategy<span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">reserveFactor</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">maxReservePrice</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">auctionId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span><span class="o">!</span>tokenInAuction<span class="p">[</span>tokenId<span class="p">],</span><span class="w"> </span><span class="s2">&quot;Token already in auction&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>_isApprovedOrOwner<span class="p">(</span><span class="k">msg.sender</span><span class="p">,</span><span class="w"> </span>tokenId<span class="p">),</span><span class="w"> </span><span class="s2">&quot;Not authorized&quot;</span><span class="p">);</span>
+
+<span class="w">        </span>auctionId<span class="w"> </span><span class="o">=</span><span class="w"> </span>nextAuctionId<span class="o">++</span><span class="p">;</span>
+
+<span class="w">        </span>auctions<span class="p">[</span>auctionId<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>Auction<span class="p">({</span>
+<span class="w">            </span>tokenId<span class="o">:</span><span class="w"> </span>tokenId<span class="p">,</span>
+<span class="w">            </span>seller<span class="o">:</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">,</span>
+<span class="w">            </span>reservePricing<span class="o">:</span><span class="w"> </span>VariablePriceContract<span class="p">({</span>
+<span class="w">                </span>price<span class="o">:</span><span class="w"> </span>initialReservePrice<span class="p">,</span>
+<span class="w">                </span>priceModifier<span class="o">:</span><span class="w"> </span>reserveStrategy<span class="p">,</span>
+<span class="w">                </span>priceModifierFactor<span class="o">:</span><span class="w"> </span>reserveFactor<span class="p">,</span>
+<span class="w">                </span>maxPrice<span class="o">:</span><span class="w"> </span>maxReservePrice
+<span class="w">            </span><span class="p">}),</span>
+<span class="w">            </span>startTime<span class="o">:</span><span class="w"> </span><span class="k">block.timestamp</span><span class="p">,</span>
+<span class="w">            </span>endTime<span class="o">:</span><span class="w"> </span><span class="k">block.timestamp</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>duration<span class="p">,</span>
+<span class="w">            </span>highestBidder<span class="o">:</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">),</span>
+<span class="w">            </span>highestBid<span class="o">:</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">,</span>
+<span class="w">            </span>ended<span class="o">:</span><span class="w"> </span><span class="kt">false</span><span class="p">,</span>
+<span class="w">            </span>auctionCount<span class="o">:</span><span class="w"> </span>_getAuctionCount<span class="p">(</span>tokenId<span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m m-Decimal">1</span>
+<span class="w">        </span><span class="p">});</span>
+
+<span class="w">        </span>tokenInAuction<span class="p">[</span>tokenId<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">true</span><span class="p">;</span>
+
+<span class="w">        </span>emit<span class="w"> </span>AuctionCreated<span class="p">(</span>auctionId<span class="p">,</span><span class="w"> </span>tokenId<span class="p">,</span><span class="w"> </span>initialReservePrice<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">placeBid</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">auctionId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">payable</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>Auction<span class="w"> </span>storage<span class="w"> </span>auction<span class="w"> </span><span class="o">=</span><span class="w"> </span>auctions<span class="p">[</span>auctionId<span class="p">];</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span><span class="k">block.timestamp</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>auction<span class="p">.</span>endTime<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Auction ended&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span><span class="o">!</span>auction<span class="p">.</span>ended<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Auction already ended&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">currentReserve</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>VariablePriceLib<span class="p">.</span>_currentPrice<span class="p">(</span>auction<span class="p">.</span>reservePricing<span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span><span class="k">msg.value</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span>currentReserve<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Bid below reserve price&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span><span class="k">msg.value</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span>auction<span class="p">.</span>highestBid<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Bid too low&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Refund previous highest bidder</span>
+<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>auction<span class="p">.</span>highestBidder<span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">payable</span><span class="p">(</span>auction<span class="p">.</span>highestBidder<span class="p">).</span>transfer<span class="p">(</span>auction<span class="p">.</span>highestBid<span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span>auction<span class="p">.</span>highestBidder<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">;</span>
+<span class="w">        </span>auction<span class="p">.</span>highestBid<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">msg.value</span><span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// Record bid</span>
+<span class="w">        </span>auctionBids<span class="p">[</span>auctionId<span class="p">].</span>push<span class="p">(</span>Bid<span class="p">({</span>
+<span class="w">            </span>bidder<span class="o">:</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">,</span>
+<span class="w">            </span>amount<span class="o">:</span><span class="w"> </span><span class="k">msg.value</span><span class="p">,</span>
+<span class="w">            </span>timestamp<span class="o">:</span><span class="w"> </span><span class="k">block.timestamp</span>
+<span class="w">        </span><span class="p">}));</span>
+
+<span class="w">        </span><span class="c1">// Increase reserve price for future auctions of this item</span>
+<span class="w">        </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">oldReserve</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">newReserve</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>VariablePriceLib<span class="p">.</span>_updatePrice<span class="p">(</span>auction<span class="p">.</span>reservePricing<span class="p">);</span>
+
+<span class="w">        </span>emit<span class="w"> </span>BidPlaced<span class="p">(</span>auctionId<span class="p">,</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">,</span><span class="w"> </span><span class="k">msg.value</span><span class="p">);</span>
+<span class="w">        </span>emit<span class="w"> </span>ReservePriceUpdated<span class="p">(</span>auctionId<span class="p">,</span><span class="w"> </span>newReserve<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">endAuction</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">auctionId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>Auction<span class="w"> </span>storage<span class="w"> </span>auction<span class="w"> </span><span class="o">=</span><span class="w"> </span>auctions<span class="p">[</span>auctionId<span class="p">];</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span><span class="k">block.timestamp</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span>auction<span class="p">.</span>endTime<span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="k">msg.sender</span><span class="w"> </span><span class="o">==</span><span class="w"> </span>auction<span class="p">.</span>seller<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Auction not ended&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span><span class="o">!</span>auction<span class="p">.</span>ended<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Auction already ended&quot;</span><span class="p">);</span>
+
+<span class="w">        </span>auction<span class="p">.</span>ended<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">true</span><span class="p">;</span>
+<span class="w">        </span>tokenInAuction<span class="p">[</span>auction<span class="p">.</span>tokenId<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">false</span><span class="p">;</span>
+
+<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>auction<span class="p">.</span>highestBidder<span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">// Transfer token to winner</span>
+<span class="w">            </span>_transfer<span class="p">(</span>auction<span class="p">.</span>seller<span class="p">,</span><span class="w"> </span>auction<span class="p">.</span>highestBidder<span class="p">,</span><span class="w"> </span>auction<span class="p">.</span>tokenId<span class="p">);</span>
+
+<span class="w">            </span><span class="c1">// Transfer payment to seller (minus fees)</span>
+<span class="w">            </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">fee</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>auction<span class="p">.</span>highestBid<span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m m-Decimal">25</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m m-Decimal">1000</span><span class="p">;</span><span class="w"> </span><span class="c1">// 2.5% fee</span>
+<span class="w">            </span><span class="kt">payable</span><span class="p">(</span>auction<span class="p">.</span>seller<span class="p">).</span>transfer<span class="p">(</span>auction<span class="p">.</span>highestBid<span class="w"> </span><span class="o">-</span><span class="w"> </span>fee<span class="p">);</span>
+
+<span class="w">            </span>emit<span class="w"> </span>AuctionEnded<span class="p">(</span>auctionId<span class="p">,</span><span class="w"> </span>auction<span class="p">.</span>highestBidder<span class="p">,</span><span class="w"> </span>auction<span class="p">.</span>highestBid<span class="p">);</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="kt">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">// No bids, return token to seller</span>
+<span class="w">            </span>emit<span class="w"> </span>AuctionEnded<span class="p">(</span>auctionId<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">),</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getCurrentReservePrice</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">auctionId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>VariablePriceLib<span class="p">.</span>_currentPrice<span class="p">(</span>auctions<span class="p">[</span>auctionId<span class="p">].</span>reservePricing<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getAuctionInfo</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">auctionId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">seller</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">currentReserve</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">nextReserve</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">startTime</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">endTime</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">highestBidder</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">highestBid</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">ended</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">auctionCount</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>Auction<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>auction<span class="w"> </span><span class="o">=</span><span class="w"> </span>auctions<span class="p">[</span>auctionId<span class="p">];</span>
+<span class="w">        </span>tokenId<span class="w"> </span><span class="o">=</span><span class="w"> </span>auction<span class="p">.</span>tokenId<span class="p">;</span>
+<span class="w">        </span>seller<span class="w"> </span><span class="o">=</span><span class="w"> </span>auction<span class="p">.</span>seller<span class="p">;</span>
+<span class="w">        </span>currentReserve<span class="w"> </span><span class="o">=</span><span class="w"> </span>auction<span class="p">.</span>reservePricing<span class="p">.</span>price<span class="p">;</span>
+<span class="w">        </span>startTime<span class="w"> </span><span class="o">=</span><span class="w"> </span>auction<span class="p">.</span>startTime<span class="p">;</span>
+<span class="w">        </span>endTime<span class="w"> </span><span class="o">=</span><span class="w"> </span>auction<span class="p">.</span>endTime<span class="p">;</span>
+<span class="w">        </span>highestBidder<span class="w"> </span><span class="o">=</span><span class="w"> </span>auction<span class="p">.</span>highestBidder<span class="p">;</span>
+<span class="w">        </span>highestBid<span class="w"> </span><span class="o">=</span><span class="w"> </span>auction<span class="p">.</span>highestBid<span class="p">;</span>
+<span class="w">        </span>ended<span class="w"> </span><span class="o">=</span><span class="w"> </span>auction<span class="p">.</span>ended<span class="p">;</span>
+<span class="w">        </span>auctionCount<span class="w"> </span><span class="o">=</span><span class="w"> </span>auction<span class="p">.</span>auctionCount<span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// Calculate next reserve price</span>
+<span class="w">        </span>PriceModifier<span class="w"> </span>strategy<span class="w"> </span><span class="o">=</span><span class="w"> </span>auction<span class="p">.</span>reservePricing<span class="p">.</span>priceModifier<span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">factor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>auction<span class="p">.</span>reservePricing<span class="p">.</span>priceModifierFactor<span class="p">;</span>
+
+<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>strategy<span class="w"> </span><span class="o">==</span><span class="w"> </span>PriceModifier<span class="p">.</span>Fixed<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>nextReserve<span class="w"> </span><span class="o">=</span><span class="w"> </span>currentReserve<span class="w"> </span><span class="o">+</span><span class="w"> </span>factor<span class="p">;</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="kt">else</span><span class="w"> </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>strategy<span class="w"> </span><span class="o">==</span><span class="w"> </span>PriceModifier<span class="p">.</span>Exponential<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>nextReserve<span class="w"> </span><span class="o">=</span><span class="w"> </span>currentReserve<span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span>currentReserve<span class="w"> </span><span class="o">/</span><span class="w"> </span>factor<span class="p">);</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="kt">else</span><span class="w"> </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>strategy<span class="w"> </span><span class="o">==</span><span class="w"> </span>PriceModifier<span class="p">.</span>InverseLog<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>nextReserve<span class="w"> </span><span class="o">=</span><span class="w"> </span>currentReserve<span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span>currentReserve<span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span>factor<span class="w"> </span><span class="o">*</span><span class="w"> </span>currentReserve<span class="p">));</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="kt">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>nextReserve<span class="w"> </span><span class="o">=</span><span class="w"> </span>currentReserve<span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>nextReserve<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span>auction<span class="p">.</span>reservePricing<span class="p">.</span>maxPrice<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>nextReserve<span class="w"> </span><span class="o">=</span><span class="w"> </span>auction<span class="p">.</span>reservePricing<span class="p">.</span>maxPrice<span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getBidHistory</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">auctionId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>Bid<span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>auctionBids<span class="p">[</span>auctionId<span class="p">];</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">_getAuctionCount</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Implementation would track auction history</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">_isApprovedOrOwner</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">spender</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bool</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Implementation would check ERC721 authorization</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span><span class="kt">true</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">_transfer</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">from</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">to</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Implementation would transfer ERC721 token</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="events">Events<a class="headerlink" href="#events" title="Permanent link">&para;</a></h2>
+<h3 id="variable-price-events">Variable Price Events<a class="headerlink" href="#variable-price-events" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">event</span><span class="w"> </span><span class="nv">VariablePriceChanged</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">eventContract</span><span class="p">,</span><span class="w"> </span>VariablePriceContract<span class="w"> </span>price<span class="p">);</span>
+</code></pre></div>
+
+<h2 id="security-considerations">Security Considerations<a class="headerlink" href="#security-considerations" title="Permanent link">&para;</a></h2>
+<h3 id="price-manipulation-protection">Price Manipulation Protection<a class="headerlink" href="#price-manipulation-protection" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Maximum price limits prevent excessive pricing</li>
+<li>Configurable modifier factors allow controlled growth</li>
+<li>Transparent pricing algorithms prevent manipulation</li>
+<li>Event emission for price change monitoring</li>
+</ul>
+<h3 id="overflow-protection">Overflow Protection<a class="headerlink" href="#overflow-protection" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Safe arithmetic operations for price calculations</li>
+<li>Bounds checking for modifier factors</li>
+<li>Maximum price enforcement</li>
+<li>Graceful handling of edge cases</li>
+</ul>
+<h3 id="economic-security">Economic Security<a class="headerlink" href="#economic-security" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Predictable pricing algorithms</li>
+<li>Configurable parameters for different use cases</li>
+<li>Protection against price manipulation attacks</li>
+<li>Fair pricing progression for all participants</li>
+</ul>
+<h2 id="gas-optimization">Gas Optimization<a class="headerlink" href="#gas-optimization" title="Permanent link">&para;</a></h2>
+<h3 id="calculation-efficiency">Calculation Efficiency<a class="headerlink" href="#calculation-efficiency" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Optimized arithmetic operations</li>
+<li>Minimal storage reads and writes</li>
+<li>Efficient price update algorithms</li>
+<li>Batch price operations where possible</li>
+</ul>
+<h3 id="storage-efficiency">Storage Efficiency<a class="headerlink" href="#storage-efficiency" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Compact data structures</li>
+<li>Minimal storage footprint</li>
+<li>Efficient parameter encoding</li>
+<li>Optimized Diamond storage access</li>
+</ul>
+<h2 id="error-handling">Error Handling<a class="headerlink" href="#error-handling" title="Permanent link">&para;</a></h2>
+<h3 id="common-errors">Common Errors<a class="headerlink" href="#common-errors" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Division by zero in modifier calculations</li>
+<li>Price overflow in exponential growth</li>
+<li>Invalid modifier factor values</li>
+<li>Maximum price exceeded</li>
+</ul>
+<h3 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Validate modifier factors before use</li>
+<li>Implement maximum price limits</li>
+<li>Handle edge cases gracefully</li>
+<li>Provide clear error messages for debugging</li>
+</ul>
+<h2 id="testing-considerations">Testing Considerations<a class="headerlink" href="#testing-considerations" title="Permanent link">&para;</a></h2>
+<h3 id="unit-tests">Unit Tests<a class="headerlink" href="#unit-tests" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Price calculation accuracy for each modifier type</li>
+<li>Boundary condition testing</li>
+<li>Overflow and underflow protection</li>
+<li>Storage operations verification</li>
+</ul>
+<h3 id="integration-tests">Integration Tests<a class="headerlink" href="#integration-tests" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Multi-transaction pricing scenarios</li>
+<li>Cross-contract price integration</li>
+<li>Economic model validation</li>
+<li>Long-term pricing behavior analysis</li>
+</ul>
+<h3 id="economic-testing">Economic Testing<a class="headerlink" href="#economic-testing" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Bonding curve validation</li>
+<li>Market dynamics simulation</li>
+<li>Price discovery mechanisms</li>
+<li>Tokenomics model verification</li>
+</ul>
+<h2 id="related-documentation">Related Documentation<a class="headerlink" href="#related-documentation" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../interfaces/ivariable-price.md">IVariablePrice Interface</a> - Variable price interface definition</li>
+<li><a href="../multi-sale-lib/">MultiSaleLib</a> - Multi-token sale integration</li>
+<li><a href="../../guides/pricing-strategies.md">Pricing Strategies Guide</a> - Economic model implementation</li>
+<li><a href="../../guides/tokenomics.md">Tokenomics Guide</a> - Token economics best practices</li>
+<li><a href="../../guides/auction-systems.md">Auction Systems Guide</a> - Auction implementation patterns</li>
+</ul>
+<hr />
+<p><em>This library provides comprehensive utilities for dynamic pricing mechanisms within the Gemforce platform, supporting flexible pricing strategies, automatic price adjustments, and configurable economic models for various tokenomics scenarios including bonding curves, auctions, and marketplace systems.</em></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../attribute-lib/" class="btn btn-neutral float-left" title="Attribute Lib"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../merkle-prover/" class="btn btn-neutral float-right" title="Merkle Prover">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../attribute-lib/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../merkle-prover/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

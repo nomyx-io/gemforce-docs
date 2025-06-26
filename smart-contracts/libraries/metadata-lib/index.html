@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Gemforce Team" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>Metadata Lib - Gemforce Documentation</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Metadata Lib";
+        var mkdocs_page_input_path = "smart-contracts/libraries/metadata-lib.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../.." class="icon icon-home"> Gemforce Documentation
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../developer-setup-guide/">Developer Setup Guide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../system-architecture/gemforce-system-architecture/">System Architecture</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Smart Contracts</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../diamond/">Diamond Contract</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Facets</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/marketplace-facet/">Marketplace Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trade-deal-management-facet/">Trade Deal Management Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/carbon-credit-facet/">Carbon Credit Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/identity-registry-facet/">Identity Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trusted-issuers-registry-facet/">Trusted Issuers Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/fee-distributor-facet/">Fee Distributor Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/gemforce-minter-facet/">Gemforce Minter Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/multi-sale-facet/">Multi Sale Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/svg-templates-facet/">SVG Templates Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trade-deal-admin-facet/">Trade Deal Admin Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trade-deal-operations-facet/">Trade Deal Operations Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/collateral-token-factory-facet/">Collateral Token Factory Facet</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Interfaces</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/idiamond/">IDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/imarketplace/">IMarketplace</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/itradedeal/">ITradeDeal</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/icarbon-credit/">ICarbonCredit</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ierc1155-mint/">IERC1155Mint</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ierc734/">IERC734</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ierc735/">IERC735</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" >Libraries</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" href="../carbon-credit-lib/">Carbon Credit Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../trade-deal-lib/">Trade Deal Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../multi-sale-lib/">Multi Sale Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../diamond-factory-lib/">Diamond Factory Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../svg-templates-lib/">SVG Templates Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../attribute-lib/">Attribute Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../variable-price-lib/">Variable Price Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../merkle-prover/">Merkle Prover</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../fee-distributor-lib/">Fee Distributor Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../lib-diamond/">LibDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../diamond-lib/">DiamondLib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../erc721a-lib/">ERC721A Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../erc721a-enumeration-lib/">ERC721A Enumeration Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../strings-lib/">Strings Lib</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">Metadata Lib</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#overview">Overview</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#key-features">Key Features</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#storage-structure">Storage Structure</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#metadatastorage">MetadataStorage</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#storage-position">Storage Position</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#core-functions">Core Functions</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#storage-access">Storage Access</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#basic-metadata-properties">Basic Metadata Properties</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#image-management">Image Management</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#configuration-management">Configuration Management</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#uri-generation">URI Generation</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#metadata-generation">Metadata Generation</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#trait-creation">Trait Creation</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#complete-metadata-generation">Complete Metadata Generation</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#template-processing">Template Processing</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#svg-template-integration">SVG Template Integration</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data-structures">Data Structures</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#trait-structure">Trait Structure</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#replacement-structure">Replacement Structure</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#attribute-structure">Attribute Structure</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usage-examples">Usage Examples</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#basic-token-uri-generation">Basic Token URI Generation</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#custom-trait-creation">Custom Trait Creation</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#dynamic-image-generation">Dynamic Image Generation</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#contract-metadata-setup">Contract Metadata Setup</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#integration-points">Integration Points</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#with-attributelib">With AttributeLib</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#with-svgtemplateslib">With SVGTemplatesLib</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#with-stringslib">With StringsLib</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#special-features">Special Features</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#claim-token-detection">Claim Token Detection</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#image-format-detection">Image Format Detection</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#dynamic-color-replacement">Dynamic Color Replacement</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#performance-considerations">Performance Considerations</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#gas-optimization">Gas Optimization</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#storage-efficiency">Storage Efficiency</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#security-considerations">Security Considerations</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#input-validation">Input Validation</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#access-control">Access Control</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#best-practices">Best Practices</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#related-documentation">Related Documentation</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#migration-notes">Migration Notes</a>
+    </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../trusted-issuer-lib/">Trusted Issuer Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../set-libraries/">Set Libraries</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Cloud Functions</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/blockchain/">Blockchain Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/dfns/">DFNS Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/contracts/">Contract Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/authentication/">Authentication Functions</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">API Documentation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../api-documentation/gemforce-api-documentation/">Full API Reference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../api-documentation/gemforce-api-quick-reference/">Quick Reference</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">EIPs (Ethereum Improvement Proposals)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Diamond-Enhanced-Marketplace/">Diamond-Enhanced Marketplace</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Multi-Token-Sale-Standard/">Multi-Token Sale Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Collateralized-Trade-Deal-Standard/">Collateralized Trade Deal Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Enhanced-Identity-System/">Enhanced Identity System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Diamond-Factory-Standard/">Diamond Factory Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Carbon-Credit-Standard/">Carbon Credit Standard</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">User Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-administrator-guide/">Administrator Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-deployer-guide/">Deployer Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-integrator-guide/">Integrator Guide</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../external-services/gemforce-external-services/">External Services</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-documentation-gap-analysis/">Documentation Gap Analysis</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../documentation-progress-summary/">Documentation Progress Summary</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../documentation-plan/">Documentation Plan</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">Gemforce Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Smart Contracts</li>
+          <li class="breadcrumb-item">Libraries</li>
+      <li class="breadcrumb-item active">Metadata Lib</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="metadatalib-library">MetadataLib Library<a class="headerlink" href="#metadatalib-library" title="Permanent link">&para;</a></h1>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p><a href="/Users/sschepis/Development/gem-base/contracts/libraries/MetadataLib.sol"><code>MetadataLib</code></a> is a comprehensive NFT metadata management library that handles the generation, storage, and retrieval of token metadata in compliance with ERC721 standards. This library provides advanced features for dynamic metadata generation, SVG image processing, attribute management, and JSON metadata formatting.</p>
+<h2 id="key-features">Key Features<a class="headerlink" href="#key-features" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Dynamic Metadata Generation</strong>: Generate metadata on-chain with customizable attributes</li>
+<li><strong>SVG Image Integration</strong>: Advanced SVG template processing and color replacement</li>
+<li><strong>Attribute Management</strong>: Integration with AttributeLib for token-specific attributes</li>
+<li><strong>JSON Formatting</strong>: Standards-compliant JSON metadata generation</li>
+<li><strong>Base64 Encoding</strong>: Automatic encoding for data URIs</li>
+<li><strong>Contract-Level Metadata</strong>: Support for collection-level metadata</li>
+<li><strong>Template System</strong>: Flexible template replacement for dynamic content</li>
+</ul>
+<h2 id="storage-structure">Storage Structure<a class="headerlink" href="#storage-structure" title="Permanent link">&para;</a></h2>
+<h3 id="metadatastorage">MetadataStorage<a class="headerlink" href="#metadatastorage" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">struct</span><span class="w"> </span><span class="nv">MetadataStorage</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>MetadataContract<span class="w"> </span>metadata<span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="storage-position">Storage Position<a class="headerlink" href="#storage-position" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">bytes32</span><span class="w"> </span><span class="k">internal </span><span class="nv">constant</span><span class="w"> </span>DIAMOND_STORAGE_POSITION<span class="w"> </span><span class="o">=</span><span class="w"> </span>
+<span class="w">    </span><span class="nb">keccak256</span><span class="p">(</span><span class="s2">&quot;diamond.nextblock.bitgem.app.MetadataStorage.storage&quot;</span><span class="p">);</span>
+</code></pre></div>
+
+<h2 id="core-functions">Core Functions<a class="headerlink" href="#core-functions" title="Permanent link">&para;</a></h2>
+<h3 id="storage-access">Storage Access<a class="headerlink" href="#storage-access" title="Permanent link">&para;</a></h3>
+<h4 id="metadatastorage_1"><code>metadataStorage()</code><a class="headerlink" href="#metadatastorage_1" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">metadataStorage</span><span class="p">()</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>pure<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>MetadataStorage<span class="w"> </span>storage<span class="w"> </span>ds<span class="p">)</span>
+</code></pre></div>
+
+<p>Returns the metadata storage struct using assembly for gas efficiency.</p>
+<h4 id="setmetadata"><code>setMetadata()</code><a class="headerlink" href="#setmetadata" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">setMetadata</span><span class="p">(</span>MetadataContract<span class="w"> </span>storage<span class="p">,</span><span class="w"> </span>MetadataContract<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>_contract<span class="p">)</span><span class="w"> </span><span class="kt">internal</span>
+</code></pre></div>
+
+<p>Sets the metadata contract configuration.</p>
+<h3 id="basic-metadata-properties">Basic Metadata Properties<a class="headerlink" href="#basic-metadata-properties" title="Permanent link">&para;</a></h3>
+<h4 id="name"><code>name()</code><a class="headerlink" href="#name" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">name</span><span class="p">(</span>MetadataContract<span class="w"> </span>storage<span class="w"> </span>self<span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Returns the collection name.</p>
+<h4 id="symbol"><code>symbol()</code><a class="headerlink" href="#symbol" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">symbol</span><span class="p">(</span>MetadataContract<span class="w"> </span>storage<span class="w"> </span>self<span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Returns the collection symbol.</p>
+<h4 id="description"><code>description()</code><a class="headerlink" href="#description" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">description</span><span class="p">(</span>MetadataContract<span class="w"> </span>storage<span class="w"> </span>self<span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Returns the collection description.</p>
+<h4 id="image"><code>image()</code><a class="headerlink" href="#image" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">image</span><span class="p">(</span>MetadataContract<span class="w"> </span>storage<span class="w"> </span>self<span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Returns the collection image as SVG.</p>
+<h3 id="image-management">Image Management<a class="headerlink" href="#image-management" title="Permanent link">&para;</a></h3>
+<h4 id="getcontractimage"><code>getContractImage()</code><a class="headerlink" href="#getcontractimage" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">getContractImage</span><span class="p">(</span>
+<span class="w">    </span>MetadataContract<span class="w"> </span>storage<span class="w"> </span>self
+<span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">addr</span><span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>svg<span class="p">)</span>
+</code></pre></div>
+
+<p>Generates the contract-level image using SVG templates and color replacements.</p>
+<p><strong>Returns:</strong>
+- <code>addr</code>: Address of the SVG template contract
+- <code>svg</code>: Generated SVG string</p>
+<p><strong>Features:</strong>
+- <strong>Template Resolution</strong>: Resolves SVG templates by name
+- <strong>Color Replacement</strong>: Applies color palette to templates
+- <strong>Fallback Handling</strong>: Returns image name if template resolution fails</p>
+<h4 id="gettokenimage"><code>getTokenImage()</code><a class="headerlink" href="#gettokenimage" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">getTokenImage</span><span class="p">(</span>
+<span class="w">    </span>MetadataContract<span class="w"> </span>storage<span class="p">,</span>
+<span class="w">    </span>DiamondContract<span class="w"> </span>storage<span class="p">,</span>
+<span class="w">    </span>AttributeContract<span class="w"> </span>storage<span class="w"> </span>a<span class="p">,</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span>
+<span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>svg<span class="p">,</span><span class="w"> </span>Attribute<span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>attributes<span class="p">)</span>
+</code></pre></div>
+
+<p>Generates token-specific image and retrieves associated attributes.</p>
+<p><strong>Parameters:</strong>
+- <code>tokenId</code>: ID of the token</p>
+<p><strong>Returns:</strong>
+- <code>svg</code>: Generated or stored SVG for the token
+- <code>attributes</code>: Array of token attributes</p>
+<h4 id="settokenimage"><code>setTokenImage()</code><a class="headerlink" href="#settokenimage" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">setTokenImage</span><span class="p">(</span>
+<span class="w">    </span>MetadataContract<span class="w"> </span>storage<span class="p">,</span>
+<span class="w">    </span>AttributeContract<span class="w"> </span>storage<span class="w"> </span>a<span class="p">,</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>svg
+<span class="p">)</span><span class="w"> </span><span class="kt">internal</span>
+</code></pre></div>
+
+<p>Sets a custom image for a specific token.</p>
+<p><strong>Parameters:</strong>
+- <code>tokenId</code>: ID of the token
+- <code>svg</code>: SVG content to store</p>
+<h3 id="configuration-management">Configuration Management<a class="headerlink" href="#configuration-management" title="Permanent link">&para;</a></h3>
+<h4 id="_setmetadatasource"><code>_setMetadataSource()</code><a class="headerlink" href="#_setmetadatasource" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">_setMetadataSource</span><span class="p">(</span>
+<span class="w">    </span>MetadataContract<span class="w"> </span>storage<span class="w"> </span>self<span class="p">,</span>
+<span class="w">    </span>MetadataSource<span class="w"> </span>source
+<span class="p">)</span><span class="w"> </span><span class="kt">internal</span>
+</code></pre></div>
+
+<p>Sets the metadata source type (on-chain, IPFS, HTTP, etc.).</p>
+<h4 id="_setbaseuri"><code>_setBaseURI()</code><a class="headerlink" href="#_setbaseuri" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">_setBaseURI</span><span class="p">(</span>MetadataContract<span class="w"> </span>storage<span class="w"> </span>self<span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>baseURI<span class="p">)</span><span class="w"> </span><span class="kt">internal</span>
+</code></pre></div>
+
+<p>Sets the base URI for external metadata sources.</p>
+<h3 id="uri-generation">URI Generation<a class="headerlink" href="#uri-generation" title="Permanent link">&para;</a></h3>
+<h4 id="tokenuri"><code>tokenURI()</code><a class="headerlink" href="#tokenuri" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">tokenURI</span><span class="p">(</span>
+<span class="w">    </span>MetadataContract<span class="w"> </span>storage<span class="w"> </span>self<span class="p">,</span>
+<span class="w">    </span>DiamondContract<span class="w"> </span>storage<span class="w"> </span>diamond<span class="p">,</span>
+<span class="w">    </span>AttributeContract<span class="w"> </span>storage<span class="w"> </span>attribs<span class="p">,</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span>
+<span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Generates the complete token URI with metadata JSON.</p>
+<p><strong>Process:</strong>
+1. Retrieves token image and attributes
+2. Converts attributes to traits
+3. Generates JSON metadata
+4. Base64 encodes the result
+5. Returns data URI</p>
+<p><strong>Features:</strong>
+- <strong>Dynamic Naming</strong>: Adds "Claim" suffix for claim tokens
+- <strong>Attribute Integration</strong>: Includes all token attributes as traits
+- <strong>Standards Compliance</strong>: ERC721 metadata standard compliant</p>
+<h4 id="contracturi"><code>contractURI()</code><a class="headerlink" href="#contracturi" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">contractURI</span><span class="p">(</span>MetadataContract<span class="w"> </span>storage<span class="w"> </span>self<span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Generates contract-level metadata URI for collection information.</p>
+<h2 id="metadata-generation">Metadata Generation<a class="headerlink" href="#metadata-generation" title="Permanent link">&para;</a></h2>
+<h3 id="trait-creation">Trait Creation<a class="headerlink" href="#trait-creation" title="Permanent link">&para;</a></h3>
+<h4 id="createtrait"><code>createTrait()</code><a class="headerlink" href="#createtrait" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">createTrait</span><span class="p">(</span>
+<span class="w">    </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>displayType<span class="p">,</span>
+<span class="w">    </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>key<span class="p">,</span>
+<span class="w">    </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>value
+<span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>pure<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>trait<span class="p">)</span>
+</code></pre></div>
+
+<p>Creates a JSON trait object for metadata attributes.</p>
+<p><strong>Parameters:</strong>
+- <code>displayType</code>: Display type for the trait (e.g., "number", "percentage")
+- <code>key</code>: Trait name
+- <code>value</code>: Trait value</p>
+<p><strong>Features:</strong>
+- <strong>Type Handling</strong>: Automatic value formatting based on display type
+- <strong>Number Detection</strong>: Unquoted values for numeric traits
+- <strong>Validation</strong>: Ensures key is not empty</p>
+<h4 id="arrayizetraits"><code>arrayizeTraits()</code><a class="headerlink" href="#arrayizetraits" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">arrayizeTraits</span><span class="p">(</span>Trait<span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>_traits<span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>pure<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>_traitsString<span class="p">)</span>
+</code></pre></div>
+
+<p>Converts an array of trait structs into a JSON array string.</p>
+<p><strong>Features:</strong>
+- <strong>JSON Formatting</strong>: Proper JSON array formatting
+- <strong>Comma Handling</strong>: Correct comma placement between traits
+- <strong>Empty Array Support</strong>: Handles empty trait arrays</p>
+<h3 id="complete-metadata-generation">Complete Metadata Generation<a class="headerlink" href="#complete-metadata-generation" title="Permanent link">&para;</a></h3>
+<h4 id="gettokenmetadata"><code>getTokenMetadata()</code><a class="headerlink" href="#gettokenmetadata" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">getTokenMetadata</span><span class="p">(</span>
+<span class="w">    </span>MetadataContract<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>definition<span class="p">,</span>
+<span class="w">    </span>Trait<span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>_traits<span class="p">,</span>
+<span class="w">    </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>_imageData
+<span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>pure<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>metadata<span class="p">)</span>
+</code></pre></div>
+
+<p>Generates complete JSON metadata for a token.</p>
+<p><strong>Parameters:</strong>
+- <code>definition</code>: Metadata contract definition
+- <code>_traits</code>: Array of token traits
+- <code>_imageData</code>: Image data (SVG or URL)</p>
+<p><strong>Generated Fields:</strong>
+- <code>name</code>: Token name
+- <code>image</code>: Token image
+- <code>description</code>: Token description
+- <code>external_url</code>: External URL (if configured)
+- <code>attributes</code>: Token attributes array</p>
+<h2 id="template-processing">Template Processing<a class="headerlink" href="#template-processing" title="Permanent link">&para;</a></h2>
+<h3 id="svg-template-integration">SVG Template Integration<a class="headerlink" href="#svg-template-integration" title="Permanent link">&para;</a></h3>
+<h4 id="_getreplacements"><code>_getReplacements()</code><a class="headerlink" href="#_getreplacements" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">_getReplacements</span><span class="p">(</span>
+<span class="w">    </span><span class="kt">string</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>colorPalette<span class="p">,</span>
+<span class="w">    </span><span class="kt">string</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>cccc
+<span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>pure<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>Replacement<span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Creates replacement arrays for SVG template processing.</p>
+<p><strong>Parameters:</strong>
+- <code>colorPalette</code>: Array of color values
+- <code>cccc</code>: Array of attribute values (CUT, COLOR, CARAT, CLARITY)</p>
+<p><strong>Returns:</strong>
+- Array of replacement objects for template processing</p>
+<p><strong>Template Variables:</strong>
+- <code>COLOR 0</code>, <code>COLOR 1</code>, etc.: Color palette values
+- <code>CUT</code>: Cut attribute value
+- <code>COLOR</code>: Color attribute value
+- <code>CARAT</code>: Carat attribute value
+- <code>CLARITY</code>: Clarity attribute value</p>
+<h2 id="data-structures">Data Structures<a class="headerlink" href="#data-structures" title="Permanent link">&para;</a></h2>
+<h3 id="trait-structure">Trait Structure<a class="headerlink" href="#trait-structure" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">struct</span><span class="w"> </span><span class="nv">Trait</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">string</span><span class="w"> </span><span class="nv">displayType</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">string</span><span class="w"> </span><span class="nv">key</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">string</span><span class="w"> </span><span class="nv">value</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="replacement-structure">Replacement Structure<a class="headerlink" href="#replacement-structure" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">struct</span><span class="w"> </span><span class="nv">Replacement</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">string</span><span class="w"> </span><span class="nv">matchString</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">string</span><span class="w"> </span><span class="nv">replaceString</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="attribute-structure">Attribute Structure<a class="headerlink" href="#attribute-structure" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">struct</span><span class="w"> </span><span class="nv">Attribute</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">string</span><span class="w"> </span><span class="nv">key</span><span class="p">;</span>
+<span class="w">    </span>AttributeType<span class="w"> </span>attributeType<span class="p">;</span>
+<span class="w">    </span><span class="kt">string</span><span class="w"> </span><span class="nv">value</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="usage-examples">Usage Examples<a class="headerlink" href="#usage-examples" title="Permanent link">&para;</a></h2>
+<h3 id="basic-token-uri-generation">Basic Token URI Generation<a class="headerlink" href="#basic-token-uri-generation" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">getTokenURI</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>MetadataStorage<span class="w"> </span>storage<span class="w"> </span>ms<span class="w"> </span><span class="o">=</span><span class="w"> </span>MetadataLib<span class="p">.</span>metadataStorage<span class="p">();</span>
+<span class="w">    </span>DiamondStorage<span class="w"> </span>storage<span class="w"> </span>ds<span class="w"> </span><span class="o">=</span><span class="w"> </span>DiamondLib<span class="p">.</span>diamondStorage<span class="p">();</span>
+<span class="w">    </span>AttributeStorage<span class="w"> </span>storage<span class="w"> </span>as<span class="w"> </span><span class="o">=</span><span class="w"> </span>AttributeLib<span class="p">.</span>attributeStorage<span class="p">();</span>
+
+<span class="w">    </span><span class="kt">return</span><span class="w"> </span>MetadataLib<span class="p">.</span>tokenURI<span class="p">(</span>ms<span class="p">.</span>metadata<span class="p">,</span><span class="w"> </span>ds<span class="p">,</span><span class="w"> </span>as<span class="p">,</span><span class="w"> </span>tokenId<span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="custom-trait-creation">Custom Trait Creation<a class="headerlink" href="#custom-trait-creation" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">createCustomTraits</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>Trait<span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>Trait<span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>traits<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span>Trait<span class="p">[](</span><span class="m m-Decimal">3</span><span class="p">);</span>
+
+<span class="w">    </span>traits<span class="p">[</span><span class="m m-Decimal">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>Trait<span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Rarity&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Legendary&quot;</span><span class="p">);</span>
+<span class="w">    </span>traits<span class="p">[</span><span class="m m-Decimal">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>Trait<span class="p">(</span><span class="s2">&quot;number&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Level&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;42&quot;</span><span class="p">);</span>
+<span class="w">    </span>traits<span class="p">[</span><span class="m m-Decimal">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>Trait<span class="p">(</span><span class="s2">&quot;percentage&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Completion&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;85&quot;</span><span class="p">);</span>
+
+<span class="w">    </span><span class="kt">return</span><span class="w"> </span>traits<span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="dynamic-image-generation">Dynamic Image Generation<a class="headerlink" href="#dynamic-image-generation" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">generateTokenImage</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>MetadataStorage<span class="w"> </span>storage<span class="w"> </span>ms<span class="w"> </span><span class="o">=</span><span class="w"> </span>MetadataLib<span class="p">.</span>metadataStorage<span class="p">();</span>
+<span class="w">    </span>DiamondStorage<span class="w"> </span>storage<span class="w"> </span>ds<span class="w"> </span><span class="o">=</span><span class="w"> </span>DiamondLib<span class="p">.</span>diamondStorage<span class="p">();</span>
+<span class="w">    </span>AttributeStorage<span class="w"> </span>storage<span class="w"> </span>as<span class="w"> </span><span class="o">=</span><span class="w"> </span>AttributeLib<span class="p">.</span>attributeStorage<span class="p">();</span>
+
+<span class="w">    </span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>svg<span class="p">,</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>MetadataLib<span class="p">.</span>getTokenImage<span class="p">(</span>ms<span class="p">.</span>metadata<span class="p">,</span><span class="w"> </span>ds<span class="p">,</span><span class="w"> </span>as<span class="p">,</span><span class="w"> </span>tokenId<span class="p">);</span>
+<span class="w">    </span><span class="kt">return</span><span class="w"> </span>svg<span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="contract-metadata-setup">Contract Metadata Setup<a class="headerlink" href="#contract-metadata-setup" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">setupContractMetadata</span><span class="p">()</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>MetadataContract<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>metadata<span class="w"> </span><span class="o">=</span><span class="w"> </span>MetadataContract<span class="p">({</span>
+<span class="w">        </span>_name<span class="o">:</span><span class="w"> </span><span class="s2">&quot;Gemforce Collection&quot;</span><span class="p">,</span>
+<span class="w">        </span>_symbol<span class="o">:</span><span class="w"> </span><span class="s2">&quot;GEM&quot;</span><span class="p">,</span>
+<span class="w">        </span>_description<span class="o">:</span><span class="w"> </span><span class="s2">&quot;A collection of unique digital gems&quot;</span><span class="p">,</span>
+<span class="w">        </span>_imageName<span class="o">:</span><span class="w"> </span><span class="s2">&quot;gem_template&quot;</span><span class="p">,</span>
+<span class="w">        </span>_imageColors<span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;#FF0000&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;#00FF00&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;#0000FF&quot;</span><span class="p">],</span>
+<span class="w">        </span>_externalUri<span class="o">:</span><span class="w"> </span><span class="s2">&quot;https://gemforce.io&quot;</span><span class="p">,</span>
+<span class="w">        </span>_baseUri<span class="o">:</span><span class="w"> </span><span class="s2">&quot;https://api.gemforce.io/metadata/&quot;</span><span class="p">,</span>
+<span class="w">        </span>_metadataSource<span class="o">:</span><span class="w"> </span>MetadataSource<span class="p">.</span>OnChain
+<span class="w">    </span><span class="p">});</span>
+
+<span class="w">    </span>MetadataLib<span class="p">.</span>setMetadata<span class="p">(</span>metadataStorage<span class="p">().</span>metadata<span class="p">,</span><span class="w"> </span>metadata<span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="integration-points">Integration Points<a class="headerlink" href="#integration-points" title="Permanent link">&para;</a></h2>
+<h3 id="with-attributelib">With AttributeLib<a class="headerlink" href="#with-attributelib" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Get token attributes for metadata</span>
+<span class="kt">string</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>keys<span class="w"> </span><span class="o">=</span><span class="w"> </span>AttributeLib<span class="p">.</span>_getAttributeKeys<span class="p">(</span>attributeStorage<span class="p">,</span><span class="w"> </span>tokenId<span class="p">);</span>
+<span class="kt">string</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>values<span class="w"> </span><span class="o">=</span><span class="w"> </span>AttributeLib<span class="p">.</span>_getAttributeValues<span class="p">(</span>tokenId<span class="p">);</span>
+</code></pre></div>
+
+<h3 id="with-svgtemplateslib">With SVGTemplatesLib<a class="headerlink" href="#with-svgtemplateslib" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Generate SVG with template replacement</span>
+SVGManager<span class="w"> </span>mgr<span class="w"> </span><span class="o">=</span><span class="w"> </span>SVGManager<span class="p">(</span>SVGTemplatesLib<span class="p">.</span>svgStorage<span class="p">().</span>svgManager<span class="p">);</span>
+<span class="kt">address</span><span class="w"> </span><span class="nv">templateAddr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>mgr<span class="p">.</span>svgAddress<span class="p">(</span>imageName<span class="p">);</span>
+<span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>svg<span class="w"> </span><span class="o">=</span><span class="w"> </span>ISVGTemplate<span class="p">(</span>templateAddr<span class="p">).</span>buildSVG<span class="p">(</span>replacements<span class="p">);</span>
+</code></pre></div>
+
+<h3 id="with-stringslib">With StringsLib<a class="headerlink" href="#with-stringslib" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// String manipulation for metadata processing</span>
+<span class="kt">bool</span><span class="w"> </span><span class="nv">isHex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>StringsLib<span class="p">.</span>startsWith<span class="p">(</span>imageData<span class="p">,</span><span class="w"> </span><span class="s2">&quot;0x&quot;</span><span class="p">);</span>
+<span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>processed<span class="w"> </span><span class="o">=</span><span class="w"> </span>StringsLib<span class="p">.</span>replace<span class="p">(</span>template<span class="p">,</span><span class="w"> </span><span class="s2">&quot;{{value}}&quot;</span><span class="p">,</span><span class="w"> </span>replacement<span class="p">);</span>
+</code></pre></div>
+
+<h2 id="special-features">Special Features<a class="headerlink" href="#special-features" title="Permanent link">&para;</a></h2>
+<h3 id="claim-token-detection">Claim Token Detection<a class="headerlink" href="#claim-token-detection" title="Permanent link">&para;</a></h3>
+<p>The library automatically detects claim tokens and modifies the name:</p>
+<div class="codehilite"><pre><span></span><code><span class="kt">if</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span>TYPE_HASH<span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">keccak256</span><span class="p">(</span><span class="kt">bytes</span><span class="p">(</span>attributes<span class="p">[</span>i<span class="p">].</span>key<span class="p">))</span><span class="w"> </span><span class="o">&amp;&amp;</span>
+<span class="w">    </span>CLAIM_HASH<span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">keccak256</span><span class="p">(</span><span class="kt">bytes</span><span class="p">(</span>attributes<span class="p">[</span>i<span class="p">].</span>value<span class="p">))</span>
+<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>_name<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">string</span><span class="p">(</span>abi<span class="p">.</span>encodePacked<span class="p">(</span>_name<span class="p">,</span><span class="w"> </span><span class="s2">&quot; Claim&quot;</span><span class="p">));</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="image-format-detection">Image Format Detection<a class="headerlink" href="#image-format-detection" title="Permanent link">&para;</a></h3>
+<p>Supports both SVG content and hex-encoded data:</p>
+<div class="codehilite"><pre><span></span><code><span class="kt">if</span><span class="p">(</span><span class="o">!</span>_imageData<span class="p">.</span>startsWith<span class="p">(</span><span class="s2">&quot;0x&quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>_imageData<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">string</span><span class="p">(</span>abi<span class="p">.</span>encodePacked<span class="p">(</span><span class="s1">&#39;&quot;&#39;</span><span class="p">,</span><span class="w"> </span>_imageData<span class="p">,</span><span class="w"> </span><span class="s1">&#39;&quot;&#39;</span><span class="p">));</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="dynamic-color-replacement">Dynamic Color Replacement<a class="headerlink" href="#dynamic-color-replacement" title="Permanent link">&para;</a></h3>
+<p>Supports dynamic color palette application to SVG templates:</p>
+<div class="codehilite"><pre><span></span><code><span class="kt">string</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>colors<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;#FF0000&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;#00FF00&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;#0000FF&quot;</span><span class="p">];</span>
+Replacement<span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>replacements<span class="w"> </span><span class="o">=</span><span class="w"> </span>_getReplacements<span class="p">(</span>colors<span class="p">,</span><span class="w"> </span>attributes<span class="p">);</span>
+</code></pre></div>
+
+<h2 id="performance-considerations">Performance Considerations<a class="headerlink" href="#performance-considerations" title="Permanent link">&para;</a></h2>
+<h3 id="gas-optimization">Gas Optimization<a class="headerlink" href="#gas-optimization" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>String Operations</strong>: Efficient string concatenation using <code>abi.encodePacked</code></li>
+<li><strong>Memory Management</strong>: Careful memory allocation for large metadata</li>
+<li><strong>Template Caching</strong>: SVG templates resolved once per call</li>
+</ul>
+<h3 id="storage-efficiency">Storage Efficiency<a class="headerlink" href="#storage-efficiency" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Attribute Integration</strong>: Leverages existing attribute storage</li>
+<li><strong>Template Reuse</strong>: Shared SVG templates across tokens</li>
+<li><strong>Lazy Loading</strong>: Images generated on-demand</li>
+</ul>
+<h2 id="security-considerations">Security Considerations<a class="headerlink" href="#security-considerations" title="Permanent link">&para;</a></h2>
+<h3 id="input-validation">Input Validation<a class="headerlink" href="#input-validation" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Key Validation</strong>: Ensures trait keys are not empty</li>
+<li><strong>Address Validation</strong>: Validates SVG template addresses</li>
+<li><strong>Data Sanitization</strong>: Proper JSON escaping for metadata values</li>
+</ul>
+<h3 id="access-control">Access Control<a class="headerlink" href="#access-control" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Internal Functions</strong>: Most functions are internal for controlled access</li>
+<li><strong>Storage Protection</strong>: Diamond storage pattern prevents conflicts</li>
+<li><strong>Template Security</strong>: SVG template resolution with error handling</li>
+</ul>
+<h2 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Metadata Standards</strong>: Follow ERC721 metadata standards</li>
+<li><strong>Gas Efficiency</strong>: Minimize string operations in loops</li>
+<li><strong>Template Organization</strong>: Organize SVG templates logically</li>
+<li><strong>Attribute Consistency</strong>: Maintain consistent attribute naming</li>
+<li><strong>Error Handling</strong>: Implement proper fallbacks for template failures</li>
+</ol>
+<h2 id="related-documentation">Related Documentation<a class="headerlink" href="#related-documentation" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../attribute-lib/">Attribute Library</a> - Token attribute management</li>
+<li><a href="../svg-templates-lib/">SVG Templates Library</a> - SVG template processing</li>
+<li><a href="../strings-lib/">Strings Library</a> - String manipulation utilities</li>
+<li><a href="../diamond-lib/">Diamond Library</a> - Diamond pattern integration</li>
+<li><a href="https://eips.ethereum.org/EIPS/eip-721">ERC721 Standard</a> - NFT metadata standard</li>
+</ul>
+<h2 id="migration-notes">Migration Notes<a class="headerlink" href="#migration-notes" title="Permanent link">&para;</a></h2>
+<p>When upgrading metadata systems:
+- Ensure attribute compatibility with existing tokens
+- Test SVG template resolution thoroughly
+- Validate JSON metadata format compliance
+- Consider gas costs for large collections</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../strings-lib/" class="btn btn-neutral float-left" title="Strings Lib"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../trusted-issuer-lib/" class="btn btn-neutral float-right" title="Trusted Issuer Lib">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../strings-lib/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../trusted-issuer-lib/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

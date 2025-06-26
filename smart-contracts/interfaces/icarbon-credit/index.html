@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Gemforce Team" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>ICarbonCredit - Gemforce Documentation</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "ICarbonCredit";
+        var mkdocs_page_input_path = "smart-contracts/interfaces/icarbon-credit.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../.." class="icon icon-home"> Gemforce Documentation
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../developer-setup-guide/">Developer Setup Guide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../system-architecture/gemforce-system-architecture/">System Architecture</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Smart Contracts</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../diamond/">Diamond Contract</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Facets</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/marketplace-facet/">Marketplace Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trade-deal-management-facet/">Trade Deal Management Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/carbon-credit-facet/">Carbon Credit Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/identity-registry-facet/">Identity Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trusted-issuers-registry-facet/">Trusted Issuers Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/fee-distributor-facet/">Fee Distributor Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/gemforce-minter-facet/">Gemforce Minter Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/multi-sale-facet/">Multi Sale Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/svg-templates-facet/">SVG Templates Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trade-deal-admin-facet/">Trade Deal Admin Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trade-deal-operations-facet/">Trade Deal Operations Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/collateral-token-factory-facet/">Collateral Token Factory Facet</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" >Interfaces</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" href="../idiamond/">IDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../imarketplace/">IMarketplace</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../itradedeal/">ITradeDeal</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">ICarbonCredit</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#overview">Overview</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#key-features">Key Features</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#interface-definition">Interface Definition</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#core-functions">Core Functions</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#carbon-credit-initialization">Carbon Credit Initialization</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#carbon-credit-retirement">Carbon Credit Retirement</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#status-and-balance-queries">Status and Balance Queries</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#batch-operations">Batch Operations</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#batch-initialization">Batch Initialization</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#batch-balance-query">Batch Balance Query</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#integration-examples">Integration Examples</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#environmental-nft-marketplace">Environmental NFT Marketplace</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#carbon-offset-program">Carbon Offset Program</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#carbon-credit-analytics-dashboard">Carbon Credit Analytics Dashboard</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#events">Events</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#carbon-credit-lifecycle-events">Carbon Credit Lifecycle Events</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data-types">Data Types</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#carboncreditstatus-enum">CarbonCreditStatus Enum</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#security-considerations">Security Considerations</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#access-control">Access Control</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#financial-security">Financial Security</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#environmental-integrity">Environmental Integrity</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#gas-optimization">Gas Optimization</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#efficient-operations">Efficient Operations</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#storage-optimization">Storage Optimization</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#error-handling">Error Handling</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#common-errors">Common Errors</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#best-practices">Best Practices</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#testing-considerations">Testing Considerations</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#unit-tests">Unit Tests</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#integration-tests">Integration Tests</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#related-documentation">Related Documentation</a>
+    </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../ierc1155-mint/">IERC1155Mint</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../ierc734/">IERC734</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../ierc735/">IERC735</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Libraries</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/carbon-credit-lib/">Carbon Credit Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/trade-deal-lib/">Trade Deal Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/multi-sale-lib/">Multi Sale Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/diamond-factory-lib/">Diamond Factory Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/svg-templates-lib/">SVG Templates Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/attribute-lib/">Attribute Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/variable-price-lib/">Variable Price Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/merkle-prover/">Merkle Prover</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/fee-distributor-lib/">Fee Distributor Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/lib-diamond/">LibDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/diamond-lib/">DiamondLib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/erc721a-lib/">ERC721A Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/erc721a-enumeration-lib/">ERC721A Enumeration Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/strings-lib/">Strings Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/metadata-lib/">Metadata Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/trusted-issuer-lib/">Trusted Issuer Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/set-libraries/">Set Libraries</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Cloud Functions</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/blockchain/">Blockchain Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/dfns/">DFNS Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/contracts/">Contract Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/authentication/">Authentication Functions</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">API Documentation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../api-documentation/gemforce-api-documentation/">Full API Reference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../api-documentation/gemforce-api-quick-reference/">Quick Reference</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">EIPs (Ethereum Improvement Proposals)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Diamond-Enhanced-Marketplace/">Diamond-Enhanced Marketplace</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Multi-Token-Sale-Standard/">Multi-Token Sale Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Collateralized-Trade-Deal-Standard/">Collateralized Trade Deal Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Enhanced-Identity-System/">Enhanced Identity System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Diamond-Factory-Standard/">Diamond Factory Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Carbon-Credit-Standard/">Carbon Credit Standard</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">User Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-administrator-guide/">Administrator Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-deployer-guide/">Deployer Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-integrator-guide/">Integrator Guide</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../external-services/gemforce-external-services/">External Services</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-documentation-gap-analysis/">Documentation Gap Analysis</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../documentation-progress-summary/">Documentation Progress Summary</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../documentation-plan/">Documentation Plan</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">Gemforce Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Smart Contracts</li>
+          <li class="breadcrumb-item">Interfaces</li>
+      <li class="breadcrumb-item active">ICarbonCredit</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="icarboncredit-interface">ICarbonCredit Interface<a class="headerlink" href="#icarboncredit-interface" title="Permanent link">&para;</a></h1>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>The <a href="../../../contracts/interfaces/ICarbonCredit.sol"><code>ICarbonCredit</code></a> interface defines the standard contract for managing carbon credits associated with ERC721 tokens within the Gemforce platform. This interface enables the tokenization of environmental assets, allowing NFTs to represent carbon credits that can be tracked, managed, and retired for environmental impact purposes.</p>
+<h2 id="key-features">Key Features<a class="headerlink" href="#key-features" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Carbon Credit Tokenization</strong>: Associate carbon credit balances with ERC721 tokens</li>
+<li><strong>Credit Retirement</strong>: Permanently retire carbon credits to prevent double-counting</li>
+<li><strong>Batch Operations</strong>: Efficiently manage multiple tokens simultaneously</li>
+<li><strong>Status Tracking</strong>: Monitor active vs. retired carbon credit status</li>
+<li><strong>Environmental Compliance</strong>: Support for carbon offset and sustainability programs</li>
+</ul>
+<h2 id="interface-definition">Interface Definition<a class="headerlink" href="#interface-definition" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span><code><span class="c1">// SPDX-License-Identifier: MIT</span>
+<span class="k">pragma solidity</span><span class="w"> </span><span class="o">^</span><span class="k">0.8.0</span><span class="p">;</span>
+
+<span class="kt">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>CarbonCreditStatus<span class="w"> </span><span class="p">}</span><span class="w"> </span>from<span class="w"> </span><span class="s2">&quot;../libraries/CarbonCreditLib.sol&quot;</span><span class="p">;</span>
+
+interface<span class="w"> </span>ICarbonCredit<span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Events</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">CarbonCreditsInitialized</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>tokenId<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">initialBalance</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">CarbonCreditsRetired</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>tokenId<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">amount</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">remainingBalance</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Core Functions</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">initializeCarbonCredit</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">initialBalance</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">retireCarbonCredits</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">amount</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getCarbonCreditStatus</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>CarbonCreditStatus<span class="p">);</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getCarbonCreditBalance</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Batch Operations</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">batchInitializeCarbonCredits</span><span class="p">(</span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span>calldata<span class="w"> </span>tokenIds<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span>calldata<span class="w"> </span>initialBalances<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getAllCarbonCreditBalances</span><span class="p">(</span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span>calldata<span class="w"> </span>tokenIds<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="core-functions">Core Functions<a class="headerlink" href="#core-functions" title="Permanent link">&para;</a></h2>
+<h3 id="carbon-credit-initialization">Carbon Credit Initialization<a class="headerlink" href="#carbon-credit-initialization" title="Permanent link">&para;</a></h3>
+<h4 id="initializecarboncredit"><code>initializeCarbonCredit()</code><a class="headerlink" href="#initializecarboncredit" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">initializeCarbonCredit</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">initialBalance</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Initialize carbon credit balance for a specific ERC721 token.</p>
+<p><strong>Parameters</strong>:
+- <code>tokenId</code> (uint256): The ID of the ERC721 token to associate with carbon credits
+- <code>initialBalance</code> (uint256): The initial balance of carbon credits (must be &gt; 0)</p>
+<p><strong>Requirements</strong>:
+- Token must exist and have a valid owner
+- Carbon credits must not already be initialized for this token
+- Initial balance must be greater than zero
+- Caller must have appropriate permissions</p>
+<p><strong>Events Emitted</strong>:
+- <a href="icarbon-credit.md:12"><code>CarbonCreditsInitialized</code></a> with token ID and initial balance</p>
+<p><strong>Example Usage</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Initialize carbon credits for a newly minted environmental NFT</span>
+<span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">1</span><span class="p">;</span>
+<span class="kt">uint256</span><span class="w"> </span><span class="nv">initialCredits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">1000</span><span class="p">;</span><span class="w"> </span><span class="c1">// 1000 carbon credits</span>
+
+ICarbonCredit<span class="p">(</span>diamond<span class="p">).</span>initializeCarbonCredit<span class="p">(</span>tokenId<span class="p">,</span><span class="w"> </span>initialCredits<span class="p">);</span>
+console<span class="p">.</span>log<span class="p">(</span><span class="s2">&quot;Initialized&quot;</span><span class="p">,</span><span class="w"> </span>initialCredits<span class="p">,</span><span class="w"> </span><span class="s2">&quot;carbon credits for token&quot;</span><span class="p">,</span><span class="w"> </span>tokenId<span class="p">);</span>
+</code></pre></div>
+
+<h3 id="carbon-credit-retirement">Carbon Credit Retirement<a class="headerlink" href="#carbon-credit-retirement" title="Permanent link">&para;</a></h3>
+<h4 id="retirecarboncredits"><code>retireCarbonCredits()</code><a class="headerlink" href="#retirecarboncredits" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">retireCarbonCredits</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">amount</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Permanently retire carbon credits to prevent double-counting and demonstrate environmental impact.</p>
+<p><strong>Parameters</strong>:
+- <code>tokenId</code> (uint256): The ID of the ERC721 token containing carbon credits
+- <code>amount</code> (uint256): The amount of carbon credits to retire (must be whole number)</p>
+<p><strong>Requirements</strong>:
+- Token must have sufficient carbon credit balance
+- Amount must be greater than zero
+- Amount must be less than or equal to current balance
+- Caller must have appropriate permissions</p>
+<p><strong>Events Emitted</strong>:
+- <a href="icarbon-credit.md:18"><code>CarbonCreditsRetired</code></a> with token ID, retired amount, and remaining balance</p>
+<p><strong>Example Usage</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Retire carbon credits to offset emissions</span>
+<span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">1</span><span class="p">;</span>
+<span class="kt">uint256</span><span class="w"> </span><span class="nv">retireAmount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">250</span><span class="p">;</span><span class="w"> </span><span class="c1">// Retire 250 carbon credits</span>
+
+<span class="c1">// Check current balance first</span>
+<span class="kt">uint256</span><span class="w"> </span><span class="nv">currentBalance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>ICarbonCredit<span class="p">(</span>diamond<span class="p">).</span>getCarbonCreditBalance<span class="p">(</span>tokenId<span class="p">);</span>
+<span class="kt">require</span><span class="p">(</span>currentBalance<span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span>retireAmount<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Insufficient carbon credits&quot;</span><span class="p">);</span>
+
+<span class="c1">// Retire the credits</span>
+ICarbonCredit<span class="p">(</span>diamond<span class="p">).</span>retireCarbonCredits<span class="p">(</span>tokenId<span class="p">,</span><span class="w"> </span>retireAmount<span class="p">);</span>
+console<span class="p">.</span>log<span class="p">(</span><span class="s2">&quot;Retired&quot;</span><span class="p">,</span><span class="w"> </span>retireAmount<span class="p">,</span><span class="w"> </span><span class="s2">&quot;carbon credits from token&quot;</span><span class="p">,</span><span class="w"> </span>tokenId<span class="p">);</span>
+</code></pre></div>
+
+<h3 id="status-and-balance-queries">Status and Balance Queries<a class="headerlink" href="#status-and-balance-queries" title="Permanent link">&para;</a></h3>
+<h4 id="getcarboncreditstatus"><code>getCarbonCreditStatus()</code><a class="headerlink" href="#getcarboncreditstatus" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">getCarbonCreditStatus</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>CarbonCreditStatus<span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Get the current status of carbon credits for a token.</p>
+<p><strong>Parameters</strong>:
+- <code>tokenId</code> (uint256): The ID of the ERC721 token</p>
+<p><strong>Returns</strong>: 
+- <a href="../libraries/carbon-credit-lib.md:4"><code>CarbonCreditStatus</code></a> enum value:
+  - <code>ACTIVE</code>: Token has remaining carbon credits
+  - <code>RETIRED</code>: All carbon credits have been retired</p>
+<p><strong>Example Usage</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Check carbon credit status</span>
+<span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">1</span><span class="p">;</span>
+CarbonCreditStatus<span class="w"> </span>status<span class="w"> </span><span class="o">=</span><span class="w"> </span>ICarbonCredit<span class="p">(</span>diamond<span class="p">).</span>getCarbonCreditStatus<span class="p">(</span>tokenId<span class="p">);</span>
+
+<span class="kt">if</span><span class="w"> </span><span class="p">(</span>status<span class="w"> </span><span class="o">==</span><span class="w"> </span>CarbonCreditStatus<span class="p">.</span>ACTIVE<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>console<span class="p">.</span>log<span class="p">(</span><span class="s2">&quot;Token&quot;</span><span class="p">,</span><span class="w"> </span>tokenId<span class="p">,</span><span class="w"> </span><span class="s2">&quot;has active carbon credits&quot;</span><span class="p">);</span>
+<span class="p">}</span><span class="w"> </span><span class="kt">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>console<span class="p">.</span>log<span class="p">(</span><span class="s2">&quot;Token&quot;</span><span class="p">,</span><span class="w"> </span>tokenId<span class="p">,</span><span class="w"> </span><span class="s2">&quot;carbon credits are fully retired&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h4 id="getcarboncreditbalance"><code>getCarbonCreditBalance()</code><a class="headerlink" href="#getcarboncreditbalance" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">getCarbonCreditBalance</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Get the current carbon credit balance for a specific token.</p>
+<p><strong>Parameters</strong>:
+- <code>tokenId</code> (uint256): The ID of the ERC721 token</p>
+<p><strong>Returns</strong>: Current balance of carbon credits for the token</p>
+<p><strong>Example Usage</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Check current balance</span>
+<span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">1</span><span class="p">;</span>
+<span class="kt">uint256</span><span class="w"> </span><span class="nv">balance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>ICarbonCredit<span class="p">(</span>diamond<span class="p">).</span>getCarbonCreditBalance<span class="p">(</span>tokenId<span class="p">);</span>
+console<span class="p">.</span>log<span class="p">(</span><span class="s2">&quot;Token&quot;</span><span class="p">,</span><span class="w"> </span>tokenId<span class="p">,</span><span class="w"> </span><span class="s2">&quot;has&quot;</span><span class="p">,</span><span class="w"> </span>balance<span class="p">,</span><span class="w"> </span><span class="s2">&quot;carbon credits remaining&quot;</span><span class="p">);</span>
+</code></pre></div>
+
+<h2 id="batch-operations">Batch Operations<a class="headerlink" href="#batch-operations" title="Permanent link">&para;</a></h2>
+<h3 id="batch-initialization">Batch Initialization<a class="headerlink" href="#batch-initialization" title="Permanent link">&para;</a></h3>
+<h4 id="batchinitializecarboncredits"><code>batchInitializeCarbonCredits()</code><a class="headerlink" href="#batchinitializecarboncredits" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">batchInitializeCarbonCredits</span><span class="p">(</span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span>calldata<span class="w"> </span>tokenIds<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span>calldata<span class="w"> </span>initialBalances<span class="p">)</span><span class="w"> </span><span class="kt">external</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Initialize carbon credits for multiple tokens in a single transaction.</p>
+<p><strong>Parameters</strong>:
+- <code>tokenIds</code> (uint256[]): Array of ERC721 token IDs
+- <code>initialBalances</code> (uint256[]): Array of initial balances corresponding to token IDs</p>
+<p><strong>Requirements</strong>:
+- Arrays must have the same length
+- All tokens must exist and not have carbon credits initialized
+- All initial balances must be greater than zero
+- Caller must have appropriate permissions</p>
+<p><strong>Gas Optimization</strong>: More efficient than multiple individual calls</p>
+<p><strong>Example Usage</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Batch initialize carbon credits for multiple environmental NFTs</span>
+<span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>tokenIds<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[](</span><span class="m m-Decimal">3</span><span class="p">);</span>
+tokenIds<span class="p">[</span><span class="m m-Decimal">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">1</span><span class="p">;</span>
+tokenIds<span class="p">[</span><span class="m m-Decimal">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">2</span><span class="p">;</span>
+tokenIds<span class="p">[</span><span class="m m-Decimal">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">3</span><span class="p">;</span>
+
+<span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>initialBalances<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[](</span><span class="m m-Decimal">3</span><span class="p">);</span>
+initialBalances<span class="p">[</span><span class="m m-Decimal">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">1000</span><span class="p">;</span><span class="w"> </span><span class="c1">// Forest conservation project</span>
+initialBalances<span class="p">[</span><span class="m m-Decimal">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">500</span><span class="p">;</span><span class="w">  </span><span class="c1">// Solar energy project</span>
+initialBalances<span class="p">[</span><span class="m m-Decimal">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">750</span><span class="p">;</span><span class="w">  </span><span class="c1">// Wind energy project</span>
+
+ICarbonCredit<span class="p">(</span>diamond<span class="p">).</span>batchInitializeCarbonCredits<span class="p">(</span>tokenIds<span class="p">,</span><span class="w"> </span>initialBalances<span class="p">);</span>
+console<span class="p">.</span>log<span class="p">(</span><span class="s2">&quot;Batch initialized carbon credits for&quot;</span><span class="p">,</span><span class="w"> </span>tokenIds<span class="p">.</span>length<span class="p">,</span><span class="w"> </span><span class="s2">&quot;tokens&quot;</span><span class="p">);</span>
+</code></pre></div>
+
+<h3 id="batch-balance-query">Batch Balance Query<a class="headerlink" href="#batch-balance-query" title="Permanent link">&para;</a></h3>
+<h4 id="getallcarboncreditbalances"><code>getAllCarbonCreditBalances()</code><a class="headerlink" href="#getallcarboncreditbalances" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">getAllCarbonCreditBalances</span><span class="p">(</span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span>calldata<span class="w"> </span>tokenIds<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Get carbon credit balances for multiple tokens efficiently.</p>
+<p><strong>Parameters</strong>:
+- <code>tokenIds</code> (uint256[]): Array of ERC721 token IDs to query</p>
+<p><strong>Returns</strong>: Array of carbon credit balances corresponding to the input token IDs</p>
+<p><strong>Example Usage</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Get balances for multiple tokens</span>
+<span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>tokenIds<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[](</span><span class="m m-Decimal">3</span><span class="p">);</span>
+tokenIds<span class="p">[</span><span class="m m-Decimal">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">1</span><span class="p">;</span>
+tokenIds<span class="p">[</span><span class="m m-Decimal">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">2</span><span class="p">;</span>
+tokenIds<span class="p">[</span><span class="m m-Decimal">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">3</span><span class="p">;</span>
+
+<span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>balances<span class="w"> </span><span class="o">=</span><span class="w"> </span>ICarbonCredit<span class="p">(</span>diamond<span class="p">).</span>getAllCarbonCreditBalances<span class="p">(</span>tokenIds<span class="p">);</span>
+
+<span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>tokenIds<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>console<span class="p">.</span>log<span class="p">(</span><span class="s2">&quot;Token&quot;</span><span class="p">,</span><span class="w"> </span>tokenIds<span class="p">[</span>i<span class="p">],</span><span class="w"> </span><span class="s2">&quot;balance:&quot;</span><span class="p">,</span><span class="w"> </span>balances<span class="p">[</span>i<span class="p">]);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="integration-examples">Integration Examples<a class="headerlink" href="#integration-examples" title="Permanent link">&para;</a></h2>
+<h3 id="environmental-nft-marketplace">Environmental NFT Marketplace<a class="headerlink" href="#environmental-nft-marketplace" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Integration with environmental NFT marketplace</span>
+<span class="k">contract</span><span class="w"> </span><span class="ni">EnvironmentalMarketplace</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>ICarbonCredit<span class="w"> </span><span class="kt">public</span><span class="w"> </span>carbonCredit<span class="p">;</span>
+<span class="w">    </span>IERC721<span class="w"> </span><span class="kt">public</span><span class="w"> </span>environmentalNFT<span class="p">;</span>
+
+<span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">EnvironmentalListing</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">price</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">carbonCredits</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">seller</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">active</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span>EnvironmentalListing<span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>listings<span class="p">;</span>
+
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">EnvironmentalNFTListed</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>tokenId<span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">price</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">carbonCredits</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>seller
+<span class="w">    </span><span class="p">);</span>
+
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">CarbonCreditsRetiredOnPurchase</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>tokenId<span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">retiredAmount</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>buyer
+<span class="w">    </span><span class="p">);</span>
+
+<span class="w">    </span><span class="kt">constructor</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">_carbonCredit</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">_environmentalNFT</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>carbonCredit<span class="w"> </span><span class="o">=</span><span class="w"> </span>ICarbonCredit<span class="p">(</span>_carbonCredit<span class="p">);</span>
+<span class="w">        </span>environmentalNFT<span class="w"> </span><span class="o">=</span><span class="w"> </span>IERC721<span class="p">(</span>_environmentalNFT<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">listEnvironmentalNFT</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">price</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">retireCreditsOnSale</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>environmentalNFT<span class="p">.</span>ownerOf<span class="p">(</span>tokenId<span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Not token owner&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">creditBalance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>carbonCredit<span class="p">.</span>getCarbonCreditBalance<span class="p">(</span>tokenId<span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>creditBalance<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;No carbon credits associated&quot;</span><span class="p">);</span>
+
+<span class="w">        </span>listings<span class="p">[</span>tokenId<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>EnvironmentalListing<span class="p">({</span>
+<span class="w">            </span>tokenId<span class="o">:</span><span class="w"> </span>tokenId<span class="p">,</span>
+<span class="w">            </span>price<span class="o">:</span><span class="w"> </span>price<span class="p">,</span>
+<span class="w">            </span>carbonCredits<span class="o">:</span><span class="w"> </span>creditBalance<span class="p">,</span>
+<span class="w">            </span>seller<span class="o">:</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">,</span>
+<span class="w">            </span>active<span class="o">:</span><span class="w"> </span><span class="kt">true</span>
+<span class="w">        </span><span class="p">});</span>
+
+<span class="w">        </span>emit<span class="w"> </span>EnvironmentalNFTListed<span class="p">(</span>tokenId<span class="p">,</span><span class="w"> </span>price<span class="p">,</span><span class="w"> </span>creditBalance<span class="p">,</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">purchaseEnvironmentalNFT</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">creditsToRetire</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">payable</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>EnvironmentalListing<span class="w"> </span>storage<span class="w"> </span>listing<span class="w"> </span><span class="o">=</span><span class="w"> </span>listings<span class="p">[</span>tokenId<span class="p">];</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>listing<span class="p">.</span>active<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Listing not active&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span><span class="k">msg.value</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span>listing<span class="p">.</span>price<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Insufficient payment&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">currentCredits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>carbonCredit<span class="p">.</span>getCarbonCreditBalance<span class="p">(</span>tokenId<span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>creditsToRetire<span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span>currentCredits<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Cannot retire more credits than available&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Transfer NFT</span>
+<span class="w">        </span>environmentalNFT<span class="p">.</span>safeTransferFrom<span class="p">(</span>listing<span class="p">.</span>seller<span class="p">,</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">,</span><span class="w"> </span>tokenId<span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Retire carbon credits if requested</span>
+<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>creditsToRetire<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>carbonCredit<span class="p">.</span>retireCarbonCredits<span class="p">(</span>tokenId<span class="p">,</span><span class="w"> </span>creditsToRetire<span class="p">);</span>
+<span class="w">            </span>emit<span class="w"> </span>CarbonCreditsRetiredOnPurchase<span class="p">(</span>tokenId<span class="p">,</span><span class="w"> </span>creditsToRetire<span class="p">,</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// Transfer payment</span>
+<span class="w">        </span><span class="kt">payable</span><span class="p">(</span>listing<span class="p">.</span>seller<span class="p">).</span>transfer<span class="p">(</span><span class="k">msg.value</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Deactivate listing</span>
+<span class="w">        </span>listing<span class="p">.</span>active<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">false</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getListingWithCarbonInfo</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>
+<span class="w">        </span>EnvironmentalListing<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>listing<span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">currentCarbonBalance</span><span class="p">,</span>
+<span class="w">        </span>CarbonCreditStatus<span class="w"> </span>status
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>listing<span class="w"> </span><span class="o">=</span><span class="w"> </span>listings<span class="p">[</span>tokenId<span class="p">];</span>
+<span class="w">        </span>currentCarbonBalance<span class="w"> </span><span class="o">=</span><span class="w"> </span>carbonCredit<span class="p">.</span>getCarbonCreditBalance<span class="p">(</span>tokenId<span class="p">);</span>
+<span class="w">        </span>status<span class="w"> </span><span class="o">=</span><span class="w"> </span>carbonCredit<span class="p">.</span>getCarbonCreditStatus<span class="p">(</span>tokenId<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="carbon-offset-program">Carbon Offset Program<a class="headerlink" href="#carbon-offset-program" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Automated carbon offset program</span>
+<span class="k">contract</span><span class="w"> </span><span class="ni">CarbonOffsetProgram</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>ICarbonCredit<span class="w"> </span><span class="kt">public</span><span class="w"> </span>carbonCredit<span class="p">;</span>
+
+<span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">OffsetProject</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">name</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">description</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span>tokenIds<span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalCredits</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">retiredCredits</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">projectOwner</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">active</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span>OffsetProject<span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>projects<span class="p">;</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[])</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>userOffsets<span class="p">;</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="k">public </span><span class="nv">nextProjectId</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">ProjectCreated</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>projectId<span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">name</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>owner<span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">CreditsRetiredForOffset</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>projectId<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">amount</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>offsetter<span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">ProjectCompleted</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>projectId<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalRetired</span><span class="p">);</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">createOffsetProject</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>name<span class="p">,</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>description<span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>tokenIds
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">projectId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>projectId<span class="w"> </span><span class="o">=</span><span class="w"> </span>nextProjectId<span class="o">++</span><span class="p">;</span>
+
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalCredits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>tokenIds<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">balance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>carbonCredit<span class="p">.</span>getCarbonCreditBalance<span class="p">(</span>tokenIds<span class="p">[</span>i<span class="p">]);</span>
+<span class="w">            </span><span class="kt">require</span><span class="p">(</span>balance<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Token has no carbon credits&quot;</span><span class="p">);</span>
+<span class="w">            </span>totalCredits<span class="w"> </span><span class="o">+=</span><span class="w"> </span>balance<span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span>projects<span class="p">[</span>projectId<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>OffsetProject<span class="p">({</span>
+<span class="w">            </span>name<span class="o">:</span><span class="w"> </span>name<span class="p">,</span>
+<span class="w">            </span>description<span class="o">:</span><span class="w"> </span>description<span class="p">,</span>
+<span class="w">            </span>tokenIds<span class="o">:</span><span class="w"> </span>tokenIds<span class="p">,</span>
+<span class="w">            </span>totalCredits<span class="o">:</span><span class="w"> </span>totalCredits<span class="p">,</span>
+<span class="w">            </span>retiredCredits<span class="o">:</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">,</span>
+<span class="w">            </span>projectOwner<span class="o">:</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">,</span>
+<span class="w">            </span>active<span class="o">:</span><span class="w"> </span><span class="kt">true</span>
+<span class="w">        </span><span class="p">});</span>
+
+<span class="w">        </span>emit<span class="w"> </span>ProjectCreated<span class="p">(</span>projectId<span class="p">,</span><span class="w"> </span>name<span class="p">,</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">offsetEmissions</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">projectId</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">creditsToOffset</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">payable</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>OffsetProject<span class="w"> </span>storage<span class="w"> </span>project<span class="w"> </span><span class="o">=</span><span class="w"> </span>projects<span class="p">[</span>projectId<span class="p">];</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>project<span class="p">.</span>active<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Project not active&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>creditsToOffset<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Must offset at least 1 credit&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">availableCredits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>project<span class="p">.</span>totalCredits<span class="w"> </span><span class="o">-</span><span class="w"> </span>project<span class="p">.</span>retiredCredits<span class="p">;</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>creditsToOffset<span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span>availableCredits<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Insufficient credits in project&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Calculate payment (simplified - would integrate with pricing oracle)</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">costPerCredit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">10</span><span class="w"> </span>ether<span class="p">;</span><span class="w"> </span><span class="c1">// $10 per credit in wei</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalCost</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>creditsToOffset<span class="w"> </span><span class="o">*</span><span class="w"> </span>costPerCredit<span class="p">;</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span><span class="k">msg.value</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span>totalCost<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Insufficient payment&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Retire credits from project tokens</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">creditsRemaining</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>creditsToOffset<span class="p">;</span>
+<span class="w">        </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>project<span class="p">.</span>tokenIds<span class="p">.</span>length<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>creditsRemaining<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>project<span class="p">.</span>tokenIds<span class="p">[</span>i<span class="p">];</span>
+<span class="w">            </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenBalance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>carbonCredit<span class="p">.</span>getCarbonCreditBalance<span class="p">(</span>tokenId<span class="p">);</span>
+
+<span class="w">            </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>tokenBalance<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">toRetire</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>creditsRemaining<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span>tokenBalance<span class="w"> </span><span class="o">?</span><span class="w"> </span>tokenBalance<span class="w"> </span><span class="o">:</span><span class="w"> </span>creditsRemaining<span class="p">;</span>
+<span class="w">                </span>carbonCredit<span class="p">.</span>retireCarbonCredits<span class="p">(</span>tokenId<span class="p">,</span><span class="w"> </span>toRetire<span class="p">);</span>
+<span class="w">                </span>creditsRemaining<span class="w"> </span><span class="o">-=</span><span class="w"> </span>toRetire<span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span>project<span class="p">.</span>retiredCredits<span class="w"> </span><span class="o">+=</span><span class="w"> </span>creditsToOffset<span class="p">;</span>
+<span class="w">        </span>userOffsets<span class="p">[</span><span class="k">msg.sender</span><span class="p">].</span>push<span class="p">(</span>creditsToOffset<span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Transfer payment to project owner</span>
+<span class="w">        </span><span class="kt">payable</span><span class="p">(</span>project<span class="p">.</span>projectOwner<span class="p">).</span>transfer<span class="p">(</span>totalCost<span class="p">);</span>
+
+<span class="w">        </span>emit<span class="w"> </span>CreditsRetiredForOffset<span class="p">(</span>projectId<span class="p">,</span><span class="w"> </span>creditsToOffset<span class="p">,</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Check if project is completed</span>
+<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>project<span class="p">.</span>retiredCredits<span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span>project<span class="p">.</span>totalCredits<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>project<span class="p">.</span>active<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">false</span><span class="p">;</span>
+<span class="w">            </span>emit<span class="w"> </span>ProjectCompleted<span class="p">(</span>projectId<span class="p">,</span><span class="w"> </span>project<span class="p">.</span>retiredCredits<span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getProjectStatus</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">projectId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>name<span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalCredits</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">retiredCredits</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">availableCredits</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">active</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>tokenBalances
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>OffsetProject<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>project<span class="w"> </span><span class="o">=</span><span class="w"> </span>projects<span class="p">[</span>projectId<span class="p">];</span>
+
+<span class="w">        </span>name<span class="w"> </span><span class="o">=</span><span class="w"> </span>project<span class="p">.</span>name<span class="p">;</span>
+<span class="w">        </span>totalCredits<span class="w"> </span><span class="o">=</span><span class="w"> </span>project<span class="p">.</span>totalCredits<span class="p">;</span>
+<span class="w">        </span>retiredCredits<span class="w"> </span><span class="o">=</span><span class="w"> </span>project<span class="p">.</span>retiredCredits<span class="p">;</span>
+<span class="w">        </span>availableCredits<span class="w"> </span><span class="o">=</span><span class="w"> </span>totalCredits<span class="w"> </span><span class="o">-</span><span class="w"> </span>retiredCredits<span class="p">;</span>
+<span class="w">        </span>active<span class="w"> </span><span class="o">=</span><span class="w"> </span>project<span class="p">.</span>active<span class="p">;</span>
+
+<span class="w">        </span>tokenBalances<span class="w"> </span><span class="o">=</span><span class="w"> </span>carbonCredit<span class="p">.</span>getAllCarbonCreditBalances<span class="p">(</span>project<span class="p">.</span>tokenIds<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getUserOffsetHistory</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">user</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>userOffsets<span class="p">[</span>user<span class="p">];</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="carbon-credit-analytics-dashboard">Carbon Credit Analytics Dashboard<a class="headerlink" href="#carbon-credit-analytics-dashboard" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Analytics and reporting for carbon credits</span>
+<span class="k">contract</span><span class="w"> </span><span class="ni">CarbonCreditAnalytics</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>ICarbonCredit<span class="w"> </span><span class="kt">public</span><span class="w"> </span>carbonCredit<span class="p">;</span>
+
+<span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">AnalyticsData</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalTokensWithCredits</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalActiveCredits</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalRetiredCredits</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">averageCreditsPerToken</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">retirementRate</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">uint256</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>tokenInitialBalances<span class="p">;</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">uint256</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>tokenRetirementHistory<span class="p">;</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>trackedTokens<span class="p">;</span>
+
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">AnalyticsUpdated</span><span class="p">(</span>AnalyticsData<span class="w"> </span>data<span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">TokenAddedToTracking</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>tokenId<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">initialBalance</span><span class="p">);</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">addTokenToTracking</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">balance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>carbonCredit<span class="p">.</span>getCarbonCreditBalance<span class="p">(</span>tokenId<span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>balance<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Token has no carbon credits&quot;</span><span class="p">);</span>
+
+<span class="w">        </span>tokenInitialBalances<span class="p">[</span>tokenId<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>balance<span class="p">;</span>
+<span class="w">        </span>trackedTokens<span class="p">.</span>push<span class="p">(</span>tokenId<span class="p">);</span>
+
+<span class="w">        </span>emit<span class="w"> </span>TokenAddedToTracking<span class="p">(</span>tokenId<span class="p">,</span><span class="w"> </span>balance<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">updateAnalytics</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>AnalyticsData<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>data<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>balances<span class="w"> </span><span class="o">=</span><span class="w"> </span>carbonCredit<span class="p">.</span>getAllCarbonCreditBalances<span class="p">(</span>trackedTokens<span class="p">);</span>
+
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalActive</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalRetired</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokensWithCredits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span>
+
+<span class="w">        </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>trackedTokens<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>trackedTokens<span class="p">[</span>i<span class="p">];</span>
+<span class="w">            </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">currentBalance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>balances<span class="p">[</span>i<span class="p">];</span>
+<span class="w">            </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">initialBalance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>tokenInitialBalances<span class="p">[</span>tokenId<span class="p">];</span>
+
+<span class="w">            </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>currentBalance<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span>tokensWithCredits<span class="o">++</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+
+<span class="w">            </span>totalActive<span class="w"> </span><span class="o">+=</span><span class="w"> </span>currentBalance<span class="p">;</span>
+<span class="w">            </span>totalRetired<span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="p">(</span>initialBalance<span class="w"> </span><span class="o">-</span><span class="w"> </span>currentBalance<span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span>data<span class="w"> </span><span class="o">=</span><span class="w"> </span>AnalyticsData<span class="p">({</span>
+<span class="w">            </span>totalTokensWithCredits<span class="o">:</span><span class="w"> </span>tokensWithCredits<span class="p">,</span>
+<span class="w">            </span>totalActiveCredits<span class="o">:</span><span class="w"> </span>totalActive<span class="p">,</span>
+<span class="w">            </span>totalRetiredCredits<span class="o">:</span><span class="w"> </span>totalRetired<span class="p">,</span>
+<span class="w">            </span>averageCreditsPerToken<span class="o">:</span><span class="w"> </span>tokensWithCredits<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="w"> </span><span class="o">?</span><span class="w"> </span>totalActive<span class="w"> </span><span class="o">/</span><span class="w"> </span>tokensWithCredits<span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">,</span>
+<span class="w">            </span>retirementRate<span class="o">:</span><span class="w"> </span><span class="p">(</span>totalActive<span class="w"> </span><span class="o">+</span><span class="w"> </span>totalRetired<span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="p">(</span>totalRetired<span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m m-Decimal">100</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span>totalActive<span class="w"> </span><span class="o">+</span><span class="w"> </span>totalRetired<span class="p">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="m m-Decimal">0</span>
+<span class="w">        </span><span class="p">});</span>
+
+<span class="w">        </span>emit<span class="w"> </span>AnalyticsUpdated<span class="p">(</span>data<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getTokenRetirementHistory</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">initialBalance</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">currentBalance</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalRetired</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">retirementPercentage</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>initialBalance<span class="w"> </span><span class="o">=</span><span class="w"> </span>tokenInitialBalances<span class="p">[</span>tokenId<span class="p">];</span>
+<span class="w">        </span>currentBalance<span class="w"> </span><span class="o">=</span><span class="w"> </span>carbonCredit<span class="p">.</span>getCarbonCreditBalance<span class="p">(</span>tokenId<span class="p">);</span>
+<span class="w">        </span>totalRetired<span class="w"> </span><span class="o">=</span><span class="w"> </span>initialBalance<span class="w"> </span><span class="o">-</span><span class="w"> </span>currentBalance<span class="p">;</span>
+<span class="w">        </span>retirementPercentage<span class="w"> </span><span class="o">=</span><span class="w"> </span>initialBalance<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="p">(</span>totalRetired<span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m m-Decimal">100</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span>initialBalance<span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">generateRetirementReport</span><span class="p">(</span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>tokenIds<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalInitial</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalCurrent</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalRetired</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">overallRetirementRate</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>balances<span class="w"> </span><span class="o">=</span><span class="w"> </span>carbonCredit<span class="p">.</span>getAllCarbonCreditBalances<span class="p">(</span>tokenIds<span class="p">);</span>
+
+<span class="w">        </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>tokenIds<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">initial</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>tokenInitialBalances<span class="p">[</span>tokenIds<span class="p">[</span>i<span class="p">]];</span>
+<span class="w">            </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">current</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>balances<span class="p">[</span>i<span class="p">];</span>
+
+<span class="w">            </span>totalInitial<span class="w"> </span><span class="o">+=</span><span class="w"> </span>initial<span class="p">;</span>
+<span class="w">            </span>totalCurrent<span class="w"> </span><span class="o">+=</span><span class="w"> </span>current<span class="p">;</span>
+<span class="w">            </span>totalRetired<span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="p">(</span>initial<span class="w"> </span><span class="o">-</span><span class="w"> </span>current<span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span>overallRetirementRate<span class="w"> </span><span class="o">=</span><span class="w"> </span>totalInitial<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="p">(</span>totalRetired<span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m m-Decimal">100</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span>totalInitial<span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="events">Events<a class="headerlink" href="#events" title="Permanent link">&para;</a></h2>
+<h3 id="carbon-credit-lifecycle-events">Carbon Credit Lifecycle Events<a class="headerlink" href="#carbon-credit-lifecycle-events" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">event</span><span class="w"> </span><span class="nv">CarbonCreditsInitialized</span><span class="p">(</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>tokenId<span class="p">,</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">initialBalance</span>
+<span class="p">);</span>
+
+<span class="kt">event</span><span class="w"> </span><span class="nv">CarbonCreditsRetired</span><span class="p">(</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>tokenId<span class="p">,</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">amount</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">remainingBalance</span>
+<span class="p">);</span>
+</code></pre></div>
+
+<h2 id="data-types">Data Types<a class="headerlink" href="#data-types" title="Permanent link">&para;</a></h2>
+<h3 id="carboncreditstatus-enum">CarbonCreditStatus Enum<a class="headerlink" href="#carboncreditstatus-enum" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">enum</span><span class="w"> </span><span class="nv">CarbonCreditStatus</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>ACTIVE<span class="p">,</span><span class="w">    </span><span class="c1">// Token has remaining carbon credits</span>
+<span class="w">    </span>RETIRED<span class="w">    </span><span class="c1">// All carbon credits have been retired</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="security-considerations">Security Considerations<a class="headerlink" href="#security-considerations" title="Permanent link">&para;</a></h2>
+<h3 id="access-control">Access Control<a class="headerlink" href="#access-control" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Initialization requires appropriate permissions</li>
+<li>Retirement operations must be authorized</li>
+<li>Token existence validation before operations</li>
+<li>Prevention of double initialization</li>
+</ul>
+<h3 id="financial-security">Financial Security<a class="headerlink" href="#financial-security" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Accurate balance tracking and calculations</li>
+<li>Prevention of over-retirement</li>
+<li>Secure state transitions</li>
+<li>Immutable retirement records</li>
+</ul>
+<h3 id="environmental-integrity">Environmental Integrity<a class="headerlink" href="#environmental-integrity" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Prevention of double-counting retired credits</li>
+<li>Permanent retirement to ensure environmental impact</li>
+<li>Transparent tracking of credit lifecycle</li>
+<li>Compliance with carbon accounting standards</li>
+</ul>
+<h2 id="gas-optimization">Gas Optimization<a class="headerlink" href="#gas-optimization" title="Permanent link">&para;</a></h2>
+<h3 id="efficient-operations">Efficient Operations<a class="headerlink" href="#efficient-operations" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Batch operations for multiple tokens</li>
+<li>Optimized storage layout for balances</li>
+<li>Minimal external calls in view functions</li>
+<li>Efficient array operations for bulk queries</li>
+</ul>
+<h3 id="storage-optimization">Storage Optimization<a class="headerlink" href="#storage-optimization" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Packed storage structures where possible</li>
+<li>Efficient mapping usage for balance tracking</li>
+<li>Optimized batch operations</li>
+<li>Cached calculations for frequently accessed data</li>
+</ul>
+<h2 id="error-handling">Error Handling<a class="headerlink" href="#error-handling" title="Permanent link">&para;</a></h2>
+<h3 id="common-errors">Common Errors<a class="headerlink" href="#common-errors" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Token does not exist</li>
+<li>Carbon credits already initialized</li>
+<li>Insufficient balance for retirement</li>
+<li>Invalid amounts (zero or negative)</li>
+<li>Array length mismatches in batch operations</li>
+</ul>
+<h3 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Validate token existence before operations</li>
+<li>Check balances before retirement</li>
+<li>Validate array parameters in batch operations</li>
+<li>Provide clear error messages for debugging</li>
+<li>Handle edge cases gracefully</li>
+</ul>
+<h2 id="testing-considerations">Testing Considerations<a class="headerlink" href="#testing-considerations" title="Permanent link">&para;</a></h2>
+<h3 id="unit-tests">Unit Tests<a class="headerlink" href="#unit-tests" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Interface compliance verification</li>
+<li>Balance initialization and tracking</li>
+<li>Retirement functionality and validation</li>
+<li>Batch operation efficiency and correctness</li>
+<li>Event emission verification</li>
+</ul>
+<h3 id="integration-tests">Integration Tests<a class="headerlink" href="#integration-tests" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Integration with ERC721 contracts</li>
+<li>Environmental marketplace workflows</li>
+<li>Carbon offset program functionality</li>
+<li>Analytics and reporting accuracy</li>
+<li>Cross-contract interaction testing</li>
+</ul>
+<h2 id="related-documentation">Related Documentation<a class="headerlink" href="#related-documentation" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../../facets/carbon-credit-facet/">CarbonCreditFacet</a> - Implementation of carbon credit functionality</li>
+<li><a href="../../libraries/carbon-credit-lib/">CarbonCreditLib</a> - Carbon credit utilities and data structures</li>
+<li><a href="../../guides/environmental-nfts.md">Environmental NFT Guide</a> - Implementation guide for environmental assets</li>
+<li><a href="../../guides/carbon-offset-integration.md">Carbon Offset Integration</a> - Integration with offset programs</li>
+<li><a href="../../standards/erc721-extensions.md">ERC721 Standards</a> - Token standard extensions</li>
+</ul>
+<hr />
+<p><em>This interface defines the standard contract for carbon credit management within the Gemforce platform, enabling the tokenization and retirement of environmental assets for sustainability and carbon offset programs.</em></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../itradedeal/" class="btn btn-neutral float-left" title="ITradeDeal"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../ierc1155-mint/" class="btn btn-neutral float-right" title="IERC1155Mint">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../itradedeal/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../ierc1155-mint/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Gemforce Team" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>Strings Lib - Gemforce Documentation</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Strings Lib";
+        var mkdocs_page_input_path = "smart-contracts/libraries/strings-lib.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../.." class="icon icon-home"> Gemforce Documentation
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../developer-setup-guide/">Developer Setup Guide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../system-architecture/gemforce-system-architecture/">System Architecture</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Smart Contracts</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../diamond/">Diamond Contract</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Facets</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/marketplace-facet/">Marketplace Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trade-deal-management-facet/">Trade Deal Management Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/carbon-credit-facet/">Carbon Credit Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/identity-registry-facet/">Identity Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trusted-issuers-registry-facet/">Trusted Issuers Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/fee-distributor-facet/">Fee Distributor Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/gemforce-minter-facet/">Gemforce Minter Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/multi-sale-facet/">Multi Sale Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/svg-templates-facet/">SVG Templates Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trade-deal-admin-facet/">Trade Deal Admin Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trade-deal-operations-facet/">Trade Deal Operations Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/collateral-token-factory-facet/">Collateral Token Factory Facet</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Interfaces</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/idiamond/">IDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/imarketplace/">IMarketplace</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/itradedeal/">ITradeDeal</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/icarbon-credit/">ICarbonCredit</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ierc1155-mint/">IERC1155Mint</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ierc734/">IERC734</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ierc735/">IERC735</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" >Libraries</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" href="../carbon-credit-lib/">Carbon Credit Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../trade-deal-lib/">Trade Deal Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../multi-sale-lib/">Multi Sale Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../diamond-factory-lib/">Diamond Factory Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../svg-templates-lib/">SVG Templates Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../attribute-lib/">Attribute Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../variable-price-lib/">Variable Price Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../merkle-prover/">Merkle Prover</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../fee-distributor-lib/">Fee Distributor Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../lib-diamond/">LibDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../diamond-lib/">DiamondLib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../erc721a-lib/">ERC721A Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../erc721a-enumeration-lib/">ERC721A Enumeration Lib</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">Strings Lib</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#overview">Overview</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#key-features">Key Features</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#core-functions">Core Functions</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#parsing-and-conversion">Parsing and Conversion</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#pattern-matching">Pattern Matching</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#string-extraction">String Extraction</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#array-operations">Array Operations</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#string-modification">String Modification</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#advanced-template-processing">Advanced Template Processing</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#template-replacement-with-arrays">Template Replacement with Arrays</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#byte-level-template-processing">Byte-Level Template Processing</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data-structures">Data Structures</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#replacement-structure">Replacement Structure</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usage-examples">Usage Examples</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#nft-metadata-generation">NFT Metadata Generation</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#svg-template-processing">SVG Template Processing</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#string-validation-and-parsing">String Validation and Parsing</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#url-and-path-processing">URL and Path Processing</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#gas-optimization-considerations">Gas Optimization Considerations</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#efficient-string-operations">Efficient String Operations</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#best-practices">Best Practices</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#security-considerations">Security Considerations</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#input-validation">Input Validation</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#gas-limits">Gas Limits</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#integration-with-svg-templates">Integration with SVG Templates</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#performance-characteristics">Performance Characteristics</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#time-complexity">Time Complexity</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#gas-costs-approximate">Gas Costs (Approximate)</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#related-documentation">Related Documentation</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#best-practices_1">Best Practices</a>
+    </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../metadata-lib/">Metadata Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../trusted-issuer-lib/">Trusted Issuer Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../set-libraries/">Set Libraries</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Cloud Functions</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/blockchain/">Blockchain Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/dfns/">DFNS Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/contracts/">Contract Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/authentication/">Authentication Functions</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">API Documentation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../api-documentation/gemforce-api-documentation/">Full API Reference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../api-documentation/gemforce-api-quick-reference/">Quick Reference</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">EIPs (Ethereum Improvement Proposals)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Diamond-Enhanced-Marketplace/">Diamond-Enhanced Marketplace</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Multi-Token-Sale-Standard/">Multi-Token Sale Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Collateralized-Trade-Deal-Standard/">Collateralized Trade Deal Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Enhanced-Identity-System/">Enhanced Identity System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Diamond-Factory-Standard/">Diamond Factory Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Carbon-Credit-Standard/">Carbon Credit Standard</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">User Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-administrator-guide/">Administrator Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-deployer-guide/">Deployer Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-integrator-guide/">Integrator Guide</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../external-services/gemforce-external-services/">External Services</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-documentation-gap-analysis/">Documentation Gap Analysis</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../documentation-progress-summary/">Documentation Progress Summary</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../documentation-plan/">Documentation Plan</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">Gemforce Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Smart Contracts</li>
+          <li class="breadcrumb-item">Libraries</li>
+      <li class="breadcrumb-item active">Strings Lib</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="stringslib-library">StringsLib Library<a class="headerlink" href="#stringslib-library" title="Permanent link">&para;</a></h1>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p><a href="/Users/sschepis/Development/gem-base/contracts/libraries/StringsLib.sol"><code>StringsLib</code></a> is a comprehensive string manipulation library for Solidity, providing essential string operations that are not available in the core language. This library enables advanced text processing, parsing, and template replacement functionality for smart contracts, particularly useful for NFT metadata generation and SVG template processing.</p>
+<h2 id="key-features">Key Features<a class="headerlink" href="#key-features" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>String Parsing</strong>: Convert strings to integers with validation</li>
+<li><strong>Pattern Matching</strong>: Check string prefixes and suffixes</li>
+<li><strong>String Manipulation</strong>: Substring extraction, concatenation, and trimming</li>
+<li><strong>Array Operations</strong>: Split strings into arrays and join arrays into strings</li>
+<li><strong>Template Processing</strong>: Advanced replacement functionality for SVG templates</li>
+<li><strong>Type Conversion</strong>: Convert strings to various numeric types</li>
+</ul>
+<h2 id="core-functions">Core Functions<a class="headerlink" href="#core-functions" title="Permanent link">&para;</a></h2>
+<h3 id="parsing-and-conversion">Parsing and Conversion<a class="headerlink" href="#parsing-and-conversion" title="Permanent link">&para;</a></h3>
+<h4 id="parseint"><code>parseInt()</code><a class="headerlink" href="#parseint" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">parseInt</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>s<span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>pure<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">res</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Converts a string representation of a number to a uint256.</p>
+<p><strong>Parameters:</strong>
+- <code>s</code>: String containing numeric characters</p>
+<p><strong>Returns:</strong>
+- Parsed integer value, or 0 if invalid characters are found</p>
+<p><strong>Usage:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="kt">uint256</span><span class="w"> </span><span class="nv">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>StringsLib<span class="p">.</span>parseInt<span class="p">(</span><span class="s2">&quot;12345&quot;</span><span class="p">);</span><span class="w"> </span><span class="c1">// Returns 12345</span>
+<span class="kt">uint256</span><span class="w"> </span><span class="nv">invalid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>StringsLib<span class="p">.</span>parseInt<span class="p">(</span><span class="s2">&quot;123a5&quot;</span><span class="p">);</span><span class="w"> </span><span class="c1">// Returns 0</span>
+</code></pre></div>
+
+<h4 id="touint16"><code>toUint16()</code><a class="headerlink" href="#touint16" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">toUint16</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>s<span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>pure<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint16</span><span class="w"> </span><span class="nv">res_</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Converts a string to a uint16 value with overflow protection.</p>
+<h3 id="pattern-matching">Pattern Matching<a class="headerlink" href="#pattern-matching" title="Permanent link">&para;</a></h3>
+<h4 id="startswith"><code>startsWith()</code><a class="headerlink" href="#startswith" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">startsWith</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>haystack<span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>needle<span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>pure<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bool</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Checks if a string starts with a specific prefix.</p>
+<p><strong>Parameters:</strong>
+- <code>haystack</code>: String to search in
+- <code>needle</code>: Prefix to search for</p>
+<p><strong>Returns:</strong>
+- <code>true</code> if haystack starts with needle, <code>false</code> otherwise</p>
+<p><strong>Usage:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="kt">bool</span><span class="w"> </span><span class="nv">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>StringsLib<span class="p">.</span>startsWith<span class="p">(</span><span class="s2">&quot;Hello World&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Hello&quot;</span><span class="p">);</span><span class="w"> </span><span class="c1">// Returns true</span>
+</code></pre></div>
+
+<h4 id="endswith"><code>endsWith()</code><a class="headerlink" href="#endswith" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">endsWith</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>haystack<span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>needle<span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>pure<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bool</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Checks if a string ends with a specific suffix.</p>
+<p><strong>Parameters:</strong>
+- <code>haystack</code>: String to search in
+- <code>needle</code>: Suffix to search for</p>
+<p><strong>Returns:</strong>
+- <code>true</code> if haystack ends with needle, <code>false</code> otherwise</p>
+<h3 id="string-extraction">String Extraction<a class="headerlink" href="#string-extraction" title="Permanent link">&para;</a></h3>
+<h4 id="substring-single-parameter"><code>substring()</code> (Single Parameter)<a class="headerlink" href="#substring-single-parameter" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">substring</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>haystack<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">startpos</span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>pure<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Extracts a substring from the start position to the end of the string.</p>
+<p><strong>Parameters:</strong>
+- <code>haystack</code>: Source string
+- <code>startpos</code>: Starting position (0-based)</p>
+<p><strong>Returns:</strong>
+- Substring from startpos to end</p>
+<h4 id="substring-two-parameters"><code>substring()</code> (Two Parameters)<a class="headerlink" href="#substring-two-parameters" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">substring</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>haystack<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">startpos</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">endpos</span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>pure<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Extracts a substring between two positions.</p>
+<p><strong>Parameters:</strong>
+- <code>haystack</code>: Source string
+- <code>startpos</code>: Starting position (0-based, inclusive)
+- <code>endpos</code>: Ending position (0-based, exclusive)</p>
+<p><strong>Returns:</strong>
+- Substring between startpos and endpos</p>
+<p><strong>Usage:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>result<span class="w"> </span><span class="o">=</span><span class="w"> </span>StringsLib<span class="p">.</span>substring<span class="p">(</span><span class="s2">&quot;Hello World&quot;</span><span class="p">,</span><span class="w"> </span><span class="m m-Decimal">6</span><span class="p">,</span><span class="w"> </span><span class="m m-Decimal">11</span><span class="p">);</span><span class="w"> </span><span class="c1">// Returns &quot;World&quot;</span>
+</code></pre></div>
+
+<h3 id="array-operations">Array Operations<a class="headerlink" href="#array-operations" title="Permanent link">&para;</a></h3>
+<h4 id="concat"><code>concat()</code><a class="headerlink" href="#concat" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">concat</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>_strings<span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>pure<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>_concat<span class="p">)</span>
+</code></pre></div>
+
+<p>Concatenates an array of strings into a single string.</p>
+<p><strong>Parameters:</strong>
+- <code>_strings</code>: Array of strings to concatenate</p>
+<p><strong>Returns:</strong>
+- Single concatenated string</p>
+<h4 id="split"><code>split()</code><a class="headerlink" href="#split" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">split</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>_string<span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>_delimiter<span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>pure<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>_split<span class="p">)</span>
+</code></pre></div>
+
+<p>Splits a string into an array using a delimiter.</p>
+<p><strong>Parameters:</strong>
+- <code>_string</code>: String to split
+- <code>_delimiter</code>: Delimiter to split on</p>
+<p><strong>Returns:</strong>
+- Array of string parts</p>
+<p><strong>Usage:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="kt">string</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>parts<span class="w"> </span><span class="o">=</span><span class="w"> </span>StringsLib<span class="p">.</span>split<span class="p">(</span><span class="s2">&quot;a,b,c&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;,&quot;</span><span class="p">);</span><span class="w"> </span><span class="c1">// Returns [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]</span>
+</code></pre></div>
+
+<h4 id="join"><code>join()</code><a class="headerlink" href="#join" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">join</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>_strings<span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>_delimiter<span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>pure<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>_joined<span class="p">)</span>
+</code></pre></div>
+
+<p>Joins an array of strings with a delimiter.</p>
+<p><strong>Parameters:</strong>
+- <code>_strings</code>: Array of strings to join
+- <code>_delimiter</code>: Delimiter to insert between strings</p>
+<p><strong>Returns:</strong>
+- Single joined string</p>
+<p><strong>Usage:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="kt">string</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>parts<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;b&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;c&quot;</span><span class="p">];</span>
+<span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>result<span class="w"> </span><span class="o">=</span><span class="w"> </span>StringsLib<span class="p">.</span>join<span class="p">(</span>parts<span class="p">,</span><span class="w"> </span><span class="s2">&quot;,&quot;</span><span class="p">);</span><span class="w"> </span><span class="c1">// Returns &quot;a,b,c&quot;</span>
+</code></pre></div>
+
+<h3 id="string-modification">String Modification<a class="headerlink" href="#string-modification" title="Permanent link">&para;</a></h3>
+<h4 id="replace"><code>replace()</code><a class="headerlink" href="#replace" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">replace</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>_string<span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>_search<span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>_replace<span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>pure<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>_replaced<span class="p">)</span>
+</code></pre></div>
+
+<p>Replaces occurrences of a search string with a replacement string.</p>
+<p><strong>Parameters:</strong>
+- <code>_string</code>: Source string
+- <code>_search</code>: String to search for
+- <code>_replace</code>: Replacement string</p>
+<p><strong>Returns:</strong>
+- String with replacements made</p>
+<h4 id="trim"><code>trim()</code><a class="headerlink" href="#trim" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">trim</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>_string<span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>pure<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>_trimmed<span class="p">)</span>
+</code></pre></div>
+
+<p>Removes leading and trailing whitespace from a string.</p>
+<p><strong>Parameters:</strong>
+- <code>_string</code>: String to trim</p>
+<p><strong>Returns:</strong>
+- Trimmed string</p>
+<p><strong>Usage:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>result<span class="w"> </span><span class="o">=</span><span class="w"> </span>StringsLib<span class="p">.</span>trim<span class="p">(</span><span class="s2">&quot;  Hello World  &quot;</span><span class="p">);</span><span class="w"> </span><span class="c1">// Returns &quot;Hello World&quot;</span>
+</code></pre></div>
+
+<h2 id="advanced-template-processing">Advanced Template Processing<a class="headerlink" href="#advanced-template-processing" title="Permanent link">&para;</a></h2>
+<h3 id="template-replacement-with-arrays">Template Replacement with Arrays<a class="headerlink" href="#template-replacement-with-arrays" title="Permanent link">&para;</a></h3>
+<h4 id="replace-template-version"><code>replace()</code> (Template Version)<a class="headerlink" href="#replace-template-version" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">replace</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>input<span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>matchTag<span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>repl<span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>pure<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Advanced template replacement for SVG generation and similar use cases.</p>
+<p><strong>Parameters:</strong>
+- <code>input</code>: Array of template strings
+- <code>matchTag</code>: Tag to match for replacement (e.g., "{{")
+- <code>repl</code>: Array of replacement values</p>
+<p><strong>Returns:</strong>
+- Processed template string</p>
+<p><strong>Usage:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="kt">string</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>template<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;Hello {{0}}, welcome to {{1}}&quot;</span><span class="p">];</span>
+<span class="kt">string</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>replacements<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;Alice&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Gemforce&quot;</span><span class="p">];</span>
+<span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>result<span class="w"> </span><span class="o">=</span><span class="w"> </span>StringsLib<span class="p">.</span>replace<span class="p">(</span>template<span class="p">,</span><span class="w"> </span><span class="s2">&quot;{{&quot;</span><span class="p">,</span><span class="w"> </span>replacements<span class="p">);</span>
+<span class="c1">// Returns &quot;Hello Alice, welcome to Gemforce&quot;</span>
+</code></pre></div>
+
+<h3 id="byte-level-template-processing">Byte-Level Template Processing<a class="headerlink" href="#byte-level-template-processing" title="Permanent link">&para;</a></h3>
+<h4 id="replace-bytes-version"><code>replace()</code> (Bytes Version)<a class="headerlink" href="#replace-bytes-version" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">replace</span><span class="p">(</span><span class="kt">bytes</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>sourceBytes<span class="p">,</span><span class="w"> </span>Replacement<span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>replacements_<span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>pure<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Performs byte-level template replacement using a replacement structure.</p>
+<p><strong>Parameters:</strong>
+- <code>sourceBytes</code>: Array of source bytes
+- <code>replacements_</code>: Array of replacement definitions</p>
+<p><strong>Returns:</strong>
+- Processed template string</p>
+<h2 id="data-structures">Data Structures<a class="headerlink" href="#data-structures" title="Permanent link">&para;</a></h2>
+<h3 id="replacement-structure">Replacement Structure<a class="headerlink" href="#replacement-structure" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">struct</span><span class="w"> </span><span class="nv">Replacement</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">string</span><span class="w"> </span><span class="nv">matchString</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">string</span><span class="w"> </span><span class="nv">replaceString</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>Used for advanced template processing with multiple replacement patterns.</p>
+<h2 id="usage-examples">Usage Examples<a class="headerlink" href="#usage-examples" title="Permanent link">&para;</a></h2>
+<h3 id="nft-metadata-generation">NFT Metadata Generation<a class="headerlink" href="#nft-metadata-generation" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">generateMetadata</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>name<span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>pure<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">string</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>template<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s1">&#39;{&quot;name&quot;: &quot;{{0}} #{{1}}&quot;, &quot;description&quot;: &quot;{{2}}&quot;, &quot;image&quot;: &quot;{{3}}&quot;}&#39;</span>
+<span class="w">    </span><span class="p">];</span>
+
+<span class="w">    </span><span class="kt">string</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>replacements<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="kt">string</span><span class="p">[](</span><span class="m m-Decimal">4</span><span class="p">);</span>
+<span class="w">    </span>replacements<span class="p">[</span><span class="m m-Decimal">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>name<span class="p">;</span>
+<span class="w">    </span>replacements<span class="p">[</span><span class="m m-Decimal">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>StringsLib<span class="p">.</span>toString<span class="p">(</span>tokenId<span class="p">);</span>
+<span class="w">    </span>replacements<span class="p">[</span><span class="m m-Decimal">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;A unique NFT from Gemforce&quot;</span><span class="p">;</span>
+<span class="w">    </span>replacements<span class="p">[</span><span class="m m-Decimal">3</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">string</span><span class="p">(</span>abi<span class="p">.</span>encodePacked<span class="p">(</span><span class="s2">&quot;https://api.gemforce.io/image/&quot;</span><span class="p">,</span><span class="w"> </span>StringsLib<span class="p">.</span>toString<span class="p">(</span>tokenId<span class="p">)));</span>
+
+<span class="w">    </span><span class="kt">return</span><span class="w"> </span>StringsLib<span class="p">.</span>replace<span class="p">(</span>template<span class="p">,</span><span class="w"> </span><span class="s2">&quot;{{&quot;</span><span class="p">,</span><span class="w"> </span>replacements<span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="svg-template-processing">SVG Template Processing<a class="headerlink" href="#svg-template-processing" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">processSVGTemplate</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>svgLines<span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>colors<span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>pure<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">return</span><span class="w"> </span>StringsLib<span class="p">.</span>replace<span class="p">(</span>svgLines<span class="p">,</span><span class="w"> </span><span class="s2">&quot;COLOR_&quot;</span><span class="p">,</span><span class="w"> </span>colors<span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="string-validation-and-parsing">String Validation and Parsing<a class="headerlink" href="#string-validation-and-parsing" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">validateAndParseInput</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>input<span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>pure<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Trim whitespace</span>
+<span class="w">    </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>cleaned<span class="w"> </span><span class="o">=</span><span class="w"> </span>StringsLib<span class="p">.</span>trim<span class="p">(</span>input<span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Check if it starts with expected prefix</span>
+<span class="w">    </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span>StringsLib<span class="p">.</span>startsWith<span class="p">(</span>cleaned<span class="p">,</span><span class="w"> </span><span class="s2">&quot;VALUE:&quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">,</span><span class="w"> </span><span class="kt">false</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Extract the numeric part</span>
+<span class="w">    </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>valueStr<span class="w"> </span><span class="o">=</span><span class="w"> </span>StringsLib<span class="p">.</span>substring<span class="p">(</span>cleaned<span class="p">,</span><span class="w"> </span><span class="m m-Decimal">6</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>StringsLib<span class="p">.</span>parseInt<span class="p">(</span>valueStr<span class="p">);</span>
+
+<span class="w">    </span><span class="kt">return</span><span class="w"> </span><span class="p">(</span>value<span class="p">,</span><span class="w"> </span>value<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="url-and-path-processing">URL and Path Processing<a class="headerlink" href="#url-and-path-processing" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">buildTokenURI</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>baseURI<span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>pure<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">string</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>parts<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="kt">string</span><span class="p">[](</span><span class="m m-Decimal">3</span><span class="p">);</span>
+<span class="w">    </span>parts<span class="p">[</span><span class="m m-Decimal">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>baseURI<span class="p">;</span>
+<span class="w">    </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span>StringsLib<span class="p">.</span>endsWith<span class="p">(</span>baseURI<span class="p">,</span><span class="w"> </span><span class="s2">&quot;/&quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>parts<span class="p">[</span><span class="m m-Decimal">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;/&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span>parts<span class="p">[</span><span class="m m-Decimal">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>StringsLib<span class="p">.</span>toString<span class="p">(</span>tokenId<span class="p">);</span>
+
+<span class="w">    </span><span class="kt">return</span><span class="w"> </span>StringsLib<span class="p">.</span>concat<span class="p">(</span>parts<span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="gas-optimization-considerations">Gas Optimization Considerations<a class="headerlink" href="#gas-optimization-considerations" title="Permanent link">&para;</a></h2>
+<h3 id="efficient-string-operations">Efficient String Operations<a class="headerlink" href="#efficient-string-operations" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Byte-level Operations</strong>: Direct byte manipulation for better gas efficiency</li>
+<li><strong>Memory Management</strong>: Careful memory allocation for string operations</li>
+<li><strong>Loop Optimization</strong>: Efficient loops for string processing</li>
+</ul>
+<h3 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Minimize String Operations</strong>: Combine multiple operations when possible</li>
+<li><strong>Use Appropriate Functions</strong>: Choose the right function for the specific use case</li>
+<li><strong>Validate Inputs</strong>: Check string lengths and validity before processing</li>
+<li><strong>Cache Results</strong>: Store frequently used string operations</li>
+</ol>
+<h2 id="security-considerations">Security Considerations<a class="headerlink" href="#security-considerations" title="Permanent link">&para;</a></h2>
+<h3 id="input-validation">Input Validation<a class="headerlink" href="#input-validation" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Length Limits</strong>: Implement reasonable string length limits</li>
+<li><strong>Character Validation</strong>: Validate input characters for parsing functions</li>
+<li><strong>Bounds Checking</strong>: Ensure array indices are within bounds</li>
+</ul>
+<h3 id="gas-limits">Gas Limits<a class="headerlink" href="#gas-limits" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Large Strings</strong>: Be aware of gas costs for large string operations</li>
+<li><strong>Loop Limits</strong>: Consider gas limits when processing string arrays</li>
+<li><strong>Memory Usage</strong>: Monitor memory usage for complex string operations</li>
+</ul>
+<h2 id="integration-with-svg-templates">Integration with SVG Templates<a class="headerlink" href="#integration-with-svg-templates" title="Permanent link">&para;</a></h2>
+<p>The library is particularly useful for SVG template processing:</p>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">generateSVG</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">string</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>template<span class="w"> </span><span class="o">=</span><span class="w"> </span>getSVGTemplate<span class="p">();</span>
+<span class="w">    </span><span class="kt">string</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>attributes<span class="w"> </span><span class="o">=</span><span class="w"> </span>getTokenAttributes<span class="p">(</span>tokenId<span class="p">);</span>
+
+<span class="w">    </span><span class="kt">return</span><span class="w"> </span>StringsLib<span class="p">.</span>replace<span class="p">(</span>template<span class="p">,</span><span class="w"> </span><span class="s2">&quot;ATTR_&quot;</span><span class="p">,</span><span class="w"> </span>attributes<span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="performance-characteristics">Performance Characteristics<a class="headerlink" href="#performance-characteristics" title="Permanent link">&para;</a></h2>
+<h3 id="time-complexity">Time Complexity<a class="headerlink" href="#time-complexity" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Basic Operations</strong>: O(n) where n is string length</li>
+<li><strong>Search Operations</strong>: O(n*m) where n is haystack length, m is needle length</li>
+<li><strong>Array Operations</strong>: O(n) where n is total character count</li>
+</ul>
+<h3 id="gas-costs-approximate">Gas Costs (Approximate)<a class="headerlink" href="#gas-costs-approximate" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>parseInt</strong>: ~1,000-5,000 gas depending on string length</li>
+<li><strong>substring</strong>: ~500-2,000 gas depending on length</li>
+<li><strong>concat</strong>: ~1,000-10,000 gas depending on array size</li>
+<li><strong>replace</strong>: ~2,000-20,000 gas depending on complexity</li>
+</ul>
+<h2 id="related-documentation">Related Documentation<a class="headerlink" href="#related-documentation" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../svg-templates-lib/">SVG Templates Library</a> - SVG generation utilities</li>
+<li><a href="../metadata-lib/">Metadata Library</a> - NFT metadata utilities</li>
+<li><a href="../attribute-lib/">Attribute Library</a> - Token attribute management</li>
+<li><a href="../interfaces/istrings.md">IStrings Interface</a> - String interface definitions</li>
+</ul>
+<h2 id="best-practices_1">Best Practices<a class="headerlink" href="#best-practices_1" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Input Validation</strong>: Always validate string inputs before processing</li>
+<li><strong>Gas Monitoring</strong>: Monitor gas usage for complex string operations</li>
+<li><strong>Memory Management</strong>: Be mindful of memory allocation for large strings</li>
+<li><strong>Error Handling</strong>: Implement proper error handling for parsing operations</li>
+<li><strong>Template Optimization</strong>: Optimize templates for minimal processing overhead</li>
+</ol>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../erc721a-enumeration-lib/" class="btn btn-neutral float-left" title="ERC721A Enumeration Lib"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../metadata-lib/" class="btn btn-neutral float-right" title="Metadata Lib">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../erc721a-enumeration-lib/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../metadata-lib/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

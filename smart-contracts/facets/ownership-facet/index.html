@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Gemforce Team" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>Ownership Facet - Gemforce Documentation</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Ownership Facet";
+        var mkdocs_page_input_path = "smart-contracts/facets/ownership-facet.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../.." class="icon icon-home"> Gemforce Documentation
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../developer-setup-guide/">Developer Setup Guide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../system-architecture/gemforce-system-architecture/">System Architecture</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Smart Contracts</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../diamond/">Diamond Contract</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Facets</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../marketplace-facet/">Marketplace Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../trade-deal-management-facet/">Trade Deal Management Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../carbon-credit-facet/">Carbon Credit Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../identity-registry-facet/">Identity Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../trusted-issuers-registry-facet/">Trusted Issuers Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../fee-distributor-facet/">Fee Distributor Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../gemforce-minter-facet/">Gemforce Minter Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../multi-sale-facet/">Multi Sale Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../svg-templates-facet/">SVG Templates Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../trade-deal-admin-facet/">Trade Deal Admin Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../trade-deal-operations-facet/">Trade Deal Operations Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../collateral-token-factory-facet/">Collateral Token Factory Facet</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Interfaces</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/idiamond/">IDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/imarketplace/">IMarketplace</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/itradedeal/">ITradeDeal</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/icarbon-credit/">ICarbonCredit</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ierc1155-mint/">IERC1155Mint</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ierc734/">IERC734</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ierc735/">IERC735</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Libraries</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/carbon-credit-lib/">Carbon Credit Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/trade-deal-lib/">Trade Deal Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/multi-sale-lib/">Multi Sale Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/diamond-factory-lib/">Diamond Factory Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/svg-templates-lib/">SVG Templates Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/attribute-lib/">Attribute Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/variable-price-lib/">Variable Price Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/merkle-prover/">Merkle Prover</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/fee-distributor-lib/">Fee Distributor Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/lib-diamond/">LibDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/diamond-lib/">DiamondLib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/erc721a-lib/">ERC721A Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/erc721a-enumeration-lib/">ERC721A Enumeration Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/strings-lib/">Strings Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/metadata-lib/">Metadata Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/trusted-issuer-lib/">Trusted Issuer Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/set-libraries/">Set Libraries</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Cloud Functions</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/blockchain/">Blockchain Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/dfns/">DFNS Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/contracts/">Contract Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/authentication/">Authentication Functions</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">API Documentation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../api-documentation/gemforce-api-documentation/">Full API Reference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../api-documentation/gemforce-api-quick-reference/">Quick Reference</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">EIPs (Ethereum Improvement Proposals)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Diamond-Enhanced-Marketplace/">Diamond-Enhanced Marketplace</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Multi-Token-Sale-Standard/">Multi-Token Sale Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Collateralized-Trade-Deal-Standard/">Collateralized Trade Deal Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Enhanced-Identity-System/">Enhanced Identity System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Diamond-Factory-Standard/">Diamond Factory Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Carbon-Credit-Standard/">Carbon Credit Standard</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">User Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-administrator-guide/">Administrator Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-deployer-guide/">Deployer Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-integrator-guide/">Integrator Guide</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../external-services/gemforce-external-services/">External Services</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-documentation-gap-analysis/">Documentation Gap Analysis</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../documentation-progress-summary/">Documentation Progress Summary</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../documentation-plan/">Documentation Plan</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">Gemforce Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Ownership Facet</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="ownership-facet">Ownership Facet<a class="headerlink" href="#ownership-facet" title="Permanent link">&para;</a></h1>
+<p>The Ownership Facet provides ownership management functionality for diamond contracts, implementing access control patterns that restrict administrative operations to authorized users.</p>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>The Ownership Facet is a critical security component that provides:</p>
+<ul>
+<li><strong>Access Control</strong>: Restrict sensitive operations to contract owner</li>
+<li><strong>Ownership Transfer</strong>: Safe transfer of contract ownership</li>
+<li><strong>Administrative Functions</strong>: Foundation for other facet access controls</li>
+<li><strong>Security Patterns</strong>: Standard ownership verification mechanisms</li>
+</ul>
+<h2 id="key-features">Key Features<a class="headerlink" href="#key-features" title="Permanent link">&para;</a></h2>
+<h3 id="ownership-management">Ownership Management<a class="headerlink" href="#ownership-management" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Owner Verification</strong>: Check if address is contract owner</li>
+<li><strong>Ownership Transfer</strong>: Transfer ownership to new address</li>
+<li><strong>Renounce Ownership</strong>: Remove ownership (irreversible)</li>
+<li><strong>Pending Ownership</strong>: Two-step ownership transfer for safety</li>
+</ul>
+<h3 id="access-control-integration">Access Control Integration<a class="headerlink" href="#access-control-integration" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Modifier Support</strong>: Provides <code>onlyOwner</code> functionality</li>
+<li><strong>Facet Integration</strong>: Other facets can use ownership checks</li>
+<li><strong>Administrative Gates</strong>: Controls access to upgrade functions</li>
+<li><strong>Emergency Controls</strong>: Owner-only emergency functions</li>
+</ul>
+<h2 id="interface">Interface<a class="headerlink" href="#interface" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span><code>interface<span class="w"> </span>IOwnership<span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">OwnershipTransferred</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>previousOwner<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>newOwner<span class="p">);</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">owner</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">owner_</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">transferOwnership</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">_newOwner</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">renounceOwnership</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="core-functions">Core Functions<a class="headerlink" href="#core-functions" title="Permanent link">&para;</a></h2>
+<h3 id="owner">owner()<a class="headerlink" href="#owner" title="Permanent link">&para;</a></h3>
+<p>Returns the current owner of the contract.</p>
+<p><strong>Returns:</strong>
+- <code>address</code>: Current owner address</p>
+<p><strong>Usage:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="kt">address</span><span class="w"> </span><span class="nv">currentOwner</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>IOwnership<span class="p">(</span>diamond<span class="p">).</span>owner<span class="p">();</span>
+</code></pre></div>
+
+<h3 id="transferownership">transferOwnership()<a class="headerlink" href="#transferownership" title="Permanent link">&para;</a></h3>
+<p>Transfers ownership to a new address.</p>
+<p><strong>Parameters:</strong>
+- <code>_newOwner</code>: Address of the new owner</p>
+<p><strong>Access Control:</strong>
+- Only current owner can call this function</p>
+<p><strong>Events:</strong>
+- Emits <code>OwnershipTransferred</code> event</p>
+<p><strong>Usage:</strong></p>
+<div class="codehilite"><pre><span></span><code>IOwnership<span class="p">(</span>diamond<span class="p">).</span>transferOwnership<span class="p">(</span>newOwnerAddress<span class="p">);</span>
+</code></pre></div>
+
+<h3 id="renounceownership">renounceOwnership()<a class="headerlink" href="#renounceownership" title="Permanent link">&para;</a></h3>
+<p>Renounces ownership, leaving the contract without an owner.</p>
+<p><strong>Warning:</strong> This is irreversible and will disable all owner-only functions.</p>
+<p><strong>Access Control:</strong>
+- Only current owner can call this function</p>
+<p><strong>Events:</strong>
+- Emits <code>OwnershipTransferred</code> with new owner as <code>address(0)</code></p>
+<h2 id="implementation-patterns">Implementation Patterns<a class="headerlink" href="#implementation-patterns" title="Permanent link">&para;</a></h2>
+<h3 id="basic-ownership-check">Basic Ownership Check<a class="headerlink" href="#basic-ownership-check" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="k">contract</span><span class="w"> </span><span class="ni">ExampleFacet</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">modifier</span><span class="w"> </span>onlyOwner<span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>LibDiamond<span class="p">.</span>contractOwner<span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Not owner&quot;</span><span class="p">);</span>
+<span class="w">        </span>_<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">adminFunction</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyOwner<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Admin-only logic here</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="safe-ownership-transfer">Safe Ownership Transfer<a class="headerlink" href="#safe-ownership-transfer" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="k">contract</span><span class="w"> </span><span class="ni">SafeOwnershipFacet</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="k">private </span><span class="nv">pendingOwner</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">transferOwnership</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">newOwner</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyOwner<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>newOwner<span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">),</span><span class="w"> </span><span class="s2">&quot;Invalid owner&quot;</span><span class="p">);</span>
+<span class="w">        </span>pendingOwner<span class="w"> </span><span class="o">=</span><span class="w"> </span>newOwner<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">acceptOwnership</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span><span class="k">msg.sender</span><span class="w"> </span><span class="o">==</span><span class="w"> </span>pendingOwner<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Not pending owner&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">oldOwner</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>LibDiamond<span class="p">.</span>contractOwner<span class="p">();</span>
+<span class="w">        </span>LibDiamond<span class="p">.</span>setContractOwner<span class="p">(</span>pendingOwner<span class="p">);</span>
+<span class="w">        </span>pendingOwner<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">);</span>
+<span class="w">        </span>emit<span class="w"> </span>OwnershipTransferred<span class="p">(</span>oldOwner<span class="p">,</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="multi-signature-integration">Multi-Signature Integration<a class="headerlink" href="#multi-signature-integration" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="k">contract</span><span class="w"> </span><span class="ni">MultiSigOwnership</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">bool</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>isOwner<span class="p">;</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="k">public </span><span class="nv">requiredSignatures</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">Transaction</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">to</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">data</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">confirmations</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">bool</span><span class="p">)</span><span class="w"> </span>confirmed<span class="p">;</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">executed</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span>Transaction<span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>transactions<span class="p">;</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="k">public </span><span class="nv">transactionCount</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kt">modifier</span><span class="w"> </span>onlyMultiSigOwner<span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>isOwner<span class="p">[</span><span class="k">msg.sender</span><span class="p">],</span><span class="w"> </span><span class="s2">&quot;Not authorized&quot;</span><span class="p">);</span>
+<span class="w">        </span>_<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">submitTransaction</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">to</span><span class="p">,</span><span class="w"> </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>data<span class="p">)</span><span class="w"> </span>
+<span class="w">        </span><span class="kt">external</span><span class="w"> </span>
+<span class="w">        </span>onlyMultiSigOwner<span class="w"> </span>
+<span class="w">        </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">transactionId</span><span class="p">)</span><span class="w"> </span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span>transactionId<span class="w"> </span><span class="o">=</span><span class="w"> </span>transactionCount<span class="o">++</span><span class="p">;</span>
+<span class="w">        </span>Transaction<span class="w"> </span>storage<span class="w"> </span>txn<span class="w"> </span><span class="o">=</span><span class="w"> </span>transactions<span class="p">[</span>transactionId<span class="p">];</span>
+<span class="w">        </span>txn<span class="p">.</span>to<span class="w"> </span><span class="o">=</span><span class="w"> </span>to<span class="p">;</span>
+<span class="w">        </span>txn<span class="p">.</span>data<span class="w"> </span><span class="o">=</span><span class="w"> </span>data<span class="p">;</span>
+
+<span class="w">        </span>confirmTransaction<span class="p">(</span>transactionId<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">confirmTransaction</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">transactionId</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>onlyMultiSigOwner<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>Transaction<span class="w"> </span>storage<span class="w"> </span>txn<span class="w"> </span><span class="o">=</span><span class="w"> </span>transactions<span class="p">[</span>transactionId<span class="p">];</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span><span class="o">!</span>txn<span class="p">.</span>confirmed<span class="p">[</span><span class="k">msg.sender</span><span class="p">],</span><span class="w"> </span><span class="s2">&quot;Already confirmed&quot;</span><span class="p">);</span>
+
+<span class="w">        </span>txn<span class="p">.</span>confirmed<span class="p">[</span><span class="k">msg.sender</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">true</span><span class="p">;</span>
+<span class="w">        </span>txn<span class="p">.</span>confirmations<span class="o">++</span><span class="p">;</span>
+
+<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>txn<span class="p">.</span>confirmations<span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span>requiredSignatures<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>executeTransaction<span class="p">(</span>transactionId<span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="security-considerations">Security Considerations<a class="headerlink" href="#security-considerations" title="Permanent link">&para;</a></h2>
+<h3 id="access-control">Access Control<a class="headerlink" href="#access-control" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Owner Verification</strong>: Always verify caller is owner</li>
+<li><strong>Zero Address Check</strong>: Prevent ownership transfer to zero address</li>
+<li><strong>Reentrancy Protection</strong>: Consider reentrancy in ownership functions</li>
+<li><strong>Event Emission</strong>: Always emit events for ownership changes</li>
+</ul>
+<h3 id="ownership-transfer-safety">Ownership Transfer Safety<a class="headerlink" href="#ownership-transfer-safety" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Two-Step Transfer</strong>: Use pending ownership pattern for safety</li>
+<li><strong>Address Validation</strong>: Validate new owner addresses</li>
+<li><strong>Confirmation Required</strong>: Require new owner to accept ownership</li>
+<li><strong>Timelock Integration</strong>: Consider timelock for ownership changes</li>
+</ul>
+<h3 id="emergency-considerations">Emergency Considerations<a class="headerlink" href="#emergency-considerations" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Recovery Mechanisms</strong>: Plan for owner key loss scenarios</li>
+<li><strong>Multi-Signature</strong>: Use multi-sig for high-value contracts</li>
+<li><strong>Governance Integration</strong>: Consider DAO governance for ownership</li>
+<li><strong>Upgrade Restrictions</strong>: Limit upgrade capabilities appropriately</li>
+</ul>
+<h2 id="integration-with-diamond-standard">Integration with Diamond Standard<a class="headerlink" href="#integration-with-diamond-standard" title="Permanent link">&para;</a></h2>
+<h3 id="libdiamond-integration">LibDiamond Integration<a class="headerlink" href="#libdiamond-integration" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">library</span><span class="w"> </span>LibDiamond<span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">constant</span><span class="w"> </span>DIAMOND_STORAGE_POSITION<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">keccak256</span><span class="p">(</span><span class="s2">&quot;diamond.standard.diamond.storage&quot;</span><span class="p">);</span>
+
+<span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">DiamondStorage</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">mapping</span><span class="p">(</span>bytes4<span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">bytes32</span><span class="p">)</span><span class="w"> </span>facets<span class="p">;</span>
+<span class="w">        </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">bytes32</span><span class="p">)</span><span class="w"> </span>selectorSlots<span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">selectorCount</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">mapping</span><span class="p">(</span>bytes4<span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">bool</span><span class="p">)</span><span class="w"> </span>supportedInterfaces<span class="p">;</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">contractOwner</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">diamondStorage</span><span class="p">()</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>pure<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>DiamondStorage<span class="w"> </span>storage<span class="w"> </span>ds<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>DIAMOND_STORAGE_POSITION<span class="p">;</span>
+<span class="w">        </span>assembly<span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>ds<span class="p">.</span>slot<span class="w"> </span><span class="o">:=</span><span class="w"> </span>position
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">setContractOwner</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">_newOwner</span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>DiamondStorage<span class="w"> </span>storage<span class="w"> </span>ds<span class="w"> </span><span class="o">=</span><span class="w"> </span>diamondStorage<span class="p">();</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">previousOwner</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>ds<span class="p">.</span>contractOwner<span class="p">;</span>
+<span class="w">        </span>ds<span class="p">.</span>contractOwner<span class="w"> </span><span class="o">=</span><span class="w"> </span>_newOwner<span class="p">;</span>
+<span class="w">        </span>emit<span class="w"> </span>OwnershipTransferred<span class="p">(</span>previousOwner<span class="p">,</span><span class="w"> </span>_newOwner<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">contractOwner</span><span class="p">()</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">contractOwner_</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>contractOwner_<span class="w"> </span><span class="o">=</span><span class="w"> </span>diamondStorage<span class="p">().</span>contractOwner<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">enforceIsContractOwner</span><span class="p">()</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>view<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span><span class="k">msg.sender</span><span class="w"> </span><span class="o">==</span><span class="w"> </span>diamondStorage<span class="p">().</span>contractOwner<span class="p">,</span><span class="w"> </span><span class="s2">&quot;LibDiamond: Must be contract owner&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="diamond-cut-integration">Diamond Cut Integration<a class="headerlink" href="#diamond-cut-integration" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="k">contract</span><span class="w"> </span><span class="ni">DiamondCutFacet</span><span class="w"> </span><span class="kt">is</span><span class="w"> </span>IDiamondCut<span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">diamondCut</span><span class="p">(</span>
+<span class="w">        </span>FacetCut<span class="p">[]</span><span class="w"> </span>calldata<span class="w"> </span>_diamondCut<span class="p">,</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">_init</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">calldata</span><span class="w"> </span>_calldata
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>override<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>LibDiamond<span class="p">.</span>enforceIsContractOwner<span class="p">();</span>
+<span class="w">        </span>LibDiamond<span class="p">.</span>diamondCut<span class="p">(</span>_diamondCut<span class="p">,</span><span class="w"> </span>_init<span class="p">,</span><span class="w"> </span>_calldata<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h2>
+<h3 id="development-guidelines">Development Guidelines<a class="headerlink" href="#development-guidelines" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Always Use Modifiers</strong>: Use <code>onlyOwner</code> modifier consistently</li>
+<li><strong>Event Emission</strong>: Emit events for all ownership changes</li>
+<li><strong>Address Validation</strong>: Validate addresses before ownership transfer</li>
+<li><strong>Documentation</strong>: Document all owner-only functions clearly</li>
+</ol>
+<h3 id="production-deployment">Production Deployment<a class="headerlink" href="#production-deployment" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Multi-Signature</strong>: Use multi-sig wallets for production ownership</li>
+<li><strong>Timelock Contracts</strong>: Consider timelock for sensitive operations</li>
+<li><strong>Governance Integration</strong>: Plan for decentralized governance</li>
+<li><strong>Emergency Procedures</strong>: Establish emergency response procedures</li>
+</ol>
+<h3 id="security-auditing">Security Auditing<a class="headerlink" href="#security-auditing" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Access Control Review</strong>: Audit all access control mechanisms</li>
+<li><strong>Ownership Transfer Testing</strong>: Test ownership transfer scenarios</li>
+<li><strong>Emergency Function Testing</strong>: Test emergency and recovery functions</li>
+<li><strong>Multi-Signature Validation</strong>: Validate multi-sig implementations</li>
+</ol>
+<h2 id="common-patterns">Common Patterns<a class="headerlink" href="#common-patterns" title="Permanent link">&para;</a></h2>
+<h3 id="role-based-access-control">Role-Based Access Control<a class="headerlink" href="#role-based-access-control" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="k">contract</span><span class="w"> </span><span class="ni">RoleBasedOwnership</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">bytes32</span><span class="w"> </span><span class="k">public </span><span class="nv">constant</span><span class="w"> </span>ADMIN_ROLE<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">keccak256</span><span class="p">(</span><span class="s2">&quot;ADMIN_ROLE&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">bytes32</span><span class="w"> </span><span class="k">public </span><span class="nv">constant</span><span class="w"> </span>OPERATOR_ROLE<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">keccak256</span><span class="p">(</span><span class="s2">&quot;OPERATOR_ROLE&quot;</span><span class="p">);</span>
+
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">bool</span><span class="p">))</span><span class="w"> </span><span class="kt">private</span><span class="w"> </span>roles<span class="p">;</span>
+
+<span class="w">    </span><span class="kt">modifier</span><span class="w"> </span>onlyRole<span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">role</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>hasRole<span class="p">(</span>role<span class="p">,</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">),</span><span class="w"> </span><span class="s2">&quot;AccessControl: account missing role&quot;</span><span class="p">);</span>
+<span class="w">        </span>_<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">hasRole</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">role</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">account</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bool</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>roles<span class="p">[</span>role<span class="p">][</span>account<span class="p">]</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="p">(</span>role<span class="w"> </span><span class="o">==</span><span class="w"> </span>ADMIN_ROLE<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>account<span class="w"> </span><span class="o">==</span><span class="w"> </span>LibDiamond<span class="p">.</span>contractOwner<span class="p">());</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">grantRole</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">role</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">account</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyOwner<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>roles<span class="p">[</span>role<span class="p">][</span>account<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">true</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">revokeRole</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">role</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">account</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyOwner<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>roles<span class="p">[</span>role<span class="p">][</span>account<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">false</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="pausable-contract">Pausable Contract<a class="headerlink" href="#pausable-contract" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="k">contract</span><span class="w"> </span><span class="ni">PausableOwnership</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="k">private </span><span class="nv">paused</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">Paused</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">account</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">Unpaused</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">account</span><span class="p">);</span>
+
+<span class="w">    </span><span class="kt">modifier</span><span class="w"> </span>whenNotPaused<span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span><span class="o">!</span>paused<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Contract is paused&quot;</span><span class="p">);</span>
+<span class="w">        </span>_<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">modifier</span><span class="w"> </span>whenPaused<span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>paused<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Contract is not paused&quot;</span><span class="p">);</span>
+<span class="w">        </span>_<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">pause</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyOwner<span class="w"> </span>whenNotPaused<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>paused<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">true</span><span class="p">;</span>
+<span class="w">        </span>emit<span class="w"> </span>Paused<span class="p">(</span><span class="k">msg.sender</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">unpause</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyOwner<span class="w"> </span>whenPaused<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>paused<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">false</span><span class="p">;</span>
+<span class="w">        </span>emit<span class="w"> </span>Unpaused<span class="p">(</span><span class="k">msg.sender</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="error-handling">Error Handling<a class="headerlink" href="#error-handling" title="Permanent link">&para;</a></h2>
+<h3 id="common-errors">Common Errors<a class="headerlink" href="#common-errors" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>"Not owner"</code>: Caller is not the contract owner</li>
+<li><code>"Invalid owner"</code>: Attempting to set invalid owner address</li>
+<li><code>"Already owner"</code>: Attempting to transfer to current owner</li>
+<li><code>"Zero address"</code>: Attempting to use zero address as owner</li>
+</ul>
+<h3 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Verify Caller</strong>: Ensure calling address is current owner</li>
+<li><strong>Check Address</strong>: Validate target addresses are not zero</li>
+<li><strong>Transaction Status</strong>: Verify transactions are properly executed</li>
+<li><strong>Event Logs</strong>: Check event logs for ownership changes</li>
+</ol>
+<h2 id="related-documentation">Related Documentation<a class="headerlink" href="#related-documentation" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../../diamond/">Diamond Standard Overview</a></li>
+<li><a href="../diamond-cut-facet/">Diamond Cut Facet</a></li>
+<li><a href="../../guides/access-control.md">Access Control Patterns</a></li>
+<li><a href="../../guides/security.md">Security Best Practices</a></li>
+<li><a href="../../guides/multi-signature.md">Multi-Signature Integration</a></li>
+</ul>
+<h2 id="standards-compliance">Standards Compliance<a class="headerlink" href="#standards-compliance" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>OpenZeppelin Ownable</strong>: Compatible with OpenZeppelin patterns</li>
+<li><strong>EIP-173</strong>: Contract Ownership Standard</li>
+<li><strong>Diamond Standard</strong>: Integrated with EIP-2535</li>
+<li><strong>Access Control</strong>: Industry-standard access control patterns</li>
+</ul>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Gemforce Team" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Contract Functions - Gemforce Documentation</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Contract Functions";
+        var mkdocs_page_input_path = "cloud-functions/contracts.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Gemforce Documentation
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../developer-setup-guide/">Developer Setup Guide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../system-architecture/gemforce-system-architecture/">System Architecture</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Smart Contracts</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../smart-contracts/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../smart-contracts/diamond/">Diamond Contract</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Facets</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/marketplace-facet/">Marketplace Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/trade-deal-management-facet/">Trade Deal Management Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/carbon-credit-facet/">Carbon Credit Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/identity-registry-facet/">Identity Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/trusted-issuers-registry-facet/">Trusted Issuers Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/fee-distributor-facet/">Fee Distributor Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/gemforce-minter-facet/">Gemforce Minter Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/multi-sale-facet/">Multi Sale Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/svg-templates-facet/">SVG Templates Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/trade-deal-admin-facet/">Trade Deal Admin Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/trade-deal-operations-facet/">Trade Deal Operations Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/collateral-token-factory-facet/">Collateral Token Factory Facet</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Interfaces</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/idiamond/">IDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/imarketplace/">IMarketplace</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/itradedeal/">ITradeDeal</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/icarbon-credit/">ICarbonCredit</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/ierc1155-mint/">IERC1155Mint</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/ierc734/">IERC734</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/ierc735/">IERC735</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Libraries</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/carbon-credit-lib/">Carbon Credit Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/trade-deal-lib/">Trade Deal Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/multi-sale-lib/">Multi Sale Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/diamond-factory-lib/">Diamond Factory Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/svg-templates-lib/">SVG Templates Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/attribute-lib/">Attribute Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/variable-price-lib/">Variable Price Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/merkle-prover/">Merkle Prover</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/fee-distributor-lib/">Fee Distributor Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/lib-diamond/">LibDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/diamond-lib/">DiamondLib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/erc721a-lib/">ERC721A Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/erc721a-enumeration-lib/">ERC721A Enumeration Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/strings-lib/">Strings Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/metadata-lib/">Metadata Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/trusted-issuer-lib/">Trusted Issuer Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/set-libraries/">Set Libraries</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Cloud Functions</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../blockchain/">Blockchain Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../dfns/">DFNS Functions</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Contract Functions</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#module-details">Module Details</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#key-features">Key Features</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#diamond-contract-management">🔹 Diamond Contract Management</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#generic-contract-interaction">🔹 Generic Contract Interaction</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#smart-contract-loading">🔹 Smart Contract Loading</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#flexible-parameter-handling">🔹 Flexible Parameter Handling</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#cloud-functions">Cloud Functions</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#diamond-management-functions">Diamond Management Functions</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#adddiamondfacet">addDiamondFacet</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#generic-contract-functions">Generic Contract Functions</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#callmethod">callMethod</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#viewmethod">viewMethod</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#custom-contract-functions">Custom Contract Functions</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#callcontractmethod">callContractMethod</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#viewcontractmethod">viewContractMethod</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#contract-loading-functions">Contract Loading Functions</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#loadsmartcontractfornetwork">loadSmartContractForNetwork</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#loadsmartcontractsfornetwork">loadSmartContractsForNetwork</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#integration-examples">Integration Examples</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#diamond-facet-management">Diamond Facet Management</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#multi-network-contract-interaction">Multi-Network Contract Interaction</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#custom-contract-integration">Custom Contract Integration</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#contract-state-monitoring">Contract State Monitoring</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#security-considerations">Security Considerations</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#private-key-management">Private Key Management</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#access-control">Access Control</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#input-validation">Input Validation</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#error-handling">Error Handling</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#network-errors">Network Errors</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#contract-errors">Contract Errors</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#transaction-errors">Transaction Errors</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#performance-optimization">Performance Optimization</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#caching">Caching</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#batch-operations">Batch Operations</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#testing-considerations">Testing Considerations</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#unit-tests">Unit Tests</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#integration-tests">Integration Tests</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#load-testing">Load Testing</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#related-documentation">Related Documentation</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../authentication/">Authentication Functions</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">API Documentation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api-documentation/gemforce-api-documentation/">Full API Reference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api-documentation/gemforce-api-quick-reference/">Quick Reference</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">EIPs (Ethereum Improvement Proposals)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../eips/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../eips/EIP-DRAFT-Diamond-Enhanced-Marketplace/">Diamond-Enhanced Marketplace</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../eips/EIP-DRAFT-Multi-Token-Sale-Standard/">Multi-Token Sale Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../eips/EIP-DRAFT-Collateralized-Trade-Deal-Standard/">Collateralized Trade Deal Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../eips/EIP-DRAFT-Enhanced-Identity-System/">Enhanced Identity System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../eips/EIP-DRAFT-Diamond-Factory-Standard/">Diamond Factory Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../eips/EIP-DRAFT-Carbon-Credit-Standard/">Carbon Credit Standard</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">User Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../gemforce-administrator-guide/">Administrator Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../gemforce-deployer-guide/">Deployer Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../gemforce-integrator-guide/">Integrator Guide</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../external-services/gemforce-external-services/">External Services</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../gemforce-documentation-gap-analysis/">Documentation Gap Analysis</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../documentation-progress-summary/">Documentation Progress Summary</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../documentation-plan/">Documentation Plan</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Gemforce Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Cloud Functions</li>
+      <li class="breadcrumb-item active">Contract Functions</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="contract-cloud-functions">Contract Cloud Functions<a class="headerlink" href="#contract-cloud-functions" title="Permanent link">&para;</a></h1>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>The <a href="/Users/sschepis/Development/gem-base/src/cloud-functions/contracts.ts"><code>contracts.ts</code></a> module provides Parse Server cloud functions for interacting with smart contracts on various blockchain networks. These functions enable secure contract operations, diamond facet management, and flexible contract interaction patterns through a unified API.</p>
+<h2 id="module-details">Module Details<a class="headerlink" href="#module-details" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>File</strong>: <code>src/cloud-functions/contracts.ts</code></li>
+<li><strong>Framework</strong>: Parse Server Cloud Functions</li>
+<li><strong>Language</strong>: TypeScript</li>
+<li><strong>Dependencies</strong>: Contract utilities, Diamond utilities</li>
+</ul>
+<h2 id="key-features">Key Features<a class="headerlink" href="#key-features" title="Permanent link">&para;</a></h2>
+<h3 id="diamond-contract-management">🔹 Diamond Contract Management<a class="headerlink" href="#diamond-contract-management" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Add facets to diamond contracts dynamically</li>
+<li>Support for EIP-2535 Diamond Standard operations</li>
+<li>Network-agnostic diamond management</li>
+</ul>
+<h3 id="generic-contract-interaction">🔹 Generic Contract Interaction<a class="headerlink" href="#generic-contract-interaction" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Call state-changing contract methods</li>
+<li>Query read-only contract methods</li>
+<li>Support for custom ABIs and contract addresses</li>
+</ul>
+<h3 id="smart-contract-loading">🔹 Smart Contract Loading<a class="headerlink" href="#smart-contract-loading" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Load contract configurations for specific networks</li>
+<li>Batch loading of multiple contracts</li>
+<li>Network-specific contract resolution</li>
+</ul>
+<h3 id="flexible-parameter-handling">🔹 Flexible Parameter Handling<a class="headerlink" href="#flexible-parameter-handling" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Support for custom private keys</li>
+<li>Optional parameter validation</li>
+<li>Value transfer support for payable functions</li>
+</ul>
+<h2 id="cloud-functions">Cloud Functions<a class="headerlink" href="#cloud-functions" title="Permanent link">&para;</a></h2>
+<h3 id="diamond-management-functions">Diamond Management Functions<a class="headerlink" href="#diamond-management-functions" title="Permanent link">&para;</a></h3>
+<h4 id="adddiamondfacet"><code>addDiamondFacet</code><a class="headerlink" href="#adddiamondfacet" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s2">&quot;addDiamondFacet&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">(</span><span class="nx">request</span><span class="o">:</span><span class="w"> </span><span class="kt">any</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">networkId</span><span class="p">,</span><span class="w"> </span><span class="nx">diamondAddress</span><span class="p">,</span><span class="w"> </span><span class="nx">privateKey</span><span class="p">,</span><span class="w"> </span><span class="nx">facetName</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">request</span><span class="p">.</span><span class="nx">params</span><span class="p">;</span>
+<span class="w">  </span><span class="c1">// Implementation details...</span>
+<span class="p">});</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Adds a new facet to an existing diamond contract.</p>
+<p><strong>Parameters</strong>:
+- <code>networkId</code> (string): Target blockchain network identifier
+- <code>diamondAddress</code> (string): Address of the diamond contract
+- <code>privateKey</code> (string, optional): Private key for transaction signing
+- <code>facetName</code> (string): Name of the facet to add</p>
+<p><strong>Returns</strong>: Transaction result with facet addition details</p>
+<p><strong>Access Control</strong>: Requires valid private key with diamond owner permissions</p>
+<p><strong>Example Usage</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Add marketplace facet to diamond</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="s2">&quot;addDiamondFacet&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">networkId</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;baseSepolia&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">diamondAddress</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;0x1234567890123456789012345678901234567890&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">facetName</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;MarketplaceFacet&quot;</span>
+<span class="p">});</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Facet added:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">result</span><span class="p">.</span><span class="nx">transactionHash</span><span class="p">);</span>
+</code></pre></div>
+
+<p><strong>Process</strong>:
+1. Validates network and diamond address
+2. Resolves private key (uses default if not provided)
+3. Loads facet contract for the specified network
+4. Executes diamond cut operation to add facet
+5. Returns transaction details</p>
+<p><strong>Error Conditions</strong>:
+- Invalid network ID
+- Diamond contract not found
+- Insufficient permissions
+- Facet already exists
+- Transaction failure</p>
+<hr />
+<h3 id="generic-contract-functions">Generic Contract Functions<a class="headerlink" href="#generic-contract-functions" title="Permanent link">&para;</a></h3>
+<h4 id="callmethod"><code>callMethod</code><a class="headerlink" href="#callmethod" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s2">&quot;callMethod&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">(</span><span class="nx">request</span><span class="o">:</span><span class="w"> </span><span class="kt">any</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">methodName</span><span class="p">,</span><span class="w"> </span><span class="nx">params</span><span class="p">,</span><span class="w"> </span><span class="nx">privateKey</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">request</span><span class="p">.</span><span class="nx">params</span><span class="p">;</span>
+<span class="w">  </span><span class="c1">// Implementation details...</span>
+<span class="p">});</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Calls a state-changing method on a pre-configured contract.</p>
+<p><strong>Parameters</strong>:
+- <code>methodName</code> (string): Name of the contract method to call
+- <code>params</code> (array): Array of parameters for the method
+- <code>privateKey</code> (string, optional): Private key for transaction signing</p>
+<p><strong>Returns</strong>: Transaction result with method execution details</p>
+<p><strong>Example Usage</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Call mint function on NFT contract</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="s2">&quot;callMethod&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">methodName</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;mint&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">params</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;0xRecipientAddress&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;tokenURI&quot;</span><span class="p">],</span>
+<span class="w">  </span><span class="nx">privateKey</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;0x...&quot;</span><span class="w"> </span><span class="c1">// Optional</span>
+<span class="p">});</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Mint transaction:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">result</span><span class="p">.</span><span class="nx">transactionHash</span><span class="p">);</span>
+</code></pre></div>
+
+<p><strong>Use Cases</strong>:
+- Token minting operations
+- Marketplace listing creation
+- Identity claim management
+- Trade deal operations</p>
+<hr />
+<h4 id="viewmethod"><code>viewMethod</code><a class="headerlink" href="#viewmethod" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s2">&quot;viewMethod&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">(</span><span class="nx">request</span><span class="o">:</span><span class="w"> </span><span class="kt">any</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">methodName</span><span class="p">,</span><span class="w"> </span><span class="nx">params</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">request</span><span class="p">.</span><span class="nx">params</span><span class="p">;</span>
+<span class="w">  </span><span class="c1">// Implementation details...</span>
+<span class="p">});</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Calls a read-only method on a pre-configured contract.</p>
+<p><strong>Parameters</strong>:
+- <code>methodName</code> (string): Name of the view method to call
+- <code>params</code> (array): Array of parameters for the method</p>
+<p><strong>Returns</strong>: Method return value(s)</p>
+<p><strong>Example Usage</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Get token balance</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">balance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="s2">&quot;viewMethod&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">methodName</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;balanceOf&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">params</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;0xUserAddress&quot;</span><span class="p">]</span>
+<span class="p">});</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Token balance:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">balance</span><span class="p">);</span>
+</code></pre></div>
+
+<p><strong>Use Cases</strong>:
+- Balance queries
+- Token metadata retrieval
+- Contract state inspection
+- Verification checks</p>
+<hr />
+<h3 id="custom-contract-functions">Custom Contract Functions<a class="headerlink" href="#custom-contract-functions" title="Permanent link">&para;</a></h3>
+<h4 id="callcontractmethod"><code>callContractMethod</code><a class="headerlink" href="#callcontractmethod" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s2">&quot;callContractMethod&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">(</span><span class="nx">request</span><span class="o">:</span><span class="w"> </span><span class="kt">any</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">providerUrl</span><span class="p">,</span><span class="w"> </span><span class="nx">privateKey</span><span class="p">,</span><span class="w"> </span><span class="nx">abi</span><span class="p">,</span><span class="w"> </span><span class="nx">address</span><span class="p">,</span><span class="w"> </span><span class="nx">functionName</span><span class="p">,</span><span class="w"> </span><span class="nx">params</span><span class="p">,</span><span class="w"> </span><span class="nx">value</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">request</span><span class="p">.</span><span class="nx">params</span><span class="p">;</span>
+<span class="w">  </span><span class="c1">// Implementation details...</span>
+<span class="p">});</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Calls a state-changing method on any contract with custom ABI.</p>
+<p><strong>Parameters</strong>:
+- <code>providerUrl</code> (string): Blockchain RPC endpoint URL
+- <code>privateKey</code> (string): Private key for transaction signing
+- <code>abi</code> (array): Contract ABI definition
+- <code>address</code> (string): Contract address
+- <code>functionName</code> (string): Name of the function to call
+- <code>params</code> (array): Function parameters
+- <code>value</code> (string, optional): ETH value to send with transaction</p>
+<p><strong>Returns</strong>: Transaction result with execution details</p>
+<p><strong>Example Usage</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Call custom contract function</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="s2">&quot;callContractMethod&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">providerUrl</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;https://sepolia.base.org&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">privateKey</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;0x...&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">abi</span><span class="o">:</span><span class="w"> </span><span class="nx">contractABI</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">address</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;0xContractAddress&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">functionName</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;customFunction&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">params</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;param1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;param2&quot;</span><span class="p">],</span>
+<span class="w">  </span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;1000000000000000000&quot;</span><span class="w"> </span><span class="c1">// 1 ETH in wei</span>
+<span class="p">});</span>
+</code></pre></div>
+
+<p><strong>Use Cases</strong>:
+- Integration with external contracts
+- Custom protocol interactions
+- Multi-network operations
+- Advanced contract testing</p>
+<hr />
+<h4 id="viewcontractmethod"><code>viewContractMethod</code><a class="headerlink" href="#viewcontractmethod" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s2">&quot;viewContractMethod&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">(</span><span class="nx">request</span><span class="o">:</span><span class="w"> </span><span class="kt">any</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">providerUrl</span><span class="p">,</span><span class="w"> </span><span class="nx">abi</span><span class="p">,</span><span class="w"> </span><span class="nx">address</span><span class="p">,</span><span class="w"> </span><span class="nx">functionName</span><span class="p">,</span><span class="w"> </span><span class="nx">params</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">request</span><span class="p">.</span><span class="nx">params</span><span class="p">;</span>
+<span class="w">  </span><span class="c1">// Implementation details...</span>
+<span class="p">});</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Calls a read-only method on any contract with custom ABI.</p>
+<p><strong>Parameters</strong>:
+- <code>providerUrl</code> (string): Blockchain RPC endpoint URL
+- <code>abi</code> (array): Contract ABI definition
+- <code>address</code> (string): Contract address
+- <code>functionName</code> (string): Name of the view function to call
+- <code>params</code> (array): Function parameters</p>
+<p><strong>Returns</strong>: Function return value(s)</p>
+<p><strong>Example Usage</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Query custom contract state</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="s2">&quot;viewContractMethod&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">providerUrl</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;https://sepolia.base.org&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">abi</span><span class="o">:</span><span class="w"> </span><span class="nx">contractABI</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">address</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;0xContractAddress&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">functionName</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;getCustomData&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">params</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;queryParam&quot;</span><span class="p">]</span>
+<span class="p">});</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Custom data:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">result</span><span class="p">);</span>
+</code></pre></div>
+
+<p><strong>Use Cases</strong>:
+- External contract queries
+- Cross-protocol data retrieval
+- Multi-network state inspection
+- Integration testing</p>
+<hr />
+<h3 id="contract-loading-functions">Contract Loading Functions<a class="headerlink" href="#contract-loading-functions" title="Permanent link">&para;</a></h3>
+<h4 id="loadsmartcontractfornetwork"><code>loadSmartContractForNetwork</code><a class="headerlink" href="#loadsmartcontractfornetwork" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s2">&quot;loadSmartContractForNetwork&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">(</span><span class="nx">request</span><span class="o">:</span><span class="w"> </span><span class="kt">any</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">smartContractName</span><span class="p">,</span><span class="w"> </span><span class="nx">networkId</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">request</span><span class="p">.</span><span class="nx">params</span><span class="p">;</span>
+<span class="w">  </span><span class="c1">// Implementation details...</span>
+<span class="p">});</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Loads contract configuration for a specific contract on a specific network.</p>
+<p><strong>Parameters</strong>:
+- <code>smartContractName</code> (string): Name of the smart contract
+- <code>networkId</code> (string): Target network identifier</p>
+<p><strong>Returns</strong>: Contract configuration including address, ABI, and metadata</p>
+<p><strong>Example Usage</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Load diamond contract for Base Sepolia</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">contract</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="s2">&quot;loadSmartContractForNetwork&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">smartContractName</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Diamond&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">networkId</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;baseSepolia&quot;</span>
+<span class="p">});</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Diamond address:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">contract</span><span class="p">.</span><span class="nx">address</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Diamond ABI:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">contract</span><span class="p">.</span><span class="nx">abi</span><span class="p">);</span>
+</code></pre></div>
+
+<p><strong>Use Cases</strong>:
+- Dynamic contract loading
+- Network-specific configurations
+- Contract address resolution
+- ABI retrieval for frontend</p>
+<hr />
+<h4 id="loadsmartcontractsfornetwork"><code>loadSmartContractsForNetwork</code><a class="headerlink" href="#loadsmartcontractsfornetwork" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s2">&quot;loadSmartContractsForNetwork&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">(</span><span class="nx">request</span><span class="o">:</span><span class="w"> </span><span class="kt">any</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">networkId</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">request</span><span class="p">.</span><span class="nx">params</span><span class="p">;</span>
+<span class="w">  </span><span class="c1">// Implementation details...</span>
+<span class="p">});</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Loads all available contract configurations for a specific network.</p>
+<p><strong>Parameters</strong>:
+- <code>networkId</code> (string): Target network identifier</p>
+<p><strong>Returns</strong>: Object containing all contract configurations for the network</p>
+<p><strong>Example Usage</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Load all contracts for Base Sepolia</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">contracts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="s2">&quot;loadSmartContractsForNetwork&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">networkId</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;baseSepolia&quot;</span>
+<span class="p">});</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Available contracts:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">contracts</span><span class="p">));</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Diamond address:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">contracts</span><span class="p">.</span><span class="nx">Diamond</span><span class="p">.</span><span class="nx">address</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;USDC address:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">contracts</span><span class="p">.</span><span class="nx">USDC</span><span class="p">.</span><span class="nx">address</span><span class="p">);</span>
+</code></pre></div>
+
+<p><strong>Use Cases</strong>:
+- Bulk contract loading
+- Network initialization
+- Frontend contract registry
+- Development environment setup</p>
+<h2 id="integration-examples">Integration Examples<a class="headerlink" href="#integration-examples" title="Permanent link">&para;</a></h2>
+<h3 id="diamond-facet-management">Diamond Facet Management<a class="headerlink" href="#diamond-facet-management" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Complete diamond facet management workflow</span>
+<span class="kd">class</span><span class="w"> </span><span class="nx">DiamondManager</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">async</span><span class="w"> </span><span class="nx">addFacetToDiamond</span><span class="p">(</span><span class="nx">networkId</span><span class="p">,</span><span class="w"> </span><span class="nx">diamondAddress</span><span class="p">,</span><span class="w"> </span><span class="nx">facetName</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="c1">// Add the facet</span>
+<span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="s2">&quot;addDiamondFacet&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">networkId</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">diamondAddress</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">facetName</span>
+<span class="w">      </span><span class="p">});</span>
+
+<span class="w">      </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">facetName</span><span class="si">}</span><span class="sb"> added to diamond:`</span><span class="p">,</span><span class="w"> </span><span class="nx">result</span><span class="p">.</span><span class="nx">transactionHash</span><span class="p">);</span>
+
+<span class="w">      </span><span class="c1">// Verify facet was added</span>
+<span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">diamond</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="s2">&quot;loadSmartContractForNetwork&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">smartContractName</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Diamond&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">networkId</span>
+<span class="w">      </span><span class="p">});</span>
+
+<span class="w">      </span><span class="c1">// Check if facet functions are available</span>
+<span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">facetFunctions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="s2">&quot;viewContractMethod&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">providerUrl</span><span class="o">:</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">getProviderUrl</span><span class="p">(</span><span class="nx">networkId</span><span class="p">),</span>
+<span class="w">        </span><span class="nx">abi</span><span class="o">:</span><span class="w"> </span><span class="nx">diamond</span><span class="p">.</span><span class="nx">abi</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">address</span><span class="o">:</span><span class="w"> </span><span class="nx">diamondAddress</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">functionName</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;facetFunctionSelectors&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">params</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nx">facetName</span><span class="p">]</span>
+<span class="w">      </span><span class="p">});</span>
+
+<span class="w">      </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">facetName</span><span class="si">}</span><span class="sb"> functions:`</span><span class="p">,</span><span class="w"> </span><span class="nx">facetFunctions</span><span class="p">);</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="nx">result</span><span class="p">;</span>
+
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;Failed to add facet:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">);</span>
+<span class="w">      </span><span class="k">throw</span><span class="w"> </span><span class="nx">error</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="multi-network-contract-interaction">Multi-Network Contract Interaction<a class="headerlink" href="#multi-network-contract-interaction" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Interact with contracts across multiple networks</span>
+<span class="kd">class</span><span class="w"> </span><span class="nx">MultiNetworkContractManager</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">async</span><span class="w"> </span><span class="nx">deployToAllNetworks</span><span class="p">(</span><span class="nx">contractName</span><span class="p">,</span><span class="w"> </span><span class="nx">constructorParams</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">networks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;baseSepolia&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;optimismSepolia&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;sepolia&quot;</span><span class="p">];</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">deployments</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{};</span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">const</span><span class="w"> </span><span class="nx">networkId</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">networks</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Load network-specific configuration</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">contracts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="s2">&quot;loadSmartContractsForNetwork&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nx">networkId</span>
+<span class="w">        </span><span class="p">});</span>
+
+<span class="w">        </span><span class="c1">// Deploy contract</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="s2">&quot;callContractMethod&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nx">providerUrl</span><span class="o">:</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">getProviderUrl</span><span class="p">(</span><span class="nx">networkId</span><span class="p">),</span>
+<span class="w">          </span><span class="nx">privateKey</span><span class="o">:</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">getPrivateKey</span><span class="p">(</span><span class="nx">networkId</span><span class="p">),</span>
+<span class="w">          </span><span class="nx">abi</span><span class="o">:</span><span class="w"> </span><span class="nx">contracts</span><span class="p">[</span><span class="nx">contractName</span><span class="p">].</span><span class="nx">abi</span><span class="p">,</span>
+<span class="w">          </span><span class="nx">address</span><span class="o">:</span><span class="w"> </span><span class="nx">contracts</span><span class="p">.</span><span class="nx">ContractFactory</span><span class="p">.</span><span class="nx">address</span><span class="p">,</span>
+<span class="w">          </span><span class="nx">functionName</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;deploy&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nx">params</span><span class="o">:</span><span class="w"> </span><span class="nx">constructorParams</span>
+<span class="w">        </span><span class="p">});</span>
+
+<span class="w">        </span><span class="nx">deployments</span><span class="p">[</span><span class="nx">networkId</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">result</span><span class="p">;</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Deployed to </span><span class="si">${</span><span class="nx">networkId</span><span class="si">}</span><span class="sb">:`</span><span class="p">,</span><span class="w"> </span><span class="nx">result</span><span class="p">.</span><span class="nx">contractAddress</span><span class="p">);</span>
+
+<span class="w">      </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="sb">`Failed to deploy to </span><span class="si">${</span><span class="nx">networkId</span><span class="si">}</span><span class="sb">:`</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">);</span>
+<span class="w">        </span><span class="nx">deployments</span><span class="p">[</span><span class="nx">networkId</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">error</span><span class="o">:</span><span class="w"> </span><span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="w"> </span><span class="p">};</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">deployments</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="custom-contract-integration">Custom Contract Integration<a class="headerlink" href="#custom-contract-integration" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Integrate with external protocols</span>
+<span class="kd">class</span><span class="w"> </span><span class="nx">ExternalProtocolIntegration</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">async</span><span class="w"> </span><span class="nx">interactWithUniswap</span><span class="p">(</span><span class="nx">tokenA</span><span class="p">,</span><span class="w"> </span><span class="nx">tokenB</span><span class="p">,</span><span class="w"> </span><span class="nx">amount</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">uniswapABI</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="c1">// Uniswap V3 Router ABI</span>
+<span class="w">      </span><span class="s2">&quot;function exactInputSingle((address,address,uint24,address,uint256,uint256,uint256,uint160)) external payable returns (uint256)&quot;</span>
+<span class="w">    </span><span class="p">];</span>
+
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">swapParams</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">tokenIn</span><span class="o">:</span><span class="w"> </span><span class="nx">tokenA</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">tokenOut</span><span class="o">:</span><span class="w"> </span><span class="nx">tokenB</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">fee</span><span class="o">:</span><span class="w"> </span><span class="mf">3000</span><span class="p">,</span><span class="w"> </span><span class="c1">// 0.3%</span>
+<span class="w">      </span><span class="nx">recipient</span><span class="o">:</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">userAddress</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">deadline</span><span class="o">:</span><span class="w"> </span><span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">()</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">1000</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">3600</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">amountIn</span><span class="o">:</span><span class="w"> </span><span class="nx">amount</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">amountOutMinimum</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">sqrtPriceLimitX96</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span>
+<span class="w">    </span><span class="p">};</span>
+
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="s2">&quot;callContractMethod&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">providerUrl</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;https://mainnet.base.org&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">privateKey</span><span class="o">:</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">privateKey</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">abi</span><span class="o">:</span><span class="w"> </span><span class="nx">uniswapABI</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">address</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;0xUniswapV3RouterAddress&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">functionName</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;exactInputSingle&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">params</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nx">swapParams</span><span class="p">]</span>
+<span class="w">    </span><span class="p">});</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">result</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="contract-state-monitoring">Contract State Monitoring<a class="headerlink" href="#contract-state-monitoring" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Monitor contract state changes</span>
+<span class="kd">class</span><span class="w"> </span><span class="nx">ContractMonitor</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">async</span><span class="w"> </span><span class="nx">monitorDiamondState</span><span class="p">(</span><span class="nx">networkId</span><span class="p">,</span><span class="w"> </span><span class="nx">diamondAddress</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">contracts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="s2">&quot;loadSmartContractsForNetwork&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">networkId</span>
+<span class="w">    </span><span class="p">});</span>
+
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">diamond</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">contracts</span><span class="p">.</span><span class="nx">Diamond</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// Get current facets</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">facets</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="s2">&quot;viewContractMethod&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">providerUrl</span><span class="o">:</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">getProviderUrl</span><span class="p">(</span><span class="nx">networkId</span><span class="p">),</span>
+<span class="w">      </span><span class="nx">abi</span><span class="o">:</span><span class="w"> </span><span class="nx">diamond</span><span class="p">.</span><span class="nx">abi</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">address</span><span class="o">:</span><span class="w"> </span><span class="nx">diamondAddress</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">functionName</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;facets&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">params</span><span class="o">:</span><span class="w"> </span><span class="p">[]</span>
+<span class="w">    </span><span class="p">});</span>
+
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Current facets:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">facets</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Monitor for changes</span>
+<span class="w">    </span><span class="nx">setInterval</span><span class="p">(</span><span class="k">async</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">currentFacets</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="s2">&quot;viewContractMethod&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">providerUrl</span><span class="o">:</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">getProviderUrl</span><span class="p">(</span><span class="nx">networkId</span><span class="p">),</span>
+<span class="w">        </span><span class="nx">abi</span><span class="o">:</span><span class="w"> </span><span class="nx">diamond</span><span class="p">.</span><span class="nx">abi</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">address</span><span class="o">:</span><span class="w"> </span><span class="nx">diamondAddress</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">functionName</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;facets&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">params</span><span class="o">:</span><span class="w"> </span><span class="p">[]</span>
+<span class="w">      </span><span class="p">});</span>
+
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">currentFacets</span><span class="p">)</span><span class="w"> </span><span class="o">!==</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">facets</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Diamond facets changed:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">currentFacets</span><span class="p">);</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">handleFacetChange</span><span class="p">(</span><span class="nx">currentFacets</span><span class="p">);</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span><span class="w"> </span><span class="mf">30000</span><span class="p">);</span><span class="w"> </span><span class="c1">// Check every 30 seconds</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="security-considerations">Security Considerations<a class="headerlink" href="#security-considerations" title="Permanent link">&para;</a></h2>
+<h3 id="private-key-management">Private Key Management<a class="headerlink" href="#private-key-management" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Private keys are handled securely through utility functions</li>
+<li>Default private key fallback for authorized operations</li>
+<li>No private key logging or exposure in responses</li>
+</ul>
+<h3 id="access-control">Access Control<a class="headerlink" href="#access-control" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Functions validate network permissions</li>
+<li>Contract owner verification for sensitive operations</li>
+<li>Transaction signing validation</li>
+</ul>
+<h3 id="input-validation">Input Validation<a class="headerlink" href="#input-validation" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Parameter validation for all contract interactions</li>
+<li>ABI validation for custom contract calls</li>
+<li>Network ID validation against supported networks</li>
+</ul>
+<h2 id="error-handling">Error Handling<a class="headerlink" href="#error-handling" title="Permanent link">&para;</a></h2>
+<h3 id="network-errors">Network Errors<a class="headerlink" href="#network-errors" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Invalid network ID validation</li>
+<li>RPC endpoint connectivity checks</li>
+<li>Transaction timeout handling</li>
+</ul>
+<h3 id="contract-errors">Contract Errors<a class="headerlink" href="#contract-errors" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Contract existence validation</li>
+<li>Function signature verification</li>
+<li>Parameter type checking</li>
+</ul>
+<h3 id="transaction-errors">Transaction Errors<a class="headerlink" href="#transaction-errors" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Gas estimation and limits</li>
+<li>Nonce management</li>
+<li>Transaction failure recovery</li>
+</ul>
+<h2 id="performance-optimization">Performance Optimization<a class="headerlink" href="#performance-optimization" title="Permanent link">&para;</a></h2>
+<h3 id="caching">Caching<a class="headerlink" href="#caching" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Contract ABI caching for repeated calls</li>
+<li>Network configuration caching</li>
+<li>Provider connection pooling</li>
+</ul>
+<h3 id="batch-operations">Batch Operations<a class="headerlink" href="#batch-operations" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Multiple contract calls in single request</li>
+<li>Efficient parameter encoding</li>
+<li>Optimized gas usage</li>
+</ul>
+<h2 id="testing-considerations">Testing Considerations<a class="headerlink" href="#testing-considerations" title="Permanent link">&para;</a></h2>
+<h3 id="unit-tests">Unit Tests<a class="headerlink" href="#unit-tests" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Individual function testing</li>
+<li>Parameter validation testing</li>
+<li>Error condition handling</li>
+</ul>
+<h3 id="integration-tests">Integration Tests<a class="headerlink" href="#integration-tests" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Multi-network deployment testing</li>
+<li>Diamond facet management workflows</li>
+<li>External contract integration</li>
+</ul>
+<h3 id="load-testing">Load Testing<a class="headerlink" href="#load-testing" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Concurrent request handling</li>
+<li>Network congestion scenarios</li>
+<li>Rate limiting validation</li>
+</ul>
+<h2 id="related-documentation">Related Documentation<a class="headerlink" href="#related-documentation" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../blockchain/">Blockchain Cloud Functions</a> - Network provider management</li>
+<li><a href="../dfns/">DFNS Cloud Functions</a> - Wallet-as-a-Service integration</li>
+<li><a href="../libraries/contract-utilities.md">Contract Utilities</a> - Underlying contract utilities</li>
+<li><a href="../libraries/diamond-utilities.md">Diamond Utilities</a> - Diamond management utilities</li>
+<li><a href="../../developer-setup-guide/">Developer Setup Guide</a> - Environment configuration</li>
+</ul>
+<hr />
+<p><em>These cloud functions provide the backbone for secure, scalable smart contract interactions within the Gemforce platform, supporting both standard operations and custom integrations across multiple blockchain networks.</em></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../dfns/" class="btn btn-neutral float-left" title="DFNS Functions"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../authentication/" class="btn btn-neutral float-right" title="Authentication Functions">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../dfns/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../authentication/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

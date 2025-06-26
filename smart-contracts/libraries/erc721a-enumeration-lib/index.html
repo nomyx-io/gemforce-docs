@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Gemforce Team" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>ERC721A Enumeration Lib - Gemforce Documentation</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "ERC721A Enumeration Lib";
+        var mkdocs_page_input_path = "smart-contracts/libraries/erc721a-enumeration-lib.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../.." class="icon icon-home"> Gemforce Documentation
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../developer-setup-guide/">Developer Setup Guide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../system-architecture/gemforce-system-architecture/">System Architecture</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Smart Contracts</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../diamond/">Diamond Contract</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Facets</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/marketplace-facet/">Marketplace Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trade-deal-management-facet/">Trade Deal Management Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/carbon-credit-facet/">Carbon Credit Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/identity-registry-facet/">Identity Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trusted-issuers-registry-facet/">Trusted Issuers Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/fee-distributor-facet/">Fee Distributor Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/gemforce-minter-facet/">Gemforce Minter Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/multi-sale-facet/">Multi Sale Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/svg-templates-facet/">SVG Templates Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trade-deal-admin-facet/">Trade Deal Admin Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trade-deal-operations-facet/">Trade Deal Operations Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/collateral-token-factory-facet/">Collateral Token Factory Facet</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Interfaces</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/idiamond/">IDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/imarketplace/">IMarketplace</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/itradedeal/">ITradeDeal</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/icarbon-credit/">ICarbonCredit</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ierc1155-mint/">IERC1155Mint</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ierc734/">IERC734</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ierc735/">IERC735</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" >Libraries</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" href="../carbon-credit-lib/">Carbon Credit Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../trade-deal-lib/">Trade Deal Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../multi-sale-lib/">Multi Sale Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../diamond-factory-lib/">Diamond Factory Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../svg-templates-lib/">SVG Templates Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../attribute-lib/">Attribute Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../variable-price-lib/">Variable Price Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../merkle-prover/">Merkle Prover</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../fee-distributor-lib/">Fee Distributor Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../lib-diamond/">LibDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../diamond-lib/">DiamondLib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../erc721a-lib/">ERC721A Lib</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">ERC721A Enumeration Lib</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#overview">Overview</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#key-features">Key Features</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#core-functions">Core Functions</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#public-query-functions">Public Query Functions</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#internal-management-functions">Internal Management Functions</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#storage-structure">Storage Structure</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#gas-optimization-techniques">Gas Optimization Techniques</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#swap-and-pop-pattern">Swap-and-Pop Pattern</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#bidirectional-mappings">Bidirectional Mappings</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#integration-patterns">Integration Patterns</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#with-erc721a-library">With ERC721A Library</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#hook-integration">Hook Integration</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usage-examples">Usage Examples</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#querying-owner-tokens">Querying Owner Tokens</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#paginated-token-listing">Paginated Token Listing</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#random-token-selection">Random Token Selection</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#performance-characteristics">Performance Characteristics</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#time-complexity">Time Complexity</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#gas-costs-approximate">Gas Costs (Approximate)</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#storage-overhead">Storage Overhead</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#security-considerations">Security Considerations</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#index-bounds-checking">Index Bounds Checking</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#state-consistency">State Consistency</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#gas-limits">Gas Limits</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#best-practices">Best Practices</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#related-documentation">Related Documentation</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#migration-notes">Migration Notes</a>
+    </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../strings-lib/">Strings Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../metadata-lib/">Metadata Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../trusted-issuer-lib/">Trusted Issuer Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../set-libraries/">Set Libraries</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Cloud Functions</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/blockchain/">Blockchain Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/dfns/">DFNS Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/contracts/">Contract Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/authentication/">Authentication Functions</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">API Documentation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../api-documentation/gemforce-api-documentation/">Full API Reference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../api-documentation/gemforce-api-quick-reference/">Quick Reference</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">EIPs (Ethereum Improvement Proposals)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Diamond-Enhanced-Marketplace/">Diamond-Enhanced Marketplace</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Multi-Token-Sale-Standard/">Multi-Token Sale Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Collateralized-Trade-Deal-Standard/">Collateralized Trade Deal Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Enhanced-Identity-System/">Enhanced Identity System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Diamond-Factory-Standard/">Diamond Factory Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Carbon-Credit-Standard/">Carbon Credit Standard</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">User Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-administrator-guide/">Administrator Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-deployer-guide/">Deployer Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-integrator-guide/">Integrator Guide</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../external-services/gemforce-external-services/">External Services</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-documentation-gap-analysis/">Documentation Gap Analysis</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../documentation-progress-summary/">Documentation Progress Summary</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../documentation-plan/">Documentation Plan</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">Gemforce Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Smart Contracts</li>
+          <li class="breadcrumb-item">Libraries</li>
+      <li class="breadcrumb-item active">ERC721A Enumeration Lib</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="erc721aenumerationlib-library">ERC721AEnumerationLib Library<a class="headerlink" href="#erc721aenumerationlib-library" title="Permanent link">&para;</a></h1>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p><a href="/Users/sschepis/Development/gem-base/contracts/libraries/ERC721AEnumerationLib.sol"><code>ERC721AEnumerationLib</code></a> provides enumeration functionality for ERC721A tokens, implementing the ERC721Enumerable extension. This library enables efficient querying and iteration over token collections, allowing applications to discover tokens by index and enumerate tokens owned by specific addresses.</p>
+<h2 id="key-features">Key Features<a class="headerlink" href="#key-features" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Token Enumeration</strong>: Query tokens by global index</li>
+<li><strong>Owner Token Listing</strong>: Enumerate tokens owned by specific addresses</li>
+<li><strong>Gas-Optimized Operations</strong>: Efficient O(1) add/remove operations with swap-and-pop pattern</li>
+<li><strong>ERC721Enumerable Compliance</strong>: Full compatibility with the ERC721Enumerable standard</li>
+<li><strong>Index Tracking</strong>: Maintains bidirectional mappings between tokens and indices</li>
+</ul>
+<h2 id="core-functions">Core Functions<a class="headerlink" href="#core-functions" title="Permanent link">&para;</a></h2>
+<h3 id="public-query-functions">Public Query Functions<a class="headerlink" href="#public-query-functions" title="Permanent link">&para;</a></h3>
+<h4 id="tokenofownerbyindex"><code>tokenOfOwnerByIndex()</code><a class="headerlink" href="#tokenofownerbyindex" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">tokenOfOwnerByIndex</span><span class="p">(</span>
+<span class="w">    </span>ERC721EnumerableContract<span class="w"> </span>storage<span class="w"> </span>self<span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">owner</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">index</span>
+<span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Returns the token ID at the specified index in the owner's token list.</p>
+<p><strong>Parameters:</strong>
+- <code>owner</code>: Address of the token owner
+- <code>index</code>: Index in the owner's token array (0-based)</p>
+<p><strong>Returns:</strong>
+- Token ID at the specified index</p>
+<p><strong>Usage:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Get the first token owned by an address</span>
+<span class="kt">uint256</span><span class="w"> </span><span class="nv">firstToken</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>ERC721AEnumerationLib<span class="p">.</span>tokenOfOwnerByIndex<span class="p">(</span>enumStorage<span class="p">,</span><span class="w"> </span>owner<span class="p">,</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">);</span>
+</code></pre></div>
+
+<h4 id="totalsupply"><code>totalSupply()</code><a class="headerlink" href="#totalsupply" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">totalSupply</span><span class="p">(</span>ERC721EnumerableContract<span class="w"> </span>storage<span class="w"> </span>self<span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Returns the total number of tokens in the collection.</p>
+<p><strong>Returns:</strong>
+- Total number of tokens currently in existence</p>
+<h4 id="tokenbyindex"><code>tokenByIndex()</code><a class="headerlink" href="#tokenbyindex" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">tokenByIndex</span><span class="p">(</span>
+<span class="w">    </span>ERC721EnumerableContract<span class="w"> </span>storage<span class="w"> </span>self<span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">index</span>
+<span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Returns the token ID at the specified global index.</p>
+<p><strong>Parameters:</strong>
+- <code>index</code>: Global index in the all tokens array (0-based)</p>
+<p><strong>Returns:</strong>
+- Token ID at the specified global index</p>
+<p><strong>Usage:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Get the 10th token in the collection</span>
+<span class="kt">uint256</span><span class="w"> </span><span class="nv">token</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>ERC721AEnumerationLib<span class="p">.</span>tokenByIndex<span class="p">(</span>enumStorage<span class="p">,</span><span class="w"> </span><span class="m m-Decimal">9</span><span class="p">);</span>
+</code></pre></div>
+
+<h3 id="internal-management-functions">Internal Management Functions<a class="headerlink" href="#internal-management-functions" title="Permanent link">&para;</a></h3>
+<h4 id="_addtokentoownerenumeration"><code>_addTokenToOwnerEnumeration()</code><a class="headerlink" href="#_addtokentoownerenumeration" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">_addTokenToOwnerEnumeration</span><span class="p">(</span>
+<span class="w">    </span>ERC721EnumerableContract<span class="w"> </span>storage<span class="w"> </span>self<span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">to</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span>
+<span class="p">)</span><span class="w"> </span><span class="kt">internal</span>
+</code></pre></div>
+
+<p>Adds a token to the owner's enumeration tracking when minted or transferred.</p>
+<p><strong>Parameters:</strong>
+- <code>to</code>: Address receiving the token
+- <code>tokenId</code>: ID of the token being added</p>
+<p><strong>Internal Logic:</strong>
+- Adds token to the end of owner's token array
+- Records the token's position in the owner's array
+- Updates bidirectional mapping for efficient lookups</p>
+<h4 id="_addtokentoalltokensenumeration"><code>_addTokenToAllTokensEnumeration()</code><a class="headerlink" href="#_addtokentoalltokensenumeration" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">_addTokenToAllTokensEnumeration</span><span class="p">(</span>
+<span class="w">    </span>ERC721EnumerableContract<span class="w"> </span>storage<span class="w"> </span>self<span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span>
+<span class="p">)</span><span class="w"> </span><span class="kt">internal</span>
+</code></pre></div>
+
+<p>Adds a token to the global enumeration tracking when minted.</p>
+<p><strong>Parameters:</strong>
+- <code>tokenId</code>: ID of the token being added</p>
+<p><strong>Internal Logic:</strong>
+- Adds token to the end of global tokens array
+- Records the token's position in the global array
+- Maintains global token index mapping</p>
+<h4 id="_removetokenfromownerenumeration"><code>_removeTokenFromOwnerEnumeration()</code><a class="headerlink" href="#_removetokenfromownerenumeration" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">_removeTokenFromOwnerEnumeration</span><span class="p">(</span>
+<span class="w">    </span>ERC721EnumerableContract<span class="w"> </span>storage<span class="w"> </span>self<span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">from</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span>
+<span class="p">)</span><span class="w"> </span><span class="kt">internal</span>
+</code></pre></div>
+
+<p>Removes a token from the owner's enumeration tracking when transferred or burned.</p>
+<p><strong>Parameters:</strong>
+- <code>from</code>: Address losing the token
+- <code>tokenId</code>: ID of the token being removed</p>
+<p><strong>Gas Optimization Features:</strong>
+- <strong>Swap-and-Pop Pattern</strong>: Moves last token to deleted position to avoid gaps
+- <strong>O(1) Complexity</strong>: Constant time removal regardless of collection size
+- <strong>Index Preservation</strong>: Maintains array compactness without shifting elements</p>
+<h4 id="_removetokenfromalltokensenumeration"><code>_removeTokenFromAllTokensEnumeration()</code><a class="headerlink" href="#_removetokenfromalltokensenumeration" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">_removeTokenFromAllTokensEnumeration</span><span class="p">(</span>
+<span class="w">    </span>ERC721EnumerableContract<span class="w"> </span>storage<span class="w"> </span>self<span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span>
+<span class="p">)</span><span class="w"> </span><span class="kt">internal</span>
+</code></pre></div>
+
+<p>Removes a token from the global enumeration tracking when burned.</p>
+<p><strong>Parameters:</strong>
+- <code>tokenId</code>: ID of the token being removed</p>
+<p><strong>Gas Optimization Features:</strong>
+- <strong>Swap-and-Pop Pattern</strong>: Maintains array compactness
+- <strong>O(1) Complexity</strong>: Efficient removal from global tracking
+- <strong>Index Updates</strong>: Properly updates moved token's index</p>
+<h2 id="storage-structure">Storage Structure<a class="headerlink" href="#storage-structure" title="Permanent link">&para;</a></h2>
+<p>The enumeration library uses the following storage mappings:</p>
+<div class="codehilite"><pre><span></span><code><span class="kt">struct</span><span class="w"> </span><span class="nv">ERC721EnumerableContract</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Mapping from owner to list of owned token IDs</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">uint256</span><span class="p">))</span><span class="w"> </span>_ownedTokens<span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// Mapping from token ID to index of the owner tokens list</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">uint256</span><span class="p">)</span><span class="w"> </span>_ownedTokensIndex<span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// Array with all token ids, used for enumeration</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span>_allTokens<span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// Mapping from token id to position in the allTokens array</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">uint256</span><span class="p">)</span><span class="w"> </span>_allTokensIndex<span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="gas-optimization-techniques">Gas Optimization Techniques<a class="headerlink" href="#gas-optimization-techniques" title="Permanent link">&para;</a></h2>
+<h3 id="swap-and-pop-pattern">Swap-and-Pop Pattern<a class="headerlink" href="#swap-and-pop-pattern" title="Permanent link">&para;</a></h3>
+<p>The library uses an efficient swap-and-pop pattern for removals:</p>
+<ol>
+<li><strong>Identify Position</strong>: Find the index of the token to remove</li>
+<li><strong>Swap with Last</strong>: Move the last token to the position being vacated</li>
+<li><strong>Update Index</strong>: Update the moved token's index mapping</li>
+<li><strong>Pop Last</strong>: Remove the last element (now duplicate)</li>
+</ol>
+<p>This approach:
+- Maintains array compactness without gaps
+- Achieves O(1) time complexity for removals
+- Minimizes gas costs by avoiding array shifts</p>
+<h3 id="bidirectional-mappings">Bidirectional Mappings<a class="headerlink" href="#bidirectional-mappings" title="Permanent link">&para;</a></h3>
+<p>The library maintains bidirectional mappings between tokens and indices:
+- <strong>Token → Index</strong>: Quick lookup of token position
+- <strong>Index → Token</strong>: Direct access to token by position
+- <strong>Efficient Updates</strong>: Both mappings updated atomically</p>
+<h2 id="integration-patterns">Integration Patterns<a class="headerlink" href="#integration-patterns" title="Permanent link">&para;</a></h2>
+<h3 id="with-erc721a-library">With ERC721A Library<a class="headerlink" href="#with-erc721a-library" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>ERC721ALib<span class="w"> </span><span class="p">}</span><span class="w"> </span>from<span class="w"> </span><span class="s2">&quot;./ERC721ALib.sol&quot;</span><span class="p">;</span>
+<span class="kt">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>ERC721AEnumerationLib<span class="w"> </span><span class="p">}</span><span class="w"> </span>from<span class="w"> </span><span class="s2">&quot;./ERC721AEnumerationLib.sol&quot;</span><span class="p">;</span>
+
+<span class="k">contract</span><span class="w"> </span><span class="ni">NFTFacet</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">mint</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">to</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">quantity</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Mint tokens using ERC721A</span>
+<span class="w">        </span>ERC721ALib<span class="p">.</span>_mint<span class="p">(</span>erc721Storage<span class="p">,</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">,</span><span class="w"> </span>to<span class="p">,</span><span class="w"> </span>quantity<span class="p">,</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="w"> </span><span class="kt">true</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Update enumeration for each token</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">startTokenId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>ERC721ALib<span class="p">.</span>currentIndex<span class="p">(</span>erc721Storage<span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span>quantity<span class="p">;</span>
+<span class="w">        </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>quantity<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>ERC721AEnumerationLib<span class="p">.</span>_addTokenToOwnerEnumeration<span class="p">(</span>
+<span class="w">                </span>enumStorage<span class="p">,</span><span class="w"> </span>
+<span class="w">                </span>to<span class="p">,</span><span class="w"> </span>
+<span class="w">                </span>startTokenId<span class="w"> </span><span class="o">+</span><span class="w"> </span>i
+<span class="w">            </span><span class="p">);</span>
+<span class="w">            </span>ERC721AEnumerationLib<span class="p">.</span>_addTokenToAllTokensEnumeration<span class="p">(</span>
+<span class="w">                </span>enumStorage<span class="p">,</span><span class="w"> </span>
+<span class="w">                </span>startTokenId<span class="w"> </span><span class="o">+</span><span class="w"> </span>i
+<span class="w">            </span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="hook-integration">Hook Integration<a class="headerlink" href="#hook-integration" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// In ERC721A hooks</span>
+<span class="kt">function</span><span class="w"> </span><span class="nv">_beforeTokenTransfers</span><span class="p">(</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">from</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">to</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">startTokenId</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">quantity</span>
+<span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>override<span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>super<span class="p">.</span>_beforeTokenTransfers<span class="p">(</span>from<span class="p">,</span><span class="w"> </span>to<span class="p">,</span><span class="w"> </span>startTokenId<span class="p">,</span><span class="w"> </span>quantity<span class="p">);</span>
+
+<span class="w">    </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>quantity<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>startTokenId<span class="w"> </span><span class="o">+</span><span class="w"> </span>i<span class="p">;</span>
+
+<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>from<span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>ERC721AEnumerationLib<span class="p">.</span>_removeTokenFromOwnerEnumeration<span class="p">(</span>enumStorage<span class="p">,</span><span class="w"> </span>from<span class="p">,</span><span class="w"> </span>tokenId<span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>to<span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>ERC721AEnumerationLib<span class="p">.</span>_addTokenToOwnerEnumeration<span class="p">(</span>enumStorage<span class="p">,</span><span class="w"> </span>to<span class="p">,</span><span class="w"> </span>tokenId<span class="p">);</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="kt">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>ERC721AEnumerationLib<span class="p">.</span>_removeTokenFromAllTokensEnumeration<span class="p">(</span>enumStorage<span class="p">,</span><span class="w"> </span>tokenId<span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>from<span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>ERC721AEnumerationLib<span class="p">.</span>_addTokenToAllTokensEnumeration<span class="p">(</span>enumStorage<span class="p">,</span><span class="w"> </span>tokenId<span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="usage-examples">Usage Examples<a class="headerlink" href="#usage-examples" title="Permanent link">&para;</a></h2>
+<h3 id="querying-owner-tokens">Querying Owner Tokens<a class="headerlink" href="#querying-owner-tokens" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">getOwnerTokens</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">owner</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">balance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>IERC721<span class="p">(</span><span class="kt">address</span><span class="p">(</span><span class="kt">this</span><span class="p">)).</span>balanceOf<span class="p">(</span>owner<span class="p">);</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>tokens<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[](</span>balance<span class="p">);</span>
+
+<span class="w">    </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>balance<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>tokens<span class="p">[</span>i<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>ERC721AEnumerationLib<span class="p">.</span>tokenOfOwnerByIndex<span class="p">(</span>enumStorage<span class="p">,</span><span class="w"> </span>owner<span class="p">,</span><span class="w"> </span>i<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">return</span><span class="w"> </span>tokens<span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="paginated-token-listing">Paginated Token Listing<a class="headerlink" href="#paginated-token-listing" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">getTokensPaginated</span><span class="p">(</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">offset</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">limit</span>
+<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">total</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>ERC721AEnumerationLib<span class="p">.</span>totalSupply<span class="p">(</span>enumStorage<span class="p">);</span>
+<span class="w">    </span><span class="kt">require</span><span class="p">(</span>offset<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>total<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Offset out of bounds&quot;</span><span class="p">);</span>
+
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">end</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>offset<span class="w"> </span><span class="o">+</span><span class="w"> </span>limit<span class="p">;</span>
+<span class="w">    </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>end<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span>total<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>end<span class="w"> </span><span class="o">=</span><span class="w"> </span>total<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>tokens<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[](</span>end<span class="w"> </span><span class="o">-</span><span class="w"> </span>offset<span class="p">);</span>
+<span class="w">    </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>offset<span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>end<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>tokens<span class="p">[</span>i<span class="w"> </span><span class="o">-</span><span class="w"> </span>offset<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>ERC721AEnumerationLib<span class="p">.</span>tokenByIndex<span class="p">(</span>enumStorage<span class="p">,</span><span class="w"> </span>i<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">return</span><span class="w"> </span>tokens<span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="random-token-selection">Random Token Selection<a class="headerlink" href="#random-token-selection" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">getRandomToken</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">seed</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">total</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>ERC721AEnumerationLib<span class="p">.</span>totalSupply<span class="p">(</span>enumStorage<span class="p">);</span>
+<span class="w">    </span><span class="kt">require</span><span class="p">(</span>total<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;No tokens exist&quot;</span><span class="p">);</span>
+
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">randomIndex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>seed<span class="w"> </span><span class="o">%</span><span class="w"> </span>total<span class="p">;</span>
+<span class="w">    </span><span class="kt">return</span><span class="w"> </span>ERC721AEnumerationLib<span class="p">.</span>tokenByIndex<span class="p">(</span>enumStorage<span class="p">,</span><span class="w"> </span>randomIndex<span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="performance-characteristics">Performance Characteristics<a class="headerlink" href="#performance-characteristics" title="Permanent link">&para;</a></h2>
+<h3 id="time-complexity">Time Complexity<a class="headerlink" href="#time-complexity" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Query Operations</strong>: O(1) for all query functions</li>
+<li><strong>Add Operations</strong>: O(1) for adding tokens to enumeration</li>
+<li><strong>Remove Operations</strong>: O(1) for removing tokens from enumeration</li>
+</ul>
+<h3 id="gas-costs-approximate">Gas Costs (Approximate)<a class="headerlink" href="#gas-costs-approximate" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Add to Owner Enumeration</strong>: ~5,000 gas</li>
+<li><strong>Remove from Owner Enumeration</strong>: ~8,000 gas</li>
+<li><strong>Add to Global Enumeration</strong>: ~5,000 gas</li>
+<li><strong>Remove from Global Enumeration</strong>: ~8,000 gas</li>
+<li><strong>Query Operations</strong>: ~500-1,000 gas</li>
+</ul>
+<h3 id="storage-overhead">Storage Overhead<a class="headerlink" href="#storage-overhead" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Per Token</strong>: 2 storage slots (owner index + global index)</li>
+<li><strong>Per Owner</strong>: Dynamic array of owned tokens</li>
+<li><strong>Global</strong>: Single array of all tokens</li>
+</ul>
+<h2 id="security-considerations">Security Considerations<a class="headerlink" href="#security-considerations" title="Permanent link">&para;</a></h2>
+<h3 id="index-bounds-checking">Index Bounds Checking<a class="headerlink" href="#index-bounds-checking" title="Permanent link">&para;</a></h3>
+<ul>
+<li>All query functions validate index bounds</li>
+<li>Prevents out-of-bounds array access</li>
+<li>Returns appropriate error messages</li>
+</ul>
+<h3 id="state-consistency">State Consistency<a class="headerlink" href="#state-consistency" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Enumeration state must be kept in sync with token transfers</li>
+<li>Proper integration with transfer hooks is essential</li>
+<li>Bidirectional mappings must be updated atomically</li>
+</ul>
+<h3 id="gas-limits">Gas Limits<a class="headerlink" href="#gas-limits" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Large collections may hit gas limits for batch operations</li>
+<li>Consider pagination for operations over many tokens</li>
+<li>Monitor gas usage in enumeration updates</li>
+</ul>
+<h2 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Hook Integration</strong>: Always integrate enumeration updates with transfer hooks</li>
+<li><strong>Batch Operations</strong>: Consider gas costs when processing multiple tokens</li>
+<li><strong>Index Validation</strong>: Always validate indices before array access</li>
+<li><strong>State Synchronization</strong>: Ensure enumeration state stays consistent with token state</li>
+<li><strong>Gas Monitoring</strong>: Monitor gas usage for large collections</li>
+</ol>
+<h2 id="related-documentation">Related Documentation<a class="headerlink" href="#related-documentation" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../erc721a-lib/">ERC721A Library</a> - Core ERC721A implementation</li>
+<li><a href="https://eips.ethereum.org/EIPS/eip-721">ERC721Enumerable Standard</a> - ERC721 enumeration extension</li>
+<li><a href="../diamond-lib/">Diamond Library</a> - Diamond pattern integration</li>
+<li><a href="../../facets/gemforce-minter-facet/">Gemforce Minter Facet</a> - Minting interface</li>
+</ul>
+<h2 id="migration-notes">Migration Notes<a class="headerlink" href="#migration-notes" title="Permanent link">&para;</a></h2>
+<p>When upgrading from standard ERC721 enumeration:
+- Storage layout is compatible with OpenZeppelin's implementation
+- Gas costs are significantly optimized
+- API remains fully compatible
+- Integration requires proper hook setup</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../erc721a-lib/" class="btn btn-neutral float-left" title="ERC721A Lib"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../strings-lib/" class="btn btn-neutral float-right" title="Strings Lib">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../erc721a-lib/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../strings-lib/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
