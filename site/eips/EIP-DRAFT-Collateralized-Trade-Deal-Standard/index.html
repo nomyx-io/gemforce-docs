@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Gemforce Team" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Collateralized Trade Deal Standard - Gemforce Documentation</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Collateralized Trade Deal Standard";
+        var mkdocs_page_input_path = "eips/EIP-DRAFT-Collateralized-Trade-Deal-Standard.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Gemforce Documentation
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../system-architecture/gemforce-system-architecture/">System Architecture</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">API Documentation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api-documentation/gemforce-api-documentation/">Full API Reference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api-documentation/gemforce-api-quick-reference/">Quick Reference</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">EIPs (Ethereum Improvement Proposals)</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../EIP-DRAFT-Diamond-Enhanced-Marketplace/">Diamond-Enhanced Marketplace</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../EIP-DRAFT-Multi-Token-Sale-Standard/">Multi-Token Sale Standard</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Collateralized Trade Deal Standard</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#simple-summary">Simple Summary</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#abstract">Abstract</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#motivation">Motivation</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#specification">Specification</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#core-interface">Core Interface</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#key-features">Key Features</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#1-collateralized-financing">1. Collateralized Financing</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#2-multi-token-system">2. Multi-Token System</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#3-interest-distribution">3. Interest Distribution</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#4-identity-based-access-control">4. Identity-Based Access Control</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#operation-modes">Operation Modes</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#funding-lifecycle">Funding Lifecycle</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#rationale">Rationale</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#tokenized-collateral-system">Tokenized Collateral System</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#interest-rate-in-basis-points">Interest Rate in Basis Points</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#identity-integration">Identity Integration</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#multi-mode-operation">Multi-Mode Operation</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#implementation-details">Implementation Details</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#interest-calculation">Interest Calculation</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#collateral-token-distribution">Collateral Token Distribution</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#security-considerations">Security Considerations</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#gas-optimization">Gas Optimization</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#backwards-compatibility">Backwards Compatibility</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#test-cases">Test Cases</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#reference-implementation">Reference Implementation</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#copyright">Copyright</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../EIP-DRAFT-Enhanced-Identity-System/">Enhanced Identity System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../EIP-DRAFT-Diamond-Factory-Standard/">Diamond Factory Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../EIP-DRAFT-Carbon-Credit-Standard/">Carbon Credit Standard</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">User Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../gemforce-administrator-guide/">Administrator Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../gemforce-deployer-guide/">Deployer Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../gemforce-integrator-guide/">Integrator Guide</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../external-services/gemforce-external-services/">External Services</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../documentation-plan/">Documentation Plan</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Gemforce Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">EIPs (Ethereum Improvement Proposals)</li>
+      <li class="breadcrumb-item active">Collateralized Trade Deal Standard</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="eip-draft-collateralized-trade-deal-standard-for-invoice-financing">EIP-DRAFT: Collateralized Trade Deal Standard for Invoice Financing<a class="headerlink" href="#eip-draft-collateralized-trade-deal-standard-for-invoice-financing" title="Permanent link">&para;</a></h1>
+<h2 id="simple-summary">Simple Summary<a class="headerlink" href="#simple-summary" title="Permanent link">&para;</a></h2>
+<p>A standardized interface for creating and managing collateralized trade deals that enable invoice financing through tokenized collateral, interest distribution, and automated repayment mechanisms.</p>
+<h2 id="abstract">Abstract<a class="headerlink" href="#abstract" title="Permanent link">&para;</a></h2>
+<p>This EIP proposes a comprehensive standard for trade deals that enables:
+- Creation of collateralized financing arrangements using invoice NFTs
+- Tokenized collateral and interest distribution systems
+- Multi-party funding with proportional token distribution
+- Automated interest calculations and distributions
+- Identity-based participation controls with claim requirements
+- Multiple operation modes for different financing scenarios</p>
+<h2 id="motivation">Motivation<a class="headerlink" href="#motivation" title="Permanent link">&para;</a></h2>
+<p>Traditional invoice financing lacks transparency, standardization, and programmable automation. This standard addresses these limitations by providing a decentralized, transparent, and automated system for invoice financing that can be implemented across different platforms while maintaining interoperability.</p>
+<h2 id="specification">Specification<a class="headerlink" href="#specification" title="Permanent link">&para;</a></h2>
+<h3 id="core-interface">Core Interface<a class="headerlink" href="#core-interface" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code>interface<span class="w"> </span>ICollateralizedTradeDeal<span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">enum</span><span class="w"> </span><span class="nv">OperationMode</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>STANDARD<span class="p">,</span><span class="w"> </span>ADVANCED<span class="p">,</span><span class="w"> </span>CUSTOM<span class="w"> </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">TradeDeal</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">name</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">symbol</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">interestRate</span><span class="p">;</span><span class="w"> </span><span class="c1">// In basis points (100 = 1%)</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">collateralToInterestRatio</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">active</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">nftAddress</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">collateralAddress</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">interestAddress</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">usdcAddress</span><span class="p">;</span>
+<span class="w">        </span>OperationMode<span class="w"> </span>operationMode<span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span>requiredClaimTopics<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Events</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">TradeDealCreated</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>tradeDealId<span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">name</span><span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">symbol</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">interestRate</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">collateralToInterestRatio</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="nv">active</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">nftAddress</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">collateralAddress</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">interestAddress</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">usdcAddress</span><span class="p">,</span><span class="w"> </span>OperationMode<span class="w"> </span>operationMode<span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">TradeDealFullyFunded</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>tradeDealId<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">fundingTarget</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">TradeDealFundingWithdrawn</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>tradeDealId<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>recipient<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">amount</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">TradeDealRepaid</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>tradeDealId<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>repayer<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">amount</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="nv">fullyRepaid</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">CollateralTokensDistributed</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>tradeDealId<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>recipient<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">amount</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">CollateralTokensRedeemed</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>tradeDealId<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>redeemer<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">collateralAmount</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">usdcAmount</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">InterestDistributedForTradeDeal</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>tradeDealId<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalInterest</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">invoicePoolInterest</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">interestInterest</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">interestTokensMinted</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">InvoiceDepositedToTradeDeal</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>tradeDealId<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>tokenId<span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">InvoiceWithdrawnFromTradeDeal</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>tradeDealId<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>tokenId<span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">USDCDepositedToTradeDeal</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>tradeDealId<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">amount</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">depositor</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">TradeDealRequiredClaimTopicsSet</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>tradeDealId<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span>claimTopics<span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Core Functions</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">createTradeDeal</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>name<span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>symbol<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">interestRate</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">collateralToInterestRatio</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>requiredClaimTopics<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">collateralAddress</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">interestAddress</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">usdcAddress</span><span class="p">,</span><span class="w"> </span>OperationMode<span class="w"> </span>operationMode<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">updateTradeDeal</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>name<span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>symbol<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">interestRate</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">collateralToInterestRatio</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">collateralAddress</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">interestAddress</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">usdcAddress</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">activateTradeDeal</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">deactivateTradeDeal</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// Funding Operations</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">tdDepositUSDC</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">amount</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">tdWithdrawUSDC</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">amount</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">withdrawTradeDealFundingForBorrower</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">borrowerAddress</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// Collateral Operations</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">tdDepositInvoice</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">tdWithdrawInvoice</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// Repayment Operations</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">repayTradeDeal</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">amount</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">repayTradeDealForBorrower</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">borrower</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">amount</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">redeemCollateralTokens</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">collateralAmount</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// Interest Distribution</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">tdDistributeInterest</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// Access Control</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">setTradeDealRequiredClaimTopics</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>claimTopics<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getTradeDealRequiredClaimTopics</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// View Functions</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getTradeDealInfo</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>name<span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>symbol<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">interestRate</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">collateralToInterestRatio</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="nv">active</span><span class="p">,</span><span class="w"> </span>OperationMode<span class="w"> </span>operationMode<span class="p">);</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getTradeDealFullStatus</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">fundingTarget</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">currentBalance</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="nv">isFunded</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="nv">isFundingWithdrawn</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalDebt</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">repaidAmount</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="nv">isRepaid</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">isTradeDealParticipant</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">user</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bool</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">isTradeDealFunded</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bool</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">isTradeDealRepaid</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bool</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getAllTradeDealIds</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="key-features">Key Features<a class="headerlink" href="#key-features" title="Permanent link">&para;</a></h3>
+<h4 id="1-collateralized-financing">1. Collateralized Financing<a class="headerlink" href="#1-collateralized-financing" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Invoice NFTs as Collateral</strong>: Use tokenized invoices as collateral for financing</li>
+<li><strong>Proportional Token Distribution</strong>: Distribute collateral tokens based on funding contributions</li>
+<li><strong>Automated Collateral Management</strong>: Handle collateral deposits and withdrawals</li>
+</ul>
+<h4 id="2-multi-token-system">2. Multi-Token System<a class="headerlink" href="#2-multi-token-system" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Collateral Tokens</strong>: Represent funding contributions and ownership stakes</li>
+<li><strong>Interest Tokens</strong>: Represent earned interest and distribution rights</li>
+<li><strong>USDC Integration</strong>: Standardized stablecoin for funding and repayments</li>
+</ul>
+<h4 id="3-interest-distribution">3. Interest Distribution<a class="headerlink" href="#3-interest-distribution" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Automated Calculations</strong>: Calculate interest based on configurable rates</li>
+<li><strong>Proportional Distribution</strong>: Distribute interest based on token holdings</li>
+<li><strong>Dual Distribution</strong>: Split between invoice pool and interest token holders</li>
+</ul>
+<h4 id="4-identity-based-access-control">4. Identity-Based Access Control<a class="headerlink" href="#4-identity-based-access-control" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Claim Requirements</strong>: Require specific identity claims for participation</li>
+<li><strong>Trusted Issuer Validation</strong>: Verify claims through trusted issuer system</li>
+<li><strong>Flexible Access Control</strong>: Configure different requirements per trade deal</li>
+</ul>
+<h3 id="operation-modes">Operation Modes<a class="headerlink" href="#operation-modes" title="Permanent link">&para;</a></h3>
+<p>The standard supports multiple operation modes:</p>
+<ol>
+<li><strong>STANDARD</strong>: Basic invoice financing with standard terms</li>
+<li><strong>ADVANCED</strong>: Enhanced features with complex interest structures</li>
+<li><strong>CUSTOM</strong>: Fully customizable parameters for specialized use cases</li>
+</ol>
+<h3 id="funding-lifecycle">Funding Lifecycle<a class="headerlink" href="#funding-lifecycle" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// 1. Create Trade Deal</span>
+<span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>createTradeDeal<span class="p">(</span><span class="s2">&quot;Invoice Deal #1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;ID1&quot;</span><span class="p">,</span><span class="w"> </span><span class="m m-Decimal">500</span><span class="p">,</span><span class="w"> </span><span class="m m-Decimal">10000</span><span class="p">,</span><span class="w"> </span>claimTopics<span class="p">,</span><span class="w"> </span>collateralToken<span class="p">,</span><span class="w"> </span>interestToken<span class="p">,</span><span class="w"> </span>usdcToken<span class="p">,</span><span class="w"> </span>OperationMode<span class="p">.</span>STANDARD<span class="p">);</span>
+
+<span class="c1">// 2. Deposit Invoices as Collateral</span>
+tdDepositInvoice<span class="p">(</span>tradeDealId<span class="p">,</span><span class="w"> </span>invoiceTokenId<span class="p">);</span>
+
+<span class="c1">// 3. Fund the Deal</span>
+tdDepositUSDC<span class="p">(</span>tradeDealId<span class="p">,</span><span class="w"> </span>fundingAmount<span class="p">);</span>
+
+<span class="c1">// 4. Withdraw Funding (when fully funded)</span>
+withdrawTradeDealFundingForBorrower<span class="p">(</span>tradeDealId<span class="p">,</span><span class="w"> </span>borrowerAddress<span class="p">);</span>
+
+<span class="c1">// 5. Distribute Interest (periodically)</span>
+tdDistributeInterest<span class="p">(</span>tradeDealId<span class="p">);</span>
+
+<span class="c1">// 6. Repay the Deal</span>
+repayTradeDeal<span class="p">(</span>tradeDealId<span class="p">,</span><span class="w"> </span>repaymentAmount<span class="p">);</span>
+
+<span class="c1">// 7. Redeem Collateral Tokens</span>
+redeemCollateralTokens<span class="p">(</span>tradeDealId<span class="p">,</span><span class="w"> </span>collateralAmount<span class="p">);</span>
+</code></pre></div>
+
+<h2 id="rationale">Rationale<a class="headerlink" href="#rationale" title="Permanent link">&para;</a></h2>
+<h3 id="tokenized-collateral-system">Tokenized Collateral System<a class="headerlink" href="#tokenized-collateral-system" title="Permanent link">&para;</a></h3>
+<p>Using ERC20 tokens to represent collateral ownership enables fractional ownership, transferability, and automated distribution mechanisms.</p>
+<h3 id="interest-rate-in-basis-points">Interest Rate in Basis Points<a class="headerlink" href="#interest-rate-in-basis-points" title="Permanent link">&para;</a></h3>
+<p>Using basis points (1/100th of a percent) provides sufficient precision for interest calculations while remaining human-readable.</p>
+<h3 id="identity-integration">Identity Integration<a class="headerlink" href="#identity-integration" title="Permanent link">&para;</a></h3>
+<p>Integration with ERC734/ERC735 identity standards enables compliance with regulatory requirements and sophisticated access control.</p>
+<h3 id="multi-mode-operation">Multi-Mode Operation<a class="headerlink" href="#multi-mode-operation" title="Permanent link">&para;</a></h3>
+<p>Different operation modes allow the standard to accommodate various financing scenarios while maintaining a consistent interface.</p>
+<h2 id="implementation-details">Implementation Details<a class="headerlink" href="#implementation-details" title="Permanent link">&para;</a></h2>
+<h3 id="interest-calculation">Interest Calculation<a class="headerlink" href="#interest-calculation" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">calculateInterest</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">principal</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">rate</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">timeElapsed</span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>pure<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// rate is in basis points (100 = 1%)</span>
+<span class="w">    </span><span class="c1">// timeElapsed is in seconds</span>
+<span class="w">    </span><span class="c1">// Returns interest for the time period</span>
+<span class="w">    </span><span class="kt">return</span><span class="w"> </span><span class="p">(</span>principal<span class="w"> </span><span class="o">*</span><span class="w"> </span>rate<span class="w"> </span><span class="o">*</span><span class="w"> </span>timeElapsed<span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="m m-Decimal">10000</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m m-Decimal">365</span><span class="w"> </span>days<span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="collateral-token-distribution">Collateral Token Distribution<a class="headerlink" href="#collateral-token-distribution" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">distributeCollateralTokens</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">recipient</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">usdcAmount</span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>TradeDeal<span class="w"> </span>storage<span class="w"> </span>deal<span class="w"> </span><span class="o">=</span><span class="w"> </span>tradeDeals<span class="p">[</span>tradeDealId<span class="p">];</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">collateralAmount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>usdcAmount<span class="p">;</span><span class="w"> </span><span class="c1">// 1:1 ratio, can be customized</span>
+
+<span class="w">    </span>IERC20Mint<span class="p">(</span>deal<span class="p">.</span>collateralAddress<span class="p">).</span>mintTo<span class="p">(</span>recipient<span class="p">,</span><span class="w"> </span>collateralAmount<span class="p">);</span>
+<span class="w">    </span>emit<span class="w"> </span>CollateralTokensDistributed<span class="p">(</span>tradeDealId<span class="p">,</span><span class="w"> </span>recipient<span class="p">,</span><span class="w"> </span>collateralAmount<span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="security-considerations">Security Considerations<a class="headerlink" href="#security-considerations" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Access Control</strong>: Proper validation of participant eligibility and claim requirements</li>
+<li><strong>Integer Overflow</strong>: Use SafeMath or Solidity 0.8+ overflow protection</li>
+<li><strong>Reentrancy Protection</strong>: Guard against reentrancy attacks in funding operations</li>
+<li><strong>Interest Calculation</strong>: Prevent manipulation of interest calculations</li>
+<li><strong>Collateral Management</strong>: Secure handling of collateral deposits and withdrawals</li>
+</ol>
+<h3 id="gas-optimization">Gas Optimization<a class="headerlink" href="#gas-optimization" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Batch operations for multiple participants</li>
+<li>Efficient storage patterns for trade deal data</li>
+<li>Optimized interest calculation algorithms</li>
+<li>Minimal external calls during operations</li>
+</ul>
+<h2 id="backwards-compatibility">Backwards Compatibility<a class="headerlink" href="#backwards-compatibility" title="Permanent link">&para;</a></h2>
+<p>This standard is designed to work with existing ERC20, ERC721, and identity standard implementations.</p>
+<h2 id="test-cases">Test Cases<a class="headerlink" href="#test-cases" title="Permanent link">&para;</a></h2>
+<p>Comprehensive test cases should cover:
+- Trade deal lifecycle management
+- Funding and withdrawal operations
+- Interest calculation and distribution
+- Collateral token management
+- Identity-based access control
+- Edge cases and error conditions</p>
+<h2 id="reference-implementation">Reference Implementation<a class="headerlink" href="#reference-implementation" title="Permanent link">&para;</a></h2>
+<p>The reference implementation includes:
+- <a href="../contracts/facets/TradeDealManagementFacet.sol"><code>TradeDealManagementFacet.sol</code></a> - Core management functionality
+- <a href="../contracts/facets/TradeDealOperationsFacet.sol"><code>TradeDealOperationsFacet.sol</code></a> - Operational functions
+- <a href="../contracts/interfaces/ITradeDeal.sol"><code>ITradeDeal.sol</code></a> - Interface definition
+- <a href="../contracts/libraries/TradeDealLib.sol"><code>TradeDealLib.sol</code></a> - Supporting library functions</p>
+<h2 id="copyright">Copyright<a class="headerlink" href="#copyright" title="Permanent link">&para;</a></h2>
+<p>Copyright and related rights waived via <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../EIP-DRAFT-Multi-Token-Sale-Standard/" class="btn btn-neutral float-left" title="Multi-Token Sale Standard"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../EIP-DRAFT-Enhanced-Identity-System/" class="btn btn-neutral float-right" title="Enhanced Identity System">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../EIP-DRAFT-Multi-Token-Sale-Standard/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../EIP-DRAFT-Enhanced-Identity-System/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

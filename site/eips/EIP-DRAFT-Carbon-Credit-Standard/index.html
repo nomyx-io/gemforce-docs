@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Gemforce Team" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Carbon Credit Standard - Gemforce Documentation</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Carbon Credit Standard";
+        var mkdocs_page_input_path = "eips/EIP-DRAFT-Carbon-Credit-Standard.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Gemforce Documentation
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../system-architecture/gemforce-system-architecture/">System Architecture</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">API Documentation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api-documentation/gemforce-api-documentation/">Full API Reference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api-documentation/gemforce-api-quick-reference/">Quick Reference</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">EIPs (Ethereum Improvement Proposals)</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../EIP-DRAFT-Diamond-Enhanced-Marketplace/">Diamond-Enhanced Marketplace</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../EIP-DRAFT-Multi-Token-Sale-Standard/">Multi-Token Sale Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../EIP-DRAFT-Collateralized-Trade-Deal-Standard/">Collateralized Trade Deal Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../EIP-DRAFT-Enhanced-Identity-System/">Enhanced Identity System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../EIP-DRAFT-Diamond-Factory-Standard/">Diamond Factory Standard</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Carbon Credit Standard</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#simple-summary">Simple Summary</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#abstract">Abstract</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#motivation">Motivation</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#specification">Specification</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#core-interface">Core Interface</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#key-features">Key Features</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#1-comprehensive-credit-tracking">1. Comprehensive Credit Tracking</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#2-multiple-credit-standards">2. Multiple Credit Standards</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#3-fractionalization-support">3. Fractionalization Support</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#4-automated-offset-claims">4. Automated Offset Claims</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#credit-lifecycle">Credit Lifecycle</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#rationale">Rationale</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#nft-vs-fungible-token-approach">NFT vs Fungible Token Approach</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#immutable-retirement">Immutable Retirement</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#registry-integration">Registry Integration</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#metadata-standards">Metadata Standards</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#implementation-details">Implementation Details</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#credit-issuance">Credit Issuance</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#credit-retirement">Credit Retirement</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#security-considerations">Security Considerations</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#compliance-considerations">Compliance Considerations</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#integration-examples">Integration Examples</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#with-defi-protocols">With DeFi Protocols</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#with-corporate-sustainability">With Corporate Sustainability</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#test-cases">Test Cases</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#reference-implementation">Reference Implementation</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#copyright">Copyright</a>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">User Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../gemforce-administrator-guide/">Administrator Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../gemforce-deployer-guide/">Deployer Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../gemforce-integrator-guide/">Integrator Guide</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../external-services/gemforce-external-services/">External Services</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../documentation-plan/">Documentation Plan</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Gemforce Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">EIPs (Ethereum Improvement Proposals)</li>
+      <li class="breadcrumb-item active">Carbon Credit Standard</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="eip-draft-carbon-credit-standard-for-tokenized-environmental-assets">EIP-DRAFT: Carbon Credit Standard for Tokenized Environmental Assets<a class="headerlink" href="#eip-draft-carbon-credit-standard-for-tokenized-environmental-assets" title="Permanent link">&para;</a></h1>
+<h2 id="simple-summary">Simple Summary<a class="headerlink" href="#simple-summary" title="Permanent link">&para;</a></h2>
+<p>A standardized interface for tokenizing, trading, and retiring carbon credits and other environmental assets on the Ethereum blockchain with full lifecycle tracking and verification.</p>
+<h2 id="abstract">Abstract<a class="headerlink" href="#abstract" title="Permanent link">&para;</a></h2>
+<p>This EIP proposes a comprehensive standard for carbon credits that enables:
+- Tokenization of verified carbon credits as NFTs or fungible tokens
+- Lifecycle tracking from issuance to retirement
+- Integration with carbon registries and verification bodies
+- Automated retirement and offset mechanisms
+- Fractional ownership and trading capabilities
+- Compliance with international carbon credit standards</p>
+<h2 id="motivation">Motivation<a class="headerlink" href="#motivation" title="Permanent link">&para;</a></h2>
+<p>The carbon credit market lacks standardization and transparency, making it difficult to verify the authenticity and prevent double-counting of credits. A blockchain-based standard can provide immutable tracking, automated verification, and seamless integration with DeFi protocols while maintaining compliance with existing carbon credit frameworks.</p>
+<h2 id="specification">Specification<a class="headerlink" href="#specification" title="Permanent link">&para;</a></h2>
+<h3 id="core-interface">Core Interface<a class="headerlink" href="#core-interface" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code>interface<span class="w"> </span>ICarbonCredit<span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">enum</span><span class="w"> </span><span class="nv">CreditStatus</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>ISSUED<span class="p">,</span><span class="w"> </span>ACTIVE<span class="p">,</span><span class="w"> </span>RETIRED<span class="p">,</span><span class="w"> </span>CANCELLED<span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="kt">enum</span><span class="w"> </span><span class="nv">CreditType</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>REMOVAL<span class="p">,</span><span class="w"> </span>AVOIDANCE<span class="p">,</span><span class="w"> </span>REDUCTION<span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="kt">enum</span><span class="w"> </span><span class="nv">Standard</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>VCS<span class="p">,</span><span class="w"> </span>CDM<span class="p">,</span><span class="w"> </span>GOLD_STANDARD<span class="p">,</span><span class="w"> </span>CAR<span class="p">,</span><span class="w"> </span>ACR<span class="p">,</span><span class="w"> </span>CUSTOM<span class="w"> </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">CarbonCreditData</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">creditId</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">projectId</span><span class="p">;</span>
+<span class="w">        </span>Standard<span class="w"> </span>standard<span class="p">;</span>
+<span class="w">        </span>CreditType<span class="w"> </span>creditType<span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">vintage</span><span class="p">;</span><span class="w"> </span><span class="c1">// Year of carbon impact</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">quantity</span><span class="p">;</span><span class="w"> </span><span class="c1">// Tonnes of CO2 equivalent</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">methodology</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">verifier</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">registry</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">issuanceDate</span><span class="p">;</span>
+<span class="w">        </span>CreditStatus<span class="w"> </span>status<span class="p">;</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">currentOwner</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">metadata</span><span class="p">;</span><span class="w"> </span><span class="c1">// IPFS hash or URI</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">RetirementData</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">creditId</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">quantity</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">retiringEntity</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">beneficiary</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">retirementReason</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">retirementDate</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">retirementCertificate</span><span class="p">;</span><span class="w"> </span><span class="c1">// IPFS hash</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Events</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">CarbonCreditIssued</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>creditId<span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">projectId</span><span class="p">,</span><span class="w"> </span>Standard<span class="w"> </span>standard<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">quantity</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">vintage</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">CarbonCreditTransferred</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>creditId<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>from<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>to<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">quantity</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">CarbonCreditRetired</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>creditId<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>retiringEntity<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">quantity</span><span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">beneficiary</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">CarbonCreditCancelled</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>creditId<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">quantity</span><span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">reason</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">CarbonCreditFractionalized</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>creditId<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>fractionalToken<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalShares</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">OffsetClaimed</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>entity<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalQuantity</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span>creditIds<span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">offsetClaim</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Core Functions</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">issueCarbonCredit</span><span class="p">(</span>CarbonCreditData<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>creditData<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">creditId</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">transferCredit</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">creditId</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">to</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">quantity</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">retireCredit</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">creditId</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">quantity</span><span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>beneficiary<span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>reason<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">retirementId</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">cancelCredit</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">creditId</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">quantity</span><span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>reason<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// Fractionalization</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">fractionalizeCarbonCredit</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">creditId</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalShares</span><span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>tokenName<span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>tokenSymbol<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">fractionalToken</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">redeemFractionalShares</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">fractionalToken</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">shares</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// Offset Claims</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">claimOffset</span><span class="p">(</span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>creditIds<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>quantities<span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>offsetClaim<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getOffsetHistory</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">entity</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>RetirementData<span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// View Functions</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getCarbonCreditData</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">creditId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>CarbonCreditData<span class="w"> </span><span class="kt">memory</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getRetirementData</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">retirementId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>RetirementData<span class="w"> </span><span class="kt">memory</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getCreditsByOwner</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">owner</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getCreditsByProject</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>projectId<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getCreditsByVintage</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">vintage</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getTotalSupply</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getTotalRetired</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getAvailableCredits</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Verification</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">verifyCreditAuthenticity</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">creditId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bool</span><span class="w"> </span><span class="nv">isValid</span><span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>verificationDetails<span class="p">);</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">checkDoubleSpending</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">creditId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bool</span><span class="w"> </span><span class="nv">hasDoubleSpending</span><span class="p">);</span>
+<span class="p">}</span>
+
+interface<span class="w"> </span>ICarbonCreditRegistry<span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">ProjectData</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">projectId</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">name</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">description</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">location</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">methodology</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">projectDeveloper</span><span class="p">;</span>
+<span class="w">        </span>Standard<span class="w"> </span>standard<span class="p">;</span>
+<span class="w">        </span>CreditType<span class="w"> </span>creditType<span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">estimatedCredits</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">issuedCredits</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">active</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">verificationBody</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">registryUrl</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Events</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">ProjectRegistered</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>projectId<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>developer<span class="p">,</span><span class="w"> </span>Standard<span class="w"> </span>standard<span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">ProjectUpdated</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>projectId<span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="nv">active</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">VerificationBodyAdded</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>verifier<span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">name</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Core Functions</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">registerProject</span><span class="p">(</span>ProjectData<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>projectData<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">updateProject</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>projectId<span class="p">,</span><span class="w"> </span>ProjectData<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>projectData<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">addVerificationBody</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">verifier</span><span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>name<span class="p">,</span><span class="w"> </span>Standard<span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>authorizedStandards<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">isAuthorizedVerifier</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">verifier</span><span class="p">,</span><span class="w"> </span>Standard<span class="w"> </span>standard<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bool</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getProjectData</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>projectId<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>ProjectData<span class="w"> </span><span class="kt">memory</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getAllProjects</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="key-features">Key Features<a class="headerlink" href="#key-features" title="Permanent link">&para;</a></h3>
+<h4 id="1-comprehensive-credit-tracking">1. Comprehensive Credit Tracking<a class="headerlink" href="#1-comprehensive-credit-tracking" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Full Lifecycle</strong>: Track credits from issuance through retirement</li>
+<li><strong>Immutable Records</strong>: Blockchain-based immutable tracking</li>
+<li><strong>Status Management</strong>: Clear status transitions and validation</li>
+<li><strong>Metadata Integration</strong>: IPFS integration for detailed documentation</li>
+</ul>
+<h4 id="2-multiple-credit-standards">2. Multiple Credit Standards<a class="headerlink" href="#2-multiple-credit-standards" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Standard Compliance</strong>: Support for VCS, CDM, Gold Standard, and others</li>
+<li><strong>Flexible Framework</strong>: Extensible to new standards and methodologies</li>
+<li><strong>Verification Integration</strong>: Integration with recognized verification bodies</li>
+</ul>
+<h4 id="3-fractionalization-support">3. Fractionalization Support<a class="headerlink" href="#3-fractionalization-support" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Fractional Ownership</strong>: Enable fractional ownership of large credits</li>
+<li><strong>ERC20 Integration</strong>: Create fungible tokens for fractional shares</li>
+<li><strong>Redemption Mechanism</strong>: Convert fractional shares back to whole credits</li>
+</ul>
+<h4 id="4-automated-offset-claims">4. Automated Offset Claims<a class="headerlink" href="#4-automated-offset-claims" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Batch Retirement</strong>: Retire multiple credits in single transaction</li>
+<li><strong>Offset Tracking</strong>: Track offset claims and retirement history</li>
+<li><strong>Certificate Generation</strong>: Generate retirement certificates</li>
+</ul>
+<h3 id="credit-lifecycle">Credit Lifecycle<a class="headerlink" href="#credit-lifecycle" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// 1. Register Project</span>
+ProjectData<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>project<span class="w"> </span><span class="o">=</span><span class="w"> </span>ProjectData<span class="p">({</span>
+<span class="w">    </span>projectId<span class="o">:</span><span class="w"> </span><span class="s2">&quot;PROJ-001&quot;</span><span class="p">,</span>
+<span class="w">    </span>name<span class="o">:</span><span class="w"> </span><span class="s2">&quot;Reforestation Project&quot;</span><span class="p">,</span>
+<span class="w">    </span>methodology<span class="o">:</span><span class="w"> </span><span class="s2">&quot;VM0006&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="c1">// ... other fields</span>
+<span class="p">});</span>
+registry<span class="p">.</span>registerProject<span class="p">(</span>project<span class="p">);</span>
+
+<span class="c1">// 2. Issue Credits</span>
+CarbonCreditData<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>credit<span class="w"> </span><span class="o">=</span><span class="w"> </span>CarbonCreditData<span class="p">({</span>
+<span class="w">    </span>projectId<span class="o">:</span><span class="w"> </span><span class="s2">&quot;PROJ-001&quot;</span><span class="p">,</span>
+<span class="w">    </span>standard<span class="o">:</span><span class="w"> </span>Standard<span class="p">.</span>VCS<span class="p">,</span>
+<span class="w">    </span>creditType<span class="o">:</span><span class="w"> </span>CreditType<span class="p">.</span>REMOVAL<span class="p">,</span>
+<span class="w">    </span>vintage<span class="o">:</span><span class="w"> </span><span class="m m-Decimal">2024</span><span class="p">,</span>
+<span class="w">    </span>quantity<span class="o">:</span><span class="w"> </span><span class="m m-Decimal">1000</span><span class="p">,</span>
+<span class="w">    </span><span class="c1">// ... other fields</span>
+<span class="p">});</span>
+<span class="kt">uint256</span><span class="w"> </span><span class="nv">creditId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>carbonCredit<span class="p">.</span>issueCarbonCredit<span class="p">(</span>credit<span class="p">);</span>
+
+<span class="c1">// 3. Transfer Credits</span>
+carbonCredit<span class="p">.</span>transferCredit<span class="p">(</span>creditId<span class="p">,</span><span class="w"> </span>buyer<span class="p">,</span><span class="w"> </span><span class="m m-Decimal">500</span><span class="p">);</span>
+
+<span class="c1">// 4. Retire Credits for Offset</span>
+<span class="kt">bytes32</span><span class="w"> </span><span class="nv">retirementId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>carbonCredit<span class="p">.</span>retireCredit<span class="p">(</span>creditId<span class="p">,</span><span class="w"> </span><span class="m m-Decimal">250</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Company XYZ&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Annual carbon neutrality&quot;</span><span class="p">);</span>
+
+<span class="c1">// 5. Claim Offset</span>
+<span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>creditIds<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[](</span><span class="m m-Decimal">1</span><span class="p">);</span>
+creditIds<span class="p">[</span><span class="m m-Decimal">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>creditId<span class="p">;</span>
+<span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>quantities<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[](</span><span class="m m-Decimal">1</span><span class="p">);</span>
+quantities<span class="p">[</span><span class="m m-Decimal">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">250</span><span class="p">;</span>
+carbonCredit<span class="p">.</span>claimOffset<span class="p">(</span>creditIds<span class="p">,</span><span class="w"> </span>quantities<span class="p">,</span><span class="w"> </span><span class="s2">&quot;2024 Carbon Neutrality Claim&quot;</span><span class="p">);</span>
+</code></pre></div>
+
+<h2 id="rationale">Rationale<a class="headerlink" href="#rationale" title="Permanent link">&para;</a></h2>
+<h3 id="nft-vs-fungible-token-approach">NFT vs Fungible Token Approach<a class="headerlink" href="#nft-vs-fungible-token-approach" title="Permanent link">&para;</a></h3>
+<p>The standard supports both approaches:
+- <strong>NFT Approach</strong>: Each credit batch is unique with specific vintage, project, and verification data
+- <strong>Fungible Approach</strong>: Credits with identical characteristics can be fungible
+- <strong>Hybrid Approach</strong>: NFTs can be fractionalized into fungible tokens</p>
+<h3 id="immutable-retirement">Immutable Retirement<a class="headerlink" href="#immutable-retirement" title="Permanent link">&para;</a></h3>
+<p>Once credits are retired, they cannot be transferred or used again, preventing double-counting and ensuring offset integrity.</p>
+<h3 id="registry-integration">Registry Integration<a class="headerlink" href="#registry-integration" title="Permanent link">&para;</a></h3>
+<p>Integration with existing carbon registries ensures compliance with established standards and verification processes.</p>
+<h3 id="metadata-standards">Metadata Standards<a class="headerlink" href="#metadata-standards" title="Permanent link">&para;</a></h3>
+<p>Using IPFS for metadata storage ensures decentralized, permanent storage of verification documents and project details.</p>
+<h2 id="implementation-details">Implementation Details<a class="headerlink" href="#implementation-details" title="Permanent link">&para;</a></h2>
+<h3 id="credit-issuance">Credit Issuance<a class="headerlink" href="#credit-issuance" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">issueCarbonCredit</span><span class="p">(</span>CarbonCreditData<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>creditData<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">creditId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">require</span><span class="p">(</span>isAuthorizedIssuer<span class="p">(</span><span class="k">msg.sender</span><span class="p">),</span><span class="w"> </span><span class="s2">&quot;Unauthorized issuer&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">require</span><span class="p">(</span>registry<span class="p">.</span>getProjectData<span class="p">(</span>creditData<span class="p">.</span>projectId<span class="p">).</span>active<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Project not active&quot;</span><span class="p">);</span>
+
+<span class="w">    </span>creditId<span class="w"> </span><span class="o">=</span><span class="w"> </span>nextCreditId<span class="o">++</span><span class="p">;</span>
+<span class="w">    </span>creditData<span class="p">.</span>creditId<span class="w"> </span><span class="o">=</span><span class="w"> </span>creditId<span class="p">;</span>
+<span class="w">    </span>creditData<span class="p">.</span>status<span class="w"> </span><span class="o">=</span><span class="w"> </span>CreditStatus<span class="p">.</span>ACTIVE<span class="p">;</span>
+<span class="w">    </span>creditData<span class="p">.</span>currentOwner<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">;</span>
+<span class="w">    </span>creditData<span class="p">.</span>issuanceDate<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">block.timestamp</span><span class="p">;</span>
+
+<span class="w">    </span>credits<span class="p">[</span>creditId<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>creditData<span class="p">;</span>
+<span class="w">    </span>ownerCredits<span class="p">[</span><span class="k">msg.sender</span><span class="p">].</span>push<span class="p">(</span>creditId<span class="p">);</span>
+
+<span class="w">    </span>emit<span class="w"> </span>CarbonCreditIssued<span class="p">(</span>creditId<span class="p">,</span><span class="w"> </span>creditData<span class="p">.</span>projectId<span class="p">,</span><span class="w"> </span>creditData<span class="p">.</span>standard<span class="p">,</span><span class="w"> </span>creditData<span class="p">.</span>quantity<span class="p">,</span><span class="w"> </span>creditData<span class="p">.</span>vintage<span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="credit-retirement">Credit Retirement<a class="headerlink" href="#credit-retirement" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">retireCredit</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">creditId</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">quantity</span><span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>beneficiary<span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>reason<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">retirementId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>CarbonCreditData<span class="w"> </span>storage<span class="w"> </span>credit<span class="w"> </span><span class="o">=</span><span class="w"> </span>credits<span class="p">[</span>creditId<span class="p">];</span>
+<span class="w">    </span><span class="kt">require</span><span class="p">(</span>credit<span class="p">.</span>currentOwner<span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Not credit owner&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">require</span><span class="p">(</span>credit<span class="p">.</span>status<span class="w"> </span><span class="o">==</span><span class="w"> </span>CreditStatus<span class="p">.</span>ACTIVE<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Credit not active&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">require</span><span class="p">(</span>quantity<span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span>credit<span class="p">.</span>quantity<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Insufficient quantity&quot;</span><span class="p">);</span>
+
+<span class="w">    </span>retirementId<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">keccak256</span><span class="p">(</span>abi<span class="p">.</span>encodePacked<span class="p">(</span>creditId<span class="p">,</span><span class="w"> </span>quantity<span class="p">,</span><span class="w"> </span><span class="k">block.timestamp</span><span class="p">,</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">));</span>
+
+<span class="w">    </span>RetirementData<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>retirement<span class="w"> </span><span class="o">=</span><span class="w"> </span>RetirementData<span class="p">({</span>
+<span class="w">        </span>creditId<span class="o">:</span><span class="w"> </span>creditId<span class="p">,</span>
+<span class="w">        </span>quantity<span class="o">:</span><span class="w"> </span>quantity<span class="p">,</span>
+<span class="w">        </span>retiringEntity<span class="o">:</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">,</span>
+<span class="w">        </span>beneficiary<span class="o">:</span><span class="w"> </span>beneficiary<span class="p">,</span>
+<span class="w">        </span>retirementReason<span class="o">:</span><span class="w"> </span>reason<span class="p">,</span>
+<span class="w">        </span>retirementDate<span class="o">:</span><span class="w"> </span><span class="k">block.timestamp</span><span class="p">,</span>
+<span class="w">        </span>retirementCertificate<span class="o">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="w"> </span><span class="c1">// Generated off-chain</span>
+<span class="w">    </span><span class="p">});</span>
+
+<span class="w">    </span>retirements<span class="p">[</span>retirementId<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>retirement<span class="p">;</span>
+<span class="w">    </span>credit<span class="p">.</span>quantity<span class="w"> </span><span class="o">-=</span><span class="w"> </span>quantity<span class="p">;</span>
+
+<span class="w">    </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>credit<span class="p">.</span>quantity<span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>credit<span class="p">.</span>status<span class="w"> </span><span class="o">=</span><span class="w"> </span>CreditStatus<span class="p">.</span>RETIRED<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span>emit<span class="w"> </span>CarbonCreditRetired<span class="p">(</span>creditId<span class="p">,</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">,</span><span class="w"> </span>quantity<span class="p">,</span><span class="w"> </span>beneficiary<span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="security-considerations">Security Considerations<a class="headerlink" href="#security-considerations" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Authorization</strong>: Proper authorization for credit issuance and management</li>
+<li><strong>Double-Spending Prevention</strong>: Mechanisms to prevent double-counting of credits</li>
+<li><strong>Verification</strong>: Integration with trusted verification bodies</li>
+<li><strong>Immutable Retirement</strong>: Ensure retired credits cannot be reused</li>
+<li><strong>Registry Validation</strong>: Validate project registration and status</li>
+</ol>
+<h3 id="compliance-considerations">Compliance Considerations<a class="headerlink" href="#compliance-considerations" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>International Standards</strong>: Compliance with VCS, CDM, and other standards</li>
+<li><strong>Regulatory Requirements</strong>: Consideration of emerging regulations</li>
+<li><strong>Audit Trails</strong>: Complete audit trails for compliance reporting</li>
+<li><strong>Verification Requirements</strong>: Integration with recognized verification bodies</li>
+</ol>
+<h2 id="integration-examples">Integration Examples<a class="headerlink" href="#integration-examples" title="Permanent link">&para;</a></h2>
+<h3 id="with-defi-protocols">With DeFi Protocols<a class="headerlink" href="#with-defi-protocols" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="k">contract</span><span class="w"> </span><span class="ni">CarbonOffsetDeFi</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>ICarbonCredit<span class="w"> </span><span class="kt">public</span><span class="w"> </span>carbonCredit<span class="p">;</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">offsetTransaction</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">creditId</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">quantity</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Retire credits to offset transaction</span>
+<span class="w">        </span>carbonCredit<span class="p">.</span>retireCredit<span class="p">(</span>creditId<span class="p">,</span><span class="w"> </span>quantity<span class="p">,</span><span class="w"> </span><span class="s2">&quot;DeFi Transaction Offset&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Automated offset&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="with-corporate-sustainability">With Corporate Sustainability<a class="headerlink" href="#with-corporate-sustainability" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="k">contract</span><span class="w"> </span><span class="ni">CorporateOffsetManager</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>ICarbonCredit<span class="w"> </span><span class="kt">public</span><span class="w"> </span>carbonCredit<span class="p">;</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">uint256</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>annualOffsets<span class="p">;</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">executeAnnualOffset</span><span class="p">(</span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>creditIds<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>quantities<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalOffset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>quantities<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>totalOffset<span class="w"> </span><span class="o">+=</span><span class="w"> </span>quantities<span class="p">[</span>i<span class="p">];</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span>carbonCredit<span class="p">.</span>claimOffset<span class="p">(</span>creditIds<span class="p">,</span><span class="w"> </span>quantities<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Annual Carbon Neutrality&quot;</span><span class="p">);</span>
+<span class="w">        </span>annualOffsets<span class="p">[</span><span class="k">msg.sender</span><span class="p">]</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span>totalOffset<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="test-cases">Test Cases<a class="headerlink" href="#test-cases" title="Permanent link">&para;</a></h2>
+<p>Comprehensive test cases should cover:
+- Credit issuance and lifecycle management
+- Transfer and ownership tracking
+- Retirement and offset claiming
+- Fractionalization and redemption
+- Registry integration
+- Verification and compliance
+- Edge cases and error conditions</p>
+<h2 id="reference-implementation">Reference Implementation<a class="headerlink" href="#reference-implementation" title="Permanent link">&para;</a></h2>
+<p>The reference implementation includes:
+- <a href="../contracts/facets/CarbonCreditFacet.sol"><code>CarbonCreditFacet.sol</code></a> - Core carbon credit functionality
+- <a href="../contracts/interfaces/ICarbonCredit.sol"><code>ICarbonCredit.sol</code></a> - Interface definition
+- <a href="../contracts/libraries/CarbonCreditLib.sol"><code>CarbonCreditLib.sol</code></a> - Supporting library functions</p>
+<h2 id="copyright">Copyright<a class="headerlink" href="#copyright" title="Permanent link">&para;</a></h2>
+<p>Copyright and related rights waived via <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../EIP-DRAFT-Diamond-Factory-Standard/" class="btn btn-neutral float-left" title="Diamond Factory Standard"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../gemforce-administrator-guide/" class="btn btn-neutral float-right" title="Administrator Guide">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../EIP-DRAFT-Diamond-Factory-Standard/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../gemforce-administrator-guide/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Gemforce Team" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Diamond Factory Standard - Gemforce Documentation</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Diamond Factory Standard";
+        var mkdocs_page_input_path = "eips/EIP-DRAFT-Diamond-Factory-Standard.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Gemforce Documentation
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../system-architecture/gemforce-system-architecture/">System Architecture</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">API Documentation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api-documentation/gemforce-api-documentation/">Full API Reference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api-documentation/gemforce-api-quick-reference/">Quick Reference</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">EIPs (Ethereum Improvement Proposals)</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../EIP-DRAFT-Diamond-Enhanced-Marketplace/">Diamond-Enhanced Marketplace</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../EIP-DRAFT-Multi-Token-Sale-Standard/">Multi-Token Sale Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../EIP-DRAFT-Collateralized-Trade-Deal-Standard/">Collateralized Trade Deal Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../EIP-DRAFT-Enhanced-Identity-System/">Enhanced Identity System</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Diamond Factory Standard</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#simple-summary">Simple Summary</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#abstract">Abstract</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#motivation">Motivation</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#specification">Specification</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#core-interface">Core Interface</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#key-features">Key Features</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#1-standardized-diamond-deployment">1. Standardized Diamond Deployment</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#2-template-system">2. Template System</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#3-deployment-tracking">3. Deployment Tracking</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#4-facet-management">4. Facet Management</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#template-based-deployment">Template-Based Deployment</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#upgrade-timelock-integration">Upgrade Timelock Integration</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#rationale">Rationale</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#factory-pattern-benefits">Factory Pattern Benefits</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#template-system">Template System</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#upgrade-timelock-integration_1">Upgrade Timelock Integration</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#implementation-details">Implementation Details</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#diamond-deployment">Diamond Deployment</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#template-storage">Template Storage</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#security-considerations">Security Considerations</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#gas-optimization">Gas Optimization</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#backwards-compatibility">Backwards Compatibility</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#integration-examples">Integration Examples</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#with-development-tools">With Development Tools</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#with-frontend-applications">With Frontend Applications</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#test-cases">Test Cases</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#reference-implementation">Reference Implementation</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#copyright">Copyright</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../EIP-DRAFT-Carbon-Credit-Standard/">Carbon Credit Standard</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">User Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../gemforce-administrator-guide/">Administrator Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../gemforce-deployer-guide/">Deployer Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../gemforce-integrator-guide/">Integrator Guide</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../external-services/gemforce-external-services/">External Services</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../documentation-plan/">Documentation Plan</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Gemforce Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">EIPs (Ethereum Improvement Proposals)</li>
+      <li class="breadcrumb-item active">Diamond Factory Standard</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="eip-draft-diamond-factory-standard-for-upgradeable-contract-deployment">EIP-DRAFT: Diamond Factory Standard for Upgradeable Contract Deployment<a class="headerlink" href="#eip-draft-diamond-factory-standard-for-upgradeable-contract-deployment" title="Permanent link">&para;</a></h1>
+<h2 id="simple-summary">Simple Summary<a class="headerlink" href="#simple-summary" title="Permanent link">&para;</a></h2>
+<p>A standardized factory pattern for deploying and managing Diamond Standard (EIP-2535) contracts with configurable facets, initialization parameters, and upgrade timelock mechanisms.</p>
+<h2 id="abstract">Abstract<a class="headerlink" href="#abstract" title="Permanent link">&para;</a></h2>
+<p>This EIP proposes a standard factory interface for creating Diamond Standard contracts that enables:
+- Standardized Diamond deployment with configurable facet sets
+- Template-based Diamond creation with predefined configurations
+- Upgrade timelock initialization for security
+- Event-driven deployment tracking
+- Integration with existing Diamond tooling and infrastructure</p>
+<h2 id="motivation">Motivation<a class="headerlink" href="#motivation" title="Permanent link">&para;</a></h2>
+<p>While the Diamond Standard (EIP-2535) provides excellent modularity and upgradeability, there is no standardized way to deploy Diamond contracts with consistent configurations. This leads to fragmented deployment patterns and makes it difficult to build tooling that works across different Diamond implementations. A standardized factory pattern addresses these issues by providing a consistent deployment interface.</p>
+<h2 id="specification">Specification<a class="headerlink" href="#specification" title="Permanent link">&para;</a></h2>
+<h3 id="core-interface">Core Interface<a class="headerlink" href="#core-interface" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code>interface<span class="w"> </span>IDiamondFactory<span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">DiamondSettings</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">name</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">symbol</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">owner</span><span class="p">;</span>
+<span class="w">        </span><span class="c1">// Additional settings can be extended</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">FacetDeployment</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">facetAddress</span><span class="p">;</span>
+<span class="w">        </span>bytes4<span class="p">[]</span><span class="w"> </span>functionSelectors<span class="p">;</span>
+<span class="w">        </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">initCalldata</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">DiamondTemplate</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">name</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">description</span><span class="p">;</span>
+<span class="w">        </span>FacetDeployment<span class="p">[]</span><span class="w"> </span>facets<span class="p">;</span>
+<span class="w">        </span>DiamondSettings<span class="w"> </span>defaultSettings<span class="p">;</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">active</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Events</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">DiamondCreated</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>diamond<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>owner<span class="p">,</span><span class="w"> </span>DiamondSettings<span class="w"> </span>settings<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">templateId</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">DiamondTemplateCreated</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>templateId<span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">name</span><span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">description</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">DiamondTemplateUpdated</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>templateId<span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">name</span><span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">description</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="nv">active</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">FacetDeployed</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>facet<span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">name</span><span class="p">,</span><span class="w"> </span>bytes4<span class="p">[]</span><span class="w"> </span>selectors<span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Core Functions</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">createDiamond</span><span class="p">(</span>DiamondSettings<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>settings<span class="p">,</span><span class="w"> </span>FacetDeployment<span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>facets<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">diamondInit</span><span class="p">,</span><span class="w"> </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>initCalldata<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">diamond</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">createDiamondFromTemplate</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">templateId</span><span class="p">,</span><span class="w"> </span>DiamondSettings<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>settings<span class="p">,</span><span class="w"> </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>customInitCalldata<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">diamond</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Template Management</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">createDiamondTemplate</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>name<span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>description<span class="p">,</span><span class="w"> </span>FacetDeployment<span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>facets<span class="p">,</span><span class="w"> </span>DiamondSettings<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>defaultSettings<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">templateId</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">updateDiamondTemplate</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">templateId</span><span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>name<span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>description<span class="p">,</span><span class="w"> </span>FacetDeployment<span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>facets<span class="p">,</span><span class="w"> </span>DiamondSettings<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>defaultSettings<span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="nv">active</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getDiamondTemplate</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">templateId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>DiamondTemplate<span class="w"> </span><span class="kt">memory</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getAllTemplateIds</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Deployment Tracking</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getDiamondsCreatedBy</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">creator</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">address</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getDiamondInfo</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">diamond</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>DiamondSettings<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>settings<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">templateId</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">creator</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">createdAt</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">isDiamondFromFactory</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">diamond</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bool</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Facet Management</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">deployFacet</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>name<span class="p">,</span><span class="w"> </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>bytecode<span class="p">,</span><span class="w"> </span>bytes4<span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>selectors<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">facet</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getFacetInfo</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">facet</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>name<span class="p">,</span><span class="w"> </span>bytes4<span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>selectors<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">deployer</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">deployedAt</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getAllFacets</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">address</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="key-features">Key Features<a class="headerlink" href="#key-features" title="Permanent link">&para;</a></h3>
+<h4 id="1-standardized-diamond-deployment">1. Standardized Diamond Deployment<a class="headerlink" href="#1-standardized-diamond-deployment" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Consistent Interface</strong>: Uniform deployment interface across implementations</li>
+<li><strong>Configurable Facets</strong>: Deploy Diamonds with custom facet configurations</li>
+<li><strong>Initialization Support</strong>: Handle complex initialization scenarios</li>
+</ul>
+<h4 id="2-template-system">2. Template System<a class="headerlink" href="#2-template-system" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Predefined Configurations</strong>: Create reusable Diamond templates</li>
+<li><strong>Template Management</strong>: Add, update, and manage Diamond templates</li>
+<li><strong>Template-based Deployment</strong>: Deploy Diamonds from predefined templates</li>
+</ul>
+<h4 id="3-deployment-tracking">3. Deployment Tracking<a class="headerlink" href="#3-deployment-tracking" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Creator Tracking</strong>: Track which addresses created which Diamonds</li>
+<li><strong>Deployment History</strong>: Maintain history of all deployments</li>
+<li><strong>Diamond Verification</strong>: Verify if a Diamond was created by the factory</li>
+</ul>
+<h4 id="4-facet-management">4. Facet Management<a class="headerlink" href="#4-facet-management" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Facet Deployment</strong>: Deploy and register facets</li>
+<li><strong>Facet Registry</strong>: Maintain registry of available facets</li>
+<li><strong>Selector Tracking</strong>: Track function selectors for each facet</li>
+</ul>
+<h3 id="template-based-deployment">Template-Based Deployment<a class="headerlink" href="#template-based-deployment" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Create a template for NFT marketplaces</span>
+FacetDeployment<span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>facets<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span>FacetDeployment<span class="p">[](</span><span class="m m-Decimal">3</span><span class="p">);</span>
+facets<span class="p">[</span><span class="m m-Decimal">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>FacetDeployment<span class="p">(</span>marketplaceFacet<span class="p">,</span><span class="w"> </span>marketplaceSelectors<span class="p">,</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">);</span>
+facets<span class="p">[</span><span class="m m-Decimal">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>FacetDeployment<span class="p">(</span>erc721Facet<span class="p">,</span><span class="w"> </span>erc721Selectors<span class="p">,</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">);</span>
+facets<span class="p">[</span><span class="m m-Decimal">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>FacetDeployment<span class="p">(</span>ownershipFacet<span class="p">,</span><span class="w"> </span>ownershipSelectors<span class="p">,</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">);</span>
+
+DiamondSettings<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>defaultSettings<span class="w"> </span><span class="o">=</span><span class="w"> </span>DiamondSettings<span class="p">(</span><span class="s2">&quot;NFT Marketplace&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;NFTM&quot;</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">));</span>
+
+<span class="kt">uint256</span><span class="w"> </span><span class="nv">templateId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>factory<span class="p">.</span>createDiamondTemplate<span class="p">(</span><span class="s2">&quot;NFT Marketplace&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Standard NFT marketplace with ERC721 support&quot;</span><span class="p">,</span><span class="w"> </span>facets<span class="p">,</span><span class="w"> </span>defaultSettings<span class="p">);</span>
+
+<span class="c1">// Deploy from template</span>
+DiamondSettings<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>customSettings<span class="w"> </span><span class="o">=</span><span class="w"> </span>DiamondSettings<span class="p">(</span><span class="s2">&quot;My Marketplace&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;MYM&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">);</span>
+<span class="kt">address</span><span class="w"> </span><span class="nv">diamond</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>factory<span class="p">.</span>createDiamondFromTemplate<span class="p">(</span>templateId<span class="p">,</span><span class="w"> </span>customSettings<span class="p">,</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">);</span>
+</code></pre></div>
+
+<h3 id="upgrade-timelock-integration">Upgrade Timelock Integration<a class="headerlink" href="#upgrade-timelock-integration" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="k">contract</span><span class="w"> </span><span class="ni">DiamondFactory</span><span class="w"> </span><span class="kt">is</span><span class="w"> </span>IDiamondFactory<span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="k">public </span><span class="nv">constant</span><span class="w"> </span>DEFAULT_UPGRADE_TIMELOCK<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">48</span><span class="w"> </span>hours<span class="p">;</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">createDiamond</span><span class="p">(</span>DiamondSettings<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>settings<span class="p">,</span><span class="w"> </span>FacetDeployment<span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>facets<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">diamondInit</span><span class="p">,</span><span class="w"> </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>initCalldata<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">diamond</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Deploy Diamond</span>
+<span class="w">        </span>diamond<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="kt">new</span><span class="w"> </span>Diamond<span class="p">());</span>
+
+<span class="w">        </span><span class="c1">// Initialize with facets</span>
+<span class="w">        </span>IDiamondCut<span class="p">.</span>FacetCut<span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>cuts<span class="w"> </span><span class="o">=</span><span class="w"> </span>_prepareFacetCuts<span class="p">(</span>facets<span class="p">);</span>
+<span class="w">        </span>IDiamond<span class="p">(</span>diamond<span class="p">).</span>initialize<span class="p">(</span>settings<span class="p">.</span>owner<span class="p">,</span><span class="w"> </span>settings<span class="p">,</span><span class="w"> </span>cuts<span class="p">,</span><span class="w"> </span>diamondInit<span class="p">,</span><span class="w"> </span>initCalldata<span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Set upgrade timelock</span>
+<span class="w">        </span>IUpgradeTimelock<span class="p">(</span>diamond<span class="p">).</span>initializeUpgradeTimelock<span class="p">(</span>DEFAULT_UPGRADE_TIMELOCK<span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Track deployment</span>
+<span class="w">        </span>_trackDeployment<span class="p">(</span>diamond<span class="p">,</span><span class="w"> </span>settings<span class="p">,</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">,</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">);</span>
+
+<span class="w">        </span>emit<span class="w"> </span>DiamondCreated<span class="p">(</span>diamond<span class="p">,</span><span class="w"> </span>settings<span class="p">.</span>owner<span class="p">,</span><span class="w"> </span>settings<span class="p">,</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>diamond<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="rationale">Rationale<a class="headerlink" href="#rationale" title="Permanent link">&para;</a></h2>
+<h3 id="factory-pattern-benefits">Factory Pattern Benefits<a class="headerlink" href="#factory-pattern-benefits" title="Permanent link">&para;</a></h3>
+<p>The factory pattern provides several advantages:
+- <strong>Consistency</strong>: Ensures all Diamonds are deployed with proper initialization
+- <strong>Security</strong>: Enforces security best practices like upgrade timelocks
+- <strong>Tracking</strong>: Enables tracking and verification of deployments
+- <strong>Tooling</strong>: Enables better tooling and infrastructure development</p>
+<h3 id="template-system">Template System<a class="headerlink" href="#template-system" title="Permanent link">&para;</a></h3>
+<p>Templates reduce deployment complexity and ensure consistent configurations for common use cases while still allowing customization.</p>
+<h3 id="upgrade-timelock-integration_1">Upgrade Timelock Integration<a class="headerlink" href="#upgrade-timelock-integration_1" title="Permanent link">&para;</a></h3>
+<p>Automatic upgrade timelock initialization ensures that deployed Diamonds have proper security measures in place from the start.</p>
+<h2 id="implementation-details">Implementation Details<a class="headerlink" href="#implementation-details" title="Permanent link">&para;</a></h2>
+<h3 id="diamond-deployment">Diamond Deployment<a class="headerlink" href="#diamond-deployment" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">_prepareFacetCuts</span><span class="p">(</span>FacetDeployment<span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>facets<span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>pure<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>IDiamondCut<span class="p">.</span>FacetCut<span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>cuts<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>cuts<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span>IDiamondCut<span class="p">.</span>FacetCut<span class="p">[](</span>facets<span class="p">.</span>length<span class="p">);</span>
+
+<span class="w">    </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>facets<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>cuts<span class="p">[</span>i<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>IDiamondCut<span class="p">.</span>FacetCut<span class="p">({</span>
+<span class="w">            </span>facetAddress<span class="o">:</span><span class="w"> </span>facets<span class="p">[</span>i<span class="p">].</span>facetAddress<span class="p">,</span>
+<span class="w">            </span>action<span class="o">:</span><span class="w"> </span>IDiamondCut<span class="p">.</span>FacetCutAction<span class="p">.</span>Add<span class="p">,</span>
+<span class="w">            </span>functionSelectors<span class="o">:</span><span class="w"> </span>facets<span class="p">[</span>i<span class="p">].</span>functionSelectors
+<span class="w">        </span><span class="p">});</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="template-storage">Template Storage<a class="headerlink" href="#template-storage" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span>DiamondTemplate<span class="p">)</span><span class="w"> </span><span class="kt">private</span><span class="w"> </span>templates<span class="p">;</span>
+<span class="kt">mapping</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[])</span><span class="w"> </span><span class="kt">private</span><span class="w"> </span>creatorToTemplates<span class="p">;</span>
+<span class="kt">uint256</span><span class="w"> </span><span class="k">private </span><span class="nv">nextTemplateId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">1</span><span class="p">;</span>
+
+<span class="kt">function</span><span class="w"> </span><span class="nv">createDiamondTemplate</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>name<span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>description<span class="p">,</span><span class="w"> </span>FacetDeployment<span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>facets<span class="p">,</span><span class="w"> </span>DiamondSettings<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>defaultSettings<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">templateId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>templateId<span class="w"> </span><span class="o">=</span><span class="w"> </span>nextTemplateId<span class="o">++</span><span class="p">;</span>
+
+<span class="w">    </span>templates<span class="p">[</span>templateId<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>DiamondTemplate<span class="p">({</span>
+<span class="w">        </span>name<span class="o">:</span><span class="w"> </span>name<span class="p">,</span>
+<span class="w">        </span>description<span class="o">:</span><span class="w"> </span>description<span class="p">,</span>
+<span class="w">        </span>facets<span class="o">:</span><span class="w"> </span>facets<span class="p">,</span>
+<span class="w">        </span>defaultSettings<span class="o">:</span><span class="w"> </span>defaultSettings<span class="p">,</span>
+<span class="w">        </span>active<span class="o">:</span><span class="w"> </span><span class="kt">true</span>
+<span class="w">    </span><span class="p">});</span>
+
+<span class="w">    </span>creatorToTemplates<span class="p">[</span><span class="k">msg.sender</span><span class="p">].</span>push<span class="p">(</span>templateId<span class="p">);</span>
+<span class="w">    </span>emit<span class="w"> </span>DiamondTemplateCreated<span class="p">(</span>templateId<span class="p">,</span><span class="w"> </span>name<span class="p">,</span><span class="w"> </span>description<span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="security-considerations">Security Considerations<a class="headerlink" href="#security-considerations" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Access Control</strong>: Proper access control for template management and facet deployment</li>
+<li><strong>Initialization Security</strong>: Secure handling of initialization parameters and calldata</li>
+<li><strong>Upgrade Timelock</strong>: Automatic enforcement of upgrade timelocks</li>
+<li><strong>Facet Validation</strong>: Validation of facet addresses and selectors</li>
+<li><strong>Template Integrity</strong>: Ensure template configurations are valid and secure</li>
+</ol>
+<h3 id="gas-optimization">Gas Optimization<a class="headerlink" href="#gas-optimization" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Efficient storage patterns for templates and deployment tracking</li>
+<li>Batch operations for multiple facet deployments</li>
+<li>Optimized Diamond initialization process</li>
+<li>Minimal redundant storage</li>
+</ul>
+<h2 id="backwards-compatibility">Backwards Compatibility<a class="headerlink" href="#backwards-compatibility" title="Permanent link">&para;</a></h2>
+<p>This standard is designed to work with existing Diamond Standard implementations and does not modify the core Diamond functionality.</p>
+<h2 id="integration-examples">Integration Examples<a class="headerlink" href="#integration-examples" title="Permanent link">&para;</a></h2>
+<h3 id="with-development-tools">With Development Tools<a class="headerlink" href="#with-development-tools" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Hardhat deployment script</span>
+const<span class="w"> </span>factory<span class="w"> </span><span class="o">=</span><span class="w"> </span>await<span class="w"> </span>ethers<span class="p">.</span>getContractAt<span class="p">(</span><span class="s2">&quot;IDiamondFactory&quot;</span><span class="p">,</span><span class="w"> </span>factoryAddress<span class="p">);</span>
+const<span class="w"> </span>diamond<span class="w"> </span><span class="o">=</span><span class="w"> </span>await<span class="w"> </span>factory<span class="p">.</span>createDiamondFromTemplate<span class="p">(</span>templateId<span class="p">,</span><span class="w"> </span>settings<span class="p">,</span><span class="w"> </span>initData<span class="p">);</span>
+</code></pre></div>
+
+<h3 id="with-frontend-applications">With Frontend Applications<a class="headerlink" href="#with-frontend-applications" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Web3 integration</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">factory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">web3</span><span class="p">.</span><span class="nx">eth</span><span class="p">.</span><span class="nx">Contract</span><span class="p">(</span><span class="nx">IDiamondFactory</span><span class="p">.</span><span class="nx">abi</span><span class="p">,</span><span class="w"> </span><span class="nx">factoryAddress</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">factory</span><span class="p">.</span><span class="nx">methods</span><span class="p">.</span><span class="nx">createDiamondFromTemplate</span><span class="p">(</span><span class="nx">templateId</span><span class="p">,</span><span class="w"> </span><span class="nx">settings</span><span class="p">,</span><span class="w"> </span><span class="nx">initData</span><span class="p">).</span><span class="nx">send</span><span class="p">({</span><span class="kr">from</span><span class="o">:</span><span class="w"> </span><span class="nx">account</span><span class="p">});</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">diamondAddress</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">result</span><span class="p">.</span><span class="nx">events</span><span class="p">.</span><span class="nx">DiamondCreated</span><span class="p">.</span><span class="nx">returnValues</span><span class="p">.</span><span class="nx">diamond</span><span class="p">;</span>
+</code></pre></div>
+
+<h2 id="test-cases">Test Cases<a class="headerlink" href="#test-cases" title="Permanent link">&para;</a></h2>
+<p>Comprehensive test cases should cover:
+- Diamond deployment with various facet configurations
+- Template creation and management
+- Template-based deployment
+- Deployment tracking and verification
+- Access control mechanisms
+- Edge cases and error conditions</p>
+<h2 id="reference-implementation">Reference Implementation<a class="headerlink" href="#reference-implementation" title="Permanent link">&para;</a></h2>
+<p>The reference implementation includes:
+- <a href="../contracts/DiamondFactory.sol"><code>DiamondFactory.sol</code></a> - Core factory contract
+- <a href="../contracts/interfaces/IDiamondFactory.sol"><code>IDiamondFactory.sol</code></a> - Interface definition
+- <a href="../contracts/libraries/DiamondFactoryLib.sol"><code>DiamondFactoryLib.sol</code></a> - Supporting library functions</p>
+<h2 id="copyright">Copyright<a class="headerlink" href="#copyright" title="Permanent link">&para;</a></h2>
+<p>Copyright and related rights waived via <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../EIP-DRAFT-Enhanced-Identity-System/" class="btn btn-neutral float-left" title="Enhanced Identity System"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../EIP-DRAFT-Carbon-Credit-Standard/" class="btn btn-neutral float-right" title="Carbon Credit Standard">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../EIP-DRAFT-Enhanced-Identity-System/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../EIP-DRAFT-Carbon-Credit-Standard/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

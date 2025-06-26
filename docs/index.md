@@ -15,6 +15,19 @@ Gemforce is a powerful blockchain-based platform that combines on-chain smart co
 
 The platform leverages the Diamond pattern (EIP-2535) for upgradeable smart contracts and integrates with DFNS for secure wallet management and the Bridge API for financial operations and compliance.
 
+### Innovation Through Standards
+
+Gemforce has developed a comprehensive suite of **Ethereum Improvement Proposals (EIPs)** that standardize innovative blockchain patterns and interfaces. These EIPs represent cutting-edge solutions for:
+
+- **Diamond-Enhanced Marketplaces** with configurable fee distribution
+- **Multi-Token Sales** supporting ERC20, ERC721, and ERC1155 tokens
+- **Collateralized Trade Deals** for invoice financing
+- **Enhanced Identity Systems** with trusted issuer management
+- **Diamond Factory Patterns** for standardized deployments
+- **Carbon Credit Standards** for environmental asset tokenization
+
+These standards are designed to work together as an interconnected ecosystem, providing the foundation for next-generation decentralized applications.
+
 ## Documentation Overview
 
 This documentation is organized to serve different user roles:
@@ -44,6 +57,23 @@ This documentation is organized to serve different user roles:
   <div class="grid-item">
     <h4><a href="gemforce-api-quick-reference/">Quick Reference</a></h4>
     <p>Concise guide to the most commonly used API endpoints and operations.</p>
+  </div>
+</div>
+
+### EIPs (Ethereum Improvement Proposals)
+
+<div class="grid-container">
+  <div class="grid-item">
+    <h4><a href="eips/index.md">EIP Overview</a></h4>
+    <p>Comprehensive collection of Ethereum Improvement Proposals developed by the Gemforce team.</p>
+    <ul>
+      <li>Diamond-Enhanced Marketplace</li>
+      <li>Multi-Token Sale Standard</li>
+      <li>Collateralized Trade Deal Standard</li>
+      <li>Enhanced Identity System</li>
+      <li>Diamond Factory Standard</li>
+      <li>Carbon Credit Standard</li>
+    </ul>
   </div>
 </div>
 
@@ -100,12 +130,13 @@ This documentation is organized to serve different user roles:
 
 New to Gemforce? Here's how to get started:
 
-1. Read the [System Architecture](gemforce-system-architecture/) to understand the platform's components
-2. Choose the appropriate guide based on your role:
-   - System administrators: [Administrator Guide](gemforce-administrator-guide/)
-   - DevOps engineers: [Deployer Guide](gemforce-deployer-guide/)
-   - Integration developers: [Integrator Guide](gemforce-integrator-guide/)
-3. Explore the [API Documentation](gemforce-api-documentation/) for detailed endpoint information
+1. Read the [System Architecture](system-architecture/gemforce-system-architecture.md) to understand the platform's components
+2. Explore the [EIPs](eips/index.md) to understand the innovative standards and patterns
+3. Choose the appropriate guide based on your role:
+   - System administrators: [Administrator Guide](gemforce-administrator-guide.md)
+   - DevOps engineers: [Deployer Guide](gemforce-deployer-guide.md)
+   - Integration developers: [Integrator Guide](gemforce-integrator-guide.md)
+4. Explore the [API Documentation](api-documentation/gemforce-api-documentation.md) for detailed endpoint information
 
 ## Support
 
