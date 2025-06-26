@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Gemforce Team" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>NFT Sale Utilities - Gemforce Documentation</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "NFT Sale Utilities";
+        var mkdocs_page_input_path = "sdk-libraries/nft-sale-utils.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Gemforce Documentation
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../developer-setup-guide/">Developer Setup Guide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../system-architecture/gemforce-system-architecture/">System Architecture</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Smart Contracts</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../smart-contracts/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../smart-contracts/diamond/">Diamond Contract</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../smart-contracts/diamond-factory/">Diamond Factory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../smart-contracts/identity-factory/">Identity Factory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Facets</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/marketplace-facet/">Marketplace Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/trade-deal-management-facet/">Trade Deal Management Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/carbon-credit-facet/">Carbon Credit Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/identity-registry-facet/">Identity Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/trusted-issuers-registry-facet/">Trusted Issuers Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/fee-distributor-facet/">Fee Distributor Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/gemforce-minter-facet/">Gemforce Minter Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/multi-sale-facet/">Multi Sale Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/svg-templates-facet/">SVG Templates Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/trade-deal-admin-facet/">Trade Deal Admin Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/trade-deal-operations-facet/">Trade Deal Operations Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/collateral-token-factory-facet/">Collateral Token Factory Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/diamond-cut-facet/">Diamond Cut Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/diamond-loupe-facet/">Diamond Loupe Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/ownership-facet/">Ownership Facet</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Interfaces</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/idiamond/">IDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/imarketplace/">IMarketplace</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/itradedeal/">ITradeDeal</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/icarbon-credit/">ICarbonCredit</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/ierc1155-mint/">IERC1155Mint</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/ierc734/">IERC734</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/ierc735/">IERC735</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/ierc721a/">IERC721A</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/idiamond-factory/">IDiamondFactory</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/iidentity/">IIdentity</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/imultisale/">IMultiSale</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/ifee-distributor/">IFeeDistributor</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/igemforce-minter-facet/">IGemforceMinterFacet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/iidentity-registry/">IIdentityRegistry</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/itrusted-issuers-registry/">TRUSTEDIssuersRegistry</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/isvg/">ISVG</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/iattribute/">IAttribute</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Libraries</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/carbon-credit-lib/">Carbon Credit Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/trade-deal-lib/">Trade Deal Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/multi-sale-lib/">Multi Sale Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/diamond-factory-lib/">Diamond Factory Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/svg-templates-lib/">SVG Templates Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/attribute-lib/">Attribute Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/variable-price-lib/">Variable Price Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/merkle-prover/">Merkle Prover</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/fee-distributor-lib/">Fee Distributor Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/lib-diamond/">LibDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/diamond-lib/">DiamondLib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/erc721a-lib/">ERC721A Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/erc721a-enumeration-lib/">ERC721A Enumeration Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/strings-lib/">Strings Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/trusted-issuer-lib/">Trusted Issuer Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/set-libraries/">Set Libraries</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">SDK & Libraries</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../blockchain/">Blockchain Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../diamond/">Diamond Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../contract/">Contract Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../deploy/">Deployment Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../validation-utils/">Validation Utilities</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">NFT Sale Utilities</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#key-functions">Key Functions</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#1-preparesaleconfigconfig-saleconfigdraft">1. prepareSaleConfig(config: SaleConfigDraft)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#2-approvenftforsalenftcontractaddress-string-tokenid-string-spenderaddress-string-network-string-signer-etherssigner">2. approveNFTForSale(nftContractAddress: string, tokenId: string, spenderAddress: string, network: string, signer: ethers.Signer)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#3-getnftcurrentpricesaleid-string-network-string-quantity-number">3. getNFTCurrentPrice(saleId: string, network: string, quantity?: number)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#4-buynftsaleid-string-quantity-number-network-string-signer-etherssigner-value-ethersbignumberish">4. buyNFT(saleId: string, quantity: number, network: string, signer: ethers.Signer, value?: ethers.BigNumberish)</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#error-handling">Error Handling</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#security-considerations">Security Considerations</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#related-documentation">Related Documentation</a>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Cloud Functions</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/authentication/">Authentication Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/auth-functions/">Auth Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/blockchain/">Blockchain Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/bridge/">Bridge Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/contracts/">Contract Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/deploy/">Deploy Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/dfns/">DFNS Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/project/">Project Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/trade-deal/">Trade Deal Functions</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">API Documentation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api-documentation/gemforce-api-documentation/">Full API Reference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api-documentation/gemforce-api-quick-reference/">Quick Reference</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Operations Tasks</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/diamond/">Diamond Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/identities/">Identity Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/marketplace-management/">Marketplace Management Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/carbon-credit-management/">Carbon Credit Management Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/trade-deal/">Trade Deal Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/integration-test/">Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/integration-test-marketplace/">Marketplace Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/integration-test-trade-deal/">Trade Deal Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/admin-utils/">Admin Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/sync-diamond/">Sync Diamond Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/sync-events/">Sync Events Tasks</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">EIPs (Ethereum Improvement Proposals)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../eips/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../eips/EIP-DRAFT-Diamond-Enhanced-Marketplace/">Diamond-Enhanced Marketplace</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../eips/EIP-DRAFT-Multi-Token-Sale-Standard/">Multi-Token Sale Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../eips/EIP-DRAFT-Collateralized-Trade-Deal-Standard/">Collateralized Trade Deal Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../eips/EIP-DRAFT-Enhanced-Identity-System/">Enhanced Identity System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../eips/EIP-DRAFT-Diamond-Factory-Standard/">Diamond Factory Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../eips/EIP-DRAFT-Carbon-Credit-Standard/">Carbon Credit Standard</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">User Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../gemforce-administrator-guide/">Administrator Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../gemforce-deployer-guide/">Deployer Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../gemforce-integrator-guide/">Integrator Guide</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Integrator's Guide</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrator-guide/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrator-guide/authentication/">Authentication</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrator-guide/rest-api/">REST API</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrator-guide/smart-contracts/">Smart Contracts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrator-guide/dfns/">DFNS Integration</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrator-guide/webhooks/">Webhooks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrator-guide/error-handling/">Error Handling</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrator-guide/sample-code/">Sample Code</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrator-guide/integration-patterns/">Integration Patterns</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrator-guide/security/">Security</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../external-services/gemforce-external-services/">External Services</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../gemforce-documentation-gap-analysis/">Documentation Gap Analysis</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../documentation-progress-summary/">Documentation Progress Summary</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../documentation-plan/">Documentation Plan</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Gemforce Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">SDK & Libraries</li>
+      <li class="breadcrumb-item active">NFT Sale Utilities</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="sdk-libraries-nft-sale-utilities">SDK &amp; Libraries: NFT Sale Utilities<a class="headerlink" href="#sdk-libraries-nft-sale-utilities" title="Permanent link">&para;</a></h1>
+<p>This document describes the <code>nft-sale-utils.ts</code> library, a utility module within the Gemforce SDK designed to simplify interactions related to NFT sales, especially those leveraging the <code>IMultiSale</code> interface or <code>MultiSaleFacet</code>. It provides helper functions for common tasks such as preparing sale parameters, interacting with payment tokens, and managing NFT transfers within a sale context.</p>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>The <code>nft-sale-utils.ts</code> library offers:</p>
+<ul>
+<li><strong>Sale Parameter Preparation</strong>: Helpers to format and validate data for NFT sale contracts.</li>
+<li><strong>Token Operations</strong>: Simplifies interactions with ERC-20 and ERC-721/1155 tokens relevant to sales (e.g., approvals, balance checks).</li>
+<li><strong>Price Calculation</strong>: Integrates with variable pricing mechanisms (if used) to determine current NFT prices.</li>
+<li><strong>Sale Status Query</strong>: Functions to query the status of active sales.</li>
+</ul>
+<p>This library aims to reduce the complexity of developing applications that participate in or manage NFT sales on the Gemforce platform.</p>
+<h2 id="key-functions">Key Functions<a class="headerlink" href="#key-functions" title="Permanent link">&para;</a></h2>
+<h3 id="1-preparesaleconfigconfig-saleconfigdraft">1. <code>prepareSaleConfig(config: SaleConfigDraft)</code><a class="headerlink" href="#1-preparesaleconfigconfig-saleconfigdraft" title="Permanent link">&para;</a></h3>
+<p>Prepares a <code>SaleConfig</code> object for creating a new NFT sale, converting amounts to appropriate formats (e.g., Wei) and performing basic validations.</p>
+<p><strong>Function Signature</strong>:
+<code>prepareSaleConfig(config: SaleConfigDraft): IMultiSale.SaleConfigStruct</code></p>
+<p><strong>Parameters</strong>:</p>
+<ul>
+<li><code>config</code> (SaleConfigDraft, required): A draft configuration object containing sale details.</li>
+</ul>
+<p><strong>Returns</strong>:
+-   <code>IMultiSale.SaleConfigStruct</code>: A fully prepared <code>SaleConfigStruct</code> ready to be sent to an <code>IMultiSale</code> contract or <code>MultiSaleFacet</code>.</p>
+<p><strong>Example Usage</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">prepareSaleConfig</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@gemforce-sdk/nft-sale-utils&#39;</span><span class="p">;</span><span class="w"> </span><span class="c1">// Assuming this import path</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ethers</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;ethers&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">IMultiSale</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@gemforce/interfaces&#39;</span><span class="p">;</span><span class="w"> </span><span class="c1">// Import IMultiSale for type definition</span>
+
+<span class="kd">interface</span><span class="w"> </span><span class="nx">SaleConfigDraft</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">sellerAddress</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">nftContractAddress</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">tokenId?</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span><span class="w"> </span><span class="c1">// For ERC721 specific listings, leave undefined for general sales</span>
+<span class="w">    </span><span class="nx">tokenType</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;ERC721&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;ERC1155&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;ERC20&#39;</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">totalAmount?</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span><span class="w"> </span><span class="c1">// Total number of items for sale (for ERC721 total supply, or ERC1155/ERC20 amount)</span>
+<span class="w">    </span><span class="nx">pricePerUnit</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span><span class="w"> </span><span class="c1">// As a decimal string (e.g., &quot;0.1&quot;, &quot;100&quot;)</span>
+<span class="w">    </span><span class="nx">paymentTokenSymbol</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span><span class="w"> </span><span class="c1">// e.g., &quot;ETH&quot;, &quot;USDC&quot;</span>
+<span class="w">    </span><span class="nx">durationInDays</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">maxPurchasePerAddress?</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">isWhitelistedSale?</span><span class="o">:</span><span class="w"> </span><span class="kt">boolean</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">initialReceiverAddress?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">feePercentage?</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span><span class="w"> </span><span class="c1">// In basis points, e.g., 500 for 5%</span>
+<span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">description</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">createNewNFTSale</span><span class="p">(</span><span class="nx">saleDraft</span><span class="o">:</span><span class="w"> </span><span class="kt">SaleConfigDraft</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">preparedConfig</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">prepareSaleConfig</span><span class="p">(</span><span class="nx">saleDraft</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Example: Now send this preparedConfig to your MultiSaleFacet via a Cloud Function</span>
+<span class="w">        </span><span class="c1">// or directly to the smart contract.</span>
+<span class="w">        </span><span class="c1">// await callCloudFunction(&quot;createNFTSale&quot;, { preparedConfig, network: &quot;sepolia&quot; });</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Prepared Sale Config:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">preparedConfig</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">preparedConfig</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;Error preparing sale config:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">);</span>
+<span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="nx">error</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Example:</span>
+<span class="c1">// createNewNFTSale({</span>
+<span class="c1">//     sellerAddress: &quot;0x...&quot;,</span>
+<span class="c1">//     nftContractAddress: &quot;0x...&quot;,</span>
+<span class="c1">//     tokenType: &quot;ERC721&quot;,</span>
+<span class="c1">//     pricePerUnit: &quot;0.05&quot;,</span>
+<span class="c1">//     paymentTokenSymbol: &quot;ETH&quot;,</span>
+<span class="c1">//     durationInDays: 7,</span>
+<span class="c1">//     name: &quot;Limited Edition NFT&quot;,</span>
+<span class="c1">//     description: &quot;A cool new NFT collection.&quot;</span>
+<span class="c1">// });</span>
+</code></pre></div>
+
+<h3 id="2-approvenftforsalenftcontractaddress-string-tokenid-string-spenderaddress-string-network-string-signer-etherssigner">2. <code>approveNFTForSale(nftContractAddress: string, tokenId: string, spenderAddress: string, network: string, signer: ethers.Signer)</code><a class="headerlink" href="#2-approvenftforsalenftcontractaddress-string-tokenid-string-spenderaddress-string-network-string-signer-etherssigner" title="Permanent link">&para;</a></h3>
+<p>Ensures that the <code>IMultiSale</code> contract (or <code>MultiSaleFacet</code>) has the necessary approval to transfer a user's NFT.</p>
+<p><strong>Function Signature</strong>:
+<code>approveNFTForSale(nftContractAddress: string, tokenId: string, spenderAddress: string, network: string, signer: ethers.Signer): Promise&lt;ethers.providers.TransactionReceipt&gt;</code></p>
+<p><strong>Parameters</strong>:</p>
+<ul>
+<li><code>nftContractAddress</code> (String, required): The address of the NFT contract (ERC721 or ERC1155).</li>
+<li><code>tokenId</code> (String, required): The ID of the specific NFT. (For ERC1155, this might be a type ID).</li>
+<li><code>spenderAddress</code> (String, required): The address of the marketplace or sale contract that needs approval.</li>
+<li><code>network</code> (String, required): The blockchain network.</li>
+<li><code>signer</code> (ethers.Signer, required): The <code>ethers.Signer</code> of the NFT owner.</li>
+</ul>
+<p><strong>Returns</strong>:
+-   <code>Promise&lt;ethers.providers.TransactionReceipt&gt;</code>: A Promise that resolves to the transaction receipt for the approval.</p>
+<h3 id="3-getnftcurrentpricesaleid-string-network-string-quantity-number">3. <code>getNFTCurrentPrice(saleId: string, network: string, quantity?: number)</code><a class="headerlink" href="#3-getnftcurrentpricesaleid-string-network-string-quantity-number" title="Permanent link">&para;</a></h3>
+<p>Retrieves the current price of an NFT from a sale, considering potential dynamic pricing mechanisms.</p>
+<p><strong>Function Signature</strong>:
+<code>getNFTCurrentPrice(saleId: string, network: string, quantity?: number): Promise&lt;ethers.BigNumber&gt;</code></p>
+<p><strong>Parameters</strong>:</p>
+<ul>
+<li><code>saleId</code> (String, required): The unique ID of the sale.</li>
+<li><code>network</code> (String, required): The blockchain network.</li>
+<li><code>quantity</code> (Number, optional): The quantity for which to calculate the price (defaults to 1).</li>
+</ul>
+<p><strong>Returns</strong>:
+-   <code>Promise&lt;ethers.BigNumber&gt;</code>: A Promise that resolves to the current price in Wei or base units of the payment token.</p>
+<h3 id="4-buynftsaleid-string-quantity-number-network-string-signer-etherssigner-value-ethersbignumberish">4. <code>buyNFT(saleId: string, quantity: number, network: string, signer: ethers.Signer, value?: ethers.BigNumberish)</code><a class="headerlink" href="#4-buynftsaleid-string-quantity-number-network-string-signer-etherssigner-value-ethersbignumberish" title="Permanent link">&para;</a></h3>
+<p>Facilitates the purchase of NFTs from a sale. This function handles sending the transaction to the appropriate marketplace contract.</p>
+<p><strong>Function Signature</strong>:
+<code>buyNFT(saleId: string, quantity: number, network: string, signer: ethers.Signer, value?: ethers.BigNumberish): Promise&lt;ethers.providers.TransactionReceipt&gt;</code></p>
+<p><strong>Parameters</strong>:</p>
+<ul>
+<li><code>saleId</code> (String, required): The ID of the sale from which to buy.</li>
+<li><code>quantity</code> (Number, required): The number of NFTs to purchase.</li>
+<li><code>network</code> (String, required): The blockchain network.</li>
+<li><code>signer</code> (ethers.Signer, required): The <code>ethers.Signer</code> of the buyer.</li>
+<li><code>value</code> (ethers.BigNumberish, optional): The amount of native currency (ETH) to send with the transaction, if the payment token is ETH.</li>
+</ul>
+<p><strong>Returns</strong>:
+-   <code>Promise&lt;ethers.providers.TransactionReceipt&gt;</code>: A Promise that resolves to the transaction receipt.</p>
+<h2 id="error-handling">Error Handling<a class="headerlink" href="#error-handling" title="Permanent link">&para;</a></h2>
+<p>NFT Sale Utilities can encounter various errors:</p>
+<ul>
+<li><strong>Approval Failures</strong>: If the necessary token approvals are missing.</li>
+<li><strong>Insufficient Funds/Tokens</strong>: Buyer or seller lacks balance.</li>
+<li><strong>Sale Logic Errors</strong>: Issues from the underlying <code>IMultiSale</code> contract (e.g., sale ended, invalid quantity).</li>
+<li><strong>Network/Transaction Issues</strong>: Standard blockchain errors.</li>
+</ul>
+<p>Refer to the <a href="../../integrator-guide/error-handling/">Integrator's Guide: Error Handling</a> for general error handling strategies.</p>
+<h2 id="security-considerations">Security Considerations<a class="headerlink" href="#security-considerations" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Token Approvals</strong>: Always guide users through the approval process securely. Ensure approvals are granted to the correct, audited marketplace contract address.</li>
+<li><strong>Price Sanity Checks</strong>: On the client-side, perform sanity checks on the <code>getNFTCurrentPrice</code> return value to prevent unexpected high costs.</li>
+<li><strong>Phishing/Scam Prevention</strong>: Educate users about verifying contract addresses and ensuring they are interacting with the genuine Gemforce marketplace.</li>
+<li><strong>Private Key Management</strong>: All transaction-sending functions (<code>approveNFTForSale</code>, <code>buyNFT</code>) rely on a <code>signer</code>. Ensure private keys backing this signer are managed with utmost security.</li>
+</ul>
+<h2 id="related-documentation">Related Documentation<a class="headerlink" href="#related-documentation" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../../smart-contracts/interfaces/imultisale/">Smart Contracts: IMultiSale Interface</a></li>
+<li><a href="../../smart-contracts/facets/multi-sale-facet/">Smart Contracts: Multi Sale Facet</a></li>
+<li><a href="../blockchain/">SDK &amp; Libraries: Blockchain Utilities</a></li>
+<li><a href="../contract/">SDK &amp; Libraries: Contract Utilities</a></li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../validation-utils/" class="btn btn-neutral float-left" title="Validation Utilities"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../cloud-functions/" class="btn btn-neutral float-right" title="Overview">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../validation-utils/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../cloud-functions/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

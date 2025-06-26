@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Gemforce Team" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>ISVG - Gemforce Documentation</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "ISVG";
+        var mkdocs_page_input_path = "smart-contracts/interfaces/isvg.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../.." class="icon icon-home"> Gemforce Documentation
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../developer-setup-guide/">Developer Setup Guide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../system-architecture/gemforce-system-architecture/">System Architecture</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Smart Contracts</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../diamond/">Diamond Contract</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../diamond-factory/">Diamond Factory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../identity-factory/">Identity Factory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Facets</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/marketplace-facet/">Marketplace Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trade-deal-management-facet/">Trade Deal Management Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/carbon-credit-facet/">Carbon Credit Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/identity-registry-facet/">Identity Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trusted-issuers-registry-facet/">Trusted Issuers Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/fee-distributor-facet/">Fee Distributor Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/gemforce-minter-facet/">Gemforce Minter Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/multi-sale-facet/">Multi Sale Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/svg-templates-facet/">SVG Templates Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trade-deal-admin-facet/">Trade Deal Admin Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trade-deal-operations-facet/">Trade Deal Operations Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/collateral-token-factory-facet/">Collateral Token Factory Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/diamond-cut-facet/">Diamond Cut Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/diamond-loupe-facet/">Diamond Loupe Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/ownership-facet/">Ownership Facet</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" >Interfaces</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" href="../idiamond/">IDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../imarketplace/">IMarketplace</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../itradedeal/">ITradeDeal</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../icarbon-credit/">ICarbonCredit</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../ierc1155-mint/">IERC1155Mint</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../ierc734/">IERC734</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../ierc735/">IERC735</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../ierc721a/">IERC721A</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../idiamond-factory/">IDiamondFactory</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../iidentity/">IIdentity</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../imultisale/">IMultiSale</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../ifee-distributor/">IFeeDistributor</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../igemforce-minter-facet/">IGemforceMinterFacet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../iidentity-registry/">IIdentityRegistry</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../itrusted-issuers-registry/">TRUSTEDIssuersRegistry</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">ISVG</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#overview">Overview</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#key-features">Key Features</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#svg-rendering">SVG Rendering</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#template-and-asset-management">Template and Asset Management</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#metadata-integration">Metadata Integration</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#interface-definition">Interface Definition</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#core-functions">Core Functions</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#rendersvg">renderSVG()</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#addtemplate">addTemplate()</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#addfragment">addFragment()</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#implementation-example">Implementation Example</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#security-considerations">Security Considerations</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#access-control">Access Control</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#gas-costs">Gas Costs</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#input-validation">Input Validation</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#best-practices">Best Practices</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#off-chain-rendering-alternative">Off-chain Rendering (Alternative)</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#template-design">Template Design</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#data-uri-length">Data URI Length</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#integration-examples">Integration Examples</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#frontend-integration-react-with-ethersjs">Frontend Integration (React with Ethers.js)</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#backend-integration-nodejsweb3js-for-off-chain-metadata-generation">Backend Integration (Node.js/Web3.js for off-chain metadata generation)</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#related-documentation">Related Documentation</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#standards-compliance">Standards Compliance</a>
+    </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../iattribute/">IAttribute</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Libraries</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/carbon-credit-lib/">Carbon Credit Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/trade-deal-lib/">Trade Deal Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/multi-sale-lib/">Multi Sale Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/diamond-factory-lib/">Diamond Factory Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/svg-templates-lib/">SVG Templates Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/attribute-lib/">Attribute Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/variable-price-lib/">Variable Price Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/merkle-prover/">Merkle Prover</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/fee-distributor-lib/">Fee Distributor Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/lib-diamond/">LibDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/diamond-lib/">DiamondLib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/erc721a-lib/">ERC721A Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/erc721a-enumeration-lib/">ERC721A Enumeration Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/strings-lib/">Strings Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/trusted-issuer-lib/">Trusted Issuer Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/set-libraries/">Set Libraries</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">SDK & Libraries</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/blockchain/">Blockchain Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/diamond/">Diamond Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/contract/">Contract Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/deploy/">Deployment Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/validation-utils/">Validation Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/nft-sale-utils/">NFT Sale Utilities</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Cloud Functions</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/authentication/">Authentication Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/auth-functions/">Auth Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/blockchain/">Blockchain Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/bridge/">Bridge Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/contracts/">Contract Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/deploy/">Deploy Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/dfns/">DFNS Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/project/">Project Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/trade-deal/">Trade Deal Functions</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">API Documentation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../api-documentation/gemforce-api-documentation/">Full API Reference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../api-documentation/gemforce-api-quick-reference/">Quick Reference</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Operations Tasks</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/diamond/">Diamond Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/identities/">Identity Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/marketplace-management/">Marketplace Management Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/carbon-credit-management/">Carbon Credit Management Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/trade-deal/">Trade Deal Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/integration-test/">Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/integration-test-marketplace/">Marketplace Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/integration-test-trade-deal/">Trade Deal Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/admin-utils/">Admin Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/sync-diamond/">Sync Diamond Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/sync-events/">Sync Events Tasks</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">EIPs (Ethereum Improvement Proposals)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Diamond-Enhanced-Marketplace/">Diamond-Enhanced Marketplace</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Multi-Token-Sale-Standard/">Multi-Token Sale Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Collateralized-Trade-Deal-Standard/">Collateralized Trade Deal Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Enhanced-Identity-System/">Enhanced Identity System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Diamond-Factory-Standard/">Diamond Factory Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Carbon-Credit-Standard/">Carbon Credit Standard</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">User Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-administrator-guide/">Administrator Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-deployer-guide/">Deployer Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-integrator-guide/">Integrator Guide</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Integrator's Guide</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/authentication/">Authentication</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/rest-api/">REST API</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/smart-contracts/">Smart Contracts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/dfns/">DFNS Integration</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/webhooks/">Webhooks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/error-handling/">Error Handling</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/sample-code/">Sample Code</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/integration-patterns/">Integration Patterns</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/security/">Security</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../external-services/gemforce-external-services/">External Services</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-documentation-gap-analysis/">Documentation Gap Analysis</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../documentation-progress-summary/">Documentation Progress Summary</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../documentation-plan/">Documentation Plan</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">Gemforce Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Smart Contracts</li>
+          <li class="breadcrumb-item">Interfaces</li>
+      <li class="breadcrumb-item active">ISVG</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="isvg-interface">ISVG Interface<a class="headerlink" href="#isvg-interface" title="Permanent link">&para;</a></h1>
+<p>The <code>ISVG</code> interface defines the standard for smart contracts that generate and manage Scalable Vector Graphics (SVG) on-chain. This interface is crucial for creating dynamic and algorithmically generated NFT art, badges, or other visual assets directly from smart contracts within the Gemforce ecosystem.</p>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p><code>ISVG</code> provides:</p>
+<ul>
+<li><strong>SVG Generation</strong>: Functions to generate complete SVG strings based on input parameters.</li>
+<li><strong>Template Management</strong>: Mechanisms for managing and combining SVG templates.</li>
+<li><strong>Render Parameterization</strong>: Allow for dynamic data to influence SVG output.</li>
+<li><strong>Data Encoding</strong>: Efficiently encode visual data on-chain.</li>
+</ul>
+<h2 id="key-features">Key Features<a class="headerlink" href="#key-features" title="Permanent link">&para;</a></h2>
+<h3 id="svg-rendering">SVG Rendering<a class="headerlink" href="#svg-rendering" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong><code>renderSVG()</code></strong>: Main function to produce a final SVG string.</li>
+<li><strong>Dynamic Elements</strong>: Support for injecting data (colors, shapes, text, etc.) into templates.</li>
+<li><strong>Component Assembly</strong>: Combine smaller SVG components into a larger scene.</li>
+</ul>
+<h3 id="template-and-asset-management">Template and Asset Management<a class="headerlink" href="#template-and-asset-management" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Store Templates</strong>: On-chain storage for SVG fragments or predefined layers.</li>
+<li><strong>Reference Assets</strong>: Ability to reference other on-chain or off-chain assets (e.g., fonts, images encoded as base64).</li>
+<li><strong>Template Composition</strong>: Logic to mix and match predefined SVG elements.</li>
+</ul>
+<h3 id="metadata-integration">Metadata Integration<a class="headerlink" href="#metadata-integration" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Can be used to generate SVG content that forms the <code>image</code> field in ERC721 metadata URIs.</li>
+</ul>
+<h2 id="interface-definition">Interface Definition<a class="headerlink" href="#interface-definition" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span><code>interface<span class="w"> </span>ISVG<span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Events</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">SVGGenerated</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>tokenId<span class="p">,</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>svgType<span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>version<span class="p">,</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">svgDataURI</span>
+<span class="w">    </span><span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">TemplateAdded</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>templateName<span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>version<span class="p">,</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>creator
+<span class="w">    </span><span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">TemplateUpdated</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>templateName<span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>version<span class="p">,</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>updater
+<span class="w">    </span><span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">FragmentAdded</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>fragmentName<span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>version<span class="p">,</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>creator
+<span class="w">    </span><span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">FragmentUpdated</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>fragmentName<span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>version<span class="p">,</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>updater
+<span class="w">    </span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Structs</span>
+<span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">SVGTemplate</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">name</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">version</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">content</span><span class="p">;</span><span class="w"> </span><span class="c1">// Base SVG structure, often with placeholders</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">active</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">creator</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">createdAt</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">SVGFragment</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">name</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">version</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">content</span><span class="p">;</span><span class="w"> </span><span class="c1">// Reusable SVG snippets</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">creator</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">createdAt</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Core SVG Generation Functions</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">renderSVG</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">calldata</span><span class="w"> </span>templateName<span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">templateVersion</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">calldata</span><span class="w"> </span>data
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>svgURI<span class="p">);</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getRenderedSVG</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>svgURI<span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Template Management Functions</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">addTemplate</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">calldata</span><span class="w"> </span>name<span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">version</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">calldata</span><span class="w"> </span>content
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">updateTemplate</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">calldata</span><span class="w"> </span>name<span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">version</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">calldata</span><span class="w"> </span>newContent
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getTemplate</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">calldata</span><span class="w"> </span>name<span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">version</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>SVGTemplate<span class="w"> </span><span class="kt">memory</span><span class="p">);</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">deactivateTemplate</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">calldata</span><span class="w"> </span>name<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">version</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// Fragment Management Functions</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">addFragment</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">calldata</span><span class="w"> </span>name<span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">version</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">calldata</span><span class="w"> </span>content
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">updateFragment</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">calldata</span><span class="w"> </span>name<span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">version</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">calldata</span><span class="w"> </span>newContent
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getFragment</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">calldata</span><span class="w"> </span>name<span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">version</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>SVGFragment<span class="w"> </span><span class="kt">memory</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// View Functions for Listing</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getTemplateNames</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getAvailableVersions</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">calldata</span><span class="w"> </span>templateName<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getFragmentNames</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="core-functions">Core Functions<a class="headerlink" href="#core-functions" title="Permanent link">&para;</a></h2>
+<h3 id="rendersvg">renderSVG()<a class="headerlink" href="#rendersvg" title="Permanent link">&para;</a></h3>
+<p>Generates and returns a data URI (typically base64-encoded) containing the complete SVG image. This function takes a template name, version, and dynamic data as input to customize the output.</p>
+<p><strong>Parameters:</strong>
+- <code>templateName</code>: The name of the SVG template to use.
+- <code>templateVersion</code>: The version of the template.
+- <code>data</code>: ABI-encoded bytes containing dynamic parameters (e.g., colors, text, numbers) to be inserted into the SVG template.</p>
+<p><strong>Returns:</strong>
+- <code>string</code>: A data URI (e.g., <code>data:image/svg+xml;base64,...</code>) containing the generated SVG.</p>
+<p><strong>Usage:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Example: Render an SVG for a token, passing color and text details</span>
+<span class="kt">bytes</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>renderData<span class="w"> </span><span class="o">=</span><span class="w"> </span>abi<span class="p">.</span>encode<span class="p">(</span>
+<span class="w">    </span><span class="s2">&quot;red&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;Hello Gemforce!&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="m m-Decimal">123</span>
+<span class="p">);</span>
+<span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>svgDataURI<span class="w"> </span><span class="o">=</span><span class="w"> </span>svgContract<span class="p">.</span>renderSVG<span class="p">(</span><span class="s2">&quot;CryptoBadge&quot;</span><span class="p">,</span><span class="w"> </span><span class="m m-Decimal">1</span><span class="p">,</span><span class="w"> </span>renderData<span class="p">);</span>
+</code></pre></div>
+
+<h3 id="addtemplate">addTemplate()<a class="headerlink" href="#addtemplate" title="Permanent link">&para;</a></h3>
+<p>Adds a new SVG template to the contract's storage. Templates are typically base SVG structures with placeholders for dynamic data.</p>
+<p><strong>Parameters:</strong>
+- <code>name</code>: A unique name for the template.
+- <code>version</code>: A version number for the template.
+- <code>content</code>: The raw SVG string content (with placeholders).</p>
+<p><strong>Access Control:</strong>
+- Typically restricted to the contract owner or an authorized administrator.</p>
+<h3 id="addfragment">addFragment()<a class="headerlink" href="#addfragment" title="Permanent link">&para;</a></h3>
+<p>Adds a reusable SVG fragment (e.g., a common icon, a repeating pattern) to the contract's storage. Fragments can be embedded into templates.</p>
+<p><strong>Parameters:</strong>
+- <code>name</code>: A unique name for the fragment.
+- <code>version</code>: A version number for the fragment.
+- <code>content</code>: The raw SVG string content of the fragment.</p>
+<h2 id="implementation-example">Implementation Example<a class="headerlink" href="#implementation-example" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span><code><span class="kt">import</span><span class="w"> </span><span class="s2">&quot;@openzeppelin/contracts/access/Ownable.sol&quot;</span><span class="p">;</span>
+<span class="kt">import</span><span class="w"> </span><span class="s2">&quot;@openzeppelin/contracts/utils/Base64.sol&quot;</span><span class="p">;</span>
+<span class="c1">// Optional: Using StringUtils for more complex string manipulation if not available</span>
+<span class="c1">// import &quot;./libraries/StringUtils.sol&quot;; </span>
+
+<span class="k">contract</span><span class="w"> </span><span class="ni">SVGGenerator</span><span class="w"> </span><span class="kt">is</span><span class="w"> </span>ISVG<span class="p">,</span><span class="w"> </span>Ownable<span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Mapping for SVG templates: name =&gt; version =&gt; SVGTemplate</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span>SVGTemplate<span class="p">))</span><span class="w"> </span><span class="kt">private</span><span class="w"> </span>_templates<span class="p">;</span>
+<span class="w">    </span><span class="c1">// Mapping for SVG fragments: name =&gt; version =&gt; SVGFragment</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span>SVGFragment<span class="p">))</span><span class="w"> </span><span class="kt">private</span><span class="w"> </span>_fragments<span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// To list available templates and fragments</span>
+<span class="w">    </span><span class="kt">string</span><span class="p">[]</span><span class="w"> </span><span class="kt">private</span><span class="w"> </span>_templateNames<span class="p">;</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[])</span><span class="w"> </span><span class="kt">private</span><span class="w"> </span>_templateVersions<span class="p">;</span>
+<span class="w">    </span><span class="kt">string</span><span class="p">[]</span><span class="w"> </span><span class="kt">private</span><span class="w"> </span>_fragmentNames<span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// Assuming a mapping from tokenId to its SVG data URI is maintained elsewhere or generated on the fly per request</span>
+<span class="w">    </span><span class="c1">// This example focuses on the generation logic itself.</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span><span class="w"> </span><span class="kt">private</span><span class="w"> </span>_renderedSVGStorage<span class="p">;</span><span class="w"> </span><span class="c1">// For getRenderedSVG if needed for persistence</span>
+
+<span class="w">    </span><span class="kt">constructor</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Initial setup or placeholders can be added here</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">addTemplate</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">calldata</span><span class="w"> </span>name<span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">version</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">calldata</span><span class="w"> </span>content
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>override<span class="w"> </span>onlyOwner<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span><span class="kt">bytes</span><span class="p">(</span>name<span class="p">).</span>length<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Name cannot be empty&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span><span class="kt">bytes</span><span class="p">(</span>content<span class="p">).</span>length<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Content cannot be empty&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>_templates<span class="p">[</span>name<span class="p">][</span>version<span class="p">].</span>creator<span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">),</span><span class="w"> </span><span class="s2">&quot;Template already exists&quot;</span><span class="p">);</span>
+
+<span class="w">        </span>_templates<span class="p">[</span>name<span class="p">][</span>version<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>SVGTemplate<span class="p">({</span>
+<span class="w">            </span>name<span class="o">:</span><span class="w"> </span>name<span class="p">,</span>
+<span class="w">            </span>version<span class="o">:</span><span class="w"> </span>version<span class="p">,</span>
+<span class="w">            </span>content<span class="o">:</span><span class="w"> </span>content<span class="p">,</span>
+<span class="w">            </span>active<span class="o">:</span><span class="w"> </span><span class="kt">true</span><span class="p">,</span>
+<span class="w">            </span>creator<span class="o">:</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">,</span>
+<span class="w">            </span>createdAt<span class="o">:</span><span class="w"> </span><span class="k">block.timestamp</span>
+<span class="w">        </span><span class="p">});</span>
+
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">nameExists</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">false</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">for</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="o">=</span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="o">&lt;</span>_templateNames<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">){</span>
+<span class="w">            </span><span class="kt">if</span><span class="p">(</span><span class="nb">keccak256</span><span class="p">(</span>abi<span class="p">.</span>encodePacked<span class="p">(</span>_templateNames<span class="p">[</span>i<span class="p">]))</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">keccak256</span><span class="p">(</span>abi<span class="p">.</span>encodePacked<span class="p">(</span>name<span class="p">))){</span>
+<span class="w">                </span>nameExists<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">true</span><span class="p">;</span>
+<span class="w">                </span><span class="kt">break</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="kt">if</span><span class="p">(</span><span class="o">!</span>nameExists<span class="p">){</span>
+<span class="w">            </span>_templateNames<span class="p">.</span>push<span class="p">(</span>name<span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span>_templateVersions<span class="p">[</span>name<span class="p">].</span>push<span class="p">(</span>version<span class="p">);</span>
+
+<span class="w">        </span>emit<span class="w"> </span>TemplateAdded<span class="p">(</span>name<span class="p">,</span><span class="w"> </span>version<span class="p">,</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">updateTemplate</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">calldata</span><span class="w"> </span>name<span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">version</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">calldata</span><span class="w"> </span>newContent
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>override<span class="w"> </span>onlyOwner<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>SVGTemplate<span class="w"> </span>storage<span class="w"> </span>templateEntry<span class="w"> </span><span class="o">=</span><span class="w"> </span>_templates<span class="p">[</span>name<span class="p">][</span>version<span class="p">];</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>templateEntry<span class="p">.</span>creator<span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">),</span><span class="w"> </span><span class="s2">&quot;Template not found&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span><span class="kt">bytes</span><span class="p">(</span>newContent<span class="p">).</span>length<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Content cannot be empty&quot;</span><span class="p">);</span>
+
+<span class="w">        </span>templateEntry<span class="p">.</span>content<span class="w"> </span><span class="o">=</span><span class="w"> </span>newContent<span class="p">;</span>
+<span class="w">        </span>templateEntry<span class="p">.</span>lastUpdated<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">block.timestamp</span><span class="p">;</span><span class="w"> </span><span class="c1">// Assuming a &#39;lastUpdated&#39; field in struct</span>
+<span class="w">        </span>emit<span class="w"> </span>TemplateUpdated<span class="p">(</span>name<span class="p">,</span><span class="w"> </span>version<span class="p">,</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">deactivateTemplate</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">calldata</span><span class="w"> </span>name<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">version</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>override<span class="w"> </span>onlyOwner<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>SVGTemplate<span class="w"> </span>storage<span class="w"> </span>templateEntry<span class="w"> </span><span class="o">=</span><span class="w"> </span>_templates<span class="p">[</span>name<span class="p">][</span>version<span class="p">];</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>templateEntry<span class="p">.</span>creator<span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">),</span><span class="w"> </span><span class="s2">&quot;Template not found&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>templateEntry<span class="p">.</span>active<span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kt">true</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Template already inactive&quot;</span><span class="p">);</span>
+<span class="w">        </span>templateEntry<span class="p">.</span>active<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">false</span><span class="p">;</span>
+<span class="w">        </span><span class="c1">// Optionally remove from _templateVersions or _templateNames if no active versions remain</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getTemplate</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">calldata</span><span class="w"> </span>name<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">version</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span>override<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>SVGTemplate<span class="w"> </span><span class="kt">memory</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>SVGTemplate<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>templateEntry<span class="w"> </span><span class="o">=</span><span class="w"> </span>_templates<span class="p">[</span>name<span class="p">][</span>version<span class="p">];</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>templateEntry<span class="p">.</span>creator<span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">),</span><span class="w"> </span><span class="s2">&quot;Template not found&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>templateEntry<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">addFragment</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">calldata</span><span class="w"> </span>name<span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">version</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">calldata</span><span class="w"> </span>content
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>override<span class="w"> </span>onlyOwner<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span><span class="kt">bytes</span><span class="p">(</span>name<span class="p">).</span>length<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Name cannot be empty&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span><span class="kt">bytes</span><span class="p">(</span>content<span class="p">).</span>length<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Content cannot be empty&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>_fragments<span class="p">[</span>name<span class="p">][</span>version<span class="p">].</span>creator<span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">),</span><span class="w"> </span><span class="s2">&quot;Fragment already exists&quot;</span><span class="p">);</span>
+
+<span class="w">        </span>_fragments<span class="p">[</span>name<span class="p">][</span>version<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>SVGFragment<span class="p">({</span>
+<span class="w">            </span>name<span class="o">:</span><span class="w"> </span>name<span class="p">,</span>
+<span class="w">            </span>version<span class="o">:</span><span class="w"> </span>version<span class="p">,</span>
+<span class="w">            </span>content<span class="o">:</span><span class="w"> </span>content<span class="p">,</span>
+<span class="w">            </span>creator<span class="o">:</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">,</span>
+<span class="w">            </span>createdAt<span class="o">:</span><span class="w"> </span><span class="k">block.timestamp</span>
+<span class="w">        </span><span class="p">});</span>
+
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">nameExists</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">false</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">for</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="o">=</span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="o">&lt;</span>_fragmentNames<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">){</span>
+<span class="w">            </span><span class="kt">if</span><span class="p">(</span><span class="nb">keccak256</span><span class="p">(</span>abi<span class="p">.</span>encodePacked<span class="p">(</span>_fragmentNames<span class="p">[</span>i<span class="p">]))</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">keccak256</span><span class="p">(</span>abi<span class="p">.</span>encodePacked<span class="p">(</span>name<span class="p">))){</span>
+<span class="w">                </span>nameExists<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">true</span><span class="p">;</span>
+<span class="w">                </span><span class="kt">break</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="kt">if</span><span class="p">(</span><span class="o">!</span>nameExists<span class="p">){</span>
+<span class="w">            </span>_fragmentNames<span class="p">.</span>push<span class="p">(</span>name<span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span>emit<span class="w"> </span>FragmentAdded<span class="p">(</span>name<span class="p">,</span><span class="w"> </span>version<span class="p">,</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">updateFragment</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">calldata</span><span class="w"> </span>name<span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">version</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">calldata</span><span class="w"> </span>newContent
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>override<span class="w"> </span>onlyOwner<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>SVGFragment<span class="w"> </span>storage<span class="w"> </span>fragmentEntry<span class="w"> </span><span class="o">=</span><span class="w"> </span>_fragments<span class="p">[</span>name<span class="p">][</span>version<span class="p">];</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>fragmentEntry<span class="p">.</span>creator<span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">),</span><span class="w"> </span><span class="s2">&quot;Fragment not found&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span><span class="kt">bytes</span><span class="p">(</span>newContent<span class="p">).</span>length<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Content cannot be empty&quot;</span><span class="p">);</span>
+
+<span class="w">        </span>fragmentEntry<span class="p">.</span>content<span class="w"> </span><span class="o">=</span><span class="w"> </span>newContent<span class="p">;</span>
+<span class="w">        </span><span class="c1">// Assuming a &#39;lastUpdated&#39; field exists</span>
+<span class="w">        </span>emit<span class="w"> </span>FragmentUpdated<span class="p">(</span>name<span class="p">,</span><span class="w"> </span>version<span class="p">,</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getFragment</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">calldata</span><span class="w"> </span>name<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">version</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span>override<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>SVGFragment<span class="w"> </span><span class="kt">memory</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>SVGFragment<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>fragmentEntry<span class="w"> </span><span class="o">=</span><span class="w"> </span>_fragments<span class="p">[</span>name<span class="p">][</span>version<span class="p">];</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>fragmentEntry<span class="p">.</span>creator<span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">),</span><span class="w"> </span><span class="s2">&quot;Fragment not found&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>fragmentEntry<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">renderSVG</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">calldata</span><span class="w"> </span>templateName<span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">templateVersion</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">calldata</span><span class="w"> </span>data
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span>override<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>svgURI<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>SVGTemplate<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>template<span class="w"> </span><span class="o">=</span><span class="w"> </span>_templates<span class="p">[</span>templateName<span class="p">][</span>templateVersion<span class="p">];</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>template<span class="p">.</span>creator<span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">),</span><span class="w"> </span><span class="s2">&quot;Template not found&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>template<span class="p">.</span>active<span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kt">true</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Template inactive&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>svgContent<span class="w"> </span><span class="o">=</span><span class="w"> </span>template<span class="p">.</span>content<span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// Basic example of data integration. A more robust solution would need a templating engine</span>
+<span class="w">        </span><span class="c1">// or more structured data parsing. This part highly depends on expected &#39;data&#39; format.</span>
+<span class="w">        </span><span class="c1">// For demonstration, let&#39;s assume &#39;data&#39; is simply a string to be inserted.</span>
+<span class="w">        </span><span class="c1">// A more advanced approach would use a dedicated string utility library for replaceAll.</span>
+
+<span class="w">        </span><span class="c1">// Example: if data is abi.encode(color, text, number)</span>
+<span class="w">        </span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>color<span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>text<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">number</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>abi<span class="p">.</span>decode<span class="p">(</span>data<span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="kt">string</span><span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="p">));</span>
+
+<span class="w">        </span>svgContent<span class="w"> </span><span class="o">=</span><span class="w"> </span>_replacePlaceholder<span class="p">(</span>svgContent<span class="p">,</span><span class="w"> </span><span class="s2">&quot;[[COLOR]]&quot;</span><span class="p">,</span><span class="w"> </span>color<span class="p">);</span>
+<span class="w">        </span>svgContent<span class="w"> </span><span class="o">=</span><span class="w"> </span>_replacePlaceholder<span class="p">(</span>svgContent<span class="p">,</span><span class="w"> </span><span class="s2">&quot;[[TEXT]]&quot;</span><span class="p">,</span><span class="w"> </span>text<span class="p">);</span>
+<span class="w">        </span>svgContent<span class="w"> </span><span class="o">=</span><span class="w"> </span>_replacePlaceholder<span class="p">(</span>svgContent<span class="p">,</span><span class="w"> </span><span class="s2">&quot;[[NUMBER]]&quot;</span><span class="p">,</span><span class="w"> </span>_uint256ToString<span class="p">(</span>number<span class="p">));</span>
+
+<span class="w">        </span><span class="c1">// Example: Inject fragments</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>fragment1Content<span class="w"> </span><span class="o">=</span><span class="w"> </span>_fragments<span class="p">[</span><span class="s2">&quot;star_icon&quot;</span><span class="p">][</span><span class="m m-Decimal">1</span><span class="p">].</span>content<span class="p">;</span><span class="w"> </span><span class="c1">// Assuming fragment exists</span>
+<span class="w">        </span>svgContent<span class="w"> </span><span class="o">=</span><span class="w"> </span>_replacePlaceholder<span class="p">(</span>svgContent<span class="p">,</span><span class="w"> </span><span class="s2">&quot;[[STAR_ICON]]&quot;</span><span class="p">,</span><span class="w"> </span>fragment1Content<span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Construct data URI</span>
+<span class="w">        </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>rawSvgBytes<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">bytes</span><span class="p">(</span>svgContent<span class="p">);</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>base64Encoded<span class="w"> </span><span class="o">=</span><span class="w"> </span>Base64<span class="p">.</span>encode<span class="p">(</span>rawSvgBytes<span class="p">);</span>
+<span class="w">        </span>svgURI<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">string</span><span class="p">(</span>abi<span class="p">.</span>encodePacked<span class="p">(</span><span class="s2">&quot;data:image/svg+xml;base64,&quot;</span><span class="p">,</span><span class="w"> </span>base64Encoded<span class="p">));</span>
+
+<span class="w">        </span><span class="c1">// Emit event, potentially storing tokenId and linking SVG for future retrieval</span>
+<span class="w">        </span><span class="c1">// emit SVGGenerated(_tokenId, templateName, templateVersion, svgURI);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getRenderedSVG</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span>override<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>svgURI<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// This function would typically retrieve from a mapping if SVGs were stored persistently</span>
+<span class="w">        </span><span class="c1">// For this example, assuming it&#39;s dynamic or a dummy.</span>
+<span class="w">        </span><span class="c1">// If the intention is to store, _renderedSVGStorage[tokenId] would be used.</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>_renderedSVGStorage<span class="p">[</span>tokenId<span class="p">];</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getTemplateNames</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span>override<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>_templateNames<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getAvailableVersions</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">calldata</span><span class="w"> </span>templateName<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span>override<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>_templateVersions<span class="p">[</span>templateName<span class="p">];</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getFragmentNames</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span>override<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>_fragmentNames<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// --- Internal String Utility Functions (Simplified for example) ---</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">_replacePlaceholder</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>source<span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>placeholder<span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>replacement<span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>pure<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// This is a very basic string replace. For production, consider a robust StringUtils lib.</span>
+<span class="w">        </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>sourceBytes<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">bytes</span><span class="p">(</span>source<span class="p">);</span>
+<span class="w">        </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>placeholderBytes<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">bytes</span><span class="p">(</span>placeholder<span class="p">);</span>
+<span class="w">        </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>replacementBytes<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">bytes</span><span class="p">(</span>replacement<span class="p">);</span>
+
+<span class="w">        </span>uint265<span class="w"> </span>i<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>result<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="kt">bytes</span><span class="p">(</span>sourceBytes<span class="p">.</span>length<span class="p">);</span><span class="w"> </span><span class="c1">// Max possible size</span>
+
+<span class="w">        </span><span class="kt">while</span><span class="w"> </span><span class="p">(</span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>sourceBytes<span class="p">.</span>length<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">bool</span><span class="w"> </span><span class="nv">found</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">true</span><span class="p">;</span>
+<span class="w">            </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>i<span class="w"> </span><span class="o">+</span><span class="w"> </span>placeholderBytes<span class="p">.</span>length<span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span>sourceBytes<span class="p">.</span>length<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>p<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>placeholderBytes<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>p<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>sourceBytes<span class="p">[</span>i<span class="o">+</span>p<span class="p">]</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span>placeholderBytes<span class="p">[</span>p<span class="p">])</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                        </span>found<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">false</span><span class="p">;</span>
+<span class="w">                        </span><span class="kt">break</span><span class="p">;</span>
+<span class="w">                    </span><span class="p">}</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="kt">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span>found<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">false</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+
+<span class="w">            </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>found<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>r<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>replacementBytes<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>r<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span>result<span class="p">[</span>j<span class="o">++</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>replacementBytes<span class="p">[</span>r<span class="p">];</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">                </span>i<span class="w"> </span><span class="o">+=</span><span class="w"> </span>placeholderBytes<span class="p">.</span>length<span class="p">;</span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="kt">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span>result<span class="p">[</span>j<span class="o">++</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>sourceBytes<span class="p">[</span>i<span class="o">++</span><span class="p">];</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span><span class="kt">string</span><span class="p">(</span>result<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">_uint256ToString</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_i</span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>pure<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>_uintAsString<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>_i<span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">return</span><span class="w"> </span><span class="s2">&quot;0&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>_i<span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">len</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">while</span><span class="w"> </span><span class="p">(</span>j<span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>len<span class="o">++</span><span class="p">;</span>
+<span class="w">            </span>j<span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="m m-Decimal">10</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>bstr<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="kt">bytes</span><span class="p">(</span>len<span class="p">);</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>len<span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m m-Decimal">1</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">while</span><span class="w"> </span><span class="p">(</span>_i<span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>bstr<span class="p">[</span>k<span class="o">--</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>byte<span class="p">(</span><span class="kt">uint8</span><span class="p">(</span><span class="m m-Decimal">48</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>_i<span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="m m-Decimal">10</span><span class="p">));</span>
+<span class="w">            </span>_i<span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="m m-Decimal">10</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span><span class="kt">string</span><span class="p">(</span>bstr<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="security-considerations">Security Considerations<a class="headerlink" href="#security-considerations" title="Permanent link">&para;</a></h2>
+<h3 id="access-control">Access Control<a class="headerlink" href="#access-control" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong><code>onlyOwner</code></strong>: Critical functions for adding, updating, or deactivating SVG templates and fragments must be restricted to the contract owner or an authorized role to prevent malicious or accidental changes to visual assets.</li>
+</ul>
+<h3 id="gas-costs">Gas Costs<a class="headerlink" href="#gas-costs" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>String Manipulation</strong>: On-chain string concatenation and replacement can be extremely gas-intensive, especially for complex SVGs or frequent rendering. Consider the trade-off between fully on-chain SVG generation and off-chain rendering with on-chain data validation.</li>
+<li><strong>Base64 Encoding</strong>: <code>Base64.encode</code> also consumes significant gas; ensure its usage is justified by the application's needs.</li>
+</ul>
+<h3 id="input-validation">Input Validation<a class="headerlink" href="#input-validation" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Data <code>bytes</code></strong>: The <code>data</code> parameter in <code>renderSVG</code> should be carefully parsed and validated to prevent unexpected SVG output or injection vulnerabilities if directly embedded without proper sanitization.</li>
+<li><strong>Template Content</strong>: Validate that template and fragment content doesn't contain malicious scripts or excessive size.</li>
+</ul>
+<h2 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h2>
+<h3 id="off-chain-rendering-alternative">Off-chain Rendering (Alternative)<a class="headerlink" href="#off-chain-rendering-alternative" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Hybrid Approach</strong>: For high-volume or very complex SVGs, consider storing only the dynamic numerical/text data on-chain and performing the actual SVG rendering in a frontend application or a dedicated off-chain service. The smart contract would then primarily act as a data oracle.</li>
+</ol>
+<h3 id="template-design">Template Design<a class="headerlink" href="#template-design" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Placeholders</strong>: Use clear, consistent placeholders (e.g., <code>[[COLOR]]</code>, <code>{{VARIABLE_NAME}}</code>) within SVG templates to indicate where dynamic data should be injected.</li>
+<li><strong>Modular Fragments</strong>: Break down complex SVGs into smaller, reusable fragments to promote efficiency and simplify template management.</li>
+</ol>
+<h3 id="data-uri-length">Data URI Length<a class="headerlink" href="#data-uri-length" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Transaction Limits</strong>: Be aware of blockchain transaction size limits if you intend to store or return very large SVG data URIs via events or return values.</li>
+<li><strong>IPFS/Storage</strong>: For large metadata, store the SVG on IPFS or another decentralized storage solution and just provide the hash/URI on-chain.</li>
+</ol>
+<h2 id="integration-examples">Integration Examples<a class="headerlink" href="#integration-examples" title="Permanent link">&para;</a></h2>
+<h3 id="frontend-integration-react-with-ethersjs">Frontend Integration (React with Ethers.js)<a class="headerlink" href="#frontend-integration-react-with-ethersjs" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="nx">React</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">useState</span><span class="p">,</span><span class="w"> </span><span class="nx">useEffect</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;react&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ethers</span><span class="p">,</span><span class="w"> </span><span class="nx">Contract</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;ethers&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="nx">SVGABI</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./SVGGenerator.json&#39;</span><span class="p">;</span><span class="w"> </span><span class="c1">// ABI for the ISVG contract</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">SVG_GENERATOR_ADDRESS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0x...&quot;</span><span class="p">;</span><span class="w"> </span><span class="c1">// Deployed SVG generator contract address</span>
+
+<span class="kd">interface</span><span class="w"> </span><span class="nx">SVGComponentProps</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">tokenId</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">color</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">text</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">NFTImage</span><span class="o">:</span><span class="w"> </span><span class="kt">React.FC</span><span class="o">&lt;</span><span class="nx">SVGComponentProps</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">({</span><span class="w"> </span><span class="nx">tokenId</span><span class="p">,</span><span class="w"> </span><span class="nx">color</span><span class="p">,</span><span class="w"> </span><span class="nx">text</span><span class="w"> </span><span class="p">})</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="p">[</span><span class="nx">svgDataUri</span><span class="p">,</span><span class="w"> </span><span class="nx">setSvgDataUri</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">useState</span><span class="o">&lt;</span><span class="kt">string</span><span class="o">&gt;</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="p">[</span><span class="nx">loading</span><span class="p">,</span><span class="w"> </span><span class="nx">setLoading</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">useState</span><span class="o">&lt;</span><span class="kt">boolean</span><span class="o">&gt;</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="p">[</span><span class="nx">error</span><span class="p">,</span><span class="w"> </span><span class="nx">setError</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">useState</span><span class="o">&lt;</span><span class="kt">string</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="kc">null</span><span class="o">&gt;</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+
+<span class="w">    </span><span class="nx">useEffect</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">fetchSVG</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">setLoading</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+<span class="w">            </span><span class="nx">setError</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+<span class="w">            </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="kd">const</span><span class="w"> </span><span class="nx">provider</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">ethers</span><span class="p">.</span><span class="nx">providers</span><span class="p">.</span><span class="nx">Web3Provider</span><span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">ethereum</span><span class="p">);</span>
+<span class="w">                </span><span class="kd">const</span><span class="w"> </span><span class="nx">svgContract</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Contract</span><span class="p">(</span><span class="nx">SVG_GENERATOR_ADDRESS</span><span class="p">,</span><span class="w"> </span><span class="nx">SVGABI</span><span class="p">,</span><span class="w"> </span><span class="nx">provider</span><span class="p">);</span>
+
+<span class="w">                </span><span class="c1">// Encode dynamic data</span>
+<span class="w">                </span><span class="kd">const</span><span class="w"> </span><span class="nx">encodedData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ethers</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">defaultAbiCoder</span><span class="p">.</span><span class="nx">encode</span><span class="p">(</span>
+<span class="w">                    </span><span class="p">[</span><span class="s2">&quot;string&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;uint256&quot;</span><span class="p">],</span><span class="w"> </span><span class="c1">// Match the abi.decode in contract</span>
+<span class="w">                    </span><span class="p">[</span><span class="nx">color</span><span class="p">,</span><span class="w"> </span><span class="nx">text</span><span class="p">,</span><span class="w"> </span><span class="nx">tokenId</span><span class="p">]</span>
+<span class="w">                </span><span class="p">);</span>
+
+<span class="w">                </span><span class="c1">// Call renderSVG specifying a template and version</span>
+<span class="w">                </span><span class="kd">const</span><span class="w"> </span><span class="nx">templateName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;CryptoBadge&quot;</span><span class="p">;</span><span class="w"> </span><span class="c1">// Example template name</span>
+<span class="w">                </span><span class="kd">const</span><span class="w"> </span><span class="nx">templateVersion</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span><span class="w"> </span><span class="c1">// Example template version</span>
+<span class="w">                </span><span class="kd">const</span><span class="w"> </span><span class="nx">uri</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">svgContract</span><span class="p">.</span><span class="nx">renderSVG</span><span class="p">(</span><span class="nx">templateName</span><span class="p">,</span><span class="w"> </span><span class="nx">templateVersion</span><span class="p">,</span><span class="w"> </span><span class="nx">encodedData</span><span class="p">);</span>
+<span class="w">                </span><span class="nx">setSvgDataUri</span><span class="p">(</span><span class="nx">uri</span><span class="p">);</span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">err</span><span class="o">:</span><span class="w"> </span><span class="kt">any</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;Error fetching SVG:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">);</span>
+<span class="w">                </span><span class="nx">setError</span><span class="p">(</span><span class="sb">`Failed to fetch SVG: </span><span class="si">${</span><span class="nx">err</span><span class="p">.</span><span class="nx">message</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nx">err</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">finally</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nx">setLoading</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">};</span>
+
+<span class="w">        </span><span class="nx">fetchSVG</span><span class="p">();</span>
+<span class="w">    </span><span class="p">},</span><span class="w"> </span><span class="p">[</span><span class="nx">tokenId</span><span class="p">,</span><span class="w"> </span><span class="nx">color</span><span class="p">,</span><span class="w"> </span><span class="nx">text</span><span class="p">]);</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">loading</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span><span class="nx">Loading</span><span class="w"> </span><span class="nx">SVG</span><span class="p">...</span><span class="o">&lt;</span><span class="err">/div&gt;;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span><span class="ne">Error</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="nx">error</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/div&gt;;</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">(</span>
+<span class="w">        </span><span class="o">&lt;</span><span class="nx">img</span><span class="w"> </span><span class="nx">src</span><span class="o">=</span><span class="p">{</span><span class="nx">svgDataUri</span><span class="p">}</span><span class="w"> </span><span class="nx">alt</span><span class="o">=</span><span class="p">{</span><span class="sb">`NFT </span><span class="si">${</span><span class="nx">tokenId</span><span class="si">}</span><span class="sb">`</span><span class="p">}</span><span class="w"> </span><span class="nx">style</span><span class="o">=</span><span class="p">{{</span><span class="w"> </span><span class="nx">width</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;300px&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">height</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;300px&#39;</span><span class="w"> </span><span class="p">}}</span><span class="w"> </span><span class="o">/&gt;</span>
+<span class="w">    </span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="k">export</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="nx">NFTImage</span><span class="p">;</span>
+</code></pre></div>
+
+<h3 id="backend-integration-nodejsweb3js-for-off-chain-metadata-generation">Backend Integration (Node.js/Web3.js for off-chain metadata generation)<a class="headerlink" href="#backend-integration-nodejsweb3js-for-off-chain-metadata-generation" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">Web3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;web3&#39;</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">SVGGeneratorABI</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./SVGGenerator.json&#39;</span><span class="p">).</span><span class="nx">abi</span><span class="p">;</span><span class="w"> </span><span class="c1">// ABI of ISVG contract</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">web3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Web3</span><span class="p">(</span><span class="s1">&#39;YOUR_ETHEREUM_RPC_URL&#39;</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">svgGeneratorAddress</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;0x...&#39;</span><span class="p">;</span><span class="w"> </span><span class="c1">// Deployed SVG generator contract address</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">svgGeneratorContract</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">web3</span><span class="p">.</span><span class="nx">eth</span><span class="p">.</span><span class="nx">Contract</span><span class="p">(</span><span class="nx">SVGGeneratorABI</span><span class="p">,</span><span class="w"> </span><span class="nx">svgGeneratorAddress</span><span class="p">);</span>
+
+<span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">generateNFTMetadata</span><span class="p">(</span><span class="nx">tokenId</span><span class="p">,</span><span class="w"> </span><span class="nx">nftAttributes</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Generating SVG for Token ID: </span><span class="si">${</span><span class="nx">tokenId</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">templateName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;ArtPieceTemplate&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">templateVersion</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span><span class="w"> </span><span class="c1">// Assuming version 1 for now</span>
+
+<span class="w">        </span><span class="c1">// ABI encode the attributes</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">encodedData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">web3</span><span class="p">.</span><span class="nx">eth</span><span class="p">.</span><span class="nx">abi</span><span class="p">.</span><span class="nx">encodeParameters</span><span class="p">(</span>
+<span class="w">            </span><span class="p">[</span><span class="s1">&#39;string&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;uint256&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;string&#39;</span><span class="p">],</span><span class="w"> </span><span class="c1">// Example types: color, rarity, texture</span>
+<span class="w">            </span><span class="p">[</span><span class="nx">nftAttributes</span><span class="p">.</span><span class="nx">color</span><span class="p">,</span><span class="w"> </span><span class="nx">nftAttributes</span><span class="p">.</span><span class="nx">rarity</span><span class="p">,</span><span class="w"> </span><span class="nx">nftAttributes</span><span class="p">.</span><span class="nx">texture</span><span class="p">]</span>
+<span class="w">        </span><span class="p">);</span>
+
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">svgDataUri</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">svgGeneratorContract</span><span class="p">.</span><span class="nx">methods</span><span class="p">.</span><span class="nx">renderSVG</span><span class="p">(</span>
+<span class="w">            </span><span class="nx">templateName</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">templateVersion</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">encodedData</span>
+<span class="w">        </span><span class="p">).</span><span class="nx">call</span><span class="p">();</span>
+
+<span class="w">        </span><span class="c1">// Construct ERC721 metadata JSON</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">metadata</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="sb">`My NFT #</span><span class="si">${</span><span class="nx">tokenId</span><span class="si">}</span><span class="sb">`</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">description</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;An algorithmically generated NFT from Gemforce.&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">image</span><span class="o">:</span><span class="w"> </span><span class="nx">svgDataUri</span><span class="p">,</span><span class="w"> </span><span class="c1">// The generated SVG data URI</span>
+<span class="w">            </span><span class="nx">attributes</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="p">{</span><span class="w"> </span><span class="nx">trait_type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Color&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="nx">nftAttributes</span><span class="p">.</span><span class="nx">color</span><span class="w"> </span><span class="p">},</span>
+<span class="w">                </span><span class="p">{</span><span class="w"> </span><span class="nx">trait_type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Rarity&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="nx">nftAttributes</span><span class="p">.</span><span class="nx">rarity</span><span class="w"> </span><span class="p">},</span>
+<span class="w">                </span><span class="p">{</span><span class="w"> </span><span class="nx">trait_type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Texture&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="nx">nftAttributes</span><span class="p">.</span><span class="nx">texture</span><span class="w"> </span><span class="p">}</span>
+<span class="w">            </span><span class="p">]</span>
+<span class="w">        </span><span class="p">};</span>
+
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Metadata for Token ID </span><span class="si">${</span><span class="nx">tokenId</span><span class="si">}</span><span class="sb">:`</span><span class="p">,</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">metadata</span><span class="p">,</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">));</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">metadata</span><span class="p">;</span>
+
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;Error generating NFT metadata:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">);</span>
+<span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="nx">error</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Example Usage</span>
+<span class="c1">// generateNFTMetadata(123, { color: &quot;blue&quot;, rarity: 5, texture: &quot;smooth&quot; });</span>
+</code></pre></div>
+
+<h2 id="related-documentation">Related Documentation<a class="headerlink" href="#related-documentation" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../../libraries/svg-templates-lib/">SVG Templates Library</a></li>
+<li><a href="https://eips.ethereum.org/EIPS/eip-721#metadata">ERC721 Metadata Standard</a></li>
+<li><a href="https://docs.openzeppelin.com/contracts/4.x/api/utils#Base64">Base64 Encoding (OpenZeppelin's Base64)</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs">Data URIs (MDN Web Docs)</a></li>
+</ul>
+<h2 id="standards-compliance">Standards Compliance<a class="headerlink" href="#standards-compliance" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>ERC721 Metadata</strong>: The output can be directly used as the <code>image</code> field for ERC721 token metadata.</li>
+<li><strong>Ownable</strong>: Utilizes OpenZeppelin's <code>Ownable</code> for administrative access control.</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../itrusted-issuers-registry/" class="btn btn-neutral float-left" title="TRUSTEDIssuersRegistry"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../iattribute/" class="btn btn-neutral float-right" title="IAttribute">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../itrusted-issuers-registry/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../iattribute/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

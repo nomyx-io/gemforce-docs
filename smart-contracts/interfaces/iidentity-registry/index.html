@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Gemforce Team" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>IIdentityRegistry - Gemforce Documentation</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "IIdentityRegistry";
+        var mkdocs_page_input_path = "smart-contracts/interfaces/iidentity-registry.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../.." class="icon icon-home"> Gemforce Documentation
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../developer-setup-guide/">Developer Setup Guide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../system-architecture/gemforce-system-architecture/">System Architecture</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Smart Contracts</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../diamond/">Diamond Contract</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../diamond-factory/">Diamond Factory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../identity-factory/">Identity Factory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Facets</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/marketplace-facet/">Marketplace Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trade-deal-management-facet/">Trade Deal Management Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/carbon-credit-facet/">Carbon Credit Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/identity-registry-facet/">Identity Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trusted-issuers-registry-facet/">Trusted Issuers Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/fee-distributor-facet/">Fee Distributor Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/gemforce-minter-facet/">Gemforce Minter Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/multi-sale-facet/">Multi Sale Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/svg-templates-facet/">SVG Templates Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trade-deal-admin-facet/">Trade Deal Admin Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trade-deal-operations-facet/">Trade Deal Operations Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/collateral-token-factory-facet/">Collateral Token Factory Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/diamond-cut-facet/">Diamond Cut Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/diamond-loupe-facet/">Diamond Loupe Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/ownership-facet/">Ownership Facet</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" >Interfaces</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" href="../idiamond/">IDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../imarketplace/">IMarketplace</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../itradedeal/">ITradeDeal</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../icarbon-credit/">ICarbonCredit</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../ierc1155-mint/">IERC1155Mint</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../ierc734/">IERC734</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../ierc735/">IERC735</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../ierc721a/">IERC721A</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../idiamond-factory/">IDiamondFactory</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../iidentity/">IIdentity</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../imultisale/">IMultiSale</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../ifee-distributor/">IFeeDistributor</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../igemforce-minter-facet/">IGemforceMinterFacet</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">IIdentityRegistry</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#overview">Overview</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#key-features">Key Features</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#identity-registration-query">Identity Registration &amp; Query</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#status-and-access-control">Status and Access Control</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#decentralized-identifiers-dids-compatibility-conceptual">Decentralized Identifiers (DIDs) Compatibility (Conceptual)</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#interface-definition">Interface Definition</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#core-functions">Core Functions</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#registeridentity">registerIdentity()</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#getidentityaddress">getIdentityAddress()</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#setidentitystatus">setIdentityStatus()</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#implementation-example">Implementation Example</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#security-considerations">Security Considerations</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#access-control">Access Control</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#data-integrity">Data Integrity</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#gas-efficiency">Gas Efficiency</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#best-practices">Best Practices</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#identity-hashing">Identity Hashing</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#events">Events</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#modularity">Modularity</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#integration-examples">Integration Examples</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#frontend-integration-typescript-via-ethersjs">Frontend Integration (TypeScript via Ethers.js)</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#backend-integration-nodejs-for-a-centralized-identity-service">Backend Integration (Node.js for a centralized identity service)</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#related-documentation">Related Documentation</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#standards-compliance">Standards Compliance</a>
+    </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../itrusted-issuers-registry/">TRUSTEDIssuersRegistry</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../isvg/">ISVG</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../iattribute/">IAttribute</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Libraries</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/carbon-credit-lib/">Carbon Credit Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/trade-deal-lib/">Trade Deal Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/multi-sale-lib/">Multi Sale Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/diamond-factory-lib/">Diamond Factory Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/svg-templates-lib/">SVG Templates Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/attribute-lib/">Attribute Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/variable-price-lib/">Variable Price Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/merkle-prover/">Merkle Prover</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/fee-distributor-lib/">Fee Distributor Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/lib-diamond/">LibDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/diamond-lib/">DiamondLib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/erc721a-lib/">ERC721A Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/erc721a-enumeration-lib/">ERC721A Enumeration Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/strings-lib/">Strings Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/trusted-issuer-lib/">Trusted Issuer Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/set-libraries/">Set Libraries</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">SDK & Libraries</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/blockchain/">Blockchain Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/diamond/">Diamond Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/contract/">Contract Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/deploy/">Deployment Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/validation-utils/">Validation Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/nft-sale-utils/">NFT Sale Utilities</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Cloud Functions</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/authentication/">Authentication Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/auth-functions/">Auth Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/blockchain/">Blockchain Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/bridge/">Bridge Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/contracts/">Contract Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/deploy/">Deploy Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/dfns/">DFNS Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/project/">Project Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/trade-deal/">Trade Deal Functions</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">API Documentation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../api-documentation/gemforce-api-documentation/">Full API Reference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../api-documentation/gemforce-api-quick-reference/">Quick Reference</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Operations Tasks</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/diamond/">Diamond Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/identities/">Identity Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/marketplace-management/">Marketplace Management Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/carbon-credit-management/">Carbon Credit Management Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/trade-deal/">Trade Deal Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/integration-test/">Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/integration-test-marketplace/">Marketplace Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/integration-test-trade-deal/">Trade Deal Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/admin-utils/">Admin Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/sync-diamond/">Sync Diamond Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/sync-events/">Sync Events Tasks</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">EIPs (Ethereum Improvement Proposals)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Diamond-Enhanced-Marketplace/">Diamond-Enhanced Marketplace</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Multi-Token-Sale-Standard/">Multi-Token Sale Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Collateralized-Trade-Deal-Standard/">Collateralized Trade Deal Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Enhanced-Identity-System/">Enhanced Identity System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Diamond-Factory-Standard/">Diamond Factory Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Carbon-Credit-Standard/">Carbon Credit Standard</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">User Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-administrator-guide/">Administrator Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-deployer-guide/">Deployer Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-integrator-guide/">Integrator Guide</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Integrator's Guide</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/authentication/">Authentication</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/rest-api/">REST API</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/smart-contracts/">Smart Contracts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/dfns/">DFNS Integration</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/webhooks/">Webhooks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/error-handling/">Error Handling</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/sample-code/">Sample Code</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/integration-patterns/">Integration Patterns</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/security/">Security</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../external-services/gemforce-external-services/">External Services</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-documentation-gap-analysis/">Documentation Gap Analysis</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../documentation-progress-summary/">Documentation Progress Summary</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../documentation-plan/">Documentation Plan</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">Gemforce Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Smart Contracts</li>
+          <li class="breadcrumb-item">Interfaces</li>
+      <li class="breadcrumb-item active">IIdentityRegistry</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="iidentityregistry-interface">IIdentityRegistry Interface<a class="headerlink" href="#iidentityregistry-interface" title="Permanent link">&para;</a></h1>
+<p>The <code>IIdentityRegistry</code> interface defines the standard for a registry of identity contracts within the Gemforce ecosystem. This registry acts as a central lookup and management system for various identity contracts, allowing for consistent identity resolution and verification across the platform.</p>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p><code>IIdentityRegistry</code> provides:</p>
+<ul>
+<li><strong>Identity Resolution</strong>: A method to query and retrieve registered identity contract addresses.</li>
+<li><strong>Registration Management</strong>: Functions to add, update, and remove identity entries in the registry.</li>
+<li><strong>Status Tracking</strong>: Keep track of the status (e.g., active, suspended) of registered identities.</li>
+<li><strong>Event Logging</strong>: Comprehensive event tracking for all registry operations.</li>
+</ul>
+<h2 id="key-features">Key Features<a class="headerlink" href="#key-features" title="Permanent link">&para;</a></h2>
+<h3 id="identity-registration-query">Identity Registration &amp; Query<a class="headerlink" href="#identity-registration-query" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Register Identity</strong>: Link an identity contract address to a user or entity.</li>
+<li><strong>Query Identity</strong>: Retrieve an identity contract address associated with a given identifier.</li>
+<li><strong>Batch Registration</strong>: Register multiple identities efficiently.</li>
+</ul>
+<h3 id="status-and-access-control">Status and Access Control<a class="headerlink" href="#status-and-access-control" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Identity Status</strong>: Manage and query the active status of registered identities.</li>
+<li><strong>Ownership/Admin Control</strong>: Restrict registration and modification functions to authorized entities.</li>
+<li><strong>Verification Levels</strong>: Potentially integrate with identity verification levels.</li>
+</ul>
+<h3 id="decentralized-identifiers-dids-compatibility-conceptual">Decentralized Identifiers (DIDs) Compatibility (Conceptual)<a class="headerlink" href="#decentralized-identifiers-dids-compatibility-conceptual" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Can be designed to store DID-like identifiers or map to them for broader interoperability.</li>
+</ul>
+<h2 id="interface-definition">Interface Definition<a class="headerlink" href="#interface-definition" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span><code>interface<span class="w"> </span>IIdentityRegistry<span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Events</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">IdentityRegistered</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>identityHash<span class="p">,</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>identityAddress<span class="p">,</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>registrant<span class="p">,</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">metadataURI</span>
+<span class="w">    </span><span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">IdentityUpdated</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>identityHash<span class="p">,</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>identityAddress<span class="p">,</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>updater<span class="p">,</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">oldMetadataURI</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">newMetadataURI</span>
+<span class="w">    </span><span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">IdentityRemoved</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>identityHash<span class="p">,</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>identityAddress<span class="p">,</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>remover
+<span class="w">    </span><span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">IdentityStatusChanged</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>identityHash<span class="p">,</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>identityAddress<span class="p">,</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">newStatus</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>changer
+<span class="w">    </span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Structs</span>
+<span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">IdentityEntry</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">identityAddress</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">registrant</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">metadataURI</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">active</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">registeredAt</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">lastUpdated</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Core Functions</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">registerIdentity</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">_identityAddress</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">calldata</span><span class="w"> </span>_metadataURI
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">identityHash</span><span class="p">);</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">registerIdentities</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">address</span><span class="p">[]</span><span class="w"> </span>calldata<span class="w"> </span>_identityAddresses<span class="p">,</span>
+<span class="w">        </span><span class="kt">string</span><span class="p">[]</span><span class="w"> </span>calldata<span class="w"> </span>_metadataURIs
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bytes32</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>identityHashes<span class="p">);</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">updateIdentity</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">_identityHash</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">calldata</span><span class="w"> </span>_newMetadataURI
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">removeIdentity</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">_identityHash</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">setIdentityStatus</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">_identityHash</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">_newStatus</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// View Functions</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getIdentityAddress</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">_identityHash</span><span class="p">)</span>
+<span class="w">        </span><span class="kt">external</span>
+<span class="w">        </span>view
+<span class="w">        </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">address</span><span class="p">);</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getIdentityEntry</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">_identityHash</span><span class="p">)</span>
+<span class="w">        </span><span class="kt">external</span>
+<span class="w">        </span>view
+<span class="w">        </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>IdentityEntry<span class="w"> </span><span class="kt">memory</span><span class="p">);</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">isIdentityActive</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">_identityHash</span><span class="p">)</span>
+<span class="w">        </span><span class="kt">external</span>
+<span class="w">        </span>view
+<span class="w">        </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bool</span><span class="p">);</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getIdentityHash</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">_identityAddress</span><span class="p">)</span>
+<span class="w">        </span><span class="kt">external</span>
+<span class="w">        </span>view
+<span class="w">        </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bytes32</span><span class="p">);</span><span class="w"> </span><span class="c1">// Reverse lookup for the hash</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getRegisteredIdentityCount</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getIdentityHashByIndex</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">index</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bytes32</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="core-functions">Core Functions<a class="headerlink" href="#core-functions" title="Permanent link">&para;</a></h2>
+<h3 id="registeridentity">registerIdentity()<a class="headerlink" href="#registeridentity" title="Permanent link">&para;</a></h3>
+<p>Registers a new identity contract address with an associated metadata URI. A unique <code>identityHash</code> is generated for lookup.</p>
+<p><strong>Parameters:</strong>
+- <code>_identityAddress</code>: The address of the identity smart contract to register.
+- <code>_metadataURI</code>: A URI pointing to additional off-chain metadata about the identity.</p>
+<p><strong>Returns:</strong>
+- <code>bytes32</code>: A unique hash that identifies this registered identity.</p>
+<p><strong>Usage:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Register a new identity contract</span>
+<span class="kt">bytes32</span><span class="w"> </span><span class="nv">myIdentityHash</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>identityRegistry<span class="p">.</span>registerIdentity<span class="p">(</span>
+<span class="w">    </span>_newlyDeployedIdentityAddress<span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;ipfs://my-identity-meta.json&quot;</span>
+<span class="p">);</span>
+</code></pre></div>
+
+<h3 id="getidentityaddress">getIdentityAddress()<a class="headerlink" href="#getidentityaddress" title="Permanent link">&para;</a></h3>
+<p>Retrieves the identity contract address associated with a given <code>identityHash</code>.</p>
+<p><strong>Parameters:</strong>
+- <code>_identityHash</code>: The unique hash of the registered identity.</p>
+<p><strong>Returns:</strong>
+- <code>address</code>: The address of the registered identity contract. Returns <code>address(0)</code> if not found.</p>
+<h3 id="setidentitystatus">setIdentityStatus()<a class="headerlink" href="#setidentitystatus" title="Permanent link">&para;</a></h3>
+<p>Changes the active status of a registered identity. This can be used to suspend or reactivate an identity.</p>
+<p><strong>Parameters:</strong>
+- <code>_identityHash</code>: The hash of the identity whose status is to be changed.
+- <code>_newStatus</code>: <code>true</code> for active, <code>false</code> for suspended.</p>
+<h2 id="implementation-example">Implementation Example<a class="headerlink" href="#implementation-example" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span><code><span class="kt">import</span><span class="w"> </span><span class="s2">&quot;@openzeppelin/contracts/access/Ownable.sol&quot;</span><span class="p">;</span>
+
+<span class="k">contract</span><span class="w"> </span><span class="ni">IdentityRegistry</span><span class="w"> </span><span class="kt">is</span><span class="w"> </span>IIdentityRegistry<span class="p">,</span><span class="w"> </span>Ownable<span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Mapping from identity hash to its entry details</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span>IdentityEntry<span class="p">)</span><span class="w"> </span><span class="kt">private</span><span class="w"> </span>_identityEntries<span class="p">;</span>
+<span class="w">    </span><span class="c1">// Mapping from identity address to its hash for reverse lookup</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">bytes32</span><span class="p">)</span><span class="w"> </span><span class="kt">private</span><span class="w"> </span>_identityAddressToHash<span class="p">;</span>
+<span class="w">    </span><span class="c1">// Counter for total registered identities (and to generate unique hashes if needed)</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="k">private </span><span class="nv">_registeredIdentityCount</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// Array to store all hashes for enumeration</span>
+<span class="w">    </span><span class="kt">bytes32</span><span class="p">[]</span><span class="w"> </span><span class="kt">private</span><span class="w"> </span>_allIdentityHashes<span class="p">;</span>
+
+<span class="w">    </span><span class="kt">constructor</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Owner is set to deployer by default due to Ownable</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">registerIdentity</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">_identityAddress</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">calldata</span><span class="w"> </span>_metadataURI
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>override<span class="w"> </span>onlyOwner<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">identityHash</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>_identityAddress<span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">),</span><span class="w"> </span><span class="s2">&quot;Identity address cannot be zero&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>_identityAddressToHash<span class="p">[</span>_identityAddress<span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kt">bytes32</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">),</span><span class="w"> </span><span class="s2">&quot;Identity already registered&quot;</span><span class="p">);</span>
+
+<span class="w">        </span>identityHash<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">keccak256</span><span class="p">(</span>abi<span class="p">.</span>encodePacked<span class="p">(</span>_identityAddress<span class="p">,</span><span class="w"> </span><span class="k">block.timestamp</span><span class="p">,</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">));</span><span class="w"> </span><span class="c1">// Generate unique hash</span>
+
+<span class="w">        </span>_identityEntries<span class="p">[</span>identityHash<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>IdentityEntry<span class="p">({</span>
+<span class="w">            </span>identityAddress<span class="o">:</span><span class="w"> </span>_identityAddress<span class="p">,</span>
+<span class="w">            </span>registrant<span class="o">:</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">,</span>
+<span class="w">            </span>metadataURI<span class="o">:</span><span class="w"> </span>_metadataURI<span class="p">,</span>
+<span class="w">            </span>active<span class="o">:</span><span class="w"> </span><span class="kt">true</span><span class="p">,</span>
+<span class="w">            </span>registeredAt<span class="o">:</span><span class="w"> </span><span class="k">block.timestamp</span><span class="p">,</span>
+<span class="w">            </span>lastUpdated<span class="o">:</span><span class="w"> </span><span class="k">block.timestamp</span>
+<span class="w">        </span><span class="p">});</span>
+<span class="w">        </span>_identityAddressToHash<span class="p">[</span>_identityAddress<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>identityHash<span class="p">;</span>
+<span class="w">        </span>_registeredIdentityCount<span class="o">++</span><span class="p">;</span>
+<span class="w">        </span>_allIdentityHashes<span class="p">.</span>push<span class="p">(</span>identityHash<span class="p">);</span>
+
+<span class="w">        </span>emit<span class="w"> </span>IdentityRegistered<span class="p">(</span>identityHash<span class="p">,</span><span class="w"> </span>_identityAddress<span class="p">,</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">,</span><span class="w"> </span>_metadataURI<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">registerIdentities</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">address</span><span class="p">[]</span><span class="w"> </span>calldata<span class="w"> </span>_identityAddresses<span class="p">,</span>
+<span class="w">        </span><span class="kt">string</span><span class="p">[]</span><span class="w"> </span>calldata<span class="w"> </span>_metadataURIs
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>override<span class="w"> </span>onlyOwner<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bytes32</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>identityHashes<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>_identityAddresses<span class="p">.</span>length<span class="w"> </span><span class="o">==</span><span class="w"> </span>_metadataURIs<span class="p">.</span>length<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Array length mismatch&quot;</span><span class="p">);</span>
+<span class="w">        </span>identityHashes<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="kt">bytes32</span><span class="p">[](</span>_identityAddresses<span class="p">.</span>length<span class="p">);</span>
+<span class="w">        </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>_identityAddresses<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>identityHashes<span class="p">[</span>i<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>registerIdentity<span class="p">(</span>_identityAddresses<span class="p">[</span>i<span class="p">],</span><span class="w"> </span>_metadataURIs<span class="p">[</span>i<span class="p">]);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">updateIdentity</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">_identityHash</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">calldata</span><span class="w"> </span>_newMetadataURI
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>override<span class="w"> </span>onlyOwner<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>IdentityEntry<span class="w"> </span>storage<span class="w"> </span>entry<span class="w"> </span><span class="o">=</span><span class="w"> </span>_identityEntries<span class="p">[</span>_identityHash<span class="p">];</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>entry<span class="p">.</span>identityAddress<span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">),</span><span class="w"> </span><span class="s2">&quot;Identity hash not found&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>oldMetadataURI<span class="w"> </span><span class="o">=</span><span class="w"> </span>entry<span class="p">.</span>metadataURI<span class="p">;</span>
+<span class="w">        </span>entry<span class="p">.</span>metadataURI<span class="w"> </span><span class="o">=</span><span class="w"> </span>_newMetadataURI<span class="p">;</span>
+<span class="w">        </span>entry<span class="p">.</span>lastUpdated<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">block.timestamp</span><span class="p">;</span>
+
+<span class="w">        </span>emit<span class="w"> </span>IdentityUpdated<span class="p">(</span>
+<span class="w">            </span>_identityHash<span class="p">,</span>
+<span class="w">            </span>entry<span class="p">.</span>identityAddress<span class="p">,</span>
+<span class="w">            </span><span class="k">msg.sender</span><span class="p">,</span>
+<span class="w">            </span>oldMetadataURI<span class="p">,</span>
+<span class="w">            </span>_newMetadataURI
+<span class="w">        </span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">removeIdentity</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">_identityHash</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>override<span class="w"> </span>onlyOwner<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>IdentityEntry<span class="w"> </span>storage<span class="w"> </span>entry<span class="w"> </span><span class="o">=</span><span class="w"> </span>_identityEntries<span class="p">[</span>_identityHash<span class="p">];</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>entry<span class="p">.</span>identityAddress<span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">),</span><span class="w"> </span><span class="s2">&quot;Identity hash not found&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">removedAddress</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>entry<span class="p">.</span>identityAddress<span class="p">;</span>
+
+<span class="w">        </span>delete<span class="w"> </span>_identityAddressToHash<span class="p">[</span>removedAddress<span class="p">];</span>
+<span class="w">        </span>delete<span class="w"> </span>_identityEntries<span class="p">[</span>_identityHash<span class="p">];</span><span class="w"> </span><span class="c1">// Clear storage for the hash</span>
+<span class="w">        </span>_registeredIdentityCount<span class="o">--</span><span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// Remove from dynamic array, maintain order is not necessary</span>
+<span class="w">        </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>_allIdentityHashes<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>_allIdentityHashes<span class="p">[</span>i<span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span>_identityHash<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span>_allIdentityHashes<span class="p">[</span>i<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>_allIdentityHashes<span class="p">[</span>_allIdentityHashes<span class="p">.</span>length<span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m m-Decimal">1</span><span class="p">];</span><span class="w"> </span><span class="c1">// Swap with last</span>
+<span class="w">                </span>_allIdentityHashes<span class="p">.</span>pop<span class="p">();</span><span class="w"> </span><span class="c1">// Pop last element</span>
+<span class="w">                </span><span class="kt">break</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span>emit<span class="w"> </span>IdentityRemoved<span class="p">(</span>_identityHash<span class="p">,</span><span class="w"> </span>removedAddress<span class="p">,</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">setIdentityStatus</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">_identityHash</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">_newStatus</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>override<span class="w"> </span>onlyOwner<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>IdentityEntry<span class="w"> </span>storage<span class="w"> </span>entry<span class="w"> </span><span class="o">=</span><span class="w"> </span>_identityEntries<span class="p">[</span>_identityHash<span class="p">];</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>entry<span class="p">.</span>identityAddress<span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">),</span><span class="w"> </span><span class="s2">&quot;Identity hash not found&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>entry<span class="p">.</span>active<span class="w"> </span><span class="o">!=</span><span class="w"> </span>_newStatus<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Status is already the same&quot;</span><span class="p">);</span>
+
+<span class="w">        </span>entry<span class="p">.</span>active<span class="w"> </span><span class="o">=</span><span class="w"> </span>_newStatus<span class="p">;</span>
+<span class="w">        </span>entry<span class="p">.</span>lastUpdated<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">block.timestamp</span><span class="p">;</span>
+
+<span class="w">        </span>emit<span class="w"> </span>IdentityStatusChanged<span class="p">(</span>_identityHash<span class="p">,</span><span class="w"> </span>entry<span class="p">.</span>identityAddress<span class="p">,</span><span class="w"> </span>_newStatus<span class="p">,</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getIdentityAddress</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">_identityHash</span><span class="p">)</span>
+<span class="w">        </span><span class="kt">external</span>
+<span class="w">        </span>view
+<span class="w">        </span>override
+<span class="w">        </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">address</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>_identityEntries<span class="p">[</span>_identityHash<span class="p">].</span>identityAddress<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getIdentityEntry</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">_identityHash</span><span class="p">)</span>
+<span class="w">        </span><span class="kt">external</span>
+<span class="w">        </span>view
+<span class="w">        </span>override
+<span class="w">        </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>IdentityEntry<span class="w"> </span><span class="kt">memory</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>_identityEntries<span class="p">[</span>_identityHash<span class="p">];</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">isIdentityActive</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">_identityHash</span><span class="p">)</span>
+<span class="w">        </span><span class="kt">external</span>
+<span class="w">        </span>view
+<span class="w">        </span>override
+<span class="w">        </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bool</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>_identityEntries<span class="p">[</span>_identityHash<span class="p">].</span>active<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getIdentityHash</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">_identityAddress</span><span class="p">)</span>
+<span class="w">        </span><span class="kt">external</span>
+<span class="w">        </span>view
+<span class="w">        </span>override
+<span class="w">        </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bytes32</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>_identityAddressToHash<span class="p">[</span>_identityAddress<span class="p">];</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getRegisteredIdentityCount</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span>override<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>_registeredIdentityCount<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getIdentityHashByIndex</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">index</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span>override<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bytes32</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>index<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>_allIdentityHashes<span class="p">.</span>length<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Index out of bounds&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>_allIdentityHashes<span class="p">[</span>index<span class="p">];</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="security-considerations">Security Considerations<a class="headerlink" href="#security-considerations" title="Permanent link">&para;</a></h2>
+<h3 id="access-control">Access Control<a class="headerlink" href="#access-control" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong><code>onlyOwner</code></strong>: All functions that modify the registry (<code>registerIdentity</code>, <code>updateIdentity</code>, <code>removeIdentity</code>, <code>setIdentityStatus</code>) are restricted to the contract owner to maintain integrity and prevent unauthorized modifications.</li>
+<li><strong>Role-Based Access Control</strong>: For more complex scenarios, consider implementing a role-based access control (RBAC) system instead of a single owner.</li>
+</ul>
+<h3 id="data-integrity">Data Integrity<a class="headerlink" href="#data-integrity" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Zero Address Check</strong>: Prevent registration of <code>address(0)</code> as an identity.</li>
+<li><strong>Duplicate Registration</strong>: Ensure that an identity address can only be registered once.</li>
+<li><strong>Hash Collisions</strong>: While <code>keccak256</code> is highly collision-resistant, rely on the <em>generated</em> hash to be unique within the contract's scope, not solely on external inputs.</li>
+</ul>
+<h3 id="gas-efficiency">Gas Efficiency<a class="headerlink" href="#gas-efficiency" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Array Iteration</strong>: <code>removeIdentity</code> iterates through <code>_allIdentityHashes</code> to remove an element. For a very large number of identities, this operation could become gas-expensive. Consider alternative data structures or a flag-based removal if enumeration isn't strictly necessary or if the number of removals is high.</li>
+</ul>
+<h2 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h2>
+<h3 id="identity-hashing">Identity Hashing<a class="headerlink" href="#identity-hashing" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Deterministic Hashing</strong>: The <code>identityHash</code> generated by the contract (e.g., using <code>keccak256(abi.encodePacked(_identityAddress, block.timestamp, msg.sender))</code>) should include entropy to make it unique and hard to guess, while still allowing for a unique identifier for each registered identity.</li>
+</ol>
+<h3 id="events">Events<a class="headerlink" href="#events" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Comprehensive Events</strong>: Emit events for all state-changing operations to enable off-chain indexing and monitoring.</li>
+</ol>
+<h3 id="modularity">Modularity<a class="headerlink" href="#modularity" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Separation of Concerns</strong>: The registry focuses solely on mapping identifiers to identity contracts. Specific identity logic (e.g., claims, keys) should reside within the <code>IIdentity</code> contracts linked by this registry.</li>
+</ol>
+<h2 id="integration-examples">Integration Examples<a class="headerlink" href="#integration-examples" title="Permanent link">&para;</a></h2>
+<h3 id="frontend-integration-typescript-via-ethersjs">Frontend Integration (TypeScript via Ethers.js)<a class="headerlink" href="#frontend-integration-typescript-via-ethersjs" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ethers</span><span class="p">,</span><span class="w"> </span><span class="nx">Contract</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;ethers&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="nx">IdentityRegistryABI</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./IdentityRegistry.json&#39;</span><span class="p">;</span><span class="w"> </span><span class="c1">// ABI of the IIdentityRegistry</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">REGISTRY_ADDRESS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0x...&quot;</span><span class="p">;</span><span class="w"> </span><span class="c1">// Your deployed IdentityRegistry contract address</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">getSigner</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">ethers</span><span class="p">.</span><span class="nx">providers</span><span class="p">.</span><span class="nx">Web3Provider</span><span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">ethereum</span><span class="p">).</span><span class="nx">getSigner</span><span class="p">();</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">getIdentityRegistryContract</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Contract</span><span class="p">(</span><span class="nx">REGISTRY_ADDRESS</span><span class="p">,</span><span class="w"> </span><span class="nx">IdentityRegistryABI</span><span class="p">,</span><span class="w"> </span><span class="nx">getSigner</span><span class="p">());</span>
+
+<span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">registerNewIdentity</span><span class="p">(</span><span class="nx">identityAddress</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">,</span><span class="w"> </span><span class="nx">metadataURI</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="kt">string</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">registry</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">getIdentityRegistryContract</span><span class="p">();</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">tx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">registry</span><span class="p">.</span><span class="nx">registerIdentity</span><span class="p">(</span><span class="nx">identityAddress</span><span class="p">,</span><span class="w"> </span><span class="nx">metadataURI</span><span class="p">);</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">receipt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">tx</span><span class="p">.</span><span class="nx">wait</span><span class="p">();</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">event</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">receipt</span><span class="p">.</span><span class="nx">events</span><span class="o">?</span><span class="p">.</span><span class="nx">find</span><span class="p">((</span><span class="nx">e</span><span class="o">:</span><span class="w"> </span><span class="kt">any</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">e</span><span class="p">.</span><span class="nx">event</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;IdentityRegistered&#39;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">event</span><span class="o">?</span><span class="p">.</span><span class="nx">args</span><span class="o">?</span><span class="p">.</span><span class="nx">identityHash</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;Error registering identity:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">);</span>
+<span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="nx">error</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">getIdentityAddressByHash</span><span class="p">(</span><span class="nx">identityHash</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="kt">string</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">registry</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">getIdentityRegistryContract</span><span class="p">();</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">address</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">registry</span><span class="p">.</span><span class="nx">getIdentityAddress</span><span class="p">(</span><span class="nx">identityHash</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">address</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;Error getting identity address:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">);</span>
+<span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="nx">error</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">checkIdentityStatus</span><span class="p">(</span><span class="nx">identityHash</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="kt">boolean</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">registry</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">getIdentityRegistryContract</span><span class="p">();</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">isActive</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">registry</span><span class="p">.</span><span class="nx">isIdentityActive</span><span class="p">(</span><span class="nx">identityHash</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">isActive</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;Error checking identity status:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">);</span>
+<span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="nx">error</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Example usage</span>
+<span class="c1">// const newIdHash = await registerNewIdentity(&quot;0xIdentityContractAddress&quot;, &quot;http://my.identity/profile.json&quot;);</span>
+<span class="c1">// const retrievedAddress = await getIdentityAddressByHash(newIdHash);</span>
+<span class="c1">// const status = await checkIdentityStatus(newIdHash);</span>
+</code></pre></div>
+
+<h3 id="backend-integration-nodejs-for-a-centralized-identity-service">Backend Integration (Node.js for a centralized identity service)<a class="headerlink" href="#backend-integration-nodejs-for-a-centralized-identity-service" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">Web3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;web3&#39;</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">IdentityRegistryABI</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./IdentityRegistry.json&#39;</span><span class="p">).</span><span class="nx">abi</span><span class="p">;</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">web3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Web3</span><span class="p">(</span><span class="s1">&#39;YOUR_ETHEREUM_RPC_URL&#39;</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">registryAddress</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;0x...&#39;</span><span class="p">;</span><span class="w"> </span><span class="c1">// Address of your deployed IdentityRegistry contract</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">ownerPrivateKey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;YOUR_CONTRACT_OWNER_PRIVATE_KEY&#39;</span><span class="p">;</span><span class="w"> </span><span class="c1">// Private key of the contract owner</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">identityRegistryContract</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">web3</span><span class="p">.</span><span class="nx">eth</span><span class="p">.</span><span class="nx">Contract</span><span class="p">(</span><span class="nx">IdentityRegistryABI</span><span class="p">,</span><span class="w"> </span><span class="nx">registryAddress</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">ownerAccount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">web3</span><span class="p">.</span><span class="nx">eth</span><span class="p">.</span><span class="nx">accounts</span><span class="p">.</span><span class="nx">privateKeyToAccount</span><span class="p">(</span><span class="nx">ownerPrivateKey</span><span class="p">);</span>
+<span class="nx">web3</span><span class="p">.</span><span class="nx">eth</span><span class="p">.</span><span class="nx">accounts</span><span class="p">.</span><span class="nx">wallet</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">ownerAccount</span><span class="p">);</span>
+
+<span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">registerNewIdentityBackend</span><span class="p">(</span><span class="nx">identityAddress</span><span class="p">,</span><span class="w"> </span><span class="nx">metadataURI</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Registering identity </span><span class="si">${</span><span class="nx">identityAddress</span><span class="si">}</span><span class="sb"> with URI </span><span class="si">${</span><span class="nx">metadataURI</span><span class="si">}</span><span class="sb">...`</span><span class="p">);</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">tx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">identityRegistryContract</span><span class="p">.</span><span class="nx">methods</span><span class="p">.</span><span class="nx">registerIdentity</span><span class="p">(</span><span class="nx">identityAddress</span><span class="p">,</span><span class="w"> </span><span class="nx">metadataURI</span><span class="p">);</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">gasLimit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">tx</span><span class="p">.</span><span class="nx">estimateGas</span><span class="p">({</span><span class="w"> </span><span class="kr">from</span><span class="o">:</span><span class="w"> </span><span class="nx">ownerAccount</span><span class="p">.</span><span class="nx">address</span><span class="w"> </span><span class="p">});</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">receipt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">tx</span><span class="p">.</span><span class="nx">send</span><span class="p">({</span><span class="w"> </span><span class="kr">from</span><span class="o">:</span><span class="w"> </span><span class="nx">ownerAccount</span><span class="p">.</span><span class="nx">address</span><span class="p">,</span><span class="w"> </span><span class="nx">gas</span><span class="o">:</span><span class="w"> </span><span class="nx">gasLimit</span><span class="w"> </span><span class="p">});</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Identity registered. Transaction hash: </span><span class="si">${</span><span class="nx">receipt</span><span class="p">.</span><span class="nx">transactionHash</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="w">        </span><span class="c1">// Extract identity hash from event logs if necessary</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">receipt</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;Backend: Error registering identity:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">);</span>
+<span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="nx">error</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">suspendIdentityBackend</span><span class="p">(</span><span class="nx">identityHash</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Suspending identity with hash </span><span class="si">${</span><span class="nx">identityHash</span><span class="si">}</span><span class="sb">...`</span><span class="p">);</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">tx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">identityRegistryContract</span><span class="p">.</span><span class="nx">methods</span><span class="p">.</span><span class="nx">setIdentityStatus</span><span class="p">(</span><span class="nx">identityHash</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">gasLimit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">tx</span><span class="p">.</span><span class="nx">estimateGas</span><span class="p">({</span><span class="w"> </span><span class="kr">from</span><span class="o">:</span><span class="w"> </span><span class="nx">ownerAccount</span><span class="p">.</span><span class="nx">address</span><span class="w"> </span><span class="p">});</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">receipt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">tx</span><span class="p">.</span><span class="nx">send</span><span class="p">({</span><span class="w"> </span><span class="kr">from</span><span class="o">:</span><span class="w"> </span><span class="nx">ownerAccount</span><span class="p">.</span><span class="nx">address</span><span class="p">,</span><span class="w"> </span><span class="nx">gas</span><span class="o">:</span><span class="w"> </span><span class="nx">gasLimit</span><span class="w"> </span><span class="p">});</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Identity suspended. Transaction hash: </span><span class="si">${</span><span class="nx">receipt</span><span class="p">.</span><span class="nx">transactionHash</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">receipt</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;Backend: Error suspending identity:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">);</span>
+<span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="nx">error</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Example usage</span>
+<span class="c1">// registerNewIdentityBackend(&quot;0xAnotherIdentityContract&quot;, &quot;https://api.example.com/identity/2&quot;);</span>
+<span class="c1">// suspendIdentityBackend(&quot;0xabcdef1234567890...&quot;); // Use a previously obtained identity hash</span>
+</code></pre></div>
+
+<h2 id="related-documentation">Related Documentation<a class="headerlink" href="#related-documentation" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../iidentity/">IIdentity Interface</a></li>
+<li><a href="../../identity-factory/">Identity Factory</a></li>
+<li><a href="https://docs.openzeppelin.com/contracts/5.x/api/access#Ownable">Ownable Contract</a></li>
+<li><a href="https://www.w3.org/TR/did-core/">Decentralized Identifiers (DIDs) (External)</a></li>
+</ul>
+<h2 id="standards-compliance">Standards Compliance<a class="headerlink" href="#standards-compliance" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Ownable</strong>: Utilizes OpenZeppelin's <code>Ownable</code> for administrative access control.</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../igemforce-minter-facet/" class="btn btn-neutral float-left" title="IGemforceMinterFacet"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../itrusted-issuers-registry/" class="btn btn-neutral float-right" title="TRUSTEDIssuersRegistry">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../igemforce-minter-facet/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../itrusted-issuers-registry/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

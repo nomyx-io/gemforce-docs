@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Gemforce Team" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>IMultiSale - Gemforce Documentation</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "IMultiSale";
+        var mkdocs_page_input_path = "smart-contracts/interfaces/imultisale.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../.." class="icon icon-home"> Gemforce Documentation
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../developer-setup-guide/">Developer Setup Guide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../system-architecture/gemforce-system-architecture/">System Architecture</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Smart Contracts</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../diamond/">Diamond Contract</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../diamond-factory/">Diamond Factory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../identity-factory/">Identity Factory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Facets</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/marketplace-facet/">Marketplace Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trade-deal-management-facet/">Trade Deal Management Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/carbon-credit-facet/">Carbon Credit Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/identity-registry-facet/">Identity Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trusted-issuers-registry-facet/">Trusted Issuers Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/fee-distributor-facet/">Fee Distributor Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/gemforce-minter-facet/">Gemforce Minter Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/multi-sale-facet/">Multi Sale Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/svg-templates-facet/">SVG Templates Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trade-deal-admin-facet/">Trade Deal Admin Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trade-deal-operations-facet/">Trade Deal Operations Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/collateral-token-factory-facet/">Collateral Token Factory Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/diamond-cut-facet/">Diamond Cut Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/diamond-loupe-facet/">Diamond Loupe Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/ownership-facet/">Ownership Facet</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" >Interfaces</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" href="../idiamond/">IDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../imarketplace/">IMarketplace</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../itradedeal/">ITradeDeal</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../icarbon-credit/">ICarbonCredit</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../ierc1155-mint/">IERC1155Mint</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../ierc734/">IERC734</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../ierc735/">IERC735</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../ierc721a/">IERC721A</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../idiamond-factory/">IDiamondFactory</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../iidentity/">IIdentity</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">IMultiSale</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#overview">Overview</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#key-features">Key Features</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#sale-management">Sale Management</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#purchase-mechanics">Purchase Mechanics</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#whitelisting-and-access-control">Whitelisting and Access Control</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#interface-definition">Interface Definition</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#core-functions">Core Functions</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#createsale">createSale()</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#buy">buy()</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#addtowhitelist">addToWhitelist()</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#implementation-example">Implementation Example</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#basic-multisale-contract">Basic MultiSale Contract</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#security-considerations">Security Considerations</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#access-control">Access Control</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#fund-safety">Fund Safety</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#sale-integrity">Sale Integrity</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#best-practices">Best Practices</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#sale-configuration">Sale Configuration</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#token-management">Token Management</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#monitoring-and-events">Monitoring and Events</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#integration-examples">Integration Examples</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#frontend-integration-typescript">Frontend Integration (TypeScript)</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#backend-integration-nodejs-with-web3js">Backend Integration (Node.js with web3.js)</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#related-documentation">Related Documentation</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#standards-compliance">Standards Compliance</a>
+    </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../ifee-distributor/">IFeeDistributor</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../igemforce-minter-facet/">IGemforceMinterFacet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../iidentity-registry/">IIdentityRegistry</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../itrusted-issuers-registry/">TRUSTEDIssuersRegistry</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../isvg/">ISVG</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../iattribute/">IAttribute</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Libraries</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/carbon-credit-lib/">Carbon Credit Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/trade-deal-lib/">Trade Deal Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/multi-sale-lib/">Multi Sale Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/diamond-factory-lib/">Diamond Factory Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/svg-templates-lib/">SVG Templates Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/attribute-lib/">Attribute Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/variable-price-lib/">Variable Price Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/merkle-prover/">Merkle Prover</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/fee-distributor-lib/">Fee Distributor Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/lib-diamond/">LibDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/diamond-lib/">DiamondLib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/erc721a-lib/">ERC721A Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/erc721a-enumeration-lib/">ERC721A Enumeration Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/strings-lib/">Strings Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/trusted-issuer-lib/">Trusted Issuer Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/set-libraries/">Set Libraries</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">SDK & Libraries</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/blockchain/">Blockchain Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/diamond/">Diamond Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/contract/">Contract Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/deploy/">Deployment Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/validation-utils/">Validation Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/nft-sale-utils/">NFT Sale Utilities</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Cloud Functions</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/authentication/">Authentication Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/auth-functions/">Auth Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/blockchain/">Blockchain Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/bridge/">Bridge Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/contracts/">Contract Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/deploy/">Deploy Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/dfns/">DFNS Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/project/">Project Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/trade-deal/">Trade Deal Functions</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">API Documentation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../api-documentation/gemforce-api-documentation/">Full API Reference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../api-documentation/gemforce-api-quick-reference/">Quick Reference</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Operations Tasks</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/diamond/">Diamond Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/identities/">Identity Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/marketplace-management/">Marketplace Management Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/carbon-credit-management/">Carbon Credit Management Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/trade-deal/">Trade Deal Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/integration-test/">Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/integration-test-marketplace/">Marketplace Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/integration-test-trade-deal/">Trade Deal Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/admin-utils/">Admin Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/sync-diamond/">Sync Diamond Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/sync-events/">Sync Events Tasks</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">EIPs (Ethereum Improvement Proposals)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Diamond-Enhanced-Marketplace/">Diamond-Enhanced Marketplace</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Multi-Token-Sale-Standard/">Multi-Token Sale Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Collateralized-Trade-Deal-Standard/">Collateralized Trade Deal Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Enhanced-Identity-System/">Enhanced Identity System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Diamond-Factory-Standard/">Diamond Factory Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Carbon-Credit-Standard/">Carbon Credit Standard</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">User Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-administrator-guide/">Administrator Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-deployer-guide/">Deployer Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-integrator-guide/">Integrator Guide</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Integrator's Guide</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/authentication/">Authentication</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/rest-api/">REST API</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/smart-contracts/">Smart Contracts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/dfns/">DFNS Integration</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/webhooks/">Webhooks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/error-handling/">Error Handling</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/sample-code/">Sample Code</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/integration-patterns/">Integration Patterns</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/security/">Security</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../external-services/gemforce-external-services/">External Services</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-documentation-gap-analysis/">Documentation Gap Analysis</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../documentation-progress-summary/">Documentation Progress Summary</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../documentation-plan/">Documentation Plan</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">Gemforce Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Smart Contracts</li>
+          <li class="breadcrumb-item">Interfaces</li>
+      <li class="breadcrumb-item active">IMultiSale</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="imultisale-interface">IMultiSale Interface<a class="headerlink" href="#imultisale-interface" title="Permanent link">&para;</a></h1>
+<p>The <code>IMultiSale</code> interface defines the standard for smart contracts that enable multi-token sales, supporting various token types (ERC20, ERC721, ERC1155) and flexible payment methods. This interface is crucial for implementing diverse sale mechanisms within the Gemforce ecosystem, such as presales, public sales, and Dutch auctions.</p>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p><code>IMultiSale</code> provides:</p>
+<ul>
+<li><strong>Token Flexibility</strong>: Supports ERC20, ERC721, and ERC1155 tokens.</li>
+<li><strong>Payment Versatility</strong>: Configurable payment tokens and currencies.</li>
+<li><strong>Sale Lifecycle Management</strong>: Functions for starting, pausing, and ending sales.</li>
+<li><strong>Participation Control</strong>: Mechanisms for whitelisting and setting purchase limits.</li>
+<li><strong>Event Tracking</strong>: Comprehensive event logging for sale activities.</li>
+</ul>
+<h2 id="key-features">Key Features<a class="headerlink" href="#key-features" title="Permanent link">&para;</a></h2>
+<h3 id="sale-management">Sale Management<a class="headerlink" href="#sale-management" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Start/Pause/End</strong>: Control the lifecycle of sales</li>
+<li><strong>Configuration</strong>: Set sale parameters like price, duration, limits</li>
+<li><strong>Fund Collection</strong>: Manage primary and secondary payment collection</li>
+</ul>
+<h3 id="purchase-mechanics">Purchase Mechanics<a class="headerlink" href="#purchase-mechanics" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Direct Purchase</strong>: Standard buy function</li>
+<li><strong>Batch Purchase</strong>: Purchase multiple items or tokens at once</li>
+<li><strong>Dynamic Pricing</strong>: Support for variable pricing models (e.g., fixed, exponential, inverse logarithmic)</li>
+<li><strong>Refunds</strong>: Mechanism for handling failed purchases or refunds</li>
+</ul>
+<h3 id="whitelisting-and-access-control">Whitelisting and Access Control<a class="headerlink" href="#whitelisting-and-access-control" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Whitelist Management</strong>: Add and remove addresses from whitelists</li>
+<li><strong>Purchase Limits</strong>: Set maximum purchase quantities per address</li>
+<li><strong>Role-Based Access</strong>: Define roles for managing sale configurations</li>
+</ul>
+<h2 id="interface-definition">Interface Definition<a class="headerlink" href="#interface-definition" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span><code>interface<span class="w"> </span>IMultiSale<span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Events</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">SaleStarted</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>saleId<span class="p">,</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>seller<span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">startTime</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">endTime</span>
+<span class="w">    </span><span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">SalePaused</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>saleId<span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">SaleEnded</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>saleId<span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">Purchase</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>saleId<span class="p">,</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>buyer<span class="p">,</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>token<span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>tokenId<span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">amount</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">pricePaid</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">paymentToken</span>
+<span class="w">    </span><span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">PaymentCollected</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>saleId<span class="p">,</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>payee<span class="p">,</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">paymentToken</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">amount</span>
+<span class="w">    </span><span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">WhitelistUpdated</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>saleId<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>addr<span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="nv">whitelisted</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">SaleConfigUpdated</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>saleId<span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Enums</span>
+<span class="w">    </span><span class="kt">enum</span><span class="w"> </span><span class="nv">SaleState</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>NOT_STARTED<span class="p">,</span>
+<span class="w">        </span>ACTIVE<span class="p">,</span>
+<span class="w">        </span>PAUSED<span class="p">,</span>
+<span class="w">        </span>ENDED
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">enum</span><span class="w"> </span><span class="nv">TokenType</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>ERC20<span class="p">,</span>
+<span class="w">        </span>ERC721<span class="p">,</span>
+<span class="w">        </span>ERC1155
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Structs</span>
+<span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">SaleConfig</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">seller</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">saleTokenAddress</span><span class="p">;</span>
+<span class="w">        </span>TokenType<span class="w"> </span>saleTokenType<span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">saleTokenId</span><span class="p">;</span><span class="w"> </span><span class="c1">// For ERC721/ERC1155, 0 for ERC20</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalAmount</span><span class="p">;</span><span class="w"> </span><span class="c1">// For ERC20/ERC1155, total NFTs for ERC721</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">price</span><span class="p">;</span><span class="w"> </span><span class="c1">// Base price or starting price</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">paymentTokenAddress</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">startTime</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">endTime</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">maxPurchasePerAddress</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">isWhitelistedSale</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">initialReceiver</span><span class="p">;</span><span class="w"> </span><span class="c1">// Where initial payment goes, often a treasury</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">initialPaymentAmount</span><span class="p">;</span><span class="w"> </span><span class="c1">// Amount to collect initially</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">feePercentage</span><span class="p">;</span><span class="w"> </span><span class="c1">// Percentage fee for the platform</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">feeReceiver</span><span class="p">;</span><span class="w"> </span><span class="c1">// Address to receive fees</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">name</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">description</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">data</span><span class="p">;</span><span class="w"> </span><span class="c1">// Additional data for specific sale types (e.g., pricing curves)</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">SaleDetails</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>SaleConfig<span class="w"> </span>config<span class="p">;</span>
+<span class="w">        </span>SaleState<span class="w"> </span>state<span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">amountSold</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalRevenue</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">collectedPayment</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">address</span><span class="p">[]</span><span class="w"> </span>buyers<span class="p">;</span>
+<span class="w">        </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">uint256</span><span class="p">)</span><span class="w"> </span>purchasedAmount<span class="p">;</span>
+<span class="w">        </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">bool</span><span class="p">)</span><span class="w"> </span>whitelisted<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Sale Management Functions</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">createSale</span><span class="p">(</span>SaleConfig<span class="w"> </span>calldata<span class="w"> </span>config<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">saleId</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">startSale</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">saleId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">pauseSale</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">saleId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">endSale</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">saleId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">updateSaleConfig</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">saleId</span><span class="p">,</span><span class="w"> </span>SaleConfig<span class="w"> </span>calldata<span class="w"> </span>newConfig<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// Purchase Functions</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">buy</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">saleId</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">amount</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">payable</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">buyBatch</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">saleId</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span>calldata<span class="w"> </span>amounts<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">payable</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">refund</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">saleId</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">amount</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// Whitelist Functions</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">addToWhitelist</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">saleId</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="p">[]</span><span class="w"> </span>calldata<span class="w"> </span>addrs<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">removeFromWhitelist</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">saleId</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="p">[]</span><span class="w"> </span>calldata<span class="w"> </span>addrs<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">isWhitelisted</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">saleId</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">addr</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bool</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Query Functions</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getSaleConfig</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">saleId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>SaleConfig<span class="w"> </span><span class="kt">memory</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getSaleState</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">saleId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>SaleState<span class="p">);</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getAmountSold</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">saleId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getTotalRevenue</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">saleId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getPurchasedAmount</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">saleId</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">buyer</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getAllActiveSales</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bytes32</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getSalesBySeller</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">seller</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bytes32</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getSalesByPaymentToken</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">paymentToken</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bytes32</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getCurrentPrice</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">saleId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Payment Collection Functions</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">sweepFunds</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">saleId</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">receiver</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">collectFees</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">saleId</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">feeReceiver</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="core-functions">Core Functions<a class="headerlink" href="#core-functions" title="Permanent link">&para;</a></h2>
+<h3 id="createsale">createSale()<a class="headerlink" href="#createsale" title="Permanent link">&para;</a></h3>
+<p>Initializes and creates a new multi-token sale with the specified configuration.</p>
+<p><strong>Parameters:</strong>
+- <code>config</code>: A <code>SaleConfig</code> struct containing all parameters for the sale.</p>
+<p><strong>Returns:</strong>
+- <code>bytes32</code>: A unique identifier for the created sale (<code>saleId</code>).</p>
+<p><strong>Usage:</strong></p>
+<div class="codehilite"><pre><span></span><code>IMultiSale<span class="p">.</span>SaleConfig<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>saleConfig<span class="w"> </span><span class="o">=</span><span class="w"> </span>IMultiSale<span class="p">.</span>SaleConfig<span class="p">({</span>
+<span class="w">    </span>seller<span class="o">:</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">,</span>
+<span class="w">    </span>saleTokenAddress<span class="o">:</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span>nftContract<span class="p">),</span>
+<span class="w">    </span>saleTokenType<span class="o">:</span><span class="w"> </span>IMultiSale<span class="p">.</span>TokenType<span class="p">.</span>ERC721<span class="p">,</span>
+<span class="w">    </span>saleTokenId<span class="o">:</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">,</span><span class="w"> </span><span class="c1">// Not applicable for ERC721 general sale</span>
+<span class="w">    </span>totalAmount<span class="o">:</span><span class="w"> </span><span class="m m-Decimal">100</span><span class="p">,</span>
+<span class="w">    </span>price<span class="o">:</span><span class="w"> </span><span class="m m-Decimal">1</span><span class="w"> </span>ether<span class="p">,</span><span class="w"> </span><span class="c1">// Price per NFT</span>
+<span class="w">    </span>paymentTokenAddress<span class="o">:</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">),</span><span class="w"> </span><span class="c1">// ETH</span>
+<span class="w">    </span>startTime<span class="o">:</span><span class="w"> </span><span class="k">block.timestamp</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m m-Decimal">1</span><span class="w"> </span>hours<span class="p">,</span>
+<span class="w">    </span>endTime<span class="o">:</span><span class="w"> </span><span class="k">block.timestamp</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m m-Decimal">2</span><span class="w"> </span>hours<span class="p">,</span>
+<span class="w">    </span>maxPurchasePerAddress<span class="o">:</span><span class="w"> </span><span class="m m-Decimal">5</span><span class="p">,</span>
+<span class="w">    </span>isWhitelistedSale<span class="o">:</span><span class="w"> </span><span class="kt">false</span><span class="p">,</span>
+<span class="w">    </span>initialReceiver<span class="o">:</span><span class="w"> </span>treasury<span class="p">,</span>
+<span class="w">    </span>initialPaymentAmount<span class="o">:</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">,</span>
+<span class="w">    </span>feePercentage<span class="o">:</span><span class="w"> </span><span class="m m-Decimal">500</span><span class="p">,</span><span class="w"> </span><span class="c1">// 5%</span>
+<span class="w">    </span>feeReceiver<span class="o">:</span><span class="w"> </span>platformFeeRecipient<span class="p">,</span>
+<span class="w">    </span>name<span class="o">:</span><span class="w"> </span><span class="s2">&quot;My NFT Sale&quot;</span><span class="p">,</span>
+<span class="w">    </span>description<span class="o">:</span><span class="w"> </span><span class="s2">&quot;A limited edition NFT collection.&quot;</span><span class="p">,</span>
+<span class="w">    </span>data<span class="o">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
+<span class="p">});</span>
+
+<span class="kt">bytes32</span><span class="w"> </span><span class="nv">mySaleId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>multiSaleContract<span class="p">.</span>createSale<span class="p">(</span>saleConfig<span class="p">);</span>
+</code></pre></div>
+
+<h3 id="buy">buy()<a class="headerlink" href="#buy" title="Permanent link">&para;</a></h3>
+<p>Allows a buyer to purchase <code>amount</code> of tokens/NFTs from an active sale.</p>
+<p><strong>Parameters:</strong>
+- <code>saleId</code>: The ID of the sale.
+- <code>amount</code>: The quantity of tokens/NFTs to purchase.</p>
+<p><strong>Behavior:</strong>
+- Requires <code>msg.value</code> to match the calculated total price if payable ETH is used.
+- Transfers the sale tokens to the buyer and collects payment.
+- Updates <code>amountSold</code> and <code>totalRevenue</code>.</p>
+<h3 id="addtowhitelist">addToWhitelist()<a class="headerlink" href="#addtowhitelist" title="Permanent link">&para;</a></h3>
+<p>Adds multiple addresses to the whitelist for a specific sale. Only applicable for whitelisted sales.</p>
+<p><strong>Parameters:</strong>
+- <code>saleId</code>: The ID of the sale.
+- <code>addrs</code>: An array of addresses to add to the whitelist.</p>
+<h2 id="implementation-example">Implementation Example<a class="headerlink" href="#implementation-example" title="Permanent link">&para;</a></h2>
+<h3 id="basic-multisale-contract">Basic MultiSale Contract<a class="headerlink" href="#basic-multisale-contract" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="k">contract</span><span class="w"> </span><span class="ni">MultiSale</span><span class="w"> </span><span class="kt">is</span><span class="w"> </span>IMultiSale<span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Storage</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span>SaleDetails<span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>sales<span class="p">;</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">bytes32</span><span class="p">[])</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>salesBySeller<span class="p">;</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">uint256</span><span class="p">)</span><span class="w"> </span><span class="kt">private</span><span class="w"> </span>_purchasedAmount<span class="p">;</span><span class="w"> </span><span class="c1">// Keep track of amounts</span>
+<span class="w">    </span><span class="kt">bytes32</span><span class="p">[]</span><span class="w"> </span><span class="kt">private</span><span class="w"> </span>_allSales<span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// Dependencies (example simplified, in real scenario these would be injected)</span>
+<span class="w">    </span>IERC20<span class="w"> </span><span class="kt">private</span><span class="w"> </span>_erc20<span class="p">;</span>
+<span class="w">    </span>IERC721<span class="w"> </span><span class="kt">private</span><span class="w"> </span>_erc721<span class="p">;</span>
+<span class="w">    </span>IERC1155<span class="w"> </span><span class="kt">private</span><span class="w"> </span>_erc1155<span class="p">;</span>
+
+<span class="w">    </span><span class="kt">constructor</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">erc20Addr</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">erc721Addr</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">erc1155Addr</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>_erc20<span class="w"> </span><span class="o">=</span><span class="w"> </span>IERC20<span class="p">(</span>erc20Addr<span class="p">);</span>
+<span class="w">        </span>_erc721<span class="w"> </span><span class="o">=</span><span class="w"> </span>IERC721<span class="p">(</span>erc721Addr<span class="p">);</span>
+<span class="w">        </span>_erc1155<span class="w"> </span><span class="o">=</span><span class="w"> </span>IERC1155<span class="p">(</span>erc1155Addr<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">createSale</span><span class="p">(</span>SaleConfig<span class="w"> </span>calldata<span class="w"> </span>config<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">saleId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>saleId<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">keccak256</span><span class="p">(</span>abi<span class="p">.</span>encodePacked<span class="p">(</span><span class="k">block.timestamp</span><span class="p">,</span><span class="w"> </span>config<span class="p">.</span>seller<span class="p">));</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>sales<span class="p">[</span>saleId<span class="p">].</span>config<span class="p">.</span>seller<span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">),</span><span class="w"> </span><span class="s2">&quot;Sale ID collision&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Basic validation</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>config<span class="p">.</span>totalAmount<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Total amount must be greater than 0&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>config<span class="p">.</span>price<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Price must be greater than 0&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>config<span class="p">.</span>endTime<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span>config<span class="p">.</span>startTime<span class="p">,</span><span class="w"> </span><span class="s2">&quot;End time must be after start time&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>config<span class="p">.</span>initialReceiver<span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">),</span><span class="w"> </span><span class="s2">&quot;Initial receiver cannot be zero address&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Initialize SaleDetails</span>
+<span class="w">        </span>sales<span class="p">[</span>saleId<span class="p">].</span>config<span class="w"> </span><span class="o">=</span><span class="w"> </span>config<span class="p">;</span>
+<span class="w">        </span>sales<span class="p">[</span>saleId<span class="p">].</span>state<span class="w"> </span><span class="o">=</span><span class="w"> </span>SaleState<span class="p">.</span>NOT_STARTED<span class="p">;</span>
+<span class="w">        </span>sales<span class="p">[</span>saleId<span class="p">].</span>amountSold<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span>
+<span class="w">        </span>sales<span class="p">[</span>saleId<span class="p">].</span>totalRevenue<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span>
+<span class="w">        </span>sales<span class="p">[</span>saleId<span class="p">].</span>collectedPayment<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span>
+<span class="w">        </span>sales<span class="p">[</span>saleId<span class="p">].</span>config<span class="p">.</span>seller<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">;</span><span class="w"> </span><span class="c1">// Ensure seller is creation caller</span>
+
+<span class="w">        </span>salesBySeller<span class="p">[</span><span class="k">msg.sender</span><span class="p">].</span>push<span class="p">(</span>saleId<span class="p">);</span>
+<span class="w">        </span>_allSales<span class="p">.</span>push<span class="p">(</span>saleId<span class="p">);</span>
+<span class="w">        </span>emit<span class="w"> </span>SaleConfigUpdated<span class="p">(</span>saleId<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">startSale</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">saleId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>SaleDetails<span class="w"> </span>storage<span class="w"> </span>sale<span class="w"> </span><span class="o">=</span><span class="w"> </span>sales<span class="p">[</span>saleId<span class="p">];</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>sale<span class="p">.</span>config<span class="p">.</span>seller<span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Caller not seller&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>sale<span class="p">.</span>state<span class="w"> </span><span class="o">==</span><span class="w"> </span>SaleState<span class="p">.</span>NOT_STARTED<span class="w"> </span><span class="o">||</span><span class="w"> </span>sale<span class="p">.</span>state<span class="w"> </span><span class="o">==</span><span class="w"> </span>SaleState<span class="p">.</span>PAUSED<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Sale not in votable state&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span><span class="k">block.timestamp</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span>sale<span class="p">.</span>config<span class="p">.</span>startTime<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Sale has not started yet&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span><span class="k">block.timestamp</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span>sale<span class="p">.</span>config<span class="p">.</span>endTime<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Sale has already ended&quot;</span><span class="p">);</span>
+
+<span class="w">        </span>sale<span class="p">.</span>state<span class="w"> </span><span class="o">=</span><span class="w"> </span>SaleState<span class="p">.</span>ACTIVE<span class="p">;</span>
+<span class="w">        </span>emit<span class="w"> </span>SaleStarted<span class="p">(</span>saleId<span class="p">,</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">,</span><span class="w"> </span>sale<span class="p">.</span>config<span class="p">.</span>startTime<span class="p">,</span><span class="w"> </span>sale<span class="p">.</span>config<span class="p">.</span>endTime<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">pauseSale</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">saleId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>SaleDetails<span class="w"> </span>storage<span class="w"> </span>sale<span class="w"> </span><span class="o">=</span><span class="w"> </span>sales<span class="p">[</span>saleId<span class="p">];</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>sale<span class="p">.</span>config<span class="p">.</span>seller<span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Caller not seller&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>sale<span class="p">.</span>state<span class="w"> </span><span class="o">==</span><span class="w"> </span>SaleState<span class="p">.</span>ACTIVE<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Sale not active&quot;</span><span class="p">);</span>
+
+<span class="w">        </span>sale<span class="p">.</span>state<span class="w"> </span><span class="o">=</span><span class="w"> </span>SaleState<span class="p">.</span>PAUSED<span class="p">;</span>
+<span class="w">        </span>emit<span class="w"> </span>SalePaused<span class="p">(</span>saleId<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">endSale</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">saleId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>SaleDetails<span class="w"> </span>storage<span class="w"> </span>sale<span class="w"> </span><span class="o">=</span><span class="w"> </span>sales<span class="p">[</span>saleId<span class="p">];</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>sale<span class="p">.</span>config<span class="p">.</span>seller<span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">msg.sender</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="k">block.timestamp</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span>sale<span class="p">.</span>config<span class="p">.</span>endTime<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Caller not seller or sale not ended&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>sale<span class="p">.</span>state<span class="w"> </span><span class="o">==</span><span class="w"> </span>SaleState<span class="p">.</span>ACTIVE<span class="w"> </span><span class="o">||</span><span class="w"> </span>sale<span class="p">.</span>state<span class="w"> </span><span class="o">==</span><span class="w"> </span>SaleState<span class="p">.</span>PAUSED<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Sale already ended or not started&quot;</span><span class="p">);</span>
+
+<span class="w">        </span>sale<span class="p">.</span>state<span class="w"> </span><span class="o">=</span><span class="w"> </span>SaleState<span class="p">.</span>ENDED<span class="p">;</span>
+<span class="w">        </span>emit<span class="w"> </span>SaleEnded<span class="p">(</span>saleId<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">buy</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">saleId</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">amount</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">payable</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>SaleDetails<span class="w"> </span>storage<span class="w"> </span>sale<span class="w"> </span><span class="o">=</span><span class="w"> </span>sales<span class="p">[</span>saleId<span class="p">];</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>sale<span class="p">.</span>state<span class="w"> </span><span class="o">==</span><span class="w"> </span>SaleState<span class="p">.</span>ACTIVE<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Sale not active&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>sale<span class="p">.</span>amountSold<span class="w"> </span><span class="o">+</span><span class="w"> </span>amount<span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span>sale<span class="p">.</span>config<span class="p">.</span>totalAmount<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Exceeds total available&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>amount<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Amount must be greater than 0&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>sale<span class="p">.</span>config<span class="p">.</span>isWhitelistedSale<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">require</span><span class="p">(</span>sale<span class="p">.</span>whitelisted<span class="p">[</span><span class="k">msg.sender</span><span class="p">],</span><span class="w"> </span><span class="s2">&quot;Not whitelisted&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>_purchasedAmount<span class="p">[</span>saleId<span class="p">][</span><span class="k">msg.sender</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>amount<span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span>sale<span class="p">.</span>config<span class="p">.</span>maxPurchasePerAddress<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Exceeds max purchase per address&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">currentPrice</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>getCurrentPrice<span class="p">(</span>saleId<span class="p">);</span><span class="w"> </span><span class="c1">// Supports dynamic pricing</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalPrice</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>currentPrice<span class="w"> </span><span class="o">*</span><span class="w"> </span>amount<span class="p">;</span>
+
+<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>sale<span class="p">.</span>config<span class="p">.</span>paymentTokenAddress<span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// ETH payment</span>
+<span class="w">            </span><span class="kt">require</span><span class="p">(</span><span class="k">msg.value</span><span class="w"> </span><span class="o">==</span><span class="w"> </span>totalPrice<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Incorrect ETH amount sent&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="kt">else</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// ERC20 payment</span>
+<span class="w">            </span><span class="kt">require</span><span class="p">(</span><span class="k">msg.value</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Do not send ETH for ERC20 payment&quot;</span><span class="p">);</span>
+<span class="w">            </span>IERC20<span class="p">(</span>sale<span class="p">.</span>config<span class="p">.</span>paymentTokenAddress<span class="p">).</span>transferFrom<span class="p">(</span><span class="k">msg.sender</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="kt">this</span><span class="p">),</span><span class="w"> </span>totalPrice<span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// Transfer sale tokens</span>
+<span class="w">        </span>_transferSaleTokens<span class="p">(</span>saleId<span class="p">,</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">,</span><span class="w"> </span>amount<span class="p">);</span>
+
+<span class="w">        </span>sale<span class="p">.</span>amountSold<span class="w"> </span><span class="o">+=</span><span class="w"> </span>amount<span class="p">;</span>
+<span class="w">        </span>sale<span class="p">.</span>totalRevenue<span class="w"> </span><span class="o">+=</span><span class="w"> </span>totalPrice<span class="p">;</span>
+<span class="w">        </span>_purchasedAmount<span class="p">[</span>saleId<span class="p">][</span><span class="k">msg.sender</span><span class="p">]</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span>amount<span class="p">;</span>
+
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">buyerFound</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">false</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>sale<span class="p">.</span>buyers<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>sale<span class="p">.</span>buyers<span class="p">[</span>i<span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span>buyerFound<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">true</span><span class="p">;</span>
+<span class="w">                </span><span class="kt">break</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span>buyerFound<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>sale<span class="p">.</span>buyers<span class="p">.</span>push<span class="p">(</span><span class="k">msg.sender</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span>emit<span class="w"> </span>Purchase<span class="p">(</span>saleId<span class="p">,</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">,</span><span class="w"> </span>sale<span class="p">.</span>config<span class="p">.</span>saleTokenAddress<span class="p">,</span><span class="w"> </span>sale<span class="p">.</span>config<span class="p">.</span>saleTokenId<span class="p">,</span><span class="w"> </span>amount<span class="p">,</span><span class="w"> </span>totalPrice<span class="p">,</span><span class="w"> </span>sale<span class="p">.</span>config<span class="p">.</span>paymentTokenAddress<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">_transferSaleTokens</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">saleId</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">buyer</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">amount</span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>SaleConfig<span class="w"> </span>storage<span class="w"> </span>config<span class="w"> </span><span class="o">=</span><span class="w"> </span>sales<span class="p">[</span>saleId<span class="p">].</span>config<span class="p">;</span>
+<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>config<span class="p">.</span>saleTokenType<span class="w"> </span><span class="o">==</span><span class="w"> </span>TokenType<span class="p">.</span>ERC20<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>_erc20<span class="p">.</span>transfer<span class="p">(</span>buyer<span class="p">,</span><span class="w"> </span>amount<span class="p">);</span><span class="w"> </span><span class="c1">// from MultiSale contract&#39;s balance</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="kt">else</span><span class="w"> </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>config<span class="p">.</span>saleTokenType<span class="w"> </span><span class="o">==</span><span class="w"> </span>TokenType<span class="p">.</span>ERC721<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>amount<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="c1">// Assuming saleTokenId is the starting ID or a way to select NFTs</span>
+<span class="w">                </span>_erc721<span class="p">.</span>transferFrom<span class="p">(</span><span class="kt">address</span><span class="p">(</span><span class="kt">this</span><span class="p">),</span><span class="w"> </span>buyer<span class="p">,</span><span class="w"> </span>config<span class="p">.</span>saleTokenId<span class="w"> </span><span class="o">+</span><span class="w"> </span>sales<span class="p">[</span>saleId<span class="p">].</span>amountSold<span class="w"> </span><span class="o">+</span><span class="w"> </span>i<span class="p">);</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="kt">else</span><span class="w"> </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>config<span class="p">.</span>saleTokenType<span class="w"> </span><span class="o">==</span><span class="w"> </span>TokenType<span class="p">.</span>ERC1155<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>_erc1155<span class="p">.</span>safeTransferFrom<span class="p">(</span><span class="kt">address</span><span class="p">(</span><span class="kt">this</span><span class="p">),</span><span class="w"> </span>buyer<span class="p">,</span><span class="w"> </span>config<span class="p">.</span>saleTokenId<span class="p">,</span><span class="w"> </span>amount<span class="p">,</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">addToWhitelist</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">saleId</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="p">[]</span><span class="w"> </span>calldata<span class="w"> </span>addrs<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>SaleDetails<span class="w"> </span>storage<span class="w"> </span>sale<span class="w"> </span><span class="o">=</span><span class="w"> </span>sales<span class="p">[</span>saleId<span class="p">];</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>sale<span class="p">.</span>config<span class="p">.</span>seller<span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Caller not seller&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>sale<span class="p">.</span>config<span class="p">.</span>isWhitelistedSale<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Not a whitelisted sale&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>addrs<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">require</span><span class="p">(</span>addrs<span class="p">[</span>i<span class="p">]</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">),</span><span class="w"> </span><span class="s2">&quot;Cannot whitelist zero address&quot;</span><span class="p">);</span>
+<span class="w">            </span>sale<span class="p">.</span>whitelisted<span class="p">[</span>addrs<span class="p">[</span>i<span class="p">]]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">true</span><span class="p">;</span>
+<span class="w">            </span>emit<span class="w"> </span>WhitelistUpdated<span class="p">(</span>saleId<span class="p">,</span><span class="w"> </span>addrs<span class="p">[</span>i<span class="p">],</span><span class="w"> </span><span class="kt">true</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Example of a simple getCurrentPrice, could be replaced by an external VariablePriceLib</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getCurrentPrice</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">saleId</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>sales<span class="p">[</span>saleId<span class="p">].</span>config<span class="p">.</span>price<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getSaleConfig</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">saleId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>SaleConfig<span class="w"> </span><span class="kt">memory</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>sales<span class="p">[</span>saleId<span class="p">].</span>config<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getSaleState</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">saleId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>SaleState<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>sales<span class="p">[</span>saleId<span class="p">].</span>state<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getAmountSold</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">saleId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>sales<span class="p">[</span>saleId<span class="p">].</span>amountSold<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getTotalRevenue</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">saleId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>sales<span class="p">[</span>saleId<span class="p">].</span>totalRevenue<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getPurchasedAmount</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">saleId</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">buyer</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>_purchasedAmount<span class="p">[</span>saleId<span class="p">][</span>buyer<span class="p">];</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getAllActiveSales</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bytes32</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">bytes32</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>activeSales<span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>_allSales<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>sales<span class="p">[</span>_allSales<span class="p">[</span>i<span class="p">]].</span>state<span class="w"> </span><span class="o">==</span><span class="w"> </span>SaleState<span class="p">.</span>ACTIVE<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span>count<span class="o">++</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span>activeSales<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="kt">bytes32</span><span class="p">[](</span>count<span class="p">);</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>_allSales<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>sales<span class="p">[</span>_allSales<span class="p">[</span>i<span class="p">]].</span>state<span class="w"> </span><span class="o">==</span><span class="w"> </span>SaleState<span class="p">.</span>ACTIVE<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span>activeSales<span class="p">[</span>j<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>_allSales<span class="p">[</span>i<span class="p">];</span>
+<span class="w">                </span>j<span class="o">++</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>activeSales<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getSalesBySeller</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">seller</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bytes32</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>salesBySeller<span class="p">[</span>seller<span class="p">];</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getSalesByPaymentToken</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">paymentToken</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bytes32</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">bytes32</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>salesList<span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>_allSales<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>sales<span class="p">[</span>_allSales<span class="p">[</span>i<span class="p">]].</span>config<span class="p">.</span>paymentTokenAddress<span class="w"> </span><span class="o">==</span><span class="w"> </span>paymentToken<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span>count<span class="o">++</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span>salesList<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="kt">bytes32</span><span class="p">[](</span>count<span class="p">);</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>_allSales<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>sales<span class="p">[</span>_allSales<span class="p">[</span>i<span class="p">]].</span>config<span class="p">.</span>paymentTokenAddress<span class="w"> </span><span class="o">==</span><span class="w"> </span>paymentToken<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span>salesList<span class="p">[</span>j<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>_allSales<span class="p">[</span>i<span class="p">];</span>
+<span class="w">                </span>j<span class="o">++</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>salesList<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">refund</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">saleId</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">amount</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Implement refund logic: check if refund is allowed, transfer funds back</span>
+<span class="w">        </span><span class="c1">// This is a simplified example. Real-world would involve more checks.</span>
+<span class="w">        </span>SaleDetails<span class="w"> </span>storage<span class="w"> </span>sale<span class="w"> </span><span class="o">=</span><span class="w"> </span>sales<span class="p">[</span>saleId<span class="p">];</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>sale<span class="p">.</span>config<span class="p">.</span>seller<span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Only seller can refund&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>sale<span class="p">.</span>state<span class="w"> </span><span class="o">==</span><span class="w"> </span>SaleState<span class="p">.</span>ENDED<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Sale must be ended to refund&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="c1">// Further logic to identify who to refund and how much</span>
+<span class="w">        </span><span class="c1">// For demonstration, let&#39;s assume it&#39;s a direct refund mechanism.</span>
+<span class="w">        </span><span class="c1">// Requires a way to track individual buyer payments which isn&#39;t fully detailed in this basic interface.</span>
+<span class="w">        </span><span class="c1">// E.g., if a purchase failed midway or for return policies.</span>
+<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>sale<span class="p">.</span>config<span class="p">.</span>paymentTokenAddress<span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">payable</span><span class="p">(</span><span class="k">msg.sender</span><span class="p">).</span>transfer<span class="p">(</span>amount<span class="p">);</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="kt">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>IERC20<span class="p">(</span>sale<span class="p">.</span>config<span class="p">.</span>paymentTokenAddress<span class="p">).</span>transfer<span class="p">(</span><span class="k">msg.sender</span><span class="p">,</span><span class="w"> </span>amount<span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">sweepFunds</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">saleId</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">receiver</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>SaleDetails<span class="w"> </span>storage<span class="w"> </span>sale<span class="w"> </span><span class="o">=</span><span class="w"> </span>sales<span class="p">[</span>saleId<span class="p">];</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>sale<span class="p">.</span>config<span class="p">.</span>seller<span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Caller not seller&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>sale<span class="p">.</span>state<span class="w"> </span><span class="o">==</span><span class="w"> </span>SaleState<span class="p">.</span>ENDED<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Sale must be ended&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">balance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span>sale<span class="p">.</span>config<span class="p">.</span>paymentTokenAddress<span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">))</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="kt">this</span><span class="p">).</span>balance<span class="w"> </span><span class="o">:</span><span class="w"> </span>IERC20<span class="p">(</span>sale<span class="p">.</span>config<span class="p">.</span>paymentTokenAddress<span class="p">).</span>balanceOf<span class="p">(</span><span class="kt">address</span><span class="p">(</span><span class="kt">this</span><span class="p">));</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>balance<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;No funds to sweep&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">amountToSweep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>balance<span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">(</span>balance<span class="w"> </span><span class="o">*</span><span class="w"> </span>sale<span class="p">.</span>config<span class="p">.</span>feePercentage<span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m m-Decimal">10000</span><span class="p">);</span><span class="w"> </span><span class="c1">// Exclude fees</span>
+<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>sale<span class="p">.</span>config<span class="p">.</span>paymentTokenAddress<span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">payable</span><span class="p">(</span>receiver<span class="p">).</span>transfer<span class="p">(</span>amountToSweep<span class="p">);</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="kt">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>IERC20<span class="p">(</span>sale<span class="p">.</span>config<span class="p">.</span>paymentTokenAddress<span class="p">).</span>transfer<span class="p">(</span>receiver<span class="p">,</span><span class="w"> </span>amountToSweep<span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span>sale<span class="p">.</span>collectedPayment<span class="w"> </span><span class="o">+=</span><span class="w"> </span>amountToSweep<span class="p">;</span>
+<span class="w">        </span>emit<span class="w"> </span>PaymentCollected<span class="p">(</span>saleId<span class="p">,</span><span class="w"> </span>receiver<span class="p">,</span><span class="w"> </span>sale<span class="p">.</span>config<span class="p">.</span>paymentTokenAddress<span class="p">,</span><span class="w"> </span>amountToSweep<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">collectFees</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">saleId</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">feeReceiver</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>SaleDetails<span class="w"> </span>storage<span class="w"> </span>sale<span class="w"> </span><span class="o">=</span><span class="w"> </span>sales<span class="p">[</span>saleId<span class="p">];</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>sale<span class="p">.</span>config<span class="p">.</span>seller<span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Caller not seller&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>sale<span class="p">.</span>state<span class="w"> </span><span class="o">==</span><span class="w"> </span>SaleState<span class="p">.</span>ENDED<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Sale must be ended to collect fees&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalCollected</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span>sale<span class="p">.</span>config<span class="p">.</span>paymentTokenAddress<span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">))</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="kt">this</span><span class="p">).</span>balance<span class="w"> </span><span class="o">:</span><span class="w"> </span>IERC20<span class="p">(</span>sale<span class="p">.</span>config<span class="p">.</span>paymentTokenAddress<span class="p">).</span>balanceOf<span class="p">(</span><span class="kt">address</span><span class="p">(</span><span class="kt">this</span><span class="p">));</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">feeAmount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>totalCollected<span class="w"> </span><span class="o">*</span><span class="w"> </span>sale<span class="p">.</span>config<span class="p">.</span>feePercentage<span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m m-Decimal">10000</span><span class="p">;</span>
+
+<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>feeAmount<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>sale<span class="p">.</span>config<span class="p">.</span>paymentTokenAddress<span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="kt">payable</span><span class="p">(</span>feeReceiver<span class="p">).</span>transfer<span class="p">(</span>feeAmount<span class="p">);</span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="kt">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span>IERC20<span class="p">(</span>sale<span class="p">.</span>config<span class="p">.</span>paymentTokenAddress<span class="p">).</span>transfer<span class="p">(</span>feeReceiver<span class="p">,</span><span class="w"> </span>feeAmount<span class="p">);</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span>emit<span class="w"> </span>PaymentCollected<span class="p">(</span>saleId<span class="p">,</span><span class="w"> </span>feeReceiver<span class="p">,</span><span class="w"> </span>sale<span class="p">.</span>config<span class="p">.</span>paymentTokenAddress<span class="p">,</span><span class="w"> </span>feeAmount<span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">updateSaleConfig</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">saleId</span><span class="p">,</span><span class="w"> </span>SaleConfig<span class="w"> </span>calldata<span class="w"> </span>newConfig<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>SaleDetails<span class="w"> </span>storage<span class="w"> </span>sale<span class="w"> </span><span class="o">=</span><span class="w"> </span>sales<span class="p">[</span>saleId<span class="p">];</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>sale<span class="p">.</span>config<span class="p">.</span>seller<span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Caller not seller&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>sale<span class="p">.</span>state<span class="w"> </span><span class="o">==</span><span class="w"> </span>SaleState<span class="p">.</span>NOT_STARTED<span class="w"> </span><span class="o">||</span><span class="w"> </span>sale<span class="p">.</span>state<span class="w"> </span><span class="o">==</span><span class="w"> </span>SaleState<span class="p">.</span>PAUSED<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Can only update config when not active&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Implement logic to update only allowed fields to prevent abuse</span>
+<span class="w">        </span>sale<span class="p">.</span>config<span class="w"> </span><span class="o">=</span><span class="w"> </span>newConfig<span class="p">;</span><span class="w"> </span><span class="c1">// For simplicity, replacing whole config. In real scenario, selective updates.</span>
+<span class="w">        </span>emit<span class="w"> </span>SaleConfigUpdated<span class="p">(</span>saleId<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="security-considerations">Security Considerations<a class="headerlink" href="#security-considerations" title="Permanent link">&para;</a></h2>
+<h3 id="access-control">Access Control<a class="headerlink" href="#access-control" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Seller Privileges</strong>: Ensure only the designated seller can manage sale lifecycle.</li>
+<li><strong>Whitelist Management</strong>: Restrict whitelist updates to authorized roles.</li>
+<li><strong>Fund Control</strong>: Implement secure mechanisms for fund collection and fee distribution.</li>
+</ul>
+<h3 id="fund-safety">Fund Safety<a class="headerlink" href="#fund-safety" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Reentrancy Protection</strong>: Use reentrancy guards on all critical transfer functions.</li>
+<li><strong>Input Validation</strong>: Strict validation of <code>amount</code>, <code>price</code>, and <code>addresses</code>.</li>
+<li><strong>Token Handling</strong>: Proper handling of ERC20, ERC721, and ERC1155 transfers.</li>
+</ul>
+<h3 id="sale-integrity">Sale Integrity<a class="headerlink" href="#sale-integrity" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>State Checks</strong>: Verify sale state (<code>ACTIVE</code>, <code>PAUSED</code>, <code>ENDED</code>) before transactions.</li>
+<li><strong>Price Consistency</strong>: Ensure pricing logic is robust and tamper-proof.</li>
+<li><strong>Overflow/Underflow</strong>: Protect against integer overflows/underflows in calculations.</li>
+</ul>
+<h2 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h2>
+<h3 id="sale-configuration">Sale Configuration<a class="headerlink" href="#sale-configuration" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Clear Parameters</strong>: Define unambiguous sale parameters.</li>
+<li><strong>Flexible Pricing</strong>: Support various pricing models (fixed, dynamic).</li>
+<li><strong>Refund Policy</strong>: Implement clear and transparent refund mechanisms.</li>
+</ol>
+<h3 id="token-management">Token Management<a class="headerlink" href="#token-management" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Approve Before Transfer</strong>: For ERC20, ensure the MultiSale contract has sufficient allowance.</li>
+<li><strong>Safe ERC721/ERC1155 Transfers</strong>: Use <code>safeTransferFrom</code> to prevent token loss.</li>
+<li><strong>Ownership Transfer</strong>: Ensure sale tokens are transferred to the contract prior to sale.</li>
+</ol>
+<h3 id="monitoring-and-events">Monitoring and Events<a class="headerlink" href="#monitoring-and-events" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Comprehensive Events</strong>: Emit events for all significant actions (purchase, start, end, whitelist).</li>
+<li><strong>Off-chain Indexing</strong>: Use events for off-chain indexing and analytics.</li>
+</ol>
+<h2 id="integration-examples">Integration Examples<a class="headerlink" href="#integration-examples" title="Permanent link">&para;</a></h2>
+<h3 id="frontend-integration-typescript">Frontend Integration (TypeScript)<a class="headerlink" href="#frontend-integration-typescript" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ethers</span><span class="p">,</span><span class="w"> </span><span class="nx">Contract</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;ethers&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="nx">MultiSaleABI</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./MultiSale.json&#39;</span><span class="p">;</span>
+
+<span class="kd">interface</span><span class="w"> </span><span class="nx">SaleConfig</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">seller</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">saleTokenAddress</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">saleTokenType</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span><span class="w"> </span><span class="c1">// Enum: 0=ERC20, 1=ERC721, 2=ERC1155</span>
+<span class="w">    </span><span class="nx">saleTokenId</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">totalAmount</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">price</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">paymentTokenAddress</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">startTime</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">endTime</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">maxPurchasePerAddress</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">isWhitelistedSale</span><span class="o">:</span><span class="w"> </span><span class="kt">boolean</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">initialReceiver</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">initialPaymentAmount</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">feePercentage</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">feeReceiver</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">description</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">data</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">class</span><span class="w"> </span><span class="nx">MultiSaleService</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="nx">contract</span><span class="o">:</span><span class="w"> </span><span class="kt">Contract</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kr">constructor</span><span class="p">(</span><span class="nx">contractAddress</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">,</span><span class="w"> </span><span class="nx">signer</span><span class="o">:</span><span class="w"> </span><span class="kt">ethers.Signer</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">contract</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Contract</span><span class="p">(</span><span class="nx">contractAddress</span><span class="p">,</span><span class="w"> </span><span class="nx">MultiSaleABI</span><span class="p">,</span><span class="w"> </span><span class="nx">signer</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">async</span><span class="w"> </span><span class="nx">createNewSale</span><span class="p">(</span><span class="nx">config</span><span class="o">:</span><span class="w"> </span><span class="kt">SaleConfig</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="kt">string</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">tx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">contract</span><span class="p">.</span><span class="nx">createSale</span><span class="p">(</span><span class="nx">config</span><span class="p">);</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">receipt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">tx</span><span class="p">.</span><span class="nx">wait</span><span class="p">();</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">event</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">receipt</span><span class="p">.</span><span class="nx">events</span><span class="o">?</span><span class="p">.</span><span class="nx">find</span><span class="p">((</span><span class="nx">e</span><span class="o">:</span><span class="w"> </span><span class="kt">any</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">e</span><span class="p">.</span><span class="nx">event</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;SaleConfigUpdated&#39;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">event</span><span class="o">?</span><span class="p">.</span><span class="nx">args</span><span class="o">?</span><span class="p">.</span><span class="nx">saleId</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">async</span><span class="w"> </span><span class="nx">startSale</span><span class="p">(</span><span class="nx">saleId</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="ow">void</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">tx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">contract</span><span class="p">.</span><span class="nx">startSale</span><span class="p">(</span><span class="nx">saleId</span><span class="p">);</span>
+<span class="w">        </span><span class="k">await</span><span class="w"> </span><span class="nx">tx</span><span class="p">.</span><span class="nx">wait</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">async</span><span class="w"> </span><span class="nx">buyTokens</span><span class="p">(</span><span class="nx">saleId</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">,</span><span class="w"> </span><span class="nx">amount</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">,</span><span class="w"> </span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="kt">ethers.BigNumberish</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="ow">void</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">tx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">contract</span><span class="p">.</span><span class="nx">buy</span><span class="p">(</span><span class="nx">saleId</span><span class="p">,</span><span class="w"> </span><span class="nx">amount</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">value</span><span class="w"> </span><span class="p">});</span>
+<span class="w">        </span><span class="k">await</span><span class="w"> </span><span class="nx">tx</span><span class="p">.</span><span class="nx">wait</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">async</span><span class="w"> </span><span class="nx">getSaleDetails</span><span class="p">(</span><span class="nx">saleId</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">contract</span><span class="p">.</span><span class="nx">getSaleConfig</span><span class="p">(</span><span class="nx">saleId</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">async</span><span class="w"> </span><span class="nx">checkWhitelist</span><span class="p">(</span><span class="nx">saleId</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">,</span><span class="w"> </span><span class="nx">address</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="kt">boolean</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">contract</span><span class="p">.</span><span class="nx">isWhitelisted</span><span class="p">(</span><span class="nx">saleId</span><span class="p">,</span><span class="w"> </span><span class="nx">address</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="backend-integration-nodejs-with-web3js">Backend Integration (Node.js with web3.js)<a class="headerlink" href="#backend-integration-nodejs-with-web3js" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">Web3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;web3&#39;</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">MultiSaleABI</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./MultiSale.json&#39;</span><span class="p">).</span><span class="nx">abi</span><span class="p">;</span>
+
+<span class="kd">class</span><span class="w"> </span><span class="nx">MultiSaleBackend</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kr">constructor</span><span class="p">(</span><span class="nx">providerUrl</span><span class="p">,</span><span class="w"> </span><span class="nx">multiSaleContractAddress</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">web3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Web3</span><span class="p">(</span><span class="nx">providerUrl</span><span class="p">);</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">multiSaleContract</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">web3</span><span class="p">.</span><span class="nx">eth</span><span class="p">.</span><span class="nx">Contract</span><span class="p">(</span><span class="nx">MultiSaleABI</span><span class="p">,</span><span class="w"> </span><span class="nx">multiSaleContractAddress</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">async</span><span class="w"> </span><span class="nx">addAddressesToWhitelist</span><span class="p">(</span><span class="nx">privateKey</span><span class="p">,</span><span class="w"> </span><span class="nx">saleId</span><span class="p">,</span><span class="w"> </span><span class="nx">addresses</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">account</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">web3</span><span class="p">.</span><span class="nx">eth</span><span class="p">.</span><span class="nx">accounts</span><span class="p">.</span><span class="nx">privateKeyToAccount</span><span class="p">(</span><span class="nx">privateKey</span><span class="p">);</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">web3</span><span class="p">.</span><span class="nx">eth</span><span class="p">.</span><span class="nx">accounts</span><span class="p">.</span><span class="nx">wallet</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">account</span><span class="p">);</span>
+
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">gasEstimate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">multiSaleContract</span><span class="p">.</span><span class="nx">methods</span><span class="p">.</span><span class="nx">addToWhitelist</span><span class="p">(</span><span class="nx">saleId</span><span class="p">,</span><span class="w"> </span><span class="nx">addresses</span><span class="p">).</span><span class="nx">estimateGas</span><span class="p">({</span><span class="w"> </span><span class="kr">from</span><span class="o">:</span><span class="w"> </span><span class="nx">account</span><span class="p">.</span><span class="nx">address</span><span class="w"> </span><span class="p">});</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">tx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">multiSaleContract</span><span class="p">.</span><span class="nx">methods</span><span class="p">.</span><span class="nx">addToWhitelist</span><span class="p">(</span><span class="nx">saleId</span><span class="p">,</span><span class="w"> </span><span class="nx">addresses</span><span class="p">).</span><span class="nx">send</span><span class="p">({</span><span class="w"> </span><span class="kr">from</span><span class="o">:</span><span class="w"> </span><span class="nx">account</span><span class="p">.</span><span class="nx">address</span><span class="p">,</span><span class="w"> </span><span class="nx">gas</span><span class="o">:</span><span class="w"> </span><span class="nx">gasEstimate</span><span class="w"> </span><span class="p">});</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Whitelist updated for sale </span><span class="si">${</span><span class="nx">saleId</span><span class="si">}</span><span class="sb">: </span><span class="si">${</span><span class="nx">tx</span><span class="p">.</span><span class="nx">transactionHash</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">tx</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">async</span><span class="w"> </span><span class="nx">getActiveSales</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">multiSaleContract</span><span class="p">.</span><span class="nx">methods</span><span class="p">.</span><span class="nx">getAllActiveSales</span><span class="p">().</span><span class="nx">call</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">async</span><span class="w"> </span><span class="nx">handlePurchaseWebhook</span><span class="p">(</span><span class="nx">saleId</span><span class="p">,</span><span class="w"> </span><span class="nx">buyerAddress</span><span class="p">,</span><span class="w"> </span><span class="nx">amount</span><span class="p">,</span><span class="w"> </span><span class="nx">pricePaid</span><span class="p">,</span><span class="w"> </span><span class="nx">paymentToken</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Processing purchase for sale: </span><span class="si">${</span><span class="nx">saleId</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Buyer: </span><span class="si">${</span><span class="nx">buyerAddress</span><span class="si">}</span><span class="sb">, Amount: </span><span class="si">${</span><span class="nx">amount</span><span class="si">}</span><span class="sb">, Price: </span><span class="si">${</span><span class="nx">pricePaid</span><span class="si">}</span><span class="sb">, Payment Token: </span><span class="si">${</span><span class="nx">paymentToken</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="w">        </span><span class="c1">// Here you would integrate with your backend systems, e.g.,</span>
+<span class="w">        </span><span class="c1">// update internal databases, trigger notifications, etc.</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="related-documentation">Related Documentation<a class="headerlink" href="#related-documentation" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../../libraries/variable-price-lib/">Variable Price Library</a></li>
+<li><a href="https://eips.ethereum.org/EIPS/eip-20">ERC20 Standard</a></li>
+<li><a href="https://eips.ethereum.org/EIPS/eip-721">ERC721 Standard</a></li>
+<li><a href="https://eips.ethereum.org/EIPS/eip-1155">ERC1155 Standard</a></li>
+<li><a href="../../libraries/fee-distributor-lib/">Fee Distributor Library</a></li>
+<li><a href="../../guides/deployment.md">Deployment Guide</a></li>
+</ul>
+<h2 id="standards-compliance">Standards Compliance<a class="headerlink" href="#standards-compliance" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>ERC20</strong>: Tokens used for payment or sale.</li>
+<li><strong>ERC721</strong>: NFTs used for sale.</li>
+<li><strong>ERC1155</strong>: Multi-tokens used for sale.</li>
+<li><strong>EIP-165</strong>: Interface detection standard (implicitly used by calling <code>IERC*</code> functions).</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../iidentity/" class="btn btn-neutral float-left" title="IIdentity"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../ifee-distributor/" class="btn btn-neutral float-right" title="IFeeDistributor">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../iidentity/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../ifee-distributor/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

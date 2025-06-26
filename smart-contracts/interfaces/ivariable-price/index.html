@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Gemforce Team" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>IVariablePrice Interface - Gemforce Documentation</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "IVariablePrice Interface";
+        var mkdocs_page_input_path = "smart-contracts/interfaces/ivariable-price.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../.." class="icon icon-home"> Gemforce Documentation
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../developer-setup-guide/">Developer Setup Guide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../system-architecture/gemforce-system-architecture/">System Architecture</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Smart Contracts</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../diamond/">Diamond Contract</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../diamond-factory/">Diamond Factory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../identity-factory/">Identity Factory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Facets</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/marketplace-facet/">Marketplace Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trade-deal-management-facet/">Trade Deal Management Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/carbon-credit-facet/">Carbon Credit Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/identity-registry-facet/">Identity Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trusted-issuers-registry-facet/">Trusted Issuers Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/fee-distributor-facet/">Fee Distributor Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/gemforce-minter-facet/">Gemforce Minter Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/multi-sale-facet/">Multi Sale Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/svg-templates-facet/">SVG Templates Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trade-deal-admin-facet/">Trade Deal Admin Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trade-deal-operations-facet/">Trade Deal Operations Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/collateral-token-factory-facet/">Collateral Token Factory Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/diamond-cut-facet/">Diamond Cut Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/diamond-loupe-facet/">Diamond Loupe Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/ownership-facet/">Ownership Facet</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Interfaces</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../idiamond/">IDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../imarketplace/">IMarketplace</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../itradedeal/">ITradeDeal</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../icarbon-credit/">ICarbonCredit</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../ierc1155-mint/">IERC1155Mint</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../ierc734/">IERC734</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../ierc735/">IERC735</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../ierc721a/">IERC721A</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../idiamond-factory/">IDiamondFactory</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../iidentity/">IIdentity</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../imultisale/">IMultiSale</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../ifee-distributor/">IFeeDistributor</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../igemforce-minter-facet/">IGemforceMinterFacet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../iidentity-registry/">IIdentityRegistry</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../itrusted-issuers-registry/">TRUSTEDIssuersRegistry</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../isvg/">ISVG</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../iattribute/">IAttribute</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Libraries</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/carbon-credit-lib/">Carbon Credit Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/trade-deal-lib/">Trade Deal Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/multi-sale-lib/">Multi Sale Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/diamond-factory-lib/">Diamond Factory Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/svg-templates-lib/">SVG Templates Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/attribute-lib/">Attribute Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/variable-price-lib/">Variable Price Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/merkle-prover/">Merkle Prover</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/fee-distributor-lib/">Fee Distributor Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/lib-diamond/">LibDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/diamond-lib/">DiamondLib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/erc721a-lib/">ERC721A Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/erc721a-enumeration-lib/">ERC721A Enumeration Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/strings-lib/">Strings Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/trusted-issuer-lib/">Trusted Issuer Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/set-libraries/">Set Libraries</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">SDK & Libraries</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/blockchain/">Blockchain Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/diamond/">Diamond Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/contract/">Contract Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/deploy/">Deployment Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/validation-utils/">Validation Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/nft-sale-utils/">NFT Sale Utilities</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Cloud Functions</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/authentication/">Authentication Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/auth-functions/">Auth Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/blockchain/">Blockchain Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/bridge/">Bridge Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/contracts/">Contract Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/deploy/">Deploy Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/dfns/">DFNS Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/project/">Project Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/trade-deal/">Trade Deal Functions</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">API Documentation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../api-documentation/gemforce-api-documentation/">Full API Reference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../api-documentation/gemforce-api-quick-reference/">Quick Reference</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Operations Tasks</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/diamond/">Diamond Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/identities/">Identity Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/marketplace-management/">Marketplace Management Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/carbon-credit-management/">Carbon Credit Management Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/trade-deal/">Trade Deal Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/integration-test/">Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/integration-test-marketplace/">Marketplace Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/integration-test-trade-deal/">Trade Deal Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/admin-utils/">Admin Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/sync-diamond/">Sync Diamond Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/sync-events/">Sync Events Tasks</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">EIPs (Ethereum Improvement Proposals)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Diamond-Enhanced-Marketplace/">Diamond-Enhanced Marketplace</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Multi-Token-Sale-Standard/">Multi-Token Sale Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Collateralized-Trade-Deal-Standard/">Collateralized Trade Deal Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Enhanced-Identity-System/">Enhanced Identity System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Diamond-Factory-Standard/">Diamond Factory Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Carbon-Credit-Standard/">Carbon Credit Standard</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">User Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-administrator-guide/">Administrator Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-deployer-guide/">Deployer Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-integrator-guide/">Integrator Guide</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Integrator's Guide</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/authentication/">Authentication</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/rest-api/">REST API</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/smart-contracts/">Smart Contracts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/dfns/">DFNS Integration</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/webhooks/">Webhooks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/error-handling/">Error Handling</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/sample-code/">Sample Code</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/integration-patterns/">Integration Patterns</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/security/">Security</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../external-services/gemforce-external-services/">External Services</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-documentation-gap-analysis/">Documentation Gap Analysis</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../documentation-progress-summary/">Documentation Progress Summary</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../documentation-plan/">Documentation Plan</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">Gemforce Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">IVariablePrice Interface</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="ivariableprice-interface">IVariablePrice Interface<a class="headerlink" href="#ivariableprice-interface" title="Permanent link">&para;</a></h1>
+<p>The <code>IVariablePrice</code> interface defines the standard for smart contracts that implement dynamic pricing mechanisms within the Gemforce ecosystem. This interface allows for flexible and algorithmic determination of token or asset prices based on factors such as demand, time, supply, or other custom parameters.</p>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p><code>IVariablePrice</code> provides:</p>
+<ul>
+<li><strong>Dynamic Pricing</strong>: Functions to calculate prices based on various input parameters.</li>
+<li><strong>Pricing Strategy Management</strong>: Mechanisms to select and configure different pricing models (e.g., fixed, linear, exponential, logarithmic).</li>
+<li><strong>Flexibility</strong>: Supports multiple pricing scenarios for NFTs, tokens, or services.</li>
+<li><strong>Queryability</strong>: Allows external contracts or off-chain systems to query current prices.</li>
+</ul>
+<h2 id="key-features">Key Features<a class="headerlink" href="#key-features" title="Permanent link">&para;</a></h2>
+<h3 id="price-calculation">Price Calculation<a class="headerlink" href="#price-calculation" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong><code>getPrice()</code></strong>: Core function to obtain the current price given specific context (e.g., amount, current block, accumulated sales).</li>
+<li><strong>Strategy-Dependent Inputs</strong>: The function parameters will vary based on the chosen pricing strategy.</li>
+</ul>
+<h3 id="strategy-management">Strategy Management<a class="headerlink" href="#strategy-management" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Set Strategy</strong>: Option to select and configure a pricing strategy.</li>
+<li><strong>Strategy Parameters</strong>: Define parameters unique to each strategy (e.g., initial price, curve steepness, time decay).</li>
+</ul>
+<h3 id="integration">Integration<a class="headerlink" href="#integration" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Designed to be easily integrated into marketplaces, sale contracts, or any system requiring dynamic pricing.</li>
+</ul>
+<h2 id="interface-definition">Interface Definition<a class="headerlink" href="#interface-definition" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span><code>interface<span class="w"> </span>IVariablePrice<span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Events</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">PriceStrategyUpdated</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>strategyId<span class="p">,</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>strategyName<span class="p">,</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>configurator
+<span class="w">    </span><span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">PriceComponentUpdated</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>strategyId<span class="p">,</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>componentName<span class="p">,</span>
+<span class="w">        </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">newValue</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>updater
+<span class="w">    </span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Struct to define a pricing strategy</span>
+<span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">PricingStrategyConfig</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">name</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">strategyType</span><span class="p">;</span><span class="w"> </span><span class="c1">// e.g., 0 for Fixed, 1 for Linear, 2 for Geometric, 3 for Logarithmic;</span>
+<span class="w">        </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">parameters</span><span class="p">;</span><span class="w"> </span><span class="c1">// ABI-encoded parameters specific to the strategy</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">active</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Core Pricing Function</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getPrice</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">strategyId</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">currentSupply</span><span class="p">,</span><span class="w"> </span><span class="c1">// Current items sold or tokens minted</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">quantity</span><span class="p">,</span><span class="w">      </span><span class="c1">// Quantity being purchased</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">timeElapsed</span><span class="p">,</span><span class="w">   </span><span class="c1">// Time since sale started (optional)</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">initialPrice</span><span class="w">   </span><span class="c1">// Base price or reference price</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">price</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Strategy Management Functions</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">setPricingStrategy</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">calldata</span><span class="w"> </span>name<span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">strategyType</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">calldata</span><span class="w"> </span>parameters
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">activatePricingStrategy</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">strategyId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">deactivatePricingStrategy</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">strategyId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// View Functions</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getPricingStrategyConfig</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">strategyId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>PricingStrategyConfig<span class="w"> </span><span class="kt">memory</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getActiveStrategyId</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bytes32</span><span class="p">);</span><span class="w"> </span><span class="c1">// For contracts that only manage one active strategy</span>
+<span class="w">    </span><span class="c1">// Function to get price for a specific strategy directly (if applicable)</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getPriceForStrategy</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">strategyId</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">currentSupply</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">quantity</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">timeElapsed</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">initialPrice</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">price</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="core-functions">Core Functions<a class="headerlink" href="#core-functions" title="Permanent link">&para;</a></h2>
+<h3 id="getprice">getPrice()<a class="headerlink" href="#getprice" title="Permanent link">&para;</a></h3>
+<p>Calculates the price for a specified quantity given the current state of the sale or system.</p>
+<p><strong>Parameters:</strong>
+- <code>strategyId</code>: A unique identifier for the pricing strategy to use.
+- <code>currentSupply</code>: The current quantity of items sold or tokens minted (used for supply-dependent curves).
+- <code>quantity</code>: The number of items or tokens for which the price is being queried.
+- <code>timeElapsed</code>: The time elapsed since the sale or pricing mechanism started (used for time-dependent curves).
+- <code>initialPrice</code>: A base or starting price for the calculation.</p>
+<p><strong>Returns:</strong>
+- <code>uint256</code>: The calculated total price for the given <code>quantity</code>.</p>
+<p><strong>Usage:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Get price based on a specific strategy ID</span>
+<span class="kt">uint256</span><span class="w"> </span><span class="nv">currentPrice</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>variablePriceContract<span class="p">.</span>getPrice<span class="p">(</span>
+<span class="w">    </span>myStrategyId<span class="p">,</span>
+<span class="w">    </span>totalMintedNFTs<span class="p">,</span><span class="w"> </span><span class="c1">// e.g., 100</span>
+<span class="w">    </span><span class="m m-Decimal">1</span><span class="p">,</span><span class="w"> </span><span class="c1">// quantity to buy</span>
+<span class="w">    </span><span class="k">block.timestamp</span><span class="w"> </span><span class="o">-</span><span class="w"> </span>saleStartTime<span class="p">,</span>
+<span class="w">    </span><span class="m m-Decimal">1</span><span class="w"> </span>ether<span class="w"> </span><span class="c1">// base price</span>
+<span class="p">);</span>
+</code></pre></div>
+
+<h3 id="setpricingstrategy">setPricingStrategy()<a class="headerlink" href="#setpricingstrategy" title="Permanent link">&para;</a></h3>
+<p>Defines or updates a new pricing strategy. The <code>parameters</code> field is <code>abi.encoded</code> data specific to the chosen <code>strategyType</code>.</p>
+<p><strong>Parameters:</strong>
+- <code>name</code>: A descriptive name for the strategy (e.g., "LinearDutchAuction").
+- <code>strategyType</code>: An enum or integer representing the type of pricing curve (e.g., <code>0</code> for Fixed, <code>1</code> for Linear).
+- <code>parameters</code>: Bytes containing ABI-encoded parameters specific to the chosen strategy (e.g., <code>slopeForLinear</code>, <code>decayRateForExponential</code>).</p>
+<p><strong>Access Control:</strong>
+- Typically restricted to the contract owner or an authorized administrator.</p>
+<h2 id="implementation-example">Implementation Example<a class="headerlink" href="#implementation-example" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span><code><span class="kt">import</span><span class="w"> </span><span class="s2">&quot;@openzeppelin/contracts/access/Ownable.sol&quot;</span><span class="p">;</span>
+<span class="kt">import</span><span class="w"> </span><span class="s2">&quot;@openzeppelin/contracts/utils/math/SafeMath.sol&quot;</span><span class="p">;</span>
+
+<span class="k">contract</span><span class="w"> </span><span class="ni">VariablePriceEngine</span><span class="w"> </span><span class="kt">is</span><span class="w"> </span>IVariablePrice<span class="p">,</span><span class="w"> </span>Ownable<span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>using<span class="w"> </span>SafeMath<span class="w"> </span><span class="kt">for</span><span class="w"> </span><span class="kt">uint256</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// Defines different pricing curve types</span>
+<span class="w">    </span><span class="kt">enum</span><span class="w"> </span><span class="nv">StrategyType</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>FIXED<span class="p">,</span><span class="w">              </span><span class="c1">// 0: Price is always fixed</span>
+<span class="w">        </span>LINEAR_DECREASE<span class="p">,</span><span class="w">    </span><span class="c1">// 1: Price decreases linearly over time or supply</span>
+<span class="w">        </span>EXPONENTIAL_DECREASE<span class="p">,</span><span class="w"> </span><span class="c1">// 2: Price decreases exponentially over time or supply</span>
+<span class="w">        </span>LOGARITHMIC_INCREASE<span class="p">,</span><span class="w"> </span><span class="c1">// 3: Price increases logarithmically with supply</span>
+<span class="w">        </span>BATCH_AUCTION<span class="w">       </span><span class="c1">// 4: For specific batch processing, often simpler</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="k">public </span><span class="nv">constant</span><span class="w"> </span>TOTAL_BASIS_POINTS<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">10000</span><span class="p">;</span><span class="w"> </span><span class="c1">// For percentage calculations (100% = 10000 bp)</span>
+
+<span class="w">    </span><span class="c1">// Mapping from strategyId to its configuration</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span>PricingStrategyConfig<span class="p">)</span><span class="w"> </span><span class="kt">private</span><span class="w"> </span>_pricingStrategies<span class="p">;</span>
+<span class="w">    </span><span class="c1">// Store strategy IDs for enumeration</span>
+<span class="w">    </span><span class="kt">bytes32</span><span class="p">[]</span><span class="w"> </span><span class="kt">private</span><span class="w"> </span>_strategyIds<span class="p">;</span>
+<span class="w">    </span><span class="c1">// Optional: a single active strategy</span>
+<span class="w">    </span><span class="kt">bytes32</span><span class="w"> </span><span class="k">private </span><span class="nv">_activeStrategyId</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kt">constructor</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Owner set to deployer by default due to Ownable</span>
+<span class="w">        </span><span class="c1">// A default fixed price strategy could be set here</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">setPricingStrategy</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">calldata</span><span class="w"> </span>name<span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">strategyType</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">calldata</span><span class="w"> </span>parameters
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>override<span class="w"> </span>onlyOwner<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">strategyId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">keccak256</span><span class="p">(</span>abi<span class="p">.</span>encodePacked<span class="p">(</span>name<span class="p">,</span><span class="w"> </span>strategyType<span class="p">));</span>
+<span class="w">        </span><span class="c1">// Ensure strategyType is valid</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>strategyType<span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="kt">uint256</span><span class="p">(</span>StrategyType<span class="p">.</span>BATCH_AUCTION<span class="p">),</span><span class="w"> </span><span class="s2">&quot;Invalid strategy type&quot;</span><span class="p">);</span>
+
+<span class="w">        </span>_pricingStrategies<span class="p">[</span>strategyId<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>PricingStrategyConfig<span class="p">({</span>
+<span class="w">            </span>name<span class="o">:</span><span class="w"> </span>name<span class="p">,</span>
+<span class="w">            </span>strategyType<span class="o">:</span><span class="w"> </span>strategyType<span class="p">,</span>
+<span class="w">            </span>parameters<span class="o">:</span><span class="w"> </span>parameters<span class="p">,</span>
+<span class="w">            </span>active<span class="o">:</span><span class="w"> </span><span class="kt">true</span><span class="w"> </span><span class="c1">// Active by default when set</span>
+<span class="w">        </span><span class="p">});</span>
+
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">found</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">false</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">for</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="o">=</span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>_strategyIds<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">if</span><span class="p">(</span>_strategyIds<span class="p">[</span>i<span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span>strategyId<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span>found<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">true</span><span class="p">;</span>
+<span class="w">                </span><span class="kt">break</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="kt">if</span><span class="p">(</span><span class="o">!</span>found<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>_strategyIds<span class="p">.</span>push<span class="p">(</span>strategyId<span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span>emit<span class="w"> </span>PriceStrategyUpdated<span class="p">(</span>strategyId<span class="p">,</span><span class="w"> </span>name<span class="p">,</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">activatePricingStrategy</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">strategyId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>override<span class="w"> </span>onlyOwner<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>_pricingStrategies<span class="p">[</span>strategyId<span class="p">].</span>name<span class="p">.</span>length<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Strategy not found&quot;</span><span class="p">);</span><span class="w"> </span><span class="c1">// Check if strategy exists</span>
+<span class="w">        </span>_pricingStrategies<span class="p">[</span>strategyId<span class="p">].</span>active<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">true</span><span class="p">;</span>
+<span class="w">        </span>_activeStrategyId<span class="w"> </span><span class="o">=</span><span class="w"> </span>strategyId<span class="p">;</span><span class="w"> </span><span class="c1">// Set as global active strategy if applicable</span>
+<span class="w">        </span>emit<span class="w"> </span>PriceComponentUpdated<span class="p">(</span>strategyId<span class="p">,</span><span class="w"> </span><span class="s2">&quot;active&quot;</span><span class="p">,</span><span class="w"> </span>abi<span class="p">.</span>encode<span class="p">(</span><span class="kt">true</span><span class="p">),</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">deactivatePricingStrategy</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">strategyId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>override<span class="w"> </span>onlyOwner<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>_pricingStrategies<span class="p">[</span>strategyId<span class="p">].</span>name<span class="p">.</span>length<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Strategy not found&quot;</span><span class="p">);</span>
+<span class="w">        </span>_pricingStrategies<span class="p">[</span>strategyId<span class="p">].</span>active<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">false</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>_activeStrategyId<span class="w"> </span><span class="o">==</span><span class="w"> </span>strategyId<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>_activeStrategyId<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">bytes32</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">);</span><span class="w"> </span><span class="c1">// Clear active strategy if deactivated</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span>emit<span class="w"> </span>PriceComponentUpdated<span class="p">(</span>strategyId<span class="p">,</span><span class="w"> </span><span class="s2">&quot;active&quot;</span><span class="p">,</span><span class="w"> </span>abi<span class="p">.</span>encode<span class="p">(</span><span class="kt">false</span><span class="p">),</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getPrice</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">strategyId</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">currentSupply</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">quantity</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">timeElapsed</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">initialPrice</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span>override<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">price</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>PricingStrategyConfig<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>config<span class="w"> </span><span class="o">=</span><span class="w"> </span>_pricingStrategies<span class="p">[</span>strategyId<span class="p">];</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>config<span class="p">.</span>name<span class="p">.</span>length<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>config<span class="p">.</span>active<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Strategy not found or inactive&quot;</span><span class="p">);</span>
+
+<span class="w">        </span>price<span class="w"> </span><span class="o">=</span><span class="w"> </span>_calculatePrice<span class="p">(</span>
+<span class="w">            </span>config<span class="p">.</span>strategyType<span class="p">,</span>
+<span class="w">            </span>config<span class="p">.</span>parameters<span class="p">,</span>
+<span class="w">            </span>currentSupply<span class="p">,</span>
+<span class="w">            </span>quantity<span class="p">,</span>
+<span class="w">            </span>timeElapsed<span class="p">,</span>
+<span class="w">            </span>initialPrice
+<span class="w">        </span><span class="p">);</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>price<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getPriceForStrategy</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">strategyId</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">currentSupply</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">quantity</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">timeElapsed</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">initialPrice</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span>override<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">price</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>getPrice<span class="p">(</span>strategyId<span class="p">,</span><span class="w"> </span>currentSupply<span class="p">,</span><span class="w"> </span>quantity<span class="p">,</span><span class="w"> </span>timeElapsed<span class="p">,</span><span class="w"> </span>initialPrice<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">_calculatePrice</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">strategyType</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>parameters<span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">currentSupply</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">quantity</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">timeElapsed</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">initialPrice</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>strategyType<span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kt">uint256</span><span class="p">(</span>StrategyType<span class="p">.</span>FIXED<span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">// Parameters: none needed for fixed, or a single uint256 for the fixed price itself</span>
+<span class="w">            </span><span class="kt">return</span><span class="w"> </span>initialPrice<span class="p">.</span>mul<span class="p">(</span>quantity<span class="p">);</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="kt">else</span><span class="w"> </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>strategyType<span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kt">uint256</span><span class="p">(</span>StrategyType<span class="p">.</span>LINEAR_DECREASE<span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">// Parameters: (uint256 decayRatePerUnit, uint256 floorPrice)</span>
+<span class="w">            </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">decayRatePerUnit</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">floorPrice</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>abi<span class="p">.</span>decode<span class="p">(</span>parameters<span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="p">));</span>
+<span class="w">            </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">effectivePrice</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>initialPrice<span class="p">.</span>sub<span class="p">(</span>currentSupply<span class="p">.</span>mul<span class="p">(</span>decayRatePerUnit<span class="p">));</span>
+<span class="w">            </span>effectivePrice<span class="w"> </span><span class="o">=</span><span class="w"> </span>effectivePrice<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span>floorPrice<span class="w"> </span><span class="o">?</span><span class="w"> </span>effectivePrice<span class="w"> </span><span class="o">:</span><span class="w"> </span>floorPrice<span class="p">;</span>
+<span class="w">            </span><span class="kt">return</span><span class="w"> </span>effectivePrice<span class="p">.</span>mul<span class="p">(</span>quantity<span class="p">);</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="kt">else</span><span class="w"> </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>strategyType<span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kt">uint256</span><span class="p">(</span>StrategyType<span class="p">.</span>EXPONENTIAL_DECREASE<span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">// Parameters: (uint256 decayFactor, uint256 floorPrice)</span>
+<span class="w">            </span><span class="c1">// Example: initialPrice * (decayFactor / 10000)^currentSupply</span>
+<span class="w">            </span><span class="c1">// decayFactor is in basis points, e.g., 9900 for 99% (0.99)</span>
+<span class="w">            </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">decayFactor</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">floorPrice</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>abi<span class="p">.</span>decode<span class="p">(</span>parameters<span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="p">));</span>
+<span class="w">            </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">priceAtCurrentSupply</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>initialPrice<span class="p">;</span>
+<span class="w">            </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>currentSupply<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span>priceAtCurrentSupply<span class="w"> </span><span class="o">=</span><span class="w"> </span>priceAtCurrentSupply<span class="p">.</span>mul<span class="p">(</span>decayFactor<span class="p">).</span>div<span class="p">(</span>TOTAL_BASIS_POINTS<span class="p">);</span><span class="w"> </span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span>priceAtCurrentSupply<span class="w"> </span><span class="o">=</span><span class="w"> </span>priceAtCurrentSupply<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span>floorPrice<span class="w"> </span><span class="o">?</span><span class="w"> </span>priceAtCurrentSupply<span class="w"> </span><span class="o">:</span><span class="w"> </span>floorPrice<span class="p">;</span>
+<span class="w">            </span><span class="kt">return</span><span class="w"> </span>priceAtCurrentSupply<span class="p">.</span>mul<span class="p">(</span>quantity<span class="p">);</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="kt">else</span><span class="w"> </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>strategyType<span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kt">uint256</span><span class="p">(</span>StrategyType<span class="p">.</span>LOGARITHMIC_INCREASE<span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">// Parameters: (uint256 growthFactor, uint256 capPrice)</span>
+<span class="w">            </span><span class="c1">// This is complex on-chain; often approximated or done off-chain.</span>
+<span class="w">            </span><span class="c1">// Placeholder: simple growth based on quantity</span>
+<span class="w">            </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">growthFactor</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">capPrice</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>abi<span class="p">.</span>decode<span class="p">(</span>parameters<span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="p">));</span>
+<span class="w">            </span><span class="c1">// Mathematical log function is not easily available in Solidity.</span>
+<span class="w">            </span><span class="c1">// A simplified approximation or a lookup table would be needed for a real scenario.</span>
+<span class="w">            </span><span class="c1">// For example, an approximation: price increases with currentSupply&#39;s square root</span>
+<span class="w">            </span><span class="c1">// using Newton&#39;s method for sqrt, or a simplified linear increase to approximate.</span>
+
+<span class="w">            </span><span class="c1">// This is a simplified example of logarithmic-like growth:</span>
+<span class="w">            </span><span class="c1">// Price increases by (growthFactor * sqrt(currentSupply)) units (growthFactor in basis points)</span>
+<span class="w">            </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">currentPrice</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>initialPrice<span class="p">;</span>
+<span class="w">            </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>currentSupply<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="c1">// Approximate square root (e.g., using integer square root if available or simple loop)</span>
+<span class="w">                </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">sqrtSupply</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>currentSupply<span class="p">;</span>
+<span class="w">                </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>currentSupply<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m m-Decimal">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// Simple integer sqrt approximation</span>
+<span class="w">                    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>currentSupply<span class="p">.</span>add<span class="p">(</span><span class="m m-Decimal">1</span><span class="p">).</span>div<span class="p">(</span><span class="m m-Decimal">2</span><span class="p">);</span>
+<span class="w">                    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>currentSupply<span class="p">;</span>
+<span class="w">                    </span><span class="kt">while</span><span class="w"> </span><span class="p">(</span>z<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>y<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                        </span>y<span class="w"> </span><span class="o">=</span><span class="w"> </span>z<span class="p">;</span>
+<span class="w">                        </span>z<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span>currentSupply<span class="p">.</span>div<span class="p">(</span>z<span class="p">).</span>add<span class="p">(</span>z<span class="p">)).</span>div<span class="p">(</span><span class="m m-Decimal">2</span><span class="p">);</span>
+<span class="w">                    </span><span class="p">}</span>
+<span class="w">                    </span>sqrtSupply<span class="w"> </span><span class="o">=</span><span class="w"> </span>y<span class="p">;</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">                </span>currentPrice<span class="w"> </span><span class="o">=</span><span class="w"> </span>currentPrice<span class="p">.</span>add<span class="p">(</span>sqrtSupply<span class="p">.</span>mul<span class="p">(</span>growthFactor<span class="p">).</span>div<span class="p">(</span>TOTAL_BASIS_POINTS<span class="p">));</span>
+<span class="w">            </span><span class="p">}</span>
+
+<span class="w">            </span>currentPrice<span class="w"> </span><span class="o">=</span><span class="w"> </span>currentPrice<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>capPrice<span class="w"> </span><span class="o">?</span><span class="w"> </span>currentPrice<span class="w"> </span><span class="o">:</span><span class="w"> </span>capPrice<span class="p">;</span>
+<span class="w">            </span><span class="kt">return</span><span class="w"> </span>currentPrice<span class="p">.</span>mul<span class="p">(</span>quantity<span class="p">);</span>
+
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="kt">else</span><span class="w"> </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>strategyType<span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kt">uint256</span><span class="p">(</span>StrategyType<span class="p">.</span>BATCH_AUCTION<span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">// Specific logic for batch auctions, might consider lowest bid in range</span>
+<span class="w">            </span><span class="c1">// or fixed price for batches.</span>
+<span class="w">            </span><span class="kt">return</span><span class="w"> </span>initialPrice<span class="p">.</span>mul<span class="p">(</span>quantity<span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="kt">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>revert<span class="p">(</span><span class="s2">&quot;Unknown pricing strategy type&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getPricingStrategyConfig</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">strategyId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span>override<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>PricingStrategyConfig<span class="w"> </span><span class="kt">memory</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>_pricingStrategies<span class="p">[</span>strategyId<span class="p">];</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getActiveStrategyId</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span>override<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bytes32</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>_activeStrategyId<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getAllStrategyIds</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bytes32</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>_strategyIds<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="security-considerations">Security Considerations<a class="headerlink" href="#security-considerations" title="Permanent link">&para;</a></h2>
+<h3 id="access-control">Access Control<a class="headerlink" href="#access-control" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong><code>onlyOwner</code></strong>: Functions that modify or configure pricing strategies (<code>setPricingStrategy</code>, <code>activatePricingStrategy</code>, <code>deactivatePricingStrategy</code>) must be restricted to the contract owner or an authorized administrator. Unauthorized changes to pricing logic could lead to financial exploits.</li>
+</ul>
+<h3 id="mathematical-precision">Mathematical Precision<a class="headerlink" href="#mathematical-precision" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Fixed-Point Arithmetic</strong>: Solidity does not natively support floating-point numbers. All price calculations must use fixed-point arithmetic, typically by scaling all values by a large constant (e.g., <code>10**18</code> for <code>WAD</code> or <code>10**4</code> for basis points) and then performing division/multiplication with <code>SafeMath</code>.</li>
+<li><strong><code>SafeMath</code></strong>: Crucial for all arithmetic operations to prevent overflow and underflow vulnerabilities.</li>
+</ul>
+<h3 id="strategy-implementation">Strategy Implementation<a class="headerlink" href="#strategy-implementation" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Complexity</strong>: Highly complex mathematical functions (e.g., true logarithms, exponentials) are difficult and gas-expensive to implement accurately on-chain. Approximations or off-chain calculations validated by the contract might be necessary.</li>
+<li><strong>Precision Loss</strong>: Be aware of potential precision loss when performing divisions and multiplications in fixed-point arithmetic. Choose appropriate scaling factors.</li>
+</ul>
+<h2 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h2>
+<h3 id="modular-strategies">Modular Strategies<a class="headerlink" href="#modular-strategies" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Separation of Concerns</strong>: Each pricing strategy (linear, exponential, fixed, etc.) should ideally be a distinct, self-contained unit within the contract or even a separate library, invoked by a dispatcher-like <code>getPrice</code> function.</li>
+<li><strong>Parameters</strong>: Clearly define and document the <code>abi.encoded</code> <code>parameters</code> required for each strategy type.</li>
+</ol>
+<h3 id="oracles-for-external-data">Oracles for External Data<a class="headerlink" href="#oracles-for-external-data" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>External Factors</strong>: If pricing depends on external factors (e.g., real-time market data, off-chain computations), use secure oracles (like Chainlink) to feed this data to the contract.</li>
+</ol>
+<h3 id="gas-efficiency">Gas Efficiency<a class="headerlink" href="#gas-efficiency" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Pre-computation</strong>: If a price curve is static or changes infrequently, consider pre-computing checkpoints or a lookup table on-chain to reduce gas costs during <code>getPrice</code> calls.</li>
+<li><strong>Pull vs. Push</strong>: If prices are pushed from an external source, ensure that the pushing mechanism is secure and not easily manipulable.</li>
+</ol>
+<h2 id="integration-examples">Integration Examples<a class="headerlink" href="#integration-examples" title="Permanent link">&para;</a></h2>
+<h3 id="frontend-integration-typescript-via-ethersjs">Frontend Integration (TypeScript via Ethers.js)<a class="headerlink" href="#frontend-integration-typescript-via-ethersjs" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ethers</span><span class="p">,</span><span class="w"> </span><span class="nx">Contract</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;ethers&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="nx">VariablePriceABI</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./VariablePriceEngine.json&#39;</span><span class="p">;</span><span class="w"> </span><span class="c1">// ABI for IVariablePrice</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">VARIABLE_PRICE_ADDRESS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0x...&quot;</span><span class="p">;</span><span class="w"> </span><span class="c1">// Deployed VariablePriceEngine contract address</span>
+
+<span class="c1">// Assumes &#39;provider&#39; is already set up from Web3Modal, Metamask, etc.</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">getPriceContract</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">signer?</span><span class="o">:</span><span class="w"> </span><span class="kt">ethers.Signer</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Contract</span><span class="p">(</span><span class="nx">VARIABLE_PRICE_ADDRESS</span><span class="p">,</span><span class="w"> </span><span class="nx">VariablePriceABI</span><span class="p">,</span><span class="w"> </span><span class="nx">signer</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">ethers</span><span class="p">.</span><span class="nx">providers</span><span class="p">.</span><span class="nx">Web3Provider</span><span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">ethereum</span><span class="p">));</span>
+<span class="p">};</span>
+
+<span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">getPriceFromContract</span><span class="p">(</span>
+<span class="w">    </span><span class="nx">strategyId</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">,</span><span class="w"> </span><span class="c1">// hex string</span>
+<span class="w">    </span><span class="nx">currentSupply</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">quantity</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">timeElapsed</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">initialPrice</span><span class="o">:</span><span class="w"> </span><span class="kt">ethers.BigNumberish</span>
+<span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">ethers</span><span class="p">.</span><span class="nx">BigNumber</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">priceContract</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">getPriceContract</span><span class="p">();</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">price</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">priceContract</span><span class="p">.</span><span class="nx">getPrice</span><span class="p">(</span>
+<span class="w">            </span><span class="nx">strategyId</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">currentSupply</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">quantity</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">timeElapsed</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">initialPrice</span>
+<span class="w">        </span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">price</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;Error getting price:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">);</span>
+<span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="nx">error</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">setLinearDecreaseStrategy</span><span class="p">(</span>
+<span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">decayRatePerUnit</span><span class="o">:</span><span class="w"> </span><span class="kt">ethers.BigNumberish</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">floorPrice</span><span class="o">:</span><span class="w"> </span><span class="kt">ethers.BigNumberish</span>
+<span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="ow">void</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">priceContract</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">getPriceContract</span><span class="p">(</span><span class="nx">getPriceContract</span><span class="p">().</span><span class="nx">signer</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="nx">ethers</span><span class="p">.</span><span class="nx">Signer</span><span class="p">);</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">strategyType_LINEAR_DECREASE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span><span class="w"> </span><span class="c1">// Corresponds to enum in Solidity</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">parameters</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ethers</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">defaultAbiCoder</span><span class="p">.</span><span class="nx">encode</span><span class="p">(</span>
+<span class="w">            </span><span class="p">[</span><span class="s2">&quot;uint256&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;uint256&quot;</span><span class="p">],</span><span class="w"> </span><span class="c1">// Match _calculatePrice&#39;s abi.decode for LINEAR_DECREASE</span>
+<span class="w">            </span><span class="p">[</span><span class="nx">decayRatePerUnit</span><span class="p">,</span><span class="w"> </span><span class="nx">floorPrice</span><span class="p">]</span>
+<span class="w">        </span><span class="p">);</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">tx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">priceContract</span><span class="p">.</span><span class="nx">setPricingStrategy</span><span class="p">(</span>
+<span class="w">            </span><span class="nx">name</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">strategyType_LINEAR_DECREASE</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">parameters</span>
+<span class="w">        </span><span class="p">);</span>
+<span class="w">        </span><span class="k">await</span><span class="w"> </span><span class="nx">tx</span><span class="p">.</span><span class="nx">wait</span><span class="p">();</span>
+<span class="w">        </span><span class="nx">alert</span><span class="p">(</span><span class="sb">`Linear Decrease strategy &#39;</span><span class="si">${</span><span class="nx">name</span><span class="si">}</span><span class="sb">&#39; set!`</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;Error setting strategy:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">);</span>
+<span class="w">        </span><span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;Failed to set pricing strategy.&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Example usage</span>
+<span class="c1">// const myStrategyId = &quot;0x...&quot;; // Get this from backend or previous setup</span>
+<span class="c1">// const calculatedPrice = await getPriceFromContract(myStrategyId, 100, 1, 3600, ethers.utils.parseEther(&quot;1&quot;));</span>
+<span class="c1">// console.log(&quot;Calculated Price:&quot;, ethers.utils.formatEther(calculatedPrice));</span>
+
+<span class="c1">// setLinearDecreaseStrategy(&quot;NFT_Price_Decay&quot;, ethers.utils.parseUnits(&quot;0.001&quot;, &quot;ether&quot;), ethers.utils.parseEther(&quot;0.1&quot;)); // 0.001 ETH decay per unit, 0.1 ETH floor</span>
+</code></pre></div>
+
+<h3 id="backend-integration-nodejs-for-a-pricing-service">Backend Integration (Node.js for a pricing service)<a class="headerlink" href="#backend-integration-nodejs-for-a-pricing-service" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">Web3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;web3&#39;</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">VariablePriceABI</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./VariablePriceEngine.json&#39;</span><span class="p">).</span><span class="nx">abi</span><span class="p">;</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">web3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Web3</span><span class="p">(</span><span class="s1">&#39;YOUR_ETHEREUM_RPC_URL&#39;</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">variablePriceAddress</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;0x...&#39;</span><span class="p">;</span><span class="w"> </span><span class="c1">// Your deployed VariablePriceEngine contract address</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">adminPrivateKey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;YOUR_ADMIN_PRIVATE_KEY&#39;</span><span class="p">;</span><span class="w"> </span><span class="c1">// Private key of the account authorized to set strategies</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">variablePriceContract</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">web3</span><span class="p">.</span><span class="nx">eth</span><span class="p">.</span><span class="nx">Contract</span><span class="p">(</span><span class="nx">VariablePriceABI</span><span class="p">,</span><span class="w"> </span><span class="nx">variablePriceAddress</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">adminAccount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">web3</span><span class="p">.</span><span class="nx">eth</span><span class="p">.</span><span class="nx">accounts</span><span class="p">.</span><span class="nx">privateKeyToAccount</span><span class="p">(</span><span class="nx">adminPrivateKey</span><span class="p">);</span>
+<span class="nx">web3</span><span class="p">.</span><span class="nx">eth</span><span class="p">.</span><span class="nx">accounts</span><span class="p">.</span><span class="nx">wallet</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">adminAccount</span><span class="p">);</span>
+
+<span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">getConfiguredPrice</span><span class="p">(</span><span class="nx">strategyName</span><span class="p">,</span><span class="w"> </span><span class="nx">currentSupply</span><span class="p">,</span><span class="w"> </span><span class="nx">quantity</span><span class="p">,</span><span class="w"> </span><span class="nx">timeElapsed</span><span class="p">,</span><span class="w"> </span><span class="nx">initialPrice</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Need to derive strategyId from name and type in JS if not static</span>
+<span class="w">        </span><span class="c1">// For simplicity, let&#39;s assume a known strategyId for a fixed price strategy</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">FIXED_PRICE_STRATEGY_ID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">web3</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">keccak256</span><span class="p">(</span><span class="nx">web3</span><span class="p">.</span><span class="nx">eth</span><span class="p">.</span><span class="nx">abi</span><span class="p">.</span><span class="nx">encodePacked</span><span class="p">(</span><span class="s2">&quot;FixedPrice&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">));</span><span class="w"> </span><span class="c1">// Assuming FixedPrice strategy type is 0</span>
+
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">price</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">variablePriceContract</span><span class="p">.</span><span class="nx">methods</span><span class="p">.</span><span class="nx">getPrice</span><span class="p">(</span>
+<span class="w">            </span><span class="nx">FIXED_PRICE_STRATEGY_ID</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">currentSupply</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">quantity</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">timeElapsed</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">initialPrice</span>
+<span class="w">        </span><span class="p">).</span><span class="nx">call</span><span class="p">();</span>
+
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Price for </span><span class="si">${</span><span class="nx">quantity</span><span class="si">}</span><span class="sb"> items: </span><span class="si">${</span><span class="nx">web3</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">fromWei</span><span class="p">(</span><span class="nx">price</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;ether&#39;</span><span class="p">)</span><span class="si">}</span><span class="sb"> ETH`</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">price</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;Backend: Error getting price:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">);</span>
+<span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="nx">error</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">configureExponentialDecreaseStrategy</span><span class="p">(</span><span class="nx">strategyName</span><span class="p">,</span><span class="w"> </span><span class="nx">decayFactor</span><span class="p">,</span><span class="w"> </span><span class="nx">floorPrice</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">strategyType_EXPONENTIAL_DECREASE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2</span><span class="p">;</span><span class="w"> </span><span class="c1">// Corresponds to enum in Solidity</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">parameters</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">web3</span><span class="p">.</span><span class="nx">eth</span><span class="p">.</span><span class="nx">abi</span><span class="p">.</span><span class="nx">encodeParameters</span><span class="p">(</span>
+<span class="w">            </span><span class="p">[</span><span class="s1">&#39;uint256&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;uint256&#39;</span><span class="p">],</span><span class="w"> </span><span class="c1">// decayFactor (basis points, 10000 = 100%), floorPrice</span>
+<span class="w">            </span><span class="p">[</span><span class="nx">decayFactor</span><span class="p">,</span><span class="w"> </span><span class="nx">floorPrice</span><span class="p">]</span>
+<span class="w">        </span><span class="p">);</span>
+
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">tx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">variablePriceContract</span><span class="p">.</span><span class="nx">methods</span><span class="p">.</span><span class="nx">setPricingStrategy</span><span class="p">(</span>
+<span class="w">            </span><span class="nx">strategyName</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">strategyType_EXPONENTIAL_DECREASE</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">parameters</span>
+<span class="w">        </span><span class="p">);</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">gasLimit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">tx</span><span class="p">.</span><span class="nx">estimateGas</span><span class="p">({</span><span class="w"> </span><span class="kr">from</span><span class="o">:</span><span class="w"> </span><span class="nx">adminAccount</span><span class="p">.</span><span class="nx">address</span><span class="w"> </span><span class="p">});</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">receipt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">tx</span><span class="p">.</span><span class="nx">send</span><span class="p">({</span><span class="w"> </span><span class="kr">from</span><span class="o">:</span><span class="w"> </span><span class="nx">adminAccount</span><span class="p">.</span><span class="nx">address</span><span class="p">,</span><span class="w"> </span><span class="nx">gas</span><span class="o">:</span><span class="w"> </span><span class="nx">gasLimit</span><span class="w"> </span><span class="p">});</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Exponential Decrease strategy &#39;</span><span class="si">${</span><span class="nx">strategyName</span><span class="si">}</span><span class="sb">&#39; configured. Tx Hash: </span><span class="si">${</span><span class="nx">receipt</span><span class="p">.</span><span class="nx">transactionHash</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">receipt</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;Backend: Error configuring strategy:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">);</span>
+<span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="nx">error</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Example usage</span>
+<span class="c1">// getConfiguredPrice(&quot;FixedPrice&quot;, 0, 1, 0, web3.utils.toWei(&quot;0.5&quot;, &quot;ether&quot;));</span>
+<span class="c1">// configureExponentialDecreaseStrategy(&quot;EarlyBirdSale&quot;, 9900, web3.utils.toWei(&quot;0.05&quot;, &quot;ether&quot;)); // 99% of current price, 0.05 ETH floor</span>
+</code></pre></div>
+
+<h2 id="related-documentation">Related Documentation<a class="headerlink" href="#related-documentation" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../../libraries/variable-price-lib/">Variable Price Library</a></li>
+<li><a href="../imultisale/">MultiSale Interface</a> (often uses variable pricing)</li>
+<li><a href="https://docs.openzeppelin.com/contracts/4.x/api/utils#SafeMath">OpenZeppelin SafeMath</a></li>
+<li><a href="https://docs.soliditylang.org/en/latest/abi-spec.html">Solidity ABI Encoding and Decoding</a></li>
+</ul>
+<h2 id="standards-compliance">Standards Compliance<a class="headerlink" href="#standards-compliance" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Ownable</strong>: Utilizes OpenZeppelin's <code>Ownable</code> for administrative access control.</li>
+</ul>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Gemforce Team" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Authentication - Gemforce Documentation</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Authentication";
+        var mkdocs_page_input_path = "integrator-guide/authentication.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Gemforce Documentation
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../developer-setup-guide/">Developer Setup Guide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../system-architecture/gemforce-system-architecture/">System Architecture</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Smart Contracts</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../smart-contracts/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../smart-contracts/diamond/">Diamond Contract</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../smart-contracts/diamond-factory/">Diamond Factory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../smart-contracts/identity-factory/">Identity Factory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Facets</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/marketplace-facet/">Marketplace Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/trade-deal-management-facet/">Trade Deal Management Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/carbon-credit-facet/">Carbon Credit Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/identity-registry-facet/">Identity Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/trusted-issuers-registry-facet/">Trusted Issuers Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/fee-distributor-facet/">Fee Distributor Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/gemforce-minter-facet/">Gemforce Minter Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/multi-sale-facet/">Multi Sale Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/svg-templates-facet/">SVG Templates Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/trade-deal-admin-facet/">Trade Deal Admin Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/trade-deal-operations-facet/">Trade Deal Operations Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/collateral-token-factory-facet/">Collateral Token Factory Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/diamond-cut-facet/">Diamond Cut Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/diamond-loupe-facet/">Diamond Loupe Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/ownership-facet/">Ownership Facet</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Interfaces</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/idiamond/">IDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/imarketplace/">IMarketplace</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/itradedeal/">ITradeDeal</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/icarbon-credit/">ICarbonCredit</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/ierc1155-mint/">IERC1155Mint</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/ierc734/">IERC734</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/ierc735/">IERC735</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/ierc721a/">IERC721A</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/idiamond-factory/">IDiamondFactory</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/iidentity/">IIdentity</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/imultisale/">IMultiSale</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/ifee-distributor/">IFeeDistributor</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/igemforce-minter-facet/">IGemforceMinterFacet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/iidentity-registry/">IIdentityRegistry</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/itrusted-issuers-registry/">TRUSTEDIssuersRegistry</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/isvg/">ISVG</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/iattribute/">IAttribute</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Libraries</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/carbon-credit-lib/">Carbon Credit Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/trade-deal-lib/">Trade Deal Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/multi-sale-lib/">Multi Sale Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/diamond-factory-lib/">Diamond Factory Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/svg-templates-lib/">SVG Templates Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/attribute-lib/">Attribute Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/variable-price-lib/">Variable Price Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/merkle-prover/">Merkle Prover</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/fee-distributor-lib/">Fee Distributor Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/lib-diamond/">LibDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/diamond-lib/">DiamondLib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/erc721a-lib/">ERC721A Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/erc721a-enumeration-lib/">ERC721A Enumeration Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/strings-lib/">Strings Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/trusted-issuer-lib/">Trusted Issuer Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/set-libraries/">Set Libraries</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">SDK & Libraries</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../sdk-libraries/blockchain/">Blockchain Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../sdk-libraries/diamond/">Diamond Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../sdk-libraries/contract/">Contract Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../sdk-libraries/deploy/">Deployment Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../sdk-libraries/validation-utils/">Validation Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../sdk-libraries/nft-sale-utils/">NFT Sale Utilities</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Cloud Functions</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/authentication/">Authentication Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/auth-functions/">Auth Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/blockchain/">Blockchain Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/bridge/">Bridge Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/contracts/">Contract Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/deploy/">Deploy Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/dfns/">DFNS Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/project/">Project Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/trade-deal/">Trade Deal Functions</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">API Documentation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api-documentation/gemforce-api-documentation/">Full API Reference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api-documentation/gemforce-api-quick-reference/">Quick Reference</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Operations Tasks</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/diamond/">Diamond Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/identities/">Identity Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/marketplace-management/">Marketplace Management Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/carbon-credit-management/">Carbon Credit Management Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/trade-deal/">Trade Deal Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/integration-test/">Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/integration-test-marketplace/">Marketplace Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/integration-test-trade-deal/">Trade Deal Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/admin-utils/">Admin Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/sync-diamond/">Sync Diamond Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/sync-events/">Sync Events Tasks</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">EIPs (Ethereum Improvement Proposals)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../eips/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../eips/EIP-DRAFT-Diamond-Enhanced-Marketplace/">Diamond-Enhanced Marketplace</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../eips/EIP-DRAFT-Multi-Token-Sale-Standard/">Multi-Token Sale Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../eips/EIP-DRAFT-Collateralized-Trade-Deal-Standard/">Collateralized Trade Deal Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../eips/EIP-DRAFT-Enhanced-Identity-System/">Enhanced Identity System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../eips/EIP-DRAFT-Diamond-Factory-Standard/">Diamond Factory Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../eips/EIP-DRAFT-Carbon-Credit-Standard/">Carbon Credit Standard</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">User Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../gemforce-administrator-guide/">Administrator Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../gemforce-deployer-guide/">Deployer Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../gemforce-integrator-guide/">Integrator Guide</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Integrator's Guide</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Authentication</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#overview-of-gemforce-authentication">Overview of Gemforce Authentication</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#1-user-authentication-parse-server-backend">1. User Authentication (Parse Server Backend)</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#authentication-methods">Authentication Methods</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#flow-for-client-applications">Flow for Client Applications</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example-javascripttypescript">Example (JavaScript/TypeScript)</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2-api-key-authentication-server-to-server">2. API Key Authentication (Server-to-Server)</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#types-of-api-keys">Types of API Keys</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example-nodejs">Example (Node.js)</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#3-smart-contract-interaction-wallet-based">3. Smart Contract Interaction (Wallet-based)</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#key-tools-libraries">Key Tools &amp; Libraries</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example-ethersjs-for-signing-a-transaction">Example (Ethers.js for signing a transaction)</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#4-dfns-integration">4. DFNS Integration</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#key-benefits">Key Benefits</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#integration-approach">Integration Approach</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example-conceptual-with-dfns-sdk">Example (Conceptual with DFNS SDK)</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#related-documentation">Related Documentation</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../rest-api/">REST API</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../smart-contracts/">Smart Contracts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../dfns/">DFNS Integration</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../webhooks/">Webhooks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../error-handling/">Error Handling</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../sample-code/">Sample Code</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../integration-patterns/">Integration Patterns</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../security/">Security</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../external-services/gemforce-external-services/">External Services</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../gemforce-documentation-gap-analysis/">Documentation Gap Analysis</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../documentation-progress-summary/">Documentation Progress Summary</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../documentation-plan/">Documentation Plan</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Gemforce Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Integrator's Guide</li>
+      <li class="breadcrumb-item active">Authentication</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="integrators-guide-authentication">Integrator's Guide: Authentication<a class="headerlink" href="#integrators-guide-authentication" title="Permanent link">&para;</a></h1>
+<p>Authentication is a critical component for any application integrating with the Gemforce platform. This guide outlines the various authentication mechanisms available, focusing on how your application can securely interact with Gemforce's public APIs, cloud functions, and smart contracts.</p>
+<h2 id="overview-of-gemforce-authentication">Overview of Gemforce Authentication<a class="headerlink" href="#overview-of-gemforce-authentication" title="Permanent link">&para;</a></h2>
+<p>Gemforce provides a multi-layered authentication strategy to accommodate different integration scenarios:</p>
+<ol>
+<li><strong>User Authentication (Parse Server Backend)</strong>: For client-side applications (web, mobile) that need to manage user accounts, sessions, and interact with cloud functions on behalf of a specific user. This often involves username/password, email/password, or social logins.</li>
+<li><strong>API Key Authentication</strong>: For server-to-server integrations or trusted backend services that need programmatic access to Gemforce's cloud functions and data, typically without a specific end-user context.</li>
+<li><strong>Smart Contract Interaction (Wallet-based)</strong>: Direct interaction with on-chain smart contracts requires users to sign transactions using their blockchain wallets (e.g., MetaMask, WalletConnect). This is not a direct "authentication" to Gemforce's backend but rather a cryptographic signature validating an on-chain action.</li>
+<li><strong>DFNS Integration</strong>: For enhanced security and enterprise-grade key management, Gemforce supports integration with DFNS for secure transaction signing.</li>
+</ol>
+<h2 id="1-user-authentication-parse-server-backend">1. User Authentication (Parse Server Backend)<a class="headerlink" href="#1-user-authentication-parse-server-backend" title="Permanent link">&para;</a></h2>
+<p>Gemforce's cloud functions utilize a Parse Server backend. Client applications typically authenticate users directly with the Parse Server instance.</p>
+<h3 id="authentication-methods">Authentication Methods<a class="headerlink" href="#authentication-methods" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Username/Email &amp; Password</strong>: The most common method for user login.</li>
+<li><strong>Social Logins</strong>: Support for third-party authentication providers (e.g., Google, Facebook) can be configured.</li>
+<li><strong>Session Tokens</strong>: After successful login, the Parse Server returns a session token that should be stored securely on the client-side and included in subsequent API requests.</li>
+</ul>
+<h3 id="flow-for-client-applications">Flow for Client Applications<a class="headerlink" href="#flow-for-client-applications" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Sign Up</strong>:<ul>
+<li><code>POST /users</code> (Parse Server REST API)</li>
+<li>Example: Register a new user with username and password.</li>
+</ul>
+</li>
+<li><strong>Log In</strong>:<ul>
+<li><code>GET /login</code> (Parse Server REST API)</li>
+<li>Send username/password in <code>_ApplicationId</code>, <code>_ClientKey</code>, <code>_Username</code>, <code>_Password</code> headers.</li>
+<li>Receive <code>sessionToken</code> in response.</li>
+</ul>
+</li>
+<li><strong>Authenticated Requests</strong>:<ul>
+<li>Include the <code>X-Parse-Session-Token</code> header in all subsequent requests to cloud functions or protected data.</li>
+</ul>
+</li>
+</ol>
+<h3 id="example-javascripttypescript">Example (JavaScript/TypeScript)<a class="headerlink" href="#example-javascripttypescript" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Assuming you have Parse SDK initialized or using direct REST calls</span>
+<span class="c1">// Example using Fetch API for direct REST call</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">PARSE_SERVER_URL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;YOUR_GEMFORCE_PARSE_SERVER_URL/parse&quot;</span><span class="p">;</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">APP_ID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;YOUR_PARSE_APP_ID&quot;</span><span class="p">;</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">CLIENT_KEY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;YOUR_PARSE_CLIENT_KEY&quot;</span><span class="p">;</span><span class="w"> </span><span class="c1">// Or Master Key for backend</span>
+
+<span class="c1">// User Sign Up</span>
+<span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">signUp</span><span class="p">(</span><span class="nx">username</span><span class="p">,</span><span class="w"> </span><span class="nx">password</span><span class="p">,</span><span class="w"> </span><span class="nx">email</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">fetch</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">PARSE_SERVER_URL</span><span class="si">}</span><span class="sb">/users`</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">method</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;POST&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">headers</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="s1">&#39;X-Parse-Application-Id&#39;</span><span class="o">:</span><span class="w"> </span><span class="nx">APP_ID</span><span class="p">,</span>
+<span class="w">            </span><span class="s1">&#39;X-Parse-REST-API-Key&#39;</span><span class="o">:</span><span class="w"> </span><span class="nx">CLIENT_KEY</span><span class="p">,</span>
+<span class="w">            </span><span class="s1">&#39;Content-Type&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;application/json&#39;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
+<span class="w">            </span><span class="nx">username</span><span class="o">:</span><span class="w"> </span><span class="nx">username</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">password</span><span class="o">:</span><span class="w"> </span><span class="nx">password</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">email</span><span class="o">:</span><span class="w"> </span><span class="nx">email</span>
+<span class="w">        </span><span class="p">})</span>
+<span class="w">    </span><span class="p">});</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">response</span><span class="p">.</span><span class="nx">ok</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">error</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="s1">&#39;Sign up failed&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Sign up successful:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">data</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">data</span><span class="p">;</span><span class="w"> </span><span class="c1">// Contains sessionToken</span>
+<span class="p">}</span>
+
+<span class="c1">// User Log In</span>
+<span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">login</span><span class="p">(</span><span class="nx">username</span><span class="p">,</span><span class="w"> </span><span class="nx">password</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">fetch</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">PARSE_SERVER_URL</span><span class="si">}</span><span class="sb">/login?username=</span><span class="si">${</span><span class="nx">username</span><span class="si">}</span><span class="sb">&amp;password=</span><span class="si">${</span><span class="nx">password</span><span class="si">}</span><span class="sb">`</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">method</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;GET&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">headers</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="s1">&#39;X-Parse-Application-Id&#39;</span><span class="o">:</span><span class="w"> </span><span class="nx">APP_ID</span><span class="p">,</span>
+<span class="w">            </span><span class="s1">&#39;X-Parse-REST-API-Key&#39;</span><span class="o">:</span><span class="w"> </span><span class="nx">CLIENT_KEY</span><span class="w"> </span><span class="c1">// Use Client Key for client-side API</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">});</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">response</span><span class="p">.</span><span class="nx">ok</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">error</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="s1">&#39;Login failed&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Login successful, session token:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">data</span><span class="p">.</span><span class="nx">sessionToken</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">data</span><span class="p">.</span><span class="nx">sessionToken</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// Authenticated Request to a Cloud Function</span>
+<span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">callCloudFunction</span><span class="p">(</span><span class="nx">functionName</span><span class="p">,</span><span class="w"> </span><span class="nx">params</span><span class="p">,</span><span class="w"> </span><span class="nx">sessionToken</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">fetch</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">PARSE_SERVER_URL</span><span class="si">}</span><span class="sb">/functions/</span><span class="si">${</span><span class="nx">functionName</span><span class="si">}</span><span class="sb">`</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">method</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;POST&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">headers</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="s1">&#39;X-Parse-Application-Id&#39;</span><span class="o">:</span><span class="w"> </span><span class="nx">APP_ID</span><span class="p">,</span>
+<span class="w">            </span><span class="s1">&#39;X-Parse-REST-API-Key&#39;</span><span class="o">:</span><span class="w"> </span><span class="nx">CLIENT_KEY</span><span class="p">,</span>
+<span class="w">            </span><span class="s1">&#39;X-Parse-Session-Token&#39;</span><span class="o">:</span><span class="w"> </span><span class="nx">sessionToken</span><span class="p">,</span><span class="w"> </span><span class="c1">// Include session token</span>
+<span class="w">            </span><span class="s1">&#39;Content-Type&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;application/json&#39;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">params</span><span class="p">)</span>
+<span class="w">    </span><span class="p">});</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">response</span><span class="p">.</span><span class="nx">ok</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">error</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="sb">`Cloud function </span><span class="si">${</span><span class="nx">functionName</span><span class="si">}</span><span class="sb"> failed`</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Cloud function </span><span class="si">${</span><span class="nx">functionName</span><span class="si">}</span><span class="sb"> response:`</span><span class="p">,</span><span class="w"> </span><span class="nx">data</span><span class="p">.</span><span class="nx">result</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">data</span><span class="p">.</span><span class="nx">result</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// Example usage:</span>
+<span class="p">(</span><span class="k">async</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// await signUp(&quot;testuser1&quot;, &quot;password123&quot;, &quot;test1@example.com&quot;);</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">token</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">login</span><span class="p">(</span><span class="s2">&quot;testuser1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;password123&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">callCloudFunction</span><span class="p">(</span><span class="s2">&quot;helloWorld&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">message</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;from integrator&quot;</span><span class="w"> </span><span class="p">},</span><span class="w"> </span><span class="nx">token</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;Authentication error:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">e</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">})();</span>
+</code></pre></div>
+
+<h2 id="2-api-key-authentication-server-to-server">2. API Key Authentication (Server-to-Server)<a class="headerlink" href="#2-api-key-authentication-server-to-server" title="Permanent link">&para;</a></h2>
+<p>For backend services or scripts that need direct access to cloud functions without an explicit user session, Gemforce uses API keys. These keys are configured on the Parse Server and grant specific permissions.</p>
+<h3 id="types-of-api-keys">Types of API Keys<a class="headerlink" href="#types-of-api-keys" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>REST API Key (<code>X-Parse-REST-API-Key</code>)</strong>: Used for access from trusted client applications (if <code>masterKeyAsUser</code> is <code>false</code>) or for read-only access.</li>
+<li><strong>Master Key (<code>X-Parse-Master-Key</code>)</strong>: Grants full administrative privileges and bypasses all Class-Level Permissions (CLPs) and Access Control Lists (ACLs). <strong>Use with extreme caution and only in secure server environments.</strong></li>
+</ul>
+<h3 id="example-nodejs">Example (Node.js)<a class="headerlink" href="#example-nodejs" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">express</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">ParseServer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;parse-server&#39;</span><span class="p">).</span><span class="nx">ParseServer</span><span class="p">;</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">Parse</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;parse/node&#39;</span><span class="p">);</span><span class="w"> </span><span class="c1">// Import Parse SDK for Node.js environments</span>
+
+<span class="c1">// --- Initialize Parse SDK (usually done globally once) ---</span>
+<span class="nx">Parse</span><span class="p">.</span><span class="nx">initialize</span><span class="p">(</span><span class="s2">&quot;YOUR_PARSE_APP_ID&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;YOUR_PARSE_JAVASCRIPT_KEY&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;YOUR_PARSE_MASTER_KEY&quot;</span><span class="p">);</span>
+<span class="nx">Parse</span><span class="p">.</span><span class="nx">serverURL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;YOUR_GEMFORCE_PARSE_SERVER_URL/parse&quot;</span><span class="p">;</span>
+
+<span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">callCloudFunctionWithMasterKey</span><span class="p">(</span><span class="nx">functionName</span><span class="p">,</span><span class="w"> </span><span class="nx">params</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Use Parse.Cloud.run directly in Node.js, it will use the initialized Master Key</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="nx">functionName</span><span class="p">,</span><span class="w"> </span><span class="nx">params</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">useMasterKey</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="c1">// Use Master Key for this request</span>
+<span class="w">        </span><span class="p">});</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Cloud function </span><span class="si">${</span><span class="nx">functionName</span><span class="si">}</span><span class="sb"> response:`</span><span class="p">,</span><span class="w"> </span><span class="nx">result</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">result</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="sb">`Cloud function </span><span class="si">${</span><span class="nx">functionName</span><span class="si">}</span><span class="sb"> failed:`</span><span class="p">,</span><span class="w"> </span><span class="nx">e</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+<span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="nx">e</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Example usage:</span>
+<span class="p">(</span><span class="k">async</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">adminResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">callCloudFunctionWithMasterKey</span><span class="p">(</span><span class="s2">&quot;processAdminTask&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">userId</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;someUserId&quot;</span><span class="w"> </span><span class="p">});</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;Admin task error:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">e</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">})();</span>
+</code></pre></div>
+
+<h2 id="3-smart-contract-interaction-wallet-based">3. Smart Contract Interaction (Wallet-based)<a class="headerlink" href="#3-smart-contract-interaction-wallet-based" title="Permanent link">&para;</a></h2>
+<p>Direct interaction with Gemforce's smart contracts (Diamond, Facets, ERC-20/721/1155) occurs directly on the blockchain. This involves:</p>
+<ul>
+<li><strong>Connecting a Web3 wallet</strong>: Users connect their browser-based or mobile wallets (e.g., MetaMask, WalletConnect) to your dApp.</li>
+<li><strong>Signing Transactions</strong>: Users sign transactions using their private keys to perform on-chain operations (e.g., mint NFT, transfer tokens, interact with a trade deal).</li>
+<li><strong>No Centralized Authentication</strong>: There is no centralized authentication for smart contract calls; the blockchain validates the cryptographic signature against the sender's address.</li>
+</ul>
+<h3 id="key-tools-libraries">Key Tools &amp; Libraries<a class="headerlink" href="#key-tools-libraries" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Ethers.js / Web3.js</strong>: JavaScript libraries for interacting with the Ethereum blockchain.</li>
+<li><strong>Wagmi / Web3Modal</strong>: Libraries for simplifying wallet connection in frontend applications.</li>
+<li><strong>Hardhat / Foundry</strong>: Development environments for smart contract testing and deployment.</li>
+</ul>
+<h3 id="example-ethersjs-for-signing-a-transaction">Example (Ethers.js for signing a transaction)<a class="headerlink" href="#example-ethersjs-for-signing-a-transaction" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ethers</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;ethers&#39;</span><span class="p">;</span>
+<span class="c1">// Assuming you have the ABI for the smart contract you want to interact with</span>
+<span class="k">import</span><span class="w"> </span><span class="nx">MyContractABI</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./MyContract.json&#39;</span><span class="p">;</span><span class="w"> </span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">CONTRACT_ADDRESS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0x...&quot;</span><span class="p">;</span><span class="w"> </span><span class="c1">// Address of the deployed Gemforce smart contract</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">PROVIDER_URL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;https://sepolia.base.org&quot;</span><span class="p">;</span><span class="w"> </span><span class="c1">// Or use window.ethereum for browser dApps</span>
+
+<span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">interactWithSmartContract</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Connect to the user&#39;s wallet</span>
+<span class="w">        </span><span class="c1">// For browser environments, use window.ethereum</span>
+<span class="w">        </span><span class="c1">// const provider = new ethers.providers.Web3Provider(window.ethereum);</span>
+<span class="w">        </span><span class="c1">// await provider.send(&quot;eth_requestAccounts&quot;, []); // Request account access</span>
+<span class="w">        </span><span class="c1">// const signer = provider.getSigner();</span>
+
+<span class="w">        </span><span class="c1">// For Node.js/backend automation (using a private key)</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">provider</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">ethers</span><span class="p">.</span><span class="nx">JsonRpcProvider</span><span class="p">(</span><span class="nx">PROVIDER_URL</span><span class="p">);</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">privateKey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;YOUR_PRIVATE_KEY&quot;</span><span class="p">;</span><span class="w"> </span><span class="c1">// Keep this secure! For demo only.</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">signer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">ethers</span><span class="p">.</span><span class="nx">Wallet</span><span class="p">(</span><span class="nx">privateKey</span><span class="p">,</span><span class="w"> </span><span class="nx">provider</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Create a contract instance</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">myContract</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">ethers</span><span class="p">.</span><span class="nx">Contract</span><span class="p">(</span><span class="nx">CONTRACT_ADDRESS</span><span class="p">,</span><span class="w"> </span><span class="nx">MyContractABI</span><span class="p">,</span><span class="w"> </span><span class="nx">signer</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Example: Call a function that changes state (requires gas)</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">tx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">myContract</span><span class="p">.</span><span class="nx">someStateChangingFunction</span><span class="p">(</span><span class="s2">&quot;some_parameter&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="kt">ethers.parseEther</span><span class="p">(</span><span class="s2">&quot;0.1&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">});</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Transaction sent:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">tx</span><span class="p">.</span><span class="nx">hash</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Wait for the transaction to be mined</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">receipt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">tx</span><span class="p">.</span><span class="nx">wait</span><span class="p">();</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Transaction confirmed in block:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">receipt</span><span class="p">.</span><span class="nx">blockNumber</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Example: Call a read-only function (does not require gas, no transaction)</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">myContract</span><span class="p">.</span><span class="nx">someViewFunction</span><span class="p">();</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;View function result:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">result</span><span class="p">);</span>
+
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;Smart contract interaction error:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// interactWithSmartContract();</span>
+</code></pre></div>
+
+<h2 id="4-dfns-integration">4. DFNS Integration<a class="headerlink" href="#4-dfns-integration" title="Permanent link">&para;</a></h2>
+<p>DFNS provides a secure, MPC-based Wallet-as-a-Service solution used within Gemforce. For integrators requiring advanced key management, higher security assurances, or compliance needs, direct integration with DFNS may be an option.</p>
+<h3 id="key-benefits">Key Benefits<a class="headerlink" href="#key-benefits" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Multi-Party Computation (MPC)</strong>: Keys are split and never entirely reside in one place, enhancing security.</li>
+<li><strong>Policy Engine</strong>: Define granular policies for transaction signing (e.g., multi-signature approvals).</li>
+<li><strong>Audit Trails</strong>: Comprehensive logs of all key operations.</li>
+</ul>
+<h3 id="integration-approach">Integration Approach<a class="headerlink" href="#integration-approach" title="Permanent link">&para;</a></h3>
+<p>Typically, your backend service would communicate with the DFNS API, which then orchestrates the secure signing of blockchain transactions.</p>
+<ul>
+<li><strong>API Keys/Authentication</strong>: Authenticate with DFNS using their SDKs and API keys.</li>
+<li><strong>Transaction Requests</strong>: Submit transaction payloads to DFNS for signing.</li>
+<li><strong>Policy Enforcement</strong>: DFNS applies predefined policies (e.g., requiring multiple approvals) before signing.</li>
+<li><strong>Signed Transaction</strong>: DFNS returns a signed transaction that your service can then broadcast to the blockchain.</li>
+</ul>
+<h3 id="example-conceptual-with-dfns-sdk">Example (Conceptual with DFNS SDK)<a class="headerlink" href="#example-conceptual-with-dfns-sdk" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// This is a conceptual example, actual DFNS SDK usage may vary.</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">DfnsApiClient</span><span class="p">,</span><span class="w"> </span><span class="nx">AsymmetricKeys</span><span class="p">,</span><span class="w"> </span><span class="nx">SignatureMechanism</span><span class="p">,</span><span class="w"> </span><span class="nx">SignTransactionRequest</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@dfns/sdk&#39;</span><span class="p">;</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">DFNS_API_URL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;https://api.dfns.io&quot;</span><span class="p">;</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">DFNS_APP_ID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;YOUR_DFNS_APP_ID&quot;</span><span class="p">;</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">DFNS_AUTH_TOKEN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;YOUR_DFNS_AUTH_TOKEN&quot;</span><span class="p">;</span><span class="w"> </span><span class="c1">// Generated from a private key &amp; secret</span>
+
+<span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">signTransactionWithDFNS</span><span class="p">(</span><span class="nx">walletId</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">,</span><span class="w"> </span><span class="nx">chainId</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">,</span><span class="w"> </span><span class="nx">transactionPayload</span><span class="o">:</span><span class="w"> </span><span class="kt">any</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">dfnsClient</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">DfnsApiClient</span><span class="p">({</span>
+<span class="w">            </span><span class="nx">baseUrl</span><span class="o">:</span><span class="w"> </span><span class="kt">DFNS_API_URL</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">appId</span><span class="o">:</span><span class="w"> </span><span class="kt">DFNS_APP_ID</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">authToken</span><span class="o">:</span><span class="w"> </span><span class="kt">DFNS_AUTH_TOKEN</span><span class="p">,</span><span class="w"> </span><span class="c1">// Or use a signing key provider</span>
+<span class="w">            </span><span class="nx">authMethod</span><span class="o">:</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="nx">AsymmetricKeys</span><span class="p">({</span>
+<span class="w">                 </span><span class="c1">// This would involve loading private keys securely in a real app</span>
+<span class="w">                </span><span class="nx">privateKey</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                </span><span class="nx">signingKeyId</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="p">})</span>
+<span class="w">        </span><span class="p">});</span>
+
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">signRequest</span><span class="o">:</span><span class="w"> </span><span class="kt">SignTransactionRequest</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">walletId</span><span class="o">:</span><span class="w"> </span><span class="kt">walletId</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">chainId</span><span class="o">:</span><span class="w"> </span><span class="kt">chainId</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">payload</span><span class="o">:</span><span class="w"> </span><span class="kt">JSON.stringify</span><span class="p">(</span><span class="nx">transactionPayload</span><span class="p">),</span>
+<span class="w">            </span><span class="nx">signatureMechanism</span><span class="o">:</span><span class="w"> </span><span class="kt">SignatureMechanism.JsonRpc</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">transactionType</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;EvmTransaction&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1">// or other types</span>
+<span class="w">        </span><span class="p">};</span>
+
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">dfnsClient</span><span class="p">.</span><span class="nx">wallet</span><span class="p">.</span><span class="nx">signTransaction</span><span class="p">(</span><span class="nx">signRequest</span><span class="p">);</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;DFNS Signed Transaction:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">signedData</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">signedData</span><span class="p">;</span><span class="w"> </span><span class="c1">// Contains the raw signed transaction to broadcast</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;DFNS signing error:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">);</span>
+<span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="nx">error</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Example usage:</span>
+<span class="c1">// const signedTx = await signTransactionWithDFNS(</span>
+<span class="c1">//     &quot;some-dfns-wallet-uuid&quot;,</span>
+<span class="c1">//     &quot;eip155:11155111&quot;, // Sepolia chain ID</span>
+<span class="c1">//     {</span>
+<span class="c1">//         to: &quot;0x...&quot;,</span>
+<span class="c1">//         value: &quot;0&quot;,</span>
+<span class="c1">//         gasLimit: &quot;21000&quot;,</span>
+<span class="c1">//         data: &quot;0x...&quot;</span>
+<span class="c1">//     }</span>
+<span class="c1">// );</span>
+<span class="c1">// // Then broadcast signedTx to the blockchain</span>
+</code></pre></div>
+
+<h2 id="related-documentation">Related Documentation<a class="headerlink" href="#related-documentation" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../../cloud-functions/auth-functions/">Cloud Functions: Authentication Functions</a></li>
+<li><a href="../../cloud-functions/dfns/">Cloud Functions: DFNS Functions</a></li>
+<li><a href="https://docs.parseplatform.org/rest/guide/">Parse Server REST API Documentation</a> (External)</li>
+<li><a href="https://docs.dfns.co/">DFNS Documentation</a> (External)</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../overview/" class="btn btn-neutral float-left" title="Overview"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../rest-api/" class="btn btn-neutral float-right" title="REST API">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../overview/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../rest-api/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

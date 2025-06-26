@@ -1,0 +1,1339 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Gemforce Team" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>IIdentity - Gemforce Documentation</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "IIdentity";
+        var mkdocs_page_input_path = "smart-contracts/interfaces/iidentity.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../.." class="icon icon-home"> Gemforce Documentation
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../developer-setup-guide/">Developer Setup Guide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../system-architecture/gemforce-system-architecture/">System Architecture</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Smart Contracts</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../diamond/">Diamond Contract</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../diamond-factory/">Diamond Factory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../identity-factory/">Identity Factory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Facets</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/marketplace-facet/">Marketplace Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trade-deal-management-facet/">Trade Deal Management Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/carbon-credit-facet/">Carbon Credit Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/identity-registry-facet/">Identity Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trusted-issuers-registry-facet/">Trusted Issuers Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/fee-distributor-facet/">Fee Distributor Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/gemforce-minter-facet/">Gemforce Minter Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/multi-sale-facet/">Multi Sale Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/svg-templates-facet/">SVG Templates Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trade-deal-admin-facet/">Trade Deal Admin Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trade-deal-operations-facet/">Trade Deal Operations Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/collateral-token-factory-facet/">Collateral Token Factory Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/diamond-cut-facet/">Diamond Cut Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/diamond-loupe-facet/">Diamond Loupe Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/ownership-facet/">Ownership Facet</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" >Interfaces</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" href="../idiamond/">IDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../imarketplace/">IMarketplace</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../itradedeal/">ITradeDeal</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../icarbon-credit/">ICarbonCredit</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../ierc1155-mint/">IERC1155Mint</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../ierc734/">IERC734</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../ierc735/">IERC735</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../ierc721a/">IERC721A</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../idiamond-factory/">IDiamondFactory</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">IIdentity</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#overview">Overview</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#key-features">Key Features</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#key-management">Key Management</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#claims-and-attestations">Claims and Attestations</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#identity-operations">Identity Operations</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#interface-definition">Interface Definition</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#core-functions">Core Functions</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#addkey">addKey()</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#addclaim">addClaim()</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#createidentity">createIdentity()</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#requestverification">requestVerification()</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#implementation-example">Implementation Example</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#basic-identity-contract">Basic Identity Contract</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#advanced-identity-features">Advanced Identity Features</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#verification-levels">Verification Levels</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#level-0-none">Level 0: None</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#level-1-basic">Level 1: Basic</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#level-2-enhanced">Level 2: Enhanced</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#level-3-premium">Level 3: Premium</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#security-considerations">Security Considerations</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#key-management-security">Key Management Security</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#claim-verification">Claim Verification</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#access-control">Access Control</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#best-practices">Best Practices</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#identity-design">Identity Design</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#key-management_1">Key Management</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#verification-process">Verification Process</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#integration-examples">Integration Examples</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#frontend-integration">Frontend Integration</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#backend-integration">Backend Integration</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#related-documentation">Related Documentation</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#standards-compliance">Standards Compliance</a>
+    </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../imultisale/">IMultiSale</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../ifee-distributor/">IFeeDistributor</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../igemforce-minter-facet/">IGemforceMinterFacet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../iidentity-registry/">IIdentityRegistry</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../itrusted-issuers-registry/">TRUSTEDIssuersRegistry</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../isvg/">ISVG</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../iattribute/">IAttribute</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Libraries</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/carbon-credit-lib/">Carbon Credit Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/trade-deal-lib/">Trade Deal Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/multi-sale-lib/">Multi Sale Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/diamond-factory-lib/">Diamond Factory Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/svg-templates-lib/">SVG Templates Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/attribute-lib/">Attribute Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/variable-price-lib/">Variable Price Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/merkle-prover/">Merkle Prover</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/fee-distributor-lib/">Fee Distributor Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/lib-diamond/">LibDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/diamond-lib/">DiamondLib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/erc721a-lib/">ERC721A Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/erc721a-enumeration-lib/">ERC721A Enumeration Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/strings-lib/">Strings Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/trusted-issuer-lib/">Trusted Issuer Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/set-libraries/">Set Libraries</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">SDK & Libraries</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/blockchain/">Blockchain Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/diamond/">Diamond Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/contract/">Contract Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/deploy/">Deployment Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/validation-utils/">Validation Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/nft-sale-utils/">NFT Sale Utilities</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Cloud Functions</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/authentication/">Authentication Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/auth-functions/">Auth Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/blockchain/">Blockchain Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/bridge/">Bridge Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/contracts/">Contract Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/deploy/">Deploy Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/dfns/">DFNS Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/project/">Project Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/trade-deal/">Trade Deal Functions</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">API Documentation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../api-documentation/gemforce-api-documentation/">Full API Reference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../api-documentation/gemforce-api-quick-reference/">Quick Reference</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Operations Tasks</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/diamond/">Diamond Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/identities/">Identity Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/marketplace-management/">Marketplace Management Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/carbon-credit-management/">Carbon Credit Management Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/trade-deal/">Trade Deal Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/integration-test/">Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/integration-test-marketplace/">Marketplace Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/integration-test-trade-deal/">Trade Deal Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/admin-utils/">Admin Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/sync-diamond/">Sync Diamond Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/sync-events/">Sync Events Tasks</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">EIPs (Ethereum Improvement Proposals)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Diamond-Enhanced-Marketplace/">Diamond-Enhanced Marketplace</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Multi-Token-Sale-Standard/">Multi-Token Sale Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Collateralized-Trade-Deal-Standard/">Collateralized Trade Deal Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Enhanced-Identity-System/">Enhanced Identity System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Diamond-Factory-Standard/">Diamond Factory Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Carbon-Credit-Standard/">Carbon Credit Standard</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">User Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-administrator-guide/">Administrator Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-deployer-guide/">Deployer Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-integrator-guide/">Integrator Guide</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Integrator's Guide</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/authentication/">Authentication</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/rest-api/">REST API</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/smart-contracts/">Smart Contracts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/dfns/">DFNS Integration</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/webhooks/">Webhooks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/error-handling/">Error Handling</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/sample-code/">Sample Code</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/integration-patterns/">Integration Patterns</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/security/">Security</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../external-services/gemforce-external-services/">External Services</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-documentation-gap-analysis/">Documentation Gap Analysis</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../documentation-progress-summary/">Documentation Progress Summary</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../documentation-plan/">Documentation Plan</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">Gemforce Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Smart Contracts</li>
+          <li class="breadcrumb-item">Interfaces</li>
+      <li class="breadcrumb-item active">IIdentity</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="iidentity-interface">IIdentity Interface<a class="headerlink" href="#iidentity-interface" title="Permanent link">&para;</a></h1>
+<p>The IIdentity interface defines the standard for identity management contracts in the Gemforce ecosystem. It provides a comprehensive framework for managing digital identities, key management, claims verification, and identity attestations based on ERC734 and ERC735 standards.</p>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>IIdentity provides:</p>
+<ul>
+<li><strong>Key Management</strong>: Secure management of cryptographic keys</li>
+<li><strong>Claims System</strong>: Verifiable claims and attestations</li>
+<li><strong>Identity Verification</strong>: Multi-level identity verification</li>
+<li><strong>Access Control</strong>: Role-based access control for identity operations</li>
+<li><strong>Interoperability</strong>: Standard interface for identity interactions</li>
+</ul>
+<h2 id="key-features">Key Features<a class="headerlink" href="#key-features" title="Permanent link">&para;</a></h2>
+<h3 id="key-management">Key Management<a class="headerlink" href="#key-management" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Multi-Key Support</strong>: Support for multiple key types and purposes</li>
+<li><strong>Key Rotation</strong>: Secure key rotation and revocation</li>
+<li><strong>Hierarchical Keys</strong>: Support for key hierarchies and delegation</li>
+<li><strong>Recovery Mechanisms</strong>: Account recovery through trusted keys</li>
+</ul>
+<h3 id="claims-and-attestations">Claims and Attestations<a class="headerlink" href="#claims-and-attestations" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Verifiable Claims</strong>: Create and verify identity claims</li>
+<li><strong>Third-Party Attestations</strong>: Support for external attestations</li>
+<li><strong>Claim Revocation</strong>: Revoke invalid or expired claims</li>
+<li><strong>Proof Generation</strong>: Generate cryptographic proofs for claims</li>
+</ul>
+<h3 id="identity-operations">Identity Operations<a class="headerlink" href="#identity-operations" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Identity Creation</strong>: Create new identity contracts</li>
+<li><strong>Profile Management</strong>: Manage identity profiles and metadata</li>
+<li><strong>Verification Levels</strong>: Support multiple verification levels</li>
+<li><strong>Compliance</strong>: Support for regulatory compliance requirements</li>
+</ul>
+<h2 id="interface-definition">Interface Definition<a class="headerlink" href="#interface-definition" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span><code>interface<span class="w"> </span>IIdentity<span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Events</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">KeyAdded</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>key<span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>purpose<span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>keyType
+<span class="w">    </span><span class="p">);</span>
+
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">KeyRemoved</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>key<span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>purpose<span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>keyType
+<span class="w">    </span><span class="p">);</span>
+
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">ClaimAdded</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>claimId<span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>topic<span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">scheme</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>issuer<span class="p">,</span>
+<span class="w">        </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">signature</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">data</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">uri</span>
+<span class="w">    </span><span class="p">);</span>
+
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">ClaimRemoved</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>claimId<span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>topic<span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">scheme</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>issuer
+<span class="w">    </span><span class="p">);</span>
+
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">ClaimChanged</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>claimId<span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>topic<span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">scheme</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>issuer<span class="p">,</span>
+<span class="w">        </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">signature</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">data</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">uri</span>
+<span class="w">    </span><span class="p">);</span>
+
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">IdentityVerified</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>identity<span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>level<span class="p">,</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>verifier
+<span class="w">    </span><span class="p">);</span>
+
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">IdentityRevoked</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>identity<span class="p">,</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>revoker<span class="p">,</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">reason</span>
+<span class="w">    </span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Enums</span>
+<span class="w">    </span><span class="kt">enum</span><span class="w"> </span><span class="nv">KeyPurpose</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>MANAGEMENT<span class="p">,</span><span class="w">     </span><span class="c1">// 1</span>
+<span class="w">        </span>ACTION<span class="p">,</span><span class="w">         </span><span class="c1">// 2</span>
+<span class="w">        </span>CLAIM<span class="p">,</span><span class="w">          </span><span class="c1">// 3</span>
+<span class="w">        </span>ENCRYPTION<span class="w">      </span><span class="c1">// 4</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">enum</span><span class="w"> </span><span class="nv">KeyType</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>ECDSA<span class="p">,</span><span class="w">          </span><span class="c1">// 1</span>
+<span class="w">        </span>RSA<span class="p">,</span><span class="w">            </span><span class="c1">// 2</span>
+<span class="w">        </span>AES<span class="w">             </span><span class="c1">// 3</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">enum</span><span class="w"> </span><span class="nv">VerificationLevel</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>NONE<span class="p">,</span><span class="w">           </span><span class="c1">// 0</span>
+<span class="w">        </span>BASIC<span class="p">,</span><span class="w">          </span><span class="c1">// 1</span>
+<span class="w">        </span>ENHANCED<span class="p">,</span><span class="w">       </span><span class="c1">// 2</span>
+<span class="w">        </span>PREMIUM<span class="w">         </span><span class="c1">// 3</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Structs</span>
+<span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">Key</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">purpose</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">keyType</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">key</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">active</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">addedAt</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">revokedAt</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">Claim</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">topic</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">scheme</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">issuer</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">signature</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">data</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">uri</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">valid</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">issuedAt</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">expiresAt</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">IdentityProfile</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">name</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">email</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">country</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">verificationLevel</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">active</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">createdAt</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">updatedAt</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">VerificationRequest</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">identity</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">requestedLevel</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">verifier</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">evidence</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">requestedAt</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">expiresAt</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">processed</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Key Management Functions</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">addKey</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">_key</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_purpose</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_keyType</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bool</span><span class="w"> </span><span class="nv">success</span><span class="p">);</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">removeKey</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">_key</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_purpose</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bool</span><span class="w"> </span><span class="nv">success</span><span class="p">);</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getKey</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">_key</span><span class="p">)</span><span class="w"> </span>
+<span class="w">        </span><span class="kt">external</span><span class="w"> </span>
+<span class="w">        </span>view<span class="w"> </span>
+<span class="w">        </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>
+<span class="w">            </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">purpose</span><span class="p">,</span>
+<span class="w">            </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">keyType</span><span class="p">,</span>
+<span class="w">            </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">key</span><span class="p">,</span>
+<span class="w">            </span><span class="kt">bool</span><span class="w"> </span><span class="nv">active</span>
+<span class="w">        </span><span class="p">);</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getKeysByPurpose</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_purpose</span><span class="p">)</span><span class="w"> </span>
+<span class="w">        </span><span class="kt">external</span><span class="w"> </span>
+<span class="w">        </span>view<span class="w"> </span>
+<span class="w">        </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bytes32</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>keys<span class="p">);</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">keyHasPurpose</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">_key</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_purpose</span><span class="p">)</span><span class="w"> </span>
+<span class="w">        </span><span class="kt">external</span><span class="w"> </span>
+<span class="w">        </span>view<span class="w"> </span>
+<span class="w">        </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bool</span><span class="w"> </span><span class="nv">exists</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Claim Management Functions</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">addClaim</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_topic</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_scheme</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">_issuer</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">calldata</span><span class="w"> </span>_signature<span class="p">,</span>
+<span class="w">        </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">calldata</span><span class="w"> </span>_data<span class="p">,</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">calldata</span><span class="w"> </span>_uri
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">claimRequestId</span><span class="p">);</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">removeClaim</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">_claimId</span><span class="p">)</span><span class="w"> </span>
+<span class="w">        </span><span class="kt">external</span><span class="w"> </span>
+<span class="w">        </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bool</span><span class="w"> </span><span class="nv">success</span><span class="p">);</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getClaim</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">_claimId</span><span class="p">)</span><span class="w"> </span>
+<span class="w">        </span><span class="kt">external</span><span class="w"> </span>
+<span class="w">        </span>view<span class="w"> </span>
+<span class="w">        </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>
+<span class="w">            </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">topic</span><span class="p">,</span>
+<span class="w">            </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">scheme</span><span class="p">,</span>
+<span class="w">            </span><span class="kt">address</span><span class="w"> </span><span class="nv">issuer</span><span class="p">,</span>
+<span class="w">            </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>signature<span class="p">,</span>
+<span class="w">            </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>data<span class="p">,</span>
+<span class="w">            </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>uri
+<span class="w">        </span><span class="p">);</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getClaimIdsByTopic</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_topic</span><span class="p">)</span><span class="w"> </span>
+<span class="w">        </span><span class="kt">external</span><span class="w"> </span>
+<span class="w">        </span>view<span class="w"> </span>
+<span class="w">        </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bytes32</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>claimIds<span class="p">);</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getClaimsByTopic</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_topic</span><span class="p">)</span><span class="w"> </span>
+<span class="w">        </span><span class="kt">external</span><span class="w"> </span>
+<span class="w">        </span>view<span class="w"> </span>
+<span class="w">        </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>Claim<span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>claims<span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Identity Management Functions</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">createIdentity</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">_owner</span><span class="p">,</span>
+<span class="w">        </span>IdentityProfile<span class="w"> </span>calldata<span class="w"> </span>_profile
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">identity</span><span class="p">);</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">updateProfile</span><span class="p">(</span>IdentityProfile<span class="w"> </span>calldata<span class="w"> </span>_profile<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getProfile</span><span class="p">()</span><span class="w"> </span>
+<span class="w">        </span><span class="kt">external</span><span class="w"> </span>
+<span class="w">        </span>view<span class="w"> </span>
+<span class="w">        </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>IdentityProfile<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>profile<span class="p">);</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">requestVerification</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_level</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">calldata</span><span class="w"> </span>_evidence
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">requestId</span><span class="p">);</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">processVerification</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">_requestId</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">_approved</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">calldata</span><span class="w"> </span>_reason
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getVerificationLevel</span><span class="p">()</span><span class="w"> </span>
+<span class="w">        </span><span class="kt">external</span><span class="w"> </span>
+<span class="w">        </span>view<span class="w"> </span>
+<span class="w">        </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">level</span><span class="p">);</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">isVerified</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_level</span><span class="p">)</span><span class="w"> </span>
+<span class="w">        </span><span class="kt">external</span><span class="w"> </span>
+<span class="w">        </span>view<span class="w"> </span>
+<span class="w">        </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bool</span><span class="w"> </span><span class="nv">verified</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Utility Functions</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">execute</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">_to</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_value</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">calldata</span><span class="w"> </span>_data
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">executionId</span><span class="p">);</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">approve</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_id</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">_approve</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bool</span><span class="w"> </span><span class="nv">success</span><span class="p">);</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">isValidSignature</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">_hash</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">calldata</span><span class="w"> </span>_signature
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>bytes4<span class="w"> </span>magicValue<span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Query Functions</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">owner</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">address</span><span class="p">);</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">isOwner</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">_addr</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bool</span><span class="p">);</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getExecutionNonce</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">);</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getClaimCount</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">);</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getKeyCount</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">);</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">supportsInterface</span><span class="p">(</span>bytes4<span class="w"> </span>interfaceId<span class="p">)</span><span class="w"> </span>
+<span class="w">        </span><span class="kt">external</span><span class="w"> </span>
+<span class="w">        </span>view<span class="w"> </span>
+<span class="w">        </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bool</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="core-functions">Core Functions<a class="headerlink" href="#core-functions" title="Permanent link">&para;</a></h2>
+<h3 id="addkey">addKey()<a class="headerlink" href="#addkey" title="Permanent link">&para;</a></h3>
+<p>Adds a new key to the identity with specified purpose and type.</p>
+<p><strong>Parameters:</strong>
+- <code>_key</code>: The key identifier (keccak256 hash of the key)
+- <code>_purpose</code>: The purpose of the key (MANAGEMENT, ACTION, CLAIM, ENCRYPTION)
+- <code>_keyType</code>: The type of key (ECDSA, RSA, AES)</p>
+<p><strong>Returns:</strong>
+- <code>bool</code>: Success status</p>
+<p><strong>Usage:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="kt">bytes32</span><span class="w"> </span><span class="nv">keyHash</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">keccak256</span><span class="p">(</span>abi<span class="p">.</span>encodePacked<span class="p">(</span>publicKey<span class="p">));</span>
+<span class="kt">bool</span><span class="w"> </span><span class="nv">success</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>identity<span class="p">.</span>addKey<span class="p">(</span>
+<span class="w">    </span>keyHash<span class="p">,</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="p">(</span>IIdentity<span class="p">.</span>KeyPurpose<span class="p">.</span>MANAGEMENT<span class="p">),</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="p">(</span>IIdentity<span class="p">.</span>KeyType<span class="p">.</span>ECDSA<span class="p">)</span>
+<span class="p">);</span>
+</code></pre></div>
+
+<h3 id="addclaim">addClaim()<a class="headerlink" href="#addclaim" title="Permanent link">&para;</a></h3>
+<p>Adds a new claim to the identity.</p>
+<p><strong>Parameters:</strong>
+- <code>_topic</code>: The claim topic identifier
+- <code>_scheme</code>: The signature scheme used
+- <code>_issuer</code>: The address of the claim issuer
+- <code>_signature</code>: The claim signature
+- <code>_data</code>: The claim data
+- <code>_uri</code>: URI for additional claim information</p>
+<p><strong>Returns:</strong>
+- <code>bytes32</code>: Claim request ID</p>
+<h3 id="createidentity">createIdentity()<a class="headerlink" href="#createidentity" title="Permanent link">&para;</a></h3>
+<p>Creates a new identity contract for a user.</p>
+<p><strong>Parameters:</strong>
+- <code>_owner</code>: The owner address of the identity
+- <code>_profile</code>: Initial identity profile information</p>
+<p><strong>Returns:</strong>
+- <code>address</code>: Address of the created identity contract</p>
+<h3 id="requestverification">requestVerification()<a class="headerlink" href="#requestverification" title="Permanent link">&para;</a></h3>
+<p>Requests identity verification at a specific level.</p>
+<p><strong>Parameters:</strong>
+- <code>_level</code>: Requested verification level
+- <code>_evidence</code>: Supporting evidence for verification</p>
+<p><strong>Returns:</strong>
+- <code>bytes32</code>: Verification request ID</p>
+<h2 id="implementation-example">Implementation Example<a class="headerlink" href="#implementation-example" title="Permanent link">&para;</a></h2>
+<h3 id="basic-identity-contract">Basic Identity Contract<a class="headerlink" href="#basic-identity-contract" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="k">contract</span><span class="w"> </span><span class="ni">Identity</span><span class="w"> </span><span class="kt">is</span><span class="w"> </span>IIdentity<span class="p">,</span><span class="w"> </span>ERC165<span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>using<span class="w"> </span>ECDSA<span class="w"> </span><span class="kt">for</span><span class="w"> </span><span class="kt">bytes32</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// Storage</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span>Key<span class="p">)</span><span class="w"> </span><span class="kt">private</span><span class="w"> </span>keys<span class="p">;</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">bytes32</span><span class="p">[])</span><span class="w"> </span><span class="kt">private</span><span class="w"> </span>keysByPurpose<span class="p">;</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span>Claim<span class="p">)</span><span class="w"> </span><span class="kt">private</span><span class="w"> </span>claims<span class="p">;</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">bytes32</span><span class="p">[])</span><span class="w"> </span><span class="kt">private</span><span class="w"> </span>claimsByTopic<span class="p">;</span>
+
+<span class="w">    </span>IdentityProfile<span class="w"> </span><span class="kt">private</span><span class="w"> </span>profile<span class="p">;</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="k">private </span><span class="nv">_owner</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="k">private </span><span class="nv">executionNonce</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="k">private </span><span class="nv">verificationLevel</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// Modifiers</span>
+<span class="w">    </span><span class="kt">modifier</span><span class="w"> </span>onlyOwner<span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span><span class="k">msg.sender</span><span class="w"> </span><span class="o">==</span><span class="w"> </span>_owner<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Not owner&quot;</span><span class="p">);</span>
+<span class="w">        </span>_<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">modifier</span><span class="w"> </span>onlyManagementKey<span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>
+<span class="w">            </span>keyHasPurpose<span class="p">(</span><span class="nb">keccak256</span><span class="p">(</span>abi<span class="p">.</span>encodePacked<span class="p">(</span><span class="k">msg.sender</span><span class="p">)),</span><span class="w"> </span><span class="m m-Decimal">1</span><span class="p">),</span>
+<span class="w">            </span><span class="s2">&quot;No management key&quot;</span>
+<span class="w">        </span><span class="p">);</span>
+<span class="w">        </span>_<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">constructor</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">owner</span><span class="p">,</span><span class="w"> </span>IdentityProfile<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>_profile<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>_owner<span class="w"> </span><span class="o">=</span><span class="w"> </span>owner<span class="p">;</span>
+<span class="w">        </span>profile<span class="w"> </span><span class="o">=</span><span class="w"> </span>_profile<span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// Add owner as management key</span>
+<span class="w">        </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">ownerKey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">keccak256</span><span class="p">(</span>abi<span class="p">.</span>encodePacked<span class="p">(</span>owner<span class="p">));</span>
+<span class="w">        </span>_addKey<span class="p">(</span>ownerKey<span class="p">,</span><span class="w"> </span><span class="m m-Decimal">1</span><span class="p">,</span><span class="w"> </span><span class="m m-Decimal">1</span><span class="p">);</span><span class="w"> </span><span class="c1">// MANAGEMENT, ECDSA</span>
+
+<span class="w">        </span>emit<span class="w"> </span>IdentityVerified<span class="p">(</span><span class="kt">address</span><span class="p">(</span><span class="kt">this</span><span class="p">),</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">));</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">addKey</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">_key</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_purpose</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_keyType</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>override<span class="w"> </span>onlyManagementKey<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bool</span><span class="w"> </span><span class="nv">success</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>_addKey<span class="p">(</span>_key<span class="p">,</span><span class="w"> </span>_purpose<span class="p">,</span><span class="w"> </span>_keyType<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">_addKey</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">_key</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_purpose</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_keyType</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bool</span><span class="w"> </span><span class="nv">success</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>_key<span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kt">bytes32</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">),</span><span class="w"> </span><span class="s2">&quot;Invalid key&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>_purpose<span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="m m-Decimal">1</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>_purpose<span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="m m-Decimal">4</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Invalid purpose&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>_keyType<span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="m m-Decimal">1</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>_keyType<span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="m m-Decimal">3</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Invalid key type&quot;</span><span class="p">);</span>
+
+<span class="w">        </span>Key<span class="w"> </span>storage<span class="w"> </span>key<span class="w"> </span><span class="o">=</span><span class="w"> </span>keys<span class="p">[</span>_key<span class="p">];</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span><span class="o">!</span>key<span class="p">.</span>active<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Key already exists&quot;</span><span class="p">);</span>
+
+<span class="w">        </span>key<span class="p">.</span>purpose<span class="w"> </span><span class="o">=</span><span class="w"> </span>_purpose<span class="p">;</span>
+<span class="w">        </span>key<span class="p">.</span>keyType<span class="w"> </span><span class="o">=</span><span class="w"> </span>_keyType<span class="p">;</span>
+<span class="w">        </span>key<span class="p">.</span>key<span class="w"> </span><span class="o">=</span><span class="w"> </span>_key<span class="p">;</span>
+<span class="w">        </span>key<span class="p">.</span>active<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">true</span><span class="p">;</span>
+<span class="w">        </span>key<span class="p">.</span>addedAt<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">block.timestamp</span><span class="p">;</span>
+
+<span class="w">        </span>keysByPurpose<span class="p">[</span>_purpose<span class="p">].</span>push<span class="p">(</span>_key<span class="p">);</span>
+
+<span class="w">        </span>emit<span class="w"> </span>KeyAdded<span class="p">(</span>_key<span class="p">,</span><span class="w"> </span>_purpose<span class="p">,</span><span class="w"> </span>_keyType<span class="p">);</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span><span class="kt">true</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">removeKey</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">_key</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_purpose</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>override<span class="w"> </span>onlyManagementKey<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bool</span><span class="w"> </span><span class="nv">success</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>Key<span class="w"> </span>storage<span class="w"> </span>key<span class="w"> </span><span class="o">=</span><span class="w"> </span>keys<span class="p">[</span>_key<span class="p">];</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>key<span class="p">.</span>active<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Key not found&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>key<span class="p">.</span>purpose<span class="w"> </span><span class="o">==</span><span class="w"> </span>_purpose<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Purpose mismatch&quot;</span><span class="p">);</span>
+
+<span class="w">        </span>key<span class="p">.</span>active<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">false</span><span class="p">;</span>
+<span class="w">        </span>key<span class="p">.</span>revokedAt<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">block.timestamp</span><span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// Remove from purpose array</span>
+<span class="w">        </span>_removeFromArray<span class="p">(</span>keysByPurpose<span class="p">[</span>_purpose<span class="p">],</span><span class="w"> </span>_key<span class="p">);</span>
+
+<span class="w">        </span>emit<span class="w"> </span>KeyRemoved<span class="p">(</span>_key<span class="p">,</span><span class="w"> </span>_purpose<span class="p">,</span><span class="w"> </span>key<span class="p">.</span>keyType<span class="p">);</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span><span class="kt">true</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">addClaim</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_topic</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_scheme</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">_issuer</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">calldata</span><span class="w"> </span>_signature<span class="p">,</span>
+<span class="w">        </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">calldata</span><span class="w"> </span>_data<span class="p">,</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">calldata</span><span class="w"> </span>_uri
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>override<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">claimRequestId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>_issuer<span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">),</span><span class="w"> </span><span class="s2">&quot;Invalid issuer&quot;</span><span class="p">);</span>
+
+<span class="w">        </span>claimRequestId<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">keccak256</span><span class="p">(</span>
+<span class="w">            </span>abi<span class="p">.</span>encodePacked<span class="p">(</span>_topic<span class="p">,</span><span class="w"> </span>_scheme<span class="p">,</span><span class="w"> </span>_issuer<span class="p">,</span><span class="w"> </span>_data<span class="p">,</span><span class="w"> </span><span class="k">block.timestamp</span><span class="p">)</span>
+<span class="w">        </span><span class="p">);</span>
+
+<span class="w">        </span>Claim<span class="w"> </span>storage<span class="w"> </span>claim<span class="w"> </span><span class="o">=</span><span class="w"> </span>claims<span class="p">[</span>claimRequestId<span class="p">];</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>claim<span class="p">.</span>issuedAt<span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Claim already exists&quot;</span><span class="p">);</span>
+
+<span class="w">        </span>claim<span class="p">.</span>topic<span class="w"> </span><span class="o">=</span><span class="w"> </span>_topic<span class="p">;</span>
+<span class="w">        </span>claim<span class="p">.</span>scheme<span class="w"> </span><span class="o">=</span><span class="w"> </span>_scheme<span class="p">;</span>
+<span class="w">        </span>claim<span class="p">.</span>issuer<span class="w"> </span><span class="o">=</span><span class="w"> </span>_issuer<span class="p">;</span>
+<span class="w">        </span>claim<span class="p">.</span>signature<span class="w"> </span><span class="o">=</span><span class="w"> </span>_signature<span class="p">;</span>
+<span class="w">        </span>claim<span class="p">.</span>data<span class="w"> </span><span class="o">=</span><span class="w"> </span>_data<span class="p">;</span>
+<span class="w">        </span>claim<span class="p">.</span>uri<span class="w"> </span><span class="o">=</span><span class="w"> </span>_uri<span class="p">;</span>
+<span class="w">        </span>claim<span class="p">.</span>valid<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">true</span><span class="p">;</span>
+<span class="w">        </span>claim<span class="p">.</span>issuedAt<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">block.timestamp</span><span class="p">;</span>
+<span class="w">        </span>claim<span class="p">.</span>expiresAt<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">block.timestamp</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m m-Decimal">365</span><span class="w"> </span>days<span class="p">;</span><span class="w"> </span><span class="c1">// Default 1 year</span>
+
+<span class="w">        </span>claimsByTopic<span class="p">[</span>_topic<span class="p">].</span>push<span class="p">(</span>claimRequestId<span class="p">);</span>
+
+<span class="w">        </span>emit<span class="w"> </span>ClaimAdded<span class="p">(</span>claimRequestId<span class="p">,</span><span class="w"> </span>_topic<span class="p">,</span><span class="w"> </span>_scheme<span class="p">,</span><span class="w"> </span>_issuer<span class="p">,</span><span class="w"> </span>_signature<span class="p">,</span><span class="w"> </span>_data<span class="p">,</span><span class="w"> </span>_uri<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">requestVerification</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_level</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">calldata</span><span class="w"> </span>_evidence
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>override<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">requestId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>_level<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span>verificationLevel<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Level not higher&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>_level<span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="m m-Decimal">3</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Invalid level&quot;</span><span class="p">);</span>
+
+<span class="w">        </span>requestId<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">keccak256</span><span class="p">(</span>
+<span class="w">            </span>abi<span class="p">.</span>encodePacked<span class="p">(</span><span class="kt">address</span><span class="p">(</span><span class="kt">this</span><span class="p">),</span><span class="w"> </span>_level<span class="p">,</span><span class="w"> </span>_evidence<span class="p">,</span><span class="w"> </span><span class="k">block.timestamp</span><span class="p">)</span>
+<span class="w">        </span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Emit event for off-chain processing</span>
+<span class="w">        </span>emit<span class="w"> </span>IdentityVerified<span class="p">(</span><span class="kt">address</span><span class="p">(</span><span class="kt">this</span><span class="p">),</span><span class="w"> </span>_level<span class="p">,</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">);</span>
+
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>requestId<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">processVerification</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">_requestId</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">_approved</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">calldata</span><span class="w"> </span>_reason
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>override<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Only authorized verifiers can process</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>isAuthorizedVerifier<span class="p">(</span><span class="k">msg.sender</span><span class="p">),</span><span class="w"> </span><span class="s2">&quot;Not authorized verifier&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>_approved<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">// Update verification level based on request</span>
+<span class="w">            </span><span class="c1">// Implementation depends on specific verification logic</span>
+<span class="w">            </span>verificationLevel<span class="w"> </span><span class="o">=</span><span class="w"> </span>getRequestedLevel<span class="p">(</span>_requestId<span class="p">);</span>
+<span class="w">            </span>emit<span class="w"> </span>IdentityVerified<span class="p">(</span><span class="kt">address</span><span class="p">(</span><span class="kt">this</span><span class="p">),</span><span class="w"> </span>verificationLevel<span class="p">,</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="kt">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>emit<span class="w"> </span>IdentityRevoked<span class="p">(</span><span class="kt">address</span><span class="p">(</span><span class="kt">this</span><span class="p">),</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">,</span><span class="w"> </span>_reason<span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">execute</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">_to</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_value</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">calldata</span><span class="w"> </span>_data
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>override<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">executionId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>
+<span class="w">            </span>keyHasPurpose<span class="p">(</span><span class="nb">keccak256</span><span class="p">(</span>abi<span class="p">.</span>encodePacked<span class="p">(</span><span class="k">msg.sender</span><span class="p">)),</span><span class="w"> </span><span class="m m-Decimal">2</span><span class="p">)</span><span class="w"> </span><span class="o">||</span>
+<span class="w">            </span>keyHasPurpose<span class="p">(</span><span class="nb">keccak256</span><span class="p">(</span>abi<span class="p">.</span>encodePacked<span class="p">(</span><span class="k">msg.sender</span><span class="p">)),</span><span class="w"> </span><span class="m m-Decimal">1</span><span class="p">),</span>
+<span class="w">            </span><span class="s2">&quot;No execution permission&quot;</span>
+<span class="w">        </span><span class="p">);</span>
+
+<span class="w">        </span>executionId<span class="w"> </span><span class="o">=</span><span class="w"> </span>executionNonce<span class="o">++</span><span class="p">;</span>
+
+<span class="w">        </span><span class="p">(</span><span class="kt">bool</span><span class="w"> </span><span class="nv">success</span><span class="p">,</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>_to<span class="p">.</span>call<span class="p">{</span>value<span class="o">:</span><span class="w"> </span>_value<span class="p">}(</span>_data<span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>success<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Execution failed&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>executionId<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">isValidSignature</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">_hash</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">calldata</span><span class="w"> </span>_signature
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span>override<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>bytes4<span class="w"> </span>magicValue<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">signer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>_hash<span class="p">.</span>recover<span class="p">(</span>_signature<span class="p">);</span>
+<span class="w">        </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">signerKey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">keccak256</span><span class="p">(</span>abi<span class="p">.</span>encodePacked<span class="p">(</span>signer<span class="p">));</span>
+
+<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>keyHasPurpose<span class="p">(</span>signerKey<span class="p">,</span><span class="w"> </span><span class="m m-Decimal">1</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span>keyHasPurpose<span class="p">(</span>signerKey<span class="p">,</span><span class="w"> </span><span class="m m-Decimal">2</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">return</span><span class="w"> </span><span class="mh">0x1626ba7e</span><span class="p">;</span><span class="w"> </span><span class="c1">// EIP-1271 magic value</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span><span class="mh">0xffffffff</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// View functions</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getKey</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">_key</span><span class="p">)</span><span class="w"> </span>
+<span class="w">        </span><span class="kt">external</span><span class="w"> </span>
+<span class="w">        </span>view<span class="w"> </span>
+<span class="w">        </span>override<span class="w"> </span>
+<span class="w">        </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>
+<span class="w">            </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">purpose</span><span class="p">,</span>
+<span class="w">            </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">keyType</span><span class="p">,</span>
+<span class="w">            </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">key</span><span class="p">,</span>
+<span class="w">            </span><span class="kt">bool</span><span class="w"> </span><span class="nv">active</span>
+<span class="w">        </span><span class="p">)</span><span class="w"> </span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span>Key<span class="w"> </span>storage<span class="w"> </span>k<span class="w"> </span><span class="o">=</span><span class="w"> </span>keys<span class="p">[</span>_key<span class="p">];</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span><span class="p">(</span>k<span class="p">.</span>purpose<span class="p">,</span><span class="w"> </span>k<span class="p">.</span>keyType<span class="p">,</span><span class="w"> </span>k<span class="p">.</span>key<span class="p">,</span><span class="w"> </span>k<span class="p">.</span>active<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">keyHasPurpose</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">_key</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_purpose</span><span class="p">)</span><span class="w"> </span>
+<span class="w">        </span><span class="kt">public</span><span class="w"> </span>
+<span class="w">        </span>view<span class="w"> </span>
+<span class="w">        </span>override<span class="w"> </span>
+<span class="w">        </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bool</span><span class="w"> </span><span class="nv">exists</span><span class="p">)</span><span class="w"> </span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span>Key<span class="w"> </span>storage<span class="w"> </span>key<span class="w"> </span><span class="o">=</span><span class="w"> </span>keys<span class="p">[</span>_key<span class="p">];</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>key<span class="p">.</span>active<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>key<span class="p">.</span>purpose<span class="w"> </span><span class="o">==</span><span class="w"> </span>_purpose<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getClaim</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">_claimId</span><span class="p">)</span><span class="w"> </span>
+<span class="w">        </span><span class="kt">external</span><span class="w"> </span>
+<span class="w">        </span>view<span class="w"> </span>
+<span class="w">        </span>override<span class="w"> </span>
+<span class="w">        </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>
+<span class="w">            </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">topic</span><span class="p">,</span>
+<span class="w">            </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">scheme</span><span class="p">,</span>
+<span class="w">            </span><span class="kt">address</span><span class="w"> </span><span class="nv">issuer</span><span class="p">,</span>
+<span class="w">            </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>signature<span class="p">,</span>
+<span class="w">            </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>data<span class="p">,</span>
+<span class="w">            </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>uri
+<span class="w">        </span><span class="p">)</span><span class="w"> </span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span>Claim<span class="w"> </span>storage<span class="w"> </span>claim<span class="w"> </span><span class="o">=</span><span class="w"> </span>claims<span class="p">[</span>_claimId<span class="p">];</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span><span class="p">(</span>
+<span class="w">            </span>claim<span class="p">.</span>topic<span class="p">,</span>
+<span class="w">            </span>claim<span class="p">.</span>scheme<span class="p">,</span>
+<span class="w">            </span>claim<span class="p">.</span>issuer<span class="p">,</span>
+<span class="w">            </span>claim<span class="p">.</span>signature<span class="p">,</span>
+<span class="w">            </span>claim<span class="p">.</span>data<span class="p">,</span>
+<span class="w">            </span>claim<span class="p">.</span>uri
+<span class="w">        </span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getProfile</span><span class="p">()</span><span class="w"> </span>
+<span class="w">        </span><span class="kt">external</span><span class="w"> </span>
+<span class="w">        </span>view<span class="w"> </span>
+<span class="w">        </span>override<span class="w"> </span>
+<span class="w">        </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>IdentityProfile<span class="w"> </span><span class="kt">memory</span><span class="p">)</span><span class="w"> </span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>profile<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getVerificationLevel</span><span class="p">()</span><span class="w"> </span>
+<span class="w">        </span><span class="kt">external</span><span class="w"> </span>
+<span class="w">        </span>view<span class="w"> </span>
+<span class="w">        </span>override<span class="w"> </span>
+<span class="w">        </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">level</span><span class="p">)</span><span class="w"> </span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>verificationLevel<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">isVerified</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_level</span><span class="p">)</span><span class="w"> </span>
+<span class="w">        </span><span class="kt">external</span><span class="w"> </span>
+<span class="w">        </span>view<span class="w"> </span>
+<span class="w">        </span>override<span class="w"> </span>
+<span class="w">        </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bool</span><span class="w"> </span><span class="nv">verified</span><span class="p">)</span><span class="w"> </span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>verificationLevel<span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span>_level<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">owner</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span>override<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">address</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>_owner<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">isOwner</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">_addr</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span>override<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bool</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>_addr<span class="w"> </span><span class="o">==</span><span class="w"> </span>_owner<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">supportsInterface</span><span class="p">(</span>bytes4<span class="w"> </span>interfaceId<span class="p">)</span><span class="w"> </span>
+<span class="w">        </span><span class="kt">public</span><span class="w"> </span>
+<span class="w">        </span>view<span class="w"> </span>
+<span class="w">        </span>virtual<span class="w"> </span>
+<span class="w">        </span>override<span class="w"> </span>
+<span class="w">        </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bool</span><span class="p">)</span><span class="w"> </span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">return</span>
+<span class="w">            </span>interfaceId<span class="w"> </span><span class="o">==</span><span class="w"> </span>type<span class="p">(</span>IIdentity<span class="p">).</span>interfaceId<span class="w"> </span><span class="o">||</span>
+<span class="w">            </span>super<span class="p">.</span>supportsInterface<span class="p">(</span>interfaceId<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="advanced-identity-features">Advanced Identity Features<a class="headerlink" href="#advanced-identity-features" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="k">contract</span><span class="w"> </span><span class="ni">AdvancedIdentity</span><span class="w"> </span><span class="kt">is</span><span class="w"> </span>Identity<span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Multi-signature support</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">bool</span><span class="p">))</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>approvals<span class="p">;</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">uint256</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>approvalCount<span class="p">;</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">uint256</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>requiredApprovals<span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// Delegation support</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">bool</span><span class="p">))</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>delegations<span class="p">;</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">uint256</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>delegationExpiry<span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// Recovery mechanisms</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">bool</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>recoveryKeys<span class="p">;</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="k">public </span><span class="nv">recoveryThreshold</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">uint256</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>recoveryVotes<span class="p">;</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">addMultiSigKey</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">_key</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_purpose</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_keyType</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_requiredApprovals</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyManagementKey<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>_addKey<span class="p">(</span>_key<span class="p">,</span><span class="w"> </span>_purpose<span class="p">,</span><span class="w"> </span>_keyType<span class="p">);</span>
+<span class="w">        </span>requiredApprovals<span class="p">[</span>_key<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>_requiredApprovals<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">executeWithApproval</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">_to</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_value</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">calldata</span><span class="w"> </span>_data<span class="p">,</span>
+<span class="w">        </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">_executionId</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bool</span><span class="w"> </span><span class="nv">success</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">signerKey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">keccak256</span><span class="p">(</span>abi<span class="p">.</span>encodePacked<span class="p">(</span><span class="k">msg.sender</span><span class="p">));</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>keyHasPurpose<span class="p">(</span>signerKey<span class="p">,</span><span class="w"> </span><span class="m m-Decimal">2</span><span class="p">),</span><span class="w"> </span><span class="s2">&quot;No action key&quot;</span><span class="p">);</span>
+
+<span class="w">        </span>approvals<span class="p">[</span>_executionId<span class="p">][</span><span class="k">msg.sender</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">true</span><span class="p">;</span>
+<span class="w">        </span>approvalCount<span class="p">[</span>_executionId<span class="p">]</span><span class="o">++</span><span class="p">;</span>
+
+<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>approvalCount<span class="p">[</span>_executionId<span class="p">]</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span>requiredApprovals<span class="p">[</span>signerKey<span class="p">])</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="p">(</span>success<span class="p">,</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>_to<span class="p">.</span>call<span class="p">{</span>value<span class="o">:</span><span class="w"> </span>_value<span class="p">}(</span>_data<span class="p">);</span>
+<span class="w">            </span>delete<span class="w"> </span>approvals<span class="p">[</span>_executionId<span class="p">];</span>
+<span class="w">            </span>delete<span class="w"> </span>approvalCount<span class="p">[</span>_executionId<span class="p">];</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>success<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">delegateKey</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">_delegate</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_purpose</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_duration</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyManagementKey<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>delegations<span class="p">[</span>_delegate<span class="p">][</span>_purpose<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">true</span><span class="p">;</span>
+<span class="w">        </span>delegationExpiry<span class="p">[</span>_delegate<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">block.timestamp</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>_duration<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">revokeDelegation</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">_delegate</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyManagementKey<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>delete<span class="w"> </span>delegations<span class="p">[</span>_delegate<span class="p">][</span><span class="m m-Decimal">1</span><span class="p">];</span>
+<span class="w">        </span>delete<span class="w"> </span>delegations<span class="p">[</span>_delegate<span class="p">][</span><span class="m m-Decimal">2</span><span class="p">];</span>
+<span class="w">        </span>delete<span class="w"> </span>delegationExpiry<span class="p">[</span>_delegate<span class="p">];</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">addRecoveryKey</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">_recoveryKey</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyOwner<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>recoveryKeys<span class="p">[</span>_recoveryKey<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">true</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">initiateRecovery</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">_newOwner</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>recoveryKeys<span class="p">[</span><span class="k">msg.sender</span><span class="p">],</span><span class="w"> </span><span class="s2">&quot;Not recovery key&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">recoveryId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">keccak256</span><span class="p">(</span>abi<span class="p">.</span>encodePacked<span class="p">(</span>_newOwner<span class="p">,</span><span class="w"> </span><span class="k">block.timestamp</span><span class="p">));</span>
+<span class="w">        </span>recoveryVotes<span class="p">[</span>recoveryId<span class="p">]</span><span class="o">++</span><span class="p">;</span>
+
+<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>recoveryVotes<span class="p">[</span>recoveryId<span class="p">]</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span>recoveryThreshold<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>_owner<span class="w"> </span><span class="o">=</span><span class="w"> </span>_newOwner<span class="p">;</span>
+
+<span class="w">            </span><span class="c1">// Add new owner as management key</span>
+<span class="w">            </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">newOwnerKey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">keccak256</span><span class="p">(</span>abi<span class="p">.</span>encodePacked<span class="p">(</span>_newOwner<span class="p">));</span>
+<span class="w">            </span>_addKey<span class="p">(</span>newOwnerKey<span class="p">,</span><span class="w"> </span><span class="m m-Decimal">1</span><span class="p">,</span><span class="w"> </span><span class="m m-Decimal">1</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="verification-levels">Verification Levels<a class="headerlink" href="#verification-levels" title="Permanent link">&para;</a></h2>
+<h3 id="level-0-none">Level 0: None<a class="headerlink" href="#level-0-none" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Requirements</strong>: Basic identity creation</li>
+<li><strong>Capabilities</strong>: Basic key management and claims</li>
+<li><strong>Restrictions</strong>: Limited transaction amounts</li>
+</ul>
+<h3 id="level-1-basic">Level 1: Basic<a class="headerlink" href="#level-1-basic" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Requirements</strong>: Email verification, basic KYC</li>
+<li><strong>Capabilities</strong>: Standard operations, moderate transaction limits</li>
+<li><strong>Verification</strong>: Automated verification process</li>
+</ul>
+<h3 id="level-2-enhanced">Level 2: Enhanced<a class="headerlink" href="#level-2-enhanced" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Requirements</strong>: Document verification, address proof</li>
+<li><strong>Capabilities</strong>: Higher transaction limits, advanced features</li>
+<li><strong>Verification</strong>: Manual review process</li>
+</ul>
+<h3 id="level-3-premium">Level 3: Premium<a class="headerlink" href="#level-3-premium" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Requirements</strong>: Full KYC/AML compliance, biometric verification</li>
+<li><strong>Capabilities</strong>: Unlimited operations, institutional features</li>
+<li><strong>Verification</strong>: Comprehensive compliance review</li>
+</ul>
+<h2 id="security-considerations">Security Considerations<a class="headerlink" href="#security-considerations" title="Permanent link">&para;</a></h2>
+<h3 id="key-management-security">Key Management Security<a class="headerlink" href="#key-management-security" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Key Rotation</strong>: Regular key rotation policies</li>
+<li><strong>Multi-Signature</strong>: Multi-signature requirements for critical operations</li>
+<li><strong>Recovery Mechanisms</strong>: Secure account recovery procedures</li>
+<li><strong>Key Validation</strong>: Validate key formats and cryptographic properties</li>
+</ul>
+<h3 id="claim-verification">Claim Verification<a class="headerlink" href="#claim-verification" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Issuer Validation</strong>: Verify claim issuer authenticity</li>
+<li><strong>Signature Verification</strong>: Validate claim signatures</li>
+<li><strong>Expiration Handling</strong>: Handle claim expiration properly</li>
+<li><strong>Revocation Checks</strong>: Check for claim revocations</li>
+</ul>
+<h3 id="access-control">Access Control<a class="headerlink" href="#access-control" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Permission Validation</strong>: Validate permissions for all operations</li>
+<li><strong>Delegation Security</strong>: Secure delegation mechanisms</li>
+<li><strong>Audit Trails</strong>: Comprehensive audit logging</li>
+<li><strong>Rate Limiting</strong>: Prevent abuse through rate limiting</li>
+</ul>
+<h2 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h2>
+<h3 id="identity-design">Identity Design<a class="headerlink" href="#identity-design" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Minimal Data</strong>: Store minimal personal data on-chain</li>
+<li><strong>Privacy Protection</strong>: Implement privacy-preserving mechanisms</li>
+<li><strong>Interoperability</strong>: Design for cross-platform compatibility</li>
+<li><strong>Upgradability</strong>: Plan for identity contract upgrades</li>
+</ol>
+<h3 id="key-management_1">Key Management<a class="headerlink" href="#key-management_1" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Key Diversity</strong>: Use different keys for different purposes</li>
+<li><strong>Secure Storage</strong>: Implement secure key storage mechanisms</li>
+<li><strong>Regular Rotation</strong>: Establish key rotation schedules</li>
+<li><strong>Backup Procedures</strong>: Implement secure backup procedures</li>
+</ol>
+<h3 id="verification-process">Verification Process<a class="headerlink" href="#verification-process" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Graduated Verification</strong>: Implement graduated verification levels</li>
+<li><strong>Evidence Validation</strong>: Thoroughly validate verification evidence</li>
+<li><strong>Compliance</strong>: Ensure regulatory compliance</li>
+<li><strong>User Experience</strong>: Balance security with user experience</li>
+</ol>
+<h2 id="integration-examples">Integration Examples<a class="headerlink" href="#integration-examples" title="Permanent link">&para;</a></h2>
+<h3 id="frontend-integration">Frontend Integration<a class="headerlink" href="#frontend-integration" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nx">IdentityService</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="nx">contract</span><span class="o">:</span><span class="w"> </span><span class="kt">Contract</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kr">constructor</span><span class="p">(</span><span class="nx">address</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">,</span><span class="w"> </span><span class="nx">provider</span><span class="o">:</span><span class="w"> </span><span class="kt">Provider</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">contract</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Contract</span><span class="p">(</span><span class="nx">address</span><span class="p">,</span><span class="w"> </span><span class="nx">IDENTITY_ABI</span><span class="p">,</span><span class="w"> </span><span class="nx">provider</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">async</span><span class="w"> </span><span class="nx">createIdentity</span><span class="p">(</span><span class="nx">profile</span><span class="o">:</span><span class="w"> </span><span class="kt">IdentityProfile</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="kt">string</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">tx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">contract</span><span class="p">.</span><span class="nx">createIdentity</span><span class="p">(</span>
+<span class="w">            </span><span class="k">await</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">provider</span><span class="p">.</span><span class="nx">getSigner</span><span class="p">().</span><span class="nx">getAddress</span><span class="p">(),</span>
+<span class="w">            </span><span class="nx">profile</span>
+<span class="w">        </span><span class="p">);</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">receipt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">tx</span><span class="p">.</span><span class="nx">wait</span><span class="p">();</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">receipt</span><span class="p">.</span><span class="nx">contractAddress</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">async</span><span class="w"> </span><span class="nx">addKey</span><span class="p">(</span><span class="nx">key</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">,</span><span class="w"> </span><span class="nx">purpose</span><span class="o">:</span><span class="w"> </span><span class="kt">KeyPurpose</span><span class="p">,</span><span class="w"> </span><span class="nx">keyType</span><span class="o">:</span><span class="w"> </span><span class="kt">KeyType</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="ow">void</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">keyHash</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ethers</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">keccak256</span><span class="p">(</span><span class="nx">ethers</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">toUtf8Bytes</span><span class="p">(</span><span class="nx">key</span><span class="p">));</span>
+<span class="w">        </span><span class="k">await</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">contract</span><span class="p">.</span><span class="nx">addKey</span><span class="p">(</span><span class="nx">keyHash</span><span class="p">,</span><span class="w"> </span><span class="nx">purpose</span><span class="p">,</span><span class="w"> </span><span class="nx">keyType</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">async</span><span class="w"> </span><span class="nx">addClaim</span><span class="p">(</span><span class="nx">claim</span><span class="o">:</span><span class="w"> </span><span class="kt">ClaimData</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="kt">string</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">tx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">contract</span><span class="p">.</span><span class="nx">addClaim</span><span class="p">(</span>
+<span class="w">            </span><span class="nx">claim</span><span class="p">.</span><span class="nx">topic</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">claim</span><span class="p">.</span><span class="nx">scheme</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">claim</span><span class="p">.</span><span class="nx">issuer</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">claim</span><span class="p">.</span><span class="nx">signature</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">claim</span><span class="p">.</span><span class="nx">data</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">claim</span><span class="p">.</span><span class="nx">uri</span>
+<span class="w">        </span><span class="p">);</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">receipt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">tx</span><span class="p">.</span><span class="nx">wait</span><span class="p">();</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">receipt</span><span class="p">.</span><span class="nx">events</span><span class="p">[</span><span class="mf">0</span><span class="p">].</span><span class="nx">args</span><span class="p">.</span><span class="nx">claimRequestId</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">async</span><span class="w"> </span><span class="nx">requestVerification</span><span class="p">(</span><span class="nx">level</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">,</span><span class="w"> </span><span class="nx">evidence</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="kt">string</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">tx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">contract</span><span class="p">.</span><span class="nx">requestVerification</span><span class="p">(</span>
+<span class="w">            </span><span class="nx">level</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">ethers</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">toUtf8Bytes</span><span class="p">(</span><span class="nx">evidence</span><span class="p">)</span>
+<span class="w">        </span><span class="p">);</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">receipt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">tx</span><span class="p">.</span><span class="nx">wait</span><span class="p">();</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">receipt</span><span class="p">.</span><span class="nx">events</span><span class="p">[</span><span class="mf">0</span><span class="p">].</span><span class="nx">args</span><span class="p">.</span><span class="nx">requestId</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">async</span><span class="w"> </span><span class="nx">getVerificationLevel</span><span class="p">()</span><span class="o">:</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="kt">number</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">contract</span><span class="p">.</span><span class="nx">getVerificationLevel</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="backend-integration">Backend Integration<a class="headerlink" href="#backend-integration" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nx">IdentityManager</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kr">constructor</span><span class="p">(</span><span class="nx">web3</span><span class="p">,</span><span class="w"> </span><span class="nx">contractAddress</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">web3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">web3</span><span class="p">;</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">contract</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">web3</span><span class="p">.</span><span class="nx">eth</span><span class="p">.</span><span class="nx">Contract</span><span class="p">(</span><span class="nx">IDENTITY_ABI</span><span class="p">,</span><span class="w"> </span><span class="nx">contractAddress</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">async</span><span class="w"> </span><span class="nx">processVerificationRequest</span><span class="p">(</span><span class="nx">requestId</span><span class="p">,</span><span class="w"> </span><span class="nx">approved</span><span class="p">,</span><span class="w"> </span><span class="nx">reason</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">accounts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">web3</span><span class="p">.</span><span class="nx">eth</span><span class="p">.</span><span class="nx">getAccounts</span><span class="p">();</span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">contract</span><span class="p">.</span><span class="nx">methods</span>
+<span class="w">            </span><span class="p">.</span><span class="nx">processVerification</span><span class="p">(</span><span class="nx">requestId</span><span class="p">,</span><span class="w"> </span><span class="nx">approved</span><span class="p">,</span><span class="w"> </span><span class="nx">reason</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="nx">send</span><span class="p">({</span><span class="w"> </span><span class="kr">from</span><span class="o">:</span><span class="w"> </span><span class="nx">accounts</span><span class="p">[</span><span class="mf">0</span><span class="p">]</span><span class="w"> </span><span class="p">});</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">async</span><span class="w"> </span><span class="nx">validateClaim</span><span class="p">(</span><span class="nx">claimId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">claim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">contract</span><span class="p">.</span><span class="nx">methods</span><span class="p">.</span><span class="nx">getClaim</span><span class="p">(</span><span class="nx">claimId</span><span class="p">).</span><span class="nx">call</span><span class="p">();</span>
+
+<span class="w">        </span><span class="c1">// Validate claim signature</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">messageHash</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">web3</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">keccak256</span><span class="p">(</span><span class="nx">claim</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">recoveredAddress</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">web3</span><span class="p">.</span><span class="nx">eth</span><span class="p">.</span><span class="nx">accounts</span><span class="p">.</span><span class="nx">recover</span><span class="p">(</span>
+<span class="w">            </span><span class="nx">messageHash</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">claim</span><span class="p">.</span><span class="nx">signature</span>
+<span class="w">        </span><span class="p">);</span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">recoveredAddress</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">()</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nx">claim</span><span class="p">.</span><span class="nx">issuer</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">async</span><span class="w"> </span><span class="nx">getIdentityProfile</span><span class="p">(</span><span class="nx">identityAddress</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">identityContract</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">web3</span><span class="p">.</span><span class="nx">eth</span><span class="p">.</span><span class="nx">Contract</span><span class="p">(</span>
+<span class="w">            </span><span class="nx">IDENTITY_ABI</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">identityAddress</span>
+<span class="w">        </span><span class="p">);</span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">identityContract</span><span class="p">.</span><span class="nx">methods</span><span class="p">.</span><span class="nx">getProfile</span><span class="p">().</span><span class="nx">call</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="related-documentation">Related Documentation<a class="headerlink" href="#related-documentation" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../ierc734/">ERC734 Key Manager</a></li>
+<li><a href="../ierc735/">ERC735 Claim Holder</a></li>
+<li><a href="../../identity-factory/">Identity Factory</a></li>
+<li><a href="../identity-registry.md">Identity Registry</a></li>
+<li><a href="../../guides/identity-verification.md">Verification Guide</a></li>
+<li><a href="../../guides/key-management.md">Key Management Guide</a></li>
+</ul>
+<h2 id="standards-compliance">Standards Compliance<a class="headerlink" href="#standards-compliance" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>ERC734</strong>: Key Manager standard implementation</li>
+<li><strong>ERC735</strong>: Claim Holder standard implementation</li>
+<li><strong>ERC165</strong>: Interface detection standard</li>
+<li><strong>ERC1271</strong>: Signature validation standard</li>
+<li><strong>EIP-712</strong>: Typed structured data hashing and signing</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../idiamond-factory/" class="btn btn-neutral float-left" title="IDiamondFactory"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../imultisale/" class="btn btn-neutral float-right" title="IMultiSale">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../idiamond-factory/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../imultisale/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

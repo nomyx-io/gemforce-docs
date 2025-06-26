@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Gemforce Team" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>IGemforceMinterFacet - Gemforce Documentation</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "IGemforceMinterFacet";
+        var mkdocs_page_input_path = "smart-contracts/interfaces/igemforce-minter-facet.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../.." class="icon icon-home"> Gemforce Documentation
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../developer-setup-guide/">Developer Setup Guide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../system-architecture/gemforce-system-architecture/">System Architecture</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Smart Contracts</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../diamond/">Diamond Contract</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../diamond-factory/">Diamond Factory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../identity-factory/">Identity Factory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Facets</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/marketplace-facet/">Marketplace Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trade-deal-management-facet/">Trade Deal Management Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/carbon-credit-facet/">Carbon Credit Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/identity-registry-facet/">Identity Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trusted-issuers-registry-facet/">Trusted Issuers Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/fee-distributor-facet/">Fee Distributor Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/gemforce-minter-facet/">Gemforce Minter Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/multi-sale-facet/">Multi Sale Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/svg-templates-facet/">SVG Templates Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trade-deal-admin-facet/">Trade Deal Admin Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trade-deal-operations-facet/">Trade Deal Operations Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/collateral-token-factory-facet/">Collateral Token Factory Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/diamond-cut-facet/">Diamond Cut Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/diamond-loupe-facet/">Diamond Loupe Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/ownership-facet/">Ownership Facet</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" >Interfaces</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" href="../idiamond/">IDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../imarketplace/">IMarketplace</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../itradedeal/">ITradeDeal</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../icarbon-credit/">ICarbonCredit</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../ierc1155-mint/">IERC1155Mint</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../ierc734/">IERC734</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../ierc735/">IERC735</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../ierc721a/">IERC721A</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../idiamond-factory/">IDiamondFactory</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../iidentity/">IIdentity</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../imultisale/">IMultiSale</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../ifee-distributor/">IFeeDistributor</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">IGemforceMinterFacet</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#overview">Overview</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#key-features">Key Features</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#minting-operations">Minting Operations</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#supply-and-identifier-management">Supply and Identifier Management</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#royalty-and-fee-mechanisms">Royalty and Fee Mechanisms</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#interface-definition">Interface Definition</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#core-functions">Core Functions</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#mint">mint()</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#mintbatch">mintBatch()</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#setmintfee">setMintFee()</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#setroyaltyinfo">setRoyaltyInfo()</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#implementation-example">Implementation Example</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#security-considerations">Security Considerations</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#access-control">Access Control</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#supply-management">Supply Management</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#fee-handling">Fee Handling</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#best-practices">Best Practices</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#metadata-and-attributes">Metadata and Attributes</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#efficiency">Efficiency</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#modularity">Modularity</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#integration-examples">Integration Examples</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#frontend-integration-typescript-via-ethersjs">Frontend Integration (TypeScript via Ethers.js)</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#backend-integration-nodejsweb3js-for-off-chain-minting-trigger">Backend Integration (Node.js/Web3.js for off-chain minting trigger)</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#related-documentation">Related Documentation</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#standards-compliance">Standards Compliance</a>
+    </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../iidentity-registry/">IIdentityRegistry</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../itrusted-issuers-registry/">TRUSTEDIssuersRegistry</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../isvg/">ISVG</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../iattribute/">IAttribute</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Libraries</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/carbon-credit-lib/">Carbon Credit Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/trade-deal-lib/">Trade Deal Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/multi-sale-lib/">Multi Sale Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/diamond-factory-lib/">Diamond Factory Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/svg-templates-lib/">SVG Templates Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/attribute-lib/">Attribute Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/variable-price-lib/">Variable Price Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/merkle-prover/">Merkle Prover</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/fee-distributor-lib/">Fee Distributor Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/lib-diamond/">LibDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/diamond-lib/">DiamondLib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/erc721a-lib/">ERC721A Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/erc721a-enumeration-lib/">ERC721A Enumeration Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/strings-lib/">Strings Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/trusted-issuer-lib/">Trusted Issuer Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/set-libraries/">Set Libraries</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">SDK & Libraries</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/blockchain/">Blockchain Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/diamond/">Diamond Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/contract/">Contract Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/deploy/">Deployment Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/validation-utils/">Validation Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/nft-sale-utils/">NFT Sale Utilities</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Cloud Functions</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/authentication/">Authentication Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/auth-functions/">Auth Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/blockchain/">Blockchain Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/bridge/">Bridge Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/contracts/">Contract Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/deploy/">Deploy Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/dfns/">DFNS Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/project/">Project Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/trade-deal/">Trade Deal Functions</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">API Documentation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../api-documentation/gemforce-api-documentation/">Full API Reference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../api-documentation/gemforce-api-quick-reference/">Quick Reference</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Operations Tasks</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/diamond/">Diamond Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/identities/">Identity Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/marketplace-management/">Marketplace Management Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/carbon-credit-management/">Carbon Credit Management Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/trade-deal/">Trade Deal Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/integration-test/">Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/integration-test-marketplace/">Marketplace Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/integration-test-trade-deal/">Trade Deal Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/admin-utils/">Admin Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/sync-diamond/">Sync Diamond Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/sync-events/">Sync Events Tasks</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">EIPs (Ethereum Improvement Proposals)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Diamond-Enhanced-Marketplace/">Diamond-Enhanced Marketplace</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Multi-Token-Sale-Standard/">Multi-Token Sale Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Collateralized-Trade-Deal-Standard/">Collateralized Trade Deal Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Enhanced-Identity-System/">Enhanced Identity System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Diamond-Factory-Standard/">Diamond Factory Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Carbon-Credit-Standard/">Carbon Credit Standard</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">User Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-administrator-guide/">Administrator Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-deployer-guide/">Deployer Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-integrator-guide/">Integrator Guide</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Integrator's Guide</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/authentication/">Authentication</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/rest-api/">REST API</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/smart-contracts/">Smart Contracts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/dfns/">DFNS Integration</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/webhooks/">Webhooks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/error-handling/">Error Handling</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/sample-code/">Sample Code</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/integration-patterns/">Integration Patterns</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/security/">Security</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../external-services/gemforce-external-services/">External Services</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-documentation-gap-analysis/">Documentation Gap Analysis</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../documentation-progress-summary/">Documentation Progress Summary</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../documentation-plan/">Documentation Plan</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">Gemforce Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Smart Contracts</li>
+          <li class="breadcrumb-item">Interfaces</li>
+      <li class="breadcrumb-item active">IGemforceMinterFacet</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="igemforceminterfacet-interface">IGemforceMinterFacet Interface<a class="headerlink" href="#igemforceminterfacet-interface" title="Permanent link">&para;</a></h1>
+<p>The <code>IGemforceMinterFacet</code> interface defines the standard functions for a minter facet within a Gemforce Diamond contract, specifically designed for minting and managing Gemforce-specific NFTs. This facet integrates with the core tokenization and attribute management systems of the Gemforce platform.</p>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p><code>IGemforceMinterFacet</code> provides:</p>
+<ul>
+<li><strong>NFT Minting</strong>: Functions to create new NFTs with specified metadata and attributes.</li>
+<li><strong>Supply Management</strong>: Control over total supply, minted supply, and unique identifiers.</li>
+<li><strong>Attribute Integration</strong>: Seamless integration with the platform's attribute system.</li>
+<li><strong>Royalty/Fee Handling</strong>: Mechanisms to define and collect royalties or minting fees.</li>
+<li><strong>Event Tracking</strong>: Comprehensive event logging for all minting operations.</li>
+</ul>
+<h2 id="key-features">Key Features<a class="headerlink" href="#key-features" title="Permanent link">&para;</a></h2>
+<h3 id="minting-operations">Minting Operations<a class="headerlink" href="#minting-operations" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Single Mint</strong>: Mint one NFT at a time.</li>
+<li><strong>Batch Mint</strong>: Mint multiple NFTs in a single transaction for efficiency.</li>
+<li><strong>Custom Metadata</strong>: Attach custom metadata and attributes during minting.</li>
+<li><strong>Pre-minting Hooks</strong>: Support for pre-minting validation or logic.</li>
+</ul>
+<h3 id="supply-and-identifier-management">Supply and Identifier Management<a class="headerlink" href="#supply-and-identifier-management" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Token ID Generation</strong>: Strategies for unique token ID generation.</li>
+<li><strong>Supply Tracking</strong>: Keep track of total minted NFTs.</li>
+<li><strong>Provenance</strong>: Record minter and minting timestamp.</li>
+</ul>
+<h3 id="royalty-and-fee-mechanisms">Royalty and Fee Mechanisms<a class="headerlink" href="#royalty-and-fee-mechanisms" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Configurable Royalties</strong>: Define royalty percentages and recipients.</li>
+<li><strong>Minting Fees</strong>: Charge fees for minting operations.</li>
+<li><strong>Fee Distribution</strong>: Integration with fee distribution mechanisms.</li>
+</ul>
+<h2 id="interface-definition">Interface Definition<a class="headerlink" href="#interface-definition" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span><code>interface<span class="w"> </span>IGemforceMinterFacet<span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Events</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">GemforceMinted</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>minter<span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>tokenId<span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>quantity<span class="p">,</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>receiver<span class="p">,</span>
+<span class="w">        </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">metadataURI</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">attributes</span>
+<span class="w">    </span><span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">GemforceBatchMinted</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>minter<span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span>tokenIds<span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span>quantities<span class="p">,</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>receiver<span class="p">,</span>
+<span class="w">        </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">metadataURI</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">attributes</span>
+<span class="w">    </span><span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">MintFeeSet</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>token<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">amount</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">RoyaltyInfoSet</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>receiver<span class="p">,</span><span class="w"> </span><span class="kt">uint96</span><span class="w"> </span><span class="nv">feeNumerator</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">BaseURIUpdated</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">newBaseURI</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Structs</span>
+<span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">MintConfig</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">initialSupply</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">pricePerUnit</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">paymentToken</span><span class="p">;</span><span class="w"> </span><span class="c1">// Address of ERC20 token for payment, or address(0) for native currency</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">maxSupply</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">isPausable</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">isBridgeable</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">name</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">symbol</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">baseURI</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">contractURI</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">extraData</span><span class="p">;</span><span class="w"> </span><span class="c1">// For custom metadata or specific minting logic</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">MintBatchParams</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span>quantities<span class="p">;</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">receiver</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">attributesData</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">metadataURI</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Core Minting Functions</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">mint</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">receiver</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">quantity</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">attributesData</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">metadataURI</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">payable</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">newTokenId</span><span class="p">);</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">mintBatch</span><span class="p">(</span>MintBatchParams<span class="p">[]</span><span class="w"> </span>calldata<span class="w"> </span>mintParams<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">payable</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// Configuration Functions</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">setMintFee</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">paymentToken</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">amount</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">setRoyaltyInfo</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">receiver</span><span class="p">,</span><span class="w"> </span><span class="kt">uint96</span><span class="w"> </span><span class="nv">feeNumerator</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">setBaseURI</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>newBaseURI<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">setContractURI</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>newContractURI<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">setMaxSupply</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">newMaxSupply</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// View Functions</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getMintFee</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">paymentToken</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getRoyaltyInfo</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">salePrice</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">receiver</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">royaltyAmount</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getBaseURI</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getContractURI</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getMaxSupply</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getTotalMintedSupply</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">isPaused</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bool</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="core-functions">Core Functions<a class="headerlink" href="#core-functions" title="Permanent link">&para;</a></h2>
+<h3 id="mint">mint()<a class="headerlink" href="#mint" title="Permanent link">&para;</a></h3>
+<p>Mints a single or a specified quantity of new Gemforce NFTs to a designated receiver.</p>
+<p><strong>Parameters:</strong>
+- <code>receiver</code>: The address to receive the minted NFTs.
+- <code>quantity</code>: The number of NFTs to mint.
+- <code>attributesData</code>: Bytes array containing encoded attribute data for the NFTs.
+- <code>metadataURI</code>: URI pointing to off-chain metadata (e.g., JSON file).</p>
+<p><strong>Behavior:</strong>
+- Handles payment of minting fees, if configured.
+- Increments the total minted supply.</p>
+<p><strong>Usage:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Mint 1 NFT to a specific address with attributes and metadata URI</span>
+gemforceMinter<span class="p">.</span>mint<span class="p">(</span>
+<span class="w">    </span>recipientAddress<span class="p">,</span>
+<span class="w">    </span><span class="m m-Decimal">1</span><span class="p">,</span>
+<span class="w">    </span>abi<span class="p">.</span>encodePacked<span class="p">(</span><span class="s2">&quot;color&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;red&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;size&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;L&quot;</span><span class="p">),</span>
+<span class="w">    </span><span class="s2">&quot;ipfs://example.com/metadata/1.json&quot;</span>
+<span class="p">);</span>
+
+<span class="c1">// Mint 5 NFTs (if applicable)</span>
+gemforceMinter<span class="p">.</span>mint<span class="p">(</span>
+<span class="w">    </span>recipientAddress<span class="p">,</span>
+<span class="w">    </span><span class="m m-Decimal">5</span><span class="p">,</span>
+<span class="w">    </span>abi<span class="p">.</span>encodePacked<span class="p">(</span><span class="s2">&quot;series&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;A&quot;</span><span class="p">),</span>
+<span class="w">    </span><span class="s2">&quot;ipfs://example.com/metadata/series_a.json&quot;</span>
+<span class="p">);</span>
+</code></pre></div>
+
+<h3 id="mintbatch">mintBatch()<a class="headerlink" href="#mintbatch" title="Permanent link">&para;</a></h3>
+<p>Mints multiple batches of NFTs in a single transaction. Each element in <code>mintParams</code> represents a separate minting operation with its own quantity, receiver, attributes, and metadata.</p>
+<p><strong>Parameters:</strong>
+- <code>mintParams</code>: An array of <code>MintBatchParams</code> structs, each detailing a batch minting request.</p>
+<p><strong>Usage:</strong></p>
+<div class="codehilite"><pre><span></span><code>IGemforceMinterFacet<span class="p">.</span>MintBatchParams<span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>batches<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span>IGemforceMinterFacet<span class="p">.</span>MintBatchParams<span class="p">[](</span><span class="m m-Decimal">2</span><span class="p">);</span>
+batches<span class="p">[</span><span class="m m-Decimal">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>IGemforceMinterFacet<span class="p">.</span>MintBatchParams<span class="p">({</span>
+<span class="w">    </span>quantities<span class="o">:</span><span class="w"> </span><span class="m m-Decimal">10</span><span class="p">,</span>
+<span class="w">    </span>receiver<span class="o">:</span><span class="w"> </span>user1<span class="p">,</span>
+<span class="w">    </span>attributesData<span class="o">:</span><span class="w"> </span>abi<span class="p">.</span>encodePacked<span class="p">(</span><span class="s2">&quot;tier&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;gold&quot;</span><span class="p">),</span>
+<span class="w">    </span>metadataURI<span class="o">:</span><span class="w"> </span><span class="s2">&quot;ipfs://gold.json&quot;</span>
+<span class="p">});</span>
+batches<span class="p">[</span><span class="m m-Decimal">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>IGemforceMinterFacet<span class="p">.</span>MintBatchParams<span class="p">({</span>
+<span class="w">    </span>quantities<span class="o">:</span><span class="w"> </span><span class="m m-Decimal">5</span><span class="p">,</span>
+<span class="w">    </span>receiver<span class="o">:</span><span class="w"> </span>user2<span class="p">,</span>
+<span class="w">    </span>attributesData<span class="o">:</span><span class="w"> </span>abi<span class="p">.</span>encodePacked<span class="p">(</span><span class="s2">&quot;tier&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;silver&quot;</span><span class="p">),</span>
+<span class="w">    </span>metadataURI<span class="o">:</span><span class="w"> </span><span class="s2">&quot;ipfs://silver.json&quot;</span>
+<span class="p">});</span>
+
+gemforceMinter<span class="p">.</span>mintBatch<span class="p">(</span>batches<span class="p">);</span>
+</code></pre></div>
+
+<h3 id="setmintfee">setMintFee()<a class="headerlink" href="#setmintfee" title="Permanent link">&para;</a></h3>
+<p>Sets the minting fee for a specific payment token.</p>
+<p><strong>Parameters:</strong>
+- <code>paymentToken</code>: The address of the ERC20 token to be used for fee payment, or <code>address(0)</code> for native currency (ETH).
+- <code>amount</code>: The amount of the specified <code>paymentToken</code> required per mint.</p>
+<h3 id="setroyaltyinfo">setRoyaltyInfo()<a class="headerlink" href="#setroyaltyinfo" title="Permanent link">&para;</a></h3>
+<p>Sets the royalty information for the NFTs minted by this facet.</p>
+<p><strong>Parameters:</strong>
+- <code>receiver</code>: The address that will receive the royalties.
+- <code>feeNumerator</code>: A fraction (numerator) used to calculate the royalty amount from the sale price, compatible with EIP-2981.</p>
+<h2 id="implementation-example">Implementation Example<a class="headerlink" href="#implementation-example" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span><code><span class="kt">import</span><span class="w"> </span><span class="s2">&quot;@openzeppelin/contracts/token/ERC721/IERC721.sol&quot;</span><span class="p">;</span>
+<span class="kt">import</span><span class="w"> </span><span class="s2">&quot;@openzeppelin/contracts/token/ERC721/extensions/IERC721Enumerable.sol&quot;</span><span class="p">;</span>
+<span class="kt">import</span><span class="w"> </span><span class="s2">&quot;@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol&quot;</span><span class="p">;</span>
+<span class="kt">import</span><span class="w"> </span><span class="s2">&quot;@openzeppelin/contracts/token/common/ERC2981.sol&quot;</span><span class="p">;</span>
+<span class="kt">import</span><span class="w"> </span><span class="s2">&quot;@openzeppelin/contracts/access/Ownable.sol&quot;</span><span class="p">;</span>
+<span class="kt">import</span><span class="w"> </span><span class="s2">&quot;@openzeppelin/contracts/utils/Context.sol&quot;</span><span class="p">;</span>
+<span class="kt">import</span><span class="w"> </span><span class="s2">&quot;@openzeppelin/contracts/utils/Counters.sol&quot;</span><span class="p">;</span>
+<span class="kt">import</span><span class="w"> </span><span class="s2">&quot;@openzeppelin/contracts/token/ERC20/IERC20.sol&quot;</span><span class="p">;</span>
+
+<span class="c1">// Assuming LibDiamond and AttributeLib are available through the Diamond</span>
+interface<span class="w"> </span>IDiamond<span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">owner</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">address</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">addFunction</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">functionToCall</span><span class="p">,</span><span class="w"> </span>bytes4<span class="w"> </span>_selector<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">removeFunction</span><span class="p">(</span>bytes4<span class="w"> </span>_selector<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">library</span><span class="w"> </span>AttributeLib<span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">setAttributes</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">,</span><span class="w"> </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">calldata</span><span class="w"> </span>data<span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// other attribute-related functions</span>
+<span class="p">}</span>
+
+<span class="k">contract</span><span class="w"> </span><span class="ni">GemforceMinterFacet</span><span class="w"> </span><span class="kt">is</span><span class="w"> </span>IGemforceMinterFacet<span class="p">,</span><span class="w"> </span>ERC2981<span class="p">,</span><span class="w"> </span>Ownable<span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>using<span class="w"> </span>Counters<span class="w"> </span><span class="kt">for</span><span class="w"> </span>Counters<span class="p">.</span>Counter<span class="p">;</span>
+<span class="w">    </span>Counters<span class="p">.</span>Counter<span class="w"> </span><span class="kt">private</span><span class="w"> </span>_tokenIdCounter<span class="p">;</span>
+
+<span class="w">    </span><span class="kt">string</span><span class="w"> </span><span class="k">private </span><span class="nv">_baseURI</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">string</span><span class="w"> </span><span class="k">private </span><span class="nv">_contractURI</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="k">private </span><span class="nv">_maxSupply</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="k">private </span><span class="nv">_totalMintedSupply</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">uint256</span><span class="p">)</span><span class="w"> </span><span class="kt">private</span><span class="w"> </span>_mintFees<span class="p">;</span><span class="w"> </span><span class="c1">// paymentToken =&gt; feeAmount</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="k">private </span><span class="nv">_royaltyReceiver</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">uint96</span><span class="w"> </span><span class="k">private </span><span class="nv">_royaltyFeeNumerator</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// ERC165 support</span>
+<span class="w">    </span>bytes4<span class="w"> </span><span class="kt">private</span><span class="w"> </span><span class="kt">constant</span><span class="w"> </span>_INTERFACE_ID_ERC721<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x80ac58cd</span><span class="p">;</span>
+<span class="w">    </span>bytes4<span class="w"> </span><span class="kt">private</span><span class="w"> </span><span class="kt">constant</span><span class="w"> </span>_INTERFACE_ID_ERC721ENUMERABLE<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x780e9d63</span><span class="p">;</span>
+<span class="w">    </span>bytes4<span class="w"> </span><span class="kt">private</span><span class="w"> </span><span class="kt">constant</span><span class="w"> </span>_INTERFACE_ID_ERC721METADATA<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x5b5e139f</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kt">constructor</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">maxSupply_</span><span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>baseURI_<span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>contractURI_<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>_maxSupply<span class="w"> </span><span class="o">=</span><span class="w"> </span>maxSupply_<span class="p">;</span>
+<span class="w">        </span>_baseURI<span class="w"> </span><span class="o">=</span><span class="w"> </span>baseURI_<span class="p">;</span>
+<span class="w">        </span>_contractURI<span class="w"> </span><span class="o">=</span><span class="w"> </span>contractURI_<span class="p">;</span>
+<span class="w">        </span><span class="c1">// _setOwner(msg.sender); // In a diamond, owner is typically set by OwnershipFacet</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// This needs to be hooked up to the ERC721 token&#39;s _mint function (e.g. from ERC721Facet)</span>
+<span class="w">    </span><span class="c1">// For demonstration, we simulate the mint</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">_safeMint</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">to</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>_totalMintedSupply<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>_maxSupply<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Supply limit reached&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="c1">// In a real diamond, this would call into an ERC721Facet or similar</span>
+<span class="w">        </span><span class="c1">// For now, we increment the counter and minted supply</span>
+<span class="w">        </span>_tokenIdCounter<span class="p">.</span>increment<span class="p">();</span>
+<span class="w">        </span>_totalMintedSupply<span class="o">++</span><span class="p">;</span>
+<span class="w">        </span><span class="c1">// emit Transfer(address(0), to, tokenId); // Simulate ERC721 Transfer event</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">mint</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">receiver</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">quantity</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">attributesData</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">metadataURI</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">payable</span><span class="w"> </span>override<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">newTokenId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>receiver<span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">),</span><span class="w"> </span><span class="s2">&quot;Receiver cannot be zero address&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>quantity<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Quantity must be greater than 0&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>_totalMintedSupply<span class="w"> </span><span class="o">+</span><span class="w"> </span>quantity<span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span>_maxSupply<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Exceeds max supply&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Handle mint fees</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">requiredFee</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>_mintFees<span class="p">[</span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">)]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span>quantity<span class="p">;</span><span class="w"> </span><span class="c1">// For native currency</span>
+<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>requiredFee<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">require</span><span class="p">(</span><span class="k">msg.value</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span>requiredFee<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Insufficient ETH for mint fee&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="c1">// Transfer excess ETH back</span>
+<span class="w">            </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span><span class="k">msg.value</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span>requiredFee<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="kt">payable</span><span class="p">(</span><span class="k">msg.sender</span><span class="p">).</span>transfer<span class="p">(</span><span class="k">msg.value</span><span class="w"> </span><span class="o">-</span><span class="w"> </span>requiredFee<span class="p">);</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="c1">// Transfer fee to owner/fee collector (assuming owner is fee collector)</span>
+<span class="w">            </span><span class="kt">payable</span><span class="p">(</span>owner<span class="p">()).</span>transfer<span class="p">(</span>requiredFee<span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// For ERC20 fee, it would be an ERC20.transferFrom call before minting</span>
+
+<span class="w">        </span>newTokenId<span class="w"> </span><span class="o">=</span><span class="w"> </span>_tokenIdCounter<span class="p">.</span>current<span class="p">();</span>
+<span class="w">        </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>quantity<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>_safeMint<span class="p">(</span>receiver<span class="p">,</span><span class="w"> </span>newTokenId<span class="w"> </span><span class="o">+</span><span class="w"> </span>i<span class="p">);</span>
+<span class="w">            </span>AttributeLib<span class="p">.</span>setAttributes<span class="p">(</span>newTokenId<span class="w"> </span><span class="o">+</span><span class="w"> </span>i<span class="p">,</span><span class="w"> </span>attributesData<span class="p">);</span><span class="w"> </span><span class="c1">// Integrate with attribute system</span>
+<span class="w">            </span><span class="c1">// Associated metadataURI could be stored or linked</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span>emit<span class="w"> </span>GemforceMinted<span class="p">(</span><span class="k">msg.sender</span><span class="p">,</span><span class="w"> </span>newTokenId<span class="p">,</span><span class="w"> </span>quantity<span class="p">,</span><span class="w"> </span>receiver<span class="p">,</span><span class="w"> </span>metadataURI<span class="p">,</span><span class="w"> </span>attributesData<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">mintBatch</span><span class="p">(</span>MintBatchParams<span class="p">[]</span><span class="w"> </span>calldata<span class="w"> </span>mintParams<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">payable</span><span class="w"> </span>override<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalQuantity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalEthFee</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span>
+
+<span class="w">        </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>mintParams<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">require</span><span class="p">(</span>mintParams<span class="p">[</span>i<span class="p">].</span>quantities<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Quantity must be greater than 0&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="kt">require</span><span class="p">(</span>mintParams<span class="p">[</span>i<span class="p">].</span>receiver<span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">),</span><span class="w"> </span><span class="s2">&quot;Receiver cannot be zero address&quot;</span><span class="p">);</span>
+<span class="w">            </span>totalQuantity<span class="w"> </span><span class="o">+=</span><span class="w"> </span>mintParams<span class="p">[</span>i<span class="p">].</span>quantities<span class="p">;</span>
+<span class="w">            </span>totalEthFee<span class="w"> </span><span class="o">+=</span><span class="w"> </span>_mintFees<span class="p">[</span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">)]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span>mintParams<span class="p">[</span>i<span class="p">].</span>quantities<span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>_totalMintedSupply<span class="w"> </span><span class="o">+</span><span class="w"> </span>totalQuantity<span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span>_maxSupply<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Exceeds max supply for batch mint&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>totalEthFee<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">require</span><span class="p">(</span><span class="k">msg.value</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span>totalEthFee<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Insufficient ETH for batch mint fee&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="c1">// Transfer excess ETH back if any</span>
+<span class="w">            </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span><span class="k">msg.value</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span>totalEthFee<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="kt">payable</span><span class="p">(</span><span class="k">msg.sender</span><span class="p">).</span>transfer<span class="p">(</span><span class="k">msg.value</span><span class="w"> </span><span class="o">-</span><span class="w"> </span>totalEthFee<span class="p">);</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="kt">payable</span><span class="p">(</span>owner<span class="p">()).</span>transfer<span class="p">(</span>totalEthFee<span class="p">);</span><span class="w"> </span><span class="c1">// Transfer total fee</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>mintParams<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">currentTokenId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>_tokenIdCounter<span class="p">.</span>current<span class="p">();</span>
+<span class="w">            </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>j<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>mintParams<span class="p">[</span>i<span class="p">].</span>quantities<span class="p">;</span><span class="w"> </span>j<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span>_safeMint<span class="p">(</span>mintParams<span class="p">[</span>i<span class="p">].</span>receiver<span class="p">,</span><span class="w"> </span>currentTokenId<span class="w"> </span><span class="o">+</span><span class="w"> </span>j<span class="p">);</span>
+<span class="w">                </span>AttributeLib<span class="p">.</span>setAttributes<span class="p">(</span>currentTokenId<span class="w"> </span><span class="o">+</span><span class="w"> </span>j<span class="p">,</span><span class="w"> </span>mintParams<span class="p">[</span>i<span class="p">].</span>attributesData<span class="p">);</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span>emit<span class="w"> </span>GemforceBatchMinted<span class="p">(</span>
+<span class="w">                </span><span class="k">msg.sender</span><span class="p">,</span>
+<span class="w">                </span>_getTokenIdsFromRange<span class="p">(</span>currentTokenId<span class="p">,</span><span class="w"> </span>mintParams<span class="p">[</span>i<span class="p">].</span>quantities<span class="p">),</span>
+<span class="w">                </span><span class="kt">new</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[](</span><span class="m m-Decimal">0</span><span class="p">),</span><span class="w"> </span><span class="c1">// quantities for each token, if different</span>
+<span class="w">                </span>mintParams<span class="p">[</span>i<span class="p">].</span>receiver<span class="p">,</span>
+<span class="w">                </span>mintParams<span class="p">[</span>i<span class="p">].</span>metadataURI<span class="p">,</span>
+<span class="w">                </span>mintParams<span class="p">[</span>i<span class="p">].</span>attributesData
+<span class="w">            </span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">_getTokenIdsFromRange</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">startTokenId</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">count</span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>pure<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>tokenIds<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[](</span>count<span class="p">);</span>
+<span class="w">        </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>count<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>tokenIds<span class="p">[</span>i<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>startTokenId<span class="w"> </span><span class="o">+</span><span class="w"> </span>i<span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>tokenIds<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">setMintFee</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">paymentToken</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">amount</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>override<span class="w"> </span>onlyOwner<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>_mintFees<span class="p">[</span>paymentToken<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>amount<span class="p">;</span>
+<span class="w">        </span>emit<span class="w"> </span>MintFeeSet<span class="p">(</span>paymentToken<span class="p">,</span><span class="w"> </span>amount<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getMintFee</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">paymentToken</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span>override<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>_mintFees<span class="p">[</span>paymentToken<span class="p">];</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">setRoyaltyInfo</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">receiver</span><span class="p">,</span><span class="w"> </span><span class="kt">uint96</span><span class="w"> </span><span class="nv">feeNumerator</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>override<span class="w"> </span>onlyOwner<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>_royaltyReceiver<span class="w"> </span><span class="o">=</span><span class="w"> </span>receiver<span class="p">;</span>
+<span class="w">        </span>_royaltyFeeNumerator<span class="w"> </span><span class="o">=</span><span class="w"> </span>feeNumerator<span class="p">;</span>
+<span class="w">        </span>emit<span class="w"> </span>RoyaltyInfoSet<span class="p">(</span>receiver<span class="p">,</span><span class="w"> </span>feeNumerator<span class="p">);</span>
+<span class="w">        </span>_setDefaultRoyalty<span class="p">(</span>receiver<span class="p">,</span><span class="w"> </span>feeNumerator<span class="p">);</span><span class="w"> </span><span class="c1">// Sets default for ERC2981</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Override the ERC2981 royaltyInfo to always use the contract-wide settings</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">royaltyInfo</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_tokenId</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_salePrice</span><span class="p">)</span>
+<span class="w">        </span><span class="kt">public</span>
+<span class="w">        </span>view
+<span class="w">        </span>override
+<span class="w">        </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">receiver</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">royaltyAmount</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span><span class="p">(</span>_royaltyReceiver<span class="p">,</span><span class="w"> </span>_salePrice<span class="w"> </span><span class="o">*</span><span class="w"> </span>_royaltyFeeNumerator<span class="w"> </span><span class="o">/</span><span class="w"> </span>ERC2981_DENOMINATOR<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getBaseURI</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span>override<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>_baseURI<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">setBaseURI</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>newBaseURI<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>override<span class="w"> </span>onlyOwner<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>_baseURI<span class="w"> </span><span class="o">=</span><span class="w"> </span>newBaseURI<span class="p">;</span>
+<span class="w">        </span>emit<span class="w"> </span>BaseURIUpdated<span class="p">(</span>newBaseURI<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getContractURI</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span>override<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>_contractURI<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">setContractURI</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>newContractURI<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>override<span class="w"> </span>onlyOwner<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>_contractURI<span class="w"> </span><span class="o">=</span><span class="w"> </span>newContractURI<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getMaxSupply</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span>override<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>_maxSupply<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">setMaxSupply</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">newMaxSupply</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>override<span class="w"> </span>onlyOwner<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>newMaxSupply<span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span>_totalMintedSupply<span class="p">,</span><span class="w"> </span><span class="s2">&quot;New max supply cannot be less than minted supply&quot;</span><span class="p">);</span>
+<span class="w">        </span>_maxSupply<span class="w"> </span><span class="o">=</span><span class="w"> </span>newMaxSupply<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getTotalMintedSupply</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span>override<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>_totalMintedSupply<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">isPaused</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span>override<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bool</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// This would typically involve a Pausable contract or similar logic</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span><span class="kt">false</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// ERC165 support</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">supportsInterface</span><span class="p">(</span>bytes4<span class="w"> </span>interfaceId<span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>view<span class="w"> </span>virtual<span class="w"> </span>override<span class="p">(</span>ERC2981<span class="p">,</span><span class="w"> </span>Context<span class="p">)</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bool</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>
+<span class="w">            </span>interfaceId<span class="w"> </span><span class="o">==</span><span class="w"> </span>type<span class="p">(</span>IGemforceMinterFacet<span class="p">).</span>interfaceId<span class="w"> </span><span class="o">||</span>
+<span class="w">            </span>interfaceId<span class="w"> </span><span class="o">==</span><span class="w"> </span>_INTERFACE_ID_ERC721<span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="c1">// Placeholder, assuming underlying ERC721</span>
+<span class="w">            </span>interfaceId<span class="w"> </span><span class="o">==</span><span class="w"> </span>_INTERFACE_ID_ERC721METADATA<span class="w"> </span><span class="o">||</span>
+<span class="w">            </span>interfaceId<span class="w"> </span><span class="o">==</span><span class="w"> </span>_INTERFACE_ID_ERC721ENUMERABLE<span class="w"> </span><span class="o">||</span>
+<span class="w">            </span>super<span class="p">.</span>supportsInterface<span class="p">(</span>interfaceId<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="security-considerations">Security Considerations<a class="headerlink" href="#security-considerations" title="Permanent link">&para;</a></h2>
+<h3 id="access-control">Access Control<a class="headerlink" href="#access-control" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Owner Privileges</strong>: Crucial functions like <code>setMintFee</code>, <code>setRoyaltyInfo</code>, <code>setBaseURI</code>, and <code>setMaxSupply</code> must be restricted to the contract owner or an authorized administrator.</li>
+<li><strong>Diamond Integration</strong>: Ensure that the facet's access control aligns with the overall Diamond contract's ownership and access management.</li>
+</ul>
+<h3 id="supply-management">Supply Management<a class="headerlink" href="#supply-management" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Max Supply Enforcement</strong>: Rigorous checks to prevent minting beyond the <code>maxSupply</code>.</li>
+<li><strong>Token ID Uniqueness</strong>: Ensure that minted token IDs are unique and avoid collisions.</li>
+<li><strong>Re-entrancy</strong>: While low risk for simple minting, complex payment or external calls within mint operations should implement re-entrancy guards.</li>
+</ul>
+<h3 id="fee-handling">Fee Handling<a class="headerlink" href="#fee-handling" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Eth/Token Distinction</strong>: Correctly handle native currency (ETH) payments versus ERC20 token payments, ensuring proper <code>msg.value</code> checks and <code>transferFrom</code> calls.</li>
+<li><strong>Overpayment/Underpayment</strong>: Implement mechanisms to refund overpayments or revert if underpaid.</li>
+</ul>
+<h2 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h2>
+<h3 id="metadata-and-attributes">Metadata and Attributes<a class="headerlink" href="#metadata-and-attributes" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>URI Standards</strong>: Adhere to established standards (e.g., EIP-1577 for <code>ERC721Metadata</code> or <code>contractURI</code> for collection-level metadata) for off-chain metadata.</li>
+<li><strong>On-chain Attributes</strong>: Utilize a dedicated attribute system (like <code>AttributeLib</code>) for on-chain verifiable traits, ensuring data integrity.</li>
+</ol>
+<h3 id="efficiency">Efficiency<a class="headerlink" href="#efficiency" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Batch Operations</strong>: Provide batch minting functionality (<code>mintBatch</code>) to reduce transaction costs for users minting multiple NFTs.</li>
+<li><strong>Gas Optimization</strong>: Optimize internal logic to minimize gas consumption, especially for frequently called functions.</li>
+</ol>
+<h3 id="modularity">Modularity<a class="headerlink" href="#modularity" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Facet Separation</strong>: Ensure functions related to minting are encapsulated within this facet, adhering to the Diamond Standard's principle of modularity.</li>
+<li><strong>Upgradeability</strong>: Design the facet to be easily upgradeable or replaceable within the Diamond structure.</li>
+</ol>
+<h2 id="integration-examples">Integration Examples<a class="headerlink" href="#integration-examples" title="Permanent link">&para;</a></h2>
+<h3 id="frontend-integration-typescript-via-ethersjs">Frontend Integration (TypeScript via Ethers.js)<a class="headerlink" href="#frontend-integration-typescript-via-ethersjs" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ethers</span><span class="p">,</span><span class="w"> </span><span class="nx">Contract</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;ethers&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="nx">MinterFacetABI</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./GemforceMinterFacet.json&#39;</span><span class="p">;</span><span class="w"> </span><span class="c1">// ABI for the IGemforceMinterFacet</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">MINTER_FACET_ADDRESS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0x...&quot;</span><span class="p">;</span><span class="w"> </span><span class="c1">// Address of the deployed MinterFacet within the Diamond</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">DIAMOND_ADDRESS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0x...&quot;</span><span class="p">;</span><span class="w"> </span><span class="c1">// Address of the Diamond contract itself</span>
+
+<span class="c1">// Assuming provider from WalletConnect, Metamask, etc.</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">getSigner</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">ethers</span><span class="p">.</span><span class="nx">providers</span><span class="p">.</span><span class="nx">Web3Provider</span><span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">ethereum</span><span class="p">).</span><span class="nx">getSigner</span><span class="p">();</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">getMinterFacet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Contract</span><span class="p">(</span><span class="nx">MINTER_FACET_ADDRESS</span><span class="p">,</span><span class="w"> </span><span class="nx">MinterFacetABI</span><span class="p">,</span><span class="w"> </span><span class="nx">getSigner</span><span class="p">());</span>
+
+<span class="kd">interface</span><span class="w"> </span><span class="nx">MintParams</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">receiver</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">quantity</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">attributesData</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span><span class="w"> </span><span class="c1">// Hex string for bytes</span>
+<span class="w">    </span><span class="nx">metadataURI</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">value?</span><span class="o">:</span><span class="w"> </span><span class="kt">ethers.BigNumberish</span><span class="p">;</span><span class="w"> </span><span class="c1">// For ETH payment</span>
+<span class="p">}</span>
+
+<span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">handleMintNFT</span><span class="p">(</span><span class="nx">params</span><span class="o">:</span><span class="w"> </span><span class="kt">MintParams</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">minterFacet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">getMinterFacet</span><span class="p">();</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">tx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">minterFacet</span><span class="p">.</span><span class="nx">mint</span><span class="p">(</span>
+<span class="w">            </span><span class="nx">params</span><span class="p">.</span><span class="nx">receiver</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">params</span><span class="p">.</span><span class="nx">quantity</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">ethers</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">arrayify</span><span class="p">(</span><span class="nx">params</span><span class="p">.</span><span class="nx">attributesData</span><span class="p">),</span><span class="w"> </span><span class="c1">// Convert hex string to bytes array</span>
+<span class="w">            </span><span class="nx">ethers</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">toUtf8Bytes</span><span class="p">(</span><span class="nx">params</span><span class="p">.</span><span class="nx">metadataURI</span><span class="p">),</span><span class="w"> </span><span class="c1">// Convert string to bytes array</span>
+<span class="w">            </span><span class="p">{</span><span class="w"> </span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="kt">params.value</span><span class="w"> </span><span class="p">}</span>
+<span class="w">        </span><span class="p">);</span>
+<span class="w">        </span><span class="k">await</span><span class="w"> </span><span class="nx">tx</span><span class="p">.</span><span class="nx">wait</span><span class="p">();</span>
+<span class="w">        </span><span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;NFT minted successfully!&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Mint Transaction Hash:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">tx</span><span class="p">.</span><span class="nx">hash</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;Error minting NFT:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">);</span>
+<span class="w">        </span><span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;Failed to mint NFT. Check console for details.&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">handleSetMintFee</span><span class="p">(</span><span class="nx">paymentTokenAddress</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">,</span><span class="w"> </span><span class="nx">amount</span><span class="o">:</span><span class="w"> </span><span class="kt">ethers.BigNumberish</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">minterFacet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">getMinterFacet</span><span class="p">();</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">tx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">minterFacet</span><span class="p">.</span><span class="nx">setMintFee</span><span class="p">(</span><span class="nx">paymentTokenAddress</span><span class="p">,</span><span class="w"> </span><span class="nx">amount</span><span class="p">);</span>
+<span class="w">        </span><span class="k">await</span><span class="w"> </span><span class="nx">tx</span><span class="p">.</span><span class="nx">wait</span><span class="p">();</span>
+<span class="w">        </span><span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;Mint fee updated.&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;Error setting mint fee:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">);</span>
+<span class="w">        </span><span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;Failed to set mint fee.&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="backend-integration-nodejsweb3js-for-off-chain-minting-trigger">Backend Integration (Node.js/Web3.js for off-chain minting trigger)<a class="headerlink" href="#backend-integration-nodejsweb3js-for-off-chain-minting-trigger" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">Web3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;web3&#39;</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">GemforceMinterFacetABI</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./GemforceMinterFacet.json&#39;</span><span class="p">).</span><span class="nx">abi</span><span class="p">;</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">web3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Web3</span><span class="p">(</span><span class="s1">&#39;YOUR_ETHEREUM_RPC_URL&#39;</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">minterFacetAddress</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;0x...&#39;</span><span class="p">;</span><span class="w"> </span><span class="c1">// Address of your deployed minter facet</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">adminPrivateKey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;YOUR_ADMIN_PRIVATE_KEY&#39;</span><span class="p">;</span><span class="w"> </span><span class="c1">// Private key of the account authorized to mint</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">minterFacetContract</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">web3</span><span class="p">.</span><span class="nx">eth</span><span class="p">.</span><span class="nx">Contract</span><span class="p">(</span><span class="nx">GemforceMinterFacetABI</span><span class="p">,</span><span class="w"> </span><span class="nx">minterFacetAddress</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">adminAccount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">web3</span><span class="p">.</span><span class="nx">eth</span><span class="p">.</span><span class="nx">accounts</span><span class="p">.</span><span class="nx">privateKeyToAccount</span><span class="p">(</span><span class="nx">adminPrivateKey</span><span class="p">);</span>
+<span class="nx">web3</span><span class="p">.</span><span class="nx">eth</span><span class="p">.</span><span class="nx">accounts</span><span class="p">.</span><span class="nx">wallet</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">adminAccount</span><span class="p">);</span>
+
+<span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">triggerMint</span><span class="p">(</span><span class="nx">receiverAddress</span><span class="p">,</span><span class="w"> </span><span class="nx">quantity</span><span class="p">,</span><span class="w"> </span><span class="nx">attributesDataHex</span><span class="p">,</span><span class="w"> </span><span class="nx">metadataURI</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Triggering mint for </span><span class="si">${</span><span class="nx">quantity</span><span class="si">}</span><span class="sb"> NFTs to </span><span class="si">${</span><span class="nx">receiverAddress</span><span class="si">}</span><span class="sb">...`</span><span class="p">);</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">tx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">minterFacetContract</span><span class="p">.</span><span class="nx">methods</span><span class="p">.</span><span class="nx">mint</span><span class="p">(</span>
+<span class="w">            </span><span class="nx">receiverAddress</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">quantity</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">web3</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">hexToBytes</span><span class="p">(</span><span class="nx">attributesDataHex</span><span class="p">),</span>
+<span class="w">            </span><span class="nx">web3</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">hexToBytes</span><span class="p">(</span><span class="nx">web3</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">utf8ToHex</span><span class="p">(</span><span class="nx">metadataURI</span><span class="p">))</span>
+<span class="w">        </span><span class="p">);</span>
+
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">gas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">tx</span><span class="p">.</span><span class="nx">estimateGas</span><span class="p">({</span><span class="w"> </span><span class="kr">from</span><span class="o">:</span><span class="w"> </span><span class="nx">adminAccount</span><span class="p">.</span><span class="nx">address</span><span class="w"> </span><span class="p">});</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">receipt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">tx</span><span class="p">.</span><span class="nx">send</span><span class="p">({</span><span class="w"> </span><span class="kr">from</span><span class="o">:</span><span class="w"> </span><span class="nx">adminAccount</span><span class="p">.</span><span class="nx">address</span><span class="p">,</span><span class="w"> </span><span class="nx">gas</span><span class="o">:</span><span class="w"> </span><span class="nx">gas</span><span class="w"> </span><span class="p">});</span>
+
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Mint transaction sent:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">receipt</span><span class="p">.</span><span class="nx">transactionHash</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">receipt</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;Error triggering mint:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">);</span>
+<span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="nx">error</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Example usage</span>
+<span class="c1">// triggerMint(&quot;0xUserWalletAddress&quot;, 1, &quot;0xabcdef123456&quot;, &quot;https://api.example.com/nft/1&quot;);</span>
+</code></pre></div>
+
+<h2 id="related-documentation">Related Documentation<a class="headerlink" href="#related-documentation" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../../diamond/">Diamond Standard Overview</a></li>
+<li><a href="../../libraries/attribute-lib/">Attribute Library</a></li>
+<li><a href="../../libraries/fee-distributor-lib/">Fee Distributor Library</a></li>
+<li><a href="https://eips.ethereum.org/EIPS/eip-2981">EIP-2981 NFT Royalty Standard</a></li>
+<li><a href="https://eips.ethereum.org/EIPS/eip-721">ERC721 Standard</a></li>
+</ul>
+<h2 id="standards-compliance">Standards Compliance<a class="headerlink" href="#standards-compliance" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>EIP-2535</strong>: Designed as a facet for the Diamond Standard.</li>
+<li><strong>EIP-2981</strong>: Implements the NFT Royalty Standard for royalty distribution.</li>
+<li><strong>ERC721</strong>: Provides minting functionality for ERC721-compatible NFTs (assumes an underlying ERC721 facet for actual token management).</li>
+<li><strong>ERC165</strong>: Supports interface detection.</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../ifee-distributor/" class="btn btn-neutral float-left" title="IFeeDistributor"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../iidentity-registry/" class="btn btn-neutral float-right" title="IIdentityRegistry">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../ifee-distributor/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../iidentity-registry/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
