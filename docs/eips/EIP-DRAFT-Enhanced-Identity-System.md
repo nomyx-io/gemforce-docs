@@ -51,6 +51,7 @@ interface IEnhancedIdentity is IERC734, IERC735 {
     // Trusted Issuer Integration
     function isTrustedIssuer(address issuer) external view returns (bool);
     function hasTrustedIssuerClaimTopic(address issuer, uint256 claimTopic) external view returns (bool);
+    function getAllTrustedIssuers() external view returns (address[] memory);
 }
 
 interface ITrustedIssuerRegistry {
@@ -236,10 +237,10 @@ Comprehensive test cases should cover:
 ## Reference Implementation
 
 The reference implementation includes:
-- [`Identity.sol`](../contracts/identity/Identity.sol) - Core identity contract
-- [`IIdentity.sol`](../contracts/interfaces/IIdentity.sol) - Interface definition
-- [`TrustedIssuersRegistryFacet.sol`](../contracts/facets/TrustedIssuersRegistryFacet.sol) - Trusted issuer management
-- [`IdentityRegistryFacet.sol`](../contracts/facets/IdentityRegistryFacet.sol) - Identity registry
+- [Identity Facet](../smart-contracts/facets/identity-registry-facet.md) - Core identity contract (This maps to IdentityRegistryFacet, Identity is a concept not a direct facet)
+- [IIdentity Interface](../smart-contracts/interfaces/iidentity.md) - Interface definition
+- [Trusted Issuers Registry Facet](../smart-contracts/facets/trusted-issuers-registry-facet.md) - Trusted issuer management
+- [Identity Registry Facet](../smart-contracts/facets/identity-registry-facet.md) - Identity registry
 
 ## Copyright
 

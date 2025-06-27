@@ -2,7 +2,7 @@
 
 ## Overview
 
-The [`TradeDealLib`](../../../contracts/libraries/TradeDealLib.sol) library provides core utilities and data structures for managing collateralized trade deals within the Gemforce platform. This library implements the Diamond Standard storage pattern and provides essential functions for trade deal creation, management, participant handling, and financial operations including funding, repayment, and collateral management.
+The [`TradeDealLib`](../../smart-contracts/libraries/trade-deal-lib.md) library provides core utilities and data structures for managing collateralized trade deals within the Gemforce platform. This library implements the Diamond Standard storage pattern and provides essential functions for trade deal creation, management, participant handling, and financial operations including funding, repayment, and collateral management.
 
 ## Key Features
 
@@ -502,7 +502,6 @@ contract TradeDealAnalytics {
             }
         }
         
-        // Create result array
         tradeDealIds = new uint256[](count);
         uint256 index = 0;
         
@@ -513,166 +512,74 @@ contract TradeDealAnalytics {
                 index++;
             }
         }
+        return tradeDealIds;
     }
     
-    // Helper functions (would be implemented to access actual storage)
     function getTradeDeal(uint256 tradeDealId) internal view returns (TradeDealLib.TradeDeal memory) {
-        // Implementation would access Diamond storage
+        // Placeholder, assume external access to TradeDeal data
+        return TradeDealLib.TradeDeal(tradeDealId, "", "", 0, 0, false, new uint256[](0), address(0), address(0), address(0), TradeDealLib.OperationMode.CENTRALIZED);
     }
     
-    function getFundingTarget(uint256 tradeDealId) internal view returns (uint256) {
-        // Implementation would access storage
-    }
-    
-    function getCurrentFunding(uint256 tradeDealId) internal view returns (uint256) {
-        // Implementation would access storage
-    }
-    
-    function getRepaidAmount(uint256 tradeDealId) internal view returns (uint256) {
-        // Implementation would access storage
-    }
-    
-    function getOutstandingDebt(uint256 tradeDealId) internal view returns (uint256) {
-        // Implementation would access storage
-    }
-    
-    function getAllTradeDealIds() internal view returns (uint256[] memory) {
-        // Implementation would access storage
-    }
-    
-    function isDefaulted(uint256 tradeDealId) internal view returns (bool) {
-        // Implementation would check default conditions
-    }
+    function getFundingTarget(uint256 tradeDealId) internal view returns (uint256) { return 0; }
+    function getCurrentFunding(uint256 tradeDealId) internal view returns (uint256) { return 0; }
+    function getRepaidAmount(uint256 tradeDealId) internal view returns (uint256) { return 0; }
+    function getOutstandingDebt(uint256 tradeDealId) internal view returns (uint256) { return 0; }
+    function getAllTradeDealIds() internal view returns (uint256[] memory) { return new uint256[](0); }
+    function isDefaulted(uint256 tradeDealId) internal view returns (bool) { return false; }
 }
 ```
 
 ### Role-Based Access Control Manager
 ```solidity
-// Manager for trade deal roles and permissions
-contract TradeDealAccessManager {
+// Manages roles and permissions for trade deal participants
+contract AccessControlManager {
     using TradeDealLib for TradeDealLib.TradeDealStorage;
     
-    event RoleAssigned(uint256 indexed tradeDealId, address indexed user, TradeDealLib.Role role);
-    event PermissionGranted(uint256 indexed tradeDealId, address indexed user, uint256 permission);
-    event PermissionRevoked(uint256 indexed tradeDealId, address indexed user, uint256 permission);
+    event ParticipantRoleSet(uint256 indexed tradeDealId, address indexed participant, TradeDealLib.Role role);
+    event ParticipantPermissionsSet(uint256 indexed tradeDealId, address indexed participant, uint256 permissions);
     
-    function assignRole(
+    function setParticipantRole(
         uint256 tradeDealId,
-        address user,
+        address participant,
         TradeDealLib.Role role
-    ) external onlyTradeDealAdmin(tradeDealId) {
-        // Set user role in storage
-        setUserRole(tradeDealId, user, role);
+    ) external onlyOwner {
+        TradeDealLib.TradeDealStorage storage tds = TradeDealLib.tradeDealStorage();
+        tds.userRoles[tradeDealId][participant] = role;
         
-        // Assign default permissions based on role
-        uint256 defaultPermissions = getDefaultPermissionsForRole(role);
-        setUserPermissions(tradeDealId, user, defaultPermissions);
-        
-        emit RoleAssigned(tradeDealId, user, role);
+        emit ParticipantRoleSet(tradeDealId, participant, role);
     }
     
-    function grantPermission(
+    function setParticipantPermissions(
         uint256 tradeDealId,
-        address user,
-        uint256 permission
-    ) external onlyTradeDealAdmin(tradeDealId) {
-        uint256 currentPermissions = getUserPermissions(tradeDealId, user);
-        uint256 newPermissions = currentPermissions | permission;
+        address participant,
+        uint256 permissions
+    ) external onlyOwner {
+        TradeDealLib.TradeDealStorage storage tds = TradeDealLib.tradeDealStorage();
+        tds.userPermissions[tradeDealId][participant] = permissions;
         
-        setUserPermissions(tradeDealId, user, newPermissions);
-        
-        emit PermissionGranted(tradeDealId, user, permission);
-    }
-    
-    function revokePermission(
-        uint256 tradeDealId,
-        address user,
-        uint256 permission
-    ) external onlyTradeDealAdmin(tradeDealId) {
-        uint256 currentPermissions = getUserPermissions(tradeDealId, user);
-        uint256 newPermissions = currentPermissions & ~permission;
-        
-        setUserPermissions(tradeDealId, user, newPermissions);
-        
-        emit PermissionRevoked(tradeDealId, user, permission);
+        emit ParticipantPermissionsSet(tradeDealId, participant, permissions);
     }
     
     function hasPermission(
         uint256 tradeDealId,
-        address user,
+        address participant,
         uint256 permission
-    ) external view returns (bool) {
-        uint256 userPermissions = getUserPermissions(tradeDealId, user);
-        return (userPermissions & permission) != 0;
+    ) public view returns (bool) {
+        TradeDealLib.TradeDealStorage storage tds = TradeDealLib.tradeDealStorage();
+        uint256 currentPermissions = tds.userPermissions[tradeDealId][participant];
+        return (currentPermissions & permission) == permission;
     }
     
-    function getDefaultPermissionsForRole(
-        TradeDealLib.Role role
-    ) public pure returns (uint256 permissions) {
-        if (role == TradeDealLib.Role.ADMIN) {
-            permissions = TradeDealLib.PERMISSION_DEPOSIT_FUNDS |
-                         TradeDealLib.PERMISSION_WITHDRAW_FUNDS |
-                         TradeDealLib.PERMISSION_DEPOSIT_COLLATERAL |
-                         TradeDealLib.PERMISSION_WITHDRAW_COLLATERAL |
-                         TradeDealLib.PERMISSION_DISTRIBUTE_INTEREST;
-        } else if (role == TradeDealLib.Role.LENDER) {
-            permissions = TradeDealLib.PERMISSION_DEPOSIT_FUNDS;
-        } else if (role == TradeDealLib.Role.BORROWER) {
-            permissions = TradeDealLib.PERMISSION_DEPOSIT_COLLATERAL |
-                         TradeDealLib.PERMISSION_WITHDRAW_FUNDS;
-        } else if (role == TradeDealLib.Role.UNDERWRITER) {
-            permissions = TradeDealLib.PERMISSION_DEPOSIT_FUNDS |
-                         TradeDealLib.PERMISSION_DISTRIBUTE_INTEREST;
-        } else if (role == TradeDealLib.Role.LIQUIDATOR) {
-            permissions = TradeDealLib.PERMISSION_WITHDRAW_COLLATERAL;
-        }
-        // NONE role gets no permissions
-    }
-    
-    function getUserAccessSummary(
+    function getParticipantRole(
         uint256 tradeDealId,
-        address user
-    ) external view returns (
-        TradeDealLib.Role role,
-        uint256 permissions,
-        bool canDepositFunds,
-        bool canWithdrawFunds,
-        bool canDepositCollateral,
-        bool canWithdrawCollateral,
-        bool canDistributeInterest
-    ) {
-        role = getUserRole(tradeDealId, user);
-        permissions = getUserPermissions(tradeDealId, user);
-        
-        canDepositFunds = (permissions & TradeDealLib.PERMISSION_DEPOSIT_FUNDS) != 0;
-        canWithdrawFunds = (permissions & TradeDealLib.PERMISSION_WITHDRAW_FUNDS) != 0;
-        canDepositCollateral = (permissions & TradeDealLib.PERMISSION_DEPOSIT_COLLATERAL) != 0;
-        canWithdrawCollateral = (permissions & TradeDealLib.PERMISSION_WITHDRAW_COLLATERAL) != 0;
-        canDistributeInterest = (permissions & TradeDealLib.PERMISSION_DISTRIBUTE_INTEREST) != 0;
+        address participant
+    ) public view returns (TradeDealLib.Role) {
+        TradeDealLib.TradeDealStorage storage tds = TradeDealLib.tradeDealStorage();
+        return tds.userRoles[tradeDealId][participant];
     }
     
-    // Helper functions (would access Diamond storage)
-    function setUserRole(uint256 tradeDealId, address user, TradeDealLib.Role role) internal {
-        // Implementation would access storage
-    }
-    
-    function getUserRole(uint256 tradeDealId, address user) internal view returns (TradeDealLib.Role) {
-        // Implementation would access storage
-    }
-    
-    function setUserPermissions(uint256 tradeDealId, address user, uint256 permissions) internal {
-        // Implementation would access storage
-    }
-    
-    function getUserPermissions(uint256 tradeDealId, address user) internal view returns (uint256) {
-        // Implementation would access storage
-    }
-    
-    modifier onlyTradeDealAdmin(uint256 tradeDealId) {
-        require(
-            getUserRole(tradeDealId, msg.sender) == TradeDealLib.Role.ADMIN,
-            "Only trade deal admin can perform this action"
-        );
+    modifier onlyOwner() {
+        // Placeholder for contract ownership check
         _;
     }
 }
@@ -680,126 +587,79 @@ contract TradeDealAccessManager {
 
 ## Events
 
-The library defines comprehensive events for trade deal lifecycle tracking:
-
 ### Core Trade Deal Events
-```solidity
-event TradeDealCreated(
-    uint256 indexed tradeDealId,
-    string name,
-    string symbol,
-    uint256 interestRate,
-    uint256 collateralToInterestRatio,
-    bool active,
-    address nftAddress,
-    address collateralAddress,
-    address interestAddress,
-    address usdcAddress
-);
-
-event TradeDealActivated(uint256 indexed tradeDealId);
-event TradeDealDeactivated(uint256 indexed tradeDealId);
-```
+- `TradeDealCreated(uint256 indexed tradeDealId, string name, string symbol, uint256 interestRate, uint256 collateralToInterestRatio, bool active, address nftAddress, address collateralAddress, address interestAddress, address usdcAddress, TradeDealLib.OperationMode operationMode)`: Emitted when a new trade deal is created.
+- `TradeDealUpdated(uint256 indexed tradeDealId, string name, string symbol, uint256 interestRate, uint256 collateralToInterestRatio, bool active, address collateralAddress, address interestAddress, address usdcAddress)`: Emitted when a trade deal's parameters are updated.
+- `TradeDealActivated(uint256 indexed tradeDealId)`: Emitted when a trade deal is activated.
+- `TradeDealDeactivated(uint256 indexed tradeDealId)`: Emitted when a trade deal is deactivated.
 
 ### Participant Management Events
-```solidity
-event TradeDealParticipantAdded(uint256 indexed tradeDealId, address indexed participant);
-event TradeDealParticipantRemoved(uint256 indexed tradeDealId, address indexed participant);
-event TradeDealRequiredClaimTopicsSet(uint256 indexed tradeDealId, uint256[] claimTopics);
-```
+- `ParticipantAdded(uint256 indexed tradeDealId, address indexed participant, TradeDealLib.Role role)`: Emitted when a participant is added to a trade deal.
+- `ParticipantRemoved(uint256 indexed tradeDealId, address indexed participant)`: Emitted when a participant is removed.
+- `ParticipantRoleSet(uint256 indexed tradeDealId, address indexed participant, TradeDealLib.Role role)`: Emitted when a participant's role is set.
 
 ### Financial Operation Events
-```solidity
-event InvoiceDepositedToTradeDeal(uint256 indexed tradeDealId, uint256 indexed tokenId);
-event InvoiceWithdrawnFromTradeDeal(uint256 indexed tradeDealId, uint256 indexed tokenId);
-event USDCDepositedToTradeDeal(uint256 indexed tradeDealId, uint256 amount);
-event USDCWithdrawnFromTradeDeal(uint256 indexed tradeDealId, uint256 amount);
-event InterestDistributedForTradeDeal(uint256 indexed tradeDealId, uint256 totalInterest, uint256 invoicePoolInterest, uint256 interestInterest, uint256 interestTokensMinted);
-```
+- `FundsDeposited(uint256 indexed tradeDealId, address indexed depositor, uint256 amount)`: Emitted when funds are deposited to a trade deal.
+- `FundsWithdrawn(uint256 indexed tradeDealId, address indexed withdrawer, uint256 amount)`: Emitted when funds are withdrawn.
+- `CollateralDeposited(uint256 indexed tradeDealId, uint256 indexed invoiceId, address indexed depositor)`: Emitted when collateral (invoice NFT) is deposited.
+- `CollateralWithdrawn(uint256 indexed tradeDealId, uint256 indexed invoiceId, address indexed withdrawer)`: Emitted when collateral is withdrawn.
 
 ### Enhanced Financial Events
-```solidity
-event TradeDealFullyFunded(uint256 indexed tradeDealId, uint256 fundingTarget);
-event TradeDealFundingWithdrawn(uint256 indexed tradeDealId, address indexed recipient, uint256 amount);
-event TradeDealRepaid(uint256 indexed tradeDealId, address indexed repayer, uint256 amount, bool fullyRepaid);
-event CollateralTokensRedeemed(uint256 indexed tradeDealId, address indexed redeemer, uint256 collateralAmount, uint256 usdcAmount);
-```
+- `InterestDistributed(uint256 indexed tradeDealId, uint256 amount)`: Emitted when interest is distributed to lenders.
+- `PrincipalRepaid(uint256 indexed tradeDealId, uint256 amount)`: Emitted when principal is repaid by borrower.
+- `TradeDealDefaulted(uint256 indexed tradeDealId)`: Emitted when a trade deal goes into default.
 
 ## Security Considerations
 
 ### Access Control Security
-- Role-based permissions with fine-grained control
-- Operation mode validation for different access patterns
-- Participant verification through claim topics
-- Admin-only functions for critical operations
+- **Role-Based Permissions**: Use the `userRoles` and `userPermissions` to strictly control who can perform each operation.
+- **Ownership Checks**: Critical functions (e.g., `_createTradeDeal`, `_updateTradeDeal`) should have strong ownership or admin checks.
+- **Claim Topic Validation**: Ensure `requiredClaimTopics` logic prevents unauthorized participants.
 
 ### Financial Security
-- Precise tracking of funding, withdrawals, and repayments
-- Collateral validation and ownership verification
-- Interest calculation accuracy and overflow protection
-- Secure token transfer mechanisms
+- **Reentrancy Protection**: Implement `nonReentrant` where funds are handled.
+- **Sufficient Balance**: Always check for sufficient token balances before transfers.
+- **Overflow/Underflow**: Use SafeMath or Solidity 0.8+ for all arithmetic.
 
 ### Storage Security
-- Diamond Standard storage pattern for isolation
-- Consistent state management across operations
-- Prevention of storage collisions
-- Secure access to storage slots
+- **Diamond Storage**: Protects against storage collisions between facets.
+- **Data Integrity**: Ensure consistency and validity of stored trade deal data.
 
 ## Gas Optimization
 
 ### Storage Efficiency
-- Optimized storage layout for trade deal data
-- Efficient mapping structures for lookups
-- Minimal storage writes during operations
-- Packed data structures where possible
+- The `TradeDealStorage` struct is designed to minimize storage slot usage.
+- Uses packed structs and efficient mappings.
 
 ### Function Efficiency
-- Internal functions for gas savings
-- Batch operations for multiple updates
-- Efficient event emission patterns
-- Optimized validation logic
+- `_createTradeDeal` and `_updateTradeDeal` avoid redundant checks.
+- Functions interacting with external contracts (e.g., token transfers) are handled carefully.
 
 ## Error Handling
 
 ### Common Errors
-- "Trade deal does not exist" - Operating on non-existent trade deal
-- Permission denied errors for unauthorized operations
-- Invalid parameter errors during creation/updates
-- Insufficient balance errors during financial operations
-- Claim topic validation failures
+- `Tdl: Invalid params`: Generic error for invalid input parameters.
+- `Tdl: Trade deal not found`: Attempting to operate on a non-existent trade deal.
+- `Tdl: Unauthorized`: Caller does not have required role or permissions.
+- `Tdl: Insufficient funds`: Not enough balance for a financial operation.
+- `Tdl: Invalid state`: Operation not allowed in current trade deal state.
 
-### Best Practices
-- Validate trade deal existence before operations
-- Check permissions before executing functions
-- Validate all input parameters
-- Handle edge cases gracefully
-- Provide clear error messages for debugging
+## Best Practices
 
-## Testing Considerations
+### Trade Deal Design
+- Clearly define the `OperationMode` for each trade deal to set expectations.
+- Use `requiredClaimTopics` to enforce identity-based participation rules.
+- Plan for potential default/liquidation scenarios and their on-chain handling.
 
-### Unit Tests
-- Trade deal creation and management functions
-- Role and permission system testing
-- Financial operation validation
-- Storage pattern implementation
-- Event emission verification
-
-### Integration Tests
-- Diamond facet integration
-- Multi-user workflow testing
-- Financial operation sequences
-- Access control scenarios
-- Cross-contract interactions
+### Development Guidelines
+- Write comprehensive unit tests for all functions, covering all roles and operation modes.
+- Implement clear event logging for all state changes and financial movements.
+- Integrate with off-chain monitoring systems for alerts on trade deal status changes (e.g., nearing maturity, default).
 
 ## Related Documentation
 
-- [ITradeDeal Interface](../interfaces/itradedeal.md) - Trade deal interface definition
-- [TradeDealManagementFacet](../facets/trade-deal-management-facet.md) - Trade deal management implementation
-- [TradeDealAdminFacet](../facets/trade-deal-admin-facet.md) - Administrative functions
-- [TradeDealOperationsFacet](../facets/trade-deal-operations-facet.md) - Operational functions
-- [Diamond Standard Guide](../../guides/diamond-standard.md) - Diamond pattern implementation
-- [Trade Deal Guide](../../guides/trade-deals.md) - Implementation guide for trade deals
-
----
-
-*This library provides the core utilities and data structures for trade deal management within the Gemforce platform, implementing secure storage patterns, role-based access control, and comprehensive financial operations for collateralized finance instruments.*
+- [Trade Deal Management Facet](../../smart-contracts/facets/trade-deal-management-facet.md) - Reference for the Trade Deal Management Facet implementation.
+- [Trade Deal Operations Facet](../../smart-contracts/facets/trade-deal-operations-facet.md) - Reference for the Trade Deal Operations Facet implementation.
+- [ITradeDeal Interface](../../smart-contracts/interfaces/itradedeal.md) - Interface definition.
+- [EIP-DRAFT-Collateralized-Trade-Deal-Standard](../../eips/EIP-DRAFT-Collateralized-Trade-Deal-Standard.md) - The full EIP specification.
+- [Diamond Standard Overview](../../smart-contracts/diamond.md)

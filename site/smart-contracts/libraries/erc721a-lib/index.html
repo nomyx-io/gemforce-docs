@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Gemforce Team" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>ERC721A Lib - Gemforce Documentation</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "ERC721A Lib";
+        var mkdocs_page_input_path = "smart-contracts/libraries/erc721a-lib.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../.." class="icon icon-home"> Gemforce Documentation
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../developer-setup-guide/">Developer Setup Guide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../system-architecture/gemforce-system-architecture/">System Architecture</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Smart Contracts</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../diamond/">Diamond Contract</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../diamond-factory/">Diamond Factory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../identity-factory/">Identity Factory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Facets</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/marketplace-facet/">Marketplace Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trade-deal-management-facet/">Trade Deal Management Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/carbon-credit-facet/">Carbon Credit Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/identity-registry-facet/">Identity Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trusted-issuers-registry-facet/">Trusted Issuers Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/fee-distributor-facet/">Fee Distributor Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/gemforce-minter-facet/">Gemforce Minter Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/multi-sale-facet/">Multi Sale Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/svg-templates-facet/">SVG Templates Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trade-deal-admin-facet/">Trade Deal Admin Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trade-deal-operations-facet/">Trade Deal Operations Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/collateral-token-factory-facet/">Collateral Token Factory Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/diamond-cut-facet/">Diamond Cut Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/diamond-loupe-facet/">Diamond Loupe Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/ownership-facet/">Ownership Facet</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Interfaces</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/idiamond/">IDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/imarketplace/">IMarketplace</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/itradedeal/">ITradeDeal</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/icarbon-credit/">ICarbonCredit</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ierc1155-mint/">IERC1155Mint</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ierc734/">IERC734</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ierc735/">IERC735</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ierc721a/">IERC721A</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/idiamond-factory/">IDiamondFactory</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/iidentity/">IIdentity</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/imultisale/">IMultiSale</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ifee-distributor/">IFeeDistributor</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/igemforce-minter-facet/">IGemforceMinterFacet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/iidentity-registry/">IIdentityRegistry</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/itrusted-issuers-registry/">TRUSTEDIssuersRegistry</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/isvg/">ISVG</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/iattribute/">IAttribute</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ivariable-price/">IVariablePrice</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" >Libraries</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" href="../carbon-credit-lib/">Carbon Credit Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../trade-deal-lib/">Trade Deal Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../multi-sale-lib/">Multi Sale Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../diamond-factory-lib/">Diamond Factory Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../svg-templates-lib/">SVG Templates Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../attribute-lib/">Attribute Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../variable-price-lib/">Variable Price Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../merkle-prover/">Merkle Prover</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../fee-distributor-lib/">Fee Distributor Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../lib-diamond/">LibDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../diamond-lib/">DiamondLib</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">ERC721A Lib</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#overview">Overview</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#key-features">Key Features</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#storage-structure">Storage Structure</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#erc721astorage">ERC721AStorage</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#erc721acontract">ERC721AContract</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#core-functions">Core Functions</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#supply-and-balance-queries">Supply and Balance Queries</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#minting-statistics">Minting Statistics</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#auxiliary-data-management">Auxiliary Data Management</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#token-ownership">Token Ownership</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#token-existence-and-approval">Token Existence and Approval</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#minting-operations">Minting Operations</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#transfer-operations">Transfer Operations</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#burning-operations">Burning Operations</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#gas-optimization-features">Gas Optimization Features</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#batch-minting-efficiency">Batch Minting Efficiency</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#storage-layout-optimization">Storage Layout Optimization</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#transfer-optimization">Transfer Optimization</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#error-handling">Error Handling</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#hook-functions">Hook Functions</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#_beforetokentransfers">_beforeTokenTransfers()</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_aftertokentransfers">_afterTokenTransfers()</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usage-examples">Usage Examples</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#basic-minting">Basic Minting</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#batch-operations">Batch Operations</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#transfer-operations_1">Transfer Operations</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#integration-with-diamond-pattern">Integration with Diamond Pattern</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#security-considerations">Security Considerations</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#access-control">Access Control</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#validation">Validation</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#safe-transfers">Safe Transfers</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#performance-characteristics">Performance Characteristics</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#gas-costs-approximate">Gas Costs (Approximate)</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#storage-efficiency">Storage Efficiency</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#related-documentation">Related Documentation</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#best-practices">Best Practices</a>
+    </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../erc721a-enumeration-lib/">ERC721A Enumeration Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../strings-lib/">Strings Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../trusted-issuer-lib/">Trusted Issuer Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../set-libraries/">Set Libraries</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">SDK & Libraries</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/blockchain/">Blockchain Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/diamond/">Diamond Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/contract/">Contract Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/deploy/">Deployment Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/validation-utils/">Validation Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/nft-sale-utils/">NFT Sale Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/webhooks/">Webhooks Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../metadata-lib/">Metadata Library</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Cloud Functions</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/authentication/">Authentication Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/auth-functions/">Auth Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/blockchain/">Blockchain Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/bridge/">Bridge Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/contracts/">Contract Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/deploy/">Deploy Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/dfns/">DFNS Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/project/">Project Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/trade-deal/">Trade Deal Functions</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">API Documentation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../api-documentation/gemforce-api-documentation/">Full API Reference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../api-documentation/gemforce-api-quick-reference/">Quick Reference</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-external-services/">External Services</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-system-architecture/">System Architecture</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Operations Tasks</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/diamond/">Diamond Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/identities/">Identity Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/marketplace-management/">Marketplace Management Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/carbon-credit-management/">Carbon Credit Management Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/trade-deal/">Trade Deal Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/integration-test/">Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/integration-test-marketplace/">Marketplace Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/integration-test-trade-deal/">Trade Deal Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/admin-utils/">Admin Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/sync-diamond/">Sync Diamond Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/sync-events/">Sync Events Tasks</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">EIPs (Ethereum Improvement Proposals)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Diamond-Enhanced-Marketplace/">Diamond-Enhanced Marketplace</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Multi-Token-Sale-Standard/">Multi-Token Sale Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Collateralized-Trade-Deal-Standard/">Collateralized Trade Deal Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Enhanced-Identity-System/">Enhanced Identity System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Diamond-Factory-Standard/">Diamond Factory Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Carbon-Credit-Standard/">Carbon Credit Standard</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Developer Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/development-environment-setup/">Development Environment Setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/testing-frameworks/">Testing Frameworks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/debugging/">Debugging</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/performance-optimization/">Performance Optimization</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/test-case-specifications/">Test Case Specifications</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/test-data-management/">Test Data Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/automated-testing-setup/">Automated Testing Setup</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Deployment Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../deployment-guides/multi-network-deployment/">Multi-Network Deployment</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../deployment-guides/infrastructure-management/">Infrastructure Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../deployment-guides/monitoring-logging/">Monitoring and Logging</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">User Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-administrator-guide/">Administrator Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-deployer-guide/">Deployer Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-integrator-guide/">Integrator Guide</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Integrator's Guide</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/authentication/">Authentication</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/rest-api/">REST API</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/smart-contracts/">Smart Contracts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/dfns/">DFNS Integration</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/parse-server/">Parse Server Notes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/webhooks/">Webhooks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/error-handling/">Error Handling</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/sample-code/">Sample Code</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/integration-patterns/">Integration Patterns</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/testing/">Testing Considerations</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/security/">Security</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../external-services/gemforce-external-services/">External Services</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Security</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security/threat-model/">Threat Model and Risk Assessment</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security/incident-response/">Incident Response Procedures</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security/audit-compliance/">Security Audits and Compliance</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">External Developer Integration</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/api-rate-limiting/">API Rate Limiting</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/webhook-implementation-guidelines/">Webhook Implementation Guidelines</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/sdk-development-guidelines/">SDK Development Guidelines</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/partner-integration-guides/">Partner Integration Guides</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-documentation-gap-analysis/">Documentation Gap Analysis</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../documentation-progress-summary/">Documentation Progress Summary</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../documentation-plan/">Documentation Plan</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Configuration & Environment</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/gemforce-config/">Gemforce Config</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/environment-specific-guides/">Environment-Specific Guides</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/configuration-validation/">Configuration Validation Procedures</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/external-service-config-management/">External Service Configuration Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/database-schema-overview/">Database Schema Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/database-migration-procedures/">Database Migration Procedures</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">Gemforce Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Smart Contracts</li>
+          <li class="breadcrumb-item">Libraries</li>
+      <li class="breadcrumb-item active">ERC721A Lib</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="erc721alib-library">ERC721ALib Library<a class="headerlink" href="#erc721alib-library" title="Permanent link">&para;</a></h1>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p><a href="/Users/sschepis/Development/gem-base/contracts/libraries/ERC721ALib.sol"><code>ERC721ALib</code></a> is a gas-optimized implementation of the ERC721 Non-Fungible Token standard, based on the ERC721A specification by Chiru Labs. This library provides efficient batch minting capabilities and optimized storage patterns for NFT collections, making it ideal for large-scale NFT projects.</p>
+<h2 id="key-features">Key Features<a class="headerlink" href="#key-features" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Gas-Optimized Minting</strong>: Batch mint multiple tokens with minimal gas overhead</li>
+<li><strong>Efficient Storage</strong>: Optimized storage layout reduces gas costs for transfers and queries</li>
+<li><strong>ERC721 Compatibility</strong>: Full compatibility with the ERC721 standard</li>
+<li><strong>Burn Functionality</strong>: Support for token burning with proper accounting</li>
+<li><strong>Auxiliary Data</strong>: Additional per-address data storage (e.g., whitelist usage)</li>
+<li><strong>Safe Transfer Support</strong>: Built-in safe transfer checks for contract recipients</li>
+</ul>
+<h2 id="storage-structure">Storage Structure<a class="headerlink" href="#storage-structure" title="Permanent link">&para;</a></h2>
+<h3 id="erc721astorage">ERC721AStorage<a class="headerlink" href="#erc721astorage" title="Permanent link">&para;</a></h3>
+<p>The main storage structure for ERC721A functionality:</p>
+<div class="codehilite"><pre><span></span><code><span class="kt">struct</span><span class="w"> </span><span class="nv">ERC721AStorage</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>ERC721EnumerableContract<span class="w"> </span>enumerations<span class="p">;</span>
+<span class="w">    </span>ERC721AContract<span class="w"> </span>erc721Contract<span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="erc721acontract">ERC721AContract<a class="headerlink" href="#erc721acontract" title="Permanent link">&para;</a></h3>
+<p>Core contract storage containing all NFT data:
+- Token ownership mappings
+- Approval mappings
+- Address data (balance, minted count, burned count, auxiliary data)
+- Current index and burn counter</p>
+<h2 id="core-functions">Core Functions<a class="headerlink" href="#core-functions" title="Permanent link">&para;</a></h2>
+<h3 id="supply-and-balance-queries">Supply and Balance Queries<a class="headerlink" href="#supply-and-balance-queries" title="Permanent link">&para;</a></h3>
+<h4 id="totalsupply"><code>totalSupply()</code><a class="headerlink" href="#totalsupply" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">totalSupply</span><span class="p">(</span>ERC721AContract<span class="w"> </span>storage<span class="w"> </span>self<span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Returns the total number of tokens in circulation (minted - burned).</p>
+<h4 id="balanceof"><code>balanceOf()</code><a class="headerlink" href="#balanceof" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">balanceOf</span><span class="p">(</span>ERC721AContract<span class="w"> </span>storage<span class="w"> </span>self<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">owner</span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Returns the number of tokens owned by a specific address.</p>
+<h3 id="minting-statistics">Minting Statistics<a class="headerlink" href="#minting-statistics" title="Permanent link">&para;</a></h3>
+<h4 id="_numberminted"><code>_numberMinted()</code><a class="headerlink" href="#_numberminted" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">_numberMinted</span><span class="p">(</span>ERC721AContract<span class="w"> </span>storage<span class="w"> </span>self<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">owner</span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Returns the total number of tokens minted by an address.</p>
+<h4 id="_numberburned"><code>_numberBurned()</code><a class="headerlink" href="#_numberburned" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">_numberBurned</span><span class="p">(</span>ERC721AContract<span class="w"> </span>storage<span class="w"> </span>self<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">owner</span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Returns the total number of tokens burned by or on behalf of an address.</p>
+<h3 id="auxiliary-data-management">Auxiliary Data Management<a class="headerlink" href="#auxiliary-data-management" title="Permanent link">&para;</a></h3>
+<h4 id="_getaux"><code>_getAux()</code><a class="headerlink" href="#_getaux" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">_getAux</span><span class="p">(</span>ERC721AContract<span class="w"> </span>storage<span class="w"> </span>self<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">owner</span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint64</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Returns auxiliary data for an address (e.g., whitelist mint slots used).</p>
+<h4 id="_setaux"><code>_setAux()</code><a class="headerlink" href="#_setaux" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">_setAux</span><span class="p">(</span>ERC721AContract<span class="w"> </span>storage<span class="w"> </span>self<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">owner</span><span class="p">,</span><span class="w"> </span><span class="kt">uint64</span><span class="w"> </span><span class="nv">aux</span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span>
+</code></pre></div>
+
+<p>Sets auxiliary data for an address.</p>
+<h3 id="token-ownership">Token Ownership<a class="headerlink" href="#token-ownership" title="Permanent link">&para;</a></h3>
+<h4 id="ownershipof"><code>ownershipOf()</code><a class="headerlink" href="#ownershipof" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">ownershipOf</span><span class="p">(</span>ERC721AContract<span class="w"> </span>storage<span class="w"> </span>self<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>TokenOwnership<span class="w"> </span><span class="kt">memory</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Returns detailed ownership information for a token, including:
+- Owner address
+- Start timestamp
+- Burned status</p>
+<h4 id="_ownerof"><code>_ownerOf()</code><a class="headerlink" href="#_ownerof" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">_ownerOf</span><span class="p">(</span>ERC721AContract<span class="w"> </span>storage<span class="w"> </span>self<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">address</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Returns the owner address of a specific token.</p>
+<h3 id="token-existence-and-approval">Token Existence and Approval<a class="headerlink" href="#token-existence-and-approval" title="Permanent link">&para;</a></h3>
+<h4 id="_exists"><code>_exists()</code><a class="headerlink" href="#_exists" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">_exists</span><span class="p">(</span>ERC721AContract<span class="w"> </span>storage<span class="w"> </span>self<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bool</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Checks if a token exists (has been minted and not burned).</p>
+<h4 id="getapproved"><code>getApproved()</code><a class="headerlink" href="#getapproved" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">getApproved</span><span class="p">(</span>ERC721AContract<span class="w"> </span>storage<span class="w"> </span>self<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">address</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Returns the approved address for a specific token.</p>
+<h4 id="setapprovalforall"><code>setApprovalForAll()</code><a class="headerlink" href="#setapprovalforall" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">setApprovalForAll</span><span class="p">(</span>ERC721AContract<span class="w"> </span>storage<span class="w"> </span>self<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">sender</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">operator</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="nv">approved</span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span>
+</code></pre></div>
+
+<p>Sets or unsets approval for all tokens owned by sender.</p>
+<h4 id="isapprovedforall"><code>isApprovedForAll()</code><a class="headerlink" href="#isapprovedforall" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">isApprovedForAll</span><span class="p">(</span>ERC721AContract<span class="w"> </span>storage<span class="w"> </span>self<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">owner</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">operator</span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bool</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Checks if an operator is approved for all tokens of an owner.</p>
+<h3 id="minting-operations">Minting Operations<a class="headerlink" href="#minting-operations" title="Permanent link">&para;</a></h3>
+<h4 id="_mint"><code>_mint()</code><a class="headerlink" href="#_mint" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">_mint</span><span class="p">(</span>
+<span class="w">    </span>ERC721AContract<span class="w"> </span>storage<span class="w"> </span>self<span class="p">,</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">msgSender</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">to</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">quantity</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>_data<span class="p">,</span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nv">safe</span>
+<span class="p">)</span><span class="w"> </span><span class="kt">internal</span>
+</code></pre></div>
+
+<p>Mints <code>quantity</code> tokens to the <code>to</code> address with gas optimization for batch operations.</p>
+<p><strong>Parameters:</strong>
+- <code>msgSender</code>: The address initiating the mint
+- <code>to</code>: Recipient address
+- <code>quantity</code>: Number of tokens to mint
+- <code>_data</code>: Additional data for safe transfer check
+- <code>safe</code>: Whether to perform safe transfer checks</p>
+<p><strong>Gas Optimization:</strong>
+- Only stores ownership data for the first token in a batch
+- Subsequent tokens inherit ownership through lookup algorithm
+- Significantly reduces gas costs for batch minting</p>
+<h3 id="transfer-operations">Transfer Operations<a class="headerlink" href="#transfer-operations" title="Permanent link">&para;</a></h3>
+<h4 id="_transfer"><code>_transfer()</code><a class="headerlink" href="#_transfer" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">_transfer</span><span class="p">(</span>
+<span class="w">    </span>ERC721AContract<span class="w"> </span>storage<span class="w"> </span>self<span class="p">,</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">msgSender</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">from</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">to</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nv">_force</span>
+<span class="p">)</span><span class="w"> </span><span class="kt">internal</span>
+</code></pre></div>
+
+<p>Transfers a token from one address to another with proper ownership updates.</p>
+<p><strong>Parameters:</strong>
+- <code>_force</code>: Bypasses approval checks when true (for internal operations)</p>
+<p><strong>Features:</strong>
+- Automatic approval clearing
+- Ownership slot optimization for gas efficiency
+- Proper balance updates</p>
+<h3 id="burning-operations">Burning Operations<a class="headerlink" href="#burning-operations" title="Permanent link">&para;</a></h3>
+<h4 id="_burn"><code>_burn()</code><a class="headerlink" href="#_burn" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">_burn</span><span class="p">(</span>ERC721AContract<span class="w"> </span>storage<span class="w"> </span>self<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span>
+</code></pre></div>
+
+<p>Burns a token, marking it as destroyed while maintaining ownership history.</p>
+<p><strong>Features:</strong>
+- Maintains burn counter for supply calculations
+- Preserves ownership data with burned flag
+- Updates address statistics</p>
+<h2 id="gas-optimization-features">Gas Optimization Features<a class="headerlink" href="#gas-optimization-features" title="Permanent link">&para;</a></h2>
+<h3 id="batch-minting-efficiency">Batch Minting Efficiency<a class="headerlink" href="#batch-minting-efficiency" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Single Storage Write</strong>: Only the first token in a batch requires ownership storage</li>
+<li><strong>Lookup Algorithm</strong>: Subsequent tokens find ownership through backward iteration</li>
+<li><strong>Reduced Gas Costs</strong>: Significant savings for large batch mints</li>
+</ul>
+<h3 id="storage-layout-optimization">Storage Layout Optimization<a class="headerlink" href="#storage-layout-optimization" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Packed Structs</strong>: Address data packed into single storage slots</li>
+<li><strong>Minimal Writes</strong>: Only necessary storage updates during operations</li>
+<li><strong>Efficient Mappings</strong>: Optimized mapping structures for common operations</li>
+</ul>
+<h3 id="transfer-optimization">Transfer Optimization<a class="headerlink" href="#transfer-optimization" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Ownership Slot Management</strong>: Efficient handling of ownership slots during transfers</li>
+<li><strong>Balance Updates</strong>: Minimal storage writes for balance changes</li>
+<li><strong>Approval Clearing</strong>: Gas-efficient approval management</li>
+</ul>
+<h2 id="error-handling">Error Handling<a class="headerlink" href="#error-handling" title="Permanent link">&para;</a></h2>
+<p>The library defines comprehensive custom errors for gas-efficient reverts:</p>
+<div class="codehilite"><pre><span></span><code>error<span class="w"> </span>ApprovalCallerNotOwnerNorApproved<span class="p">();</span>
+error<span class="w"> </span>ApprovalQueryForNonexistentToken<span class="p">();</span>
+error<span class="w"> </span>MintToZeroAddress<span class="p">();</span>
+error<span class="w"> </span>MintZeroQuantity<span class="p">();</span>
+error<span class="w"> </span>OwnerQueryForNonexistentToken<span class="p">();</span>
+error<span class="w"> </span>TransferCallerNotOwnerNorApproved<span class="p">();</span>
+error<span class="w"> </span>TransferFromIncorrectOwner<span class="p">();</span>
+error<span class="w"> </span>TransferToNonERC721ReceiverImplementer<span class="p">();</span>
+</code></pre></div>
+
+<h2 id="hook-functions">Hook Functions<a class="headerlink" href="#hook-functions" title="Permanent link">&para;</a></h2>
+<h3 id="_beforetokentransfers"><code>_beforeTokenTransfers()</code><a class="headerlink" href="#_beforetokentransfers" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">_beforeTokenTransfers</span><span class="p">(</span>
+<span class="w">    </span>ERC721AContract<span class="w"> </span>storage<span class="w"> </span>self<span class="p">,</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">from</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">to</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">startTokenId</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">quantity</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nv">force</span>
+<span class="p">)</span><span class="w"> </span><span class="kt">internal</span>
+</code></pre></div>
+
+<p>Hook called before token transfers, minting, or burning. Can be overridden for custom logic.</p>
+<h3 id="_aftertokentransfers"><code>_afterTokenTransfers()</code><a class="headerlink" href="#_aftertokentransfers" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">_afterTokenTransfers</span><span class="p">(</span>
+<span class="w">    </span>ERC721AContract<span class="w"> </span>storage<span class="w"> </span>self<span class="p">,</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">from</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">to</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">startTokenId</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">quantity</span>
+<span class="p">)</span><span class="w"> </span><span class="kt">internal</span>
+</code></pre></div>
+
+<p>Hook called after token transfers, minting, or burning. Can be overridden for custom logic.</p>
+<h2 id="usage-examples">Usage Examples<a class="headerlink" href="#usage-examples" title="Permanent link">&para;</a></h2>
+<h3 id="basic-minting">Basic Minting<a class="headerlink" href="#basic-minting" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Mint 5 tokens to an address</span>
+ERC721ALib<span class="p">.</span>_mint<span class="p">(</span>
+<span class="w">    </span>erc721Storage<span class="p">,</span>
+<span class="w">    </span><span class="k">msg.sender</span><span class="p">,</span>
+<span class="w">    </span>recipient<span class="p">,</span>
+<span class="w">    </span><span class="m m-Decimal">5</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">true</span>
+<span class="p">);</span>
+</code></pre></div>
+
+<h3 id="batch-operations">Batch Operations<a class="headerlink" href="#batch-operations" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Check total supply</span>
+<span class="kt">uint256</span><span class="w"> </span><span class="nv">supply</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>ERC721ALib<span class="p">.</span>totalSupply<span class="p">(</span>erc721Storage<span class="p">);</span>
+
+<span class="c1">// Check user&#39;s minted count</span>
+<span class="kt">uint256</span><span class="w"> </span><span class="nv">minted</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>ERC721ALib<span class="p">.</span>_numberMinted<span class="p">(</span>erc721Storage<span class="p">,</span><span class="w"> </span>user<span class="p">);</span>
+
+<span class="c1">// Set auxiliary data (e.g., whitelist usage)</span>
+ERC721ALib<span class="p">.</span>_setAux<span class="p">(</span>erc721Storage<span class="p">,</span><span class="w"> </span>user<span class="p">,</span><span class="w"> </span><span class="m m-Decimal">3</span><span class="p">);</span>
+</code></pre></div>
+
+<h3 id="transfer-operations_1">Transfer Operations<a class="headerlink" href="#transfer-operations_1" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Transfer token</span>
+ERC721ALib<span class="p">.</span>_transfer<span class="p">(</span>
+<span class="w">    </span>erc721Storage<span class="p">,</span>
+<span class="w">    </span><span class="k">msg.sender</span><span class="p">,</span>
+<span class="w">    </span>from<span class="p">,</span>
+<span class="w">    </span>to<span class="p">,</span>
+<span class="w">    </span>tokenId<span class="p">,</span>
+<span class="w">    </span><span class="kt">false</span>
+<span class="p">);</span>
+
+<span class="c1">// Burn token</span>
+ERC721ALib<span class="p">.</span>_burn<span class="p">(</span>erc721Storage<span class="p">,</span><span class="w"> </span>tokenId<span class="p">);</span>
+</code></pre></div>
+
+<h2 id="integration-with-diamond-pattern">Integration with Diamond Pattern<a class="headerlink" href="#integration-with-diamond-pattern" title="Permanent link">&para;</a></h2>
+<p>The library is designed to work within the Diamond pattern:</p>
+<div class="codehilite"><pre><span></span><code><span class="kt">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>ERC721ALib<span class="w"> </span><span class="p">}</span><span class="w"> </span>from<span class="w"> </span><span class="s2">&quot;./libraries/ERC721ALib.sol&quot;</span><span class="p">;</span>
+
+<span class="k">contract</span><span class="w"> </span><span class="ni">NFTFacet</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">mint</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">to</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">quantity</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>ERC721AStorage<span class="w"> </span>storage<span class="w"> </span>s<span class="w"> </span><span class="o">=</span><span class="w"> </span>erc721AStorage<span class="p">();</span>
+<span class="w">        </span>ERC721ALib<span class="p">.</span>_mint<span class="p">(</span>s<span class="p">.</span>erc721Contract<span class="p">,</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">,</span><span class="w"> </span>to<span class="p">,</span><span class="w"> </span>quantity<span class="p">,</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="w"> </span><span class="kt">true</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="security-considerations">Security Considerations<a class="headerlink" href="#security-considerations" title="Permanent link">&para;</a></h2>
+<h3 id="access-control">Access Control<a class="headerlink" href="#access-control" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Minting Permissions</strong>: Implement proper access controls for minting functions</li>
+<li><strong>Transfer Restrictions</strong>: Consider implementing transfer restrictions if needed</li>
+<li><strong>Burn Authorization</strong>: Ensure only authorized parties can burn tokens</li>
+</ul>
+<h3 id="validation">Validation<a class="headerlink" href="#validation" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Address Validation</strong>: All functions validate against zero addresses</li>
+<li><strong>Quantity Limits</strong>: Implement reasonable limits for batch operations</li>
+<li><strong>Overflow Protection</strong>: Built-in protection against arithmetic overflows</li>
+</ul>
+<h3 id="safe-transfers">Safe Transfers<a class="headerlink" href="#safe-transfers" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Contract Recipients</strong>: Automatic checks for contract recipients</li>
+<li><strong>Callback Validation</strong>: Proper handling of ERC721Receiver callbacks</li>
+<li><strong>Reentrancy Protection</strong>: Consider reentrancy guards for external calls</li>
+</ul>
+<h2 id="performance-characteristics">Performance Characteristics<a class="headerlink" href="#performance-characteristics" title="Permanent link">&para;</a></h2>
+<h3 id="gas-costs-approximate">Gas Costs (Approximate)<a class="headerlink" href="#gas-costs-approximate" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Single Mint</strong>: ~50,000 gas</li>
+<li><strong>Batch Mint (10 tokens)</strong>: ~55,000 gas (5,500 per additional token)</li>
+<li><strong>Transfer</strong>: ~30,000 gas</li>
+<li><strong>Burn</strong>: ~25,000 gas</li>
+</ul>
+<h3 id="storage-efficiency">Storage Efficiency<a class="headerlink" href="#storage-efficiency" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Ownership Storage</strong>: Only first token in batch requires storage</li>
+<li><strong>Address Data</strong>: Packed into single storage slots</li>
+<li><strong>Minimal Overhead</strong>: Efficient data structures minimize storage costs</li>
+</ul>
+<h2 id="related-documentation">Related Documentation<a class="headerlink" href="#related-documentation" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../erc721a-enumeration-lib/">ERC721A Enumeration Library</a> - Enumeration extension</li>
+<li><a href="../attribute-lib/">Attribute Library</a> - Token attribute management</li>
+<li><a href="../diamond-lib/">Diamond Library</a> - Diamond pattern integration</li>
+<li><a href="../../facets/gemforce-minter-facet/">Gemforce Minter Facet</a> - Minting interface</li>
+<li><a href="https://eips.ethereum.org/EIPS/eip-721">ERC721A Standard</a> - ERC721 specification</li>
+</ul>
+<h2 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Batch Minting</strong>: Use batch minting for gas efficiency when minting multiple tokens</li>
+<li><strong>Auxiliary Data</strong>: Leverage auxiliary data for additional per-address information</li>
+<li><strong>Hook Implementation</strong>: Use hooks for custom logic without modifying core functions</li>
+<li><strong>Error Handling</strong>: Use custom errors for gas-efficient error reporting</li>
+<li><strong>Access Control</strong>: Implement proper permissions for all minting and administrative functions</li>
+</ol>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../diamond-lib/" class="btn btn-neutral float-left" title="DiamondLib"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../erc721a-enumeration-lib/" class="btn btn-neutral float-right" title="ERC721A Enumeration Lib">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../diamond-lib/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../erc721a-enumeration-lib/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

@@ -216,10 +216,10 @@ Comprehensive test cases should cover:
 ## Reference Implementation
 
 The reference implementation includes:
-- [`TradeDealManagementFacet.sol`](../contracts/facets/TradeDealManagementFacet.sol) - Core management functionality
-- [`TradeDealOperationsFacet.sol`](../contracts/facets/TradeDealOperationsFacet.sol) - Operational functions
-- [`ITradeDeal.sol`](../contracts/interfaces/ITradeDeal.sol) - Interface definition
-- [`TradeDealLib.sol`](../contracts/libraries/TradeDealLib.sol) - Supporting library functions
+- [Trade Deal Management Facet](../smart-contracts/facets/trade-deal-management-facet.md) - Core management functionality
+- [Trade Deal Operations Facet](../smart-contracts/facets/trade-deal-operations-facet.md) - Operational functions
+- [ITradeDeal Interface](../smart-contracts/interfaces/itradedeal.md) - Interface definition
+- [Trade Deal Lib](../smart-contracts/libraries/trade-deal-lib.md) - Supporting library functions
 
 ## Copyright
 

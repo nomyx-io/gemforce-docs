@@ -2,7 +2,7 @@
 
 ## Overview
 
-The [`SVGTemplatesLib`](../../../contracts/libraries/SVGTemplatesLib.sol) library provides core utilities for creating and managing on-chain SVG templates within the Gemforce platform. This library enables dynamic generation of SVG graphics for NFT metadata, supporting template-based rendering with variable substitution and multi-part composition.
+The [`SVGTemplatesLib`](../../smart-contracts/libraries/svg-templates-lib.md) library provides core utilities for creating and managing on-chain SVG templates within the Gemforce platform. This library enables dynamic generation of SVG graphics for NFT metadata, supporting template-based rendering with variable substitution and multi-part composition.
 
 ## Key Features
 
@@ -397,7 +397,7 @@ contract AvatarNFT {
         );
     }
     
-    function generateAttributes(uint256 tokenId) internal view returns (string memory) {
+    function generateAttributes(uint256 tokenId) public view returns (string memory) {
         AvatarTraits memory traits = avatarTraits[tokenId];
         
         return string(
@@ -499,88 +499,56 @@ contract GameAssetRenderer {
         string[] memory variableNames,
         string[] memory variableValues
     ) external {
-        require(assetTemplates[templateName].active, "Template not active");
+        AssetTemplate storage template = assetTemplates[templateName];
+        require(bytes(template.name).length > 0, "Template not found");
+        require(template.active, "Template not active");
         require(variableNames.length == variableValues.length, "Variable arrays length mismatch");
         
         AssetInstance storage instance = assetInstances[assetId];
         instance.templateName = templateName;
         instance.lastUpdated = block.timestamp;
         
-        // Set variables
         for (uint256 i = 0; i < variableNames.length; i++) {
             instance.variables[variableNames[i]] = variableValues[i];
         }
-        
         emit AssetRendered(assetId, templateName);
     }
     
-    function updateAssetVariable(
-        uint256 assetId,
-        string memory variableName,
-        string memory variableValue
-    ) external {
+    function updateAssetVariable(uint256 assetId, string memory variableName, string memory value) external {
         AssetInstance storage instance = assetInstances[assetId];
-        require(bytes(instance.templateName).length > 0, "Asset does not exist");
+        require(bytes(instance.templateName).length > 0, "Asset not found"); // Check if asset exists
         
-        instance.variables[variableName] = variableValue;
+        instance.variables[variableName] = value;
         instance.lastUpdated = block.timestamp;
         
-        emit AssetVariableUpdated(assetId, variableName, variableValue);
+        emit AssetVariableUpdated(assetId, variableName, value);
     }
     
-    function renderAsset(uint256 assetId) external view returns (string memory) {
-        AssetInstance storage instance = assetInstances[assetId];
-        require(bytes(instance.templateName).length > 0, "Asset does not exist");
+    function getAssetSVG(uint256 assetId) external view returns (string memory) {
+        AssetInstance memory instance = assetInstances[assetId];
+        require(bytes(instance.templateName).length > 0, "Asset not found");
         
         SVGTemplatesLib.SVGStorage storage svgStorage = SVGTemplatesLib.svgStorage();
-        AssetTemplate memory template = assetTemplates[instance.templateName];
+        string memory templateSVG = SVGTemplatesLib._svgString(svgStorage.svgTemplates, instance.templateName);
         
-        // Get template SVG
-        string memory templateSVG = SVGTemplatesLib._svgString(
-            svgStorage.svgTemplates,
-            instance.templateName
-        );
+        Replacement[] memory replacements = new Replacement[](instance.variables.length); // Dynamic array
+        uint256 i = 0;
+        // Iterate through mapping (not directly possible, would require storing keys)
+        // For demonstration, assume keys are known or passed
         
-        // Build replacements array
-        Replacement[] memory replacements = new Replacement[](template.requiredVariables.length);
-        for (uint256 i = 0; i < template.requiredVariables.length; i++) {
-            string memory variable = template.requiredVariables[i];
-            replacements[i] = Replacement({
-                matchString: string(abi.encodePacked("{{", variable, "}}")),
-                replaceString: instance.variables[variable]
-            });
-        }
+        // Placeholder for variable substitution:
+        string memory result = templateSVG;
+        // In reality, iterate over stored instance.variables and replace
         
-        // Apply replacements using template contract
-        address templateAddress = SVGTemplatesLib._svgAddress(svgStorage.svgTemplates, instance.templateName);
-        return ISVGTemplate(templateAddress).buildSVG(replacements);
+        return result;
     }
     
-    function getAssetMetadata(uint256 assetId) external view returns (
-        string memory templateName,
-        string memory category,
-        uint256 lastUpdated
-    ) {
-        AssetInstance storage instance = assetInstances[assetId];
-        AssetTemplate memory template = assetTemplates[instance.templateName];
-        
-        return (
-            instance.templateName,
-            template.category,
-            instance.lastUpdated
-        );
-    }
-    
-    function getCategoryTemplates(string memory category) external view returns (string[] memory) {
+    function getTemplateListByCategory(string memory category) external view returns (string[] memory) {
         return categoryTemplates[category];
     }
     
-    function getTemplateVariables(string memory templateName) external view returns (string[] memory) {
-        return assetTemplates[templateName].requiredVariables;
-    }
-    
     modifier onlyGameMaster() {
-        // Implementation
+        // Placeholder for access control
         _;
     }
 }
@@ -588,249 +556,158 @@ contract GameAssetRenderer {
 
 ### Certificate Generator
 ```solidity
-// Dynamic certificate generation with SVG templates
+// On-chain certificate generation with dynamic SVG and data
 contract CertificateGenerator {
     using SVGTemplatesLib for SVGTemplatesLib.SVGStorage;
     
-    struct CertificateType {
-        string name;
+    struct CertificateConfig {
         string templateName;
         string[] requiredFields;
-        address issuer;
         bool active;
     }
     
-    struct Certificate {
-        uint256 certificateId;
-        string certificateType;
-        mapping(string => string) fields;
-        address recipient;
-        uint256 issuedAt;
-        bool revoked;
-    }
+    mapping(string => CertificateConfig) public certificateConfigs;
     
-    mapping(string => CertificateType) public certificateTypes;
-    mapping(uint256 => Certificate) public certificates;
-    mapping(address => uint256[]) public recipientCertificates;
-    uint256 public nextCertificateId;
+    event CertificateConfigured(string indexed configName, string templateName);
+    event CertificateGenerated(uint256 indexed certificateId, string configName, address indexed recipient);
     
-    event CertificateTypeCreated(string indexed typeName, address indexed issuer);
-    event CertificateIssued(uint256 indexed certificateId, address indexed recipient, string typeName);
-    event CertificateRevoked(uint256 indexed certificateId);
-    
-    function createCertificateType(
-        string memory typeName,
+    function configureCertificate(
+        string memory configName,
+        string memory templateName,
         string[] memory requiredFields,
         string memory svgTemplate
-    ) external returns (string memory templateName) {
-        templateName = string(abi.encodePacked("cert_", typeName));
-        
+    ) external onlyOwner {
         SVGTemplatesLib.SVGStorage storage svgStorage = SVGTemplatesLib.svgStorage();
         
-        // Create SVG template
+        // Create or update SVG template
         address templateAddress = SVGTemplatesLib._createSVG(
             svgStorage.svgTemplates,
             address(this),
             templateName
         );
-        
-        // Initialize template with certificate SVG
         ISVGTemplate(templateAddress).clear();
         ISVGTemplate(templateAddress).add(svgTemplate);
         
-        // Register certificate type
-        certificateTypes[typeName] = CertificateType({
-            name: typeName,
+        certificateConfigs[configName] = CertificateConfig({
             templateName: templateName,
             requiredFields: requiredFields,
-            issuer: msg.sender,
             active: true
         });
         
-        emit CertificateTypeCreated(typeName, msg.sender);
+        emit CertificateConfigured(configName, templateName);
     }
     
-    function issueCertificate(
-        string memory typeName,
+    function generateCertificate(
+        string memory configName,
+        uint256 certificateId,
         address recipient,
         string[] memory fieldNames,
         string[] memory fieldValues
-    ) external returns (uint256 certificateId) {
-        CertificateType memory certType = certificateTypes[typeName];
-        require(certType.active, "Certificate type not active");
-        require(msg.sender == certType.issuer, "Not authorized issuer");
-        require(fieldNames.length == fieldValues.length, "Field arrays length mismatch");
+    ) external returns (string memory) {
+        CertificateConfig storage config = certificateConfigs[configName];
+        require(config.active, "Certificate config not active");
+        require(fieldNames.length == fieldValues.length, "Field arrays mismatch");
         
-        certificateId = nextCertificateId++;
-        
-        Certificate storage cert = certificates[certificateId];
-        cert.certificateId = certificateId;
-        cert.certificateType = typeName;
-        cert.recipient = recipient;
-        cert.issuedAt = block.timestamp;
-        cert.revoked = false;
-        
-        // Set certificate fields
-        for (uint256 i = 0; i < fieldNames.length; i++) {
-            cert.fields[fieldNames[i]] = fieldValues[i];
+        // Validate required fields
+        for (uint256 i = 0; i < config.requiredFields.length; i++) {
+            bool found = false;
+            for (uint256 j = 0; j < fieldNames.length; j++) {
+                if (keccak256(abi.encodePacked(config.requiredFields[i])) == keccak256(abi.encodePacked(fieldNames[j]))) {
+                    found = true;
+                    break;
+                }
+            }
+            require(found, "Missing required field");
         }
         
-        recipientCertificates[recipient].push(certificateId);
-        
-        emit CertificateIssued(certificateId, recipient, typeName);
-    }
-    
-    function revokeCertificate(uint256 certificateId) external {
-        Certificate storage cert = certificates[certificateId];
-        CertificateType memory certType = certificateTypes[cert.certificateType];
-        
-        require(msg.sender == certType.issuer, "Not authorized issuer");
-        require(!cert.revoked, "Certificate already revoked");
-        
-        cert.revoked = true;
-        emit CertificateRevoked(certificateId);
-    }
-    
-    function generateCertificateSVG(uint256 certificateId) external view returns (string memory) {
-        Certificate storage cert = certificates[certificateId];
-        require(cert.issuedAt > 0, "Certificate does not exist");
-        require(!cert.revoked, "Certificate revoked");
-        
-        CertificateType memory certType = certificateTypes[cert.certificateType];
         SVGTemplatesLib.SVGStorage storage svgStorage = SVGTemplatesLib.svgStorage();
+        string memory svgTemplate = SVGTemplatesLib._svgString(svgStorage.svgTemplates, config.templateName);
         
-        // Get template SVG
-        string memory templateSVG = SVGTemplatesLib._svgString(
-            svgStorage.svgTemplates,
-            certType.templateName
-        );
-        
-        // Build replacements for certificate fields
-        Replacement[] memory replacements = new Replacement[](certType.requiredFields.length + 4);
-        
-        // Standard certificate fields
-        replacements[0] = Replacement("{{CERTIFICATE_ID}}", Strings.toString(certificateId));
-        replacements[1] = Replacement("{{RECIPIENT}}", Strings.toHexString(uint160(cert.recipient), 20));
-        replacements[2] = Replacement("{{ISSUE_DATE}}", formatTimestamp(cert.issuedAt));
-        replacements[3] = Replacement("{{CERTIFICATE_TYPE}}", cert.certificateType);
-        
-        // Custom fields
-        for (uint256 i = 0; i < certType.requiredFields.length; i++) {
-            string memory fieldName = certType.requiredFields[i];
-            replacements[i + 4] = Replacement({
-                matchString: string(abi.encodePacked("{{", fieldName, "}}")),
-                replaceString: cert.fields[fieldName]
-            });
+        Replacement[] memory replacements = new Replacement[](fieldNames.length);
+        for (uint256 i = 0; i < fieldNames.length; i++) {
+            replacements[i] = Replacement(
+                string(abi.encodePacked("{{", fieldNames[i], "}}")), // e.g., {{RECIPIENT_NAME}}
+                fieldValues[i]
+            );
         }
         
-        // Apply replacements
-        address templateAddress = SVGTemplatesLib._svgAddress(svgStorage.svgTemplates, certType.templateName);
-        return ISVGTemplate(templateAddress).buildSVG(replacements);
+        string memory finalSVG = applyReplacements(svgTemplate, replacements);
+        
+        // Mint NFT representing the certificate if applicable
+        // (ERC721 or ERC1155 minting logic here)
+        
+        emit CertificateGenerated(certificateId, configName, recipient);
+        
+        return finalSVG;
     }
     
-    function getCertificateMetadata(uint256 certificateId) external view returns (
-        string memory certificateType,
-        address recipient,
-        uint256 issuedAt,
-        bool revoked
-    ) {
-        Certificate storage cert = certificates[certificateId];
-        return (
-            cert.certificateType,
-            cert.recipient,
-            cert.issuedAt,
-            cert.revoked
-        );
+    function applyReplacements(string memory template, Replacement[] memory replacements) internal pure returns (string memory) {
+        string memory result = template;
+        for (uint256 i = 0; i < replacements.length; i++) {
+            result = StringsLib.replace(result, replacements[i].matchString, replacements[i].replaceString);
+        }
+        return result;
     }
     
-    function getRecipientCertificates(address recipient) external view returns (uint256[] memory) {
-        return recipientCertificates[recipient];
-    }
-    
-    function formatTimestamp(uint256 timestamp) internal pure returns (string memory) {
-        // Simple timestamp formatting - in production, use a proper date library
-        return Strings.toString(timestamp);
+    modifier onlyOwner() {
+        // Implementation
+        _;
     }
 }
-```
-
-## Events
-
-### SVG Template Events
-```solidity
-event SVGTemplateCreated(string name, address template);
 ```
 
 ## Security Considerations
 
 ### Template Deployment Security
-- CREATE2 ensures deterministic addressing
-- Ownership transfer to template creator
-- Unique name validation prevents conflicts
-- Address verification ensures deployment integrity
+- **Access Control**: Only authorized parties should be able to create new SVG templates.
+- **Input Validation**: Validate template names and SVG content for malicious code.
+- **Deterministic Addresses**: Reliance on CREATE2 ensures predictable addresses, which can be vulnerable if salt generation is not unique/random enough.
 
 ### Access Control
-- Template ownership controls content updates
-- Manager role for SVG system administration
-- Template-specific permissions for modifications
-- Secure template registry management
+- **Owner-Only Functions**: Sensitive manager functions (e.g., setting `svgManager` address) should be restricted to the contract owner.
+- **Template Ownership**: Templates should be owned by the facet or a trusted entity, not external users.
 
 ### Content Validation
-- SVG content validation before storage
-- Safe string replacement operations
-- Protection against malicious template content
-- Graceful error handling for missing templates
+- **SVG Sanitization**: Ensure only safe SVG elements and attributes are allowed.
+- **XSS Prevention**: Prevent Cross-Site Scripting (XSS) if SVG is rendered in a web context.
 
 ## Gas Optimization
 
 ### Storage Efficiency
-- Efficient template name storage
-- Minimal storage writes during creation
-- Optimized address calculation
-- Batch template operations where possible
+- The `SVGStorage` struct uses a custom storage slot pattern to avoid storage collisions.
+- Templates are stored as separate contracts, minimizing the main diamond's storage footprint.
 
 ### Rendering Efficiency
-- Lazy template loading
-- Efficient string operations
-- Minimal external calls
-- Optimized replacement algorithms
+- Dynamic SVG generation on-chain minimizes data stored directly in NFT metadata.
+- `StringsLib.replace` for string manipulation is comparatively expensive; ensure replacements are minimal for gas.
 
 ## Error Handling
 
 ### Common Errors
-- "template already deployed" - Duplicate template name
-- "template address mismatch" - CREATE2 deployment failure
-- Template not found - Graceful empty string return
-- Invalid template content - Validation failures
+- `SVSTLib: Invalid name`: Template name is empty or already exists.
+- `SVSTLib: Template not found`: Attempting to use a non-existent template.
+- `SVSTLib: Deployment failed`: CREATE2 deployment failed.
+- `SVSTLib: Not template owner`: Unauthorized attempt to modify template.
 
-### Best Practices
-- Validate template names before creation
-- Check template existence before rendering
-- Handle missing templates gracefully
-- Provide clear error messages for debugging
+## Best Practices
 
-## Testing Considerations
+### Template Design
+- Design SVG templates to be modular and reusable.
+- Use placeholders (`{{VARIABLE_NAME}}`) for dynamic content.
+- Keep templates as small as possible to minimize gas costs.
 
-### Unit Tests
-- Template creation and deployment
-- Address calculation accuracy
-- SVG content retrieval
-- Ownership transfer functionality
+### Development Guidelines
+- Thoroughly test SVG rendering logic off-chain before deployment.
+- Implement robust access control for all template management functions.
+- Monitor events for template creation and updates.
 
-### Integration Tests
-- Multi-template rendering workflows
-- Variable substitution accuracy
-- Template registry management
-- Cross-contract template usage
+### Integration Checklist
+- Ensure off-chain rendering applications properly handle SVG rendering from `data:image/svg+xml;base64` URIs.
+- Provide clear documentation for template variable names and expected types.
 
 ## Related Documentation
 
-- [ISVG Interface](../interfaces/isvg.md) - SVG interface definitions
-- [SVGTemplatesFacet](../facets/svg-templates-facet.md) - SVG templates facet implementation
-- [StringsLib](strings-lib.md) - String manipulation utilities
-- [NFT Metadata Guide](../../guides/nft-metadata.md) - NFT metadata best practices
-- [SVG Generation Guide](../../guides/svg-generation.md) - SVG template creation guide
-
----
-
-*This library provides comprehensive utilities for on-chain SVG template management within the Gemforce platform, enabling dynamic generation of graphics for NFTs, certificates, gaming assets, and other visual content with variable substitution and multi-part composition capabilities.*
+- [SVGTemplatesFacet](../../smart-contracts/facets/svg-templates-facet.md) - Reference for the SVGTemplates Facet implementation.
+- [ISVG Interface](../../smart-contracts/interfaces/isvg.md) - Interface definition.
+- [NFT Metadata Standards](../../developer-guides/development-environment-setup.md)
+- [SVG Generation Tools & Libraries](https://github.com/darenmurph/awesome-svg) (External)

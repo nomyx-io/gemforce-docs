@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Gemforce Team" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>Collateral Token Factory Facet - Gemforce Documentation</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Collateral Token Factory Facet";
+        var mkdocs_page_input_path = "smart-contracts/facets/collateral-token-factory-facet.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../.." class="icon icon-home"> Gemforce Documentation
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../developer-setup-guide/">Developer Setup Guide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../system-architecture/gemforce-system-architecture/">System Architecture</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Smart Contracts</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../diamond/">Diamond Contract</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../diamond-factory/">Diamond Factory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../identity-factory/">Identity Factory</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" >Facets</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" href="../marketplace-facet/">Marketplace Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../trade-deal-management-facet/">Trade Deal Management Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../carbon-credit-facet/">Carbon Credit Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../identity-registry-facet/">Identity Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../trusted-issuers-registry-facet/">Trusted Issuers Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../fee-distributor-facet/">Fee Distributor Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../gemforce-minter-facet/">Gemforce Minter Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../multi-sale-facet/">Multi Sale Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../svg-templates-facet/">SVG Templates Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../trade-deal-admin-facet/">Trade Deal Admin Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../trade-deal-operations-facet/">Trade Deal Operations Facet</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">Collateral Token Factory Facet</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#purpose">Purpose</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#key-features">Key Features</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#functions">Functions</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#createcollateraltokenstring-calldata-_name-string-calldata-_symbol-uint8-_decimals-uint256-_initialsupply-address-_owner">createCollateralToken(string calldata _name, string calldata _symbol, uint8 _decimals, uint256 _initialSupply, address _owner)</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#events">Events</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#collateraltokencreatedaddress-indexed-tokenaddress-string-name-string-symbol-uint8-decimals-uint256-initialsupply-address-owner">CollateralTokenCreated(address indexed tokenAddress, string name, string symbol, uint8 decimals, uint256 initialSupply, address owner)</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usage-example">Usage Example</a>
+    </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../diamond-cut-facet/">Diamond Cut Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../diamond-loupe-facet/">Diamond Loupe Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../ownership-facet/">Ownership Facet</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Interfaces</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/idiamond/">IDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/imarketplace/">IMarketplace</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/itradedeal/">ITradeDeal</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/icarbon-credit/">ICarbonCredit</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ierc1155-mint/">IERC1155Mint</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ierc734/">IERC734</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ierc735/">IERC735</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ierc721a/">IERC721A</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/idiamond-factory/">IDiamondFactory</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/iidentity/">IIdentity</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/imultisale/">IMultiSale</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ifee-distributor/">IFeeDistributor</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/igemforce-minter-facet/">IGemforceMinterFacet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/iidentity-registry/">IIdentityRegistry</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/itrusted-issuers-registry/">TRUSTEDIssuersRegistry</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/isvg/">ISVG</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/iattribute/">IAttribute</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ivariable-price/">IVariablePrice</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Libraries</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/carbon-credit-lib/">Carbon Credit Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/trade-deal-lib/">Trade Deal Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/multi-sale-lib/">Multi Sale Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/diamond-factory-lib/">Diamond Factory Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/svg-templates-lib/">SVG Templates Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/attribute-lib/">Attribute Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/variable-price-lib/">Variable Price Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/merkle-prover/">Merkle Prover</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/fee-distributor-lib/">Fee Distributor Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/lib-diamond/">LibDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/diamond-lib/">DiamondLib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/erc721a-lib/">ERC721A Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/erc721a-enumeration-lib/">ERC721A Enumeration Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/strings-lib/">Strings Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/trusted-issuer-lib/">Trusted Issuer Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/set-libraries/">Set Libraries</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">SDK & Libraries</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/blockchain/">Blockchain Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/diamond/">Diamond Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/contract/">Contract Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/deploy/">Deployment Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/validation-utils/">Validation Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/nft-sale-utils/">NFT Sale Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/webhooks/">Webhooks Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../libraries/metadata-lib/">Metadata Library</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Cloud Functions</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/authentication/">Authentication Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/auth-functions/">Auth Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/blockchain/">Blockchain Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/bridge/">Bridge Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/contracts/">Contract Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/deploy/">Deploy Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/dfns/">DFNS Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/project/">Project Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/trade-deal/">Trade Deal Functions</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">API Documentation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../api-documentation/gemforce-api-documentation/">Full API Reference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../api-documentation/gemforce-api-quick-reference/">Quick Reference</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-external-services/">External Services</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-system-architecture/">System Architecture</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Operations Tasks</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/diamond/">Diamond Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/identities/">Identity Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/marketplace-management/">Marketplace Management Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/carbon-credit-management/">Carbon Credit Management Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/trade-deal/">Trade Deal Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/integration-test/">Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/integration-test-marketplace/">Marketplace Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/integration-test-trade-deal/">Trade Deal Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/admin-utils/">Admin Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/sync-diamond/">Sync Diamond Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/sync-events/">Sync Events Tasks</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">EIPs (Ethereum Improvement Proposals)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Diamond-Enhanced-Marketplace/">Diamond-Enhanced Marketplace</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Multi-Token-Sale-Standard/">Multi-Token Sale Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Collateralized-Trade-Deal-Standard/">Collateralized Trade Deal Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Enhanced-Identity-System/">Enhanced Identity System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Diamond-Factory-Standard/">Diamond Factory Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Carbon-Credit-Standard/">Carbon Credit Standard</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Developer Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/development-environment-setup/">Development Environment Setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/testing-frameworks/">Testing Frameworks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/debugging/">Debugging</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/performance-optimization/">Performance Optimization</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/test-case-specifications/">Test Case Specifications</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/test-data-management/">Test Data Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/automated-testing-setup/">Automated Testing Setup</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Deployment Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../deployment-guides/multi-network-deployment/">Multi-Network Deployment</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../deployment-guides/infrastructure-management/">Infrastructure Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../deployment-guides/monitoring-logging/">Monitoring and Logging</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">User Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-administrator-guide/">Administrator Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-deployer-guide/">Deployer Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-integrator-guide/">Integrator Guide</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Integrator's Guide</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/authentication/">Authentication</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/rest-api/">REST API</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/smart-contracts/">Smart Contracts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/dfns/">DFNS Integration</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/parse-server/">Parse Server Notes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/webhooks/">Webhooks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/error-handling/">Error Handling</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/sample-code/">Sample Code</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/integration-patterns/">Integration Patterns</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/testing/">Testing Considerations</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/security/">Security</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../external-services/gemforce-external-services/">External Services</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Security</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security/threat-model/">Threat Model and Risk Assessment</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security/incident-response/">Incident Response Procedures</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security/audit-compliance/">Security Audits and Compliance</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">External Developer Integration</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/api-rate-limiting/">API Rate Limiting</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/webhook-implementation-guidelines/">Webhook Implementation Guidelines</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/sdk-development-guidelines/">SDK Development Guidelines</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/partner-integration-guides/">Partner Integration Guides</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-documentation-gap-analysis/">Documentation Gap Analysis</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../documentation-progress-summary/">Documentation Progress Summary</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../documentation-plan/">Documentation Plan</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Configuration & Environment</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/gemforce-config/">Gemforce Config</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/environment-specific-guides/">Environment-Specific Guides</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/configuration-validation/">Configuration Validation Procedures</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/external-service-config-management/">External Service Configuration Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/database-schema-overview/">Database Schema Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/database-migration-procedures/">Database Migration Procedures</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">Gemforce Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Smart Contracts</li>
+          <li class="breadcrumb-item">Facets</li>
+      <li class="breadcrumb-item active">Collateral Token Factory Facet</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="collateraltokenfactoryfacet">CollateralTokenFactoryFacet<a class="headerlink" href="#collateraltokenfactoryfacet" title="Permanent link">&para;</a></h1>
+<p>The <code>CollateralTokenFactoryFacet</code> is a specialized component within the Gemforce Diamond smart contract system, responsible for the creation and management of new collateral token contracts. This facet enables the dynamic deployment of custom ERC-20 tokens designed specifically for use as collateral within the platform's Trade Deal module or other financial instruments.</p>
+<h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h2>
+<p>The primary purpose of the <code>CollateralTokenFactoryFacet</code> is to streamline the process of issuing compliant and standardized collateral tokens. By providing a secure and configurable factory, it ensures that tokens created adhere to necessary parameters (e.g., supply caps, decimal places, name, symbol) and are automatically recognized and whitelisted for use within the Gemforce ecosystem. This facilitates rapid asset onboarding and expands the range of collateral options available for trade deals.</p>
+<h2 id="key-features">Key Features<a class="headerlink" href="#key-features" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Custom ERC-20 Deployment</strong>: Allows authorized entities to deploy new ERC-20 token contracts with specified parameters.</li>
+<li><strong>Whitelisting Integration</strong>: Automatically registers newly created tokens as supported collateral within the <code>TradeDealAdminFacet</code>.</li>
+<li><strong>Controlled Creation</strong>: Only authorized accounts (Diamond owner) can initiate the creation of new collateral tokens.</li>
+<li><strong>Parameter Configuration</strong>: Provides options to define the initial supply, name, symbol, and decimals of the newly minted tokens.</li>
+<li><strong>Ownership Assignment</strong>: Assigns ownership of the newly created token to a specified address.</li>
+<li><strong>Event Emission</strong>: Emits events for every token creation, providing transparency and traceability of new collateral assets.</li>
+</ul>
+<h2 id="functions">Functions<a class="headerlink" href="#functions" title="Permanent link">&para;</a></h2>
+<h3 id="createcollateraltokenstring-calldata-_name-string-calldata-_symbol-uint8-_decimals-uint256-_initialsupply-address-_owner"><code>createCollateralToken(string calldata _name, string calldata _symbol, uint8 _decimals, uint256 _initialSupply, address _owner)</code><a class="headerlink" href="#createcollateraltokenstring-calldata-_name-string-calldata-_symbol-uint8-_decimals-uint256-_initialsupply-address-_owner" title="Permanent link">&para;</a></h3>
+<p>Creates and deploys a new ERC-20 token contract configured as a collateral token.</p>
+<ul>
+<li><strong>Parameters</strong>:<ul>
+<li><code>_name</code> (string calldata): The name of the new ERC-20 token (e.g., "Gemforce Collateral USD").</li>
+<li><code>_symbol</code> (string calldata): The symbol of the new ERC-20 token (e.g., "GUSD").</li>
+<li><code>_decimals</code> (uint8): The number of decimal places for the new token (e.g., 18).</li>
+<li><code>_initialSupply</code> (uint256): The initial total supply of the new token.</li>
+<li><code>_owner</code> (address): The address that will initially own all the <code>_initialSupply</code> of tokens.</li>
+</ul>
+</li>
+<li><strong>Requirements</strong>:<ul>
+<li>Only the Diamond owner can call this function.</li>
+<li><code>_name</code> and <code>_symbol</code> must not be empty.</li>
+<li><code>_initialSupply</code> must be greater than 0.</li>
+<li><code>_owner</code> must not be the zero address.</li>
+</ul>
+</li>
+<li><strong>Emits</strong>: <code>CollateralTokenCreated(address indexed tokenAddress, string name, string symbol, uint8 decimals, uint256 initialSupply, address owner)</code></li>
+</ul>
+<h2 id="events">Events<a class="headerlink" href="#events" title="Permanent link">&para;</a></h2>
+<h3 id="collateraltokencreatedaddress-indexed-tokenaddress-string-name-string-symbol-uint8-decimals-uint256-initialsupply-address-owner"><code>CollateralTokenCreated(address indexed tokenAddress, string name, string symbol, uint8 decimals, uint256 initialSupply, address owner)</code><a class="headerlink" href="#collateraltokencreatedaddress-indexed-tokenaddress-string-name-string-symbol-uint8-decimals-uint256-initialsupply-address-owner" title="Permanent link">&para;</a></h3>
+<p>Emitted when a new collateral token contract is successfully created and deployed.</p>
+<ul>
+<li><strong>Parameters</strong>:<ul>
+<li><code>tokenAddress</code> (address): The address of the newly deployed ERC-20 token contract.</li>
+<li><code>name</code> (string): The name of the token.</li>
+<li><code>symbol</code> (string): The symbol of the token.</li>
+<li><code>decimals</code> (uint8): The number of decimals of the token.</li>
+<li><code>initialSupply</code> (uint256): The initial total supply of the token.</li>
+<li><code>owner</code> (address): The address assigned as the owner of the initial supply.</li>
+</ul>
+</li>
+</ul>
+<h2 id="usage-example">Usage Example<a class="headerlink" href="#usage-example" title="Permanent link">&para;</a></h2>
+<p>```solidity
+// Assuming 'diamond' is an instance of IDiamond and 'deployer' is the diamond owner</p>
+<p>// Example: Create a new stablecoin-like collateral token
+string memory tokenName = "Gemforce Stable Dollar";
+string memory tokenSymbol = "GSD";
+uint8 tokenDecimals = 18;
+uint256 initialTokenSupply = 1_000_000 * (10 ** 18); // 1,000,000 GSD
+address initialOwner = 0xYourPlatformWalletAddress;</p>
+<p>IDiamond(diamond).createCollateralToken(
+    tokenName,
+    tokenSymbol,
+    tokenDecimals,
+    initialTokenSupply,
+    initialOwner
+);</p>
+<p>// After creation, the new token address can be retrieved from the emitted event.
+// This new token will automatically be added to the supported collateral list
+// by the TradeDealAdminFacet due to internal integration logic.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../trade-deal-operations-facet/" class="btn btn-neutral float-left" title="Trade Deal Operations Facet"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../diamond-cut-facet/" class="btn btn-neutral float-right" title="Diamond Cut Facet">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../trade-deal-operations-facet/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../diamond-cut-facet/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

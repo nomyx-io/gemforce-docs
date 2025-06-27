@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Gemforce Team" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>Strings Lib - Gemforce Documentation</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Strings Lib";
+        var mkdocs_page_input_path = "smart-contracts/libraries/strings-lib.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../.." class="icon icon-home"> Gemforce Documentation
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../developer-setup-guide/">Developer Setup Guide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../system-architecture/gemforce-system-architecture/">System Architecture</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Smart Contracts</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../diamond/">Diamond Contract</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../diamond-factory/">Diamond Factory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../identity-factory/">Identity Factory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Facets</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/marketplace-facet/">Marketplace Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trade-deal-management-facet/">Trade Deal Management Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/carbon-credit-facet/">Carbon Credit Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/identity-registry-facet/">Identity Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trusted-issuers-registry-facet/">Trusted Issuers Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/fee-distributor-facet/">Fee Distributor Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/gemforce-minter-facet/">Gemforce Minter Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/multi-sale-facet/">Multi Sale Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/svg-templates-facet/">SVG Templates Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trade-deal-admin-facet/">Trade Deal Admin Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trade-deal-operations-facet/">Trade Deal Operations Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/collateral-token-factory-facet/">Collateral Token Factory Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/diamond-cut-facet/">Diamond Cut Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/diamond-loupe-facet/">Diamond Loupe Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/ownership-facet/">Ownership Facet</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Interfaces</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/idiamond/">IDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/imarketplace/">IMarketplace</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/itradedeal/">ITradeDeal</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/icarbon-credit/">ICarbonCredit</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ierc1155-mint/">IERC1155Mint</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ierc734/">IERC734</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ierc735/">IERC735</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ierc721a/">IERC721A</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/idiamond-factory/">IDiamondFactory</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/iidentity/">IIdentity</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/imultisale/">IMultiSale</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ifee-distributor/">IFeeDistributor</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/igemforce-minter-facet/">IGemforceMinterFacet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/iidentity-registry/">IIdentityRegistry</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/itrusted-issuers-registry/">TRUSTEDIssuersRegistry</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/isvg/">ISVG</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/iattribute/">IAttribute</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ivariable-price/">IVariablePrice</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" >Libraries</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" href="../carbon-credit-lib/">Carbon Credit Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../trade-deal-lib/">Trade Deal Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../multi-sale-lib/">Multi Sale Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../diamond-factory-lib/">Diamond Factory Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../svg-templates-lib/">SVG Templates Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../attribute-lib/">Attribute Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../variable-price-lib/">Variable Price Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../merkle-prover/">Merkle Prover</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../fee-distributor-lib/">Fee Distributor Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../lib-diamond/">LibDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../diamond-lib/">DiamondLib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../erc721a-lib/">ERC721A Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../erc721a-enumeration-lib/">ERC721A Enumeration Lib</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">Strings Lib</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#overview">Overview</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#key-features">Key Features</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#type-to-string-conversion">Type-to-String Conversion</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#string-concatenation">String Concatenation</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#hashing-and-comparison">Hashing and Comparison</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#library-definition">Library Definition</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#core-functions">Core Functions</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#tostringuint256-value">toString(uint256 value)</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#tohexstringaddress-value">toHexString(address value)</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#concatstring-a-string-b">concat(string a, string b)</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#security-considerations">Security Considerations</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#gas-costs">Gas Costs</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#data-encodingdecoding">Data Encoding/Decoding</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#best-practices">Best Practices</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#off-chain-handling">Off-chain Handling</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#concatenation-efficiency">Concatenation Efficiency</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#integration-examples">Integration Examples</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#smart-contract-usage">Smart Contract Usage</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#related-documentation">Related Documentation</a>
+    </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../trusted-issuer-lib/">Trusted Issuer Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../set-libraries/">Set Libraries</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">SDK & Libraries</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/blockchain/">Blockchain Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/diamond/">Diamond Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/contract/">Contract Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/deploy/">Deployment Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/validation-utils/">Validation Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/nft-sale-utils/">NFT Sale Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/webhooks/">Webhooks Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../metadata-lib/">Metadata Library</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Cloud Functions</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/authentication/">Authentication Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/auth-functions/">Auth Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/blockchain/">Blockchain Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/bridge/">Bridge Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/contracts/">Contract Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/deploy/">Deploy Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/dfns/">DFNS Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/project/">Project Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/trade-deal/">Trade Deal Functions</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">API Documentation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../api-documentation/gemforce-api-documentation/">Full API Reference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../api-documentation/gemforce-api-quick-reference/">Quick Reference</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-external-services/">External Services</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-system-architecture/">System Architecture</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Operations Tasks</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/diamond/">Diamond Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/identities/">Identity Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/marketplace-management/">Marketplace Management Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/carbon-credit-management/">Carbon Credit Management Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/trade-deal/">Trade Deal Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/integration-test/">Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/integration-test-marketplace/">Marketplace Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/integration-test-trade-deal/">Trade Deal Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/admin-utils/">Admin Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/sync-diamond/">Sync Diamond Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/sync-events/">Sync Events Tasks</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">EIPs (Ethereum Improvement Proposals)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Diamond-Enhanced-Marketplace/">Diamond-Enhanced Marketplace</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Multi-Token-Sale-Standard/">Multi-Token Sale Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Collateralized-Trade-Deal-Standard/">Collateralized Trade Deal Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Enhanced-Identity-System/">Enhanced Identity System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Diamond-Factory-Standard/">Diamond Factory Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Carbon-Credit-Standard/">Carbon Credit Standard</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Developer Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/development-environment-setup/">Development Environment Setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/testing-frameworks/">Testing Frameworks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/debugging/">Debugging</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/performance-optimization/">Performance Optimization</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/test-case-specifications/">Test Case Specifications</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/test-data-management/">Test Data Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/automated-testing-setup/">Automated Testing Setup</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Deployment Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../deployment-guides/multi-network-deployment/">Multi-Network Deployment</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../deployment-guides/infrastructure-management/">Infrastructure Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../deployment-guides/monitoring-logging/">Monitoring and Logging</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">User Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-administrator-guide/">Administrator Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-deployer-guide/">Deployer Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-integrator-guide/">Integrator Guide</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Integrator's Guide</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/authentication/">Authentication</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/rest-api/">REST API</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/smart-contracts/">Smart Contracts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/dfns/">DFNS Integration</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/parse-server/">Parse Server Notes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/webhooks/">Webhooks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/error-handling/">Error Handling</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/sample-code/">Sample Code</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/integration-patterns/">Integration Patterns</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/testing/">Testing Considerations</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/security/">Security</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../external-services/gemforce-external-services/">External Services</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Security</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security/threat-model/">Threat Model and Risk Assessment</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security/incident-response/">Incident Response Procedures</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security/audit-compliance/">Security Audits and Compliance</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">External Developer Integration</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/api-rate-limiting/">API Rate Limiting</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/webhook-implementation-guidelines/">Webhook Implementation Guidelines</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/sdk-development-guidelines/">SDK Development Guidelines</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/partner-integration-guides/">Partner Integration Guides</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-documentation-gap-analysis/">Documentation Gap Analysis</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../documentation-progress-summary/">Documentation Progress Summary</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../documentation-plan/">Documentation Plan</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Configuration & Environment</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/gemforce-config/">Gemforce Config</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/environment-specific-guides/">Environment-Specific Guides</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/configuration-validation/">Configuration Validation Procedures</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/external-service-config-management/">External Service Configuration Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/database-schema-overview/">Database Schema Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/database-migration-procedures/">Database Migration Procedures</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">Gemforce Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Smart Contracts</li>
+          <li class="breadcrumb-item">Libraries</li>
+      <li class="breadcrumb-item active">Strings Lib</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="stringslib-library">StringsLib Library<a class="headerlink" href="#stringslib-library" title="Permanent link">&para;</a></h1>
+<p>The <code>StringsLib</code> library provides common utility functions for string manipulation within Solidity smart contracts. While Solidity has limited built-in string capabilities, this library extends its functionality, enabling operations such as string conversion, concatenation, and more, which are essential for handling metadata, logging, and human-readable data on-chain.</p>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p><code>StringsLib</code> provides:</p>
+<ul>
+<li><strong>String Conversion</strong>: Convert various data types (integers, addresses) into their string representations.</li>
+<li><strong>String Manipulation</strong>: Basic operations like concatenation and substring handling.</li>
+<li><strong>Utility Functions</strong>: Helper functions for handling string data.</li>
+</ul>
+<h2 id="key-features">Key Features<a class="headerlink" href="#key-features" title="Permanent link">&para;</a></h2>
+<h3 id="type-to-string-conversion">Type-to-String Conversion<a class="headerlink" href="#type-to-string-conversion" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong><code>toString(uint256)</code></strong>: Convert unsigned integers to strings.</li>
+<li><strong><code>toHexString(uint256)</code></strong>: Convert unsigned integers to hexadecimal string representations.</li>
+<li><strong><code>toHexString(address)</code></strong>: Convert addresses to hexadecimal string representations.</li>
+</ul>
+<h3 id="string-concatenation">String Concatenation<a class="headerlink" href="#string-concatenation" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Provide efficient ways to combine multiple strings.</li>
+</ul>
+<h3 id="hashing-and-comparison">Hashing and Comparison<a class="headerlink" href="#hashing-and-comparison" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Though not explicit in all <code>StringsLib</code> implementations, good string libraries often include <code>keccak256</code> hashing and byte-based comparison.</li>
+</ul>
+<h2 id="library-definition">Library Definition<a class="headerlink" href="#library-definition" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span><code><span class="kt">library</span><span class="w"> </span>StringsLib<span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Convert a uint256 to its string representation</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">toString</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">value</span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>pure<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>value<span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">return</span><span class="w"> </span><span class="s2">&quot;0&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">temp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>value<span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">digits</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">while</span><span class="w"> </span><span class="p">(</span>temp<span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>digits<span class="o">++</span><span class="p">;</span>
+<span class="w">            </span>temp<span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="m m-Decimal">10</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>buffer<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="kt">bytes</span><span class="p">(</span>digits<span class="p">);</span>
+<span class="w">        </span><span class="kt">while</span><span class="w"> </span><span class="p">(</span>value<span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>digits<span class="o">--</span><span class="p">;</span>
+<span class="w">            </span>buffer<span class="p">[</span>digits<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>bytes1<span class="p">(</span><span class="kt">uint8</span><span class="p">(</span><span class="m m-Decimal">48</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="kt">uint256</span><span class="p">(</span>value<span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="m m-Decimal">10</span><span class="p">)));</span>
+<span class="w">            </span>value<span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="m m-Decimal">10</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span><span class="kt">string</span><span class="p">(</span>buffer<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Convert a bytes32 to its string representation (hexadecimal)</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">toHexString</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">value</span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>pure<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>alphabet<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0123456789abcdef&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>str<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="kt">bytes</span><span class="p">(</span><span class="m m-Decimal">64</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m m-Decimal">32</span><span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>str<span class="p">[</span>i<span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m m-Decimal">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>alphabet<span class="p">[</span><span class="kt">uint8</span><span class="p">(</span>value<span class="p">[</span>i<span class="p">]</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="m m-Decimal">4</span><span class="p">)];</span>
+<span class="w">            </span>str<span class="p">[</span>i<span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m m-Decimal">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m m-Decimal">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>alphabet<span class="p">[</span><span class="kt">uint8</span><span class="p">(</span>value<span class="p">[</span>i<span class="p">]</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mh">0x0f</span><span class="p">)];</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span><span class="kt">string</span><span class="p">(</span>str<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Convert address to its string representation (hexadecimal)</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">toHexString</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">value</span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>pure<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>alphabet<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0123456789abcdef&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>str<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="kt">bytes</span><span class="p">(</span><span class="m m-Decimal">40</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">temp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">uint256</span><span class="p">(</span>value<span class="p">);</span>
+<span class="w">        </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m m-Decimal">20</span><span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>str<span class="p">[</span><span class="m m-Decimal">39</span><span class="w"> </span><span class="o">-</span><span class="w"> </span>i<span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m m-Decimal">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>alphabet<span class="p">[</span><span class="kt">uint8</span><span class="p">(</span>temp<span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mh">0x0f</span><span class="p">)];</span>
+<span class="w">            </span>temp<span class="w"> </span><span class="o">&gt;&gt;=</span><span class="w"> </span><span class="m m-Decimal">4</span><span class="p">;</span>
+<span class="w">            </span>str<span class="p">[</span><span class="m m-Decimal">38</span><span class="w"> </span><span class="o">-</span><span class="w"> </span>i<span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m m-Decimal">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>alphabet<span class="p">[</span><span class="kt">uint8</span><span class="p">(</span>temp<span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mh">0x0f</span><span class="p">)];</span>
+<span class="w">            </span>temp<span class="w"> </span><span class="o">&gt;&gt;=</span><span class="w"> </span><span class="m m-Decimal">4</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span><span class="kt">string</span><span class="p">(</span>str<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Convert bytes to their string representation (hexadecimal)</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">toHexString</span><span class="p">(</span><span class="kt">bytes</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>value<span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>pure<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>alphabet<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0123456789abcdef&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>str<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="kt">bytes</span><span class="p">(</span>value<span class="p">.</span>length<span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m m-Decimal">2</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>value<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>str<span class="p">[</span>i<span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m m-Decimal">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>alphabet<span class="p">[</span><span class="kt">uint8</span><span class="p">(</span>value<span class="p">[</span>i<span class="p">]</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="m m-Decimal">4</span><span class="p">)];</span>
+<span class="w">            </span>str<span class="p">[</span>i<span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m m-Decimal">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m m-Decimal">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>alphabet<span class="p">[</span><span class="kt">uint8</span><span class="p">(</span>value<span class="p">[</span>i<span class="p">]</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mh">0x0f</span><span class="p">)];</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span><span class="kt">string</span><span class="p">(</span>str<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Concatenate two strings</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">concat</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>a<span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>b<span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>pure<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span><span class="kt">string</span><span class="p">(</span>abi<span class="p">.</span>encodePacked<span class="p">(</span>a<span class="p">,</span><span class="w"> </span>b<span class="p">));</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Concatenate three strings</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">concat</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>a<span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>b<span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>c<span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>pure<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span><span class="kt">string</span><span class="p">(</span>abi<span class="p">.</span>encodePacked<span class="p">(</span>a<span class="p">,</span><span class="w"> </span>b<span class="p">,</span><span class="w"> </span>c<span class="p">));</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Concatenate four strings</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">concat</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>a<span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>b<span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>c<span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>d<span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>pure<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span><span class="kt">string</span><span class="p">(</span>abi<span class="p">.</span>encodePacked<span class="p">(</span>a<span class="p">,</span><span class="w"> </span>b<span class="p">,</span><span class="w"> </span>c<span class="p">,</span><span class="w"> </span>d<span class="p">));</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Concatenate five strings</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">concat</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>a<span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>b<span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>c<span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>d<span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>e<span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>pure<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span><span class="kt">string</span><span class="p">(</span>abi<span class="p">.</span>encodePacked<span class="p">(</span>a<span class="p">,</span><span class="w"> </span>b<span class="p">,</span><span class="w"> </span>c<span class="p">,</span><span class="w"> </span>d<span class="p">,</span><span class="w"> </span>e<span class="p">));</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="core-functions">Core Functions<a class="headerlink" href="#core-functions" title="Permanent link">&para;</a></h2>
+<h3 id="tostringuint256-value">toString(uint256 value)<a class="headerlink" href="#tostringuint256-value" title="Permanent link">&para;</a></h3>
+<p>Converts a <code>uint256</code> integer to its decimal string representation. This is commonly used for generating human-readable token IDs or amounts in metadata.</p>
+<p><strong>Parameters:</strong>
+- <code>value</code>: The <code>uint256</code> integer to convert.</p>
+<p><strong>Returns:</strong>
+- <code>string</code>: The decimal string representation of the integer.</p>
+<p><strong>Usage:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">12345</span><span class="p">;</span>
+<span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>tokenIdStr<span class="w"> </span><span class="o">=</span><span class="w"> </span>StringsLib<span class="p">.</span>toString<span class="p">(</span>tokenId<span class="p">);</span><span class="w"> </span><span class="c1">// &quot;12345&quot;</span>
+</code></pre></div>
+
+<h3 id="tohexstringaddress-value">toHexString(address value)<a class="headerlink" href="#tohexstringaddress-value" title="Permanent link">&para;</a></h3>
+<p>Converts an <code>address</code> into its hexadecimal string representation without the "0x" prefix. This is useful for including addresses directly into URIs or other data fields.</p>
+<p><strong>Parameters:</strong>
+- <code>value</code>: The <code>address</code> to convert.</p>
+<p><strong>Returns:</strong>
+- <code>string</code>: The hexadecimal string representation of the address (e.g., "abcdef1234567890abcdef1234567890abcdef12").</p>
+<p><strong>Usage:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="kt">address</span><span class="w"> </span><span class="nv">ownerAddress</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x742d35Cc6634C0539Ff34f</span><span class="p">.</span><span class="w"> </span><span class="p">.</span><span class="w"> </span><span class="p">.;</span>
+<span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>ownerAddrHex<span class="w"> </span><span class="o">=</span><span class="w"> </span>StringsLib<span class="p">.</span>toHexString<span class="p">(</span>ownerAddress<span class="p">);</span>
+</code></pre></div>
+
+<h3 id="concatstring-a-string-b">concat(string a, string b)<a class="headerlink" href="#concatstring-a-string-b" title="Permanent link">&para;</a></h3>
+<p>Concatenates two strings into a single string. Overloaded versions allow concatenating up to five strings.</p>
+<p><strong>Parameters:</strong>
+- <code>a</code>, <code>b</code>, ...: The strings to concatenate.</p>
+<p><strong>Returns:</strong>
+- <code>string</code>: The combined string.</p>
+<p><strong>Usage:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>prefix<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;https://example.com/nft/&quot;</span><span class="p">;</span>
+<span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">99</span><span class="p">;</span>
+<span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>suffix<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;.json&quot;</span><span class="p">;</span>
+
+<span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>uri<span class="w"> </span><span class="o">=</span><span class="w"> </span>StringsLib<span class="p">.</span>concat<span class="p">(</span>prefix<span class="p">,</span><span class="w"> </span>StringsLib<span class="p">.</span>toString<span class="p">(</span>tokenId<span class="p">),</span><span class="w"> </span>suffix<span class="p">);</span><span class="w"> </span><span class="c1">// &quot;https://example.com/nft/99.json&quot;</span>
+</code></pre></div>
+
+<h2 id="security-considerations">Security Considerations<a class="headerlink" href="#security-considerations" title="Permanent link">&para;</a></h2>
+<h3 id="gas-costs">Gas Costs<a class="headerlink" href="#gas-costs" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>String Manipulation</strong>: String operations in Solidity, especially concatenation and conversions, are very gas-expensive. This is due to the dynamic memory allocation and copying involved. Use these functions judiciously and preferably for off-chain metadata generation or infrequent on-chain operations.</li>
+<li><strong>Memory Limits</strong>: Be mindful of the maximum string length you intend to generate. Extremely long strings can hit block gas limits.</li>
+</ul>
+<h3 id="data-encodingdecoding">Data Encoding/Decoding<a class="headerlink" href="#data-encodingdecoding" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>ABI Encoding</strong>: The <code>concat</code> functions rely on <code>abi.encodePacked</code>. While generally safe for concatenating primitive types that are already strings, be aware of how <code>abi.encodePacked</code> handles different types if you were to extend this library with more complex concatenations (e.g., it packs tightly without padding).</li>
+</ul>
+<h2 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h2>
+<h3 id="off-chain-handling">Off-chain Handling<a class="headerlink" href="#off-chain-handling" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Prefer Off-chain</strong>: For complex string formatting, especially for NFT metadata URIs or extensive logging, perform string operations off-chain and then upload the final string (or its hash/URI) to the blockchain.</li>
+<li><strong>IPFS for Metadata</strong>: Store large metadata strings (like SVG content or detailed JSON) on IPFS and only store the IPFS CID on-chain.</li>
+</ol>
+<h3 id="concatenation-efficiency">Concatenation Efficiency<a class="headerlink" href="#concatenation-efficiency" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Reduce Calls</strong>: When concatenating multiple strings, use the overloaded <code>concat</code> function with more arguments (e.g., <code>concat(a, b, c)</code>) instead of chaining binary concatenations (<code>concat(a, concat(b, c))</code>) to potentially save gas.</li>
+</ol>
+<h2 id="integration-examples">Integration Examples<a class="headerlink" href="#integration-examples" title="Permanent link">&para;</a></h2>
+<h3 id="smart-contract-usage">Smart Contract Usage<a class="headerlink" href="#smart-contract-usage" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">import</span><span class="w"> </span><span class="s2">&quot;../libraries/StringsLib.sol&quot;</span><span class="p">;</span><span class="w"> </span><span class="c1">// Adjust path as needed</span>
+
+<span class="k">contract</span><span class="w"> </span><span class="ni">MyNFTMetadata</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>using<span class="w"> </span>StringsLib<span class="w"> </span><span class="kt">for</span><span class="w"> </span><span class="kt">uint256</span><span class="p">;</span>
+<span class="w">    </span>using<span class="w"> </span>StringsLib<span class="w"> </span><span class="kt">for</span><span class="w"> </span><span class="kt">address</span><span class="p">;</span>
+<span class="w">    </span>using<span class="w"> </span>StringsLib<span class="w"> </span><span class="kt">for</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span><span class="w"> </span><span class="c1">// For concat</span>
+
+<span class="w">    </span><span class="kt">string</span><span class="w"> </span><span class="k">public </span><span class="nv">baseURI</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;ipfs://QmbP123abcDEF/&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">string</span><span class="w"> </span><span class="k">public </span><span class="nv">constant</span><span class="w"> </span>JSON_SUFFIX<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;.json&quot;</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">tokenURI</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>StringsLib<span class="p">.</span>concat<span class="p">(</span>baseURI<span class="p">,</span><span class="w"> </span>tokenId<span class="p">.</span>toString<span class="p">(),</span><span class="w"> </span>JSON_SUFFIX<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">createLogEntry</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">user</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">amount</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>userHex<span class="w"> </span><span class="o">=</span><span class="w"> </span>user<span class="p">.</span>toHexString<span class="p">();</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>amountStr<span class="w"> </span><span class="o">=</span><span class="w"> </span>amount<span class="p">.</span>toString<span class="p">();</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>StringsLib<span class="p">.</span>concat<span class="p">(</span><span class="s2">&quot;User &quot;</span><span class="p">,</span><span class="w"> </span>userHex<span class="p">,</span><span class="w"> </span><span class="s2">&quot; minted &quot;</span><span class="p">,</span><span class="w"> </span>amountStr<span class="p">,</span><span class="w"> </span><span class="s2">&quot; tokens.&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="related-documentation">Related Documentation<a class="headerlink" href="#related-documentation" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://docs.soliditylang.org/en/latest/abi-spec.html">Solidity ABI Encoding and Decoding</a></li>
+<li><a href="../../interfaces/igemforce-minter-facet/">Gemforce Minter Facet</a> (uses <code>StringsLib</code> for URIs)</li>
+<li><a href="../svg-templates-lib/">SVG Templates Library</a> (can use <code>StringsLib</code> for SVG composition)</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../erc721a-enumeration-lib/" class="btn btn-neutral float-left" title="ERC721A Enumeration Lib"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../trusted-issuer-lib/" class="btn btn-neutral float-right" title="Trusted Issuer Lib">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../erc721a-enumeration-lib/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../trusted-issuer-lib/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

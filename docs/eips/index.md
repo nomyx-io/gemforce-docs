@@ -161,7 +161,6 @@ These EIPs build upon and extend existing Ethereum standards:
    - **Environmental Assets**: [Carbon Credit Standard](EIP-DRAFT-Carbon-Credit-Standard.md)
 
 ### For Integrators
-1. Review the [README](README.md) for a comprehensive overview
 2. Examine the interface specifications in each EIP
 3. Check security considerations and implementation notes
 4. Review test case requirements for compliance

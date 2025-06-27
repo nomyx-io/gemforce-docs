@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Gemforce Team" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Monitoring and Logging - Gemforce Documentation</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Monitoring and Logging";
+        var mkdocs_page_input_path = "deployment-guides/monitoring-logging.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Gemforce Documentation
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../developer-setup-guide/">Developer Setup Guide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../system-architecture/gemforce-system-architecture/">System Architecture</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Smart Contracts</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../smart-contracts/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../smart-contracts/diamond/">Diamond Contract</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../smart-contracts/diamond-factory/">Diamond Factory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../smart-contracts/identity-factory/">Identity Factory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Facets</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/marketplace-facet/">Marketplace Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/trade-deal-management-facet/">Trade Deal Management Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/carbon-credit-facet/">Carbon Credit Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/identity-registry-facet/">Identity Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/trusted-issuers-registry-facet/">Trusted Issuers Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/fee-distributor-facet/">Fee Distributor Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/gemforce-minter-facet/">Gemforce Minter Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/multi-sale-facet/">Multi Sale Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/svg-templates-facet/">SVG Templates Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/trade-deal-admin-facet/">Trade Deal Admin Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/trade-deal-operations-facet/">Trade Deal Operations Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/collateral-token-factory-facet/">Collateral Token Factory Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/diamond-cut-facet/">Diamond Cut Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/diamond-loupe-facet/">Diamond Loupe Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/ownership-facet/">Ownership Facet</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Interfaces</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/idiamond/">IDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/imarketplace/">IMarketplace</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/itradedeal/">ITradeDeal</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/icarbon-credit/">ICarbonCredit</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/ierc1155-mint/">IERC1155Mint</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/ierc734/">IERC734</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/ierc735/">IERC735</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/ierc721a/">IERC721A</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/idiamond-factory/">IDiamondFactory</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/iidentity/">IIdentity</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/imultisale/">IMultiSale</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/ifee-distributor/">IFeeDistributor</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/igemforce-minter-facet/">IGemforceMinterFacet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/iidentity-registry/">IIdentityRegistry</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/itrusted-issuers-registry/">TRUSTEDIssuersRegistry</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/isvg/">ISVG</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/iattribute/">IAttribute</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/ivariable-price/">IVariablePrice</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Libraries</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/carbon-credit-lib/">Carbon Credit Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/trade-deal-lib/">Trade Deal Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/multi-sale-lib/">Multi Sale Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/diamond-factory-lib/">Diamond Factory Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/svg-templates-lib/">SVG Templates Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/attribute-lib/">Attribute Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/variable-price-lib/">Variable Price Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/merkle-prover/">Merkle Prover</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/fee-distributor-lib/">Fee Distributor Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/lib-diamond/">LibDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/diamond-lib/">DiamondLib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/erc721a-lib/">ERC721A Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/erc721a-enumeration-lib/">ERC721A Enumeration Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/strings-lib/">Strings Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/trusted-issuer-lib/">Trusted Issuer Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/set-libraries/">Set Libraries</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">SDK & Libraries</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../sdk-libraries/blockchain/">Blockchain Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../sdk-libraries/diamond/">Diamond Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../sdk-libraries/contract/">Contract Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../sdk-libraries/deploy/">Deployment Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../sdk-libraries/validation-utils/">Validation Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../sdk-libraries/nft-sale-utils/">NFT Sale Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../sdk-libraries/webhooks/">Webhooks Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../smart-contracts/libraries/metadata-lib/">Metadata Library</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Cloud Functions</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/authentication/">Authentication Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/auth-functions/">Auth Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/blockchain/">Blockchain Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/bridge/">Bridge Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/contracts/">Contract Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/deploy/">Deploy Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/dfns/">DFNS Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/project/">Project Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/trade-deal/">Trade Deal Functions</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">API Documentation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api-documentation/gemforce-api-documentation/">Full API Reference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api-documentation/gemforce-api-quick-reference/">Quick Reference</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../gemforce-external-services/">External Services</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../gemforce-system-architecture/">System Architecture</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Operations Tasks</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/diamond/">Diamond Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/identities/">Identity Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/marketplace-management/">Marketplace Management Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/carbon-credit-management/">Carbon Credit Management Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/trade-deal/">Trade Deal Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/integration-test/">Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/integration-test-marketplace/">Marketplace Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/integration-test-trade-deal/">Trade Deal Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/admin-utils/">Admin Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/sync-diamond/">Sync Diamond Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/sync-events/">Sync Events Tasks</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">EIPs (Ethereum Improvement Proposals)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../eips/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../eips/EIP-DRAFT-Diamond-Enhanced-Marketplace/">Diamond-Enhanced Marketplace</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../eips/EIP-DRAFT-Multi-Token-Sale-Standard/">Multi-Token Sale Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../eips/EIP-DRAFT-Collateralized-Trade-Deal-Standard/">Collateralized Trade Deal Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../eips/EIP-DRAFT-Enhanced-Identity-System/">Enhanced Identity System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../eips/EIP-DRAFT-Diamond-Factory-Standard/">Diamond Factory Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../eips/EIP-DRAFT-Carbon-Credit-Standard/">Carbon Credit Standard</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Developer Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../developer-guides/development-environment-setup/">Development Environment Setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../developer-guides/testing-frameworks/">Testing Frameworks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../developer-guides/debugging/">Debugging</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../developer-guides/performance-optimization/">Performance Optimization</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../developer-guides/test-case-specifications/">Test Case Specifications</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../developer-guides/test-data-management/">Test Data Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../developer-guides/automated-testing-setup/">Automated Testing Setup</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Deployment Guides</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../multi-network-deployment/">Multi-Network Deployment</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../infrastructure-management/">Infrastructure Management</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Monitoring and Logging</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#1-log-management">1. Log Management</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#best-practices">Best Practices</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2-metrics-and-performance-monitoring">2. Metrics and Performance Monitoring</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#best-practices_1">Best Practices</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#3-dashboarding">3. Dashboarding</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#best-practices_2">Best Practices</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#4-alerting">4. Alerting</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#best-practices_3">Best Practices</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#5-blockchain-event-monitoring">5. Blockchain Event Monitoring</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#best-practices_4">Best Practices</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#related-documentation">Related Documentation</a>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">User Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../gemforce-administrator-guide/">Administrator Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../gemforce-deployer-guide/">Deployer Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../gemforce-integrator-guide/">Integrator Guide</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Integrator's Guide</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrator-guide/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrator-guide/authentication/">Authentication</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrator-guide/rest-api/">REST API</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrator-guide/smart-contracts/">Smart Contracts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrator-guide/dfns/">DFNS Integration</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrator-guide/parse-server/">Parse Server Notes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrator-guide/webhooks/">Webhooks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrator-guide/error-handling/">Error Handling</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrator-guide/sample-code/">Sample Code</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrator-guide/integration-patterns/">Integration Patterns</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrator-guide/testing/">Testing Considerations</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrator-guide/security/">Security</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../external-services/gemforce-external-services/">External Services</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Security</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../security/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../security/threat-model/">Threat Model and Risk Assessment</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../security/incident-response/">Incident Response Procedures</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../security/audit-compliance/">Security Audits and Compliance</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">External Developer Integration</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../external-developer-integration/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../external-developer-integration/api-rate-limiting/">API Rate Limiting</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../external-developer-integration/webhook-implementation-guidelines/">Webhook Implementation Guidelines</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../external-developer-integration/sdk-development-guidelines/">SDK Development Guidelines</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../external-developer-integration/partner-integration-guides/">Partner Integration Guides</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../gemforce-documentation-gap-analysis/">Documentation Gap Analysis</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../documentation-progress-summary/">Documentation Progress Summary</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../documentation-plan/">Documentation Plan</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Configuration & Environment</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../configuration-environment/gemforce-config/">Gemforce Config</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../configuration-environment/environment-specific-guides/">Environment-Specific Guides</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../configuration-environment/configuration-validation/">Configuration Validation Procedures</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../configuration-environment/external-service-config-management/">External Service Configuration Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../configuration-environment/database-schema-overview/">Database Schema Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../configuration-environment/database-migration-procedures/">Database Migration Procedures</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Gemforce Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Deployment Guides</li>
+      <li class="breadcrumb-item active">Monitoring and Logging</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="deployment-guides-monitoring-and-logging">Deployment Guides: Monitoring and Logging<a class="headerlink" href="#deployment-guides-monitoring-and-logging" title="Permanent link">&para;</a></h1>
+<p>Effective monitoring and logging are essential for maintaining the health, performance, and security of your Gemforce-powered applications in production. This guide outlines strategies for collecting, analyzing, and acting upon operational data from your smart contracts, cloud functions, and underlying infrastructure.</p>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>A comprehensive monitoring and logging strategy involves:</p>
+<ul>
+<li><strong>Log Collection</strong>: Centralizing logs from all application components.</li>
+<li><strong>Metric Collection</strong>: Gathering performance and health metrics.</li>
+<li><strong>Dashboarding</strong>: Visualizing key metrics and trends.</li>
+<li><strong>Alerting</strong>: Notifying teams of critical issues.</li>
+<li><strong>Event Monitoring</strong>: Tracking on-chain activities.</li>
+</ul>
+<h2 id="1-log-management">1. Log Management<a class="headerlink" href="#1-log-management" title="Permanent link">&para;</a></h2>
+<p>Logs provide detailed records of events and operations within your application and infrastructure.</p>
+<h3 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Centralized Logging</strong>: Consolidate logs from all sources (Parse Server, Cloud Functions, smart contract listeners, web servers, databases) into a centralized logging platform (e.g., ELK Stack - Elasticsearch, Logstash, Kibana; Splunk; Datadog; Sumo Logic; AWS CloudWatch Logs).</li>
+<li><strong>Structured Logging</strong>: Output logs in a structured format (e.g., JSON) to make them easily parsable and queryable.
+    <code>json
+    {
+      "timestamp": "2025-06-26T10:00:00Z",
+      "level": "INFO",
+      "service": "cloud-function-user-auth",
+      "functionName": "login",
+      "userId": "user123_parse_id",
+      "message": "User logged in successfully",
+      "ipAddress": "192.168.1.100",
+      "durationMs": 50
+    }</code></li>
+<li><strong>Logging Levels</strong>: Use appropriate logging levels (DEBUG, INFO, WARN, ERROR, FATAL) and adjust them for production environments to reduce noise and overhead (e.g., typically INFO or WARN for production).</li>
+<li><strong>Contextual Logging</strong>: Include relevant contextual information in your logs (e.g., <code>userId</code>, <code>transactionId</code>, <code>requestId</code>) to make debugging easier.</li>
+<li><strong>Sensitive Data Redaction</strong>: <strong>Never log sensitive information</strong> (private keys, API keys, personal identifiable information like raw passwords). Redact or mask such data before logging.</li>
+<li><strong>Log Retention</strong>: Define and enforce log retention policies based on compliance requirements and debugging needs.</li>
+</ul>
+<h2 id="2-metrics-and-performance-monitoring">2. Metrics and Performance Monitoring<a class="headerlink" href="#2-metrics-and-performance-monitoring" title="Permanent link">&para;</a></h2>
+<p>Metrics provide quantifiable data points about the behavior and performance of your system.</p>
+<h3 id="best-practices_1">Best Practices<a class="headerlink" href="#best-practices_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Key Performance Indicators (KPIs)</strong>: Define KPIs for each layer:<ul>
+<li><strong>Backend/Cloud Functions</strong>: API response times (latency), request rates, error rates, CPU/memory utilization, concurrent users, Cloud Function execution duration, database query performance.</li>
+<li><strong>Smart Contracts</strong>: Gas costs per transaction, transaction confirmation times, transaction volume, active users per contract, event emission rates.</li>
+<li><strong>Infrastructure</strong>: Server health (CPU, RAM, disk I/O, network throughput), database connections, network latency.</li>
+</ul>
+</li>
+<li><strong>Monitoring Tools</strong>: Utilize dedicated monitoring platforms (e.g., Prometheus/Grafana, Datadog, New Relic, AWS CloudWatch, Google Cloud Monitoring).</li>
+<li><strong>Custom Metrics</strong>: Instrument your Cloud Functions and backend code to emit custom metrics for business-specific logic or critical workflows.</li>
+<li><strong>Distributed Tracing</strong>: For complex microservices architectures, implement distributed tracing (e.g., OpenTelemetry, Jaeger, Zipkin) to visualize the flow of requests across multiple services.</li>
+<li><strong>Uptime Monitoring</strong>: External tools to ensure your public endpoints are always reachable.</li>
+</ul>
+<h2 id="3-dashboarding">3. Dashboarding<a class="headerlink" href="#3-dashboarding" title="Permanent link">&para;</a></h2>
+<p>Dashboards provide a visual overview of your system's health and performance.</p>
+<h3 id="best-practices_2">Best Practices<a class="headerlink" href="#best-practices_2" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Role-Based Dashboards</strong>: Create specialized dashboards for different teams (e.g., operations, developers, business analysts), showing metrics relevant to their roles.</li>
+<li><strong>Real-time &amp; Historical</strong>: Combine real-time data for immediate issue detection with historical trends for capacity planning and root cause analysis.</li>
+<li><strong>Key Metrics First</strong>: Prioritize the most critical KPIs prominently.</li>
+<li><strong>Alerting Integration</strong>: Link dashboard visualizations directly to your alerting system.</li>
+</ul>
+<h2 id="4-alerting">4. Alerting<a class="headerlink" href="#4-alerting" title="Permanent link">&para;</a></h2>
+<p>Alerts notify personnel when critical events or thresholds are crossed, enabling rapid response to issues.</p>
+<h3 id="best-practices_3">Best Practices<a class="headerlink" href="#best-practices_3" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Define Clear Thresholds</strong>: Set actionable thresholds for metrics (e.g., "error rate &gt; 5% for 5 minutes").</li>
+<li><strong>Actionable Alerts</strong>: Ensure alerts contain sufficient context (what, where, when, why) to enable quick diagnosis and resolution.</li>
+<li><strong>Severity Levels</strong>: Categorize alerts by severity (e.g., informational, warning, critical) and configure notification channels accordingly (e.g., Slack, email, PagerDuty).</li>
+<li><strong>Avoid Alert Fatigue</strong>: Too many alerts lead to ignored alerts. Focus on alerting for actual problems, not symptoms. Use alert deduplication and suppress non-critical noisy alerts.</li>
+<li><strong>Runbooks</strong>: Link alerts to runbooks or troubleshooting guides that provide step-by-step instructions for resolving common issues.</li>
+<li><strong>Test Alerts</strong>: Periodically test your alerting system to ensure it functions correctly.</li>
+</ul>
+<h2 id="5-blockchain-event-monitoring">5. Blockchain Event Monitoring<a class="headerlink" href="#5-blockchain-event-monitoring" title="Permanent link">&para;</a></h2>
+<p>Beyond traditional infrastructure, monitoring on-chain events is crucial for Gemforce applications.</p>
+<h3 id="best-practices_4">Best Practices<a class="headerlink" href="#best-practices_4" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Event Listeners</strong>: Deploy dedicated services that listen for smart contract events (e.g., <code>ItemListed</code>, <code>TradeDealCreated</code>, <code>DiamondCut</code>, <code>Transfer</code>).</li>
+<li><strong>Event Indexing</strong>: Store processed events in your Parse Server database or a dedicated data warehouse for querying and analysis.</li>
+<li><strong>Tools</strong>: Utilize services like The Graph, Dune Analytics, or roll your own event indexing service using tools like <code>ethers.js</code> or <code>web3.js</code> connected to an RPC provider.</li>
+<li><strong>Fraud Detection</strong>: Monitor event streams for unusual patterns or anomalies that might indicate fraudulent activity.</li>
+</ul>
+<h2 id="related-documentation">Related Documentation<a class="headerlink" href="#related-documentation" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../infrastructure-management/">Deployment Guides: Infrastructure Management</a></li>
+<li><a href="../../integrator-guide/webhooks/">Integrator's Guide: Webhooks</a></li>
+<li><a href="../../integrator-guide/error-handling/">Integrator's Guide: Error Handling</a></li>
+<li><a href="https://docs.parseplatform.org/parse-server/guide/#logging">Parse Server Logging Configuration</a> (External)</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../infrastructure-management/" class="btn btn-neutral float-left" title="Infrastructure Management"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../gemforce-administrator-guide/" class="btn btn-neutral float-right" title="Administrator Guide">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../infrastructure-management/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../gemforce-administrator-guide/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

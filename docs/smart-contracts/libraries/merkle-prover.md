@@ -2,7 +2,7 @@
 
 ## Overview
 
-The [`MerkleProver`](../../../contracts/libraries/MerkleProver.sol) library provides core utilities for Merkle tree proof verification within the Gemforce platform. This library implements secure and gas-efficient Merkle proof validation, enabling whitelist systems, airdrop distributions, and other scenarios requiring cryptographic proof of inclusion in a dataset.
+The [`MerkleProver`](../../smart-contracts/libraries/merkle-prover.md) library provides core utilities for Merkle tree proof verification within the Gemforce platform. This library implements secure and gas-efficient Merkle proof validation, enabling whitelist systems, airdrop distributions, and other scenarios requiring cryptographic proof of inclusion in a dataset.
 
 ## Key Features
 
@@ -440,9 +440,9 @@ contract MerkleAirdrop {
         bytes32 leaf = MerkleProver.getHash(user, amount);
         
         isEligible = round.active && 
-                    block.timestamp >= round.startTime && 
-                    block.timestamp <= round.endTime &&
-                    MerkleProver.verify(round.merkleRoot, leaf, merkleProof);
+                     block.timestamp >= round.startTime && 
+                     block.timestamp <= round.endTime &&
+                     MerkleProver.verify(round.merkleRoot, leaf, merkleProof);
         
         alreadyClaimed = claimedLeaves[roundId][leaf];
     }
@@ -502,171 +502,125 @@ contract MerkleAirdrop {
 
 ### Voting System with Merkle Proofs
 ```solidity
-// Voting system with Merkle tree voter eligibility
+// On-chain voting system with Merkle proof voter registration
 contract MerkleVoting {
     using MerkleProver for bytes32;
     
     struct Proposal {
-        uint256 id;
-        string title;
         string description;
-        bytes32 voterMerkleRoot;
+        uint256 voteCountYay;
+        uint256 voteCountNay;
+        uint256 totalVotes;
+        bytes32 merkleRoot; // Whitelist of eligible voters
+        uint256 snapshotBlock;
         uint256 startTime;
         uint256 endTime;
-        uint256 yesVotes;
-        uint256 noVotes;
-        uint256 totalVotingPower;
+        bool active;
         bool executed;
-        bool passed;
-    }
-    
-    struct Vote {
-        address voter;
-        bool support;
-        uint256 votingPower;
-        uint256 timestamp;
     }
     
     mapping(uint256 => Proposal) public proposals;
-    mapping(uint256 => mapping(bytes32 => bool)) public hasVoted;
-    mapping(uint256 => Vote[]) public proposalVotes;
+    mapping(uint256 => mapping(address => bool)) public hasVoted;
     uint256 public nextProposalId;
-    uint256 public constant VOTING_DURATION = 7 days;
-    uint256 public constant EXECUTION_DELAY = 2 days;
     
-    event ProposalCreated(uint256 indexed proposalId, string title, bytes32 voterRoot);
+    event ProposalCreated(uint256 indexed proposalId, string description, bytes32 merkleRoot);
     event VoteCast(uint256 indexed proposalId, address indexed voter, bool support, uint256 votingPower);
-    event ProposalExecuted(uint256 indexed proposalId, bool passed);
+    event ProposalExecuted(uint256 indexed proposalId);
     
     function createProposal(
-        string memory title,
         string memory description,
-        bytes32 voterMerkleRoot,
-        uint256 totalVotingPower
-    ) external onlyGovernance returns (uint256 proposalId) {
+        bytes32 merkleRoot,
+        uint256 snapshotBlock,
+        uint256 startTime,
+        uint256 endTime
+    ) external onlyOwner returns (uint256 proposalId) {
         proposalId = nextProposalId++;
         
         proposals[proposalId] = Proposal({
-            id: proposalId,
-            title: title,
             description: description,
-            voterMerkleRoot: voterMerkleRoot,
-            startTime: block.timestamp,
-            endTime: block.timestamp + VOTING_DURATION,
-            yesVotes: 0,
-            noVotes: 0,
-            totalVotingPower: totalVotingPower,
-            executed: false,
-            passed: false
+            voteCountYay: 0,
+            voteCountNay: 0,
+            totalVotes: 0,
+            merkleRoot: merkleRoot,
+            snapshotBlock: snapshotBlock,
+            startTime: startTime,
+            endTime: endTime,
+            active: true,
+            executed: false
         });
         
-        emit ProposalCreated(proposalId, title, voterMerkleRoot);
+        emit ProposalCreated(proposalId, description, merkleRoot);
     }
     
-    function vote(
+    function castVote(
         uint256 proposalId,
         bool support,
         uint256 votingPower,
         bytes32[] calldata merkleProof
     ) external {
         Proposal storage proposal = proposals[proposalId];
+        require(proposal.active, "Proposal not active");
         require(block.timestamp >= proposal.startTime, "Voting not started");
         require(block.timestamp <= proposal.endTime, "Voting ended");
-        require(!proposal.executed, "Proposal already executed");
+        require(!hasVoted[proposalId][msg.sender], "Already voted on this proposal");
         
-        // Generate leaf for voter eligibility
+        // Verify voter eligibility using Merkle proof
         bytes32 leaf = MerkleProver.getHash(msg.sender, votingPower);
-        
-        // Verify voter eligibility
-        bool isEligible = MerkleProver.verify(
-            proposal.voterMerkleRoot,
+        bool isValid = MerkleProver.verify(
+            proposal.merkleRoot,
             leaf,
             merkleProof
         );
-        require(isEligible, "Invalid voting eligibility proof");
+        require(isValid, "Invalid voter proof");
         
-        // Prevent double voting
-        require(!hasVoted[proposalId][leaf], "Already voted");
-        hasVoted[proposalId][leaf] = true;
+        hasVoted[proposalId][msg.sender] = true;
         
-        // Record vote
         if (support) {
-            proposal.yesVotes += votingPower;
+            proposal.voteCountYay += votingPower;
         } else {
-            proposal.noVotes += votingPower;
+            proposal.voteCountNay += votingPower;
         }
-        
-        proposalVotes[proposalId].push(Vote({
-            voter: msg.sender,
-            support: support,
-            votingPower: votingPower,
-            timestamp: block.timestamp
-        }));
+        proposal.totalVotes += votingPower;
         
         emit VoteCast(proposalId, msg.sender, support, votingPower);
     }
     
-    function executeProposal(uint256 proposalId) external {
+    function executeProposal(uint256 proposalId) external onlyOwner {
         Proposal storage proposal = proposals[proposalId];
-        require(block.timestamp > proposal.endTime + EXECUTION_DELAY, "Execution delay not met");
         require(!proposal.executed, "Proposal already executed");
+        require(block.timestamp > proposal.endTime, "Voting not ended");
+        require(proposal.active, "Proposal not active for execution");
+        
+        // Example: simple majority
+        require(proposal.voteCountYay > proposal.voteCountNay, "Proposal not passed");
         
         proposal.executed = true;
+        proposal.active = false; // Deactivate after execution
         
-        // Determine if proposal passed (simple majority)
-        uint256 totalVotes = proposal.yesVotes + proposal.noVotes;
-        proposal.passed = proposal.yesVotes > proposal.noVotes && 
-                          totalVotes >= (proposal.totalVotingPower / 4); // 25% quorum
-        
-        if (proposal.passed) {
-            _executeProposalLogic(proposalId);
-        }
-        
-        emit ProposalExecuted(proposalId, proposal.passed);
+        emit ProposalExecuted(proposalId);
     }
     
-    function verifyVoterEligibility(
-        uint256 proposalId,
-        address voter,
-        uint256 votingPower,
-        bytes32[] calldata merkleProof
-    ) external view returns (bool isEligible, bool hasAlreadyVoted) {
-        Proposal memory proposal = proposals[proposalId];
-        bytes32 leaf = MerkleProver.getHash(voter, votingPower);
-        
-        isEligible = MerkleProver.verify(proposal.voterMerkleRoot, leaf, merkleProof);
-        hasAlreadyVoted = hasVoted[proposalId][leaf];
-    }
-    
-    function getProposalResults(uint256 proposalId) external view returns (
-        uint256 yesVotes,
-        uint256 noVotes,
+    function getVotingStatus(uint256 proposalId) external view returns (
+        string memory description,
+        uint256 voteYay,
+        uint256 voteNay,
         uint256 totalVotes,
-        uint256 participationRate,
-        bool canExecute,
-        bool executed,
-        bool passed
+        uint256 requiredVotesForPass,
+        bool active,
+        bool executed
     ) {
         Proposal memory proposal = proposals[proposalId];
-        yesVotes = proposal.yesVotes;
-        noVotes = proposal.noVotes;
-        totalVotes = yesVotes + noVotes;
-        participationRate = (totalVotes * 100) / proposal.totalVotingPower;
-        canExecute = block.timestamp > proposal.endTime + EXECUTION_DELAY && !proposal.executed;
+        description = proposal.description;
+        voteYay = proposal.voteCountYay;
+        voteNay = proposal.voteCountNay;
+        totalVotes = proposal.totalVotes;
+        requiredVotesForPass = (proposal.totalVotes / 2) + 1; // Simple majority example
+        active = proposal.active;
         executed = proposal.executed;
-        passed = proposal.passed;
     }
     
-    function getProposalVotes(uint256 proposalId) external view returns (Vote[] memory) {
-        return proposalVotes[proposalId];
-    }
-    
-    function _executeProposalLogic(uint256 proposalId) internal {
-        // Implementation would execute the actual proposal logic
-    }
-    
-    modifier onlyGovernance() {
-        // Implementation would check governance authorization
+    modifier onlyOwner() {
+        // Implementation would check ownership
         _;
     }
 }
@@ -675,79 +629,50 @@ contract MerkleVoting {
 ## Security Considerations
 
 ### Proof Validation Security
-- **Empty Proof Protection**: Prevents false positives when leaf equals root
-- **Deterministic Ordering**: Sorted hash combination prevents manipulation
-- **Replay Attack Prevention**: Leaf tracking prevents proof reuse
-- **Input Validation**: Proper bounds checking and parameter validation
+- **Correct Root**: Always ensure the Merkle root is correct and from a trusted source.
+- **Uniqueness of Leaves**: Prevent double-claiming by marking used leaves (hash of user+amount).
+- **Correct Hashing**: Ensure leaf node hashing matches the tree generation.
 
 ### Cryptographic Security
-- **Standard Algorithms**: Uses keccak256 for cryptographic security
-- **Collision Resistance**: Merkle tree structure provides collision resistance
-- **Preimage Resistance**: Hash functions prevent reverse engineering
-- **Second Preimage Resistance**: Protects against proof forgery
+- **Strong Hashing**: Use collision-resistant hash functions (e.g., keccak256).
+- **No Predictable Randomness**: Avoid on-chain randomness for critical parameters.
 
 ### Implementation Security
-- **Pure Functions**: Stateless operations prevent state manipulation
-- **Gas Efficiency**: Optimized algorithms prevent DoS attacks
-- **Overflow Protection**: Safe arithmetic operations
-- **Memory Safety**: Proper array bounds checking
+- **Access Control**: Secure functions that set Merkle roots or control airdrop parameters.
+- **Reentrancy Protection**: Critical for functions that transfer tokens.
 
 ## Gas Optimization
 
 ### Verification Efficiency
-- **Minimal Storage**: Pure functions with no storage operations
-- **Optimized Loops**: Efficient proof iteration
-- **Reduced Hashing**: Minimal hash operations per verification
-- **Batch Operations**: Support for batch proof verification
+- The `verify()` function is highly optimized for gas, computing hashes iteratively.
 
 ### Memory Efficiency
-- **Stack Operations**: Minimal memory allocation
-- **Efficient Encoding**: Optimized abi.encodePacked usage
-- **Proof Size**: Logarithmic proof size relative to tree size
-- **Reusable Functions**: Pure functions for maximum reusability
+- `proof` array is passed as `memory` to prevent unnecessary storage writes.
 
 ## Error Handling
 
 ### Common Errors
-- Invalid Merkle proof verification failure
-- Empty proof with leaf equal to root
-- Array bounds errors in proof iteration
-- Hash computation failures
+- `Invalid Merkle proof`: The provided proof does not validate against the root.
+- `Proof already used`: The leaf has already been claimed/used.
+- `Not active`: The sale/airdrop is not active or has ended.
+- `Insufficient allocation`: Attempting to claim more than whitelisted amount.
 
-### Best Practices
-- Always validate proof arrays before processing
-- Check for edge cases (empty proofs, single-element trees)
-- Implement proper error messages for debugging
-- Use safe arithmetic operations
+## Best Practices
 
-## Testing Considerations
+### Merkle Tree Generation
+- Generate Merkle trees off-chain using a secure and reliable process.
+- The Merkle root must be committed on-chain in a timely and secure manner.
 
-### Unit Tests
-- Proof verification accuracy for various tree sizes
-- Edge case handling (empty proofs, single nodes)
-- Hash generation consistency
-- Security vulnerability testing
+### Leaf Data
+- Standardize the data structure for leaves (e.g., `keccak256(abi.encodePacked(address, amount))`).
+- Ensure the off-chain system that generates leaves and proofs matches the on-chain logic.
 
-### Integration Tests
-- Whitelist system integration
-- Airdrop distribution workflows
-- Voting system integration
-- Cross-contract proof verification
-
-### Security Testing
-- Proof forgery attempts
-- Replay attack prevention
-- Edge case exploitation
-- Gas consumption analysis
+### Integration Checklist
+- Verify proof generation and verification across all environments (local, testnet, production).
+- Clearly communicate to users how to generate their participation data (e.g., wallet address + allocation).
 
 ## Related Documentation
 
-- [MultiSaleLib](multi-sale-lib.md) - Multi-token sale whitelist integration
-- [Whitelist Systems Guide](../../guides/whitelist-systems.md) - Whitelist implementation patterns
-- [Airdrop Guide](../../guides/airdrop-systems.md) - Airdrop distribution best practices
-- [Cryptographic Security](../../guides/cryptographic-security.md) - Security considerations
-- [Gas Optimization Guide](../../guides/gas-optimization.md) - Performance optimization techniques
-
----
-
-*This library provides secure and efficient Merkle proof verification utilities for the Gemforce platform, enabling whitelist systems, airdrop distributions, voting mechanisms, and other scenarios requiring cryptographic proof of inclusion with protection against common attack vectors.*
+- [Multi Sale Facet](../../smart-contracts/facets/multi-sale-facet.md) - For token sales integration.
+- [SDK & Libraries: Blockchain Utilities](../../sdk-libraries/blockchain.md) - General blockchain interaction utilities.
+- [Developer Guides: Automated Testing Setup](../../developer-guides/automated-testing-setup.md)

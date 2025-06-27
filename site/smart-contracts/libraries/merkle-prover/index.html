@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Gemforce Team" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>Merkle Prover - Gemforce Documentation</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Merkle Prover";
+        var mkdocs_page_input_path = "smart-contracts/libraries/merkle-prover.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../.." class="icon icon-home"> Gemforce Documentation
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../developer-setup-guide/">Developer Setup Guide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../system-architecture/gemforce-system-architecture/">System Architecture</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Smart Contracts</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../diamond/">Diamond Contract</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../diamond-factory/">Diamond Factory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../identity-factory/">Identity Factory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Facets</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/marketplace-facet/">Marketplace Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trade-deal-management-facet/">Trade Deal Management Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/carbon-credit-facet/">Carbon Credit Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/identity-registry-facet/">Identity Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trusted-issuers-registry-facet/">Trusted Issuers Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/fee-distributor-facet/">Fee Distributor Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/gemforce-minter-facet/">Gemforce Minter Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/multi-sale-facet/">Multi Sale Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/svg-templates-facet/">SVG Templates Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trade-deal-admin-facet/">Trade Deal Admin Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trade-deal-operations-facet/">Trade Deal Operations Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/collateral-token-factory-facet/">Collateral Token Factory Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/diamond-cut-facet/">Diamond Cut Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/diamond-loupe-facet/">Diamond Loupe Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/ownership-facet/">Ownership Facet</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Interfaces</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/idiamond/">IDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/imarketplace/">IMarketplace</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/itradedeal/">ITradeDeal</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/icarbon-credit/">ICarbonCredit</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ierc1155-mint/">IERC1155Mint</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ierc734/">IERC734</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ierc735/">IERC735</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ierc721a/">IERC721A</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/idiamond-factory/">IDiamondFactory</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/iidentity/">IIdentity</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/imultisale/">IMultiSale</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ifee-distributor/">IFeeDistributor</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/igemforce-minter-facet/">IGemforceMinterFacet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/iidentity-registry/">IIdentityRegistry</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/itrusted-issuers-registry/">TRUSTEDIssuersRegistry</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/isvg/">ISVG</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/iattribute/">IAttribute</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ivariable-price/">IVariablePrice</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" >Libraries</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" href="../carbon-credit-lib/">Carbon Credit Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../trade-deal-lib/">Trade Deal Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../multi-sale-lib/">Multi Sale Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../diamond-factory-lib/">Diamond Factory Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../svg-templates-lib/">SVG Templates Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../attribute-lib/">Attribute Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../variable-price-lib/">Variable Price Lib</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">Merkle Prover</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#overview">Overview</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#key-features">Key Features</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#library-definition">Library Definition</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#core-functions">Core Functions</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#proof-verification">Proof Verification</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#leaf-generation">Leaf Generation</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#integration-examples">Integration Examples</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#whitelist-token-sale">Whitelist Token Sale</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#airdrop-distribution-system">Airdrop Distribution System</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#voting-system-with-merkle-proofs">Voting System with Merkle Proofs</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#security-considerations">Security Considerations</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#proof-validation-security">Proof Validation Security</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#cryptographic-security">Cryptographic Security</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#implementation-security">Implementation Security</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#gas-optimization">Gas Optimization</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#verification-efficiency">Verification Efficiency</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#memory-efficiency">Memory Efficiency</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#error-handling">Error Handling</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#common-errors">Common Errors</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#best-practices">Best Practices</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#merkle-tree-generation">Merkle Tree Generation</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#leaf-data">Leaf Data</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#integration-checklist">Integration Checklist</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#related-documentation">Related Documentation</a>
+    </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../fee-distributor-lib/">Fee Distributor Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../lib-diamond/">LibDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../diamond-lib/">DiamondLib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../erc721a-lib/">ERC721A Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../erc721a-enumeration-lib/">ERC721A Enumeration Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../strings-lib/">Strings Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../trusted-issuer-lib/">Trusted Issuer Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../set-libraries/">Set Libraries</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">SDK & Libraries</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/blockchain/">Blockchain Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/diamond/">Diamond Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/contract/">Contract Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/deploy/">Deployment Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/validation-utils/">Validation Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/nft-sale-utils/">NFT Sale Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/webhooks/">Webhooks Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../metadata-lib/">Metadata Library</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Cloud Functions</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/authentication/">Authentication Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/auth-functions/">Auth Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/blockchain/">Blockchain Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/bridge/">Bridge Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/contracts/">Contract Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/deploy/">Deploy Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/dfns/">DFNS Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/project/">Project Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/trade-deal/">Trade Deal Functions</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">API Documentation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../api-documentation/gemforce-api-documentation/">Full API Reference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../api-documentation/gemforce-api-quick-reference/">Quick Reference</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-external-services/">External Services</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-system-architecture/">System Architecture</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Operations Tasks</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/diamond/">Diamond Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/identities/">Identity Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/marketplace-management/">Marketplace Management Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/carbon-credit-management/">Carbon Credit Management Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/trade-deal/">Trade Deal Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/integration-test/">Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/integration-test-marketplace/">Marketplace Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/integration-test-trade-deal/">Trade Deal Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/admin-utils/">Admin Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/sync-diamond/">Sync Diamond Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/sync-events/">Sync Events Tasks</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">EIPs (Ethereum Improvement Proposals)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Diamond-Enhanced-Marketplace/">Diamond-Enhanced Marketplace</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Multi-Token-Sale-Standard/">Multi-Token Sale Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Collateralized-Trade-Deal-Standard/">Collateralized Trade Deal Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Enhanced-Identity-System/">Enhanced Identity System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Diamond-Factory-Standard/">Diamond Factory Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Carbon-Credit-Standard/">Carbon Credit Standard</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Developer Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/development-environment-setup/">Development Environment Setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/testing-frameworks/">Testing Frameworks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/debugging/">Debugging</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/performance-optimization/">Performance Optimization</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/test-case-specifications/">Test Case Specifications</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/test-data-management/">Test Data Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/automated-testing-setup/">Automated Testing Setup</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Deployment Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../deployment-guides/multi-network-deployment/">Multi-Network Deployment</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../deployment-guides/infrastructure-management/">Infrastructure Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../deployment-guides/monitoring-logging/">Monitoring and Logging</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">User Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-administrator-guide/">Administrator Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-deployer-guide/">Deployer Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-integrator-guide/">Integrator Guide</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Integrator's Guide</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/authentication/">Authentication</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/rest-api/">REST API</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/smart-contracts/">Smart Contracts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/dfns/">DFNS Integration</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/parse-server/">Parse Server Notes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/webhooks/">Webhooks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/error-handling/">Error Handling</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/sample-code/">Sample Code</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/integration-patterns/">Integration Patterns</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/testing/">Testing Considerations</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/security/">Security</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../external-services/gemforce-external-services/">External Services</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Security</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security/threat-model/">Threat Model and Risk Assessment</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security/incident-response/">Incident Response Procedures</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security/audit-compliance/">Security Audits and Compliance</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">External Developer Integration</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/api-rate-limiting/">API Rate Limiting</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/webhook-implementation-guidelines/">Webhook Implementation Guidelines</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/sdk-development-guidelines/">SDK Development Guidelines</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/partner-integration-guides/">Partner Integration Guides</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-documentation-gap-analysis/">Documentation Gap Analysis</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../documentation-progress-summary/">Documentation Progress Summary</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../documentation-plan/">Documentation Plan</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Configuration & Environment</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/gemforce-config/">Gemforce Config</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/environment-specific-guides/">Environment-Specific Guides</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/configuration-validation/">Configuration Validation Procedures</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/external-service-config-management/">External Service Configuration Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/database-schema-overview/">Database Schema Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/database-migration-procedures/">Database Migration Procedures</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">Gemforce Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Smart Contracts</li>
+          <li class="breadcrumb-item">Libraries</li>
+      <li class="breadcrumb-item active">Merkle Prover</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="merkleprover-library">MerkleProver Library<a class="headerlink" href="#merkleprover-library" title="Permanent link">&para;</a></h1>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>The <a href="./"><code>MerkleProver</code></a> library provides core utilities for Merkle tree proof verification within the Gemforce platform. This library implements secure and gas-efficient Merkle proof validation, enabling whitelist systems, airdrop distributions, and other scenarios requiring cryptographic proof of inclusion in a dataset.</p>
+<h2 id="key-features">Key Features<a class="headerlink" href="#key-features" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Secure Proof Verification</strong>: Cryptographically secure Merkle tree validation</li>
+<li><strong>Gas Efficient</strong>: Optimized proof verification algorithms</li>
+<li><strong>Flexible Leaf Generation</strong>: Support for various data types in leaf construction</li>
+<li><strong>Attack Prevention</strong>: Protection against common Merkle tree vulnerabilities</li>
+<li><strong>Standard Compliance</strong>: Compatible with standard Merkle tree implementations</li>
+<li><strong>Pure Functions</strong>: Stateless operations for maximum reusability</li>
+</ul>
+<h2 id="library-definition">Library Definition<a class="headerlink" href="#library-definition" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span><code><span class="c1">// SPDX-License-Identifier: MIT</span>
+<span class="k">pragma solidity</span><span class="w"> </span><span class="o">&gt;=</span><span class="k">0.8.0</span><span class="p">;</span>
+
+<span class="kt">library</span><span class="w"> </span>MerkleProver<span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Proof verification</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">verify</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">root</span><span class="p">,</span><span class="w"> </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">leaf</span><span class="p">,</span><span class="w"> </span><span class="kt">bytes32</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>proof<span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>pure<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bool</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Leaf generation</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getHash</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">a</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">b</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>pure<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bytes32</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="core-functions">Core Functions<a class="headerlink" href="#core-functions" title="Permanent link">&para;</a></h2>
+<h3 id="proof-verification">Proof Verification<a class="headerlink" href="#proof-verification" title="Permanent link">&para;</a></h3>
+<h4 id="verify"><code>verify()</code><a class="headerlink" href="#verify" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">verify</span><span class="p">(</span>
+<span class="w">    </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">root</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">leaf</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">bytes32</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>proof
+<span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>pure<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bool</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Verify that a leaf is included in a Merkle tree with the given root.</p>
+<p><strong>Parameters</strong>:
+- <code>root</code>: The Merkle root hash to verify against
+- <code>leaf</code>: The leaf hash to prove inclusion for
+- <code>proof</code>: Array of sibling hashes forming the proof path</p>
+<p><strong>Returns</strong>: Boolean indicating whether the proof is valid</p>
+<p><strong>Algorithm</strong>:
+1. Start with the leaf hash as the computed hash
+2. For each proof element, combine with computed hash in sorted order
+3. Hash the combination using keccak256
+4. Continue until all proof elements are processed
+5. Compare final computed hash with provided root</p>
+<p><strong>Security Features</strong>:
+- <strong>Empty Proof Protection</strong>: Prevents false positives when leaf equals root with empty proof
+- <strong>Sorted Hashing</strong>: Ensures deterministic hash ordering regardless of tree structure
+- <strong>Overflow Protection</strong>: Safe array iteration with bounds checking</p>
+<p><strong>Implementation Details</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">verify</span><span class="p">(</span>
+<span class="w">    </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">root</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">leaf</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">bytes32</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>proof
+<span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>pure<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bool</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Security check: prevent false positive when leaf == root with empty proof</span>
+<span class="w">    </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>leaf<span class="w"> </span><span class="o">==</span><span class="w"> </span>root<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>proof<span class="p">.</span>length<span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span><span class="kt">false</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">computedHash</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>leaf<span class="p">;</span>
+
+<span class="w">    </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>proof<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">proofElement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>proof<span class="p">[</span>i<span class="p">];</span>
+
+<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>computedHash<span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span>proofElement<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">// Hash(current computed hash + current element of the proof)</span>
+<span class="w">            </span>computedHash<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">keccak256</span><span class="p">(</span>abi<span class="p">.</span>encodePacked<span class="p">(</span>computedHash<span class="p">,</span><span class="w"> </span>proofElement<span class="p">));</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="kt">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">// Hash(current element of the proof + current computed hash)</span>
+<span class="w">            </span>computedHash<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">keccak256</span><span class="p">(</span>abi<span class="p">.</span>encodePacked<span class="p">(</span>proofElement<span class="p">,</span><span class="w"> </span>computedHash<span class="p">));</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Check if the computed hash (root) is equal to the provided root</span>
+<span class="w">    </span><span class="kt">return</span><span class="w"> </span>computedHash<span class="w"> </span><span class="o">==</span><span class="w"> </span>root<span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Example Usage</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Verify whitelist inclusion</span>
+<span class="kt">bytes32</span><span class="w"> </span><span class="nv">merkleRoot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x1234</span><span class="p">...;</span>
+<span class="kt">bytes32</span><span class="w"> </span><span class="nv">userLeaf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>MerkleProver<span class="p">.</span>getHash<span class="p">(</span><span class="k">msg.sender</span><span class="p">,</span><span class="w"> </span>allocation<span class="p">);</span>
+<span class="kt">bytes32</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>proof<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mh">0xabcd</span><span class="p">...,</span><span class="w"> </span><span class="mh">0xef01</span><span class="p">...,</span><span class="w"> </span><span class="mh">0x2345</span><span class="p">...];</span>
+
+<span class="kt">bool</span><span class="w"> </span><span class="nv">isValid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>MerkleProver<span class="p">.</span>verify<span class="p">(</span>merkleRoot<span class="p">,</span><span class="w"> </span>userLeaf<span class="p">,</span><span class="w"> </span>proof<span class="p">);</span>
+<span class="kt">require</span><span class="p">(</span>isValid<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Invalid Merkle proof&quot;</span><span class="p">);</span>
+</code></pre></div>
+
+<h3 id="leaf-generation">Leaf Generation<a class="headerlink" href="#leaf-generation" title="Permanent link">&para;</a></h3>
+<h4 id="gethash"><code>getHash()</code><a class="headerlink" href="#gethash" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">getHash</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">a</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">b</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>pure<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bytes32</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Generate a standardized leaf hash from an address and amount.</p>
+<p><strong>Parameters</strong>:
+- <code>a</code>: Ethereum address (typically user address)
+- <code>b</code>: Numeric value (typically allocation amount)</p>
+<p><strong>Returns</strong>: keccak256 hash of the packed parameters</p>
+<p><strong>Implementation</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">getHash</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">a</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">b</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>pure<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bytes32</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">return</span><span class="w"> </span><span class="nb">keccak256</span><span class="p">(</span>abi<span class="p">.</span>encodePacked<span class="p">(</span>a<span class="p">,</span><span class="w"> </span>b<span class="p">));</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Use Cases</strong>:
+- Whitelist leaf generation for address + allocation pairs
+- Airdrop eligibility proofs
+- Voting power verification
+- Access control with quantified permissions</p>
+<p><strong>Example Usage</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Generate leaf for whitelist entry</span>
+<span class="kt">address</span><span class="w"> </span><span class="nv">user</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x742d35Cc6634C0532925a3b8D4C9db96590c6C87</span><span class="p">;</span>
+<span class="kt">uint256</span><span class="w"> </span><span class="nv">allocation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">1000</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m m-Decimal">10</span><span class="o">**</span><span class="m m-Decimal">18</span><span class="p">;</span><span class="w"> </span><span class="c1">// 1000 tokens</span>
+<span class="kt">bytes32</span><span class="w"> </span><span class="nv">leaf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>MerkleProver<span class="p">.</span>getHash<span class="p">(</span>user<span class="p">,</span><span class="w"> </span>allocation<span class="p">);</span>
+</code></pre></div>
+
+<h2 id="integration-examples">Integration Examples<a class="headerlink" href="#integration-examples" title="Permanent link">&para;</a></h2>
+<h3 id="whitelist-token-sale">Whitelist Token Sale<a class="headerlink" href="#whitelist-token-sale" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Token sale with Merkle tree whitelist</span>
+<span class="k">contract</span><span class="w"> </span><span class="ni">WhitelistTokenSale</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>using<span class="w"> </span>MerkleProver<span class="w"> </span><span class="kt">for</span><span class="w"> </span><span class="kt">bytes32</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">WhitelistConfig</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">merkleRoot</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">salePrice</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">maxAllocation</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">startTime</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">endTime</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">active</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">UserPurchase</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">purchased</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">claimed</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span>WhitelistConfig<span class="w"> </span><span class="kt">public</span><span class="w"> </span>whitelistConfig<span class="p">;</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span>UserPurchase<span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>userPurchases<span class="p">;</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">bool</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>usedLeaves<span class="p">;</span>
+
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">WhitelistConfigured</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>merkleRoot<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">salePrice</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">TokensPurchased</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>user<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">amount</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalCost</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">ProofUsed</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>leaf<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>user<span class="p">);</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">configureWhitelist</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">_merkleRoot</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_salePrice</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_maxAllocation</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_startTime</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_endTime</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyOwner<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>whitelistConfig<span class="w"> </span><span class="o">=</span><span class="w"> </span>WhitelistConfig<span class="p">({</span>
+<span class="w">            </span>merkleRoot<span class="o">:</span><span class="w"> </span>_merkleRoot<span class="p">,</span>
+<span class="w">            </span>salePrice<span class="o">:</span><span class="w"> </span>_salePrice<span class="p">,</span>
+<span class="w">            </span>maxAllocation<span class="o">:</span><span class="w"> </span>_maxAllocation<span class="p">,</span>
+<span class="w">            </span>startTime<span class="o">:</span><span class="w"> </span>_startTime<span class="p">,</span>
+<span class="w">            </span>endTime<span class="o">:</span><span class="w"> </span>_endTime<span class="p">,</span>
+<span class="w">            </span>active<span class="o">:</span><span class="w"> </span><span class="kt">true</span>
+<span class="w">        </span><span class="p">});</span>
+
+<span class="w">        </span>emit<span class="w"> </span>WhitelistConfigured<span class="p">(</span>_merkleRoot<span class="p">,</span><span class="w"> </span>_salePrice<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">purchaseTokens</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">allocation</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">purchaseAmount</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">bytes32</span><span class="p">[]</span><span class="w"> </span>calldata<span class="w"> </span>merkleProof
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">payable</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>whitelistConfig<span class="p">.</span>active<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Whitelist sale not active&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span><span class="k">block.timestamp</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span>whitelistConfig<span class="p">.</span>startTime<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Sale not started&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span><span class="k">block.timestamp</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span>whitelistConfig<span class="p">.</span>endTime<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Sale ended&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>purchaseAmount<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Purchase amount must be positive&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Generate leaf for this user and allocation</span>
+<span class="w">        </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">leaf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>MerkleProver<span class="p">.</span>getHash<span class="p">(</span><span class="k">msg.sender</span><span class="p">,</span><span class="w"> </span>allocation<span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Verify Merkle proof</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">isValidProof</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>MerkleProver<span class="p">.</span>verify<span class="p">(</span>
+<span class="w">            </span>whitelistConfig<span class="p">.</span>merkleRoot<span class="p">,</span>
+<span class="w">            </span>leaf<span class="p">,</span>
+<span class="w">            </span>merkleProof
+<span class="w">        </span><span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>isValidProof<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Invalid Merkle proof&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Prevent proof reuse</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span><span class="o">!</span>usedLeaves<span class="p">[</span>leaf<span class="p">],</span><span class="w"> </span><span class="s2">&quot;Proof already used&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Check allocation limits</span>
+<span class="w">        </span>UserPurchase<span class="w"> </span>storage<span class="w"> </span>userPurchase<span class="w"> </span><span class="o">=</span><span class="w"> </span>userPurchases<span class="p">[</span><span class="k">msg.sender</span><span class="p">];</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>
+<span class="w">            </span>userPurchase<span class="p">.</span>purchased<span class="w"> </span><span class="o">+</span><span class="w"> </span>purchaseAmount<span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span>allocation<span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;Exceeds allocated amount&quot;</span>
+<span class="w">        </span><span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>
+<span class="w">            </span>userPurchase<span class="p">.</span>purchased<span class="w"> </span><span class="o">+</span><span class="w"> </span>purchaseAmount<span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span>whitelistConfig<span class="p">.</span>maxAllocation<span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;Exceeds max allocation&quot;</span>
+<span class="w">        </span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Calculate cost</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalCost</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>purchaseAmount<span class="w"> </span><span class="o">*</span><span class="w"> </span>whitelistConfig<span class="p">.</span>salePrice<span class="p">;</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span><span class="k">msg.value</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span>totalCost<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Insufficient payment&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Update user purchase record</span>
+<span class="w">        </span>userPurchase<span class="p">.</span>purchased<span class="w"> </span><span class="o">+=</span><span class="w"> </span>purchaseAmount<span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// Mark leaf as used if fully claimed</span>
+<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>userPurchase<span class="p">.</span>purchased<span class="w"> </span><span class="o">==</span><span class="w"> </span>allocation<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>usedLeaves<span class="p">[</span>leaf<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">true</span><span class="p">;</span>
+<span class="w">            </span>emit<span class="w"> </span>ProofUsed<span class="p">(</span>leaf<span class="p">,</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// Mint tokens to user</span>
+<span class="w">        </span>_mintTokens<span class="p">(</span><span class="k">msg.sender</span><span class="p">,</span><span class="w"> </span>purchaseAmount<span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Refund excess payment</span>
+<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span><span class="k">msg.value</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span>totalCost<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">payable</span><span class="p">(</span><span class="k">msg.sender</span><span class="p">).</span>transfer<span class="p">(</span><span class="k">msg.value</span><span class="w"> </span><span class="o">-</span><span class="w"> </span>totalCost<span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span>emit<span class="w"> </span>TokensPurchased<span class="p">(</span><span class="k">msg.sender</span><span class="p">,</span><span class="w"> </span>purchaseAmount<span class="p">,</span><span class="w"> </span>totalCost<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">verifyWhitelistEligibility</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">user</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">allocation</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">bytes32</span><span class="p">[]</span><span class="w"> </span>calldata<span class="w"> </span>merkleProof
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bool</span><span class="w"> </span><span class="nv">isEligible</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">remainingAllocation</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">leaf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>MerkleProver<span class="p">.</span>getHash<span class="p">(</span>user<span class="p">,</span><span class="w"> </span>allocation<span class="p">);</span>
+
+<span class="w">        </span>isEligible<span class="w"> </span><span class="o">=</span><span class="w"> </span>MerkleProver<span class="p">.</span>verify<span class="p">(</span>
+<span class="w">            </span>whitelistConfig<span class="p">.</span>merkleRoot<span class="p">,</span>
+<span class="w">            </span>leaf<span class="p">,</span>
+<span class="w">            </span>merkleProof
+<span class="w">        </span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span>usedLeaves<span class="p">[</span>leaf<span class="p">];</span>
+
+<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>isEligible<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>remainingAllocation<span class="w"> </span><span class="o">=</span><span class="w"> </span>allocation<span class="w"> </span><span class="o">-</span><span class="w"> </span>userPurchases<span class="p">[</span>user<span class="p">].</span>purchased<span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">_mintTokens</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">to</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">amount</span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Implementation would mint ERC20 tokens</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">modifier</span><span class="w"> </span>onlyOwner<span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Implementation would check ownership</span>
+<span class="w">        </span>_<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="airdrop-distribution-system">Airdrop Distribution System<a class="headerlink" href="#airdrop-distribution-system" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Airdrop system with Merkle proof claims</span>
+<span class="k">contract</span><span class="w"> </span><span class="ni">MerkleAirdrop</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>using<span class="w"> </span>MerkleProver<span class="w"> </span><span class="kt">for</span><span class="w"> </span><span class="kt">bytes32</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">AirdropRound</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">merkleRoot</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalTokens</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">claimedTokens</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">startTime</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">endTime</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">active</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">description</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">ClaimRecord</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">roundId</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">claimer</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">amount</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">timestamp</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span>AirdropRound<span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>airdropRounds<span class="p">;</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">bool</span><span class="p">))</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>claimedLeaves<span class="p">;</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span>ClaimRecord<span class="p">[])</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>userClaims<span class="p">;</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="k">public </span><span class="nv">nextRoundId</span><span class="p">;</span>
+<span class="w">    </span>IERC20<span class="w"> </span><span class="kt">public</span><span class="w"> </span>airdropToken<span class="p">;</span>
+
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">AirdropRoundCreated</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>roundId<span class="p">,</span><span class="w"> </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">merkleRoot</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalTokens</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">TokensClaimed</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>roundId<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>claimer<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">amount</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">RoundFinalized</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>roundId<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalClaimed</span><span class="p">);</span>
+
+<span class="w">    </span><span class="kt">constructor</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">_airdropToken</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>airdropToken<span class="w"> </span><span class="o">=</span><span class="w"> </span>IERC20<span class="p">(</span>_airdropToken<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">createAirdropRound</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">_merkleRoot</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_totalTokens</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_startTime</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_endTime</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>_description
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyOwner<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">roundId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>roundId<span class="w"> </span><span class="o">=</span><span class="w"> </span>nextRoundId<span class="o">++</span><span class="p">;</span>
+
+<span class="w">        </span>airdropRounds<span class="p">[</span>roundId<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>AirdropRound<span class="p">({</span>
+<span class="w">            </span>merkleRoot<span class="o">:</span><span class="w"> </span>_merkleRoot<span class="p">,</span>
+<span class="w">            </span>totalTokens<span class="o">:</span><span class="w"> </span>_totalTokens<span class="p">,</span>
+<span class="w">            </span>claimedTokens<span class="o">:</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">,</span>
+<span class="w">            </span>startTime<span class="o">:</span><span class="w"> </span>_startTime<span class="p">,</span>
+<span class="w">            </span>endTime<span class="o">:</span><span class="w"> </span>_endTime<span class="p">,</span>
+<span class="w">            </span>active<span class="o">:</span><span class="w"> </span><span class="kt">true</span><span class="p">,</span>
+<span class="w">            </span>description<span class="o">:</span><span class="w"> </span>_description
+<span class="w">        </span><span class="p">});</span>
+
+<span class="w">        </span>emit<span class="w"> </span>AirdropRoundCreated<span class="p">(</span>roundId<span class="p">,</span><span class="w"> </span>_merkleRoot<span class="p">,</span><span class="w"> </span>_totalTokens<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">claimAirdrop</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">roundId</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">amount</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">bytes32</span><span class="p">[]</span><span class="w"> </span>calldata<span class="w"> </span>merkleProof
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>AirdropRound<span class="w"> </span>storage<span class="w"> </span>round<span class="w"> </span><span class="o">=</span><span class="w"> </span>airdropRounds<span class="p">[</span>roundId<span class="p">];</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>round<span class="p">.</span>active<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Airdrop round not active&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span><span class="k">block.timestamp</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span>round<span class="p">.</span>startTime<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Airdrop not started&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span><span class="k">block.timestamp</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span>round<span class="p">.</span>endTime<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Airdrop ended&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Generate leaf for this claim</span>
+<span class="w">        </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">leaf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>MerkleProver<span class="p">.</span>getHash<span class="p">(</span><span class="k">msg.sender</span><span class="p">,</span><span class="w"> </span>amount<span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Verify Merkle proof</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">isValidProof</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>MerkleProver<span class="p">.</span>verify<span class="p">(</span>
+<span class="w">            </span>round<span class="p">.</span>merkleRoot<span class="p">,</span>
+<span class="w">            </span>leaf<span class="p">,</span>
+<span class="w">            </span>merkleProof
+<span class="w">        </span><span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>isValidProof<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Invalid Merkle proof&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Prevent double claiming</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span><span class="o">!</span>claimedLeaves<span class="p">[</span>roundId<span class="p">][</span>leaf<span class="p">],</span><span class="w"> </span><span class="s2">&quot;Already claimed&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Mark as claimed</span>
+<span class="w">        </span>claimedLeaves<span class="p">[</span>roundId<span class="p">][</span>leaf<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">true</span><span class="p">;</span>
+<span class="w">        </span>round<span class="p">.</span>claimedTokens<span class="w"> </span><span class="o">+=</span><span class="w"> </span>amount<span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// Record claim</span>
+<span class="w">        </span>userClaims<span class="p">[</span><span class="k">msg.sender</span><span class="p">].</span>push<span class="p">(</span>ClaimRecord<span class="p">({</span>
+<span class="w">            </span>roundId<span class="o">:</span><span class="w"> </span>roundId<span class="p">,</span>
+<span class="w">            </span>claimer<span class="o">:</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">,</span>
+<span class="w">            </span>amount<span class="o">:</span><span class="w"> </span>amount<span class="p">,</span>
+<span class="w">            </span>timestamp<span class="o">:</span><span class="w"> </span><span class="k">block.timestamp</span>
+<span class="w">        </span><span class="p">}));</span>
+
+<span class="w">        </span><span class="c1">// Transfer tokens</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>
+<span class="w">            </span>airdropToken<span class="p">.</span>transfer<span class="p">(</span><span class="k">msg.sender</span><span class="p">,</span><span class="w"> </span>amount<span class="p">),</span>
+<span class="w">            </span><span class="s2">&quot;Token transfer failed&quot;</span>
+<span class="w">        </span><span class="p">);</span>
+
+<span class="w">        </span>emit<span class="w"> </span>TokensClaimed<span class="p">(</span>roundId<span class="p">,</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">,</span><span class="w"> </span>amount<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">batchClaimAirdrop</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span>calldata<span class="w"> </span>roundIds<span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span>calldata<span class="w"> </span>amounts<span class="p">,</span>
+<span class="w">        </span><span class="kt">bytes32</span><span class="p">[][]</span><span class="w"> </span>calldata<span class="w"> </span>merkleProofs
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>
+<span class="w">            </span>roundIds<span class="p">.</span>length<span class="w"> </span><span class="o">==</span><span class="w"> </span>amounts<span class="p">.</span>length<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>amounts<span class="p">.</span>length<span class="w"> </span><span class="o">==</span><span class="w"> </span>merkleProofs<span class="p">.</span>length<span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;Array length mismatch&quot;</span>
+<span class="w">        </span><span class="p">);</span>
+
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalClaim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span>
+
+<span class="w">        </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>roundIds<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">roundId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>roundIds<span class="p">[</span>i<span class="p">];</span>
+<span class="w">            </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">amount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>amounts<span class="p">[</span>i<span class="p">];</span>
+<span class="w">            </span><span class="kt">bytes32</span><span class="p">[]</span><span class="w"> </span>calldata<span class="w"> </span>proof<span class="w"> </span><span class="o">=</span><span class="w"> </span>merkleProofs<span class="p">[</span>i<span class="p">];</span>
+
+<span class="w">            </span>AirdropRound<span class="w"> </span>storage<span class="w"> </span>round<span class="w"> </span><span class="o">=</span><span class="w"> </span>airdropRounds<span class="p">[</span>roundId<span class="p">];</span>
+<span class="w">            </span><span class="kt">require</span><span class="p">(</span>round<span class="p">.</span>active<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Airdrop round not active&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="kt">require</span><span class="p">(</span><span class="k">block.timestamp</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span>round<span class="p">.</span>startTime<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Airdrop not started&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="kt">require</span><span class="p">(</span><span class="k">block.timestamp</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span>round<span class="p">.</span>endTime<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Airdrop ended&quot;</span><span class="p">);</span>
+
+<span class="w">            </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">leaf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>MerkleProver<span class="p">.</span>getHash<span class="p">(</span><span class="k">msg.sender</span><span class="p">,</span><span class="w"> </span>amount<span class="p">);</span>
+
+<span class="w">            </span><span class="kt">bool</span><span class="w"> </span><span class="nv">isValidProof</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>MerkleProver<span class="p">.</span>verify<span class="p">(</span>round<span class="p">.</span>merkleRoot<span class="p">,</span><span class="w"> </span>leaf<span class="p">,</span><span class="w"> </span>proof<span class="p">);</span>
+<span class="w">            </span><span class="kt">require</span><span class="p">(</span>isValidProof<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Invalid Merkle proof&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="kt">require</span><span class="p">(</span><span class="o">!</span>claimedLeaves<span class="p">[</span>roundId<span class="p">][</span>leaf<span class="p">],</span><span class="w"> </span><span class="s2">&quot;Already claimed&quot;</span><span class="p">);</span>
+
+<span class="w">            </span>claimedLeaves<span class="p">[</span>roundId<span class="p">][</span>leaf<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">true</span><span class="p">;</span>
+<span class="w">            </span>round<span class="p">.</span>claimedTokens<span class="w"> </span><span class="o">+=</span><span class="w"> </span>amount<span class="p">;</span>
+<span class="w">            </span>totalClaim<span class="w"> </span><span class="o">+=</span><span class="w"> </span>amount<span class="p">;</span>
+
+<span class="w">            </span>userClaims<span class="p">[</span><span class="k">msg.sender</span><span class="p">].</span>push<span class="p">(</span>ClaimRecord<span class="p">({</span>
+<span class="w">                </span>roundId<span class="o">:</span><span class="w"> </span>roundId<span class="p">,</span>
+<span class="w">                </span>claimer<span class="o">:</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">,</span>
+<span class="w">                </span>amount<span class="o">:</span><span class="w"> </span>amount<span class="p">,</span>
+<span class="w">                </span>timestamp<span class="o">:</span><span class="w"> </span><span class="k">block.timestamp</span>
+<span class="w">            </span><span class="p">}));</span>
+
+<span class="w">            </span>emit<span class="w"> </span>TokensClaimed<span class="p">(</span>roundId<span class="p">,</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">,</span><span class="w"> </span>amount<span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// Single token transfer for all claims</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>
+<span class="w">            </span>airdropToken<span class="p">.</span>transfer<span class="p">(</span><span class="k">msg.sender</span><span class="p">,</span><span class="w"> </span>totalClaim<span class="p">),</span>
+<span class="w">            </span><span class="s2">&quot;Token transfer failed&quot;</span>
+<span class="w">        </span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">verifyEligibility</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">roundId</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">user</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">amount</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">bytes32</span><span class="p">[]</span><span class="w"> </span>calldata<span class="w"> </span>merkleProof
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bool</span><span class="w"> </span><span class="nv">isEligible</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="nv">alreadyClaimed</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>AirdropRound<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>round<span class="w"> </span><span class="o">=</span><span class="w"> </span>airdropRounds<span class="p">[</span>roundId<span class="p">];</span>
+<span class="w">        </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">leaf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>MerkleProver<span class="p">.</span>getHash<span class="p">(</span>user<span class="p">,</span><span class="w"> </span>amount<span class="p">);</span>
+
+<span class="w">        </span>isEligible<span class="w"> </span><span class="o">=</span><span class="w"> </span>round<span class="p">.</span>active<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>
+<span class="w">                     </span><span class="k">block.timestamp</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span>round<span class="p">.</span>startTime<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>
+<span class="w">                     </span><span class="k">block.timestamp</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span>round<span class="p">.</span>endTime<span class="w"> </span><span class="o">&amp;&amp;</span>
+<span class="w">                     </span>MerkleProver<span class="p">.</span>verify<span class="p">(</span>round<span class="p">.</span>merkleRoot<span class="p">,</span><span class="w"> </span>leaf<span class="p">,</span><span class="w"> </span>merkleProof<span class="p">);</span>
+
+<span class="w">        </span>alreadyClaimed<span class="w"> </span><span class="o">=</span><span class="w"> </span>claimedLeaves<span class="p">[</span>roundId<span class="p">][</span>leaf<span class="p">];</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getUserClaims</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">user</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>ClaimRecord<span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>userClaims<span class="p">[</span>user<span class="p">];</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getRoundInfo</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">roundId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>
+<span class="w">        </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">merkleRoot</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalTokens</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">claimedTokens</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">remainingTokens</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">startTime</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">endTime</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">active</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>description
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>AirdropRound<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>round<span class="w"> </span><span class="o">=</span><span class="w"> </span>airdropRounds<span class="p">[</span>roundId<span class="p">];</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span><span class="p">(</span>
+<span class="w">            </span>round<span class="p">.</span>merkleRoot<span class="p">,</span>
+<span class="w">            </span>round<span class="p">.</span>totalTokens<span class="p">,</span>
+<span class="w">            </span>round<span class="p">.</span>claimedTokens<span class="p">,</span>
+<span class="w">            </span>round<span class="p">.</span>totalTokens<span class="w"> </span><span class="o">-</span><span class="w"> </span>round<span class="p">.</span>claimedTokens<span class="p">,</span>
+<span class="w">            </span>round<span class="p">.</span>startTime<span class="p">,</span>
+<span class="w">            </span>round<span class="p">.</span>endTime<span class="p">,</span>
+<span class="w">            </span>round<span class="p">.</span>active<span class="p">,</span>
+<span class="w">            </span>round<span class="p">.</span>description
+<span class="w">        </span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">finalizeRound</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">roundId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyOwner<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>AirdropRound<span class="w"> </span>storage<span class="w"> </span>round<span class="w"> </span><span class="o">=</span><span class="w"> </span>airdropRounds<span class="p">[</span>roundId<span class="p">];</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>round<span class="p">.</span>active<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Round not active&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span><span class="k">block.timestamp</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span>round<span class="p">.</span>endTime<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Round not ended&quot;</span><span class="p">);</span>
+
+<span class="w">        </span>round<span class="p">.</span>active<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">false</span><span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// Reclaim unclaimed tokens</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">unclaimedTokens</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>round<span class="p">.</span>totalTokens<span class="w"> </span><span class="o">-</span><span class="w"> </span>round<span class="p">.</span>claimedTokens<span class="p">;</span>
+<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>unclaimedTokens<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">require</span><span class="p">(</span>
+<span class="w">                </span>airdropToken<span class="p">.</span>transfer<span class="p">(</span><span class="k">msg.sender</span><span class="p">,</span><span class="w"> </span>unclaimedTokens<span class="p">),</span>
+<span class="w">                </span><span class="s2">&quot;Token reclaim failed&quot;</span>
+<span class="w">            </span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span>emit<span class="w"> </span>RoundFinalized<span class="p">(</span>roundId<span class="p">,</span><span class="w"> </span>round<span class="p">.</span>claimedTokens<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">modifier</span><span class="w"> </span>onlyOwner<span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Implementation would check ownership</span>
+<span class="w">        </span>_<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="voting-system-with-merkle-proofs">Voting System with Merkle Proofs<a class="headerlink" href="#voting-system-with-merkle-proofs" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// On-chain voting system with Merkle proof voter registration</span>
+<span class="k">contract</span><span class="w"> </span><span class="ni">MerkleVoting</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>using<span class="w"> </span>MerkleProver<span class="w"> </span><span class="kt">for</span><span class="w"> </span><span class="kt">bytes32</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">Proposal</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">description</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">voteCountYay</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">voteCountNay</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalVotes</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">merkleRoot</span><span class="p">;</span><span class="w"> </span><span class="c1">// Whitelist of eligible voters</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">snapshotBlock</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">startTime</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">endTime</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">active</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">executed</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span>Proposal<span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>proposals<span class="p">;</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">bool</span><span class="p">))</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>hasVoted<span class="p">;</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="k">public </span><span class="nv">nextProposalId</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">ProposalCreated</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>proposalId<span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">description</span><span class="p">,</span><span class="w"> </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">merkleRoot</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">VoteCast</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>proposalId<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>voter<span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="nv">support</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">votingPower</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">ProposalExecuted</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>proposalId<span class="p">);</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">createProposal</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>description<span class="p">,</span>
+<span class="w">        </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">merkleRoot</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">snapshotBlock</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">startTime</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">endTime</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyOwner<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">proposalId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>proposalId<span class="w"> </span><span class="o">=</span><span class="w"> </span>nextProposalId<span class="o">++</span><span class="p">;</span>
+
+<span class="w">        </span>proposals<span class="p">[</span>proposalId<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>Proposal<span class="p">({</span>
+<span class="w">            </span>description<span class="o">:</span><span class="w"> </span>description<span class="p">,</span>
+<span class="w">            </span>voteCountYay<span class="o">:</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">,</span>
+<span class="w">            </span>voteCountNay<span class="o">:</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">,</span>
+<span class="w">            </span>totalVotes<span class="o">:</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">,</span>
+<span class="w">            </span>merkleRoot<span class="o">:</span><span class="w"> </span>merkleRoot<span class="p">,</span>
+<span class="w">            </span>snapshotBlock<span class="o">:</span><span class="w"> </span>snapshotBlock<span class="p">,</span>
+<span class="w">            </span>startTime<span class="o">:</span><span class="w"> </span>startTime<span class="p">,</span>
+<span class="w">            </span>endTime<span class="o">:</span><span class="w"> </span>endTime<span class="p">,</span>
+<span class="w">            </span>active<span class="o">:</span><span class="w"> </span><span class="kt">true</span><span class="p">,</span>
+<span class="w">            </span>executed<span class="o">:</span><span class="w"> </span><span class="kt">false</span>
+<span class="w">        </span><span class="p">});</span>
+
+<span class="w">        </span>emit<span class="w"> </span>ProposalCreated<span class="p">(</span>proposalId<span class="p">,</span><span class="w"> </span>description<span class="p">,</span><span class="w"> </span>merkleRoot<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">castVote</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">proposalId</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">support</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">votingPower</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">bytes32</span><span class="p">[]</span><span class="w"> </span>calldata<span class="w"> </span>merkleProof
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>Proposal<span class="w"> </span>storage<span class="w"> </span>proposal<span class="w"> </span><span class="o">=</span><span class="w"> </span>proposals<span class="p">[</span>proposalId<span class="p">];</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>proposal<span class="p">.</span>active<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Proposal not active&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span><span class="k">block.timestamp</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span>proposal<span class="p">.</span>startTime<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Voting not started&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span><span class="k">block.timestamp</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span>proposal<span class="p">.</span>endTime<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Voting ended&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span><span class="o">!</span>hasVoted<span class="p">[</span>proposalId<span class="p">][</span><span class="k">msg.sender</span><span class="p">],</span><span class="w"> </span><span class="s2">&quot;Already voted on this proposal&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Verify voter eligibility using Merkle proof</span>
+<span class="w">        </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">leaf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>MerkleProver<span class="p">.</span>getHash<span class="p">(</span><span class="k">msg.sender</span><span class="p">,</span><span class="w"> </span>votingPower<span class="p">);</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">isValid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>MerkleProver<span class="p">.</span>verify<span class="p">(</span>
+<span class="w">            </span>proposal<span class="p">.</span>merkleRoot<span class="p">,</span>
+<span class="w">            </span>leaf<span class="p">,</span>
+<span class="w">            </span>merkleProof
+<span class="w">        </span><span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>isValid<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Invalid voter proof&quot;</span><span class="p">);</span>
+
+<span class="w">        </span>hasVoted<span class="p">[</span>proposalId<span class="p">][</span><span class="k">msg.sender</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">true</span><span class="p">;</span>
+
+<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>support<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>proposal<span class="p">.</span>voteCountYay<span class="w"> </span><span class="o">+=</span><span class="w"> </span>votingPower<span class="p">;</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="kt">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>proposal<span class="p">.</span>voteCountNay<span class="w"> </span><span class="o">+=</span><span class="w"> </span>votingPower<span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span>proposal<span class="p">.</span>totalVotes<span class="w"> </span><span class="o">+=</span><span class="w"> </span>votingPower<span class="p">;</span>
+
+<span class="w">        </span>emit<span class="w"> </span>VoteCast<span class="p">(</span>proposalId<span class="p">,</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">,</span><span class="w"> </span>support<span class="p">,</span><span class="w"> </span>votingPower<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">executeProposal</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">proposalId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyOwner<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>Proposal<span class="w"> </span>storage<span class="w"> </span>proposal<span class="w"> </span><span class="o">=</span><span class="w"> </span>proposals<span class="p">[</span>proposalId<span class="p">];</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span><span class="o">!</span>proposal<span class="p">.</span>executed<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Proposal already executed&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span><span class="k">block.timestamp</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span>proposal<span class="p">.</span>endTime<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Voting not ended&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>proposal<span class="p">.</span>active<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Proposal not active for execution&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Example: simple majority</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>proposal<span class="p">.</span>voteCountYay<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span>proposal<span class="p">.</span>voteCountNay<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Proposal not passed&quot;</span><span class="p">);</span>
+
+<span class="w">        </span>proposal<span class="p">.</span>executed<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">true</span><span class="p">;</span>
+<span class="w">        </span>proposal<span class="p">.</span>active<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">false</span><span class="p">;</span><span class="w"> </span><span class="c1">// Deactivate after execution</span>
+
+<span class="w">        </span>emit<span class="w"> </span>ProposalExecuted<span class="p">(</span>proposalId<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getVotingStatus</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">proposalId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>description<span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">voteYay</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">voteNay</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalVotes</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">requiredVotesForPass</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">active</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">executed</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>Proposal<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>proposal<span class="w"> </span><span class="o">=</span><span class="w"> </span>proposals<span class="p">[</span>proposalId<span class="p">];</span>
+<span class="w">        </span>description<span class="w"> </span><span class="o">=</span><span class="w"> </span>proposal<span class="p">.</span>description<span class="p">;</span>
+<span class="w">        </span>voteYay<span class="w"> </span><span class="o">=</span><span class="w"> </span>proposal<span class="p">.</span>voteCountYay<span class="p">;</span>
+<span class="w">        </span>voteNay<span class="w"> </span><span class="o">=</span><span class="w"> </span>proposal<span class="p">.</span>voteCountNay<span class="p">;</span>
+<span class="w">        </span>totalVotes<span class="w"> </span><span class="o">=</span><span class="w"> </span>proposal<span class="p">.</span>totalVotes<span class="p">;</span>
+<span class="w">        </span>requiredVotesForPass<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span>proposal<span class="p">.</span>totalVotes<span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m m-Decimal">2</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m m-Decimal">1</span><span class="p">;</span><span class="w"> </span><span class="c1">// Simple majority example</span>
+<span class="w">        </span>active<span class="w"> </span><span class="o">=</span><span class="w"> </span>proposal<span class="p">.</span>active<span class="p">;</span>
+<span class="w">        </span>executed<span class="w"> </span><span class="o">=</span><span class="w"> </span>proposal<span class="p">.</span>executed<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">modifier</span><span class="w"> </span>onlyOwner<span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Implementation would check ownership</span>
+<span class="w">        </span>_<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="security-considerations">Security Considerations<a class="headerlink" href="#security-considerations" title="Permanent link">&para;</a></h2>
+<h3 id="proof-validation-security">Proof Validation Security<a class="headerlink" href="#proof-validation-security" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Correct Root</strong>: Always ensure the Merkle root is correct and from a trusted source.</li>
+<li><strong>Uniqueness of Leaves</strong>: Prevent double-claiming by marking used leaves (hash of user+amount).</li>
+<li><strong>Correct Hashing</strong>: Ensure leaf node hashing matches the tree generation.</li>
+</ul>
+<h3 id="cryptographic-security">Cryptographic Security<a class="headerlink" href="#cryptographic-security" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Strong Hashing</strong>: Use collision-resistant hash functions (e.g., keccak256).</li>
+<li><strong>No Predictable Randomness</strong>: Avoid on-chain randomness for critical parameters.</li>
+</ul>
+<h3 id="implementation-security">Implementation Security<a class="headerlink" href="#implementation-security" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Access Control</strong>: Secure functions that set Merkle roots or control airdrop parameters.</li>
+<li><strong>Reentrancy Protection</strong>: Critical for functions that transfer tokens.</li>
+</ul>
+<h2 id="gas-optimization">Gas Optimization<a class="headerlink" href="#gas-optimization" title="Permanent link">&para;</a></h2>
+<h3 id="verification-efficiency">Verification Efficiency<a class="headerlink" href="#verification-efficiency" title="Permanent link">&para;</a></h3>
+<ul>
+<li>The <code>verify()</code> function is highly optimized for gas, computing hashes iteratively.</li>
+</ul>
+<h3 id="memory-efficiency">Memory Efficiency<a class="headerlink" href="#memory-efficiency" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>proof</code> array is passed as <code>memory</code> to prevent unnecessary storage writes.</li>
+</ul>
+<h2 id="error-handling">Error Handling<a class="headerlink" href="#error-handling" title="Permanent link">&para;</a></h2>
+<h3 id="common-errors">Common Errors<a class="headerlink" href="#common-errors" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>Invalid Merkle proof</code>: The provided proof does not validate against the root.</li>
+<li><code>Proof already used</code>: The leaf has already been claimed/used.</li>
+<li><code>Not active</code>: The sale/airdrop is not active or has ended.</li>
+<li><code>Insufficient allocation</code>: Attempting to claim more than whitelisted amount.</li>
+</ul>
+<h2 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h2>
+<h3 id="merkle-tree-generation">Merkle Tree Generation<a class="headerlink" href="#merkle-tree-generation" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Generate Merkle trees off-chain using a secure and reliable process.</li>
+<li>The Merkle root must be committed on-chain in a timely and secure manner.</li>
+</ul>
+<h3 id="leaf-data">Leaf Data<a class="headerlink" href="#leaf-data" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Standardize the data structure for leaves (e.g., <code>keccak256(abi.encodePacked(address, amount))</code>).</li>
+<li>Ensure the off-chain system that generates leaves and proofs matches the on-chain logic.</li>
+</ul>
+<h3 id="integration-checklist">Integration Checklist<a class="headerlink" href="#integration-checklist" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Verify proof generation and verification across all environments (local, testnet, production).</li>
+<li>Clearly communicate to users how to generate their participation data (e.g., wallet address + allocation).</li>
+</ul>
+<h2 id="related-documentation">Related Documentation<a class="headerlink" href="#related-documentation" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../../facets/multi-sale-facet/">Multi Sale Facet</a> - For token sales integration.</li>
+<li><a href="../../../sdk-libraries/blockchain/">SDK &amp; Libraries: Blockchain Utilities</a> - General blockchain interaction utilities.</li>
+<li><a href="../../../developer-guides/automated-testing-setup/">Developer Guides: Automated Testing Setup</a></li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../variable-price-lib/" class="btn btn-neutral float-left" title="Variable Price Lib"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../fee-distributor-lib/" class="btn btn-neutral float-right" title="Fee Distributor Lib">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../variable-price-lib/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../fee-distributor-lib/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

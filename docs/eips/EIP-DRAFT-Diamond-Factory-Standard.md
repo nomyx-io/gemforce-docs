@@ -127,7 +127,7 @@ contract DiamondFactory is IDiamondFactory {
         IDiamond(diamond).initialize(settings.owner, settings, cuts, diamondInit, initCalldata);
         
         // Set upgrade timelock
-        IUpgradeTimelock(diamond).initializeUpgradeTimelock(DEFAULT_UPGRADE_TIMELOCK);
+        IUpgradeTimelock(diamond).initializeUpgradeTimelock(DEFAULT_UPELGRADE_TIMELOCK);
         
         // Track deployment
         _trackDeployment(diamond, settings, 0, msg.sender);
@@ -245,9 +245,9 @@ Comprehensive test cases should cover:
 ## Reference Implementation
 
 The reference implementation includes:
-- [`DiamondFactory.sol`](../contracts/DiamondFactory.sol) - Core factory contract
-- [`IDiamondFactory.sol`](../contracts/interfaces/IDiamondFactory.sol) - Interface definition
-- [`DiamondFactoryLib.sol`](../contracts/libraries/DiamondFactoryLib.sol) - Supporting library functions
+- [Diamond Factory](../smart-contracts/diamond-factory.md) - Core factory contract
+- [IDiamondFactory Interface](../smart-contracts/interfaces/idiamond-factory.md) - Interface definition
+- [Diamond Factory Lib](../smart-contracts/libraries/diamond-factory-lib.md) - Supporting library functions
 
 ## Copyright
 

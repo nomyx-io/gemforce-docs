@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Gemforce Team" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>Fee Distributor Lib - Gemforce Documentation</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Fee Distributor Lib";
+        var mkdocs_page_input_path = "smart-contracts/libraries/fee-distributor-lib.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../.." class="icon icon-home"> Gemforce Documentation
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../developer-setup-guide/">Developer Setup Guide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../system-architecture/gemforce-system-architecture/">System Architecture</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Smart Contracts</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../diamond/">Diamond Contract</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../diamond-factory/">Diamond Factory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../identity-factory/">Identity Factory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Facets</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/marketplace-facet/">Marketplace Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trade-deal-management-facet/">Trade Deal Management Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/carbon-credit-facet/">Carbon Credit Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/identity-registry-facet/">Identity Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trusted-issuers-registry-facet/">Trusted Issuers Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/fee-distributor-facet/">Fee Distributor Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/gemforce-minter-facet/">Gemforce Minter Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/multi-sale-facet/">Multi Sale Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/svg-templates-facet/">SVG Templates Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trade-deal-admin-facet/">Trade Deal Admin Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trade-deal-operations-facet/">Trade Deal Operations Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/collateral-token-factory-facet/">Collateral Token Factory Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/diamond-cut-facet/">Diamond Cut Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/diamond-loupe-facet/">Diamond Loupe Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/ownership-facet/">Ownership Facet</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Interfaces</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/idiamond/">IDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/imarketplace/">IMarketplace</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/itradedeal/">ITradeDeal</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/icarbon-credit/">ICarbonCredit</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ierc1155-mint/">IERC1155Mint</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ierc734/">IERC734</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ierc735/">IERC735</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ierc721a/">IERC721A</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/idiamond-factory/">IDiamondFactory</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/iidentity/">IIdentity</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/imultisale/">IMultiSale</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ifee-distributor/">IFeeDistributor</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/igemforce-minter-facet/">IGemforceMinterFacet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/iidentity-registry/">IIdentityRegistry</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/itrusted-issuers-registry/">TRUSTEDIssuersRegistry</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/isvg/">ISVG</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/iattribute/">IAttribute</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ivariable-price/">IVariablePrice</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" >Libraries</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" href="../carbon-credit-lib/">Carbon Credit Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../trade-deal-lib/">Trade Deal Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../multi-sale-lib/">Multi Sale Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../diamond-factory-lib/">Diamond Factory Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../svg-templates-lib/">SVG Templates Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../attribute-lib/">Attribute Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../variable-price-lib/">Variable Price Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../merkle-prover/">Merkle Prover</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">Fee Distributor Lib</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#overview">Overview</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#key-features">Key Features</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#library-definition">Library Definition</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data-structures">Data Structures</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#feedistributorstorage-struct">FeeDistributorStorage Struct</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#core-functions">Core Functions</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#initialization">Initialization</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#configuration-management">Configuration Management</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#fee-calculations">Fee Calculations</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#distribution-execution">Distribution Execution</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#integration-examples">Integration Examples</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#nft-marketplace-with-revenue-sharing">NFT Marketplace with Revenue Sharing</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#defi-protocol-with-token-distribution">DeFi Protocol with Token Distribution</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#gaming-platform-revenue-distribution">Gaming Platform Revenue Distribution</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#security-considerations">Security Considerations</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#financial-security">Financial Security</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#access-control">Access Control</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#distribution-integrity">Distribution Integrity</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#gas-optimization">Gas Optimization</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#batch-operations">Batch Operations</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#storage-efficiency">Storage Efficiency</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#error-handling">Error Handling</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#common-errors">Common Errors</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#best-practices">Best Practices</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#configuration-management_1">Configuration Management</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#integration-checklist">Integration Checklist</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#development-guidelines">Development Guidelines</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#related-documentation">Related Documentation</a>
+    </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../lib-diamond/">LibDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../diamond-lib/">DiamondLib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../erc721a-lib/">ERC721A Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../erc721a-enumeration-lib/">ERC721A Enumeration Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../strings-lib/">Strings Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../trusted-issuer-lib/">Trusted Issuer Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../set-libraries/">Set Libraries</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">SDK & Libraries</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/blockchain/">Blockchain Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/diamond/">Diamond Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/contract/">Contract Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/deploy/">Deployment Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/validation-utils/">Validation Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/nft-sale-utils/">NFT Sale Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/webhooks/">Webhooks Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../metadata-lib/">Metadata Library</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Cloud Functions</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/authentication/">Authentication Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/auth-functions/">Auth Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/blockchain/">Blockchain Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/bridge/">Bridge Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/contracts/">Contract Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/deploy/">Deploy Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/dfns/">DFNS Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/project/">Project Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/trade-deal/">Trade Deal Functions</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">API Documentation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../api-documentation/gemforce-api-documentation/">Full API Reference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../api-documentation/gemforce-api-quick-reference/">Quick Reference</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-external-services/">External Services</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-system-architecture/">System Architecture</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Operations Tasks</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/diamond/">Diamond Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/identities/">Identity Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/marketplace-management/">Marketplace Management Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/carbon-credit-management/">Carbon Credit Management Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/trade-deal/">Trade Deal Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/integration-test/">Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/integration-test-marketplace/">Marketplace Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/integration-test-trade-deal/">Trade Deal Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/admin-utils/">Admin Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/sync-diamond/">Sync Diamond Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/sync-events/">Sync Events Tasks</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">EIPs (Ethereum Improvement Proposals)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Diamond-Enhanced-Marketplace/">Diamond-Enhanced Marketplace</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Multi-Token-Sale-Standard/">Multi-Token Sale Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Collateralized-Trade-Deal-Standard/">Collateralized Trade Deal Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Enhanced-Identity-System/">Enhanced Identity System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Diamond-Factory-Standard/">Diamond Factory Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Carbon-Credit-Standard/">Carbon Credit Standard</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Developer Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/development-environment-setup/">Development Environment Setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/testing-frameworks/">Testing Frameworks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/debugging/">Debugging</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/performance-optimization/">Performance Optimization</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/test-case-specifications/">Test Case Specifications</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/test-data-management/">Test Data Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/automated-testing-setup/">Automated Testing Setup</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Deployment Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../deployment-guides/multi-network-deployment/">Multi-Network Deployment</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../deployment-guides/infrastructure-management/">Infrastructure Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../deployment-guides/monitoring-logging/">Monitoring and Logging</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">User Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-administrator-guide/">Administrator Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-deployer-guide/">Deployer Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-integrator-guide/">Integrator Guide</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Integrator's Guide</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/authentication/">Authentication</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/rest-api/">REST API</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/smart-contracts/">Smart Contracts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/dfns/">DFNS Integration</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/parse-server/">Parse Server Notes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/webhooks/">Webhooks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/error-handling/">Error Handling</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/sample-code/">Sample Code</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/integration-patterns/">Integration Patterns</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/testing/">Testing Considerations</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/security/">Security</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../external-services/gemforce-external-services/">External Services</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Security</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security/threat-model/">Threat Model and Risk Assessment</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security/incident-response/">Incident Response Procedures</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security/audit-compliance/">Security Audits and Compliance</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">External Developer Integration</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/api-rate-limiting/">API Rate Limiting</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/webhook-implementation-guidelines/">Webhook Implementation Guidelines</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/sdk-development-guidelines/">SDK Development Guidelines</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/partner-integration-guides/">Partner Integration Guides</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-documentation-gap-analysis/">Documentation Gap Analysis</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../documentation-progress-summary/">Documentation Progress Summary</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../documentation-plan/">Documentation Plan</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Configuration & Environment</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/gemforce-config/">Gemforce Config</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/environment-specific-guides/">Environment-Specific Guides</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/configuration-validation/">Configuration Validation Procedures</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/external-service-config-management/">External Service Configuration Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/database-schema-overview/">Database Schema Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/database-migration-procedures/">Database Migration Procedures</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">Gemforce Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Smart Contracts</li>
+          <li class="breadcrumb-item">Libraries</li>
+      <li class="breadcrumb-item active">Fee Distributor Lib</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="feedistributorlib-library">FeeDistributorLib Library<a class="headerlink" href="#feedistributorlib-library" title="Permanent link">&para;</a></h1>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>The <a href="./"><code>FeeDistributorLib</code></a> library provides core utilities for automated fee distribution within the Gemforce platform. This library implements flexible revenue sharing mechanisms that automatically distribute fees to multiple recipients based on configurable weights, supporting both native ETH and ERC20 token distributions.</p>
+<h2 id="key-features">Key Features<a class="headerlink" href="#key-features" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Flexible Fee Distribution</strong>: Configurable weight-based fee allocation</li>
+<li><strong>Multi-Currency Support</strong>: Native ETH and ERC20 token distribution</li>
+<li><strong>Basis Point Precision</strong>: Accurate percentage-based fee calculations</li>
+<li><strong>Automatic Distribution</strong>: Seamless integration with transaction flows</li>
+<li><strong>Safety Checks</strong>: Comprehensive validation and overflow protection</li>
+<li><strong>Gas Efficient</strong>: Optimized batch distribution operations</li>
+</ul>
+<h2 id="library-definition">Library Definition<a class="headerlink" href="#library-definition" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span><code><span class="c1">// SPDX-License-Identifier: MIT</span>
+<span class="k">pragma solidity</span><span class="w"> </span><span class="o">^</span><span class="k">0.8.0</span><span class="p">;</span>
+
+<span class="kt">library</span><span class="w"> </span>FeeDistributorLib<span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Initialization</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">_initializeFeeDistributor</span><span class="p">(</span>IdentitySystemStorage<span class="p">.</span>IdentitySystem<span class="w"> </span>storage<span class="w"> </span>ds<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">_distributionToken</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_totalWeightBasis</span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// Configuration</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">_setFeeReceivers</span><span class="p">(</span>IdentitySystemStorage<span class="p">.</span>IdentitySystem<span class="w"> </span>storage<span class="w"> </span>ds<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>_feeReceivers<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>_feeWeights<span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">address</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">_getFeeReceivers</span><span class="p">(</span>IdentitySystemStorage<span class="p">.</span>IdentitySystem<span class="w"> </span>storage<span class="w"> </span>ds<span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">address</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Calculations</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">_calculateAmounts</span><span class="p">(</span>IdentitySystemStorage<span class="p">.</span>IdentitySystem<span class="w"> </span>storage<span class="w"> </span>ds<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">principalAmount</span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">adjustedAmount</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>feeAmounts<span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Distribution</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">_distributeAmounts</span><span class="p">(</span>IdentitySystemStorage<span class="p">.</span>IdentitySystem<span class="w"> </span>storage<span class="w"> </span>ds<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">self</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">principalAmountReceiver</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_principalAmount</span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">address</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="data-structures">Data Structures<a class="headerlink" href="#data-structures" title="Permanent link">&para;</a></h2>
+<h3 id="feedistributorstorage-struct">FeeDistributorStorage Struct<a class="headerlink" href="#feedistributorstorage-struct" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">struct</span><span class="w"> </span><span class="nv">FeeDistributorStorage</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">address</span><span class="p">[]</span><span class="w"> </span>feeReceivers<span class="p">;</span><span class="w">         </span><span class="c1">// Array of fee recipient addresses</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span>feeWeights<span class="p">;</span><span class="w">           </span><span class="c1">// Array of weights for each recipient</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalWeightBasis</span><span class="p">;</span><span class="w">       </span><span class="c1">// Total basis for weight calculations (e.g., 10000 for basis points)</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">distributionToken</span><span class="p">;</span><span class="w">      </span><span class="c1">// ERC20 token address (address(0) for native ETH)</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Complete configuration for fee distribution system.</p>
+<p><strong>Components</strong>:
+- <strong>feeReceivers</strong>: Addresses that will receive fee distributions
+- <strong>feeWeights</strong>: Corresponding weights for each receiver (must sum to totalWeightBasis)
+- <strong>totalWeightBasis</strong>: Denominator for percentage calculations (typically 10000 for basis points)
+- <strong>distributionToken</strong>: Token contract address or address(0) for native ETH</p>
+<h2 id="core-functions">Core Functions<a class="headerlink" href="#core-functions" title="Permanent link">&para;</a></h2>
+<h3 id="initialization">Initialization<a class="headerlink" href="#initialization" title="Permanent link">&para;</a></h3>
+<h4 id="_initializefeedistributor"><code>_initializeFeeDistributor()</code><a class="headerlink" href="#_initializefeedistributor" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">_initializeFeeDistributor</span><span class="p">(</span>
+<span class="w">    </span>IdentitySystemStorage<span class="p">.</span>IdentitySystem<span class="w"> </span>storage<span class="w"> </span>ds<span class="p">,</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">_distributionToken</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_totalWeightBasis</span>
+<span class="p">)</span><span class="w"> </span><span class="kt">internal</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Initialize the fee distribution system with basic parameters.</p>
+<p><strong>Parameters</strong>:
+- <code>ds</code>: Diamond storage reference
+- <code>_distributionToken</code>: Token contract address (address(0) for native ETH)
+- <code>_totalWeightBasis</code>: Basis for weight calculations (e.g., 10000 for basis points)</p>
+<p><strong>Validation</strong>:
+- Prevents re-initialization
+- Requires positive weight basis
+- Allows address(0) for native currency distribution</p>
+<p><strong>Example Usage</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Initialize for USDC distribution with basis points</span>
+FeeDistributorLib<span class="p">.</span>_initializeFeeDistributor<span class="p">(</span>
+<span class="w">    </span>ds<span class="p">,</span>
+<span class="w">    </span><span class="mh">0xA0b86a33E6441c8C06DD2b7c94b7E0e8c0c8c8c8</span><span class="p">,</span><span class="w"> </span><span class="c1">// USDC address</span>
+<span class="w">    </span><span class="m m-Decimal">10000</span><span class="w"> </span><span class="c1">// 10000 basis points = 100%</span>
+<span class="p">);</span>
+
+<span class="c1">// Initialize for native ETH distribution</span>
+FeeDistributorLib<span class="p">.</span>_initializeFeeDistributor<span class="p">(</span>
+<span class="w">    </span>ds<span class="p">,</span>
+<span class="w">    </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">),</span><span class="w"> </span><span class="c1">// Native ETH</span>
+<span class="w">    </span><span class="m m-Decimal">10000</span>
+<span class="p">);</span>
+</code></pre></div>
+
+<h3 id="configuration-management">Configuration Management<a class="headerlink" href="#configuration-management" title="Permanent link">&para;</a></h3>
+<h4 id="_setfeereceivers"><code>_setFeeReceivers()</code><a class="headerlink" href="#_setfeereceivers" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">_setFeeReceivers</span><span class="p">(</span>
+<span class="w">    </span>IdentitySystemStorage<span class="p">.</span>IdentitySystem<span class="w"> </span>storage<span class="w"> </span>ds<span class="p">,</span>
+<span class="w">    </span><span class="kt">address</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>_feeReceivers<span class="p">,</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>_feeWeights
+<span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">address</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Configure fee recipients and their distribution weights.</p>
+<p><strong>Parameters</strong>:
+- <code>ds</code>: Diamond storage reference
+- <code>_feeReceivers</code>: Array of recipient addresses
+- <code>_feeWeights</code>: Array of weights corresponding to each recipient</p>
+<p><strong>Returns</strong>: Arrays of receivers and weights for event emission</p>
+<p><strong>Validation</strong>:
+- Array lengths must match
+- At least one receiver required
+- No zero addresses allowed
+- All weights must be positive
+- Weights must sum exactly to totalWeightBasis</p>
+<p><strong>Example Usage</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Set up 3-way fee distribution</span>
+<span class="kt">address</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>receivers<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="kt">address</span><span class="p">[](</span><span class="m m-Decimal">3</span><span class="p">);</span>
+receivers<span class="p">[</span><span class="m m-Decimal">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x1234</span><span class="p">...;</span><span class="w"> </span><span class="c1">// Platform treasury</span>
+receivers<span class="p">[</span><span class="m m-Decimal">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x5678</span><span class="p">...;</span><span class="w"> </span><span class="c1">// Development fund</span>
+receivers<span class="p">[</span><span class="m m-Decimal">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x9abc</span><span class="p">...;</span><span class="w"> </span><span class="c1">// Marketing fund</span>
+
+<span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>weights<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[](</span><span class="m m-Decimal">3</span><span class="p">);</span>
+weights<span class="p">[</span><span class="m m-Decimal">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">5000</span><span class="p">;</span><span class="w"> </span><span class="c1">// 50%</span>
+weights<span class="p">[</span><span class="m m-Decimal">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">3000</span><span class="p">;</span><span class="w"> </span><span class="c1">// 30%</span>
+weights<span class="p">[</span><span class="m m-Decimal">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">2000</span><span class="p">;</span><span class="w"> </span><span class="c1">// 20%</span>
+
+FeeDistributorLib<span class="p">.</span>_setFeeReceivers<span class="p">(</span>ds<span class="p">,</span><span class="w"> </span>receivers<span class="p">,</span><span class="w"> </span>weights<span class="p">);</span>
+</code></pre></div>
+
+<h4 id="_getfeereceivers"><code>_getFeeReceivers()</code><a class="headerlink" href="#_getfeereceivers" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">_getFeeReceivers</span><span class="p">(</span>
+<span class="w">    </span>IdentitySystemStorage<span class="p">.</span>IdentitySystem<span class="w"> </span>storage<span class="w"> </span>ds
+<span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="kt">address</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>feeReceivers_<span class="p">,</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>feeWeights_
+<span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Retrieve current fee distribution configuration.</p>
+<p><strong>Parameters</strong>:
+- <code>ds</code>: Diamond storage reference</p>
+<p><strong>Returns</strong>: Arrays of current receivers and their weights</p>
+<p><strong>Example Usage</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Get current fee configuration</span>
+<span class="p">(</span><span class="kt">address</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>receivers<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>weights<span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>FeeDistributorLib<span class="p">.</span>_getFeeReceivers<span class="p">(</span>ds<span class="p">);</span>
+
+<span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>receivers<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>console<span class="p">.</span>log<span class="p">(</span><span class="s2">&quot;Receiver:&quot;</span><span class="p">,</span><span class="w"> </span>receivers<span class="p">[</span>i<span class="p">],</span><span class="w"> </span><span class="s2">&quot;Weight:&quot;</span><span class="p">,</span><span class="w"> </span>weights<span class="p">[</span>i<span class="p">]);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="fee-calculations">Fee Calculations<a class="headerlink" href="#fee-calculations" title="Permanent link">&para;</a></h3>
+<h4 id="_calculateamounts"><code>_calculateAmounts()</code><a class="headerlink" href="#_calculateamounts" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">_calculateAmounts</span><span class="p">(</span>
+<span class="w">    </span>IdentitySystemStorage<span class="p">.</span>IdentitySystem<span class="w"> </span>storage<span class="w"> </span>ds<span class="p">,</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">principalAmount</span>
+<span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">adjustedAmount</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>feeAmounts
+<span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Calculate fee distributions and remaining principal amount.</p>
+<p><strong>Parameters</strong>:
+- <code>ds</code>: Diamond storage reference
+- <code>principalAmount</code>: Total amount before fee deduction</p>
+<p><strong>Returns</strong>:
+- <code>adjustedAmount</code>: Principal amount after fee deduction
+- <code>feeAmounts</code>: Array of individual fee amounts for each receiver</p>
+<p><strong>Calculation Logic</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// For each receiver:</span>
+feeAmount<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span>principalAmount<span class="w"> </span><span class="o">*</span><span class="w"> </span>weight<span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span>totalWeightBasis
+
+<span class="c1">// Adjusted amount:</span>
+adjustedAmount<span class="w"> </span><span class="o">=</span><span class="w"> </span>principalAmount<span class="w"> </span><span class="o">-</span><span class="w"> </span>sum<span class="p">(</span>feeAmounts<span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Safety Features</strong>:
+- Handles zero receivers (pass-through mode)
+- Prevents total fees from exceeding principal
+- Protects against overflow in calculations</p>
+<p><strong>Example Usage</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Calculate fees for a 1000 USDC transaction</span>
+<span class="kt">uint256</span><span class="w"> </span><span class="nv">principal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">1000</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m m-Decimal">10</span><span class="o">**</span><span class="m m-Decimal">6</span><span class="p">;</span><span class="w"> </span><span class="c1">// 1000 USDC</span>
+<span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">adjusted</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>fees<span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>FeeDistributorLib<span class="p">.</span>_calculateAmounts<span class="p">(</span>ds<span class="p">,</span><span class="w"> </span>principal<span class="p">);</span>
+
+console<span class="p">.</span>log<span class="p">(</span><span class="s2">&quot;Principal after fees:&quot;</span><span class="p">,</span><span class="w"> </span>adjusted<span class="p">);</span>
+<span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>fees<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>console<span class="p">.</span>log<span class="p">(</span><span class="s2">&quot;Fee&quot;</span><span class="p">,</span><span class="w"> </span>i<span class="p">,</span><span class="w"> </span><span class="s2">&quot;:&quot;</span><span class="p">,</span><span class="w"> </span>fees<span class="p">[</span>i<span class="p">]);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="distribution-execution">Distribution Execution<a class="headerlink" href="#distribution-execution" title="Permanent link">&para;</a></h3>
+<h4 id="_distributeamounts"><code>_distributeAmounts()</code><a class="headerlink" href="#_distributeamounts" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">_distributeAmounts</span><span class="p">(</span>
+<span class="w">    </span>IdentitySystemStorage<span class="p">.</span>IdentitySystem<span class="w"> </span>storage<span class="w"> </span>ds<span class="p">,</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">self</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">principalAmountReceiver</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_principalAmount</span>
+<span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">adjustedAmountReceiver_</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">adjustedAmount_</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">address</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>feeReceivers_<span class="p">,</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>feeAmounts_
+<span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Execute the actual distribution of fees and principal amount.</p>
+<p><strong>Parameters</strong>:
+- <code>ds</code>: Diamond storage reference
+- <code>self</code>: Address of the calling contract (for balance checks)
+- <code>principalAmountReceiver</code>: Address to receive the adjusted principal
+- <code>_principalAmount</code>: Total amount to distribute</p>
+<p><strong>Returns</strong>: Distribution details for event emission</p>
+<p><strong>Process</strong>:
+1. Calculate fee amounts and adjusted principal
+2. Check contract balance sufficiency
+3. Transfer fees to each receiver
+4. Transfer adjusted principal to designated receiver
+5. Return distribution details</p>
+<p><strong>Native ETH Distribution</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Check balance</span>
+<span class="kt">require</span><span class="p">(</span>self<span class="p">.</span>balance<span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span>_principalAmount<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Insufficient native balance&quot;</span><span class="p">);</span>
+
+<span class="c1">// Transfer fees</span>
+<span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>receivers<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>feeAmounts<span class="p">[</span>i<span class="p">]</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="p">(</span><span class="kt">bool</span><span class="w"> </span><span class="nv">success</span><span class="p">,</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">payable</span><span class="p">(</span>receivers<span class="p">[</span>i<span class="p">]).</span>call<span class="p">{</span>value<span class="o">:</span><span class="w"> </span>feeAmounts<span class="p">[</span>i<span class="p">]}(</span><span class="s2">&quot;&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>success<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Native fee transfer failed&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Transfer principal</span>
+<span class="kt">if</span><span class="w"> </span><span class="p">(</span>adjustedAmount<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="p">(</span><span class="kt">bool</span><span class="w"> </span><span class="nv">success</span><span class="p">,</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">payable</span><span class="p">(</span>principalAmountReceiver<span class="p">).</span>call<span class="p">{</span>value<span class="o">:</span><span class="w"> </span>adjustedAmount<span class="p">}(</span><span class="s2">&quot;&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">require</span><span class="p">(</span>success<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Native principal transfer failed&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>ERC20 Token Distribution</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Check balance</span>
+IERC20<span class="w"> </span>token<span class="w"> </span><span class="o">=</span><span class="w"> </span>IERC20<span class="p">(</span>distributionToken<span class="p">);</span>
+<span class="kt">require</span><span class="p">(</span>token<span class="p">.</span>balanceOf<span class="p">(</span>self<span class="p">)</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span>_principalAmount<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Insufficient token balance&quot;</span><span class="p">);</span>
+
+<span class="c1">// Transfer fees</span>
+<span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>receivers<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>feeAmounts<span class="p">[</span>i<span class="p">]</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>token<span class="p">.</span>safeTransfer<span class="p">(</span>receivers<span class="p">[</span>i<span class="p">],</span><span class="w"> </span>feeAmounts<span class="p">[</span>i<span class="p">]);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Transfer principal</span>
+<span class="kt">if</span><span class="w"> </span><span class="p">(</span>adjustedAmount<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>token<span class="p">.</span>safeTransfer<span class="p">(</span>principalAmountReceiver<span class="p">,</span><span class="w"> </span>adjustedAmount<span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="integration-examples">Integration Examples<a class="headerlink" href="#integration-examples" title="Permanent link">&para;</a></h2>
+<h3 id="nft-marketplace-with-revenue-sharing">NFT Marketplace with Revenue Sharing<a class="headerlink" href="#nft-marketplace-with-revenue-sharing" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// NFT marketplace with automatic fee distribution</span>
+<span class="k">contract</span><span class="w"> </span><span class="ni">NFTMarketplace</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>using<span class="w"> </span>FeeDistributorLib<span class="w"> </span><span class="kt">for</span><span class="w"> </span>IdentitySystemStorage<span class="p">.</span>IdentitySystem<span class="p">;</span>
+
+<span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">Listing</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">seller</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">price</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">active</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">MarketplaceConfig</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">platformFee</span><span class="p">;</span><span class="w"> </span><span class="c1">// Basis points</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">platformTreasury</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">developmentFund</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">marketingFund</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span>Listing<span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>listings<span class="p">;</span>
+<span class="w">    </span>MarketplaceConfig<span class="w"> </span><span class="kt">public</span><span class="w"> </span>config<span class="p">;</span>
+<span class="w">    </span>IdentitySystemStorage<span class="p">.</span>IdentitySystem<span class="w"> </span><span class="kt">internal</span><span class="w"> </span>ds<span class="p">;</span>
+
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">ListingCreated</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>tokenId<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>seller<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">price</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">ItemSold</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>tokenId<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>buyer<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>seller<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">price</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">FeesDistributed</span><span class="p">(</span><span class="kt">address</span><span class="p">[]</span><span class="w"> </span>receivers<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span>amounts<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalFees</span><span class="p">);</span>
+
+<span class="w">    </span><span class="kt">constructor</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">_platformTreasury</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">_developmentFund</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">_marketingFund</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_platformFee</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>config<span class="w"> </span><span class="o">=</span><span class="w"> </span>MarketplaceConfig<span class="p">({</span>
+<span class="w">            </span>platformFee<span class="o">:</span><span class="w"> </span>_platformFee<span class="p">,</span>
+<span class="w">            </span>platformTreasury<span class="o">:</span><span class="w"> </span>_platformTreasury<span class="p">,</span>
+<span class="w">            </span>developmentFund<span class="o">:</span><span class="w"> </span>_developmentFund<span class="p">,</span>
+<span class="w">            </span>marketingFund<span class="o">:</span><span class="w"> </span>_marketingFund
+<span class="w">        </span><span class="p">});</span>
+
+<span class="w">        </span><span class="c1">// Initialize fee distributor for native ETH</span>
+<span class="w">        </span>FeeDistributorLib<span class="p">.</span>_initializeFeeDistributor<span class="p">(</span>ds<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">),</span><span class="w"> </span><span class="m m-Decimal">10000</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Set up fee distribution: 60% treasury, 25% development, 15% marketing</span>
+<span class="w">        </span><span class="kt">address</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>receivers<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="kt">address</span><span class="p">[](</span><span class="m m-Decimal">3</span><span class="p">);</span>
+<span class="w">        </span>receivers<span class="p">[</span><span class="m m-Decimal">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>_platformTreasury<span class="p">;</span>
+<span class="w">        </span>receivers<span class="p">[</span><span class="m m-Decimal">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>_developmentFund<span class="p">;</span>
+<span class="w">        </span>receivers<span class="p">[</span><span class="m m-Decimal">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>_marketingFund<span class="p">;</span>
+
+<span class="w">        </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>weights<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[](</span><span class="m m-Decimal">3</span><span class="p">);</span>
+<span class="w">        </span>weights<span class="p">[</span><span class="m m-Decimal">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">6000</span><span class="p">;</span><span class="w"> </span><span class="c1">// 60%</span>
+<span class="w">        </span>weights<span class="p">[</span><span class="m m-Decimal">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">2500</span><span class="p">;</span><span class="w"> </span><span class="c1">// 25%</span>
+<span class="w">        </span>weights<span class="p">[</span><span class="m m-Decimal">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">1500</span><span class="p">;</span><span class="w"> </span><span class="c1">// 15%</span>
+
+<span class="w">        </span>FeeDistributorLib<span class="p">.</span>_setFeeReceivers<span class="p">(</span>ds<span class="p">,</span><span class="w"> </span>receivers<span class="p">,</span><span class="w"> </span>weights<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">createListing</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">price</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>_isApprovedOrOwner<span class="p">(</span><span class="k">msg.sender</span><span class="p">,</span><span class="w"> </span>tokenId<span class="p">),</span><span class="w"> </span><span class="s2">&quot;Not authorized&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>price<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Price must be positive&quot;</span><span class="p">);</span>
+
+<span class="w">        </span>listings<span class="p">[</span>tokenId<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>Listing<span class="p">({</span>
+<span class="w">            </span>tokenId<span class="o">:</span><span class="w"> </span>tokenId<span class="p">,</span>
+<span class="w">            </span>seller<span class="o">:</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">,</span>
+<span class="w">            </span>price<span class="o">:</span><span class="w"> </span>price<span class="p">,</span>
+<span class="w">            </span>active<span class="o">:</span><span class="w"> </span><span class="kt">true</span>
+<span class="w">        </span><span class="p">});</span>
+
+<span class="w">        </span>emit<span class="w"> </span>ListingCreated<span class="p">(</span>tokenId<span class="p">,</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">,</span><span class="w"> </span>price<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">buyItem</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">payable</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>Listing<span class="w"> </span>storage<span class="w"> </span>listing<span class="w"> </span><span class="o">=</span><span class="w"> </span>listings<span class="p">[</span>tokenId<span class="p">];</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>listing<span class="p">.</span>active<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Listing not active&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span><span class="k">msg.value</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span>listing<span class="p">.</span>price<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Insufficient payment&quot;</span><span class="p">);</span>
+
+<span class="w">        </span>listing<span class="p">.</span>active<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">false</span><span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// Calculate platform fee</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">platformFeeAmount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span>listing<span class="p">.</span>price<span class="w"> </span><span class="o">*</span><span class="w"> </span>config<span class="p">.</span>platformFee<span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m m-Decimal">10000</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">sellerAmount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>listing<span class="p">.</span>price<span class="w"> </span><span class="o">-</span><span class="w"> </span>platformFeeAmount<span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// Transfer NFT to buyer</span>
+<span class="w">        </span>_transfer<span class="p">(</span>listing<span class="p">.</span>seller<span class="p">,</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">,</span><span class="w"> </span>tokenId<span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Distribute platform fees</span>
+<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>platformFeeAmount<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="p">(</span>
+<span class="w">                </span><span class="kt">address</span><span class="w"> </span><span class="nv">adjustedReceiver</span><span class="p">,</span>
+<span class="w">                </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">adjustedAmount</span><span class="p">,</span>
+<span class="w">                </span><span class="kt">address</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>feeReceivers<span class="p">,</span>
+<span class="w">                </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>feeAmounts
+<span class="w">            </span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>FeeDistributorLib<span class="p">.</span>_distributeAmounts<span class="p">(</span>
+<span class="w">                </span>ds<span class="p">,</span>
+<span class="w">                </span><span class="kt">address</span><span class="p">(</span><span class="kt">this</span><span class="p">),</span>
+<span class="w">                </span><span class="kt">address</span><span class="p">(</span><span class="kt">this</span><span class="p">),</span><span class="w"> </span><span class="c1">// Platform keeps any remainder</span>
+<span class="w">                </span>platformFeeAmount
+<span class="w">            </span><span class="p">);</span>
+
+<span class="w">            </span>emit<span class="w"> </span>FeesDistributed<span class="p">(</span>feeReceivers<span class="p">,</span><span class="w"> </span>feeAmounts<span class="p">,</span><span class="w"> </span>platformFeeAmount<span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// Transfer remaining amount to seller</span>
+<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>sellerAmount<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">payable</span><span class="p">(</span>listing<span class="p">.</span>seller<span class="p">).</span>transfer<span class="p">(</span>sellerAmount<span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// Refund excess payment</span>
+<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span><span class="k">msg.value</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span>listing<span class="p">.</span>price<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">payable</span><span class="p">(</span><span class="k">msg.sender</span><span class="p">).</span>transfer<span class="p">(</span><span class="k">msg.value</span><span class="w"> </span><span class="o">-</span><span class="w"> </span>listing<span class="p">.</span>price<span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span>emit<span class="w"> </span>ItemSold<span class="p">(</span>tokenId<span class="p">,</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">,</span><span class="w"> </span>listing<span class="p">.</span>seller<span class="p">,</span><span class="w"> </span>listing<span class="p">.</span>price<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">updateFeeDistribution</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">address</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>newReceivers<span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>newWeights
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyOwner<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>FeeDistributorLib<span class="p">.</span>_setFeeReceivers<span class="p">(</span>ds<span class="p">,</span><span class="w"> </span>newReceivers<span class="p">,</span><span class="w"> </span>newWeights<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getFeeDistribution</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>
+<span class="w">        </span><span class="kt">address</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>receivers<span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>weights
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>FeeDistributorLib<span class="p">.</span>_getFeeReceivers<span class="p">(</span>ds<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">_transfer</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">from</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">to</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Implementation would transfer ERC721 token</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">_isApprovedOrOwner</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">spender</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bool</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Implementation would check ERC721 authorization</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span><span class="kt">true</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">modifier</span><span class="w"> </span>onlyOwner<span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Implementation would check ownership</span>
+<span class="w">        </span>_<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="defi-protocol-with-token-distribution">DeFi Protocol with Token Distribution<a class="headerlink" href="#defi-protocol-with-token-distribution" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// DeFi protocol with automatic token fee distribution</span>
+<span class="k">contract</span><span class="w"> </span><span class="ni">DeFiProtocol</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>using<span class="w"> </span>FeeDistributorLib<span class="w"> </span><span class="kt">for</span><span class="w"> </span>IdentitySystemStorage<span class="p">.</span>IdentitySystem<span class="p">;</span>
+<span class="w">    </span>using<span class="w"> </span>SafeERC20<span class="w"> </span><span class="kt">for</span><span class="w"> </span>IERC20<span class="p">;</span>
+
+<span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">ProtocolConfig</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>IERC20<span class="w"> </span>rewardToken<span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">protocolFee</span><span class="p">;</span><span class="w"> </span><span class="c1">// Basis points</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalValueLocked</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalRewardsDistributed</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">StakeInfo</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">amount</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">rewardDebt</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">lastStakeTime</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span>ProtocolConfig<span class="w"> </span><span class="kt">public</span><span class="w"> </span>config<span class="p">;</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span>StakeInfo<span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>stakes<span class="p">;</span>
+<span class="w">    </span>IdentitySystemStorage<span class="p">.</span>IdentitySystem<span class="w"> </span><span class="kt">internal</span><span class="w"> </span>ds<span class="p">;</span>
+
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">Staked</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>user<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">amount</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">Unstaked</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>user<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">amount</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">RewardsDistributed</span><span class="p">(</span><span class="kt">address</span><span class="p">[]</span><span class="w"> </span>stakeholders<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span>amounts<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalRewards</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">ProtocolFeesDistributed</span><span class="p">(</span><span class="kt">address</span><span class="p">[]</span><span class="w"> </span>receivers<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span>amounts<span class="p">);</span>
+
+<span class="w">    </span><span class="kt">constructor</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">_rewardToken</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_protocolFee</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">_treasury</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">_developmentFund</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">_stakeholderRewards</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>config<span class="p">.</span>rewardToken<span class="w"> </span><span class="o">=</span><span class="w"> </span>IERC20<span class="p">(</span>_rewardToken<span class="p">);</span>
+<span class="w">        </span>config<span class="p">.</span>protocolFee<span class="w"> </span><span class="o">=</span><span class="w"> </span>_protocolFee<span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// Initialize fee distributor for reward token</span>
+<span class="w">        </span>FeeDistributorLib<span class="p">.</span>_initializeFeeDistributor<span class="p">(</span>ds<span class="p">,</span><span class="w"> </span>_rewardToken<span class="p">,</span><span class="w"> </span><span class="m m-Decimal">10000</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Set up fee distribution: 40% treasury, 30% development, 30% stakeholder rewards</span>
+<span class="w">        </span><span class="kt">address</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>receivers<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="kt">address</span><span class="p">[](</span><span class="m m-Decimal">3</span><span class="p">);</span>
+<span class="w">        </span>receivers<span class="p">[</span><span class="m m-Decimal">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>_treasury<span class="p">;</span>
+<span class="w">        </span>receivers<span class="p">[</span><span class="m m-Decimal">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>_developmentFund<span class="p">;</span>
+<span class="w">        </span>receivers<span class="p">[</span><span class="m m-Decimal">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>_stakeholderRewards<span class="p">;</span>
+
+<span class="w">        </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>weights<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[](</span><span class="m m-Decimal">3</span><span class="p">);</span>
+<span class="w">        </span>weights<span class="p">[</span><span class="m m-Decimal">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">4000</span><span class="p">;</span><span class="w"> </span><span class="c1">// 40%</span>
+<span class="w">        </span>weights<span class="p">[</span><span class="m m-Decimal">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">3000</span><span class="p">;</span><span class="w"> </span><span class="c1">// 30%</span>
+<span class="w">        </span>weights<span class="p">[</span><span class="m m-Decimal">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">3000</span><span class="p">;</span><span class="w"> </span><span class="c1">// 30%</span>
+
+<span class="w">        </span>FeeDistributorLib<span class="p">.</span>_setFeeReceivers<span class="p">(</span>ds<span class="p">,</span><span class="w"> </span>receivers<span class="p">,</span><span class="w"> </span>weights<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">stake</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">amount</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>amount<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Amount must be positive&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Transfer tokens from user</span>
+<span class="w">        </span>config<span class="p">.</span>rewardToken<span class="p">.</span>safeTransferFrom<span class="p">(</span><span class="k">msg.sender</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="kt">this</span><span class="p">),</span><span class="w"> </span>amount<span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Update stake info</span>
+<span class="w">        </span>stakes<span class="p">[</span><span class="k">msg.sender</span><span class="p">].</span>amount<span class="w"> </span><span class="o">+=</span><span class="w"> </span>amount<span class="p">;</span>
+<span class="w">        </span>stakes<span class="p">[</span><span class="k">msg.sender</span><span class="p">].</span>lastStakeTime<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">block.timestamp</span><span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// Update TVL</span>
+<span class="w">        </span>config<span class="p">.</span>totalValueLocked<span class="w"> </span><span class="o">+=</span><span class="w"> </span>amount<span class="p">;</span>
+
+<span class="w">        </span>emit<span class="w"> </span>Staked<span class="p">(</span><span class="k">msg.sender</span><span class="p">,</span><span class="w"> </span>amount<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">unstake</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">amount</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>amount<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Amount must be positive&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>stakes<span class="p">[</span><span class="k">msg.sender</span><span class="p">].</span>amount<span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span>amount<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Insufficient staked amount&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Calculate accrued rewards</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">rewards</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>calculateRewards<span class="p">(</span><span class="k">msg.sender</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Transfer rewards</span>
+<span class="w">        </span>config<span class="p">.</span>rewardToken<span class="p">.</span>safeTransfer<span class="p">(</span><span class="k">msg.sender</span><span class="p">,</span><span class="w"> </span>rewards<span class="p">);</span>
+<span class="w">        </span>config<span class="p">.</span>totalRewardsDistributed<span class="w"> </span><span class="o">+=</span><span class="w"> </span>rewards<span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// Transfer tokens back to user</span>
+<span class="w">        </span>config<span class="p">.</span>rewardToken<span class="p">.</span>safeTransfer<span class="p">(</span><span class="k">msg.sender</span><span class="p">,</span><span class="w"> </span>amount<span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Update stake info</span>
+<span class="w">        </span>stakes<span class="p">[</span><span class="k">msg.sender</span><span class="p">].</span>amount<span class="w"> </span><span class="o">-=</span><span class="w"> </span>amount<span class="p">;</span>
+<span class="w">        </span>stakes<span class="p">[</span><span class="k">msg.sender</span><span class="p">].</span>rewardDebt<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span><span class="c1">// Reset debt after withdrawal</span>
+
+<span class="w">        </span><span class="c1">// Update TVL</span>
+<span class="w">        </span>config<span class="p">.</span>totalValueLocked<span class="w"> </span><span class="o">-=</span><span class="w"> </span>amount<span class="p">;</span>
+
+<span class="w">        </span>emit<span class="w"> </span>Unstaked<span class="p">(</span><span class="k">msg.sender</span><span class="p">,</span><span class="w"> </span>amount<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">calculateRewards</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">user</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Implement reward calculation logic based on staking duration, amount, etc.</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">distributeProtocolFees</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">amount</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyOwner<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>amount<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Amount must be positive&quot;</span><span class="p">);</span>
+<span class="w">        </span>config<span class="p">.</span>rewardToken<span class="p">.</span>safeTransferFrom<span class="p">(</span><span class="k">msg.sender</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="kt">this</span><span class="p">),</span><span class="w"> </span>amount<span class="p">);</span><span class="w"> </span><span class="c1">// Assume sender is the fee collector</span>
+
+<span class="w">        </span><span class="p">(</span>
+<span class="w">            </span><span class="kt">address</span><span class="w"> </span><span class="nv">adjustedReceiver</span><span class="p">,</span>
+<span class="w">            </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">adjustedAmount</span><span class="p">,</span>
+<span class="w">            </span><span class="kt">address</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>feeReceivers<span class="p">,</span>
+<span class="w">            </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>feeAmounts
+<span class="w">        </span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>FeeDistributorLib<span class="p">.</span>_distributeAmounts<span class="p">(</span>
+<span class="w">            </span>ds<span class="p">,</span>
+<span class="w">            </span><span class="kt">address</span><span class="p">(</span><span class="kt">this</span><span class="p">),</span>
+<span class="w">            </span><span class="kt">address</span><span class="p">(</span><span class="kt">this</span><span class="p">),</span><span class="w"> </span><span class="c1">// Unused if all fees are distributed</span>
+<span class="w">            </span>amount
+<span class="w">        </span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Emit event for protocol fees</span>
+<span class="w">        </span>emit<span class="w"> </span>ProtocolFeesDistributed<span class="p">(</span>feeReceivers<span class="p">,</span><span class="w"> </span>feeAmounts<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">modifier</span><span class="w"> </span>onlyOwner<span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Placeholder for access control</span>
+<span class="w">        </span>_<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="gaming-platform-revenue-distribution">Gaming Platform Revenue Distribution<a class="headerlink" href="#gaming-platform-revenue-distribution" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Gaming platform with revenue sharing for token holders and developers</span>
+<span class="k">contract</span><span class="w"> </span><span class="ni">GamingPlatform</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>using<span class="w"> </span>FeeDistributorLib<span class="w"> </span><span class="kt">for</span><span class="w"> </span>IdentitySystemStorage<span class="p">.</span>IdentitySystem<span class="p">;</span>
+<span class="w">    </span>using<span class="w"> </span>SafeERC20<span class="w"> </span><span class="kt">for</span><span class="w"> </span>IERC20<span class="p">;</span>
+
+<span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">GameConfig</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>IERC20<span class="w"> </span>platformToken<span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">gameRevenueShare</span><span class="p">;</span><span class="w"> </span><span class="c1">// Basis points for game developers</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenHolderShare</span><span class="p">;</span><span class="w"> </span><span class="c1">// Basis points for token holders</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">platformShare</span><span class="p">;</span><span class="w">    </span><span class="c1">// Basis points for platform treasury</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">platformTreasury</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">gameDeveloperFund</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span>GameConfig<span class="w"> </span><span class="kt">public</span><span class="w"> </span>config<span class="p">;</span>
+<span class="w">    </span>IdentitySystemStorage<span class="p">.</span>IdentitySystem<span class="w"> </span><span class="kt">internal</span><span class="w"> </span>ds<span class="p">;</span>
+
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">RevenueReceived</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">amount</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">PlatformFeesDistributed</span><span class="p">(</span><span class="kt">address</span><span class="p">[]</span><span class="w"> </span>receivers<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span>amounts<span class="p">);</span>
+
+<span class="w">    </span><span class="kt">constructor</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">_platformToken</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_gameRevenueShare</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_tokenHolderShare</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_platformShare</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">_platformTreasury</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">_gameDeveloperFund</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">_tokenHolderRewards</span><span class="w">  </span><span class="c1">// Address where token holders can claim/receive</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>config<span class="p">.</span>platformToken<span class="w"> </span><span class="o">=</span><span class="w"> </span>IERC20<span class="p">(</span>_platformToken<span class="p">);</span>
+<span class="w">        </span>config<span class="p">.</span>gameRevenueShare<span class="w"> </span><span class="o">=</span><span class="w"> </span>_gameRevenueShare<span class="p">;</span>
+<span class="w">        </span>config<span class="p">.</span>tokenHolderShare<span class="w"> </span><span class="o">=</span><span class="w"> </span>_tokenHolderShare<span class="p">;</span>
+<span class="w">        </span>config<span class="p">.</span>platformShare<span class="w"> </span><span class="o">=</span><span class="w"> </span>_platformShare<span class="p">;</span>
+<span class="w">        </span>config<span class="p">.</span>platformTreasury<span class="w"> </span><span class="o">=</span><span class="w"> </span>_platformTreasury<span class="p">;</span>
+<span class="w">        </span>config<span class="p">.</span>gameDeveloperFund<span class="w"> </span><span class="o">=</span><span class="w"> </span>_gameDeveloperFund<span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// Initialize fee distributor for platform token</span>
+<span class="w">        </span>FeeDistributorLib<span class="p">.</span>_initializeFeeDistributor<span class="p">(</span>ds<span class="p">,</span><span class="w"> </span>_platformToken<span class="p">,</span><span class="w"> </span><span class="m m-Decimal">10000</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Set up fee distribution based on configured shares</span>
+<span class="w">        </span><span class="kt">address</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>receivers<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="kt">address</span><span class="p">[](</span><span class="m m-Decimal">3</span><span class="p">);</span>
+<span class="w">        </span>receivers<span class="p">[</span><span class="m m-Decimal">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>_gameDeveloperFund<span class="p">;</span>
+<span class="w">        </span>receivers<span class="p">[</span><span class="m m-Decimal">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>_tokenHolderRewards<span class="p">;</span>
+<span class="w">        </span>receivers<span class="p">[</span><span class="m m-Decimal">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>_platformTreasury<span class="p">;</span>
+
+<span class="w">        </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>weights<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[](</span><span class="m m-Decimal">3</span><span class="p">);</span>
+<span class="w">        </span>weights<span class="p">[</span><span class="m m-Decimal">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>_gameRevenueShare<span class="p">;</span>
+<span class="w">        </span>weights<span class="p">[</span><span class="m m-Decimal">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>_tokenHolderShare<span class="p">;</span>
+<span class="w">        </span>weights<span class="p">[</span><span class="m m-Decimal">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>_platformShare<span class="p">;</span>
+
+<span class="w">        </span>FeeDistributorLib<span class="p">.</span>_setFeeReceivers<span class="p">(</span>ds<span class="p">,</span><span class="w"> </span>receivers<span class="p">,</span><span class="w"> </span>weights<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">depositRevenue</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">amount</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">payable</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// Assuming ETH revenue</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>amount<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Amount must be positive&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Distribute revenue among receivers</span>
+<span class="w">        </span><span class="p">(</span>
+<span class="w">            </span><span class="kt">address</span><span class="w"> </span><span class="nv">adjustedReceiver</span><span class="p">,</span><span class="w"> </span><span class="c1">// Not used if self is 0x0</span>
+<span class="w">            </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">adjustedAmount</span><span class="p">,</span><span class="w">   </span><span class="c1">// Not used if all is distributed</span>
+<span class="w">            </span><span class="kt">address</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>feeReceivers<span class="p">,</span>
+<span class="w">            </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>feeAmounts
+<span class="w">        </span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>FeeDistributorLib<span class="p">.</span>_distributeAmounts<span class="p">(</span>
+<span class="w">            </span>ds<span class="p">,</span>
+<span class="w">            </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">),</span><span class="w"> </span><span class="c1">// Distribute from msg.value</span>
+<span class="w">            </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">),</span><span class="w"> </span><span class="c1">// No single principal receiver, all distributed</span>
+<span class="w">            </span>amount
+<span class="w">        </span><span class="p">);</span>
+
+<span class="w">        </span>emit<span class="w"> </span>RevenueReceived<span class="p">(</span>amount<span class="p">);</span>
+<span class="w">        </span>emit<span class="w"> </span>PlatformFeesDistributed<span class="p">(</span>feeReceivers<span class="p">,</span><span class="w"> </span>feeAmounts<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="security-considerations">Security Considerations<a class="headerlink" href="#security-considerations" title="Permanent link">&para;</a></h2>
+<h3 id="financial-security">Financial Security<a class="headerlink" href="#financial-security" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Accurate Calculations</strong>: Ensures correct distribution based on weights and principal.</li>
+<li><strong>No Funds Locked</strong>: Prevents funds from being stuck in the contract.</li>
+<li><strong>Overflow/Underflow Protection</strong>: Uses safe math for all arithmetic operations.</li>
+</ul>
+<h3 id="access-control">Access Control<a class="headerlink" href="#access-control" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Owner-Only Configuration</strong>: Only authorized entities can set/update fee receivers and weights.</li>
+<li><strong>Trusted Distribution</strong>: Ensures funds are sent only to configured recipients.</li>
+</ul>
+<h3 id="distribution-integrity">Distribution Integrity<a class="headerlink" href="#distribution-integrity" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Atomic Transfers</strong>: Ensures all transfers within a distribution are atomic (all or nothing).</li>
+<li><strong>Event Logging</strong>: Provides a clear, auditable trail of all distributions.</li>
+</ul>
+<h2 id="gas-optimization">Gas Optimization<a class="headerlink" href="#gas-optimization" title="Permanent link">&para;</a></h2>
+<h3 id="batch-operations">Batch Operations<a class="headerlink" href="#batch-operations" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>_setFeeReceivers</code> and <code>_distributeAmounts</code> are designed to handle arrays, optimizing gas for multiple recipients.</li>
+</ul>
+<h3 id="storage-efficiency">Storage Efficiency<a class="headerlink" href="#storage-efficiency" title="Permanent link">&para;</a></h3>
+<ul>
+<li>The <code>FeeDistributorStorage</code> struct uses packed storage to minimize gas costs.</li>
+<li>Minimizes state writes during distribution by pre-calculating amounts.</li>
+</ul>
+<h2 id="error-handling">Error Handling<a class="headerlink" href="#error-handling" title="Permanent link">&para;</a></h2>
+<h3 id="common-errors">Common Errors<a class="headerlink" href="#common-errors" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>FeeDistributorLib: Invalid balance basis</code>: <code>_totalWeightBasis</code> is zero.</li>
+<li><code>FeeDistributorLib: Already initialized</code>: Attempting to re-initialize the component.</li>
+<li><code>FeeDistributorLib: Arrays length mismatch</code>: <code>_feeReceivers</code> and <code>_feeWeights</code> have different lengths.</li>
+<li><code>FeeDistributorLib: Invalid receiver</code>: Attempting to set a zero address as a receiver.</li>
+<li><code>FeeDistributorLib: Invalid weight</code>: Attempting to set a zero weight.</li>
+<li><code>FeeDistributorLib: Total weights must sum to totalWeightBasis</code>: Weights don't sum correctly.</li>
+<li><code>FeeDistributorLib: Insufficient native balance</code>: Contract doesn't have enough ETH for distribution.</li>
+<li><code>FeeDistributorLib: Insufficient token balance</code>: Contract doesn't have enough ERC20 tokens for distribution.</li>
+<li><code>Native fee transfer failed</code> / <code>Native principal transfer failed</code> / <code>ERC20 transfer failed</code>: Underlying transfer operation failed.</li>
+</ul>
+<h2 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h2>
+<h3 id="configuration-management_1">Configuration Management<a class="headerlink" href="#configuration-management_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Set <code>_totalWeightBasis</code> to a power of 10 (e.g., 100 or 10000) for easier percentage calculations.</li>
+<li>Regularly review and update fee receiver configurations as business needs change.</li>
+</ul>
+<h3 id="integration-checklist">Integration Checklist<a class="headerlink" href="#integration-checklist" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Ensure the calling contract has sufficient balance (ETH or ERC20) before initiating a distribution.</li>
+<li>Implement clear event listeners to track <code>FeesDistributed</code> events for off-chain analytics.</li>
+<li>Grant <code>call</code> permission to the FeeDistributor facet if it needs to transfer native ETH.</li>
+</ul>
+<h3 id="development-guidelines">Development Guidelines<a class="headerlink" href="#development-guidelines" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Write comprehensive unit tests for all distribution scenarios, including edge cases.</li>
+<li>Use <code>SafeERC20</code> (from OpenZeppelin) for robust ERC20 token interactions.</li>
+<li>Consider a separate facet for managing fee distribution parameters if administrative control is needed.</li>
+</ul>
+<h2 id="related-documentation">Related Documentation<a class="headerlink" href="#related-documentation" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../../facets/fee-distributor-facet/">Fee Distributor Facet</a> - Reference for the Fee Distributor Facet implementation.</li>
+<li><a href="../../interfaces/ifee-distributor/">IFeeDistributor Interface</a> - Interface definition.</li>
+<li><a href="../../../eips/EIP-DRAFT-Diamond-Enhanced-Marketplace/">EIP-DRAFT-Diamond-Enhanced-Marketplace</a> - Contains marketplace use cases.</li>
+<li><a href="../../../developer-guides/automated-testing-setup/">Developer Guides: Automated Testing Setup</a></li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../merkle-prover/" class="btn btn-neutral float-left" title="Merkle Prover"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../lib-diamond/" class="btn btn-neutral float-right" title="LibDiamond">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../merkle-prover/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../lib-diamond/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

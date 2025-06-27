@@ -101,9 +101,9 @@ This standard is designed to be compatible with existing ERC721 and ERC20 tokens
 ### Reference Implementation
 
 The reference implementation includes:
-- [`MarketplaceFacet.sol`](../contracts/facets/MarketplaceFacet.sol) - Core marketplace functionality
-- [`IMarketplace.sol`](../contracts/interfaces/IMarketplace.sol) - Interface definition
-- [`IdentityStorage.sol`](../contracts/identity/IdentityStorage.sol) - Identity integration
+- [Marketplace Facet](../smart-contracts/facets/marketplace-facet.md) - Core marketplace functionality
+- [IMarketplace Interface](../smart-contracts/interfaces/imarketplace.md) - Interface definition
+- [Identity Registry Facet](../smart-contracts/facets/identity-registry-facet.md) - Identity integration
 
 ### Gas Considerations
 

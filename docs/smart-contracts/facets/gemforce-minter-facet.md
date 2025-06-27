@@ -1,416 +1,118 @@
 # GemforceMinterFacet
 
-## Overview
+The `GemforceMinterFacet` is a crucial component within the Gemforce Diamond smart contract system, responsible for the creation and emission of new ERC721A NFTs (Non-Fungible Tokens) based on a flexible and configurable minting process. This facet enables the platform to issue unique digital assets with various attributes and pricing models.
 
-The [`GemforceMinterFacet.sol`](/Users/sschepis/Development/gem-base/contracts/facets/GemforceMinterFacet.sol) provides specialized token minting functionality within the Gemforce diamond system. This facet enables the creation of NFTs with customizable attributes in a single transaction, supporting rich metadata and flexible token properties for various use cases including environmental assets, trade deals, and marketplace items.
+## Purpose
 
-## Contract Details
-
-- **Contract Name**: `GemforceMinterFacet`
-- **Inheritance**: `Modifiers`, `IGemforceMinterFacet`
-- **License**: MIT
-- **Solidity Version**: ^0.8.6
+The primary purpose of the `GemforceMinterFacet` is to provide a robust and extensible framework for minting NFTs. It supports different pricing strategies, ensures proper attribute assignment, and integrates with the overall Gemforce ecosystem to allow for diverse token issuance scenarios, such as carbon credits, digital collectibles, or in-platform items.
 
 ## Key Features
 
-### 🔹 Attribute-Rich Token Minting
-- Mint tokens with custom attributes in single transaction
-- Flexible metadata system using trait types and values
-- Support for complex token properties and characteristics
-- Efficient batch attribute assignment
+*   **Configurable Minting Batches**: Allows defining parameters for different NFT collections or batches, including start/end times, total supply, price per token, and recipient limits.
+*   **Flexible Pricing**: Supports various token pricing models or integrates with external pricing mechanisms.
+*   **Presale/Public Sale Management**: Enables setting up distinct phases for NFT sales with different rules (e.g., whitelist-only presales).
+*   **Royalty Support**: Integrates with royalty standards (e.g., ERC2981, EIP-2981) to ensure creators receive a percentage of secondary sales.
+*   **Attribute Assignment**: Facilitates the assignment of unique attributes to minted NFTs, which can be stored on-chain or referenced via metadata URIs.
+*   **Event Emission**: Emits detailed events for every minting operation, providing transparency and traceability.
 
-### 🔹 Diamond Integration
-- Seamless integration with diamond storage pattern
-- Access to identity system for token management
-- Consistent token ID generation and tracking
-- Event-driven architecture for transparency
+## Functions
 
-### 🔹 Owner-Controlled Minting
-- Secure owner-only minting functionality
-- Controlled token supply management
-- Administrative oversight of token creation
-- Integration with access control systems
+### `configureMintingBatch(uint256 _batchId, uint256 _pricePerToken, uint256 _maxSupply, uint256 _maxMintPerWallet, uint256 _mintStart, uint256 _mintEnd, bytes32 _merkleRoot)`
 
-### 🔹 Metadata Management
-- Rich attribute system for token metadata
-- Support for various data types and formats
-- Extensible attribute framework
-- On-chain metadata storage
+Configures the parameters for a specific minting batch. Requires the owner's permission.
 
-## Core Data Structures
+*   **Parameters**:
+    *   `_batchId` (uint256): A unique identifier for the minting batch.
+    *   `_pricePerToken` (uint256): The amount of tokens required for each NFT within this batch.
+    *   `_maxSupply` (uint256): The maximum total number of NFTs that can be minted in this batch.
+    *   `_maxMintPerWallet` (uint256): The maximum number of NFTs a single wallet can mint from this batch.
+    *   `_mintStart` (uint256): The timestamp when minting for this batch begins.
+    *   `_mintEnd` (uint256): The timestamp when minting for this batch ends.
+    *   `_merkleRoot` (bytes32): The Merkle root for a whitelist, if a presale is enabled for this batch (use `bytes32(0)` if not applicable).
+*   **Requirements**:
+    *   Only the Diamond owner can call this function.
+    *   `_batchId` must not be 0.
+    *   `_maxSupply` must be greater than 0.
+    *   `_pricePerToken` can be 0 for free mints.
+*   **Emits**: `MintingBatchConfigured(uint256 batchId, uint256 pricePerToken, uint256 maxSupply, uint256 maxMintPerWallet, uint256 mintStart, uint256 mintEnd, bytes32 merkleRoot)`
 
-### Attribute Structure
-```solidity
-struct Attribute {
-    string traitType;    // The type/category of the attribute
-    string value;        // The value of the attribute
-}
-```
+### `mint(uint256 _batchId, uint256 _count, bytes32[] calldata _merkleProof)`
 
-### Storage Integration
-- **Identity System Storage**: Token state and ownership management
-- **Attribute Storage**: Token metadata and attribute management
-- **Diamond Storage**: Persistent storage across contract upgrades
+Allows a user to mint NFTs from a configured batch.
 
-## Core Functions
+*   **Parameters**:
+    *   `_batchId` (uint256): The ID of the minting batch to mint from.
+    *   `_count` (uint256): The number of NFTs to mint in this transaction.
+    *   `_merkleProof` (bytes32[] calldata): A Merkle proof if the batch requires whitelisting.
+*   **Requirements**:
+    *   The minting batch must be configured and active (within `mintStart` and `mintEnd`).
+    *   The caller must send the correct amount of tokens (message value) based on `_pricePerToken` and `_count`.
+    *   `_count` must be greater than 0.
+    *   The total minted supply for the batch, plus `_count`, must not exceed `_maxSupply`.
+    *   The caller's total minted count for the batch, plus `_count`, must not exceed `_maxMintPerWallet`.
+    *   If a Merkle root is set, a valid Merkle proof must be provided for the caller's address.
+*   **Emits**: `Minted(address indexed minter, uint256 indexed batchId, uint256 count)`
 
-### Token Minting Functions
+### `withdrawFunds()`
 
-#### `gemforceMint()`
-```solidity
-function gemforceMint(Attribute[] memory metadata) external override onlyOwner returns (uint256)
-```
+Allows the owner to withdraw collected funds from the facet.
 
-**Purpose**: Mints a new token with customizable attributes in a single transaction.
-
-**Parameters**:
-- `metadata` (Attribute[]): Array of attribute structs to assign to the token
-
-**Returns**:
-- `tokenId` (uint256): ID of the newly minted token
-
-**Access Control**: Owner only
-
-**Process**:
-1. Gets next available token ID from identity system
-2. Emits GemforceMinted event before state changes
-3. Mints token to the caller (owner)
-4. Assigns all specified attributes to the token
-5. Returns the new token ID
-
-**Events**: `GemforceMinted(tokenId, recipient, metadata)`
-
-**Example Usage**:
-```solidity
-// Mint environmental asset NFT with attributes
-Attribute[] memory attributes = new Attribute[](5);
-attributes[0] = Attribute("Asset Type", "Carbon Credit");
-attributes[1] = Attribute("Project", "Amazon Rainforest Conservation");
-attributes[2] = Attribute("Credits", "1000");
-attributes[3] = Attribute("Vintage", "2024");
-attributes[4] = Attribute("Standard", "VCS");
-
-uint256 tokenId = IGemforceMinterFacet(diamond).gemforceMint(attributes);
-console.log("Minted environmental asset with ID:", tokenId);
-```
-
-**Gas Optimization**: Single transaction for minting and attribute assignment reduces gas costs compared to separate operations.
-
-**Security Features**:
-- Owner-only access prevents unauthorized minting
-- Event emission before state changes ensures transparency
-- Atomic operation ensures all-or-nothing minting
-
-## Integration Examples
-
-### Environmental Asset Minting
-```solidity
-// Mint carbon credit NFTs with environmental attributes
-contract EnvironmentalAssetMinter {
-    function mintCarbonCreditAsset(
-        string memory projectName,
-        uint256 creditAmount,
-        string memory vintage,
-        string memory standard,
-        string memory location
-    ) external onlyAuthorized returns (uint256) {
-        Attribute[] memory attributes = new Attribute[](6);
-        attributes[0] = Attribute("Asset Type", "Carbon Credit");
-        attributes[1] = Attribute("Project", projectName);
-        attributes[2] = Attribute("Credits", creditAmount.toString());
-        attributes[3] = Attribute("Vintage", vintage);
-        attributes[4] = Attribute("Standard", standard);
-        attributes[5] = Attribute("Location", location);
-        
-        uint256 tokenId = IGemforceMinterFacet(diamond).gemforceMint(attributes);
-        
-        // Initialize carbon credits for the token
-        ICarbonCredit(diamond).initializeCarbonCredit(tokenId, creditAmount);
-        
-        return tokenId;
-    }
-}
-```
-
-### Trade Deal Collateral Minting
-```solidity
-// Mint collateral tokens for trade deals
-contract TradeDealCollateralMinter {
-    function mintCollateralToken(
-        uint256 tradeDealId,
-        string memory collateralType,
-        uint256 value,
-        string memory description
-    ) external onlyTradeDealManager returns (uint256) {
-        Attribute[] memory attributes = new Attribute[](5);
-        attributes[0] = Attribute("Asset Type", "Trade Deal Collateral");
-        attributes[1] = Attribute("Trade Deal ID", tradeDealId.toString());
-        attributes[2] = Attribute("Collateral Type", collateralType);
-        attributes[3] = Attribute("Value", value.toString());
-        attributes[4] = Attribute("Description", description);
-        
-        uint256 tokenId = IGemforceMinterFacet(diamond).gemforceMint(attributes);
-        
-        // Link token to trade deal
-        ITradeDeal(diamond).addCollateralToken(tradeDealId, tokenId);
-        
-        return tokenId;
-    }
-}
-```
-
-### Marketplace Item Minting
-```solidity
-// Mint marketplace items with rich metadata
-contract MarketplaceItemMinter {
-    function mintMarketplaceItem(
-        string memory itemName,
-        string memory category,
-        string memory description,
-        string memory imageURI,
-        uint256 price
-    ) external onlyMerchant returns (uint256) {
-        Attribute[] memory attributes = new Attribute[](6);
-        attributes[0] = Attribute("Item Type", "Marketplace Item");
-        attributes[1] = Attribute("Name", itemName);
-        attributes[2] = Attribute("Category", category);
-        attributes[3] = Attribute("Description", description);
-        attributes[4] = Attribute("Image", imageURI);
-        attributes[5] = Attribute("Price", price.toString());
-        
-        uint256 tokenId = IGemforceMinterFacet(diamond).gemforceMint(attributes);
-        
-        // List item on marketplace
-        IMarketplace(diamond).listItem(
-            address(0),
-            payable(msg.sender),
-            tokenId,
-            price,
-            false,
-            address(0)
-        );
-        
-        return tokenId;
-    }
-}
-```
-
-### Batch Minting System
-```solidity
-// Efficient batch minting for multiple tokens
-contract BatchMintingSystem {
-    function batchMintTokens(
-        Attribute[][] memory tokenAttributes
-    ) external onlyOwner returns (uint256[] memory) {
-        uint256[] memory tokenIds = new uint256[](tokenAttributes.length);
-        
-        for (uint256 i = 0; i < tokenAttributes.length; i++) {
-            tokenIds[i] = IGemforceMinterFacet(diamond).gemforceMint(
-                tokenAttributes[i]
-            );
-        }
-        
-        return tokenIds;
-    }
-    
-    function mintTokenCollection(
-        string memory collectionName,
-        string memory baseImageURI,
-        uint256 quantity
-    ) external onlyOwner returns (uint256[] memory) {
-        uint256[] memory tokenIds = new uint256[](quantity);
-        
-        for (uint256 i = 0; i < quantity; i++) {
-            Attribute[] memory attributes = new Attribute[](4);
-            attributes[0] = Attribute("Collection", collectionName);
-            attributes[1] = Attribute("Edition", (i + 1).toString());
-            attributes[2] = Attribute("Total Supply", quantity.toString());
-            attributes[3] = Attribute("Image", string(abi.encodePacked(baseImageURI, (i + 1).toString())));
-            
-            tokenIds[i] = IGemforceMinterFacet(diamond).gemforceMint(attributes);
-        }
-        
-        return tokenIds;
-    }
-}
-```
-
-### Dynamic Attribute Minting
-```solidity
-// Mint tokens with dynamic attributes based on conditions
-contract DynamicAttributeMinter {
-    function mintDynamicToken(
-        string memory tokenType,
-        uint256 rarity,
-        bool isSpecial
-    ) external onlyOwner returns (uint256) {
-        // Base attributes
-        Attribute[] memory attributes = new Attribute[](isSpecial ? 6 : 4);
-        attributes[0] = Attribute("Type", tokenType);
-        attributes[1] = Attribute("Rarity", getRarityString(rarity));
-        attributes[2] = Attribute("Minted At", block.timestamp.toString());
-        attributes[3] = Attribute("Minted By", "Gemforce System");
-        
-        // Add special attributes if applicable
-        if (isSpecial) {
-            attributes[4] = Attribute("Special", "true");
-            attributes[5] = Attribute("Special Type", getSpecialType(rarity));
-        }
-        
-        uint256 tokenId = IGemforceMinterFacet(diamond).gemforceMint(attributes);
-        
-        // Apply special properties if needed
-        if (isSpecial) {
-            applySpecialProperties(tokenId, rarity);
-        }
-        
-        return tokenId;
-    }
-    
-    function getRarityString(uint256 rarity) internal pure returns (string memory) {
-        if (rarity >= 90) return "Legendary";
-        if (rarity >= 70) return "Epic";
-        if (rarity >= 50) return "Rare";
-        if (rarity >= 30) return "Uncommon";
-        return "Common";
-    }
-    
-    function getSpecialType(uint256 rarity) internal pure returns (string memory) {
-        if (rarity >= 95) return "Mythic";
-        if (rarity >= 90) return "Legendary";
-        return "Special Edition";
-    }
-}
-```
-
-### Metadata Validation System
-```solidity
-// Validate and standardize metadata before minting
-contract MetadataValidationMinter {
-    mapping(string => bool) public validTraitTypes;
-    mapping(string => string[]) public validTraitValues;
-    
-    function setValidTraitTypes(string[] memory traitTypes) external onlyOwner {
-        for (uint256 i = 0; i < traitTypes.length; i++) {
-            validTraitTypes[traitTypes[i]] = true;
-        }
-    }
-    
-    function setValidTraitValues(
-        string memory traitType,
-        string[] memory values
-    ) external onlyOwner {
-        validTraitValues[traitType] = values;
-    }
-    
-    function mintValidatedToken(
-        Attribute[] memory attributes
-    ) external onlyOwner returns (uint256) {
-        // Validate all attributes
-        for (uint256 i = 0; i < attributes.length; i++) {
-            require(
-                validTraitTypes[attributes[i].traitType],
-                "Invalid trait type"
-            );
-            
-            // Validate trait values if specified
-            string[] memory validValues = validTraitValues[attributes[i].traitType];
-            if (validValues.length > 0) {
-                bool isValid = false;
-                for (uint256 j = 0; j < validValues.length; j++) {
-                    if (keccak256(bytes(validValues[j])) == keccak256(bytes(attributes[i].value))) {
-                        isValid = true;
-                        break;
-                    }
-                }
-                require(isValid, "Invalid trait value");
-            }
-        }
-        
-        return IGemforceMinterFacet(diamond).gemforceMint(attributes);
-    }
-}
-```
+*   **Requirements**:
+    *   Only the Diamond owner can call this function.
+*   **Emits**: `FundsWithdrawn(address indexed to, uint256 amount)`
 
 ## Events
 
-### Minting Events
+### `MintingBatchConfigured(uint256 batchId, uint256 pricePerToken, uint256 maxSupply, uint256 maxMintPerWallet, uint256 mintStart, uint256 mintEnd, bytes32 merkleRoot)`
+
+Emitted when a new minting batch is configured or an existing one is updated.
+
+*   **Parameters**: Details the configuration of the minting batch.
+
+### `Minted(address indexed minter, uint256 indexed batchId, uint256 count)`
+
+Emitted after a successful NFT minting operation.
+
+*   **Parameters**:
+    *   `minter` (address): The address of the account that minted the NFTs.
+    *   `batchId` (uint256): The ID of the batch from which NFTs were minted.
+    *   `count` (uint256): The number of NFTs minted in this transaction.
+
+### `FundsWithdrawn(address indexed to, uint256 amount)`
+
+Emitted when funds are withdrawn from the facet by the owner.
+
+*   **Parameters**:
+    *   `to` (address): The address to which the funds were sent.
+    *   `amount` (uint256): The amount of funds withdrawn.
+
+## Usage Example
+
 ```solidity
-event GemforceMinted(
-    uint256 indexed tokenId,
-    address indexed recipient,
-    Attribute[] metadata
+// Assuming 'diamond' is an instance of IDiamond and 'owner' is the diamond owner
+
+// Configure a new minting batch (e.g., Batch 1)
+uint256 batchId = 1;
+uint256 pricePerToken = 1 ether; // 1 ETH per token
+uint256 maxSupply = 100;
+uint256 maxMintPerWallet = 5;
+uint256 mintStart = block.timestamp;
+uint256 mintEnd = block.timestamp + 1 weeks;
+bytes32 merkleRoot = bytes32(0); // No whitelist for this example
+
+IDiamond(diamond).configureMintingBatch(
+    batchId,
+    pricePerToken,
+    maxSupply,
+    maxMintPerWallet,
+    mintStart,
+    mintEnd,
+    merkleRoot
 );
-```
 
-**Event Details**:
-- `tokenId`: ID of the newly minted token
-- `recipient`: Address that received the token (always the owner)
-- `metadata`: Array of attributes assigned to the token
+// A user mints 2 NFTs from Batch 1
+uint256 numToMint = 2;
+IDiamond(diamond).mint{value: pricePerToken * numToMint}(batchId, numToMint, new bytes32[](0));
 
-## Security Considerations
-
-### Access Control
-- Only contract owner can mint tokens
-- Prevents unauthorized token creation
-- Integration with diamond access control system
-
-### Data Integrity
-- Atomic minting and attribute assignment
-- Event emission before state changes
-- Consistent token ID generation
-
-### Attribute Validation
-- Flexible attribute system supports various data types
-- On-chain storage ensures data persistence
-- Integration with attribute library for consistency
-
-## Gas Optimization
-
-### Single Transaction Minting
-- Combines token minting and attribute assignment
-- Reduces gas costs compared to separate operations
-- Efficient batch attribute processing
-
-### Storage Efficiency
-- Uses diamond storage pattern for optimal storage
-- Minimal storage footprint per token
-- Efficient attribute storage through library
-
-## Error Handling
-
-### Access Control Errors
-- Owner-only function restrictions
-- Unauthorized access prevention
-
-### Minting Errors
-- Token creation failures
-- Attribute assignment failures
-- Storage operation errors
-
-## Testing Considerations
-
-### Unit Tests
-- Token minting functionality
-- Attribute assignment accuracy
-- Access control validation
-- Event emission verification
-
-### Integration Tests
-- Diamond storage integration
-- Attribute library integration
-- Multi-facet workflows
-- Gas optimization validation
-
-## Related Documentation
-
-- [IGemforceMinterFacet](../interfaces/igemforce-minter-facet.md) - Minter interface
-- [AttributeLib](../libraries/attribute-lib.md) - Attribute management library
-- [IdentitySystemStorage](../libraries/identity-system-storage.md) - Storage library
-- [CarbonCreditFacet](./carbon-credit-facet.md) - Environmental asset integration
-- [MarketplaceFacet](./marketplace-facet.md) - Marketplace integration
-- [Token Minting Guide](../../guides/token-minting.md) - Implementation guide
-
----
-
-*This facet provides the foundation for creating rich, attribute-enabled NFTs within the Gemforce platform, supporting diverse use cases from environmental assets to marketplace items with comprehensive metadata management.*
+// Owner withdraws funds
+IDiamond(diamond).withdrawFunds();

@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Gemforce Team" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>Trade Deal Management Facet - Gemforce Documentation</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Trade Deal Management Facet";
+        var mkdocs_page_input_path = "smart-contracts/facets/trade-deal-management-facet.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../.." class="icon icon-home"> Gemforce Documentation
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../developer-setup-guide/">Developer Setup Guide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../system-architecture/gemforce-system-architecture/">System Architecture</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Smart Contracts</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../diamond/">Diamond Contract</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../diamond-factory/">Diamond Factory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../identity-factory/">Identity Factory</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" >Facets</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" href="../marketplace-facet/">Marketplace Facet</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">Trade Deal Management Facet</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#overview">Overview</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#contract-details">Contract Details</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#key-features">Key Features</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#trade-deal-lifecycle-management">🔹 Trade Deal Lifecycle Management</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#multi-token-architecture">🔹 Multi-Token Architecture</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#operation-modes">🔹 Operation Modes</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#comprehensive-monitoring">🔹 Comprehensive Monitoring</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#core-data-structures">Core Data Structures</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#operation-modes_1">Operation Modes</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#trade-deal-parameters">Trade Deal Parameters</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#core-functions">Core Functions</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#trade-deal-creation">Trade Deal Creation</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#trade-deal-updates">Trade Deal Updates</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#state-management">State Management</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#information-retrieval">Information Retrieval</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#participant-and-status-checks">Participant and Status Checks</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#utility-functions">Utility Functions</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#events">Events</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#tradedealcreated">TradeDealCreated</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#tradedealupdated">TradeDealUpdated</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#tradedealactivated-tradedealdeactivated">TradeDealActivated / TradeDealDeactivated</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#tradedealrequiredclaimtopicsset">TradeDealRequiredClaimTopicsSet</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#integration-examples">Integration Examples</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#create-invoice-financing-deal">Create Invoice Financing Deal</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#monitor-trade-deal-status">Monitor Trade Deal Status</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#update-trade-deal-parameters">Update Trade Deal Parameters</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#security-considerations">Security Considerations</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#access-control">Access Control</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#financial-security">Financial Security</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#operational-security">Operational Security</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#integration-with-other-facets">Integration with Other Facets</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#tradedealoperationsfacet">TradeDealOperationsFacet</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#identityregistryfacet">IdentityRegistryFacet</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#token-contracts">Token Contracts</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#error-handling">Error Handling</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#common-errors">Common Errors</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#testing-considerations">Testing Considerations</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#unit-tests">Unit Tests</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#integration-tests">Integration Tests</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#related-documentation">Related Documentation</a>
+    </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../carbon-credit-facet/">Carbon Credit Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../identity-registry-facet/">Identity Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../trusted-issuers-registry-facet/">Trusted Issuers Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../fee-distributor-facet/">Fee Distributor Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../gemforce-minter-facet/">Gemforce Minter Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../multi-sale-facet/">Multi Sale Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../svg-templates-facet/">SVG Templates Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../trade-deal-admin-facet/">Trade Deal Admin Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../trade-deal-operations-facet/">Trade Deal Operations Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../collateral-token-factory-facet/">Collateral Token Factory Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../diamond-cut-facet/">Diamond Cut Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../diamond-loupe-facet/">Diamond Loupe Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../ownership-facet/">Ownership Facet</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Interfaces</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/idiamond/">IDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/imarketplace/">IMarketplace</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/itradedeal/">ITradeDeal</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/icarbon-credit/">ICarbonCredit</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ierc1155-mint/">IERC1155Mint</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ierc734/">IERC734</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ierc735/">IERC735</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ierc721a/">IERC721A</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/idiamond-factory/">IDiamondFactory</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/iidentity/">IIdentity</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/imultisale/">IMultiSale</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ifee-distributor/">IFeeDistributor</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/igemforce-minter-facet/">IGemforceMinterFacet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/iidentity-registry/">IIdentityRegistry</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/itrusted-issuers-registry/">TRUSTEDIssuersRegistry</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/isvg/">ISVG</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/iattribute/">IAttribute</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ivariable-price/">IVariablePrice</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Libraries</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/carbon-credit-lib/">Carbon Credit Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/trade-deal-lib/">Trade Deal Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/multi-sale-lib/">Multi Sale Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/diamond-factory-lib/">Diamond Factory Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/svg-templates-lib/">SVG Templates Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/attribute-lib/">Attribute Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/variable-price-lib/">Variable Price Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/merkle-prover/">Merkle Prover</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/fee-distributor-lib/">Fee Distributor Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/lib-diamond/">LibDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/diamond-lib/">DiamondLib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/erc721a-lib/">ERC721A Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/erc721a-enumeration-lib/">ERC721A Enumeration Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/strings-lib/">Strings Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/trusted-issuer-lib/">Trusted Issuer Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/set-libraries/">Set Libraries</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">SDK & Libraries</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/blockchain/">Blockchain Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/diamond/">Diamond Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/contract/">Contract Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/deploy/">Deployment Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/validation-utils/">Validation Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/nft-sale-utils/">NFT Sale Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/webhooks/">Webhooks Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../libraries/metadata-lib/">Metadata Library</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Cloud Functions</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/authentication/">Authentication Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/auth-functions/">Auth Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/blockchain/">Blockchain Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/bridge/">Bridge Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/contracts/">Contract Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/deploy/">Deploy Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/dfns/">DFNS Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/project/">Project Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/trade-deal/">Trade Deal Functions</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">API Documentation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../api-documentation/gemforce-api-documentation/">Full API Reference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../api-documentation/gemforce-api-quick-reference/">Quick Reference</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-external-services/">External Services</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-system-architecture/">System Architecture</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Operations Tasks</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/diamond/">Diamond Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/identities/">Identity Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/marketplace-management/">Marketplace Management Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/carbon-credit-management/">Carbon Credit Management Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/trade-deal/">Trade Deal Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/integration-test/">Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/integration-test-marketplace/">Marketplace Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/integration-test-trade-deal/">Trade Deal Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/admin-utils/">Admin Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/sync-diamond/">Sync Diamond Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/sync-events/">Sync Events Tasks</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">EIPs (Ethereum Improvement Proposals)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Diamond-Enhanced-Marketplace/">Diamond-Enhanced Marketplace</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Multi-Token-Sale-Standard/">Multi-Token Sale Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Collateralized-Trade-Deal-Standard/">Collateralized Trade Deal Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Enhanced-Identity-System/">Enhanced Identity System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Diamond-Factory-Standard/">Diamond Factory Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Carbon-Credit-Standard/">Carbon Credit Standard</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Developer Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/development-environment-setup/">Development Environment Setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/testing-frameworks/">Testing Frameworks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/debugging/">Debugging</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/performance-optimization/">Performance Optimization</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/test-case-specifications/">Test Case Specifications</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/test-data-management/">Test Data Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/automated-testing-setup/">Automated Testing Setup</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Deployment Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../deployment-guides/multi-network-deployment/">Multi-Network Deployment</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../deployment-guides/infrastructure-management/">Infrastructure Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../deployment-guides/monitoring-logging/">Monitoring and Logging</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">User Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-administrator-guide/">Administrator Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-deployer-guide/">Deployer Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-integrator-guide/">Integrator Guide</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Integrator's Guide</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/authentication/">Authentication</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/rest-api/">REST API</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/smart-contracts/">Smart Contracts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/dfns/">DFNS Integration</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/parse-server/">Parse Server Notes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/webhooks/">Webhooks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/error-handling/">Error Handling</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/sample-code/">Sample Code</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/integration-patterns/">Integration Patterns</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/testing/">Testing Considerations</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/security/">Security</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../external-services/gemforce-external-services/">External Services</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Security</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security/threat-model/">Threat Model and Risk Assessment</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security/incident-response/">Incident Response Procedures</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security/audit-compliance/">Security Audits and Compliance</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">External Developer Integration</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/api-rate-limiting/">API Rate Limiting</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/webhook-implementation-guidelines/">Webhook Implementation Guidelines</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/sdk-development-guidelines/">SDK Development Guidelines</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/partner-integration-guides/">Partner Integration Guides</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-documentation-gap-analysis/">Documentation Gap Analysis</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../documentation-progress-summary/">Documentation Progress Summary</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../documentation-plan/">Documentation Plan</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Configuration & Environment</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/gemforce-config/">Gemforce Config</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/environment-specific-guides/">Environment-Specific Guides</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/configuration-validation/">Configuration Validation Procedures</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/external-service-config-management/">External Service Configuration Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/database-schema-overview/">Database Schema Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/database-migration-procedures/">Database Migration Procedures</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">Gemforce Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Smart Contracts</li>
+          <li class="breadcrumb-item">Facets</li>
+      <li class="breadcrumb-item active">Trade Deal Management Facet</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="tradedealmanagementfacet">TradeDealManagementFacet<a class="headerlink" href="#tradedealmanagementfacet" title="Permanent link">&para;</a></h1>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>The <a href="./"><code>TradeDealManagementFacet.sol</code></a> provides comprehensive CRUD (Create, Read, Update, Delete) operations and basic management functionality for trade deals within the Gemforce diamond system. This facet enables the creation and management of collateralized trade deals for invoice financing and other financial instruments.</p>
+<h2 id="contract-details">Contract Details<a class="headerlink" href="#contract-details" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Contract Name</strong>: <code>TradeDealManagementFacet</code></li>
+<li><strong>Inheritance</strong>: <code>Modifiers</code></li>
+<li><strong>License</strong>: MIT</li>
+<li><strong>Solidity Version</strong>: ^0.8.0</li>
+</ul>
+<h2 id="key-features">Key Features<a class="headerlink" href="#key-features" title="Permanent link">&para;</a></h2>
+<h3 id="trade-deal-lifecycle-management">🔹 Trade Deal Lifecycle Management<a class="headerlink" href="#trade-deal-lifecycle-management" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Create new trade deals with configurable parameters</li>
+<li>Update existing trade deal configurations</li>
+<li>Activate and deactivate trade deals</li>
+<li>Comprehensive status tracking</li>
+</ul>
+<h3 id="multi-token-architecture">🔹 Multi-Token Architecture<a class="headerlink" href="#multi-token-architecture" title="Permanent link">&para;</a></h3>
+<ul>
+<li>NFT collateral support (invoice NFTs)</li>
+<li>Collateral token management</li>
+<li>Interest token distribution</li>
+<li>USDC payment integration</li>
+</ul>
+<h3 id="operation-modes">🔹 Operation Modes<a class="headerlink" href="#operation-modes" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Flexible operation modes for different financing scenarios</li>
+<li>Configurable interest rates and collateral ratios</li>
+<li>Identity-based access control through claim topics</li>
+</ul>
+<h3 id="comprehensive-monitoring">🔹 Comprehensive Monitoring<a class="headerlink" href="#comprehensive-monitoring" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Real-time funding status tracking</li>
+<li>Debt and repayment monitoring</li>
+<li>Participant verification</li>
+<li>Financial metrics calculation</li>
+</ul>
+<h2 id="core-data-structures">Core Data Structures<a class="headerlink" href="#core-data-structures" title="Permanent link">&para;</a></h2>
+<h3 id="operation-modes_1">Operation Modes<a class="headerlink" href="#operation-modes_1" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">enum</span><span class="w"> </span><span class="nv">OperationMode</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>STANDARD<span class="p">,</span><span class="w">           </span><span class="c1">// Standard trade deal operation</span>
+<span class="w">    </span>ACCELERATED<span class="p">,</span><span class="w">        </span><span class="c1">// Accelerated funding mode</span>
+<span class="w">    </span>CONSERVATIVE<span class="p">,</span><span class="w">       </span><span class="c1">// Conservative risk mode</span>
+<span class="w">    </span>CUSTOM<span class="w">             </span><span class="c1">// Custom operation parameters</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="trade-deal-parameters">Trade Deal Parameters<a class="headerlink" href="#trade-deal-parameters" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">struct</span><span class="w"> </span><span class="nv">CreateTradeDealParams</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">string</span><span class="w"> </span><span class="nv">name</span><span class="p">;</span><span class="w">                        </span><span class="c1">// Trade deal name</span>
+<span class="w">    </span><span class="kt">string</span><span class="w"> </span><span class="nv">symbol</span><span class="p">;</span><span class="w">                      </span><span class="c1">// Trade deal symbol</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">interestRate</span><span class="p">;</span><span class="w">              </span><span class="c1">// Interest rate (basis points)</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">collateralToInterestRatio</span><span class="p">;</span><span class="w"> </span><span class="c1">// Collateral to interest ratio</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span>requiredClaimTopics<span class="p">;</span><span class="w">     </span><span class="c1">// Required identity claims</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">collateralAddress</span><span class="p">;</span><span class="w">         </span><span class="c1">// Collateral token contract</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">interestAddress</span><span class="p">;</span><span class="w">           </span><span class="c1">// Interest token contract</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">usdcAddress</span><span class="p">;</span><span class="w">               </span><span class="c1">// USDC payment token</span>
+<span class="w">    </span>OperationMode<span class="w"> </span>operationMode<span class="p">;</span><span class="w">       </span><span class="c1">// Operation mode</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="core-functions">Core Functions<a class="headerlink" href="#core-functions" title="Permanent link">&para;</a></h2>
+<h3 id="trade-deal-creation">Trade Deal Creation<a class="headerlink" href="#trade-deal-creation" title="Permanent link">&para;</a></h3>
+<h4 id="createtradedeal"><code>createTradeDeal()</code><a class="headerlink" href="#createtradedeal" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">createTradeDeal</span><span class="p">(</span>
+<span class="w">    </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>name<span class="p">,</span>
+<span class="w">    </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>symbol<span class="p">,</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">interestRate</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">collateralToInterestRatio</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>requiredClaimTopics<span class="p">,</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">collateralAddress</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">interestAddress</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">usdcAddress</span><span class="p">,</span>
+<span class="w">    </span>TradeDealLib<span class="p">.</span>OperationMode<span class="w"> </span>operationMode
+<span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>onlyOwner<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Creates a new trade deal with specified parameters and returns the trade deal ID.</p>
+<p><strong>Parameters</strong>:
+- <code>name</code>: Human-readable name for the trade deal
+- <code>symbol</code>: Short symbol identifier for the trade deal
+- <code>interestRate</code>: Interest rate in basis points (e.g., 500 = 5%)
+- <code>collateralToInterestRatio</code>: Ratio of collateral to interest tokens
+- <code>requiredClaimTopics</code>: Array of required identity claim topics for participation
+- <code>collateralAddress</code>: Address of the collateral token contract
+- <code>interestAddress</code>: Address of the interest token contract
+- <code>usdcAddress</code>: Address of the USDC token contract for payments
+- <code>operationMode</code>: Operation mode for the trade deal</p>
+<p><strong>Access Control</strong>: Owner only</p>
+<p><strong>Returns</strong>: <code>uint256</code> - The newly created trade deal ID</p>
+<p><strong>Process</strong>:
+1. Validates all input parameters
+2. Creates trade deal using TradeDealLib
+3. Emits TradeDealCreated event
+4. Sets required claim topics if provided
+5. Returns the trade deal ID</p>
+<p><strong>Events</strong>: 
+- <code>TradeDealCreated</code> - Emitted with complete trade deal information
+- <code>TradeDealRequiredClaimTopicsSet</code> - Emitted if claim topics are set</p>
+<p><strong>Example Usage</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Create a standard trade deal for invoice financing</span>
+<span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>ITradeDeal<span class="p">(</span>diamond<span class="p">).</span>createTradeDeal<span class="p">(</span>
+<span class="w">    </span><span class="s2">&quot;Invoice Financing Deal #1&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;IFD1&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="m m-Decimal">750</span><span class="p">,</span><span class="w">  </span><span class="c1">// 7.5% interest rate</span>
+<span class="w">    </span><span class="m m-Decimal">150</span><span class="p">,</span><span class="w">  </span><span class="c1">// 1.5x collateral ratio</span>
+<span class="w">    </span><span class="p">[</span><span class="m m-Decimal">1</span><span class="p">,</span><span class="w"> </span><span class="m m-Decimal">2</span><span class="p">,</span><span class="w"> </span><span class="m m-Decimal">3</span><span class="p">],</span><span class="w"> </span><span class="c1">// Required claim topics</span>
+<span class="w">    </span>collateralTokenAddress<span class="p">,</span>
+<span class="w">    </span>interestTokenAddress<span class="p">,</span>
+<span class="w">    </span>usdcAddress<span class="p">,</span>
+<span class="w">    </span>TradeDealLib<span class="p">.</span>OperationMode<span class="p">.</span>STANDARD
+<span class="p">);</span>
+</code></pre></div>
+
+<h3 id="trade-deal-updates">Trade Deal Updates<a class="headerlink" href="#trade-deal-updates" title="Permanent link">&para;</a></h3>
+<h4 id="updatetradedeal"><code>updateTradeDeal()</code><a class="headerlink" href="#updatetradedeal" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">updateTradeDeal</span><span class="p">(</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>name<span class="p">,</span>
+<span class="w">    </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>symbol<span class="p">,</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">interestRate</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">collateralToInterestRatio</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">collateralAddress</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">interestAddress</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">usdcAddress</span>
+<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyOwner
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Updates an existing trade deal's configuration parameters.</p>
+<p><strong>Parameters</strong>:
+- <code>tradeDealId</code>: ID of the trade deal to update
+- <code>name</code>: New name for the trade deal
+- <code>symbol</code>: New symbol for the trade deal
+- <code>interestRate</code>: New interest rate in basis points
+- <code>collateralToInterestRatio</code>: New collateral to interest ratio
+- <code>collateralAddress</code>: New collateral token address
+- <code>interestAddress</code>: New interest token address
+- <code>usdcAddress</code>: New USDC token address</p>
+<p><strong>Access Control</strong>: Owner only</p>
+<p><strong>Validation</strong>:
+- Trade deal must exist
+- New parameters must be valid
+- Cannot update active funded deals</p>
+<p><strong>Events</strong>: <code>TradeDealUpdated</code> - Emitted with updated parameters</p>
+<h3 id="state-management">State Management<a class="headerlink" href="#state-management" title="Permanent link">&para;</a></h3>
+<h4 id="activatetradedeal"><code>activateTradeDeal()</code><a class="headerlink" href="#activatetradedeal" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">activateTradeDeal</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyOwner
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Activates a trade deal, making it available for funding.</p>
+<p><strong>Parameters</strong>:
+- <code>tradeDealId</code>: ID of the trade deal to activate</p>
+<p><strong>Access Control</strong>: Owner only</p>
+<p><strong>Events</strong>: <code>TradeDealActivated</code></p>
+<h4 id="deactivatetradedeal"><code>deactivateTradeDeal()</code><a class="headerlink" href="#deactivatetradedeal" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">deactivateTradeDeal</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyOwner
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Deactivates a trade deal, preventing new funding.</p>
+<p><strong>Parameters</strong>:
+- <code>tradeDealId</code>: ID of the trade deal to deactivate</p>
+<p><strong>Access Control</strong>: Owner only</p>
+<p><strong>Events</strong>: <code>TradeDealDeactivated</code></p>
+<h3 id="information-retrieval">Information Retrieval<a class="headerlink" href="#information-retrieval" title="Permanent link">&para;</a></h3>
+<h4 id="gettradedealinfo"><code>getTradeDealInfo()</code><a class="headerlink" href="#gettradedealinfo" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">getTradeDealInfo</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>name<span class="p">,</span>
+<span class="w">    </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>symbol<span class="p">,</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">interestRate</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">collateralToInterestRatio</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nv">active</span><span class="p">,</span>
+<span class="w">    </span>TradeDealLib<span class="p">.</span>OperationMode<span class="w"> </span>operationMode
+<span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Retrieves basic information about a trade deal.</p>
+<p><strong>Parameters</strong>:
+- <code>tradeDealId</code>: ID of the trade deal</p>
+<p><strong>Returns</strong>: Basic trade deal configuration and status</p>
+<h4 id="gettradedealfullstatus"><code>getTradeDealFullStatus()</code><a class="headerlink" href="#gettradedealfullstatus" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">getTradeDealFullStatus</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">fundingTarget</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">currentBalance</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nv">isFunded</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nv">isFundingWithdrawn</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalDebt</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">repaidAmount</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nv">isRepaid</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Retrieves comprehensive financial status of a trade deal.</p>
+<p><strong>Parameters</strong>:
+- <code>tradeDealId</code>: ID of the trade deal</p>
+<p><strong>Returns</strong>: Complete financial status including funding, debt, and repayment information</p>
+<h4 id="getalltradedealids"><code>getAllTradeDealIds()</code><a class="headerlink" href="#getalltradedealids" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">getAllTradeDealIds</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Returns an array of all trade deal IDs in the system.</p>
+<p><strong>Returns</strong>: Array of trade deal IDs</p>
+<h3 id="participant-and-status-checks">Participant and Status Checks<a class="headerlink" href="#participant-and-status-checks" title="Permanent link">&para;</a></h3>
+<h4 id="istradedealparticipant"><code>isTradeDealParticipant()</code><a class="headerlink" href="#istradedealparticipant" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">isTradeDealParticipant</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">user</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bool</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Checks if a user is a participant in a specific trade deal.</p>
+<p><strong>Parameters</strong>:
+- <code>tradeDealId</code>: ID of the trade deal
+- <code>user</code>: Address to check</p>
+<p><strong>Returns</strong>: <code>true</code> if user is a participant, <code>false</code> otherwise</p>
+<h4 id="istradedealfunded"><code>isTradeDealFunded()</code><a class="headerlink" href="#istradedealfunded" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">isTradeDealFunded</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bool</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Checks if a trade deal has reached its funding target.</p>
+<h4 id="istradedealrepaid"><code>isTradeDealRepaid()</code><a class="headerlink" href="#istradedealrepaid" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">isTradeDealRepaid</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bool</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Checks if a trade deal has been fully repaid.</p>
+<h3 id="utility-functions">Utility Functions<a class="headerlink" href="#utility-functions" title="Permanent link">&para;</a></h3>
+<h4 id="getnftinvoicetotalamount"><code>getNFTInvoiceTotalAmount()</code><a class="headerlink" href="#getnftinvoicetotalamount" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">getNFTInvoiceTotalAmount</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Gets the total amount of an invoice NFT used as collateral.</p>
+<p><strong>Parameters</strong>:
+- <code>tokenId</code>: ID of the invoice NFT</p>
+<p><strong>Returns</strong>: Total invoice amount</p>
+<h4 id="gettradedealtokenaddresses"><code>getTradeDealTokenAddresses()</code><a class="headerlink" href="#gettradedealtokenaddresses" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">getTradeDealTokenAddresses</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">nftAddress</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">collateralAddress</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">interestAddress</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">usdcAddress</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Retrieves all token contract addresses associated with a trade deal.</p>
+<h2 id="events">Events<a class="headerlink" href="#events" title="Permanent link">&para;</a></h2>
+<h3 id="tradedealcreated">TradeDealCreated<a class="headerlink" href="#tradedealcreated" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">event</span><span class="w"> </span><span class="nv">TradeDealCreated</span><span class="p">(</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>tradeDealId<span class="p">,</span>
+<span class="w">    </span><span class="kt">string</span><span class="w"> </span><span class="nv">name</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">string</span><span class="w"> </span><span class="nv">symbol</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">interestRate</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">collateralToInterestRatio</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nv">active</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">nftAddress</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">collateralAddress</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">interestAddress</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">usdcAddress</span><span class="p">,</span>
+<span class="w">    </span>TradeDealLib<span class="p">.</span>OperationMode<span class="w"> </span>operationMode
+<span class="p">);</span>
+</code></pre></div>
+
+<p>Emitted when a new trade deal is created.</p>
+<h3 id="tradedealupdated">TradeDealUpdated<a class="headerlink" href="#tradedealupdated" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">event</span><span class="w"> </span><span class="nv">TradeDealUpdated</span><span class="p">(</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>tradeDealId<span class="p">,</span>
+<span class="w">    </span><span class="kt">string</span><span class="w"> </span><span class="nv">name</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">string</span><span class="w"> </span><span class="nv">symbol</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">interestRate</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">collateralToInterestRatio</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nv">active</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">collateralAddress</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">interestAddress</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">usdcAddress</span>
+<span class="p">);</span>
+</code></pre></div>
+
+<p>Emitted when a trade deal is updated.</p>
+<h3 id="tradedealactivated-tradedealdeactivated">TradeDealActivated / TradeDealDeactivated<a class="headerlink" href="#tradedealactivated-tradedealdeactivated" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">event</span><span class="w"> </span><span class="nv">TradeDealActivated</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>tradeDealId<span class="p">);</span>
+<span class="kt">event</span><span class="w"> </span><span class="nv">TradeDealDeactivated</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>tradeDealId<span class="p">);</span>
+</code></pre></div>
+
+<p>Emitted when trade deals are activated or deactivated.</p>
+<h3 id="tradedealrequiredclaimtopicsset">TradeDealRequiredClaimTopicsSet<a class="headerlink" href="#tradedealrequiredclaimtopicsset" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">event</span><span class="w"> </span><span class="nv">TradeDealRequiredClaimTopicsSet</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>tradeDealId<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span>claimTopics<span class="p">);</span>
+</code></pre></div>
+
+<p>Emitted when required claim topics are set for a trade deal.</p>
+<h2 id="integration-examples">Integration Examples<a class="headerlink" href="#integration-examples" title="Permanent link">&para;</a></h2>
+<h3 id="create-invoice-financing-deal">Create Invoice Financing Deal<a class="headerlink" href="#create-invoice-financing-deal" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Deploy collateral and interest tokens first</span>
+<span class="kt">address</span><span class="w"> </span><span class="nv">collateralToken</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>deployCollateralToken<span class="p">();</span>
+<span class="kt">address</span><span class="w"> </span><span class="nv">interestToken</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>deployInterestToken<span class="p">();</span>
+
+<span class="c1">// Create trade deal for invoice financing</span>
+<span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>ITradeDeal<span class="p">(</span>diamond<span class="p">).</span>createTradeDeal<span class="p">(</span>
+<span class="w">    </span><span class="s2">&quot;Invoice Financing Deal #1&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;IFD1&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="m m-Decimal">750</span><span class="p">,</span><span class="w">  </span><span class="c1">// 7.5% interest rate</span>
+<span class="w">    </span><span class="m m-Decimal">150</span><span class="p">,</span><span class="w">  </span><span class="c1">// 1.5x collateral ratio</span>
+<span class="w">    </span><span class="p">[</span><span class="m m-Decimal">1</span><span class="p">,</span><span class="w"> </span><span class="m m-Decimal">2</span><span class="p">,</span><span class="w"> </span><span class="m m-Decimal">3</span><span class="p">],</span><span class="w"> </span><span class="c1">// Required claim topics</span>
+<span class="w">    </span>collateralTokenAddress<span class="p">,</span>
+<span class="w">    </span>interestTokenAddress<span class="p">,</span>
+<span class="w">    </span>usdcAddress<span class="p">,</span>
+<span class="w">    </span>TradeDealLib<span class="p">.</span>OperationMode<span class="p">.</span>STANDARD
+<span class="p">);</span>
+
+<span class="c1">// Activate the trade deal</span>
+ITradeDeal<span class="p">(</span>diamond<span class="p">).</span>activateTradeDeal<span class="p">(</span>tradeDealId<span class="p">);</span>
+</code></pre></div>
+
+<h3 id="monitor-trade-deal-status">Monitor Trade Deal Status<a class="headerlink" href="#monitor-trade-deal-status" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Get basic trade deal information</span>
+<span class="p">(</span>
+<span class="w">    </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>name<span class="p">,</span>
+<span class="w">    </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>symbol<span class="p">,</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">interestRate</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">collateralRatio</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nv">active</span><span class="p">,</span>
+<span class="w">    </span>TradeDealLib<span class="p">.</span>OperationMode<span class="w"> </span>mode
+<span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>ITradeDeal<span class="p">(</span>diamond<span class="p">).</span>getTradeDealInfo<span class="p">(</span>tradeDealId<span class="p">);</span>
+
+<span class="c1">// Get detailed financial status</span>
+<span class="p">(</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">fundingTarget</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">currentBalance</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nv">isFunded</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nv">isFundingWithdrawn</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalDebt</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">repaidAmount</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nv">isRepaid</span>
+<span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>ITradeDeal<span class="p">(</span>diamond<span class="p">).</span>getTradeDealFullStatus<span class="p">(</span>tradeDealId<span class="p">);</span>
+
+console<span class="p">.</span>log<span class="p">(</span><span class="s2">&quot;Trade Deal:&quot;</span><span class="p">,</span><span class="w"> </span>name<span class="p">);</span>
+console<span class="p">.</span>log<span class="p">(</span><span class="s2">&quot;Funding Progress:&quot;</span><span class="p">,</span><span class="w"> </span>currentBalance<span class="p">,</span><span class="w"> </span><span class="s2">&quot;/&quot;</span><span class="p">,</span><span class="w"> </span>fundingTarget<span class="p">);</span>
+console<span class="p">.</span>log<span class="p">(</span><span class="s2">&quot;Is Funded:&quot;</span><span class="p">,</span><span class="w"> </span>isFunded<span class="p">);</span>
+console<span class="p">.</span>log<span class="p">(</span><span class="s2">&quot;Total Debt:&quot;</span><span class="p">,</span><span class="w"> </span>totalDebt<span class="p">);</span>
+console<span class="p">.</span>log<span class="p">(</span><span class="s2">&quot;Repaid Amount:&quot;</span><span class="p">,</span><span class="w"> </span>repaidAmount<span class="p">);</span>
+</code></pre></div>
+
+<h3 id="update-trade-deal-parameters">Update Trade Deal Parameters<a class="headerlink" href="#update-trade-deal-parameters" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Update interest rate and collateral ratio</span>
+ITradeDeal<span class="p">(</span>diamond<span class="p">).</span>updateTradeDeal<span class="p">(</span>
+<span class="w">    </span>tradeDealId<span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;Updated Invoice Financing Deal&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;UIFD24&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="m m-Decimal">750</span><span class="p">,</span><span class="w">  </span><span class="c1">// Reduced to 7.5% interest rate</span>
+<span class="w">    </span><span class="m m-Decimal">110</span><span class="p">,</span><span class="w">  </span><span class="c1">// Reduced to 1.1x collateral ratio</span>
+<span class="w">    </span>collateralToken<span class="p">,</span>
+<span class="w">    </span>interestToken<span class="p">,</span>
+<span class="w">    </span>usdcAddress
+<span class="p">);</span>
+</code></pre></div>
+
+<h2 id="security-considerations">Security Considerations<a class="headerlink" href="#security-considerations" title="Permanent link">&para;</a></h2>
+<h3 id="access-control">Access Control<a class="headerlink" href="#access-control" title="Permanent link">&para;</a></h3>
+<ul>
+<li>All management functions are owner-only</li>
+<li>Participant verification through identity claims</li>
+<li>State validation before operations</li>
+</ul>
+<h3 id="financial-security">Financial Security<a class="headerlink" href="#financial-security" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Interest rate and ratio validation</li>
+<li>Funding target verification</li>
+<li>Debt tracking and repayment monitoring</li>
+</ul>
+<h3 id="operational-security">Operational Security<a class="headerlink" href="#operational-security" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Trade deal state management</li>
+<li>Token address validation</li>
+<li>Operation mode enforcement</li>
+</ul>
+<h2 id="integration-with-other-facets">Integration with Other Facets<a class="headerlink" href="#integration-with-other-facets" title="Permanent link">&para;</a></h2>
+<h3 id="tradedealoperationsfacet">TradeDealOperationsFacet<a class="headerlink" href="#tradedealoperationsfacet" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Handles funding, withdrawal, and repayment operations</li>
+<li>Manages participant interactions</li>
+<li>Processes collateral and interest distributions</li>
+</ul>
+<h3 id="identityregistryfacet">IdentityRegistryFacet<a class="headerlink" href="#identityregistryfacet" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Validates participant eligibility</li>
+<li>Enforces claim topic requirements</li>
+<li>Manages access control</li>
+</ul>
+<h3 id="token-contracts">Token Contracts<a class="headerlink" href="#token-contracts" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Collateral token for securing deals</li>
+<li>Interest token for profit distribution</li>
+<li>USDC for stable value payments</li>
+</ul>
+<h2 id="error-handling">Error Handling<a class="headerlink" href="#error-handling" title="Permanent link">&para;</a></h2>
+<h3 id="common-errors">Common Errors<a class="headerlink" href="#common-errors" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>"Trade deal does not exist"</code> - Invalid trade deal ID</li>
+<li><code>"Only owner can perform this action"</code> - Unauthorized access</li>
+<li><code>"Invalid parameters"</code> - Parameter validation failure</li>
+<li><code>"Trade deal already active/inactive"</code> - Invalid state transition</li>
+</ul>
+<h2 id="testing-considerations">Testing Considerations<a class="headerlink" href="#testing-considerations" title="Permanent link">&para;</a></h2>
+<h3 id="unit-tests">Unit Tests<a class="headerlink" href="#unit-tests" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Trade deal creation with various parameters</li>
+<li>Update operations and validation</li>
+<li>State transitions (activate/deactivate)</li>
+<li>Information retrieval accuracy</li>
+</ul>
+<h3 id="integration-tests">Integration Tests<a class="headerlink" href="#integration-tests" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Multi-facet interactions</li>
+<li>Token contract integration</li>
+<li>Identity system integration</li>
+<li>End-to-end trade deal lifecycle</li>
+</ul>
+<h2 id="related-documentation">Related Documentation<a class="headerlink" href="#related-documentation" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../trade-deal-operations-facet/">TradeDealOperationsFacet</a> - Trade deal operations</li>
+<li><a href="../../interfaces/itradedeal/">ITradeDeal Interface</a> - Trade deal interface</li>
+<li><a href="../../libraries/trade-deal-lib/">TradeDealLib</a> - Trade deal utility library</li>
+<li><a href="../../../eips/EIP-DRAFT-Collateralized-Trade-Deal-Standard/">EIP-DRAFT-Collateralized-Trade-Deal-Standard</a> - EIP specification</li>
+<li><a href="../../../integrator-guide/smart-contracts/">Integrator's Guide: Smart Contracts</a></li>
+</ul>
+<hr />
+<p><em>This facet provides the foundation for trade deal management in the Gemforce collateralized finance system.</em></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../marketplace-facet/" class="btn btn-neutral float-left" title="Marketplace Facet"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../carbon-credit-facet/" class="btn btn-neutral float-right" title="Carbon Credit Facet">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../marketplace-facet/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../carbon-credit-facet/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

@@ -317,9 +317,9 @@ Comprehensive test cases should cover:
 ## Reference Implementation
 
 The reference implementation includes:
-- [`CarbonCreditFacet.sol`](../contracts/facets/CarbonCreditFacet.sol) - Core carbon credit functionality
-- [`ICarbonCredit.sol`](../contracts/interfaces/ICarbonCredit.sol) - Interface definition
-- [`CarbonCreditLib.sol`](../contracts/libraries/CarbonCreditLib.sol) - Supporting library functions
+- [Carbon Credit Facet ../smart-contracts/facets/carbon-credit-facet.md] - Core carbon credit functionality
+- [ICarbonCredit Interface ../smart-contracts/interfaces/icarbon-credit.md] - Interface definition
+- [Carbon Credit Lib ../smart-contracts/libraries/carbon-credit-lib.md] - Supporting library functions
 
 ## Copyright
 

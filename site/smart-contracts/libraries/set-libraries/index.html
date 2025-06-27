@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Gemforce Team" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>Set Libraries - Gemforce Documentation</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Set Libraries";
+        var mkdocs_page_input_path = "smart-contracts/libraries/set-libraries.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../.." class="icon icon-home"> Gemforce Documentation
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../developer-setup-guide/">Developer Setup Guide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../system-architecture/gemforce-system-architecture/">System Architecture</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Smart Contracts</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../diamond/">Diamond Contract</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../diamond-factory/">Diamond Factory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../identity-factory/">Identity Factory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Facets</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/marketplace-facet/">Marketplace Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trade-deal-management-facet/">Trade Deal Management Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/carbon-credit-facet/">Carbon Credit Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/identity-registry-facet/">Identity Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trusted-issuers-registry-facet/">Trusted Issuers Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/fee-distributor-facet/">Fee Distributor Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/gemforce-minter-facet/">Gemforce Minter Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/multi-sale-facet/">Multi Sale Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/svg-templates-facet/">SVG Templates Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trade-deal-admin-facet/">Trade Deal Admin Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trade-deal-operations-facet/">Trade Deal Operations Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/collateral-token-factory-facet/">Collateral Token Factory Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/diamond-cut-facet/">Diamond Cut Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/diamond-loupe-facet/">Diamond Loupe Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/ownership-facet/">Ownership Facet</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Interfaces</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/idiamond/">IDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/imarketplace/">IMarketplace</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/itradedeal/">ITradeDeal</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/icarbon-credit/">ICarbonCredit</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ierc1155-mint/">IERC1155Mint</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ierc734/">IERC734</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ierc735/">IERC735</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ierc721a/">IERC721A</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/idiamond-factory/">IDiamondFactory</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/iidentity/">IIdentity</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/imultisale/">IMultiSale</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ifee-distributor/">IFeeDistributor</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/igemforce-minter-facet/">IGemforceMinterFacet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/iidentity-registry/">IIdentityRegistry</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/itrusted-issuers-registry/">TRUSTEDIssuersRegistry</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/isvg/">ISVG</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/iattribute/">IAttribute</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ivariable-price/">IVariablePrice</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" >Libraries</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" href="../carbon-credit-lib/">Carbon Credit Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../trade-deal-lib/">Trade Deal Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../multi-sale-lib/">Multi Sale Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../diamond-factory-lib/">Diamond Factory Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../svg-templates-lib/">SVG Templates Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../attribute-lib/">Attribute Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../variable-price-lib/">Variable Price Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../merkle-prover/">Merkle Prover</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../fee-distributor-lib/">Fee Distributor Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../lib-diamond/">LibDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../diamond-lib/">DiamondLib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../erc721a-lib/">ERC721A Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../erc721a-enumeration-lib/">ERC721A Enumeration Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../strings-lib/">Strings Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../trusted-issuer-lib/">Trusted Issuer Lib</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">Set Libraries</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#overview">Overview</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#libraries-included">Libraries Included</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#key-features">Key Features</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#common-architecture">Common Architecture</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#storage-structure">Storage Structure</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#design-pattern">Design Pattern</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#core-functions">Core Functions</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#insertset-storage-self-t-key">insert(Set storage self, T key)</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#removeset-storage-self-t-key">remove(Set storage self, T key)</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#existsset-storage-self-t-key">exists(Set storage self, T key)</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#countset-storage-self">count(Set storage self)</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#keyatindexset-storage-self-uint256-index">keyAtIndex(Set storage self, uint256 index)</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usage-examples">Usage Examples</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#addressset-managing-whitelisted-addresses">AddressSet - Managing Whitelisted Addresses</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#bytes32set-managing-content-hashes">Bytes32Set - Managing Content Hashes</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#uint256set-managing-token-collections">UInt256Set - Managing Token Collections</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#advanced-usage-patterns">Advanced Usage Patterns</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#set-operations">Set Operations</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#batch-operations">Batch Operations</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#performance-characteristics">Performance Characteristics</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#time-complexity">Time Complexity</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#gas-costs-approximate">Gas Costs (Approximate)</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#storage-costs">Storage Costs</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#security-considerations">Security Considerations</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#input-validation">Input Validation</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#gas-limit-considerations">Gas Limit Considerations</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#best-practices">Best Practices</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#integration-with-diamond-pattern">Integration with Diamond Pattern</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#migration-and-upgrades">Migration and Upgrades</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#data-migration">Data Migration</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#version-compatibility">Version Compatibility</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#related-documentation">Related Documentation</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#author-attribution">Author Attribution</a>
+    </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">SDK & Libraries</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/blockchain/">Blockchain Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/diamond/">Diamond Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/contract/">Contract Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/deploy/">Deployment Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/validation-utils/">Validation Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/nft-sale-utils/">NFT Sale Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/webhooks/">Webhooks Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../metadata-lib/">Metadata Library</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Cloud Functions</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/authentication/">Authentication Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/auth-functions/">Auth Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/blockchain/">Blockchain Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/bridge/">Bridge Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/contracts/">Contract Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/deploy/">Deploy Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/dfns/">DFNS Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/project/">Project Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/trade-deal/">Trade Deal Functions</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">API Documentation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../api-documentation/gemforce-api-documentation/">Full API Reference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../api-documentation/gemforce-api-quick-reference/">Quick Reference</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-external-services/">External Services</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-system-architecture/">System Architecture</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Operations Tasks</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/diamond/">Diamond Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/identities/">Identity Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/marketplace-management/">Marketplace Management Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/carbon-credit-management/">Carbon Credit Management Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/trade-deal/">Trade Deal Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/integration-test/">Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/integration-test-marketplace/">Marketplace Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/integration-test-trade-deal/">Trade Deal Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/admin-utils/">Admin Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/sync-diamond/">Sync Diamond Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/sync-events/">Sync Events Tasks</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">EIPs (Ethereum Improvement Proposals)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Diamond-Enhanced-Marketplace/">Diamond-Enhanced Marketplace</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Multi-Token-Sale-Standard/">Multi-Token Sale Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Collateralized-Trade-Deal-Standard/">Collateralized Trade Deal Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Enhanced-Identity-System/">Enhanced Identity System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Diamond-Factory-Standard/">Diamond Factory Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Carbon-Credit-Standard/">Carbon Credit Standard</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Developer Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/development-environment-setup/">Development Environment Setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/testing-frameworks/">Testing Frameworks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/debugging/">Debugging</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/performance-optimization/">Performance Optimization</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/test-case-specifications/">Test Case Specifications</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/test-data-management/">Test Data Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/automated-testing-setup/">Automated Testing Setup</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Deployment Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../deployment-guides/multi-network-deployment/">Multi-Network Deployment</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../deployment-guides/infrastructure-management/">Infrastructure Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../deployment-guides/monitoring-logging/">Monitoring and Logging</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">User Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-administrator-guide/">Administrator Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-deployer-guide/">Deployer Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-integrator-guide/">Integrator Guide</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Integrator's Guide</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/authentication/">Authentication</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/rest-api/">REST API</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/smart-contracts/">Smart Contracts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/dfns/">DFNS Integration</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/parse-server/">Parse Server Notes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/webhooks/">Webhooks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/error-handling/">Error Handling</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/sample-code/">Sample Code</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/integration-patterns/">Integration Patterns</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/testing/">Testing Considerations</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/security/">Security</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../external-services/gemforce-external-services/">External Services</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Security</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security/threat-model/">Threat Model and Risk Assessment</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security/incident-response/">Incident Response Procedures</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security/audit-compliance/">Security Audits and Compliance</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">External Developer Integration</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/api-rate-limiting/">API Rate Limiting</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/webhook-implementation-guidelines/">Webhook Implementation Guidelines</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/sdk-development-guidelines/">SDK Development Guidelines</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/partner-integration-guides/">Partner Integration Guides</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-documentation-gap-analysis/">Documentation Gap Analysis</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../documentation-progress-summary/">Documentation Progress Summary</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../documentation-plan/">Documentation Plan</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Configuration & Environment</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/gemforce-config/">Gemforce Config</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/environment-specific-guides/">Environment-Specific Guides</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/configuration-validation/">Configuration Validation Procedures</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/external-service-config-management/">External Service Configuration Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/database-schema-overview/">Database Schema Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/database-migration-procedures/">Database Migration Procedures</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">Gemforce Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Smart Contracts</li>
+          <li class="breadcrumb-item">Libraries</li>
+      <li class="breadcrumb-item active">Set Libraries</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="set-libraries-addressset-bytes32set-uint256set">Set Libraries (AddressSet, Bytes32Set, UInt256Set)<a class="headerlink" href="#set-libraries-addressset-bytes32set-uint256set" title="Permanent link">&para;</a></h1>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>The Gemforce platform includes three specialized set libraries that provide efficient, gas-optimized data structures for managing unique collections of different data types. These libraries implement unordered sets with O(1) operations for insertion, deletion, and existence checks, making them ideal for managing collections where uniqueness and fast lookups are required.</p>
+<h2 id="libraries-included">Libraries Included<a class="headerlink" href="#libraries-included" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="/Users/sschepis/Development/gem-base/contracts/libraries/AddressSet.sol"><code>AddressSet</code></a> - Set of Ethereum addresses</li>
+<li><a href="/Users/sschepis/Development/gem-base/contracts/libraries/Bytes32Set.sol"><code>Bytes32Set</code></a> - Set of bytes32 values</li>
+<li><a href="/Users/sschepis/Development/gem-base/contracts/libraries/UInt256Set.sol"><code>UInt256Set</code></a> - Set of uint256 values</li>
+</ul>
+<h2 id="key-features">Key Features<a class="headerlink" href="#key-features" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>O(1) Operations</strong>: All operations (insert, remove, exists) have constant time complexity</li>
+<li><strong>Enumeration Support</strong>: Iterate through set members by index</li>
+<li><strong>Uniqueness Enforcement</strong>: Duplicate values are automatically prevented</li>
+<li><strong>Gas Optimized</strong>: Efficient storage patterns minimize gas costs</li>
+<li><strong>Swap-and-Pop Deletion</strong>: Maintains array compactness without shifting elements</li>
+<li><strong>Type Safety</strong>: Separate libraries for different data types ensure type safety</li>
+</ul>
+<h2 id="common-architecture">Common Architecture<a class="headerlink" href="#common-architecture" title="Permanent link">&para;</a></h2>
+<p>All three set libraries follow the same architectural pattern:</p>
+<h3 id="storage-structure">Storage Structure<a class="headerlink" href="#storage-structure" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">struct</span><span class="w"> </span><span class="nv">Set</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span>T<span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">uint256</span><span class="p">)</span><span class="w"> </span>keyPointers<span class="p">;</span><span class="w">  </span><span class="c1">// T = address, bytes32, or uint256</span>
+<span class="w">    </span>T<span class="p">[]</span><span class="w"> </span>keyList<span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Components:</strong>
+- <code>keyPointers</code>: Maps each key to its position in the keyList array
+- <code>keyList</code>: Dynamic array containing all set members for enumeration</p>
+<h3 id="design-pattern">Design Pattern<a class="headerlink" href="#design-pattern" title="Permanent link">&para;</a></h3>
+<p>The libraries use a <strong>bidirectional mapping</strong> pattern:
+1. <strong>Key → Index</strong>: <code>keyPointers</code> mapping provides O(1) existence checks and position lookup
+2. <strong>Index → Key</strong>: <code>keyList</code> array enables enumeration and direct access by index</p>
+<h2 id="core-functions">Core Functions<a class="headerlink" href="#core-functions" title="Permanent link">&para;</a></h2>
+<p>All three libraries implement the same interface with type-specific parameters:</p>
+<h3 id="insertset-storage-self-t-key"><code>insert(Set storage self, T key)</code><a class="headerlink" href="#insertset-storage-self-t-key" title="Permanent link">&para;</a></h3>
+<p>Adds a new key to the set.</p>
+<p><strong>Parameters:</strong>
+- <code>self</code>: Storage pointer to the Set
+- <code>key</code>: Value to insert (address, bytes32, or uint256)</p>
+<p><strong>Requirements:</strong>
+- Key must not already exist in the set
+- Reverts with error message if duplicate key is inserted</p>
+<p><strong>Gas Cost:</strong> ~20,000-25,000 gas</p>
+<p><strong>Example:</strong></p>
+<div class="codehilite"><pre><span></span><code>AddressSet<span class="p">.</span>Set<span class="w"> </span>storage<span class="w"> </span>addresses<span class="p">;</span>
+AddressSet<span class="p">.</span>insert<span class="p">(</span>addresses<span class="p">,</span><span class="w"> </span><span class="mh">0x1234567890123456789012345678901234567890</span><span class="p">);</span>
+</code></pre></div>
+
+<h3 id="removeset-storage-self-t-key"><code>remove(Set storage self, T key)</code><a class="headerlink" href="#removeset-storage-self-t-key" title="Permanent link">&para;</a></h3>
+<p>Removes a key from the set using swap-and-pop optimization.</p>
+<p><strong>Parameters:</strong>
+- <code>self</code>: Storage pointer to the Set
+- <code>key</code>: Value to remove</p>
+<p><strong>Algorithm:</strong>
+1. Check if key exists (returns early if not)
+2. Get position of key to remove
+3. If not the last element, swap with last element
+4. Update pointer for moved element
+5. Delete key pointer and pop last element</p>
+<p><strong>Gas Cost:</strong> ~15,000-20,000 gas</p>
+<p><strong>Example:</strong></p>
+<div class="codehilite"><pre><span></span><code>UInt256Set<span class="p">.</span>remove<span class="p">(</span>tokenIds<span class="p">,</span><span class="w"> </span><span class="m m-Decimal">12345</span><span class="p">);</span>
+</code></pre></div>
+
+<h3 id="existsset-storage-self-t-key"><code>exists(Set storage self, T key)</code><a class="headerlink" href="#existsset-storage-self-t-key" title="Permanent link">&para;</a></h3>
+<p>Checks if a key exists in the set.</p>
+<p><strong>Parameters:</strong>
+- <code>self</code>: Storage pointer to the Set
+- <code>key</code>: Value to check</p>
+<p><strong>Returns:</strong>
+- <code>true</code> if key exists, <code>false</code> otherwise</p>
+<p><strong>Gas Cost:</strong> ~500-1,000 gas</p>
+<p><strong>Algorithm:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="kt">if</span><span class="w"> </span><span class="p">(</span>self<span class="p">.</span>keyList<span class="p">.</span>length<span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">)</span><span class="w"> </span><span class="kt">return</span><span class="w"> </span><span class="kt">false</span><span class="p">;</span>
+<span class="kt">return</span><span class="w"> </span>self<span class="p">.</span>keyList<span class="p">[</span>self<span class="p">.</span>keyPointers<span class="p">[</span>key<span class="p">]]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span>key<span class="p">;</span>
+</code></pre></div>
+
+<h3 id="countset-storage-self"><code>count(Set storage self)</code><a class="headerlink" href="#countset-storage-self" title="Permanent link">&para;</a></h3>
+<p>Returns the number of elements in the set.</p>
+<p><strong>Returns:</strong>
+- Number of elements in the set</p>
+<p><strong>Gas Cost:</strong> ~200-300 gas</p>
+<h3 id="keyatindexset-storage-self-uint256-index"><code>keyAtIndex(Set storage self, uint256 index)</code><a class="headerlink" href="#keyatindexset-storage-self-uint256-index" title="Permanent link">&para;</a></h3>
+<p>Retrieves a key by its index position.</p>
+<p><strong>Parameters:</strong>
+- <code>index</code>: Position in the set (0-based)</p>
+<p><strong>Returns:</strong>
+- Key at the specified index</p>
+<p><strong>Requirements:</strong>
+- Index must be less than <code>count()</code></p>
+<p><strong>Gas Cost:</strong> ~300-500 gas</p>
+<h2 id="usage-examples">Usage Examples<a class="headerlink" href="#usage-examples" title="Permanent link">&para;</a></h2>
+<h3 id="addressset-managing-whitelisted-addresses">AddressSet - Managing Whitelisted Addresses<a class="headerlink" href="#addressset-managing-whitelisted-addresses" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>AddressSet<span class="w"> </span><span class="p">}</span><span class="w"> </span>from<span class="w"> </span><span class="s2">&quot;./libraries/AddressSet.sol&quot;</span><span class="p">;</span>
+
+<span class="k">contract</span><span class="w"> </span><span class="ni">Whitelist</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>using<span class="w"> </span>AddressSet<span class="w"> </span><span class="kt">for</span><span class="w"> </span>AddressSet<span class="p">.</span>Set<span class="p">;</span>
+
+<span class="w">    </span>AddressSet<span class="p">.</span>Set<span class="w"> </span><span class="kt">private</span><span class="w"> </span>whitelistedAddresses<span class="p">;</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">addToWhitelist</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">user</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyOwner<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>whitelistedAddresses<span class="p">.</span>insert<span class="p">(</span>user<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">removeFromWhitelist</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">user</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyOwner<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>whitelistedAddresses<span class="p">.</span>remove<span class="p">(</span>user<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">isWhitelisted</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">user</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bool</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>whitelistedAddresses<span class="p">.</span>exists<span class="p">(</span>user<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getWhitelistSize</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>whitelistedAddresses<span class="p">.</span>count<span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getWhitelistedAddress</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">index</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">address</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>whitelistedAddresses<span class="p">.</span>keyAtIndex<span class="p">(</span>index<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="bytes32set-managing-content-hashes">Bytes32Set - Managing Content Hashes<a class="headerlink" href="#bytes32set-managing-content-hashes" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>Bytes32Set<span class="w"> </span><span class="p">}</span><span class="w"> </span>from<span class="w"> </span><span class="s2">&quot;./libraries/Bytes32Set.sol&quot;</span><span class="p">;</span>
+
+<span class="k">contract</span><span class="w"> </span><span class="ni">ContentRegistry</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>using<span class="w"> </span>Bytes32Set<span class="w"> </span><span class="kt">for</span><span class="w"> </span>Bytes32Set<span class="p">.</span>Set<span class="p">;</span>
+
+<span class="w">    </span>Bytes32Set<span class="p">.</span>Set<span class="w"> </span><span class="kt">private</span><span class="w"> </span>contentHashes<span class="p">;</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">registerContent</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">contentHash</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span><span class="o">!</span>contentHashes<span class="p">.</span>exists<span class="p">(</span>contentHash<span class="p">),</span><span class="w"> </span><span class="s2">&quot;Content already registered&quot;</span><span class="p">);</span>
+<span class="w">        </span>contentHashes<span class="p">.</span>insert<span class="p">(</span>contentHash<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">removeContent</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">contentHash</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyOwner<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>contentHashes<span class="p">.</span>remove<span class="p">(</span>contentHash<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">isContentRegistered</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">contentHash</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bool</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>contentHashes<span class="p">.</span>exists<span class="p">(</span>contentHash<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getAllContentHashes</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bytes32</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>contentHashes<span class="p">.</span>count<span class="p">();</span>
+<span class="w">        </span><span class="kt">bytes32</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>hashes<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="kt">bytes32</span><span class="p">[](</span>length<span class="p">);</span>
+
+<span class="w">        </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>hashes<span class="p">[</span>i<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>contentHashes<span class="p">.</span>keyAtIndex<span class="p">(</span>i<span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>hashes<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="uint256set-managing-token-collections">UInt256Set - Managing Token Collections<a class="headerlink" href="#uint256set-managing-token-collections" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>UInt256Set<span class="w"> </span><span class="p">}</span><span class="w"> </span>from<span class="w"> </span><span class="s2">&quot;./libraries/UInt256Set.sol&quot;</span><span class="p">;</span>
+
+<span class="k">contract</span><span class="w"> </span><span class="ni">TokenCollection</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>using<span class="w"> </span>UInt256Set<span class="w"> </span><span class="kt">for</span><span class="w"> </span>UInt256Set<span class="p">.</span>Set<span class="p">;</span>
+
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span>UInt256Set<span class="p">.</span>Set<span class="p">)</span><span class="w"> </span><span class="kt">private</span><span class="w"> </span>userTokens<span class="p">;</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">addTokenToUser</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">user</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>userTokens<span class="p">[</span>user<span class="p">].</span>insert<span class="p">(</span>tokenId<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">removeTokenFromUser</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">user</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>userTokens<span class="p">[</span>user<span class="p">].</span>remove<span class="p">(</span>tokenId<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">userOwnsToken</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">user</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bool</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>userTokens<span class="p">[</span>user<span class="p">].</span>exists<span class="p">(</span>tokenId<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getUserTokenCount</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">user</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>userTokens<span class="p">[</span>user<span class="p">].</span>count<span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getUserTokenAtIndex</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">user</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">index</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>userTokens<span class="p">[</span>user<span class="p">].</span>keyAtIndex<span class="p">(</span>index<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getUserTokens</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">user</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>UInt256Set<span class="p">.</span>Set<span class="w"> </span>storage<span class="w"> </span>tokens<span class="w"> </span><span class="o">=</span><span class="w"> </span>userTokens<span class="p">[</span>user<span class="p">];</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>tokens<span class="p">.</span>count<span class="p">();</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>tokenIds<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[](</span>length<span class="p">);</span>
+
+<span class="w">        </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>tokenIds<span class="p">[</span>i<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>tokens<span class="p">.</span>keyAtIndex<span class="p">(</span>i<span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>tokenIds<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="advanced-usage-patterns">Advanced Usage Patterns<a class="headerlink" href="#advanced-usage-patterns" title="Permanent link">&para;</a></h2>
+<h3 id="set-operations">Set Operations<a class="headerlink" href="#set-operations" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Union of two sets</span>
+<span class="kt">function</span><span class="w"> </span><span class="nv">unionSets</span><span class="p">(</span>
+<span class="w">    </span>UInt256Set<span class="p">.</span>Set<span class="w"> </span>storage<span class="w"> </span>setA<span class="p">,</span>
+<span class="w">    </span>UInt256Set<span class="p">.</span>Set<span class="w"> </span>storage<span class="w"> </span>setB
+<span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>UInt256Set<span class="p">.</span>Set<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>result<span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// Add all elements from setA</span>
+<span class="w">    </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>setA<span class="p">.</span>count<span class="p">();</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">element</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>setA<span class="p">.</span>keyAtIndex<span class="p">(</span>i<span class="p">);</span>
+<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span>result<span class="p">.</span>exists<span class="p">(</span>element<span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>result<span class="p">.</span>insert<span class="p">(</span>element<span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Add all elements from setB</span>
+<span class="w">    </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>setB<span class="p">.</span>count<span class="p">();</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">element</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>setB<span class="p">.</span>keyAtIndex<span class="p">(</span>i<span class="p">);</span>
+<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span>result<span class="p">.</span>exists<span class="p">(</span>element<span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>result<span class="p">.</span>insert<span class="p">(</span>element<span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Convert to array</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>unionArray<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[](</span>result<span class="p">.</span>count<span class="p">());</span>
+<span class="w">    </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>result<span class="p">.</span>count<span class="p">();</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>unionArray<span class="p">[</span>i<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>result<span class="p">.</span>keyAtIndex<span class="p">(</span>i<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">return</span><span class="w"> </span>unionArray<span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="batch-operations">Batch Operations<a class="headerlink" href="#batch-operations" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">batchInsert</span><span class="p">(</span>AddressSet<span class="p">.</span>Set<span class="w"> </span>storage<span class="w"> </span>set<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="p">[]</span><span class="w"> </span>calldata<span class="w"> </span>addresses<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>addresses<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span>set<span class="p">.</span>exists<span class="p">(</span>addresses<span class="p">[</span>i<span class="p">]))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>set<span class="p">.</span>insert<span class="p">(</span>addresses<span class="p">[</span>i<span class="p">]);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">function</span><span class="w"> </span><span class="nv">batchRemove</span><span class="p">(</span>AddressSet<span class="p">.</span>Set<span class="w"> </span>storage<span class="w"> </span>set<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="p">[]</span><span class="w"> </span>calldata<span class="w"> </span>addresses<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>addresses<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>set<span class="p">.</span>exists<span class="p">(</span>addresses<span class="p">[</span>i<span class="p">]))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>set<span class="p">.</span>remove<span class="p">(</span>addresses<span class="p">[</span>i<span class="p">]);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="performance-characteristics">Performance Characteristics<a class="headerlink" href="#performance-characteristics" title="Permanent link">&para;</a></h2>
+<h3 id="time-complexity">Time Complexity<a class="headerlink" href="#time-complexity" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Insert</strong>: O(1) - Constant time regardless of set size</li>
+<li><strong>Remove</strong>: O(1) - Swap-and-pop maintains constant time</li>
+<li><strong>Exists</strong>: O(1) - Direct mapping lookup</li>
+<li><strong>Count</strong>: O(1) - Array length property</li>
+<li><strong>KeyAtIndex</strong>: O(1) - Direct array access</li>
+<li><strong>Enumeration</strong>: O(n) - Linear in set size</li>
+</ul>
+<h3 id="gas-costs-approximate">Gas Costs (Approximate)<a class="headerlink" href="#gas-costs-approximate" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Operation</th>
+<th>Cold Storage</th>
+<th>Warm Storage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Insert</td>
+<td>22,000-25,000</td>
+<td>5,000-8,000</td>
+</tr>
+<tr>
+<td>Remove</td>
+<td>15,000-20,000</td>
+<td>3,000-5,000</td>
+</tr>
+<tr>
+<td>Exists</td>
+<td>800-2,100</td>
+<td>100-800</td>
+</tr>
+<tr>
+<td>Count</td>
+<td>200-400</td>
+<td>100-200</td>
+</tr>
+<tr>
+<td>KeyAtIndex</td>
+<td>300-800</td>
+<td>100-300</td>
+</tr>
+</tbody>
+</table>
+<h3 id="storage-costs">Storage Costs<a class="headerlink" href="#storage-costs" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Per Element</strong>: 2 storage slots (1 for mapping, 1 for array)</li>
+<li><strong>Set Overhead</strong>: Minimal (just array length)</li>
+<li><strong>Memory Efficiency</strong>: Compact storage with no gaps</li>
+</ul>
+<h2 id="security-considerations">Security Considerations<a class="headerlink" href="#security-considerations" title="Permanent link">&para;</a></h2>
+<h3 id="input-validation">Input Validation<a class="headerlink" href="#input-validation" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Duplicate Prevention</strong>: All libraries prevent duplicate insertions</li>
+<li><strong>Existence Checks</strong>: Remove operations handle non-existent keys gracefully</li>
+<li><strong>Index Bounds</strong>: KeyAtIndex should validate index bounds in calling code</li>
+</ul>
+<h3 id="gas-limit-considerations">Gas Limit Considerations<a class="headerlink" href="#gas-limit-considerations" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Large Sets</strong>: Enumeration operations may hit gas limits for very large sets</li>
+<li><strong>Batch Operations</strong>: Consider gas limits when processing multiple elements</li>
+<li><strong>State Changes</strong>: Multiple insertions/removals in single transaction</li>
+</ul>
+<h3 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Always check bounds when enumerating</span>
+<span class="kt">function</span><span class="w"> </span><span class="nv">safeKeyAtIndex</span><span class="p">(</span>UInt256Set<span class="p">.</span>Set<span class="w"> </span>storage<span class="w"> </span>set<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">index</span><span class="p">)</span><span class="w"> </span>
+<span class="w">    </span><span class="kt">internal</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">require</span><span class="p">(</span>index<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>set<span class="p">.</span>count<span class="p">(),</span><span class="w"> </span><span class="s2">&quot;Index out of bounds&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">return</span><span class="w"> </span>set<span class="p">.</span>keyAtIndex<span class="p">(</span>index<span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Use exists() before remove() for safety</span>
+<span class="kt">function</span><span class="w"> </span><span class="nv">safeRemove</span><span class="p">(</span>AddressSet<span class="p">.</span>Set<span class="w"> </span>storage<span class="w"> </span>set<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">key</span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>set<span class="p">.</span>exists<span class="p">(</span>key<span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>set<span class="p">.</span>remove<span class="p">(</span>key<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Paginate large enumerations</span>
+<span class="kt">function</span><span class="w"> </span><span class="nv">getPaginatedKeys</span><span class="p">(</span>
+<span class="w">    </span>UInt256Set<span class="p">.</span>Set<span class="w"> </span>storage<span class="w"> </span>set<span class="p">,</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">offset</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">limit</span>
+<span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">total</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>set<span class="p">.</span>count<span class="p">();</span>
+<span class="w">    </span><span class="kt">require</span><span class="p">(</span>offset<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>total<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Offset out of bounds&quot;</span><span class="p">);</span>
+
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">end</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>offset<span class="w"> </span><span class="o">+</span><span class="w"> </span>limit<span class="p">;</span>
+<span class="w">    </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>end<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span>total<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>end<span class="w"> </span><span class="o">=</span><span class="w"> </span>total<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>keys<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[](</span>end<span class="w"> </span><span class="o">-</span><span class="w"> </span>offset<span class="p">);</span>
+<span class="w">    </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>offset<span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>end<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>keys<span class="p">[</span>i<span class="w"> </span><span class="o">-</span><span class="w"> </span>offset<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>set<span class="p">.</span>keyAtIndex<span class="p">(</span>i<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">return</span><span class="w"> </span>keys<span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="integration-with-diamond-pattern">Integration with Diamond Pattern<a class="headerlink" href="#integration-with-diamond-pattern" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Storage struct for diamond pattern</span>
+<span class="kt">struct</span><span class="w"> </span><span class="nv">SetStorage</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>AddressSet<span class="p">.</span>Set<span class="w"> </span>admins<span class="p">;</span>
+<span class="w">    </span>UInt256Set<span class="p">.</span>Set<span class="w"> </span>activeTokens<span class="p">;</span>
+<span class="w">    </span>Bytes32Set<span class="p">.</span>Set<span class="w"> </span>validHashes<span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// Storage position</span>
+<span class="kt">bytes32</span><span class="w"> </span><span class="nv">constant</span><span class="w"> </span>SET_STORAGE_POSITION<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">keccak256</span><span class="p">(</span><span class="s2">&quot;diamond.gemforce.set.storage&quot;</span><span class="p">);</span>
+
+<span class="kt">function</span><span class="w"> </span><span class="nv">setStorage</span><span class="p">()</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>pure<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>SetStorage<span class="w"> </span>storage<span class="w"> </span>ds<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>SET_STORAGE_POSITION<span class="p">;</span>
+<span class="w">    </span>assembly<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>ds<span class="p">.</span>slot<span class="w"> </span><span class="o">:=</span><span class="w"> </span>position
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="migration-and-upgrades">Migration and Upgrades<a class="headerlink" href="#migration-and-upgrades" title="Permanent link">&para;</a></h2>
+<h3 id="data-migration">Data Migration<a class="headerlink" href="#data-migration" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Sets maintain their structure across upgrades</li>
+<li>New elements can be added without affecting existing data</li>
+<li>Consider gas costs when migrating large sets</li>
+</ul>
+<h3 id="version-compatibility">Version Compatibility<a class="headerlink" href="#version-compatibility" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Libraries are backward compatible</li>
+<li>Storage layout remains consistent</li>
+<li>Function signatures are stable</li>
+</ul>
+<h2 id="related-documentation">Related Documentation<a class="headerlink" href="#related-documentation" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../diamond-lib/">Diamond Library</a> - Diamond pattern integration</li>
+<li><a href="../attribute-lib/">Attribute Library</a> - Token attribute management</li>
+<li><a href="../multi-sale-lib/">Multi-Sale Library</a> - Sale management with sets</li>
+<li><a href="../fee-distributor-lib/">Fee Distributor Library</a> - Revenue sharing with address sets</li>
+</ul>
+<h2 id="author-attribution">Author Attribution<a class="headerlink" href="#author-attribution" title="Permanent link">&para;</a></h2>
+<p>These set libraries are based on the work of <strong>Rob Hitchens</strong>, providing efficient and gas-optimized set implementations for Solidity smart contracts.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../trusted-issuer-lib/" class="btn btn-neutral float-left" title="Trusted Issuer Lib"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../../sdk-libraries/blockchain/" class="btn btn-neutral float-right" title="Blockchain Utilities">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../trusted-issuer-lib/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../../sdk-libraries/blockchain/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

@@ -2,7 +2,7 @@
 
 ## Overview
 
-The [`IERC1155Mint`](../../../contracts/interfaces/IERC1155Mint.sol) interface defines the standard contract for minting ERC1155 tokens within the Gemforce platform. This interface extends the standard ERC1155 functionality by providing controlled minting capabilities for multi-token contracts, enabling the creation of fungible, non-fungible, and semi-fungible tokens with flexible quantity management.
+The [`IERC1155Mint`](../../smart-contracts/interfaces/ierc1155-mint.md) interface defines the standard contract for minting ERC1155 tokens within the Gemforce platform. This interface extends the standard ERC1155 functionality by providing controlled minting capabilities for multi-token contracts, enabling the creation of fungible, non-fungible, and semi-fungible tokens with flexible quantity management.
 
 ## Key Features
 
@@ -498,164 +498,92 @@ contract CollectibleCardSystem {
     function mintSpecialCard(
         address recipient,
         uint256 cardId,
-        uint256 quantity
-    ) external onlyGameMaster {
-        require(cardTemplates[cardId].active, "Card template not active");
+        uint256 quantity,
+        bytes memory eventData
+    ) external onlyGameDesigner {
+        require(
+            currentSupply[cardId] + quantity <= maxSupply[cardId],
+            "Would exceed max supply"
+        );
         
-        gameCards.mintTo(recipient, cardId, quantity, "");
-        emit CardMinted(cardId, recipient, quantity);
+        currentSupply[cardId] += quantity;
+        gameCards.mintTo(recipient, cardId, quantity, eventData);
     }
     
-    function mintPromotionalCards(
-        address[] memory recipients,
-        uint256 promoCardId,
-        uint256 quantityPerPlayer
-    ) external onlyGameMaster {
-        require(cardTemplates[promoCardId].active, "Card template not active");
-        
-        for (uint256 i = 0; i < recipients.length; i++) {
-            gameCards.mintTo(recipients[i], promoCardId, quantityPerPlayer, "");
-            emit CardMinted(promoCardId, recipients[i], quantityPerPlayer);
-        }
-    }
-    
-    function _generateRandomCard() internal view returns (uint256) {
-        // Simplified random generation - in practice would use Chainlink VRF
-        uint256 randomValue = uint256(keccak256(abi.encodePacked(
-            block.timestamp,
-            block.difficulty,
-            msg.sender
-        ))) % 10000;
-        
-        CardRarity targetRarity;
-        if (randomValue < packProbabilities[CardRarity.LEGENDARY]) {
-            targetRarity = CardRarity.LEGENDARY;
-        } else if (randomValue < packProbabilities[CardRarity.LEGENDARY] + packProbabilities[CardRarity.EPIC]) {
-            targetRarity = CardRarity.EPIC;
-        } else if (randomValue < packProbabilities[CardRarity.LEGENDARY] + packProbabilities[CardRarity.EPIC] + packProbabilities[CardRarity.RARE]) {
-            targetRarity = CardRarity.RARE;
-        } else if (randomValue < 10000 - packProbabilities[CardRarity.COMMON]) {
-            targetRarity = CardRarity.UNCOMMON;
-        } else {
-            targetRarity = CardRarity.COMMON;
-        }
-        
-        // Find a random card of the target rarity
-        // Simplified - in practice would maintain arrays of cards by rarity
-        for (uint256 i = 1; i < nextCardId; i++) {
-            if (cardTemplates[i].rarity == targetRarity && cardTemplates[i].active) {
-                return i;
-            }
-        }
-        
-        return 1; // Fallback to first card
-    }
-    
-    function getCardInfo(uint256 cardId) external view returns (CardTemplate memory) {
-        return cardTemplates[cardId];
-    }
-    
-    function getPlayerStats(address player) external view returns (uint256 packsOpened) {
-        packsOpened = playerPacksOpened[player];
+    function getItemInfo(uint256 itemId) external view returns (
+        uint256 rarity,
+        uint256 maxSupplyAmount,
+        uint256 currentSupplyAmount,
+        uint256 remainingSupply
+    ) {
+        rarity = itemRarity[itemId];
+        maxSupplyAmount = maxSupply[itemId];
+        currentSupplyAmount = currentSupply[itemId];
+        remainingSupply = maxSupplyAmount - currentSupplyAmount;
     }
     
     modifier onlyGameDesigner() {
-        // Implementation would check for game designer role
-        _;
-    }
-    
-    modifier onlyGameMaster() {
         // Implementation would check for game master role
         _;
     }
 }
 ```
 
-## Events
-
-### Token Minting Events
-```solidity
-event ERC1155TokenMinted(
-    address minter,      // Address that initiated the minting
-    uint256 id,          // Token type identifier
-    uint256 quantity     // Amount of tokens minted
-);
-```
-
 ## Security Considerations
 
 ### Access Control
-- Minting permissions must be properly restricted
-- Role-based access control for different minting operations
-- Prevention of unauthorized token creation
-- Validation of minter addresses and permissions
+- **Authorized Minting**: Only authorized entities can mint tokens
+- **Recipient Validation**: Validate recipient addresses
+- **Supply Limits**: Enforce max supply per token type
 
 ### Supply Management
-- Maximum supply limits to prevent inflation
-- Current supply tracking for scarcity management
-- Prevention of overflow in quantity calculations
-- Validation of token ID existence and validity
+- **Controlled Minting**: Prevent over-minting
+- **Supply Tracking**: Track current supply and remaining supply
+- **Burn Functions**: Provide burn functionality for tokens (if needed)
 
 ### Recipient Validation
-- Zero address checks for recipients
-- Contract recipient compatibility (ERC1155Receiver)
-- Batch operation array length validation
-- Data parameter handling for contract recipients
+- **ERC1155Receiver**: Ensure contract recipients implement ERC1155Receiver
+- **Zero Address Check**: Prevent minting to zero address
 
 ## Gas Optimization
 
 ### Efficient Operations
-- Batch minting for multiple token types
-- Optimized storage layout for token data
-- Minimal external calls during minting
-- Efficient event emission patterns
+- **Batch Minting**: `batchMintTo` for efficient multi-token minting
+- **Single Transactions**: Minimize multiple transaction calls
+- **Gas-Efficient Logic**: Optimize internal minting logic
 
 ### Storage Optimization
-- Packed storage structures where possible
-- Efficient mapping usage for token tracking
-- Optimized array operations for batch minting
-- Cached calculations for frequently accessed data
+- **Minimal Storage**: Store only essential token data
+- **Packed Structs**: Use packed structs for data structures
+- **Mapping Usage**: Efficient use of mappings for fast lookups
 
 ## Error Handling
 
 ### Common Errors
-- Insufficient minting permissions
-- Invalid token IDs or quantities
-- Zero address recipients
-- Array length mismatches in batch operations
-- Contract recipient compatibility issues
+- `IERC1155Mint: Unauthorized Minter`: Caller does not have minting permissions
+- `IERC1155Mint: Invalid Recipient`: Recipient address is zero or invalid
+- `IERC1155Mint: Invalid Token ID`: Token ID is invalid or not configured
+- `IERC1155Mint: Quantity Exceeds Supply`: Minting would exceed max supply
+- `IERC1155Mint: Zero Quantity`: Attempting to mint zero tokens
 
-### Best Practices
-- Validate all inputs before processing
-- Check permissions before minting operations
-- Verify recipient addresses and contract compatibility
-- Handle batch operation failures gracefully
-- Provide clear error messages for debugging
+## Best Practices
 
-## Testing Considerations
+### Integration Checklist
+- Implement robust access control for minting functions
+- Integrate with off-chain systems for supply management and analytics
+- Validate all input parameters before minting
+- Handle ERC1155Receiver callbacks for contract recipients
 
-### Unit Tests
-- Interface compliance verification
-- Minting function parameter validation
-- Event emission verification
-- Access control testing
-- Error condition handling
-
-### Integration Tests
-- ERC1155 standard compliance
-- Contract recipient interaction testing
-- Batch operation efficiency and correctness
-- Supply management and tracking
-- Cross-contract integration scenarios
+### Development Guidelines
+- Write comprehensive unit tests for all minting scenarios
+- Monitor events for real-time tracking of token supply
+- Use secure random number generation for unique token IDs (if applicable)
+- Consider upgradability for future token features
 
 ## Related Documentation
 
-- [MultiSaleFacet](../facets/multi-sale-facet.md) - Multi-token sale functionality
-- [GemforceMinterFacet](../facets/gemforce-minter-facet.md) - Token minting implementation
-- [ERC1155 Standards](../../standards/erc1155-extensions.md) - Token standard extensions
-- [Token Minting Guide](../../guides/token-minting.md) - Implementation guide for token minting
-- [Gaming Integration Guide](../../guides/gaming-integration.md) - Gaming platform integration
-
----
-
-*This interface defines the standard contract for ERC1155 token minting within the Gemforce platform, enabling flexible creation of fungible, non-fungible, and semi-fungible tokens with comprehensive quantity management and batch operations.*
+- [Multi Sale Facet](../../smart-contracts/facets/multi-sale-facet.md) - For multi-token sales using ERC1155.
+- [ERC721A Interface](ierc721a.md) - For comparison with ERC721 minting.
+- [SDK & Libraries: Blockchain Utilities](../../sdk-libraries/blockchain.md) - General blockchain interaction utilities.
+- [Developer Guides: Automated Testing Setup](../../developer-guides/automated-testing-setup.md)
+- [Developer Guides: Development Environment Setup](../../developer-guides/development-environment-setup.md)

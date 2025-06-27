@@ -2,7 +2,7 @@
 
 ## Overview
 
-The [`contracts.ts`](/Users/sschepis/Development/gem-base/src/cloud-functions/contracts.ts) module provides Parse Server cloud functions for interacting with smart contracts on various blockchain networks. These functions enable secure contract operations, diamond facet management, and flexible contract interaction patterns through a unified API.
+The [`contracts.ts`](../sdk-libraries/contract.md) module provides Parse Server cloud functions for interacting with smart contracts on various blockchain networks. These functions enable secure contract operations, diamond facet management, and flexible contract interaction patterns through a unified API.
 
 ## Module Details
 
@@ -449,8 +449,8 @@ class ContractMonitor {
       providerUrl: this.getProviderUrl(networkId),
       abi: diamond.abi,
       address: diamondAddress,
-      functionName: "facets",
-      params: []
+      functionName: "facetFunctionSelectors",
+      params: [facetName]
     });
     
     console.log("Current facets:", facets);
@@ -461,8 +461,8 @@ class ContractMonitor {
         providerUrl: this.getProviderUrl(networkId),
         abi: diamond.abi,
         address: diamondAddress,
-        functionName: "facets",
-        params: []
+        functionName: "facetFunctionSelectors",
+        params: [facetName]
       });
       
       if (JSON.stringify(currentFacets) !== JSON.stringify(facets)) {
@@ -499,52 +499,45 @@ class ContractMonitor {
 - Transaction timeout handling
 
 ### Contract Errors
-- Contract existence validation
-- Function signature verification
-- Parameter type checking
+- Invalid contract address or ABI
+- Non-existent method calls
+- Reverted transactions
 
 ### Transaction Errors
-- Gas estimation and limits
-- Nonce management
-- Transaction failure recovery
+- Insufficient gas
+- Failed nonce management
+- Pending transaction conflicts
 
-## Performance Optimization
+## Best Practices
 
 ### Caching
-- Contract ABI caching for repeated calls
-- Network configuration caching
-- Provider connection pooling
+- Cache frequently accessed contract ABIs and addresses to reduce RPC calls.
+- Implement a cache invalidation strategy for contract upgrades.
 
 ### Batch Operations
-- Multiple contract calls in single request
-- Efficient parameter encoding
-- Optimized gas usage
+- Use batching for multiple read-only calls to an RPC node to improve performance.
+- Consider batched writes for efficient database updates.
 
-## Testing Considerations
+## Testing
 
 ### Unit Tests
-- Individual function testing
-- Parameter validation testing
-- Error condition handling
+- Test individual cloud functions in isolation.
+- Mock blockchain interactions and external dependencies.
+- Cover all success and error scenarios.
 
 ### Integration Tests
-- Multi-network deployment testing
-- Diamond facet management workflows
-- External contract integration
+- Test end-to-end contract interaction flows.
+- Verify correct state changes on the blockchain and in Parse Server.
+- Use a dedicated test environment with deployed contracts.
 
 ### Load Testing
-- Concurrent request handling
-- Network congestion scenarios
-- Rate limiting validation
+- Simulate high volumes of contract calls to assess performance and identify bottlenecks.
+- Measure transaction throughput and latency.
 
 ## Related Documentation
 
-- [Blockchain Cloud Functions](./blockchain.md) - Network provider management
-- [DFNS Cloud Functions](./dfns.md) - Wallet-as-a-Service integration
-- [Contract Utilities](../libraries/contract-utilities.md) - Underlying contract utilities
-- [Diamond Utilities](../libraries/diamond-utilities.md) - Diamond management utilities
-- [Developer Setup Guide](../developer-setup-guide.md) - Environment configuration
-
----
-
-*These cloud functions provide the backbone for secure, scalable smart contract interactions within the Gemforce platform, supporting both standard operations and custom integrations across multiple blockchain networks.*
+- [Smart Contracts: Overview](../smart-contracts/index.md)
+- [SDK & Libraries: Contract Utilities](../sdk-libraries/contract.md)
+- [SDK & Libraries: Diamond Utilities](../sdk-libraries/diamond.md)
+- [Integrator's Guide: Error Handling](../integrator-guide/error-handling.md)
+- [Integrator's Guide: Smart Contracts](../integrator-guide/smart-contracts.md)

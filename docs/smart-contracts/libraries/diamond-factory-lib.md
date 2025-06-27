@@ -2,7 +2,7 @@
 
 ## Overview
 
-The [`DiamondFactoryLib`](../../../contracts/libraries/DiamondFactoryLib.sol) library provides core utilities for creating and managing Diamond proxy contracts using the factory pattern. This library implements the Diamond Factory Standard, enabling deterministic deployment of Diamond contracts with configurable facet sets and initialization parameters.
+The [`DiamondFactoryLib`](../../smart-contracts/libraries/diamond-factory-lib.md) library provides core utilities for creating and managing Diamond proxy contracts using the factory pattern. This library implements the Diamond Factory Standard, enabling deterministic deployment of Diamond contracts with configurable facet sets and initialization parameters.
 
 ## Key Features
 
@@ -199,7 +199,7 @@ function _setFacet(
 **Purpose**: Update a specific facet within a named set.
 
 **Parameters**:
-- `self`: Storage reference to factory data
+- `self`: Storage reference to attribute contract
 - `setName`: Name of the facet set
 - `idx`: Index of the facet to update
 - `facet`: New facet cut data
@@ -498,19 +498,28 @@ contract NFTCollectionFactory {
     }
     
     function getDiamondBytecode() internal pure returns (bytes memory) {
-        // Return compiled Diamond bytecode
+        // Return bytecode of Diamond contract
+        return type(Diamond).creationCode;
     }
     
     function getInitContract() internal pure returns (address) {
-        // Return Diamond initialization contract address
+        // Return address of initialization contract
+        return address(0);
     }
     
     function getInitCalldata(DiamondSettings memory settings) internal pure returns (bytes memory) {
-        // Return initialization calldata
+        // Return encoded calldata for initialization
+        return abi.encodeCall(IDiamondElement.initialize, (
+            settings.owner,
+            settings,
+            new IDiamondCut.FacetCut[](0), // No initial facets via init
+            address(0),
+            ""
+        ));
     }
     
     modifier onlyOwner() {
-        // Implementation
+        // Placeholder for access control
         _;
     }
 }
@@ -518,88 +527,63 @@ contract NFTCollectionFactory {
 
 ### Gaming Platform Factory
 ```solidity
-// Factory for creating game-specific Diamonds
-contract GamePlatformFactory {
+// Factory for creating Gaming Platform Diamonds
+contract GamingPlatformFactory {
     using DiamondFactoryLib for DiamondFactoryLib.DiamondFactoryStorage;
     
-    struct GameType {
+    struct PlatformTemplate {
         string name;
-        string[] requiredFacets;
-        uint256 licenseFee;
-        address licenseToken;
-        bool requiresLicense;
+        string description;
+        string facetSet;
+        uint256 setupFee;
+        bool active;
     }
     
-    mapping(string => GameType) public gameTypes;
-    mapping(address => bool) public licensedDevelopers;
+    mapping(string => PlatformTemplate) public templates;
     
-    event GameTypeRegistered(string indexed gameType, string[] facets);
-    event GameDeployed(address indexed diamond, string gameType, address indexed developer);
-    event DeveloperLicensed(address indexed developer, string gameType);
+    event PlatformDeployed(address indexed diamond, string name, address indexed creator);
     
-    function registerGameType(
-        string memory gameTypeName,
-        string[] memory facetNames,
-        IDiamondCut.FacetCut[][] memory facetSets,
-        uint256 licenseFee,
-        address licenseToken
-    ) external onlyPlatformOwner {
+    function createTemplate(
+        string memory templateName,
+        string memory description,
+        IDiamondCut.FacetCut[] memory facets,
+        uint256 setupFee
+    ) external onlyOwner {
         DiamondFactoryLib.DiamondFactoryStorage storage ds = DiamondFactoryLib.diamondFactoryStorage();
+        DiamondFactoryLib._addFacetSet(ds, templateName, facets);
         
-        // Register each facet set
-        for (uint256 i = 0; i < facetNames.length; i++) {
-            DiamondFactoryLib._addFacetSet(ds, facetNames[i], facetSets[i]);
-        }
-        
-        gameTypes[gameTypeName] = GameType({
-            name: gameTypeName,
-            requiredFacets: facetNames,
-            licenseFee: licenseFee,
-            licenseToken: licenseToken,
-            requiresLicense: licenseFee > 0
+        templates[templateName] = PlatformTemplate({
+            name: templateName,
+            description: description,
+            facetSet: templateName,
+            setupFee: setupFee,
+            active: true
         });
-        
-        emit GameTypeRegistered(gameTypeName, facetNames);
     }
     
-    function purchaseLicense(string memory gameType) external {
-        GameType memory game = gameTypes[gameType];
-        require(game.requiresLicense, "No license required");
-        
-        // Transfer license fee
-        IERC20(game.licenseToken).transferFrom(msg.sender, address(this), game.licenseFee);
-        
-        licensedDevelopers[msg.sender] = true;
-        emit DeveloperLicensed(msg.sender, gameType);
-    }
-    
-    function deployGame(
-        string memory gameType,
-        string memory gameName,
+    function deployPlatform(
+        string memory templateName,
+        string memory platformName,
         string memory symbol,
-        GameSettings memory gameSettings
-    ) external returns (address diamond) {
-        GameType memory game = gameTypes[gameType];
-        require(bytes(game.name).length > 0, "Game type not registered");
-        
-        if (game.requiresLicense) {
-            require(licensedDevelopers[msg.sender], "License required");
-        }
+        address adminAddress
+    ) external payable returns (address diamond) {
+        PlatformTemplate memory template = templates[templateName];
+        require(template.active, "Template not active");
+        require(msg.value >= template.setupFee, "Insufficient setup fee");
         
         DiamondFactoryLib.DiamondFactoryStorage storage ds = DiamondFactoryLib.diamondFactoryStorage();
         
-        // Combine all required facets
-        IDiamondCut.FacetCut[] memory allFacets = combineGameFacets(game.requiredFacets);
-        
+        // Prepare Diamond settings
         DiamondSettings memory settings = DiamondSettings({
-            name: gameName,
+            name: platformName,
             symbol: symbol,
-            owner: msg.sender,
-            gameType: gameType,
-            gameSettings: gameSettings
+            baseURI: "", // Not needed for platforms
+            maxSupply: 0, // Not applicable
+            owner: adminAddress
         });
         
-        bytes memory creationCode = getGameDiamondBytecode();
+        // Get predicted address
+        bytes memory creationCode = getDiamondBytecode();
         address predictedAddress = DiamondFactoryLib._getDiamondAddress(
             ds,
             address(this),
@@ -607,56 +591,43 @@ contract GamePlatformFactory {
             creationCode
         );
         
-        diamond = DiamondFactoryLib.create(
+        // Deploy Diamond
+        diamond = DiamondFactoryLib.createFromSet(
             ds,
             predictedAddress,
             settings,
-            getGameInitContract(),
-            getGameInitCalldata(settings),
+            getInitContract(),
+            getInitCalldata(settings),
             creationCode,
-            allFacets
+            template.facetSet
         );
         
-        emit GameDeployed(diamond, gameType, msg.sender);
+        emit PlatformDeployed(diamond, platformName, msg.sender);
     }
     
-    function combineGameFacets(string[] memory facetNames) internal view returns (IDiamondCut.FacetCut[] memory) {
-        DiamondFactoryLib.DiamondFactoryStorage storage ds = DiamondFactoryLib.diamondFactoryStorage();
-        
-        // Calculate total facets needed
-        uint256 totalFacets = 0;
-        for (uint256 i = 0; i < facetNames.length; i++) {
-            totalFacets += DiamondFactoryLib._getFacets(ds, facetNames[i]).length;
-        }
-        
-        // Combine all facets
-        IDiamondCut.FacetCut[] memory combined = new IDiamondCut.FacetCut[](totalFacets);
-        uint256 index = 0;
-        
-        for (uint256 i = 0; i < facetNames.length; i++) {
-            IDiamondCut.FacetCut[] memory facets = DiamondFactoryLib._getFacets(ds, facetNames[i]);
-            for (uint256 j = 0; j < facets.length; j++) {
-                combined[index++] = facets[j];
-            }
-        }
-        
-        return combined;
+    function getDiamondBytecode() internal pure returns (bytes memory) {
+        // Return bytecode of Diamond contract
+        return type(Diamond).creationCode;
     }
     
-    function getGameDiamondBytecode() internal pure returns (bytes memory) {
-        // Return game-specific Diamond bytecode
+    function getInitContract() internal pure returns (address) {
+        // Return address of initialization contract
+        return address(0);
     }
     
-    function getGameInitContract() internal pure returns (address) {
-        // Return game Diamond initialization contract
+    function getInitCalldata(DiamondSettings memory settings) internal pure returns (bytes memory) {
+        // Return encoded calldata for initialization
+        return abi.encodeCall(IDiamondElement.initialize, (
+            settings.owner,
+            settings,
+            new IDiamondCut.FacetCut[](0),
+            address(0),
+            ""
+        ));
     }
     
-    function getGameInitCalldata(DiamondSettings memory settings) internal pure returns (bytes memory) {
-        // Return game initialization calldata
-    }
-    
-    modifier onlyPlatformOwner() {
-        // Implementation
+    modifier onlyOwner() {
+        // Placeholder for access control
         _;
     }
 }
@@ -664,106 +635,63 @@ contract GamePlatformFactory {
 
 ### DeFi Protocol Factory
 ```solidity
-// Factory for creating DeFi protocol Diamonds
+// Factory for creating DeFi Protocol Diamonds
 contract DeFiProtocolFactory {
     using DiamondFactoryLib for DiamondFactoryLib.DiamondFactoryStorage;
     
-    struct ProtocolConfig {
-        string protocolType;
-        address[] requiredTokens;
-        uint256 minLiquidity;
-        uint256 governanceThreshold;
-        bool requiresGovernance;
+    struct ProtocolTemplate {
+        string name;
+        string description;
+        string facetSet;
+        uint256 deployCost;
+        bool active;
     }
     
-    mapping(string => ProtocolConfig) public protocolConfigs;
-    mapping(address => address[]) public userProtocols;
+    mapping(string => ProtocolTemplate) public templates;
     
-    event ProtocolConfigured(string indexed protocolType, address[] tokens);
-    event ProtocolDeployed(address indexed diamond, string protocolType, address indexed creator);
+    event ProtocolDeployed(address indexed diamond, string name, address indexed creator);
     
-    function configureProtocol(
-        string memory protocolType,
-        IDiamondCut.FacetCut[] memory coreFacets,
-        IDiamondCut.FacetCut[] memory governanceFacets,
-        address[] memory requiredTokens,
-        uint256 minLiquidity,
-        uint256 governanceThreshold
-    ) external onlyGovernance {
+    function createTemplate(
+        string memory templateName,
+        string memory description,
+        IDiamondCut.FacetCut[] memory facets,
+        uint256 deployCost
+    ) external onlyOwner {
         DiamondFactoryLib.DiamondFactoryStorage storage ds = DiamondFactoryLib.diamondFactoryStorage();
+        DiamondFactoryLib._addFacetSet(ds, templateName, facets);
         
-        // Add core protocol facets
-        DiamondFactoryLib._addFacetSet(ds, string(abi.encodePacked(protocolType, "_core")), coreFacets);
-        
-        // Add governance facets if provided
-        if (governanceFacets.length > 0) {
-            DiamondFactoryLib._addFacetSet(ds, string(abi.encodePacked(protocolType, "_governance")), governanceFacets);
-        }
-        
-        protocolConfigs[protocolType] = ProtocolConfig({
-            protocolType: protocolType,
-            requiredTokens: requiredTokens,
-            minLiquidity: minLiquidity,
-            governanceThreshold: governanceThreshold,
-            requiresGovernance: governanceFacets.length > 0
+        templates[templateName] = ProtocolTemplate({
+            name: templateName,
+            description: description,
+            facetSet: templateName,
+            deployCost: deployCost,
+            active: true
         });
-        
-        emit ProtocolConfigured(protocolType, requiredTokens);
     }
     
     function deployProtocol(
-        string memory protocolType,
+        string memory templateName,
         string memory protocolName,
         string memory symbol,
-        address[] memory initialTokens,
-        uint256 initialLiquidity
+        address protocolAdmin
     ) external payable returns (address diamond) {
-        ProtocolConfig memory config = protocolConfigs[protocolType];
-        require(bytes(config.protocolType).length > 0, "Protocol not configured");
-        require(initialLiquidity >= config.minLiquidity, "Insufficient liquidity");
-        
-        // Validate required tokens are included
-        for (uint256 i = 0; i < config.requiredTokens.length; i++) {
-            bool found = false;
-            for (uint256 j = 0; j < initialTokens.length; j++) {
-                if (config.requiredTokens[i] == initialTokens[j]) {
-                    found = true;
-                    break;
-                }
-            }
-            require(found, "Missing required token");
-        }
+        ProtocolTemplate memory template = templates[templateName];
+        require(template.active, "Template not active");
+        require(msg.value >= template.deployCost, "Insufficient deployment cost");
         
         DiamondFactoryLib.DiamondFactoryStorage storage ds = DiamondFactoryLib.diamondFactoryStorage();
         
-        // Get core facets
-        IDiamondCut.FacetCut[] memory coreFacets = DiamondFactoryLib._getFacets(
-            ds, 
-            string(abi.encodePacked(protocolType, "_core"))
-        );
-        
-        // Add governance facets if required
-        IDiamondCut.FacetCut[] memory allFacets;
-        if (config.requiresGovernance) {
-            IDiamondCut.FacetCut[] memory govFacets = DiamondFactoryLib._getFacets(
-                ds, 
-                string(abi.encodePacked(protocolType, "_governance"))
-            );
-            allFacets = combineFacets(coreFacets, govFacets);
-        } else {
-            allFacets = coreFacets;
-        }
-        
-        ProtocolSettings memory settings = ProtocolSettings({
+        // Prepare Diamond settings
+        DiamondSettings memory settings = DiamondSettings({
             name: protocolName,
             symbol: symbol,
-            protocolType: protocolType,
-            tokens: initialTokens,
-            initialLiquidity: initialLiquidity,
-            owner: msg.sender
+            baseURI: "",
+            maxSupply: 0,
+            owner: protocolAdmin
         });
         
-        bytes memory creationCode = getProtocolDiamondBytecode();
+        // Get predicted address
+        bytes memory creationCode = getDiamondBytecode();
         address predictedAddress = DiamondFactoryLib._getDiamondAddress(
             ds,
             address(this),
@@ -771,57 +699,43 @@ contract DeFiProtocolFactory {
             creationCode
         );
         
-        diamond = DiamondFactoryLib.create(
+        // Deploy Diamond
+        diamond = DiamondFactoryLib.createFromSet(
             ds,
             predictedAddress,
-            DiamondSettings(settings),
-            getProtocolInitContract(),
-            getProtocolInitCalldata(settings),
+            settings,
+            getInitContract(),
+            getInitCalldata(settings),
             creationCode,
-            allFacets
+            template.facetSet
         );
         
-        // Track user protocols
-        userProtocols[msg.sender].push(diamond);
-        
-        emit ProtocolDeployed(diamond, protocolType, msg.sender);
+        emit ProtocolDeployed(diamond, protocolName, msg.sender);
     }
     
-    function getUserProtocols(address user) external view returns (address[] memory) {
-        return userProtocols[user];
+    function getDiamondBytecode() internal pure returns (bytes memory) {
+        // Return bytecode of Diamond contract
+        return type(Diamond).creationCode;
     }
     
-    function combineFacets(
-        IDiamondCut.FacetCut[] memory facets1,
-        IDiamondCut.FacetCut[] memory facets2
-    ) internal pure returns (IDiamondCut.FacetCut[] memory) {
-        IDiamondCut.FacetCut[] memory combined = new IDiamondCut.FacetCut[](facets1.length + facets2.length);
-        
-        for (uint256 i = 0; i < facets1.length; i++) {
-            combined[i] = facets1[i];
-        }
-        
-        for (uint256 i = 0; i < facets2.length; i++) {
-            combined[facets1.length + i] = facets2[i];
-        }
-        
-        return combined;
+    function getInitContract() internal pure returns (address) {
+        // Return address of initialization contract
+        return address(0);
     }
     
-    function getProtocolDiamondBytecode() internal pure returns (bytes memory) {
-        // Return protocol Diamond bytecode
+    function getInitCalldata(DiamondSettings memory settings) internal pure returns (bytes memory) {
+        // Return encoded calldata for initialization
+        return abi.encodeCall(IDiamondElement.initialize, (
+            settings.owner,
+            settings,
+            new IDiamondCut.FacetCut[](0),
+            address(0),
+            ""
+        ));
     }
     
-    function getProtocolInitContract() internal pure returns (address) {
-        // Return protocol initialization contract
-    }
-    
-    function getProtocolInitCalldata(ProtocolSettings memory settings) internal pure returns (bytes memory) {
-        // Return protocol initialization calldata
-    }
-    
-    modifier onlyGovernance() {
-        // Implementation
+    modifier onlyOwner() {
+        // Placeholder for access control
         _;
     }
 }
@@ -830,73 +744,54 @@ contract DeFiProtocolFactory {
 ## Security Considerations
 
 ### CREATE2 Security
-- Deterministic address generation prevents front-running
-- Salt includes factory address and symbol for uniqueness
-- Bytecode hash ensures deployment integrity
-- Address prediction enables secure cross-chain operations
+- **Salt Management**: Ensure unique salts for deterministic addresses
+- **Collision Prevention**: Avoid salt collisions for predictable addresses
+- **Replay Protection**: Implement replay protection for factory calls
 
 ### Access Control
-- Factory owner controls facet set management
-- Diamond ownership transferred to deployer
-- Initialization parameters validated before deployment
-- Registry management restricted to authorized functions
+- **Template Creation**: Restrict who can create and modify templates
+- **Deployment Permissions**: Control who can deploy new Diamonds
+- **Owner Assignment**: Validate initial owner assignment
 
 ### Deployment Safety
-- Deployment failure handling with require statements
-- Initialization atomicity through single transaction
-- Facet validation before Diamond creation
-- Storage consistency through proper registry updates
+- **Initialization Atomicity**: Ensure initialization is atomic
+- **Error Handling**: Robust error handling for deployment failures
+- **Gas Limits**: Manage gas limits for complex deployments
 
 ## Gas Optimization
 
 ### Storage Efficiency
-- Efficient mapping structures for Diamond registry
-- Minimal storage writes during deployment
-- Optimized facet set storage and retrieval
-- Batch operations for facet management
+- **Packed Structs**: Use packed structs for `ContractData` and `DiamondSettings`.
+- **Minimal Mappings**: Minimize mappings to reduce storage footprint.
 
 ### Deployment Efficiency
-- CREATE2 for deterministic deployment
-- Single transaction initialization
-- Efficient facet combination algorithms
-- Minimal external calls during deployment
+- **CREATE2**: Leverage CREATE2 for gas-efficient deployments.
+- **Batch Deployment**: `deployDiamonds` function for multiple deployments.
 
 ## Error Handling
 
 ### Common Errors
-- "create_failed" - Diamond deployment failure
-- "Invalid facet set" - Unknown or empty facet set
-- "Symbol already exists" - Duplicate Diamond symbol
-- "Initialization failed" - Diamond initialization error
+- `DiamondFactoryLib: `Invalid symbol`: Duplicate symbol in factory.
+- `DiamondFactoryLib: `Facet set not found`: Attempting to deploy from non-existent facet set.
+- `DiamondFactoryLib: `Initialization failed`: Diamond initialization failed.
+- `DiamondFactoryLib: `Deployment failed`: CREATE2 deployment failed.
 
-### Best Practices
-- Validate all parameters before deployment
-- Check facet set existence before use
-- Verify Diamond deployment success
-- Handle initialization failures gracefully
+## Best Practices
 
-## Testing Considerations
+### Factory Design
+- **Single Responsibility**: Factory focuses solely on Diamond deployment.
+- **Modularity**: Use libraries for common functions (e.g., CREATE2).
+- **Extensibility**: Design for easy addition of new templates and features.
 
-### Unit Tests
-- Facet set management operations
-- Diamond address prediction accuracy
-- Deployment with custom facets
-- Registry management functions
-
-### Integration Tests
-- End-to-end Diamond deployment
-- Multi-facet Diamond creation
-- Cross-contract initialization
-- Factory upgrade scenarios
+### Deployment Process
+- **Pre-compute Addresses**: Use `predictDiamondAddress` for off-chain calculations.
+- **Monitor Deployments**: Track deployments and their status.
+- **Post-deployment Validation**: Verify deployed Diamond's configuration and functionality.
 
 ## Related Documentation
 
-- [IDiamondFactory Interface](../interfaces/idiamond-factory.md) - Factory interface definition
-- [Diamond Contract](../diamond.md) - Core Diamond proxy implementation
-- [DiamondCut Facet](../facets/diamond-cut-facet.md) - Diamond upgrade functionality
-- [Diamond Factory Standard EIP](../../eips/EIP-DRAFT-Diamond-Factory-Standard.md) - Standard specification
-- [Diamond Deployment Guide](../../guides/diamond-deployment.md) - Deployment best practices
-
----
-
-*This library provides comprehensive utilities for creating and managing Diamond proxy contracts using the factory pattern, enabling scalable deployment of upgradeable smart contract systems with configurable functionality.*
+- [Diamond Standard Overview](../../smart-contracts/diamond.md)
+- [Diamond Factory Standard](../../eips/EIP-DRAFT-Diamond-Factory-Standard.md)
+- [Diamond Factory](../../smart-contracts/diamond-factory.md)
+- [SDK & Libraries: Deploy Utilities](../../sdk-libraries/deploy.md)
+- [Deployment Guides: Multi-Network Deployment](../../deployment-guides/multi-network-deployment.md)

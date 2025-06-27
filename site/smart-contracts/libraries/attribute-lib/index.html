@@ -1,0 +1,1172 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Gemforce Team" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>Attribute Lib - Gemforce Documentation</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Attribute Lib";
+        var mkdocs_page_input_path = "smart-contracts/libraries/attribute-lib.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../.." class="icon icon-home"> Gemforce Documentation
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../developer-setup-guide/">Developer Setup Guide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../system-architecture/gemforce-system-architecture/">System Architecture</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Smart Contracts</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../diamond/">Diamond Contract</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../diamond-factory/">Diamond Factory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../identity-factory/">Identity Factory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Facets</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/marketplace-facet/">Marketplace Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trade-deal-management-facet/">Trade Deal Management Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/carbon-credit-facet/">Carbon Credit Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/identity-registry-facet/">Identity Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trusted-issuers-registry-facet/">Trusted Issuers Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/fee-distributor-facet/">Fee Distributor Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/gemforce-minter-facet/">Gemforce Minter Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/multi-sale-facet/">Multi Sale Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/svg-templates-facet/">SVG Templates Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trade-deal-admin-facet/">Trade Deal Admin Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trade-deal-operations-facet/">Trade Deal Operations Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/collateral-token-factory-facet/">Collateral Token Factory Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/diamond-cut-facet/">Diamond Cut Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/diamond-loupe-facet/">Diamond Loupe Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/ownership-facet/">Ownership Facet</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Interfaces</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/idiamond/">IDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/imarketplace/">IMarketplace</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/itradedeal/">ITradeDeal</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/icarbon-credit/">ICarbonCredit</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ierc1155-mint/">IERC1155Mint</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ierc734/">IERC734</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ierc735/">IERC735</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ierc721a/">IERC721A</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/idiamond-factory/">IDiamondFactory</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/iidentity/">IIdentity</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/imultisale/">IMultiSale</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ifee-distributor/">IFeeDistributor</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/igemforce-minter-facet/">IGemforceMinterFacet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/iidentity-registry/">IIdentityRegistry</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/itrusted-issuers-registry/">TRUSTEDIssuersRegistry</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/isvg/">ISVG</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/iattribute/">IAttribute</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ivariable-price/">IVariablePrice</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" >Libraries</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" href="../carbon-credit-lib/">Carbon Credit Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../trade-deal-lib/">Trade Deal Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../multi-sale-lib/">Multi Sale Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../diamond-factory-lib/">Diamond Factory Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../svg-templates-lib/">SVG Templates Lib</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">Attribute Lib</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#overview">Overview</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#key-features">Key Features</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#library-definition">Library Definition</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data-structures">Data Structures</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#attributetype-enum">AttributeType Enum</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#attribute-struct">Attribute Struct</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#attributecontract-struct">AttributeContract Struct</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#attributestorage-struct">AttributeStorage Struct</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#core-functions">Core Functions</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#storage-management">Storage Management</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#attribute-retrieval">Attribute Retrieval</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#attribute-modification">Attribute Modification</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#token-lifecycle">Token Lifecycle</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#integration-examples">Integration Examples</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#nft-collection-with-dynamic-attributes">NFT Collection with Dynamic Attributes</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#gaming-item-system">Gaming Item System</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#certificate-system-with-verifiable-attributes">Certificate System with Verifiable Attributes</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#events">Events</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#attribute-events">Attribute Events</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#security-considerations">Security Considerations</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#burn-protection">Burn Protection</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#access-control">Access Control</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#data-integrity">Data Integrity</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#gas-optimization">Gas Optimization</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#storage-efficiency">Storage Efficiency</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#function-efficiency">Function Efficiency</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#error-handling">Error Handling</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#common-errors">Common Errors</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#best-practices">Best Practices</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#attribute-design">Attribute Design</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#development-guidelines">Development Guidelines</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#related-documentation">Related Documentation</a>
+    </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../variable-price-lib/">Variable Price Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../merkle-prover/">Merkle Prover</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../fee-distributor-lib/">Fee Distributor Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../lib-diamond/">LibDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../diamond-lib/">DiamondLib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../erc721a-lib/">ERC721A Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../erc721a-enumeration-lib/">ERC721A Enumeration Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../strings-lib/">Strings Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../trusted-issuer-lib/">Trusted Issuer Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../set-libraries/">Set Libraries</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">SDK & Libraries</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/blockchain/">Blockchain Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/diamond/">Diamond Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/contract/">Contract Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/deploy/">Deployment Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/validation-utils/">Validation Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/nft-sale-utils/">NFT Sale Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/webhooks/">Webhooks Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../metadata-lib/">Metadata Library</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Cloud Functions</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/authentication/">Authentication Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/auth-functions/">Auth Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/blockchain/">Blockchain Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/bridge/">Bridge Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/contracts/">Contract Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/deploy/">Deploy Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/dfns/">DFNS Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/project/">Project Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/trade-deal/">Trade Deal Functions</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">API Documentation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../api-documentation/gemforce-api-documentation/">Full API Reference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../api-documentation/gemforce-api-quick-reference/">Quick Reference</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-external-services/">External Services</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-system-architecture/">System Architecture</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Operations Tasks</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/diamond/">Diamond Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/identities/">Identity Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/marketplace-management/">Marketplace Management Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/carbon-credit-management/">Carbon Credit Management Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/trade-deal/">Trade Deal Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/integration-test/">Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/integration-test-marketplace/">Marketplace Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/integration-test-trade-deal/">Trade Deal Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/admin-utils/">Admin Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/sync-diamond/">Sync Diamond Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/sync-events/">Sync Events Tasks</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">EIPs (Ethereum Improvement Proposals)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Diamond-Enhanced-Marketplace/">Diamond-Enhanced Marketplace</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Multi-Token-Sale-Standard/">Multi-Token Sale Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Collateralized-Trade-Deal-Standard/">Collateralized Trade Deal Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Enhanced-Identity-System/">Enhanced Identity System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Diamond-Factory-Standard/">Diamond Factory Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Carbon-Credit-Standard/">Carbon Credit Standard</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Developer Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/development-environment-setup/">Development Environment Setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/testing-frameworks/">Testing Frameworks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/debugging/">Debugging</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/performance-optimization/">Performance Optimization</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/test-case-specifications/">Test Case Specifications</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/test-data-management/">Test Data Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/automated-testing-setup/">Automated Testing Setup</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Deployment Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../deployment-guides/multi-network-deployment/">Multi-Network Deployment</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../deployment-guides/infrastructure-management/">Infrastructure Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../deployment-guides/monitoring-logging/">Monitoring and Logging</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">User Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-administrator-guide/">Administrator Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-deployer-guide/">Deployer Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-integrator-guide/">Integrator Guide</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Integrator's Guide</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/authentication/">Authentication</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/rest-api/">REST API</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/smart-contracts/">Smart Contracts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/dfns/">DFNS Integration</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/parse-server/">Parse Server Notes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/webhooks/">Webhooks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/error-handling/">Error Handling</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/sample-code/">Sample Code</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/integration-patterns/">Integration Patterns</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/testing/">Testing Considerations</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/security/">Security</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../external-services/gemforce-external-services/">External Services</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Security</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security/threat-model/">Threat Model and Risk Assessment</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security/incident-response/">Incident Response Procedures</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security/audit-compliance/">Security Audits and Compliance</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">External Developer Integration</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/api-rate-limiting/">API Rate Limiting</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/webhook-implementation-guidelines/">Webhook Implementation Guidelines</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/sdk-development-guidelines/">SDK Development Guidelines</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/partner-integration-guides/">Partner Integration Guides</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-documentation-gap-analysis/">Documentation Gap Analysis</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../documentation-progress-summary/">Documentation Progress Summary</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../documentation-plan/">Documentation Plan</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Configuration & Environment</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/gemforce-config/">Gemforce Config</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/environment-specific-guides/">Environment-Specific Guides</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/configuration-validation/">Configuration Validation Procedures</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/external-service-config-management/">External Service Configuration Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/database-schema-overview/">Database Schema Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/database-migration-procedures/">Database Migration Procedures</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">Gemforce Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Smart Contracts</li>
+          <li class="breadcrumb-item">Libraries</li>
+      <li class="breadcrumb-item active">Attribute Lib</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="attributelib-library">AttributeLib Library<a class="headerlink" href="#attributelib-library" title="Permanent link">&para;</a></h1>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>The <a href="./"><code>AttributeLib</code></a> library provides core utilities for managing token attributes within the Gemforce platform. This library implements a flexible attribute system that allows tokens to have dynamic, typed metadata stored on-chain, supporting various data types and efficient key-value storage.</p>
+<h2 id="key-features">Key Features<a class="headerlink" href="#key-features" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Typed Attributes</strong>: Support for multiple data types (String, Bytes32, Uint256, Arrays)</li>
+<li><strong>Dynamic Metadata</strong>: Runtime attribute assignment and modification</li>
+<li><strong>Efficient Storage</strong>: Optimized key-value storage with indexing</li>
+<li><strong>Burn Protection</strong>: Prevents attribute operations on burned tokens</li>
+<li><strong>Batch Operations</strong>: Support for setting multiple attributes simultaneously</li>
+<li><strong>Event Tracking</strong>: Comprehensive event emission for attribute changes</li>
+</ul>
+<h2 id="library-definition">Library Definition<a class="headerlink" href="#library-definition" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span><code><span class="c1">// SPDX-License-Identifier: MIT</span>
+<span class="k">pragma solidity</span><span class="w"> </span><span class="o">^</span><span class="k">0.8.6</span><span class="p">;</span>
+
+<span class="kt">library</span><span class="w"> </span>AttributeLib<span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Storage management</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">attributeStorage</span><span class="p">()</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>pure<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>AttributeStorage<span class="w"> </span>storage<span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Attribute retrieval</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">_getAttribute</span><span class="p">(</span>AttributeContract<span class="w"> </span>storage<span class="w"> </span>self<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>key<span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>Attribute<span class="w"> </span><span class="kt">memory</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">_getAttributeValues</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">id</span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">_getAttributeKeys</span><span class="p">(</span>AttributeContract<span class="w"> </span>storage<span class="w"> </span>self<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Attribute modification</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">_setAttribute</span><span class="p">(</span>AttributeContract<span class="w"> </span>storage<span class="w"> </span>self<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">,</span><span class="w"> </span>Attribute<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>attribute<span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">_setAttributes</span><span class="p">(</span>AttributeContract<span class="w"> </span>storage<span class="w"> </span>self<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">,</span><span class="w"> </span>Attribute<span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>_attributes<span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">_removeAttribute</span><span class="p">(</span>AttributeContract<span class="w"> </span>storage<span class="w"> </span>self<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>key<span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// Token lifecycle</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">_burn</span><span class="p">(</span>AttributeContract<span class="w"> </span>storage<span class="w"> </span>self<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="data-structures">Data Structures<a class="headerlink" href="#data-structures" title="Permanent link">&para;</a></h2>
+<h3 id="attributetype-enum">AttributeType Enum<a class="headerlink" href="#attributetype-enum" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">enum</span><span class="w"> </span><span class="nv">AttributeType</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>Unknown<span class="p">,</span><span class="w">        </span><span class="c1">// Undefined type</span>
+<span class="w">    </span>String<span class="p">,</span><span class="w">         </span><span class="c1">// String value</span>
+<span class="w">    </span>Bytes32<span class="p">,</span><span class="w">        </span><span class="c1">// 32-byte value</span>
+<span class="w">    </span>Uint256<span class="p">,</span><span class="w">        </span><span class="c1">// 256-bit unsigned integer</span>
+<span class="w">    </span>Uint8<span class="p">,</span><span class="w">          </span><span class="c1">// 8-bit unsigned integer</span>
+<span class="w">    </span>Uint256Array<span class="p">,</span><span class="w">   </span><span class="c1">// Array of 256-bit unsigned integers</span>
+<span class="w">    </span>Uint8Array<span class="w">      </span><span class="c1">// Array of 8-bit unsigned integers</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Defines supported attribute data types for type-safe operations.</p>
+<h3 id="attribute-struct">Attribute Struct<a class="headerlink" href="#attribute-struct" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">struct</span><span class="w"> </span><span class="nv">Attribute</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">string</span><span class="w"> </span><span class="nv">key</span><span class="p">;</span><span class="w">                     </span><span class="c1">// Attribute identifier</span>
+<span class="w">    </span>AttributeType<span class="w"> </span>attributeType<span class="p">;</span><span class="w">    </span><span class="c1">// Type of the attribute value</span>
+<span class="w">    </span><span class="kt">string</span><span class="w"> </span><span class="nv">value</span><span class="p">;</span><span class="w">                   </span><span class="c1">// String representation of the value</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Core attribute data structure containing key, type, and value.</p>
+<p><strong>Design Notes</strong>:
+- All values stored as strings for simplicity and gas efficiency
+- Type information preserved for proper interpretation
+- Key serves as unique identifier within token scope</p>
+<h3 id="attributecontract-struct">AttributeContract Struct<a class="headerlink" href="#attributecontract-struct" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">struct</span><span class="w"> </span><span class="nv">AttributeContract</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">bool</span><span class="p">)</span><span class="w"> </span>burnedIds<span class="p">;</span><span class="w">                                     </span><span class="c1">// Burned token tracking</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span>Attribute<span class="p">))</span><span class="w"> </span>attributes<span class="p">;</span><span class="w">            </span><span class="c1">// Token attributes</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">string</span><span class="p">[])</span><span class="w"> </span>attributeKeys<span class="p">;</span><span class="w">                            </span><span class="c1">// Token attribute keys</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">uint256</span><span class="p">))</span><span class="w"> </span>attributeKeysIndexes<span class="p">;</span><span class="w">   </span><span class="c1">// Key index mapping</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Complete storage structure for token attribute management.</p>
+<p><strong>Components</strong>:
+- <strong>burnedIds</strong>: Tracks burned tokens to prevent attribute operations
+- <strong>attributes</strong>: Nested mapping for token-specific attribute storage
+- <strong>attributeKeys</strong>: Ordered list of attribute keys per token
+- <strong>attributeKeysIndexes</strong>: Efficient key lookup and removal indexing</p>
+<h3 id="attributestorage-struct">AttributeStorage Struct<a class="headerlink" href="#attributestorage-struct" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">struct</span><span class="w"> </span><span class="nv">AttributeStorage</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>AttributeContract<span class="w"> </span>attributes<span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Diamond storage wrapper for attribute data.</p>
+<p><strong>Storage Position</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="kt">bytes32</span><span class="w"> </span><span class="k">internal </span><span class="nv">constant</span><span class="w"> </span>DIAMOND_STORAGE_POSITION<span class="w"> </span><span class="o">=</span><span class="w"> </span>
+<span class="w">    </span><span class="nb">keccak256</span><span class="p">(</span><span class="s2">&quot;diamond.nextblock.bitgem.app.AttributeStorage.storage&quot;</span><span class="p">);</span>
+</code></pre></div>
+
+<h2 id="core-functions">Core Functions<a class="headerlink" href="#core-functions" title="Permanent link">&para;</a></h2>
+<h3 id="storage-management">Storage Management<a class="headerlink" href="#storage-management" title="Permanent link">&para;</a></h3>
+<h4 id="attributestorage"><code>attributeStorage()</code><a class="headerlink" href="#attributestorage" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">attributeStorage</span><span class="p">()</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>pure<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>AttributeStorage<span class="w"> </span>storage<span class="w"> </span>ds<span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Access Diamond storage for attribute data using assembly.</p>
+<p><strong>Implementation</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">attributeStorage</span><span class="p">()</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>pure<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>AttributeStorage<span class="w"> </span>storage<span class="w"> </span>ds<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>DIAMOND_STORAGE_POSITION<span class="p">;</span>
+<span class="w">    </span>assembly<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>ds<span class="p">.</span>slot<span class="w"> </span><span class="o">:=</span><span class="w"> </span>position
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Returns</strong>: Storage reference to attribute data</p>
+<p><strong>Usage</strong>: All attribute functions use this to access persistent storage.</p>
+<h3 id="attribute-retrieval">Attribute Retrieval<a class="headerlink" href="#attribute-retrieval" title="Permanent link">&para;</a></h3>
+<h4 id="_getattribute"><code>_getAttribute()</code><a class="headerlink" href="#_getattribute" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">_getAttribute</span><span class="p">(</span>
+<span class="w">    </span>AttributeContract<span class="w"> </span>storage<span class="w"> </span>self<span class="p">,</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>key
+<span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>Attribute<span class="w"> </span><span class="kt">memory</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Retrieve a specific attribute for a token by key.</p>
+<p><strong>Parameters</strong>:
+- <code>self</code>: Storage reference to attribute contract
+- <code>tokenId</code>: Token identifier
+- <code>key</code>: Attribute key to retrieve</p>
+<p><strong>Returns</strong>: Attribute struct containing key, type, and value</p>
+<p><strong>Security</strong>: Prevents access to burned token attributes</p>
+<p><strong>Example Usage</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Get token rarity attribute</span>
+Attribute<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>rarityAttr<span class="w"> </span><span class="o">=</span><span class="w"> </span>Attribute<span class="p">({</span>
+<span class="w">    </span>key<span class="o">:</span><span class="w"> </span><span class="s2">&quot;rarity&quot;</span><span class="p">,</span>
+<span class="w">    </span>attributeType<span class="o">:</span><span class="w"> </span>AttributeType<span class="p">.</span>String<span class="p">,</span>
+<span class="w">    </span>value<span class="o">:</span><span class="w"> </span><span class="s2">&quot;Legendary&quot;</span>
+<span class="p">});</span>
+
+AttributeLib<span class="p">.</span>_getAttribute<span class="p">(</span>
+<span class="w">    </span>attributeStorage<span class="p">.</span>attributes<span class="p">,</span>
+<span class="w">    </span>tokenId<span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;rarity&quot;</span>
+<span class="p">);</span>
+console<span class="p">.</span>log<span class="p">(</span><span class="s2">&quot;Token rarity:&quot;</span><span class="p">,</span><span class="w"> </span>rarityAttr<span class="p">.</span>value<span class="p">);</span>
+</code></pre></div>
+
+<h4 id="_getattributevalues"><code>_getAttributeValues()</code><a class="headerlink" href="#_getattributevalues" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">_getAttributeValues</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">id</span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Retrieve all attribute values for a token in key order.</p>
+<p><strong>Parameters</strong>:
+- <code>id</code>: Token identifier</p>
+<p><strong>Returns</strong>: Array of attribute values as strings</p>
+<p><strong>Implementation</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">_getAttributeValues</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">id</span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>AttributeContract<span class="w"> </span>storage<span class="w"> </span>ct<span class="w"> </span><span class="o">=</span><span class="w"> </span>AttributeLib<span class="p">.</span>attributeStorage<span class="p">().</span>attributes<span class="p">;</span>
+<span class="w">    </span><span class="kt">string</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>keys<span class="w"> </span><span class="o">=</span><span class="w"> </span>ct<span class="p">.</span>attributeKeys<span class="p">[</span>id<span class="p">];</span>
+<span class="w">    </span><span class="kt">string</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>values<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="kt">string</span><span class="p">[](</span>keys<span class="p">.</span>length<span class="p">);</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">keysLength</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>keys<span class="p">.</span>length<span class="p">;</span>
+<span class="w">    </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>keysLength<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>values<span class="p">[</span>i<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>ct<span class="p">.</span>attributes<span class="p">[</span>id<span class="p">][</span>keys<span class="p">[</span>i<span class="p">]].</span>value<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="kt">return</span><span class="w"> </span>values<span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Use Cases</strong>:
+- Metadata generation for NFTs
+- Bulk attribute export
+- Attribute comparison operations</p>
+<h4 id="_getattributekeys"><code>_getAttributeKeys()</code><a class="headerlink" href="#_getattributekeys" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">_getAttributeKeys</span><span class="p">(</span>
+<span class="w">    </span>AttributeContract<span class="w"> </span>storage<span class="w"> </span>self<span class="p">,</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span>
+<span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Retrieve all attribute keys for a token.</p>
+<p><strong>Parameters</strong>:
+- <code>self</code>: Storage reference to attribute contract
+- <code>tokenId</code>: Token identifier</p>
+<p><strong>Returns</strong>: Array of attribute keys</p>
+<p><strong>Security</strong>: Prevents access to burned token attributes</p>
+<p><strong>Example Usage</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Get all attribute keys for a token</span>
+<span class="kt">string</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>keys<span class="w"> </span><span class="o">=</span><span class="w"> </span>AttributeLib<span class="p">.</span>_getAttributeKeys<span class="p">(</span>
+<span class="w">    </span>attributeStorage<span class="p">.</span>attributes<span class="p">,</span>
+<span class="w">    </span>tokenId
+<span class="p">);</span>
+
+<span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>keys<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>console<span class="p">.</span>log<span class="p">(</span><span class="s2">&quot;Attribute key:&quot;</span><span class="p">,</span><span class="w"> </span>keys<span class="p">[</span>i<span class="p">]);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="attribute-modification">Attribute Modification<a class="headerlink" href="#attribute-modification" title="Permanent link">&para;</a></h3>
+<h4 id="_setattribute"><code>_setAttribute()</code><a class="headerlink" href="#_setattribute" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">_setAttribute</span><span class="p">(</span>
+<span class="w">    </span>AttributeContract<span class="w"> </span>storage<span class="w"> </span>self<span class="p">,</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">,</span>
+<span class="w">    </span>Attribute<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>attribute
+<span class="p">)</span><span class="w"> </span><span class="kt">internal</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Set or update a single attribute for a token.</p>
+<p><strong>Parameters</strong>:
+- <code>self</code>: Storage reference to attribute contract
+- <code>tokenId</code>: Token identifier
+- <code>attribute</code>: Attribute data to set</p>
+<p><strong>Process</strong>:
+1. Verify token is not burned
+2. Check if attribute key is new
+3. Add key to keys array if new
+4. Update key index mapping
+5. Store attribute data</p>
+<p><strong>Security</strong>: Prevents modification of burned token attributes</p>
+<p><strong>Example Usage</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Set token rarity attribute</span>
+Attribute<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>rarityAttr<span class="w"> </span><span class="o">=</span><span class="w"> </span>Attribute<span class="p">({</span>
+<span class="w">    </span>key<span class="o">:</span><span class="w"> </span><span class="s2">&quot;rarity&quot;</span><span class="p">,</span>
+<span class="w">    </span>attributeType<span class="o">:</span><span class="w"> </span>AttributeType<span class="p">.</span>String<span class="p">,</span>
+<span class="w">    </span>value<span class="o">:</span><span class="w"> </span><span class="s2">&quot;Legendary&quot;</span>
+<span class="p">});</span>
+
+AttributeLib<span class="p">.</span>_setAttribute<span class="p">(</span>
+<span class="w">    </span>attributeStorage<span class="p">.</span>attributes<span class="p">,</span>
+<span class="w">    </span>tokenId<span class="p">,</span>
+<span class="w">    </span>rarityAttr
+<span class="p">);</span>
+</code></pre></div>
+
+<h4 id="_setattributes"><code>_setAttributes()</code><a class="headerlink" href="#_setattributes" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">_setAttributes</span><span class="p">(</span>
+<span class="w">    </span>AttributeContract<span class="w"> </span>storage<span class="w"> </span>self<span class="p">,</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">,</span>
+<span class="w">    </span>Attribute<span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>_attributes
+<span class="p">)</span><span class="w"> </span><span class="kt">internal</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Set multiple attributes for a token in a single operation.</p>
+<p><strong>Parameters</strong>:
+- <code>self</code>: Storage reference to attribute contract
+- <code>tokenId</code>: Token identifier
+- <code>_attributes</code>: Array of attributes to set</p>
+<p><strong>Implementation</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">_setAttributes</span><span class="p">(</span>
+<span class="w">    </span>AttributeContract<span class="w"> </span>storage<span class="w"> </span>self<span class="p">,</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span>Attribute<span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>_attributes
+<span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">require</span><span class="p">(</span>self<span class="p">.</span>burnedIds<span class="p">[</span>tokenId<span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kt">false</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Token has been burned&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">attributesLength</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>_attributes<span class="p">.</span>length<span class="p">;</span>
+<span class="w">    </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>attributesLength<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>_setAttribute<span class="p">(</span>self<span class="p">,</span><span class="w"> </span>tokenId<span class="p">,</span><span class="w"> </span>_attributes<span class="p">[</span>i<span class="p">]);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Benefits</strong>:
+- Gas efficient for multiple attributes
+- Atomic operation for consistency
+- Simplified batch updates</p>
+<p><strong>Example Usage</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Set multiple attributes at once</span>
+Attribute<span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>attributes<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span>Attribute<span class="p">[](</span><span class="m m-Decimal">3</span><span class="p">);</span>
+attributes<span class="p">[</span><span class="m m-Decimal">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>Attribute<span class="p">(</span><span class="s2">&quot;rarity&quot;</span><span class="p">,</span><span class="w"> </span>AttributeType<span class="p">.</span>String<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Epic&quot;</span><span class="p">);</span>
+attributes<span class="p">[</span><span class="m m-Decimal">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>Attribute<span class="p">(</span><span class="s2">&quot;level&quot;</span><span class="p">,</span><span class="w"> </span>AttributeType<span class="p">.</span>Uint256<span class="p">,</span><span class="w"> </span><span class="s2">&quot;25&quot;</span><span class="p">);</span>
+attributes<span class="p">[</span><span class="m m-Decimal">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>Attribute<span class="p">(</span><span class="s2">&quot;element&quot;</span><span class="p">,</span><span class="w"> </span>AttributeType<span class="p">.</span>String<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Fire&quot;</span><span class="p">);</span>
+
+AttributeLib<span class="p">.</span>_setAttributes<span class="p">(</span>
+<span class="w">    </span>attributeStorage<span class="p">.</span>attributes<span class="p">,</span>
+<span class="w">    </span>tokenId<span class="p">,</span>
+<span class="w">    </span>attributes
+<span class="p">);</span>
+</code></pre></div>
+
+<h4 id="_removeattribute"><code>_removeAttribute()</code><a class="headerlink" href="#_removeattribute" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">_removeAttribute</span><span class="p">(</span>
+<span class="w">    </span>AttributeContract<span class="w"> </span>storage<span class="w"> </span>self<span class="p">,</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>key
+<span class="p">)</span><span class="w"> </span><span class="kt">internal</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Remove a specific attribute from a token.</p>
+<p><strong>Parameters</strong>:
+- <code>self</code>: Storage reference to attribute contract
+- <code>tokenId</code>: Token identifier
+- <code>key</code>: Attribute key to remove</p>
+<p><strong>Process</strong>:
+1. Verify token is not burned
+2. Delete attribute data
+3. Find key index in keys array
+4. Shift remaining keys to fill gap
+5. Update key indexes
+6. Remove last element from array
+7. Emit removal event</p>
+<p><strong>Security</strong>: Prevents modification of burned token attributes</p>
+<p><strong>Example Usage</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Remove temporary attribute</span>
+AttributeLib<span class="p">.</span>_removeAttribute<span class="p">(</span>
+<span class="w">    </span>attributeStorage<span class="p">.</span>attributes<span class="p">,</span>
+<span class="w">    </span>tokenId<span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;temporary_boost&quot;</span>
+<span class="p">);</span>
+</code></pre></div>
+
+<h3 id="token-lifecycle">Token Lifecycle<a class="headerlink" href="#token-lifecycle" title="Permanent link">&para;</a></h3>
+<h4 id="_burn"><code>_burn()</code><a class="headerlink" href="#_burn" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">_burn</span><span class="p">(</span>
+<span class="w">    </span>AttributeContract<span class="w"> </span>storage<span class="w"> </span>self<span class="p">,</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span>
+<span class="p">)</span><span class="w"> </span><span class="kt">internal</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Mark a token as burned to prevent future attribute operations.</p>
+<p><strong>Parameters</strong>:
+- <code>self</code>: Storage reference to attribute contract
+- <code>tokenId</code>: Token identifier to burn</p>
+<p><strong>Implementation</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">_burn</span><span class="p">(</span>
+<span class="w">    </span>AttributeContract<span class="w"> </span>storage<span class="w"> </span>self<span class="p">,</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span>
+<span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>self<span class="p">.</span>burnedIds<span class="p">[</span>tokenId<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">true</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Effects</strong>:
+- Prevents all future attribute operations on the token
+- Preserves existing attribute data for historical purposes
+- Enables gas-efficient burn protection checks</p>
+<h2 id="integration-examples">Integration Examples<a class="headerlink" href="#integration-examples" title="Permanent link">&para;</a></h2>
+<h3 id="nft-collection-with-dynamic-attributes">NFT Collection with Dynamic Attributes<a class="headerlink" href="#nft-collection-with-dynamic-attributes" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// NFT collection with evolving attributes</span>
+<span class="k">contract</span><span class="w"> </span><span class="ni">EvolvingNFT</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>using<span class="w"> </span>AttributeLib<span class="w"> </span><span class="kt">for</span><span class="w"> </span>AttributeLib<span class="p">.</span>AttributeStorage<span class="p">;</span>
+
+<span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">Evolution</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">requiredLevel</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">string</span><span class="p">[]</span><span class="w"> </span>newAttributes<span class="p">;</span>
+<span class="w">        </span><span class="kt">string</span><span class="p">[]</span><span class="w"> </span>attributeValues<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">uint256</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>tokenLevels<span class="p">;</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">uint256</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>tokenExperience<span class="p">;</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span>Evolution<span class="p">[])</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>evolutionPaths<span class="p">;</span>
+
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">TokenEvolved</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>tokenId<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">newLevel</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">ExperienceGained</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>tokenId<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">experience</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">AttributeEvolved</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>tokenId<span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">attribute</span><span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">newValue</span><span class="p">);</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">initializeToken</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>initialAttributes<span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>initialValues<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>_exists<span class="p">(</span>tokenId<span class="p">),</span><span class="w"> </span><span class="s2">&quot;Token does not exist&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>initialAttributes<span class="p">.</span>length<span class="w"> </span><span class="o">==</span><span class="w"> </span>initialValues<span class="p">.</span>length<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Arrays length mismatch&quot;</span><span class="p">);</span>
+
+<span class="w">        </span>AttributeLib<span class="p">.</span>AttributeStorage<span class="w"> </span>storage<span class="w"> </span>attrStorage<span class="w"> </span><span class="o">=</span><span class="w"> </span>AttributeLib<span class="p">.</span>attributeStorage<span class="p">();</span>
+
+<span class="w">        </span><span class="c1">// Set initial attributes</span>
+<span class="w">        </span>Attribute<span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>attributes<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span>Attribute<span class="p">[](</span>initialAttributes<span class="p">.</span>length<span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m m-Decimal">2</span><span class="p">);</span>
+
+<span class="w">        </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>initialAttributes<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>attributes<span class="p">[</span>i<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>Attribute<span class="p">({</span>
+<span class="w">                </span>key<span class="o">:</span><span class="w"> </span>initialAttributes<span class="p">[</span>i<span class="p">],</span>
+<span class="w">                </span>attributeType<span class="o">:</span><span class="w"> </span>AttributeType<span class="p">.</span>String<span class="p">,</span>
+<span class="w">                </span>value<span class="o">:</span><span class="w"> </span>initialValues<span class="p">[</span>i<span class="p">]</span>
+<span class="w">            </span><span class="p">});</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// Add level and experience</span>
+<span class="w">        </span>attributes<span class="p">[</span>initialAttributes<span class="p">.</span>length<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>Attribute<span class="p">({</span>
+<span class="w">            </span>key<span class="o">:</span><span class="w"> </span><span class="s2">&quot;level&quot;</span><span class="p">,</span>
+<span class="w">            </span>attributeType<span class="o">:</span><span class="w"> </span>AttributeType<span class="p">.</span>Uint256<span class="p">,</span>
+<span class="w">            </span>value<span class="o">:</span><span class="w"> </span>Strings<span class="p">.</span>toString<span class="p">(</span>tokenLevels<span class="p">[</span>tokenId<span class="p">])</span>
+<span class="w">        </span><span class="p">});</span>
+
+<span class="w">        </span>attributes<span class="p">[</span>initialAttributes<span class="p">.</span>length<span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m m-Decimal">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>Attribute<span class="p">({</span>
+<span class="w">            </span>key<span class="o">:</span><span class="w"> </span><span class="s2">&quot;experience&quot;</span><span class="p">,</span>
+<span class="w">            </span>attributeType<span class="o">:</span><span class="w"> </span>AttributeType<span class="p">.</span>Uint256<span class="p">,</span>
+<span class="w">            </span>value<span class="o">:</span><span class="w"> </span>Strings<span class="p">.</span>toString<span class="p">(</span>tokenExperience<span class="p">[</span>tokenId<span class="p">])</span>
+<span class="w">        </span><span class="p">});</span>
+
+<span class="w">        </span>AttributeLib<span class="p">.</span>_setAttributes<span class="p">(</span>attrStorage<span class="p">.</span>attributes<span class="p">,</span><span class="w"> </span>tokenId<span class="p">,</span><span class="w"> </span>attributes<span class="p">);</span>
+
+<span class="w">        </span>tokenLevels<span class="p">[</span>tokenId<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">1</span><span class="p">;</span>
+<span class="w">        </span>tokenExperience<span class="p">[</span>tokenId<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">gainExperience</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">experience</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>_exists<span class="p">(</span>tokenId<span class="p">),</span><span class="w"> </span><span class="s2">&quot;Token does not exist&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>experience<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Experience must be positive&quot;</span><span class="p">);</span>
+
+<span class="w">        </span>AttributeLib<span class="p">.</span>AttributeStorage<span class="w"> </span>storage<span class="w"> </span>attrStorage<span class="w"> </span><span class="o">=</span><span class="w"> </span>AttributeLib<span class="p">.</span>attributeStorage<span class="p">();</span>
+
+<span class="w">        </span><span class="c1">// Update experience</span>
+<span class="w">        </span>tokenExperience<span class="p">[</span>tokenId<span class="p">]</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span>experience<span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// Update experience attribute</span>
+<span class="w">        </span>Attribute<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>expAttr<span class="w"> </span><span class="o">=</span><span class="w"> </span>Attribute<span class="p">({</span>
+<span class="w">            </span>key<span class="o">:</span><span class="w"> </span><span class="s2">&quot;experience&quot;</span><span class="p">,</span>
+<span class="w">            </span>attributeType<span class="o">:</span><span class="w"> </span>AttributeType<span class="p">.</span>Uint256<span class="p">,</span>
+<span class="w">            </span>value<span class="o">:</span><span class="w"> </span>Strings<span class="p">.</span>toString<span class="p">(</span>tokenExperience<span class="p">[</span>tokenId<span class="p">])</span>
+<span class="w">        </span><span class="p">});</span>
+
+<span class="w">        </span>AttributeLib<span class="p">.</span>_setAttribute<span class="p">(</span>attrStorage<span class="p">.</span>attributes<span class="p">,</span><span class="w"> </span>tokenId<span class="p">,</span><span class="w"> </span>expAttr<span class="p">);</span>
+
+<span class="w">        </span>emit<span class="w"> </span>ExperienceGained<span class="p">(</span>tokenId<span class="p">,</span><span class="w"> </span>experience<span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Check for level up</span>
+<span class="w">        </span>_checkLevelUp<span class="p">(</span>tokenId<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">_checkLevelUp</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">currentLevel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>tokenLevels<span class="p">[</span>tokenId<span class="p">];</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">currentExp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>tokenExperience<span class="p">[</span>tokenId<span class="p">];</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">requiredExp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>currentLevel<span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m m-Decimal">100</span><span class="p">;</span><span class="w"> </span><span class="c1">// Simple formula</span>
+
+<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>currentExp<span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span>requiredExp<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">newLevel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>currentLevel<span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m m-Decimal">1</span><span class="p">;</span>
+<span class="w">            </span>tokenLevels<span class="p">[</span>tokenId<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>newLevel<span class="p">;</span>
+
+<span class="w">            </span>AttributeLib<span class="p">.</span>AttributeStorage<span class="w"> </span>storage<span class="w"> </span>attrStorage<span class="w"> </span><span class="o">=</span><span class="w"> </span>AttributeLib<span class="p">.</span>attributeStorage<span class="p">();</span>
+
+<span class="w">            </span><span class="c1">// Update level attribute</span>
+<span class="w">            </span>Attribute<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>levelAttr<span class="w"> </span><span class="o">=</span><span class="w"> </span>Attribute<span class="p">({</span>
+<span class="w">                </span>key<span class="o">:</span><span class="w"> </span><span class="s2">&quot;level&quot;</span><span class="p">,</span>
+<span class="w">                </span>attributeType<span class="o">:</span><span class="w"> </span>AttributeType<span class="p">.</span>Uint256<span class="p">,</span>
+<span class="w">                </span>value<span class="o">:</span><span class="w"> </span>Strings<span class="p">.</span>toString<span class="p">(</span>newLevel<span class="p">)</span>
+<span class="w">            </span><span class="p">});</span>
+
+<span class="w">            </span>AttributeLib<span class="p">.</span>_setAttribute<span class="p">(</span>attrStorage<span class="p">.</span>attributes<span class="p">,</span><span class="w"> </span>tokenId<span class="p">,</span><span class="w"> </span>levelAttr<span class="p">);</span>
+
+<span class="w">            </span>emit<span class="w"> </span>TokenEvolved<span class="p">(</span>tokenId<span class="p">,</span><span class="w"> </span>newLevel<span class="p">);</span>
+
+<span class="w">            </span><span class="c1">// Apply evolution changes</span>
+<span class="w">            </span>_applyEvolution<span class="p">(</span>tokenId<span class="p">,</span><span class="w"> </span>newLevel<span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">_applyEvolution</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">newLevel</span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>Evolution<span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>evolutions<span class="w"> </span><span class="o">=</span><span class="w"> </span>evolutionPaths<span class="p">[</span>tokenId<span class="p">];</span>
+
+<span class="w">        </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>evolutions<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>evolutions<span class="p">[</span>i<span class="p">].</span>requiredLevel<span class="w"> </span><span class="o">==</span><span class="w"> </span>newLevel<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span>AttributeLib<span class="p">.</span>AttributeStorage<span class="w"> </span>storage<span class="w"> </span>attrStorage<span class="w"> </span><span class="o">=</span><span class="w"> </span>AttributeLib<span class="p">.</span>attributeStorage<span class="p">();</span>
+<span class="w">                </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>j<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>evolutions<span class="p">[</span>i<span class="p">].</span>newAttributes<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>j<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span>Attribute<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>newAttr<span class="w"> </span><span class="o">=</span><span class="w"> </span>Attribute<span class="p">({</span>
+<span class="w">                        </span>key<span class="o">:</span><span class="w"> </span>evolutions<span class="p">[</span>i<span class="p">].</span>newAttributes<span class="p">[</span>j<span class="p">],</span>
+<span class="w">                        </span>attributeType<span class="o">:</span><span class="w"> </span>AttributeType<span class="p">.</span>String<span class="p">,</span><span class="w"> </span><span class="c1">// Assuming string for simplicity</span>
+<span class="w">                        </span>value<span class="o">:</span><span class="w"> </span>evolutions<span class="p">[</span>i<span class="p">].</span>attributeValues<span class="p">[</span>j<span class="p">]</span>
+<span class="w">                    </span><span class="p">});</span>
+<span class="w">                    </span>AttributeLib<span class="p">.</span>_setAttribute<span class="p">(</span>attrStorage<span class="p">.</span>attributes<span class="p">,</span><span class="w"> </span>tokenId<span class="p">,</span><span class="w"> </span>newAttr<span class="p">);</span>
+<span class="w">                    </span>emit<span class="w"> </span>AttributeEvolved<span class="p">(</span>tokenId<span class="p">,</span><span class="w"> </span>newAttr<span class="p">.</span>key<span class="p">,</span><span class="w"> </span>newAttr<span class="p">.</span>value<span class="p">);</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">                </span><span class="kt">break</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">_exists</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bool</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Placeholder for actual NFT existence check</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span><span class="kt">true</span><span class="p">;</span><span class="w"> </span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="gaming-item-system">Gaming Item System<a class="headerlink" href="#gaming-item-system" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Gaming platform with customizable items</span>
+<span class="k">contract</span><span class="w"> </span><span class="ni">GameItems</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>using<span class="w"> </span>AttributeLib<span class="w"> </span><span class="kt">for</span><span class="w"> </span>AttributeLib<span class="p">.</span>AttributeStorage<span class="p">;</span>
+
+<span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">ItemStats</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">attack</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">defense</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">manaCost</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">itemType</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span>ItemStats<span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>baseItemStats<span class="p">;</span>
+
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">ItemCreated</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>itemId<span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">name</span><span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">itemType</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">StatsUpdated</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>itemId<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">attack</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">defense</span><span class="p">);</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">createItem</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">itemId</span><span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>name<span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>itemType<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">attack</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">defense</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">manaCost</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>AttributeLib<span class="p">.</span>AttributeStorage<span class="w"> </span>storage<span class="w"> </span>attrStorage<span class="w"> </span><span class="o">=</span><span class="w"> </span>AttributeLib<span class="p">.</span>attributeStorage<span class="p">();</span>
+
+<span class="w">        </span><span class="c1">// Set basic attributes</span>
+<span class="w">        </span>Attribute<span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>attributes<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span>Attribute<span class="p">[](</span><span class="m m-Decimal">5</span><span class="p">);</span>
+<span class="w">        </span>attributes<span class="p">[</span><span class="m m-Decimal">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>Attribute<span class="p">({</span>key<span class="o">:</span><span class="w"> </span><span class="s2">&quot;name&quot;</span><span class="p">,</span><span class="w"> </span>attributeType<span class="o">:</span><span class="w"> </span>AttributeType<span class="p">.</span>String<span class="p">,</span><span class="w"> </span>value<span class="o">:</span><span class="w"> </span>name<span class="p">});</span>
+<span class="w">        </span>attributes<span class="p">[</span><span class="m m-Decimal">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>Attribute<span class="p">({</span>key<span class="o">:</span><span class="w"> </span><span class="s2">&quot;itemType&quot;</span><span class="p">,</span><span class="w"> </span>attributeType<span class="o">:</span><span class="w"> </span>AttributeType<span class="p">.</span>String<span class="p">,</span><span class="w"> </span>value<span class="o">:</span><span class="w"> </span>itemType<span class="p">});</span>
+<span class="w">        </span>attributes<span class="p">[</span><span class="m m-Decimal">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>Attribute<span class="p">({</span>key<span class="o">:</span><span class="w"> </span><span class="s2">&quot;attack&quot;</span><span class="p">,</span><span class="w"> </span>attributeType<span class="o">:</span><span class="w"> </span>AttributeType<span class="p">.</span>Uint256<span class="p">,</span><span class="w"> </span>value<span class="o">:</span><span class="w"> </span>Strings<span class="p">.</span>toString<span class="p">(</span>attack<span class="p">)});</span>
+<span class="w">        </span>attributes<span class="p">[</span><span class="m m-Decimal">3</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>Attribute<span class="p">({</span>key<span class="o">:</span><span class="w"> </span><span class="s2">&quot;defense&quot;</span><span class="p">,</span><span class="w"> </span>attributeType<span class="o">:</span><span class="w"> </span>AttributeType<span class="p">.</span>Uint256<span class="p">,</span><span class="w"> </span>value<span class="o">:</span><span class="w"> </span>Strings<span class="p">.</span>toString<span class="p">(</span>defense<span class="p">)});</span>
+<span class="w">        </span>attributes<span class="p">[</span><span class="m m-Decimal">4</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>Attribute<span class="p">({</span>key<span class="o">:</span><span class="w"> </span><span class="s2">&quot;manaCost&quot;</span><span class="p">,</span><span class="w"> </span>attributeType<span class="o">:</span><span class="w"> </span>AttributeType<span class="p">.</span>Uint256<span class="p">,</span><span class="w"> </span>value<span class="o">:</span><span class="w"> </span>Strings<span class="p">.</span>toString<span class="p">(</span>manaCost<span class="p">)});</span>
+
+<span class="w">        </span>AttributeLib<span class="p">.</span>_setAttributes<span class="p">(</span>attrStorage<span class="p">.</span>attributes<span class="p">,</span><span class="w"> </span>itemId<span class="p">,</span><span class="w"> </span>attributes<span class="p">);</span>
+
+<span class="w">        </span>baseItemStats<span class="p">[</span>itemId<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>ItemStats<span class="p">(</span>attack<span class="p">,</span><span class="w"> </span>defense<span class="p">,</span><span class="w"> </span>manaCost<span class="p">,</span><span class="w"> </span>itemType<span class="p">);</span>
+
+<span class="w">        </span>emit<span class="w"> </span>ItemCreated<span class="p">(</span>itemId<span class="p">,</span><span class="w"> </span>name<span class="p">,</span><span class="w"> </span>itemType<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">updateItemStats</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">itemId</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">newAttack</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">newDefense</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>AttributeLib<span class="p">.</span>AttributeStorage<span class="w"> </span>storage<span class="w"> </span>attrStorage<span class="w"> </span><span class="o">=</span><span class="w"> </span>AttributeLib<span class="p">.</span>attributeStorage<span class="p">();</span>
+
+<span class="w">        </span>Attribute<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>attackAttr<span class="w"> </span><span class="o">=</span><span class="w"> </span>Attribute<span class="p">({</span>key<span class="o">:</span><span class="w"> </span><span class="s2">&quot;attack&quot;</span><span class="p">,</span><span class="w"> </span>attributeType<span class="o">:</span><span class="w"> </span>AttributeType<span class="p">.</span>Uint256<span class="p">,</span><span class="w"> </span>value<span class="o">:</span><span class="w"> </span>Strings<span class="p">.</span>toString<span class="p">(</span>newAttack<span class="p">)});</span>
+<span class="w">        </span>Attribute<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>defenseAttr<span class="w"> </span><span class="o">=</span><span class="w"> </span>Attribute<span class="p">({</span>key<span class="o">:</span><span class="w"> </span><span class="s2">&quot;defense&quot;</span><span class="p">,</span><span class="w"> </span>attributeType<span class="o">:</span><span class="w"> </span>AttributeType<span class="p">.</span>Uint256<span class="p">,</span><span class="w"> </span>value<span class="o">:</span><span class="w"> </span>Strings<span class="p">.</span>toString<span class="p">(</span>newDefense<span class="p">)});</span>
+
+<span class="w">        </span>AttributeLib<span class="p">.</span>_setAttribute<span class="p">(</span>attrStorage<span class="p">.</span>attributes<span class="p">,</span><span class="w"> </span>itemId<span class="p">,</span><span class="w"> </span>attackAttr<span class="p">);</span>
+<span class="w">        </span>AttributeLib<span class="p">.</span>_setAttribute<span class="p">(</span>attrStorage<span class="p">.</span>attributes<span class="p">,</span><span class="w"> </span>itemId<span class="p">,</span><span class="w"> </span>defenseAttr<span class="p">);</span>
+
+<span class="w">        </span>emit<span class="w"> </span>StatsUpdated<span class="p">(</span>itemId<span class="p">,</span><span class="w"> </span>newAttack<span class="p">,</span><span class="w"> </span>newDefense<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getItemAttack</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">itemId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>AttributeLib<span class="p">.</span>AttributeStorage<span class="w"> </span>storage<span class="w"> </span>attrStorage<span class="w"> </span><span class="o">=</span><span class="w"> </span>AttributeLib<span class="p">.</span>attributeStorage<span class="p">();</span>
+<span class="w">        </span>Attribute<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>attr<span class="w"> </span><span class="o">=</span><span class="w"> </span>AttributeLib<span class="p">.</span>_getAttribute<span class="p">(</span>attrStorage<span class="p">.</span>attributes<span class="p">,</span><span class="w"> </span>itemId<span class="p">,</span><span class="w"> </span><span class="s2">&quot;attack&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>Strings<span class="p">.</span>toUint<span class="p">(</span>attr<span class="p">.</span>value<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="certificate-system-with-verifiable-attributes">Certificate System with Verifiable Attributes<a class="headerlink" href="#certificate-system-with-verifiable-attributes" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Certificate system for verifiable credentials</span>
+<span class="k">contract</span><span class="w"> </span><span class="ni">CertificateSystem</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>using<span class="w"> </span>AttributeLib<span class="w"> </span><span class="kt">for</span><span class="w"> </span>AttributeLib<span class="p">.</span>AttributeStorage<span class="p">;</span>
+
+<span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">Certificate</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">certificateId</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">holder</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">issueDate</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">expiryDate</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">revoked</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">certificateType</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span>Certificate<span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>certificates<span class="p">;</span>
+
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">CertificateIssued</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>certificateId<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>holder<span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">certificateType</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">AttributeVerified</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>certificateId<span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>key<span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">value</span><span class="p">);</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">issueCertificate</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">certificateId</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">holder</span><span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>certificateType<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">expiryDate</span><span class="p">,</span><span class="w"> </span>Attribute<span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>attributes<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyOwner<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>AttributeLib<span class="p">.</span>AttributeStorage<span class="w"> </span>storage<span class="w"> </span>attrStorage<span class="w"> </span><span class="o">=</span><span class="w"> </span>AttributeLib<span class="p">.</span>attributeStorage<span class="p">();</span>
+
+<span class="w">        </span>certificates<span class="p">[</span>certificateId<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>Certificate<span class="p">({</span>
+<span class="w">            </span>certificateId<span class="o">:</span><span class="w"> </span>certificateId<span class="p">,</span>
+<span class="w">            </span>holder<span class="o">:</span><span class="w"> </span>holder<span class="p">,</span>
+<span class="w">            </span>issueDate<span class="o">:</span><span class="w"> </span><span class="k">block.timestamp</span><span class="p">,</span>
+<span class="w">            </span>expiryDate<span class="o">:</span><span class="w"> </span>expiryDate<span class="p">,</span>
+<span class="w">            </span>revoked<span class="o">:</span><span class="w"> </span><span class="kt">false</span><span class="p">,</span>
+<span class="w">            </span>certificateType<span class="o">:</span><span class="w"> </span>certificateType
+<span class="w">        </span><span class="p">});</span>
+
+<span class="w">        </span>AttributeLib<span class="p">.</span>_setAttributes<span class="p">(</span>attrStorage<span class="p">.</span>attributes<span class="p">,</span><span class="w"> </span>certificateId<span class="p">,</span><span class="w"> </span>attributes<span class="p">);</span>
+
+<span class="w">        </span>emit<span class="w"> </span>CertificateIssued<span class="p">(</span>certificateId<span class="p">,</span><span class="w"> </span>holder<span class="p">,</span><span class="w"> </span>certificateType<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">updateCertificateAttributes</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">certificateId</span><span class="p">,</span><span class="w"> </span>Attribute<span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>attributes<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyOwner<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>AttributeLib<span class="p">.</span>AttributeStorage<span class="w"> </span>storage<span class="w"> </span>attrStorage<span class="w"> </span><span class="o">=</span><span class="w"> </span>AttributeLib<span class="p">.</span>attributeStorage<span class="p">();</span>
+<span class="w">        </span>AttributeLib<span class="p">.</span>_setAttributes<span class="p">(</span>attrStorage<span class="p">.</span>attributes<span class="p">,</span><span class="w"> </span>certificateId<span class="p">,</span><span class="w"> </span>attributes<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">verifyCertificateAttribute</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">certificateId</span><span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>key<span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>expectedValue<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bool</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>AttributeLib<span class="p">.</span>AttributeStorage<span class="w"> </span>storage<span class="w"> </span>attrStorage<span class="w"> </span><span class="o">=</span><span class="w"> </span>AttributeLib<span class="p">.</span>attributeStorage<span class="p">();</span>
+<span class="w">        </span>Attribute<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>attr<span class="w"> </span><span class="o">=</span><span class="w"> </span>AttributeLib<span class="p">.</span>_getAttribute<span class="p">(</span>attrStorage<span class="p">.</span>attributes<span class="p">,</span><span class="w"> </span>certificateId<span class="p">,</span><span class="w"> </span>key<span class="p">);</span>
+
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">verified</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">keccak256</span><span class="p">(</span>abi<span class="p">.</span>encodePacked<span class="p">(</span>attr<span class="p">.</span>value<span class="p">))</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">keccak256</span><span class="p">(</span>abi<span class="p">.</span>encodePacked<span class="p">(</span>expectedValue<span class="p">));</span>
+<span class="w">        </span>emit<span class="w"> </span>AttributeVerified<span class="p">(</span>certificateId<span class="p">,</span><span class="w"> </span>key<span class="p">,</span><span class="w"> </span>attr<span class="p">.</span>value<span class="p">);</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>verified<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="events">Events<a class="headerlink" href="#events" title="Permanent link">&para;</a></h2>
+<h3 id="attribute-events">Attribute Events<a class="headerlink" href="#attribute-events" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>AttributeSet(uint256 indexed tokenId, string indexed key, AttributeType attributeType, string value)</code>: Emitted when an attribute is set or updated.</li>
+<li><code>AttributeRemoved(uint256 indexed tokenId, string indexed key)</code>: Emitted when an attribute is removed.</li>
+<li><code>AttributesSet(uint256 indexed tokenId, uint256 count)</code>: Emitted when multiple attributes are set for a token.</li>
+</ul>
+<h2 id="security-considerations">Security Considerations<a class="headerlink" href="#security-considerations" title="Permanent link">&para;</a></h2>
+<h3 id="burn-protection">Burn Protection<a class="headerlink" href="#burn-protection" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Prevents attribute operations on burned tokens, ensuring data integrity.</li>
+</ul>
+<h3 id="access-control">Access Control<a class="headerlink" href="#access-control" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Attributes can be modified only by authorized entities (e.g., contract owner, designated roles).</li>
+</ul>
+<h3 id="data-integrity">Data Integrity<a class="headerlink" href="#data-integrity" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Type checking for attributes helps ensure data consistency.</li>
+<li>String conversion for storage prevents unexpected behavior.</li>
+</ul>
+<h2 id="gas-optimization">Gas Optimization<a class="headerlink" href="#gas-optimization" title="Permanent link">&para;</a></h2>
+<h3 id="storage-efficiency">Storage Efficiency<a class="headerlink" href="#storage-efficiency" title="Permanent link">&para;</a></h3>
+<ul>
+<li>The <code>AttributeContract</code> struct and its internal mappings are designed for efficient storage.</li>
+<li>Storage is minimized by packing related data within structs.</li>
+</ul>
+<h3 id="function-efficiency">Function Efficiency<a class="headerlink" href="#function-efficiency" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>_setAttributes</code> allows batch updates, reducing transaction costs for multiple attribute changes.</li>
+<li>Direct storage access in library functions minimizes overhead.</li>
+</ul>
+<h2 id="error-handling">Error Handling<a class="headerlink" href="#error-handling" title="Permanent link">&para;</a></h2>
+<h3 id="common-errors">Common Errors<a class="headerlink" href="#common-errors" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>"Token has been burned"</code>: Attempting to modify attributes of a burned token.</li>
+<li><code>"Attribute not found"</code>: Attempting to retrieve or remove a non-existent attribute.</li>
+<li><code>"Arrays length mismatch"</code>: Provided arrays for attributes or values have different lengths.</li>
+</ul>
+<h2 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h2>
+<h3 id="attribute-design">Attribute Design<a class="headerlink" href="#attribute-design" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Define clear attribute schemas and types for your tokens.</li>
+<li>Use meaningful keys for attributes to improve readability and maintainability.</li>
+<li>Consider off-chain storage for large or highly dynamic metadata to save gas.</li>
+</ul>
+<h3 id="development-guidelines">Development Guidelines<a class="headerlink" href="#development-guidelines" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Always implement access control for functions that modify attributes.</li>
+<li>Use comprehensive unit and integration tests to ensure attribute logic is correct.</li>
+<li>Monitor attribute-related events for auditing and analytics.</li>
+</ul>
+<h2 id="related-documentation">Related Documentation<a class="headerlink" href="#related-documentation" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../metadata-lib/">Metadata Library</a></li>
+<li><a href="../../interfaces/ierc721a/">ERC721A Interface</a></li>
+<li><a href="../erc721a-lib/">ERC721A Library</a></li>
+<li><a href="../../../developer-guides/automated-testing-setup/">Developer Guides: Automated Testing Setup</a></li>
+<li><a href="../../../developer-guides/development-environment-setup/">Developer Guides: Development Environment Setup</a></li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../svg-templates-lib/" class="btn btn-neutral float-left" title="SVG Templates Lib"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../variable-price-lib/" class="btn btn-neutral float-right" title="Variable Price Lib">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../svg-templates-lib/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../variable-price-lib/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

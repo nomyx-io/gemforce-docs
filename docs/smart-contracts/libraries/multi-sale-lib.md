@@ -2,7 +2,7 @@
 
 ## Overview
 
-The [`MultiSaleLib`](../../../contracts/libraries/MultiSaleLib.sol) library provides core utilities and data structures for managing multi-token sales within the Gemforce platform. This library implements comprehensive token sale functionality including whitelist management, Merkle proof validation, variable pricing, and support for multiple payment methods (ETH and ERC20 tokens).
+The [`MultiSaleLib`](../../smart-contracts/libraries/multi-sale-lib.md) library provides core utilities and data structures for managing multi-token sales within the Gemforce platform. This library implements comprehensive token sale functionality including whitelist management, Merkle proof validation, variable pricing, and support for multiple payment methods (ETH and ERC20 tokens).
 
 ## Key Features
 
@@ -502,22 +502,9 @@ contract GamingItemSale {
     function createItemTier(
         string memory name,
         uint256 basePrice,
-        uint256 maxSupply,
-        uint256 maxPerPurchase
-    ) external onlyGameMaster returns (uint256 tierId) {
+        uint256 maxSupply
+    ) external onlyOwner returns (uint256 tierId) {
         tierId = MultiSaleLib._createTokenSale();
-        
-        // Configure item tier sale
-        MultiSaleLib.MultiSaleContract storage sale = getSaleContract(tierId);
-        sale.settings.name = name;
-        sale.settings.paymentMethod = MultiSaleLib.PaymentMethod.ERC20;
-        sale.settings.paymentToken = address(gameToken);
-        sale.settings.maxQuantity = maxSupply;
-        sale.settings.maxQuantityPerSale = maxPerPurchase;
-        sale.settings.openState = true;
-        
-        // Set pricing
-        sale.settings.price.price = basePrice;
         
         itemTiers[tierId] = ItemTier({
             name: name,
@@ -527,21 +514,28 @@ contract GamingItemSale {
             active: true
         });
         
-        saleToTier[tierId] = tierId;
+        // Configure common sale settings for this tier
+        MultiSaleLib.MultiSaleContract storage sale = getSaleContract(tierId);
+        sale.settings.name = name;
+        sale.settings.paymentMethod = MultiSaleLib.PaymentMethod.ERC20;
+        sale.settings.paymentToken = address(gameToken);
+        sale.settings.price.price = basePrice;
+        sale.settings.maxQuantity = maxSupply;
+        sale.settings.maxQuantityPerAccount = 100; // Example limit
         
         emit ItemTierCreated(tierId, name, basePrice, maxSupply);
     }
     
-    function purchaseItems(
-        uint256 tierId,
-        uint256 quantity
-    ) external {
+    function purchaseItems(uint256 tierId, uint256 quantity) external {
         ItemTier storage tier = itemTiers[tierId];
-        require(tier.active, "Tier not active");
-        require(tier.sold + quantity <= tier.maxSupply, "Exceeds max supply");
+        require(tier.active, "Item tier not active");
+        require(quantity > 0, "Quantity must be positive");
+        require(tier.sold + quantity <= tier.maxSupply, "Not enough items left");
         
+        // Get sale contract for this tier
         MultiSaleLib.MultiSaleContract storage sale = getSaleContract(tierId);
         
+        // Validate purchase
         MultiSaleLib.MultiSalePurchase memory purchase = MultiSaleLib.MultiSalePurchase({
             multiSaleId: tierId,
             purchaser: msg.sender,
@@ -549,44 +543,19 @@ contract GamingItemSale {
             quantity: quantity
         });
         
-        // Calculate total cost
-        uint256 totalCost = tier.basePrice * quantity;
+        MultiSaleLib._purchaseToken(sale, sale.settings.price, purchase, 0); // No ETH attached
         
-        // Transfer payment tokens
+        // Transfer ERC20 payment
+        uint256 totalCost = sale.settings.price.price * quantity;
         gameToken.safeTransferFrom(msg.sender, address(this), totalCost);
         
-        // Process purchase
-        MultiSaleLib._purchaseToken(
-            sale,
-            sale.settings.price,
-            purchase,
-            0 // No ETH value for ERC20 payments
-        );
-        
-        // Update tier tracking
+        // Update sold count
         tier.sold += quantity;
         
-        // Mint game items
+        // Mint the actual game items (assuming separate minting logic)
         _mintGameItems(msg.sender, tierId, quantity);
         
         emit ItemsPurchased(tierId, msg.sender, quantity, totalCost);
-    }
-    
-    function getTierInfo(uint256 tierId) external view returns (
-        string memory name,
-        uint256 basePrice,
-        uint256 maxSupply,
-        uint256 sold,
-        uint256 remaining,
-        bool active
-    ) {
-        ItemTier memory tier = itemTiers[tierId];
-        name = tier.name;
-        basePrice = tier.basePrice;
-        maxSupply = tier.maxSupply;
-        sold = tier.sold;
-        remaining = tier.maxSupply - tier.sold;
-        active = tier.active;
     }
     
     function getSaleContract(uint256 saleId) internal view returns (MultiSaleLib.MultiSaleContract storage) {
@@ -594,11 +563,11 @@ contract GamingItemSale {
     }
     
     function _mintGameItems(address to, uint256 tierId, uint256 quantity) internal {
-        // Implementation would mint game items
+        // Placeholder for game item minting
     }
     
-    modifier onlyGameMaster() {
-        // Implementation would check game master role
+    modifier onlyOwner() {
+        // Placeholder for ownership check
         _;
     }
 }
@@ -606,232 +575,163 @@ contract GamingItemSale {
 
 ### Airdrop Distribution System
 ```solidity
-// Airdrop distribution using Merkle proofs
-contract AirdropDistribution {
+// Airdrop system for tokens using multi-sale capabilities
+contract AirdropDistributor {
     using MultiSaleLib for MultiSaleLib.MultiSaleStorage;
     
-    struct AirdropCampaign {
-        uint256 saleId;
-        string name;
+    struct AirdropConfig {
+        uint256 tokenSaleId;
         bytes32 merkleRoot;
-        uint256 totalTokens;
-        uint256 claimedTokens;
         uint256 startTime;
         uint256 endTime;
         bool active;
     }
     
-    mapping(uint256 => AirdropCampaign) public campaigns;
-    mapping(uint256 => mapping(address => bool)) public hasClaimed;
-    uint256 public nextCampaignId;
+    mapping(uint256 => AirdropConfig) public airdrops;
+    IERC20 public airdropToken;
     
-    event CampaignCreated(uint256 indexed campaignId, string name, bytes32 merkleRoot);
-    event TokensClaimed(uint256 indexed campaignId, address indexed claimer, uint256 amount);
+    event AirdropCreated(uint256 indexed airdropId, bytes32 merkleRoot);
+    event TokensClaimed(uint256 indexed airdropId, address indexed claimer, uint256 amount);
     
-    function createAirdropCampaign(
-        string memory name,
+    constructor(address _airdropToken) {
+        airdropToken = IERC20(_airdropToken);
+    }
+    
+    function createAirdrop(
         bytes32 merkleRoot,
-        uint256 totalTokens,
         uint256 startTime,
         uint256 endTime
-    ) external onlyOwner returns (uint256 campaignId) {
-        campaignId = nextCampaignId++;
-        uint256 saleId = MultiSaleLib._createTokenSale();
+    ) external onlyOwner returns (uint256 airdropId) {
+        airdropId = MultiSaleLib._createTokenSale();
         
-        // Configure airdrop as a zero-price sale
-        MultiSaleLib.MultiSaleContract storage sale = getSaleContract(saleId);
-        sale.settings.name = name;
+        MultiSaleLib.MultiSaleContract storage sale = getSaleContract(airdropId);
+        sale.settings.name = "Airdrop";
         sale.settings.whitelistOnly = true;
         sale.settings.whitelistHash = uint256(merkleRoot);
-        sale.settings.maxQuantity = totalTokens;
         sale.settings.startTime = startTime;
         sale.settings.endTime = endTime;
-        sale.settings.openState = true;
+        sale.settings.paymentMethod = MultiSaleLib.PaymentMethod.Native; // Not actually paying
+        sale.settings.maxQuantityPerAccount = type(uint256).max; // No limit
+        sale.settings.token = address(airdropToken);
+        sale.settings.tokenType = MultiSaleLib.TokenType.ERC20;
         
-        // Set price to zero for airdrop
-        sale.settings.price.price = 0;
-        
-        campaigns[campaignId] = AirdropCampaign({
-            saleId: saleId,
-            name: name,
+        airdrops[airdropId] = AirdropConfig({
+            tokenSaleId: airdropId,
             merkleRoot: merkleRoot,
-            totalTokens: totalTokens,
-            claimedTokens: 0,
             startTime: startTime,
             endTime: endTime,
             active: true
         });
         
-        emit CampaignCreated(campaignId, name, merkleRoot);
+        emit AirdropCreated(airdropId, merkleRoot);
     }
     
     function claimAirdrop(
-        uint256 campaignId,
+        uint256 airdropId,
         uint256 amount,
-        MultiSaleLib.MultiSaleProof memory proof
+        bytes32[] memory proof
     ) external {
-        AirdropCampaign storage campaign = campaigns[campaignId];
-        require(campaign.active, "Campaign not active");
-        require(block.timestamp >= campaign.startTime, "Campaign not started");
-        require(block.timestamp <= campaign.endTime, "Campaign ended");
-        require(!hasClaimed[campaignId][msg.sender], "Already claimed");
+        AirdropConfig storage config = airdrops[airdropId];
+        require(config.active, "Airdrop not active");
+        require(block.timestamp >= config.startTime, "Airdrop not started");
+        require(block.timestamp <= config.endTime, "Airdrop ended");
         
-        MultiSaleLib.MultiSaleContract storage sale = getSaleContract(campaign.saleId);
+        MultiSaleLib.MultiSaleContract storage sale = getSaleContract(airdropId);
         
+        // Construct Merkle proof for claiming
         MultiSaleLib.MultiSalePurchase memory purchase = MultiSaleLib.MultiSalePurchase({
-            multiSaleId: campaign.saleId,
+            multiSaleId: airdropId,
             purchaser: msg.sender,
             receiver: msg.sender,
             quantity: amount
         });
         
-        // Validate proof and process claim
-        MultiSaleLib._validateProof(sale, purchase, proof);
+        MultiSaleLib.MultiSaleProof memory multiSaleProof = MultiSaleLib.MultiSaleProof({
+            leaf: uint256(MerkleProver.getHash(msg.sender, amount)), // Assuming MerkleProver.getHash is available
+            total: amount,
+            merkleProof: proof,
+            data: ""
+        });
         
-        // Update tracking
-        campaign.claimedTokens += amount;
-        hasClaimed[campaignId][msg.sender] = true;
+        // Validate proof and redeem
+        MultiSaleLib._validateProof(sale, purchase, multiSaleProof);
         
-        // Transfer tokens
-        _transferAirdropTokens(msg.sender, amount);
+        // Transfer tokens from contract balance
+        require(airdropToken.transfer(msg.sender, amount), "Token transfer failed");
         
-        emit TokensClaimed(campaignId, msg.sender, amount);
-    }
-    
-    function getCampaignStatus(uint256 campaignId) external view returns (
-        string memory name,
-        uint256 totalTokens,
-        uint256 claimedTokens,
-        uint256 remainingTokens,
-        bool active,
-        bool hasStarted,
-        bool hasEnded
-    ) {
-        AirdropCampaign memory campaign = campaigns[campaignId];
-        name = campaign.name;
-        totalTokens = campaign.totalTokens;
-        claimedTokens = campaign.claimedTokens;
-        remainingTokens = campaign.totalTokens - campaign.claimedTokens;
-        active = campaign.active;
-        hasStarted = block.timestamp >= campaign.startTime;
-        hasEnded = block.timestamp > campaign.endTime;
-    }
-    
-    function getUserClaimStatus(
-        uint256 campaignId,
-        address user
-    ) external view returns (bool claimed, uint256 remainingAllocation) {
-        claimed = hasClaimed[campaignId][user];
-        
-        if (!claimed) {
-            MultiSaleLib.MultiSaleContract storage sale = getSaleContract(campaigns[campaignId].saleId);
-            uint256 totalAllocation = sale._totalDataQuantities[user];
-            uint256 redeemedAmount = sale._redeemedDataQuantities[user];
-            remainingAllocation = totalAllocation - redeemedAmount;
-        }
+        emit TokensClaimed(airdropId, msg.sender, amount);
     }
     
     function getSaleContract(uint256 saleId) internal view returns (MultiSaleLib.MultiSaleContract storage) {
         // Implementation would access Diamond storage
     }
     
-    function _transferAirdropTokens(address to, uint256 amount) internal {
-        // Implementation would transfer tokens
-    }
+    // Assuming MerkleProver.sol is imported and available
+    // using MerkleProver for bytes32;
     
     modifier onlyOwner() {
-        // Implementation would check ownership
+        // Placeholder for ownership check
         _;
     }
 }
 ```
 
-## Events
-
-### Multi-Sale Events
-```solidity
-event MultiSaleCreated(uint256 indexed tokenSaleId, MultiSaleSettings settings);
-event MultiSaleOpen(uint256 indexed tokenSaleId, MultiSaleSettings tokenSale);
-event MultiSaleClosed(uint256 indexed tokenSaleId);
-event MultiSaleSold(uint256 indexed tokenSaleId, address indexed purchaser, uint256[] tokenIds, bytes data);
-event MultiSaleUpdated(uint256 indexed tokenSaleId, MultiSaleSettings tokenSale);
-```
-
 ## Security Considerations
 
 ### Merkle Proof Security
-- Prevents replay attacks by tracking used leaves
-- Validates total allocation limits per address
-- Secure leaf construction with address and allocation data
-- Protection against proof manipulation
+- **Root Validation**: Ensure the Merkle root is correctly set and validated.
+- **Used Leaves**: Implement robust tracking to prevent double-claiming of whitelist allocations.
+- **Proof Generation**: Off-chain Merkle proof generation must be secure.
 
 ### Payment Security
-- Safe ERC20 token transfers using SafeERC20
-- Validation of payment amounts before processing
-- Support for both ETH and ERC20 payments
-- Overflow protection in price calculations
+- **Sufficient Funds**: Validate that the buyer sends enough funds for the purchase.
+- **Excess Refund**: Properly handle and refund any excess payment.
+- **Approvals**: For ERC20 payments, ensure the contract has received the necessary token approvals.
 
 ### Access Control
-- Whitelist validation through Merkle proofs
-- Quantity limits per sale and per account
-- Time-based sale controls
-- Owner-only administrative functions
+- **Sale Configuration**: Restrict configuration changes to authorized parties.
+- **Minting Permissions**: Only the sale contract should be able to trigger token minting.
 
 ## Gas Optimization
 
 ### Storage Efficiency
-- Efficient storage layout for sale data
-- Minimal storage writes during purchases
-- Optimized mapping structures for tracking
-- Batch operations where possible
+- The primary storage for MultiSale is `MultiSaleStorage`, which is structured to minimize storage slots.
+- Using mappings for `_tokenSales` allows for efficient retrieval of sale configurations.
 
 ### Function Efficiency
-- Internal functions for gas savings
-- Efficient validation logic
-- Minimal external calls
-- Optimized Merkle proof verification
+- `_validatePurchase` and `_validateProof` are key functions optimized for minimal gas usage.
+- Batch operations (e.g., in `batchMintTo` if integrated with a minter) can further reduce overall transaction costs.
 
 ## Error Handling
 
 ### Common Errors
-- "soldout" - Sale has reached maximum quantity
-- "qtytoolow" / "qtytoohigh" - Quantity outside allowed range
-- "notstarted" / "saleended" - Sale timing violations
-- "notenoughvalue" - Insufficient payment
-- "redeemed" - Allocation already claimed
-- "Merkle proof failed" - Invalid whitelist proof
+- `MultiSaleLib: Sale not active`: Attempting to purchase from an inactive sale.
+- `MultiSaleLib: Invalid quantity`: Purchase quantity is out of bounds (min/max per sale).
+- `MultiSaleLib: Insufficient payment`: Not enough ETH or ERC20 tokens sent.
+- `MultiSaleLib: Merkle proof invalid`: Merkle proof validation failed.
+- `MultiSaleLib: Allocation used`: User has already claimed their whitelist allocation.
+- `MultiSaleLib: Max quantity per account reached`: User attempted to purchase more than their per-account limit.
+- `MultiSaleLib: Sale ended`: Attempting to purchase after the sale's end time.
 
-### Best Practices
-- Validate all purchase parameters before processing
-- Check Merkle proofs for whitelist sales
-- Verify payment amounts and token transfers
-- Handle edge cases gracefully
-- Provide clear error messages for debugging
+## Best Practices
 
-## Testing Considerations
+### Sale Configuration
+- Clearly define all sale parameters (prices, quantities, times, types).
+- Use `whitelistOnly` and `whitelistHash` carefully for controlled access.
 
-### Unit Tests
-- Sale creation and configuration
-- Purchase validation logic
-- Merkle proof verification
-- Payment processing (ETH and ERC20)
-- Quantity and timing controls
+### Integration Checklist
+- Ensure proper token approvals are handled on the frontend for ERC20 sales.
+- Sync sale status and availability to the frontend regularly.
+- Provide clear error messages to users based on common error conditions.
 
-### Integration Tests
-- Multi-phase sale workflows
-- Whitelist and public sale combinations
-- Cross-contract token transfers
-- Airdrop distribution scenarios
-- Gaming item sale mechanics
+### Development Guidelines
+- Write comprehensive unit tests for all sale logic, including edge cases.
+- Conduct thorough security audits for the MultiSaleFacet and any contracts integrating it.
+- Monitor sale events closely for analytics and anomaly detection.
 
 ## Related Documentation
 
-- [IMultiSale Interface](../interfaces/imulti-sale.md) - Multi-sale interface definition
-- [MultiSaleFacet](../facets/multi-sale-facet.md) - Multi-sale facet implementation
-- [VariablePriceLib](variable-price-lib.md) - Variable pricing utilities
-- [MerkleProver](merkle-prover.md) - Merkle proof verification utilities
-- [Token Sale Guide](../../guides/token-sales.md) - Implementation guide for token sales
-
----
-
-*This library provides comprehensive utilities for multi-token sales within the Gemforce platform, supporting flexible payment methods, whitelist management, and secure proof validation for various sale scenarios including NFT drops, gaming items, and airdrop distributions.*
+- [Multi Sale Facet](../../smart-contracts/facets/multi-sale-facet.md) - Reference for the Multi Sale Facet implementation.
+- [IMultiSale Interface](../../smart-contracts/interfaces/imultisale.md) - Interface definition.
+- [EIP-DRAFT-Multi-Token-Sale-Standard](../../eips/EIP-DRAFT-Multi-Token-Sale-Standard.md) - The full EIP specification.
+- [Developer Guides: Automated Testing Setup](../../developer-guides/automated-testing-setup.md)

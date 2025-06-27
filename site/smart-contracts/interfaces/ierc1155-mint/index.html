@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Gemforce Team" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>IERC1155Mint - Gemforce Documentation</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "IERC1155Mint";
+        var mkdocs_page_input_path = "smart-contracts/interfaces/ierc1155-mint.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../.." class="icon icon-home"> Gemforce Documentation
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../developer-setup-guide/">Developer Setup Guide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../system-architecture/gemforce-system-architecture/">System Architecture</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Smart Contracts</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../diamond/">Diamond Contract</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../diamond-factory/">Diamond Factory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../identity-factory/">Identity Factory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Facets</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/marketplace-facet/">Marketplace Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trade-deal-management-facet/">Trade Deal Management Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/carbon-credit-facet/">Carbon Credit Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/identity-registry-facet/">Identity Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trusted-issuers-registry-facet/">Trusted Issuers Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/fee-distributor-facet/">Fee Distributor Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/gemforce-minter-facet/">Gemforce Minter Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/multi-sale-facet/">Multi Sale Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/svg-templates-facet/">SVG Templates Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trade-deal-admin-facet/">Trade Deal Admin Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trade-deal-operations-facet/">Trade Deal Operations Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/collateral-token-factory-facet/">Collateral Token Factory Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/diamond-cut-facet/">Diamond Cut Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/diamond-loupe-facet/">Diamond Loupe Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/ownership-facet/">Ownership Facet</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" >Interfaces</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" href="../idiamond/">IDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../imarketplace/">IMarketplace</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../itradedeal/">ITradeDeal</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../icarbon-credit/">ICarbonCredit</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">IERC1155Mint</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#overview">Overview</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#key-features">Key Features</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#interface-definition">Interface Definition</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#core-functions">Core Functions</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#single-token-minting">Single Token Minting</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#batch-minting">Batch Minting</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#integration-examples">Integration Examples</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#gaming-item-system">Gaming Item System</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#digital-asset-marketplace">Digital Asset Marketplace</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#collectible-card-system">Collectible Card System</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#security-considerations">Security Considerations</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#access-control">Access Control</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#supply-management">Supply Management</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#recipient-validation">Recipient Validation</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#gas-optimization">Gas Optimization</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#efficient-operations">Efficient Operations</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#storage-optimization">Storage Optimization</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#error-handling">Error Handling</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#common-errors">Common Errors</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#best-practices">Best Practices</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#integration-checklist">Integration Checklist</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#development-guidelines">Development Guidelines</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#related-documentation">Related Documentation</a>
+    </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../ierc734/">IERC734</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../ierc735/">IERC735</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../ierc721a/">IERC721A</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../idiamond-factory/">IDiamondFactory</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../iidentity/">IIdentity</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../imultisale/">IMultiSale</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../ifee-distributor/">IFeeDistributor</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../igemforce-minter-facet/">IGemforceMinterFacet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../iidentity-registry/">IIdentityRegistry</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../itrusted-issuers-registry/">TRUSTEDIssuersRegistry</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../isvg/">ISVG</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../iattribute/">IAttribute</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../ivariable-price/">IVariablePrice</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Libraries</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/carbon-credit-lib/">Carbon Credit Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/trade-deal-lib/">Trade Deal Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/multi-sale-lib/">Multi Sale Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/diamond-factory-lib/">Diamond Factory Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/svg-templates-lib/">SVG Templates Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/attribute-lib/">Attribute Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/variable-price-lib/">Variable Price Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/merkle-prover/">Merkle Prover</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/fee-distributor-lib/">Fee Distributor Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/lib-diamond/">LibDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/diamond-lib/">DiamondLib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/erc721a-lib/">ERC721A Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/erc721a-enumeration-lib/">ERC721A Enumeration Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/strings-lib/">Strings Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/trusted-issuer-lib/">Trusted Issuer Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/set-libraries/">Set Libraries</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">SDK & Libraries</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/blockchain/">Blockchain Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/diamond/">Diamond Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/contract/">Contract Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/deploy/">Deployment Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/validation-utils/">Validation Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/nft-sale-utils/">NFT Sale Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/webhooks/">Webhooks Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../libraries/metadata-lib/">Metadata Library</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Cloud Functions</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/authentication/">Authentication Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/auth-functions/">Auth Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/blockchain/">Blockchain Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/bridge/">Bridge Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/contracts/">Contract Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/deploy/">Deploy Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/dfns/">DFNS Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/project/">Project Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/trade-deal/">Trade Deal Functions</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">API Documentation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../api-documentation/gemforce-api-documentation/">Full API Reference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../api-documentation/gemforce-api-quick-reference/">Quick Reference</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-external-services/">External Services</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-system-architecture/">System Architecture</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Operations Tasks</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/diamond/">Diamond Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/identities/">Identity Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/marketplace-management/">Marketplace Management Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/carbon-credit-management/">Carbon Credit Management Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/trade-deal/">Trade Deal Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/integration-test/">Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/integration-test-marketplace/">Marketplace Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/integration-test-trade-deal/">Trade Deal Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/admin-utils/">Admin Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/sync-diamond/">Sync Diamond Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/sync-events/">Sync Events Tasks</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">EIPs (Ethereum Improvement Proposals)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Diamond-Enhanced-Marketplace/">Diamond-Enhanced Marketplace</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Multi-Token-Sale-Standard/">Multi-Token Sale Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Collateralized-Trade-Deal-Standard/">Collateralized Trade Deal Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Enhanced-Identity-System/">Enhanced Identity System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Diamond-Factory-Standard/">Diamond Factory Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Carbon-Credit-Standard/">Carbon Credit Standard</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Developer Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/development-environment-setup/">Development Environment Setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/testing-frameworks/">Testing Frameworks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/debugging/">Debugging</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/performance-optimization/">Performance Optimization</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/test-case-specifications/">Test Case Specifications</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/test-data-management/">Test Data Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/automated-testing-setup/">Automated Testing Setup</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Deployment Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../deployment-guides/multi-network-deployment/">Multi-Network Deployment</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../deployment-guides/infrastructure-management/">Infrastructure Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../deployment-guides/monitoring-logging/">Monitoring and Logging</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">User Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-administrator-guide/">Administrator Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-deployer-guide/">Deployer Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-integrator-guide/">Integrator Guide</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Integrator's Guide</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/authentication/">Authentication</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/rest-api/">REST API</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/smart-contracts/">Smart Contracts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/dfns/">DFNS Integration</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/parse-server/">Parse Server Notes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/webhooks/">Webhooks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/error-handling/">Error Handling</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/sample-code/">Sample Code</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/integration-patterns/">Integration Patterns</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/testing/">Testing Considerations</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/security/">Security</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../external-services/gemforce-external-services/">External Services</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Security</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security/threat-model/">Threat Model and Risk Assessment</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security/incident-response/">Incident Response Procedures</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security/audit-compliance/">Security Audits and Compliance</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">External Developer Integration</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/api-rate-limiting/">API Rate Limiting</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/webhook-implementation-guidelines/">Webhook Implementation Guidelines</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/sdk-development-guidelines/">SDK Development Guidelines</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/partner-integration-guides/">Partner Integration Guides</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-documentation-gap-analysis/">Documentation Gap Analysis</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../documentation-progress-summary/">Documentation Progress Summary</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../documentation-plan/">Documentation Plan</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Configuration & Environment</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/gemforce-config/">Gemforce Config</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/environment-specific-guides/">Environment-Specific Guides</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/configuration-validation/">Configuration Validation Procedures</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/external-service-config-management/">External Service Configuration Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/database-schema-overview/">Database Schema Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/database-migration-procedures/">Database Migration Procedures</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">Gemforce Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Smart Contracts</li>
+          <li class="breadcrumb-item">Interfaces</li>
+      <li class="breadcrumb-item active">IERC1155Mint</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="ierc1155mint-interface">IERC1155Mint Interface<a class="headerlink" href="#ierc1155mint-interface" title="Permanent link">&para;</a></h1>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>The <a href="./"><code>IERC1155Mint</code></a> interface defines the standard contract for minting ERC1155 tokens within the Gemforce platform. This interface extends the standard ERC1155 functionality by providing controlled minting capabilities for multi-token contracts, enabling the creation of fungible, non-fungible, and semi-fungible tokens with flexible quantity management.</p>
+<h2 id="key-features">Key Features<a class="headerlink" href="#key-features" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Flexible Token Minting</strong>: Support for minting single and multiple token types</li>
+<li><strong>Recipient Control</strong>: Mint tokens to specific addresses or caller</li>
+<li><strong>Batch Operations</strong>: Efficient batch minting for multiple token types</li>
+<li><strong>Quantity Management</strong>: Precise control over minted token quantities</li>
+<li><strong>Event Tracking</strong>: Comprehensive event emission for minting operations</li>
+</ul>
+<h2 id="interface-definition">Interface Definition<a class="headerlink" href="#interface-definition" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span><code><span class="c1">// SPDX-License-Identifier: MIT</span>
+<span class="k">pragma solidity</span><span class="w"> </span><span class="o">&gt;=</span><span class="k">0.8.0</span><span class="p">;</span>
+
+interface<span class="w"> </span>IERC1155Mint<span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Events</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">ERC1155TokenMinted</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">minter</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">id</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">quantity</span>
+<span class="w">    </span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Core Minting Functions</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">mint</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">id</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">quantity</span><span class="p">,</span><span class="w"> </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>data<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">mintTo</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">recipient</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">id</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">quantity</span><span class="p">,</span><span class="w"> </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>data<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">batchMintTo</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">recipient</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>ids<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span>calldata<span class="w"> </span>quantities<span class="p">,</span><span class="w"> </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>data<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="core-functions">Core Functions<a class="headerlink" href="#core-functions" title="Permanent link">&para;</a></h2>
+<h3 id="single-token-minting">Single Token Minting<a class="headerlink" href="#single-token-minting" title="Permanent link">&para;</a></h3>
+<h4 id="mint"><code>mint()</code><a class="headerlink" href="#mint" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">mint</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">id</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">quantity</span><span class="p">,</span><span class="w"> </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>data<span class="p">)</span><span class="w"> </span><span class="kt">external</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Mint tokens of a specified type and quantity to the caller's address.</p>
+<p><strong>Parameters</strong>:
+- <code>id</code> (uint256): The token type identifier to mint
+- <code>quantity</code> (uint256): The amount of tokens to mint
+- <code>data</code> (bytes): Additional data to pass to the recipient (if it's a contract)</p>
+<p><strong>Requirements</strong>:
+- Caller must have minting permissions
+- Token ID must be valid for minting
+- Quantity must be greater than zero
+- Contract must not be paused (if pausable)</p>
+<p><strong>Events Emitted</strong>:
+- <a href="ierc1155-mint.md:8"><code>ERC1155TokenMinted</code></a> with minter address, token ID, and quantity</p>
+<p><strong>Example Usage</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Mint 100 tokens of type 1 to caller</span>
+<span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">1</span><span class="p">;</span>
+<span class="kt">uint256</span><span class="w"> </span><span class="nv">quantity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">100</span><span class="p">;</span>
+<span class="kt">bytes</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>data<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">;</span>
+
+IERC1155Mint<span class="p">(</span>tokenContract<span class="p">).</span>mint<span class="p">(</span>tokenId<span class="p">,</span><span class="w"> </span>quantity<span class="p">,</span><span class="w"> </span>data<span class="p">);</span>
+console<span class="p">.</span>log<span class="p">(</span><span class="s2">&quot;Minted&quot;</span><span class="p">,</span><span class="w"> </span>quantity<span class="p">,</span><span class="w"> </span><span class="s2">&quot;tokens of type&quot;</span><span class="p">,</span><span class="w"> </span>tokenId<span class="p">,</span><span class="w"> </span><span class="s2">&quot;to caller&quot;</span><span class="p">);</span>
+</code></pre></div>
+
+<h4 id="mintto"><code>mintTo()</code><a class="headerlink" href="#mintto" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">mintTo</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">recipient</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">id</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">quantity</span><span class="p">,</span><span class="w"> </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>data<span class="p">)</span><span class="w"> </span><span class="kt">external</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Mint tokens of a specified type and quantity to a specific recipient address.</p>
+<p><strong>Parameters</strong>:
+- <code>recipient</code> (address): The address to receive the minted tokens
+- <code>id</code> (uint256): The token type identifier to mint
+- <code>quantity</code> (uint256): The amount of tokens to mint
+- <code>data</code> (bytes): Additional data to pass to the recipient (if it's a contract)</p>
+<p><strong>Requirements</strong>:
+- Caller must have minting permissions
+- Recipient address must not be zero address
+- Token ID must be valid for minting
+- Quantity must be greater than zero
+- If recipient is a contract, it must implement ERC1155Receiver</p>
+<p><strong>Events Emitted</strong>:
+- <a href="ierc1155-mint.md:8"><code>ERC1155TokenMinted</code></a> with minter address, token ID, and quantity
+- Standard ERC1155 <code>TransferSingle</code> event</p>
+<p><strong>Example Usage</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Mint 50 tokens of type 2 to specific address</span>
+<span class="kt">address</span><span class="w"> </span><span class="nv">recipient</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x742d35Cc6634C0532925a3b8D4C9db96590c6C8C</span><span class="p">;</span>
+<span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">2</span><span class="p">;</span>
+<span class="kt">uint256</span><span class="w"> </span><span class="nv">quantity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">50</span><span class="p">;</span>
+<span class="kt">bytes</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>data<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">;</span>
+
+IERC1155Mint<span class="p">(</span>tokenContract<span class="p">).</span>mintTo<span class="p">(</span>recipient<span class="p">,</span><span class="w"> </span>tokenId<span class="p">,</span><span class="w"> </span>quantity<span class="p">,</span><span class="w"> </span>data<span class="p">);</span>
+console<span class="p">.</span>log<span class="p">(</span><span class="s2">&quot;Minted&quot;</span><span class="p">,</span><span class="w"> </span>quantity<span class="p">,</span><span class="w"> </span><span class="s2">&quot;tokens of type&quot;</span><span class="p">,</span><span class="w"> </span>tokenId<span class="p">,</span><span class="w"> </span><span class="s2">&quot;to&quot;</span><span class="p">,</span><span class="w"> </span>recipient<span class="p">);</span>
+</code></pre></div>
+
+<h3 id="batch-minting">Batch Minting<a class="headerlink" href="#batch-minting" title="Permanent link">&para;</a></h3>
+<h4 id="batchmintto"><code>batchMintTo()</code><a class="headerlink" href="#batchmintto" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">batchMintTo</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">recipient</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>ids<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span>calldata<span class="w"> </span>quantities<span class="p">,</span><span class="w"> </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>data<span class="p">)</span><span class="w"> </span><span class="kt">external</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Efficiently mint multiple token types with specified quantities to a recipient in a single transaction.</p>
+<p><strong>Parameters</strong>:
+- <code>recipient</code> (address): The address to receive all minted tokens
+- <code>ids</code> (uint256[]): Array of token type identifiers to mint
+- <code>quantities</code> (uint256[]): Array of quantities corresponding to each token ID
+- <code>data</code> (bytes): Additional data to pass to the recipient (if it's a contract)</p>
+<p><strong>Requirements</strong>:
+- Caller must have minting permissions
+- Recipient address must not be zero address
+- Arrays must have the same length and not be empty
+- All token IDs must be valid for minting
+- All quantities must be greater than zero
+- If recipient is a contract, it must implement ERC1155Receiver</p>
+<p><strong>Events Emitted</strong>:
+- <a href="ierc1155-mint.md:8"><code>ERC1155TokenMinted</code></a> for each token type minted
+- Standard ERC1155 <code>TransferBatch</code> event</p>
+<p><strong>Gas Optimization</strong>: More efficient than multiple individual mint calls</p>
+<p><strong>Example Usage</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Batch mint multiple token types</span>
+<span class="kt">address</span><span class="w"> </span><span class="nv">recipient</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x742d35Cc6634C0532925a3b8D4C9db96590c6C8C</span><span class="p">;</span>
+
+<span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>tokenIds<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[](</span><span class="m m-Decimal">3</span><span class="p">);</span>
+tokenIds<span class="p">[</span><span class="m m-Decimal">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">1</span><span class="p">;</span><span class="w"> </span><span class="c1">// Common item</span>
+tokenIds<span class="p">[</span><span class="m m-Decimal">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">2</span><span class="p">;</span><span class="w"> </span><span class="c1">// Rare item</span>
+tokenIds<span class="p">[</span><span class="m m-Decimal">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">3</span><span class="p">;</span><span class="w"> </span><span class="c1">// Epic item</span>
+
+<span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>quantities<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[](</span><span class="m m-Decimal">3</span><span class="p">);</span>
+quantities<span class="p">[</span><span class="m m-Decimal">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">100</span><span class="p">;</span><span class="w"> </span><span class="c1">// 100 common items</span>
+quantities<span class="p">[</span><span class="m m-Decimal">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">10</span><span class="p">;</span><span class="w">  </span><span class="c1">// 10 rare items</span>
+quantities<span class="p">[</span><span class="m m-Decimal">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">1</span><span class="p">;</span><span class="w">   </span><span class="c1">// 1 epic item</span>
+
+<span class="kt">bytes</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>data<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">;</span>
+
+IERC1155Mint<span class="p">(</span>tokenContract<span class="p">).</span>batchMintTo<span class="p">(</span>recipient<span class="p">,</span><span class="w"> </span>tokenIds<span class="p">,</span><span class="w"> </span>quantities<span class="p">,</span><span class="w"> </span>data<span class="p">);</span>
+console<span class="p">.</span>log<span class="p">(</span><span class="s2">&quot;Batch minted&quot;</span><span class="p">,</span><span class="w"> </span>tokenIds<span class="p">.</span>length<span class="p">,</span><span class="w"> </span><span class="s2">&quot;token types to&quot;</span><span class="p">,</span><span class="w"> </span>recipient<span class="p">);</span>
+</code></pre></div>
+
+<h2 id="integration-examples">Integration Examples<a class="headerlink" href="#integration-examples" title="Permanent link">&para;</a></h2>
+<h3 id="gaming-item-system">Gaming Item System<a class="headerlink" href="#gaming-item-system" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Gaming platform with different item types</span>
+<span class="k">contract</span><span class="w"> </span><span class="ni">GameItemSystem</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>IERC1155Mint<span class="w"> </span><span class="kt">public</span><span class="w"> </span>gameItems<span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// Item type definitions</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="k">public </span><span class="nv">constant</span><span class="w"> </span>COMMON_SWORD<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">1</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="k">public </span><span class="nv">constant</span><span class="w"> </span>RARE_SHIELD<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">2</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="k">public </span><span class="nv">constant</span><span class="w"> </span>EPIC_ARMOR<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">3</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="k">public </span><span class="nv">constant</span><span class="w"> </span>LEGENDARY_WEAPON<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">4</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// Item rarity and quantities</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">uint256</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>itemRarity<span class="p">;</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">uint256</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>maxSupply<span class="p">;</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">uint256</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>currentSupply<span class="p">;</span>
+
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">PlayerRewardMinted</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>player<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span>itemIds<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span>quantities<span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">QuestRewardDistributed</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>questId<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="p">[]</span><span class="w"> </span>players<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">rewardItemId</span><span class="p">);</span>
+
+<span class="w">    </span><span class="kt">constructor</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">_gameItems</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>gameItems<span class="w"> </span><span class="o">=</span><span class="w"> </span>IERC1155Mint<span class="p">(</span>_gameItems<span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Set up item rarities and max supplies</span>
+<span class="w">        </span>itemRarity<span class="p">[</span>COMMON_SWORD<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">1</span><span class="p">;</span>
+<span class="w">        </span>itemRarity<span class="p">[</span>RARE_SHIELD<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">2</span><span class="p">;</span>
+<span class="w">        </span>itemRarity<span class="p">[</span>EPIC_ARMOR<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">3</span><span class="p">;</span>
+<span class="w">        </span>itemRarity<span class="p">[</span>LEGENDARY_WEAPON<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">4</span><span class="p">;</span>
+
+<span class="w">        </span>maxSupply<span class="p">[</span>COMMON_SWORD<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">10000</span><span class="p">;</span>
+<span class="w">        </span>maxSupply<span class="p">[</span>RARE_SHIELD<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">1000</span><span class="p">;</span>
+<span class="w">        </span>maxSupply<span class="p">[</span>EPIC_ARMOR<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">100</span><span class="p">;</span>
+<span class="w">        </span>maxSupply<span class="p">[</span>LEGENDARY_WEAPON<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">10</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">mintStarterPack</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">player</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyGameMaster<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>itemIds<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[](</span><span class="m m-Decimal">2</span><span class="p">);</span>
+<span class="w">        </span>itemIds<span class="p">[</span><span class="m m-Decimal">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>COMMON_SWORD<span class="p">;</span>
+<span class="w">        </span>itemIds<span class="p">[</span><span class="m m-Decimal">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>RARE_SHIELD<span class="p">;</span>
+
+<span class="w">        </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>quantities<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[](</span><span class="m m-Decimal">2</span><span class="p">);</span>
+<span class="w">        </span>quantities<span class="p">[</span><span class="m m-Decimal">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">1</span><span class="p">;</span><span class="w"> </span><span class="c1">// 1 common sword</span>
+<span class="w">        </span>quantities<span class="p">[</span><span class="m m-Decimal">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">1</span><span class="p">;</span><span class="w"> </span><span class="c1">// 1 rare shield</span>
+
+<span class="w">        </span><span class="c1">// Check supply limits</span>
+<span class="w">        </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>itemIds<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">require</span><span class="p">(</span>
+<span class="w">                </span>currentSupply<span class="p">[</span>itemIds<span class="p">[</span>i<span class="p">]]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>quantities<span class="p">[</span>i<span class="p">]</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span>maxSupply<span class="p">[</span>itemIds<span class="p">[</span>i<span class="p">]],</span>
+<span class="w">                </span><span class="s2">&quot;Would exceed max supply&quot;</span>
+<span class="w">            </span><span class="p">);</span>
+<span class="w">            </span>currentSupply<span class="p">[</span>itemIds<span class="p">[</span>i<span class="p">]]</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span>quantities<span class="p">[</span>i<span class="p">];</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span>gameItems<span class="p">.</span>batchMintTo<span class="p">(</span>player<span class="p">,</span><span class="w"> </span>itemIds<span class="p">,</span><span class="w"> </span>quantities<span class="p">,</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">);</span>
+<span class="w">        </span>emit<span class="w"> </span>PlayerRewardMinted<span class="p">(</span>player<span class="p">,</span><span class="w"> </span>itemIds<span class="p">,</span><span class="w"> </span>quantities<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">mintQuestReward</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">address</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>players<span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">rewardItemId</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">quantityPerPlayer</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyGameMaster<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>players<span class="p">.</span>length<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;No players specified&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalQuantity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>players<span class="p">.</span>length<span class="w"> </span><span class="o">*</span><span class="w"> </span>quantityPerPlayer<span class="p">;</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>
+<span class="w">            </span>currentSupply<span class="p">[</span>rewardItemId<span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>totalQuantity<span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span>maxSupply<span class="p">[</span>rewardItemId<span class="p">],</span>
+<span class="w">            </span><span class="s2">&quot;Would exceed max supply&quot;</span>
+<span class="w">        </span><span class="p">);</span>
+
+<span class="w">        </span>currentSupply<span class="p">[</span>rewardItemId<span class="p">]</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span>totalQuantity<span class="p">;</span>
+
+<span class="w">        </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>players<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>gameItems<span class="p">.</span>mintTo<span class="p">(</span>players<span class="p">[</span>i<span class="p">],</span><span class="w"> </span>rewardItemId<span class="p">,</span><span class="w"> </span>quantityPerPlayer<span class="p">,</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span>emit<span class="w"> </span>QuestRewardDistributed<span class="p">(</span><span class="k">block.number</span><span class="p">,</span><span class="w"> </span>players<span class="p">,</span><span class="w"> </span>rewardItemId<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">mintSpecialEvent</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">player</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">eventItemId</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">quantity</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>eventData
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyGameMaster<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>
+<span class="w">            </span>currentSupply<span class="p">[</span>eventItemId<span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>quantity<span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span>maxSupply<span class="p">[</span>eventItemId<span class="p">],</span>
+<span class="w">            </span><span class="s2">&quot;Would exceed max supply&quot;</span>
+<span class="w">        </span><span class="p">);</span>
+
+<span class="w">        </span>currentSupply<span class="p">[</span>eventItemId<span class="p">]</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span>quantity<span class="p">;</span>
+<span class="w">        </span>gameItems<span class="p">.</span>mintTo<span class="p">(</span>player<span class="p">,</span><span class="w"> </span>eventItemId<span class="p">,</span><span class="w"> </span>quantity<span class="p">,</span><span class="w"> </span>eventData<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getItemInfo</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">itemId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">rarity</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">maxSupplyAmount</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">currentSupplyAmount</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">remainingSupply</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>rarity<span class="w"> </span><span class="o">=</span><span class="w"> </span>itemRarity<span class="p">[</span>itemId<span class="p">];</span>
+<span class="w">        </span>maxSupplyAmount<span class="w"> </span><span class="o">=</span><span class="w"> </span>maxSupply<span class="p">[</span>itemId<span class="p">];</span>
+<span class="w">        </span>currentSupplyAmount<span class="w"> </span><span class="o">=</span><span class="w"> </span>currentSupply<span class="p">[</span>itemId<span class="p">];</span>
+<span class="w">        </span>remainingSupply<span class="w"> </span><span class="o">=</span><span class="w"> </span>maxSupplyAmount<span class="w"> </span><span class="o">-</span><span class="w"> </span>currentSupplyAmount<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">modifier</span><span class="w"> </span>onlyGameMaster<span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Implementation would check for game master role</span>
+<span class="w">        </span>_<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="digital-asset-marketplace">Digital Asset Marketplace<a class="headerlink" href="#digital-asset-marketplace" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Marketplace for digital assets with minting capabilities</span>
+<span class="k">contract</span><span class="w"> </span><span class="ni">DigitalAssetMarketplace</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>IERC1155Mint<span class="w"> </span><span class="kt">public</span><span class="w"> </span>digitalAssets<span class="p">;</span>
+
+<span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">AssetTemplate</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">name</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">description</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">basePrice</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">maxSupply</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">currentSupply</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">creator</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">royaltyPercentage</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">active</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span>AssetTemplate<span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>assetTemplates<span class="p">;</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">bool</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>authorizedCreators<span class="p">;</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="k">public </span><span class="nv">nextAssetId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">1</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">AssetTemplateCreated</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>assetId<span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">name</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>creator<span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">AssetMinted</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>assetId<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>recipient<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">quantity</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">CreatorAuthorized</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>creator<span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="nv">authorized</span><span class="p">);</span>
+
+<span class="w">    </span><span class="kt">constructor</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">_digitalAssets</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>digitalAssets<span class="w"> </span><span class="o">=</span><span class="w"> </span>IERC1155Mint<span class="p">(</span>_digitalAssets<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">createAssetTemplate</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>name<span class="p">,</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>description<span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">basePrice</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">maxSupply</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">royaltyPercentage</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">assetId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>authorizedCreators<span class="p">[</span><span class="k">msg.sender</span><span class="p">],</span><span class="w"> </span><span class="s2">&quot;Not authorized creator&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>maxSupply<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Max supply must be greater than 0&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>royaltyPercentage<span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="m m-Decimal">1000</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Royalty too high&quot;</span><span class="p">);</span><span class="w"> </span><span class="c1">// Max 10%</span>
+
+<span class="w">        </span>assetId<span class="w"> </span><span class="o">=</span><span class="w"> </span>nextAssetId<span class="o">++</span><span class="p">;</span>
+
+<span class="w">        </span>assetTemplates<span class="p">[</span>assetId<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>AssetTemplate<span class="p">({</span>
+<span class="w">            </span>name<span class="o">:</span><span class="w"> </span>name<span class="p">,</span>
+<span class="w">            </span>description<span class="o">:</span><span class="w"> </span>description<span class="p">,</span>
+<span class="w">            </span>basePrice<span class="o">:</span><span class="w"> </span>basePrice<span class="p">,</span>
+<span class="w">            </span>maxSupply<span class="o">:</span><span class="w"> </span>maxSupply<span class="p">,</span>
+<span class="w">            </span>currentSupply<span class="o">:</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">,</span>
+<span class="w">            </span>creator<span class="o">:</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">,</span>
+<span class="w">            </span>royaltyPercentage<span class="o">:</span><span class="w"> </span>royaltyPercentage<span class="p">,</span>
+<span class="w">            </span>active<span class="o">:</span><span class="w"> </span><span class="kt">true</span>
+<span class="w">        </span><span class="p">});</span>
+
+<span class="w">        </span>emit<span class="w"> </span>AssetTemplateCreated<span class="p">(</span>assetId<span class="p">,</span><span class="w"> </span>name<span class="p">,</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">mintAsset</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">assetId</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">recipient</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">quantity</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">payable</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>AssetTemplate<span class="w"> </span>storage<span class="w"> </span>template<span class="w"> </span><span class="o">=</span><span class="w"> </span>assetTemplates<span class="p">[</span>assetId<span class="p">];</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>template<span class="p">.</span>active<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Asset template not active&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>template<span class="p">.</span>currentSupply<span class="w"> </span><span class="o">+</span><span class="w"> </span>quantity<span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span>template<span class="p">.</span>maxSupply<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Would exceed max supply&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalCost</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>template<span class="p">.</span>basePrice<span class="w"> </span><span class="o">*</span><span class="w"> </span>quantity<span class="p">;</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span><span class="k">msg.value</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span>totalCost<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Insufficient payment&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Update supply</span>
+<span class="w">        </span>template<span class="p">.</span>currentSupply<span class="w"> </span><span class="o">+=</span><span class="w"> </span>quantity<span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// Mint the assets</span>
+<span class="w">        </span>digitalAssets<span class="p">.</span>mintTo<span class="p">(</span>recipient<span class="p">,</span><span class="w"> </span>assetId<span class="p">,</span><span class="w"> </span>quantity<span class="p">,</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Handle payments</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">royalty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span>totalCost<span class="w"> </span><span class="o">*</span><span class="w"> </span>template<span class="p">.</span>royaltyPercentage<span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m m-Decimal">10000</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">platformFee</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>totalCost<span class="w"> </span><span class="o">-</span><span class="w"> </span>royalty<span class="p">;</span>
+
+<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>royalty<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">payable</span><span class="p">(</span>template<span class="p">.</span>creator<span class="p">).</span>transfer<span class="p">(</span>royalty<span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// Platform keeps the rest (simplified - would have more complex fee structure)</span>
+
+<span class="w">        </span>emit<span class="w"> </span>AssetMinted<span class="p">(</span>assetId<span class="p">,</span><span class="w"> </span>recipient<span class="p">,</span><span class="w"> </span>quantity<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">batchMintAssets</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>assetIds<span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>quantities<span class="p">,</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">recipient</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">payable</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>assetIds<span class="p">.</span>length<span class="w"> </span><span class="o">==</span><span class="w"> </span>quantities<span class="p">.</span>length<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Array length mismatch&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>assetIds<span class="p">.</span>length<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;No assets specified&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalCost</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// Validate and calculate total cost</span>
+<span class="w">        </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>assetIds<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>AssetTemplate<span class="w"> </span>storage<span class="w"> </span>template<span class="w"> </span><span class="o">=</span><span class="w"> </span>assetTemplates<span class="p">[</span>assetIds<span class="p">[</span>i<span class="p">]];</span>
+<span class="w">            </span><span class="kt">require</span><span class="p">(</span>template<span class="p">.</span>active<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Asset template not active&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="kt">require</span><span class="p">(</span>
+<span class="w">                </span>template<span class="p">.</span>currentSupply<span class="w"> </span><span class="o">+</span><span class="w"> </span>quantities<span class="p">[</span>i<span class="p">]</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span>template<span class="p">.</span>maxSupply<span class="p">,</span>
+<span class="w">                </span><span class="s2">&quot;Would exceed max supply&quot;</span>
+<span class="w">            </span><span class="p">);</span>
+
+<span class="w">            </span>totalCost<span class="w"> </span><span class="o">+=</span><span class="w"> </span>template<span class="p">.</span>basePrice<span class="w"> </span><span class="o">*</span><span class="w"> </span>quantities<span class="p">[</span>i<span class="p">];</span>
+<span class="w">            </span>template<span class="p">.</span>currentSupply<span class="w"> </span><span class="o">+=</span><span class="w"> </span>quantities<span class="p">[</span>i<span class="p">];</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span><span class="k">msg.value</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span>totalCost<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Insufficient payment&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Mint all assets</span>
+<span class="w">        </span>digitalAssets<span class="p">.</span>batchMintTo<span class="p">(</span>recipient<span class="p">,</span><span class="w"> </span>assetIds<span class="p">,</span><span class="w"> </span>quantities<span class="p">,</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Handle payments (simplified)</span>
+<span class="w">        </span><span class="c1">// In practice, would calculate individual royalties per creator</span>
+
+<span class="w">        </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>assetIds<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>emit<span class="w"> </span>AssetMinted<span class="p">(</span>assetIds<span class="p">[</span>i<span class="p">],</span><span class="w"> </span>recipient<span class="p">,</span><span class="w"> </span>quantities<span class="p">[</span>i<span class="p">]);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">setCreatorAuthorization</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">creator</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="nv">authorized</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyOwner<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>authorizedCreators<span class="p">[</span>creator<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>authorized<span class="p">;</span>
+<span class="w">        </span>emit<span class="w"> </span>CreatorAuthorized<span class="p">(</span>creator<span class="p">,</span><span class="w"> </span>authorized<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getAssetInfo</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">assetId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>
+<span class="w">        </span>AssetTemplate<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>template<span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">remainingSupply</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>template<span class="w"> </span><span class="o">=</span><span class="w"> </span>assetTemplates<span class="p">[</span>assetId<span class="p">];</span>
+<span class="w">        </span>remainingSupply<span class="w"> </span><span class="o">=</span><span class="w"> </span>template<span class="p">.</span>maxSupply<span class="w"> </span><span class="o">-</span><span class="w"> </span>template<span class="p">.</span>currentSupply<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">modifier</span><span class="w"> </span>onlyOwner<span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Implementation would check for owner role</span>
+<span class="w">        </span>_<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="collectible-card-system">Collectible Card System<a class="headerlink" href="#collectible-card-system" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Trading card game with different card rarities</span>
+<span class="k">contract</span><span class="w"> </span><span class="ni">CollectibleCardSystem</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>IERC1155Mint<span class="w"> </span><span class="kt">public</span><span class="w"> </span>gameCards<span class="p">;</span>
+
+<span class="w">    </span><span class="kt">enum</span><span class="w"> </span><span class="nv">CardRarity</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>COMMON<span class="p">,</span><span class="w"> </span>UNCOMMON<span class="p">,</span><span class="w"> </span>RARE<span class="p">,</span><span class="w"> </span>EPIC<span class="p">,</span><span class="w"> </span>LEGENDARY<span class="w"> </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">CardTemplate</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">name</span><span class="p">;</span>
+<span class="w">        </span>CardRarity<span class="w"> </span>rarity<span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">attack</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">defense</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">cost</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">artwork</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">active</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span>CardTemplate<span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>cardTemplates<span class="p">;</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span>CardRarity<span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">uint256</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>packProbabilities<span class="p">;</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">uint256</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>playerPacksOpened<span class="p">;</span>
+
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="k">public </span><span class="nv">nextCardId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">1</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="k">public </span><span class="nv">packPrice</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">.</span><span class="m m-Decimal">01</span><span class="w"> </span>ether<span class="p">;</span>
+
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">CardTemplateCreated</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>cardId<span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">name</span><span class="p">,</span><span class="w"> </span>CardRarity<span class="w"> </span>rarity<span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">PackOpened</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>player<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span>cardIds<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span>quantities<span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">CardMinted</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>cardId<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>recipient<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">quantity</span><span class="p">);</span>
+
+<span class="w">    </span><span class="kt">constructor</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">_gameCards</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>gameCards<span class="w"> </span><span class="o">=</span><span class="w"> </span>IERC1155Mint<span class="p">(</span>_gameCards<span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Set pack probabilities (out of 10000)</span>
+<span class="w">        </span>packProbabilities<span class="p">[</span>CardRarity<span class="p">.</span>COMMON<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">5000</span><span class="p">;</span><span class="w">    </span><span class="c1">// 50%</span>
+<span class="w">        </span>packProbabilities<span class="p">[</span>CardRarity<span class="p">.</span>UNCOMMON<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">3000</span><span class="p">;</span><span class="w">  </span><span class="c1">// 30%</span>
+<span class="w">        </span>packProbabilities<span class="p">[</span>CardRarity<span class="p">.</span>RARE<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">1500</span><span class="p">;</span><span class="w">      </span><span class="c1">// 15%</span>
+<span class="w">        </span>packProbabilities<span class="p">[</span>CardRarity<span class="p">.</span>EPIC<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">450</span><span class="p">;</span><span class="w">       </span><span class="c1">// 4.5%</span>
+<span class="w">        </span>packProbabilities<span class="p">[</span>CardRarity<span class="p">.</span>LEGENDARY<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">50</span><span class="p">;</span><span class="w">   </span><span class="c1">// 0.5%</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">createCardTemplate</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>name<span class="p">,</span>
+<span class="w">        </span>CardRarity<span class="w"> </span>rarity<span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">attack</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">defense</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">cost</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>artwork
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyGameDesigner<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">cardId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>cardId<span class="w"> </span><span class="o">=</span><span class="w"> </span>nextCardId<span class="o">++</span><span class="p">;</span>
+
+<span class="w">        </span>cardTemplates<span class="p">[</span>cardId<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>CardTemplate<span class="p">({</span>
+<span class="w">            </span>name<span class="o">:</span><span class="w"> </span>name<span class="p">,</span>
+<span class="w">            </span>rarity<span class="o">:</span><span class="w"> </span>rarity<span class="p">,</span>
+<span class="w">            </span>attack<span class="o">:</span><span class="w"> </span>attack<span class="p">,</span>
+<span class="w">            </span>defense<span class="o">:</span><span class="w"> </span>defense<span class="p">,</span>
+<span class="w">            </span>cost<span class="o">:</span><span class="w"> </span>cost<span class="p">,</span>
+<span class="w">            </span>artwork<span class="o">:</span><span class="w"> </span>artwork<span class="p">,</span>
+<span class="w">            </span>active<span class="o">:</span><span class="w"> </span><span class="kt">true</span>
+<span class="w">        </span><span class="p">});</span>
+
+<span class="w">        </span>emit<span class="w"> </span>CardTemplateCreated<span class="p">(</span>cardId<span class="p">,</span><span class="w"> </span>name<span class="p">,</span><span class="w"> </span>rarity<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">openBoosterPack</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">player</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">payable</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span><span class="k">msg.value</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span>packPrice<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Insufficient payment for pack&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>cardIds<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[](</span><span class="m m-Decimal">5</span><span class="p">);</span><span class="w"> </span><span class="c1">// 5 cards per pack</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>quantities<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[](</span><span class="m m-Decimal">5</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Generate 5 random cards based on rarity probabilities</span>
+<span class="w">        </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m m-Decimal">5</span><span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>cardIds<span class="p">[</span>i<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>_generateRandomCard<span class="p">();</span>
+<span class="w">            </span>quantities<span class="p">[</span>i<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">1</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// Mint the cards</span>
+<span class="w">        </span>gameCards<span class="p">.</span>batchMintTo<span class="p">(</span>player<span class="p">,</span><span class="w"> </span>cardIds<span class="p">,</span><span class="w"> </span>quantities<span class="p">,</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">);</span>
+
+<span class="w">        </span>playerPacksOpened<span class="p">[</span>player<span class="p">]</span><span class="o">++</span><span class="p">;</span>
+<span class="w">        </span>emit<span class="w"> </span>PackOpened<span class="p">(</span>player<span class="p">,</span><span class="w"> </span>cardIds<span class="p">,</span><span class="w"> </span>quantities<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">mintSpecialCard</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">recipient</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">cardId</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">quantity</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>eventData
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyGameDesigner<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>
+<span class="w">            </span>currentSupply<span class="p">[</span>cardId<span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>quantity<span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span>maxSupply<span class="p">[</span>cardId<span class="p">],</span>
+<span class="w">            </span><span class="s2">&quot;Would exceed max supply&quot;</span>
+<span class="w">        </span><span class="p">);</span>
+
+<span class="w">        </span>currentSupply<span class="p">[</span>cardId<span class="p">]</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span>quantity<span class="p">;</span>
+<span class="w">        </span>gameCards<span class="p">.</span>mintTo<span class="p">(</span>recipient<span class="p">,</span><span class="w"> </span>cardId<span class="p">,</span><span class="w"> </span>quantity<span class="p">,</span><span class="w"> </span>eventData<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getItemInfo</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">itemId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">rarity</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">maxSupplyAmount</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">currentSupplyAmount</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">remainingSupply</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>rarity<span class="w"> </span><span class="o">=</span><span class="w"> </span>itemRarity<span class="p">[</span>itemId<span class="p">];</span>
+<span class="w">        </span>maxSupplyAmount<span class="w"> </span><span class="o">=</span><span class="w"> </span>maxSupply<span class="p">[</span>itemId<span class="p">];</span>
+<span class="w">        </span>currentSupplyAmount<span class="w"> </span><span class="o">=</span><span class="w"> </span>currentSupply<span class="p">[</span>itemId<span class="p">];</span>
+<span class="w">        </span>remainingSupply<span class="w"> </span><span class="o">=</span><span class="w"> </span>maxSupplyAmount<span class="w"> </span><span class="o">-</span><span class="w"> </span>currentSupplyAmount<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">modifier</span><span class="w"> </span>onlyGameDesigner<span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Implementation would check for game master role</span>
+<span class="w">        </span>_<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="security-considerations">Security Considerations<a class="headerlink" href="#security-considerations" title="Permanent link">&para;</a></h2>
+<h3 id="access-control">Access Control<a class="headerlink" href="#access-control" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Authorized Minting</strong>: Only authorized entities can mint tokens</li>
+<li><strong>Recipient Validation</strong>: Validate recipient addresses</li>
+<li><strong>Supply Limits</strong>: Enforce max supply per token type</li>
+</ul>
+<h3 id="supply-management">Supply Management<a class="headerlink" href="#supply-management" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Controlled Minting</strong>: Prevent over-minting</li>
+<li><strong>Supply Tracking</strong>: Track current supply and remaining supply</li>
+<li><strong>Burn Functions</strong>: Provide burn functionality for tokens (if needed)</li>
+</ul>
+<h3 id="recipient-validation">Recipient Validation<a class="headerlink" href="#recipient-validation" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>ERC1155Receiver</strong>: Ensure contract recipients implement ERC1155Receiver</li>
+<li><strong>Zero Address Check</strong>: Prevent minting to zero address</li>
+</ul>
+<h2 id="gas-optimization">Gas Optimization<a class="headerlink" href="#gas-optimization" title="Permanent link">&para;</a></h2>
+<h3 id="efficient-operations">Efficient Operations<a class="headerlink" href="#efficient-operations" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Batch Minting</strong>: <code>batchMintTo</code> for efficient multi-token minting</li>
+<li><strong>Single Transactions</strong>: Minimize multiple transaction calls</li>
+<li><strong>Gas-Efficient Logic</strong>: Optimize internal minting logic</li>
+</ul>
+<h3 id="storage-optimization">Storage Optimization<a class="headerlink" href="#storage-optimization" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Minimal Storage</strong>: Store only essential token data</li>
+<li><strong>Packed Structs</strong>: Use packed structs for data structures</li>
+<li><strong>Mapping Usage</strong>: Efficient use of mappings for fast lookups</li>
+</ul>
+<h2 id="error-handling">Error Handling<a class="headerlink" href="#error-handling" title="Permanent link">&para;</a></h2>
+<h3 id="common-errors">Common Errors<a class="headerlink" href="#common-errors" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>IERC1155Mint: Unauthorized Minter</code>: Caller does not have minting permissions</li>
+<li><code>IERC1155Mint: Invalid Recipient</code>: Recipient address is zero or invalid</li>
+<li><code>IERC1155Mint: Invalid Token ID</code>: Token ID is invalid or not configured</li>
+<li><code>IERC1155Mint: Quantity Exceeds Supply</code>: Minting would exceed max supply</li>
+<li><code>IERC1155Mint: Zero Quantity</code>: Attempting to mint zero tokens</li>
+</ul>
+<h2 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h2>
+<h3 id="integration-checklist">Integration Checklist<a class="headerlink" href="#integration-checklist" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Implement robust access control for minting functions</li>
+<li>Integrate with off-chain systems for supply management and analytics</li>
+<li>Validate all input parameters before minting</li>
+<li>Handle ERC1155Receiver callbacks for contract recipients</li>
+</ul>
+<h3 id="development-guidelines">Development Guidelines<a class="headerlink" href="#development-guidelines" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Write comprehensive unit tests for all minting scenarios</li>
+<li>Monitor events for real-time tracking of token supply</li>
+<li>Use secure random number generation for unique token IDs (if applicable)</li>
+<li>Consider upgradability for future token features</li>
+</ul>
+<h2 id="related-documentation">Related Documentation<a class="headerlink" href="#related-documentation" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../../facets/multi-sale-facet/">Multi Sale Facet</a> - For multi-token sales using ERC1155.</li>
+<li><a href="../ierc721a/">ERC721A Interface</a> - For comparison with ERC721 minting.</li>
+<li><a href="../../../sdk-libraries/blockchain/">SDK &amp; Libraries: Blockchain Utilities</a> - General blockchain interaction utilities.</li>
+<li><a href="../../../developer-guides/automated-testing-setup/">Developer Guides: Automated Testing Setup</a></li>
+<li><a href="../../../developer-guides/development-environment-setup/">Developer Guides: Development Environment Setup</a></li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../icarbon-credit/" class="btn btn-neutral float-left" title="ICarbonCredit"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../ierc734/" class="btn btn-neutral float-right" title="IERC734">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../icarbon-credit/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../ierc734/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

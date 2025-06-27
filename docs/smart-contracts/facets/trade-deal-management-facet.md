@@ -2,7 +2,7 @@
 
 ## Overview
 
-The [`TradeDealManagementFacet.sol`](/Users/sschepis/Development/gem-base/contracts/facets/TradeDealManagementFacet.sol) provides comprehensive CRUD (Create, Read, Update, Delete) operations and basic management functionality for trade deals within the Gemforce diamond system. This facet enables the creation and management of collateralized trade deals for invoice financing and other financial instruments.
+The [`TradeDealManagementFacet.sol`](../../smart-contracts/facets/trade-deal-management-facet.md) provides comprehensive CRUD (Create, Read, Update, Delete) operations and basic management functionality for trade deals within the Gemforce diamond system. This facet enables the creation and management of collateralized trade deals for invoice financing and other financial instruments.
 
 ## Contract Details
 
@@ -121,7 +121,7 @@ uint256 tradeDealId = ITradeDeal(diamond).createTradeDeal(
     [1, 2, 3], // Required claim topics
     collateralTokenAddress,
     interestTokenAddress,
-    usdcTokenAddress,
+    usdcAddress,
     TradeDealLib.OperationMode.STANDARD
 );
 ```
@@ -357,13 +357,13 @@ address interestToken = deployInterestToken();
 
 // Create trade deal for invoice financing
 uint256 tradeDealId = ITradeDeal(diamond).createTradeDeal(
-    "Q1 2024 Invoice Financing",
-    "Q1IF24",
-    800,  // 8% annual interest rate
-    120,  // 1.2x collateral ratio
-    [1, 2], // KYC and accreditation claims required
-    collateralToken,
-    interestToken,
+    "Invoice Financing Deal #1",
+    "IFD1",
+    750,  // 7.5% interest rate
+    150,  // 1.5x collateral ratio
+    [1, 2, 3], // Required claim topics
+    collateralTokenAddress,
+    interestTokenAddress,
     usdcAddress,
     TradeDealLib.OperationMode.STANDARD
 );
@@ -476,9 +476,10 @@ ITradeDeal(diamond).updateTradeDeal(
 ## Related Documentation
 
 - [TradeDealOperationsFacet](trade-deal-operations-facet.md) - Trade deal operations
-- [ITradeDeal](../interfaces/itrade-deal.md) - Trade deal interface
+- [ITradeDeal Interface](../interfaces/itradedeal.md) - Trade deal interface
 - [TradeDealLib](../libraries/trade-deal-lib.md) - Trade deal utility library
 - [EIP-DRAFT-Collateralized-Trade-Deal-Standard](../../eips/EIP-DRAFT-Collateralized-Trade-Deal-Standard.md) - EIP specification
+- [Integrator's Guide: Smart Contracts](../../integrator-guide/smart-contracts.md)
 
 ---
 

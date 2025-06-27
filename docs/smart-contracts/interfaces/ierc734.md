@@ -2,7 +2,7 @@
 
 ## Overview
 
-The [`IERC734`](../../../contracts/interfaces/IERC734.sol) interface defines the Key Manager standard for decentralized identity management within the Gemforce platform. This interface implements the ERC-734 standard for managing cryptographic keys associated with identity contracts, enabling multi-signature operations, role-based access control, and secure execution of transactions through key-based authorization.
+The `IERC734` interface defines the Key Manager standard for decentralized identity management within the Gemforce platform. This interface implements the ERC-734 standard for managing cryptographic keys associated with identity contracts, enabling multi-signature operations, role-based access control, and secure execution of transactions through key-based authorization.
 
 ## Key Features
 
@@ -83,7 +83,7 @@ function addKey(bytes32 _key, uint256 _purpose, uint256 _keyType) external
 - Purpose and key type must be valid
 
 **Events Emitted**:
-- [`KeyAdded`](ierc734.md:8) with key, purpose, and key type
+- `KeyAdded` with key, purpose, and key type
 
 **Example Usage**:
 ```solidity
@@ -113,7 +113,7 @@ function removeKey(bytes32 _key, uint256 _purpose) external
 - Cannot remove the last management key
 
 **Events Emitted**:
-- [`KeyRemoved`](ierc734.md:9) with key, purpose, and key type
+- `KeyRemoved` with key, purpose, and key type
 
 **Example Usage**:
 ```solidity
@@ -144,9 +144,9 @@ function approve(uint256 _id, bool _approve) external
 - Caller must not have already voted on this execution
 
 **Events Emitted**:
-- [`Approved`](ierc734.md:18) with execution ID and approval status
-- [`Executed`](ierc734.md:16) if execution is approved and executed successfully
-- [`ExecutionFailed`](ierc734.md:17) if execution is approved but fails
+- `Approved` with execution ID and approval status
+- `Executed` if execution is approved and executed successfully
+- `ExecutionFailed` if execution is approved but fails
 
 **Example Usage**:
 ```solidity
@@ -501,243 +501,106 @@ contract IdentityAccessControl {
 
 ### Decentralized Identity Provider
 ```solidity
-// Identity provider service using ERC-734
+// Decentralized Identity Provider for issuing claims
 contract DecentralizedIdentityProvider {
-    IERC734 public keyManager;
+    IERC735 public identityContract;
     
-    struct IdentityProfile {
-        string name;
-        string email;
-        string organization;
-        uint256 createdAt;
-        uint256 lastUpdated;
-        bool verified;
-        mapping(string => string) attributes;
+    event ClaimIssued(address indexed identity, bytes32 indexed claimId, bytes32 claimTopic);
+    
+    constructor(address _identityContract) {
+        identityContract = IERC735(_identityContract);
     }
     
-    mapping(address => IdentityProfile) public profiles;
-    mapping(bytes32 => address) public keyToIdentity;
-    mapping(address => bytes32[]) public identityKeys;
-    
-    event IdentityCreated(address indexed identity, string name);
-    event IdentityUpdated(address indexed identity, string attribute, string value);
-    event IdentityVerified(address indexed identity, address indexed verifier);
-    event KeyLinked(address indexed identity, bytes32 indexed key, uint256 purpose);
-    
-    constructor(address _keyManager) {
-        keyManager = IERC734(_keyManager);
+    function issueClaim(
+        address targetIdentity,
+        bytes32 claimId,
+        uint256 claimTopic,
+        uint256 scheme,
+        address issuer,
+        bytes memory signature,
+        bytes memory data,
+        string memory uri
+    ) external onlyTrustedIssuer {
+        // Ensure the issuer is a trusted issuer for the claimTopic
+        require(identityContract.isTrustedIssuer(issuer, claimTopic), "Issuer not trusted for this topic");
+        
+        identityContract.addClaim(
+            claimId,
+            claimTopic,
+            scheme,
+            issuer,
+            signature,
+            data,
+            uri
+        );
+        emit ClaimIssued(targetIdentity, claimId, claimTopic);
     }
     
-    function createIdentity(
-        string memory name,
-        string memory email,
-        string memory organization
-    ) external {
-        require(profiles[msg.sender].createdAt == 0, "Identity already exists");
-        
-        IdentityProfile storage profile = profiles[msg.sender];
-        profile.name = name;
-        profile.email = email;
-        profile.organization = organization;
-        profile.createdAt = block.timestamp;
-        profile.lastUpdated = block.timestamp;
-        profile.verified = false;
-        
-        // Link primary key
-        bytes32 primaryKey = keccak256(abi.encodePacked(msg.sender));
-        keyToIdentity[primaryKey] = msg.sender;
-        identityKeys[msg.sender].push(primaryKey);
-        
-        emit IdentityCreated(msg.sender, name);
-        emit KeyLinked(msg.sender, primaryKey, 1); // MANAGEMENT_KEY
+    function revokeClaim(address targetIdentity, bytes32 claimId) external onlyTrustedIssuer {
+        identityContract.removeClaim(claimId);
+        emit ClaimRevoked(targetIdentity, claimId);
     }
     
-    function updateAttribute(string memory attribute, string memory value) external {
-        require(profiles[msg.sender].createdAt > 0, "Identity does not exist");
-        
-        profiles[msg.sender].attributes[attribute] = value;
-        profiles[msg.sender].lastUpdated = block.timestamp;
-        
-        emit IdentityUpdated(msg.sender, attribute, value);
-    }
-    
-    function linkKey(bytes32 key, uint256 purpose) external {
-        require(profiles[msg.sender].createdAt > 0, "Identity does not exist");
-        require(keyToIdentity[key] == address(0), "Key already linked");
-        
-        keyToIdentity[key] = msg.sender;
-        identityKeys[msg.sender].push(key);
-        
-        emit KeyLinked(msg.sender, key, purpose);
-    }
-    
-    function verifyIdentity(address identity) external onlyVerifier {
-        require(profiles[identity].createdAt > 0, "Identity does not exist");
-        
-        profiles[identity].verified = true;
-        profiles[identity].lastUpdated = block.timestamp;
-        
-        emit IdentityVerified(identity, msg.sender);
-    }
-    
-    function getIdentityProfile(address identity) external view returns (
-        string memory name,
-        string memory email,
-        string memory organization,
-        uint256 createdAt,
-        uint256 lastUpdated,
-        bool verified,
-        uint256 keyCount
+    function getClaim(address targetIdentity, bytes32 claimId) external view returns (
+        uint256 claimTopic,
+        uint256 scheme,
+        address issuer,
+        bytes memory signature,
+        bytes memory data,
+        string memory uri
     ) {
-        IdentityProfile storage profile = profiles[identity];
-        name = profile.name;
-        email = profile.email;
-        organization = profile.organization;
-        createdAt = profile.createdAt;
-        lastUpdated = profile.lastUpdated;
-        verified = profile.verified;
-        keyCount = identityKeys[identity].length;
+        (claimTopic, scheme, issuer, signature, data, uri) = identityContract.getClaim(claimId);
     }
     
-    function getAttribute(address identity, string memory attribute) external view returns (string memory) {
-        return profiles[identity].attributes[attribute];
-    }
-    
-    function getIdentityKeys(address identity) external view returns (bytes32[] memory) {
-        return identityKeys[identity];
-    }
-    
-    function resolveKeyToIdentity(bytes32 key) external view returns (address) {
-        return keyToIdentity[key];
-    }
-    
-    modifier onlyVerifier() {
-        // Implementation would check for verifier role
+    modifier onlyTrustedIssuer() {
+        // Check if msg.sender is a trusted issuer
         _;
     }
 }
 ```
 
-## Events
-
-### Key Management Events
-```solidity
-event KeyAdded(
-    bytes32 indexed key,        // Key identifier
-    uint256 indexed purpose,    // Key purpose
-    uint256 indexed keyType     // Key type
-);
-
-event KeyRemoved(
-    bytes32 indexed key,        // Key identifier
-    uint256 indexed purpose,    // Key purpose
-    uint256 indexed keyType     // Key type
-);
-```
-
-### Execution Management Events
-```solidity
-event ExecutionRequested(
-    uint256 indexed executionId,    // Execution identifier
-    address indexed to,             // Target address
-    uint256 indexed value,          // ETH value
-    bytes data                      // Call data
-);
-
-event Executed(
-    uint256 indexed executionId,    // Execution identifier
-    address indexed to,             // Target address
-    uint256 indexed value,          // ETH value
-    bytes data                      // Call data
-);
-
-event ExecutionFailed(
-    uint256 indexed executionId,    // Execution identifier
-    address indexed to,             // Target address
-    uint256 indexed value,          // ETH value
-    bytes data                      // Call data
-);
-
-event Approved(
-    uint256 indexed executionId,    // Execution identifier
-    bool approved                   // Approval status
-);
-```
-
 ## Security Considerations
 
 ### Key Management Security
-- Secure key generation and storage
-- Prevention of key reuse across purposes
-- Protection against key compromise
-- Secure key rotation procedures
+- **Secure Key Storage**: Advise users on secure storage of private keys.
+- **Key Rotation**: Implement key rotation mechanisms to mitigate compromised keys.
+- **Multi-Factor Authentication**: Encourage MFA for sensitive operations.
+- **Hardware Security Modules**: Recommend HSMs for high-value keys.
 
 ### Access Control
-- Proper validation of key purposes and types
-- Prevention of unauthorized key additions/removals
-- Protection of management keys
-- Secure execution approval mechanisms
+- **Purpose Enforcement**: Strictly enforce key purposes for authorized operations.
+- **Role-Based Access**: Implement role-based access control for administrative functions.
+- **Least Privilege**: Grant only necessary permissions to keys and roles.
 
 ### Multi-Signature Security
-- Threshold signature validation
-- Prevention of replay attacks
-- Secure nonce management
-- Protection against front-running
+- **Threshold Control**: Configure appropriate multi-signature thresholds.
+- **Disaster Recovery**: Implement multi-sig procedures for disaster recovery.
+- **Audit Trails**: Maintain comprehensive audit trails for multi-sig operations.
 
-## Gas Optimization
+## Best Practices
 
-### Efficient Operations
-- Batch key operations where possible
-- Optimized storage layout for key data
-- Minimal external calls in view functions
-- Efficient event emission patterns
+### Decentralized Identity Best Practices
+- **Self-Sovereign Identity**: Empower users with control over their identity data.
+- **Privacy by Design**: Incorporate privacy-preserving features from concept to deployment.
+- **Interoperability**: Adhere to open standards (ERC-734, ERC-735, W3C DID) for broad compatibility.
+- **User Experience**: Design intuitive interfaces for identity management.
 
-### Storage Optimization
-- Packed storage structures for key data
-- Efficient mapping usage for key lookups
-- Optimized array operations for key lists
-- Cached calculations for frequently accessed data
-
-## Error Handling
-
-### Common Errors
-- Unauthorized key management operations
-- Invalid key purposes or types
-- Non-existent keys or executions
-- Insufficient approvals for execution
-- Key already exists or doesn't exist
-
-### Best Practices
-- Validate caller permissions before operations
-- Check key existence before modifications
-- Verify execution requirements before approval
-- Handle edge cases gracefully
-- Provide clear error messages for debugging
-
-## Testing Considerations
-
-### Unit Tests
-- Interface compliance verification
-- Key management function testing
-- Execution approval and execution testing
-- Event emission verification
-- Access control validation
-
-### Integration Tests
-- Multi-signature workflow testing
-- Identity provider integration
-- Access control system integration
-- Cross-contract key validation
-- Security scenario testing
+### Implementation Guidelines
+- **Modular Design**: Build identities with modular components for flexibility.
+- **Upgradeable Contracts**: Design for upgradeability to adapt to evolving standards.
+- **Comprehensive Testing**: Rigorous testing for all identity functionalities and edge cases.
+- **Security Audits**: Conduct regular security audits on identity contracts and systems.
 
 ## Related Documentation
 
-- [IERC735](ierc735.md) - Claim Holder interface for identity claims
-- [IdentityRegistryFacet](../facets/identity-registry-facet.md) - Identity registry implementation
-- [TrustedIssuersRegistryFacet](../facets/trusted-issuers-registry-facet.md) - Trusted issuer management
-- [Identity System Guide](../../guides/identity-system.md) - Implementation guide for identity management
-- [Multi-Signature Guide](../../guides/multi-signature.md) - Multi-signature implementation patterns
+- [ERC-735 Interface](ierc735.md)
+- [Identity Registry Facet](../facets/identity-registry-facet.md)
+- [Trusted Issuers Registry Facet](../facets/trusted-issuers-registry-facet.md)
+- [Developer Guides: Automated Testing Setup](../../developer-guides/automated-testing-setup.md)
+- [Developer Guides: Performance Optimization](../../developer-guides/performance-optimization.md)
 
----
+## Standards Compliance
 
-*This interface defines the Key Manager standard (ERC-734) for decentralized identity management within the Gemforce platform, enabling secure multi-key management, role-based access control, and multi-signature transaction execution.*
+- **ERC-734**: Key Manager Standard
+- **ERC-735**: Claim Holder Standard
+- **ERC-165**: Interface detection support

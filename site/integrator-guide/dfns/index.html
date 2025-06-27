@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Gemforce Team" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>DFNS Integration - Gemforce Documentation</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "DFNS Integration";
+        var mkdocs_page_input_path = "integrator-guide/dfns.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Gemforce Documentation
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../developer-setup-guide/">Developer Setup Guide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../system-architecture/gemforce-system-architecture/">System Architecture</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Smart Contracts</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../smart-contracts/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../smart-contracts/diamond/">Diamond Contract</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../smart-contracts/diamond-factory/">Diamond Factory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../smart-contracts/identity-factory/">Identity Factory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Facets</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/marketplace-facet/">Marketplace Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/trade-deal-management-facet/">Trade Deal Management Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/carbon-credit-facet/">Carbon Credit Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/identity-registry-facet/">Identity Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/trusted-issuers-registry-facet/">Trusted Issuers Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/fee-distributor-facet/">Fee Distributor Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/gemforce-minter-facet/">Gemforce Minter Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/multi-sale-facet/">Multi Sale Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/svg-templates-facet/">SVG Templates Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/trade-deal-admin-facet/">Trade Deal Admin Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/trade-deal-operations-facet/">Trade Deal Operations Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/collateral-token-factory-facet/">Collateral Token Factory Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/diamond-cut-facet/">Diamond Cut Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/diamond-loupe-facet/">Diamond Loupe Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/ownership-facet/">Ownership Facet</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Interfaces</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/idiamond/">IDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/imarketplace/">IMarketplace</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/itradedeal/">ITradeDeal</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/icarbon-credit/">ICarbonCredit</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/ierc1155-mint/">IERC1155Mint</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/ierc734/">IERC734</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/ierc735/">IERC735</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/ierc721a/">IERC721A</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/idiamond-factory/">IDiamondFactory</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/iidentity/">IIdentity</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/imultisale/">IMultiSale</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/ifee-distributor/">IFeeDistributor</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/igemforce-minter-facet/">IGemforceMinterFacet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/iidentity-registry/">IIdentityRegistry</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/itrusted-issuers-registry/">TRUSTEDIssuersRegistry</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/isvg/">ISVG</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/iattribute/">IAttribute</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/ivariable-price/">IVariablePrice</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Libraries</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/carbon-credit-lib/">Carbon Credit Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/trade-deal-lib/">Trade Deal Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/multi-sale-lib/">Multi Sale Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/diamond-factory-lib/">Diamond Factory Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/svg-templates-lib/">SVG Templates Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/attribute-lib/">Attribute Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/variable-price-lib/">Variable Price Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/merkle-prover/">Merkle Prover</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/fee-distributor-lib/">Fee Distributor Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/lib-diamond/">LibDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/diamond-lib/">DiamondLib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/erc721a-lib/">ERC721A Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/erc721a-enumeration-lib/">ERC721A Enumeration Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/strings-lib/">Strings Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/trusted-issuer-lib/">Trusted Issuer Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/set-libraries/">Set Libraries</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">SDK & Libraries</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../sdk-libraries/blockchain/">Blockchain Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../sdk-libraries/diamond/">Diamond Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../sdk-libraries/contract/">Contract Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../sdk-libraries/deploy/">Deployment Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../sdk-libraries/validation-utils/">Validation Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../sdk-libraries/nft-sale-utils/">NFT Sale Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../sdk-libraries/webhooks/">Webhooks Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../smart-contracts/libraries/metadata-lib/">Metadata Library</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Cloud Functions</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/authentication/">Authentication Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/auth-functions/">Auth Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/blockchain/">Blockchain Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/bridge/">Bridge Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/contracts/">Contract Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/deploy/">Deploy Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/dfns/">DFNS Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/project/">Project Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/trade-deal/">Trade Deal Functions</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">API Documentation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api-documentation/gemforce-api-documentation/">Full API Reference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api-documentation/gemforce-api-quick-reference/">Quick Reference</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../gemforce-external-services/">External Services</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../gemforce-system-architecture/">System Architecture</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Operations Tasks</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/diamond/">Diamond Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/identities/">Identity Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/marketplace-management/">Marketplace Management Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/carbon-credit-management/">Carbon Credit Management Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/trade-deal/">Trade Deal Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/integration-test/">Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/integration-test-marketplace/">Marketplace Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/integration-test-trade-deal/">Trade Deal Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/admin-utils/">Admin Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/sync-diamond/">Sync Diamond Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/sync-events/">Sync Events Tasks</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">EIPs (Ethereum Improvement Proposals)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../eips/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../eips/EIP-DRAFT-Diamond-Enhanced-Marketplace/">Diamond-Enhanced Marketplace</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../eips/EIP-DRAFT-Multi-Token-Sale-Standard/">Multi-Token Sale Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../eips/EIP-DRAFT-Collateralized-Trade-Deal-Standard/">Collateralized Trade Deal Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../eips/EIP-DRAFT-Enhanced-Identity-System/">Enhanced Identity System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../eips/EIP-DRAFT-Diamond-Factory-Standard/">Diamond Factory Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../eips/EIP-DRAFT-Carbon-Credit-Standard/">Carbon Credit Standard</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Developer Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../developer-guides/development-environment-setup/">Development Environment Setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../developer-guides/testing-frameworks/">Testing Frameworks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../developer-guides/debugging/">Debugging</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../developer-guides/performance-optimization/">Performance Optimization</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../developer-guides/test-case-specifications/">Test Case Specifications</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../developer-guides/test-data-management/">Test Data Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../developer-guides/automated-testing-setup/">Automated Testing Setup</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Deployment Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../deployment-guides/multi-network-deployment/">Multi-Network Deployment</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../deployment-guides/infrastructure-management/">Infrastructure Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../deployment-guides/monitoring-logging/">Monitoring and Logging</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">User Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../gemforce-administrator-guide/">Administrator Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../gemforce-deployer-guide/">Deployer Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../gemforce-integrator-guide/">Integrator Guide</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Integrator's Guide</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../authentication/">Authentication</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../rest-api/">REST API</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../smart-contracts/">Smart Contracts</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">DFNS Integration</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#overview-of-dfns-in-gemforce">Overview of DFNS in Gemforce</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#core-dfns-concepts">Core DFNS Concepts</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#integration-methods">Integration Methods</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#integration-via-gemforce-cloud-functions">Integration via Gemforce Cloud Functions</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#example-signing-a-transaction-via-gemforce-cloud-function">Example: Signing a Transaction via Gemforce Cloud Function</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#direct-dfns-api-integration-advanced">Direct DFNS API Integration (Advanced)</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#prerequisites">Prerequisites</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#steps-involved">Steps Involved</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example-conceptual-direct-dfns-sdk-usage-typescript">Example (Conceptual Direct DFNS SDK Usage - TypeScript)</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#security-considerations">Security Considerations</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#related-documentation">Related Documentation</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../parse-server/">Parse Server Notes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../webhooks/">Webhooks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../error-handling/">Error Handling</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../sample-code/">Sample Code</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../integration-patterns/">Integration Patterns</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../testing/">Testing Considerations</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../security/">Security</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../external-services/gemforce-external-services/">External Services</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Security</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../security/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../security/threat-model/">Threat Model and Risk Assessment</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../security/incident-response/">Incident Response Procedures</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../security/audit-compliance/">Security Audits and Compliance</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">External Developer Integration</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../external-developer-integration/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../external-developer-integration/api-rate-limiting/">API Rate Limiting</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../external-developer-integration/webhook-implementation-guidelines/">Webhook Implementation Guidelines</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../external-developer-integration/sdk-development-guidelines/">SDK Development Guidelines</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../external-developer-integration/partner-integration-guides/">Partner Integration Guides</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../gemforce-documentation-gap-analysis/">Documentation Gap Analysis</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../documentation-progress-summary/">Documentation Progress Summary</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../documentation-plan/">Documentation Plan</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Configuration & Environment</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../configuration-environment/gemforce-config/">Gemforce Config</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../configuration-environment/environment-specific-guides/">Environment-Specific Guides</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../configuration-environment/configuration-validation/">Configuration Validation Procedures</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../configuration-environment/external-service-config-management/">External Service Configuration Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../configuration-environment/database-schema-overview/">Database Schema Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../configuration-environment/database-migration-procedures/">Database Migration Procedures</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Gemforce Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Integrator's Guide</li>
+      <li class="breadcrumb-item active">DFNS Integration</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="integrators-guide-dfns-integration">Integrator's Guide: DFNS Integration<a class="headerlink" href="#integrators-guide-dfns-integration" title="Permanent link">&para;</a></h1>
+<p>DFNS provides a highly secure Wallet-as-a-Service solution that Gemforce utilizes for cryptographic operations, particularly secure key management and transaction signing. For integrators working with sensitive operations that require advanced security, regulatory compliance, or robust policy enforcement, direct integration with the DFNS API through Gemforce's ecosystem is crucial.</p>
+<h2 id="overview-of-dfns-in-gemforce">Overview of DFNS in Gemforce<a class="headerlink" href="#overview-of-dfns-in-gemforce" title="Permanent link">&para;</a></h2>
+<p>DFNS offers:</p>
+<ul>
+<li><strong>Multi-Party Computation (MPC)</strong>: Keys are never held in one place, significantly reducing the risk of single points of failure and theft.</li>
+<li><strong>Policy Engine</strong>: Define precise rules for transaction approvals, including multi-signature requirements, whitelisting/blacklisting, and spend limits.</li>
+<li><strong>Comprehensive Audit Trails</strong>: All cryptographic actions are logged, providing an immutable record for compliance and security monitoring.</li>
+<li><strong>Scalability</strong>: Supports high-volume transaction signing for enterprise applications.</li>
+</ul>
+<p>Gemforce integrates with DFNS primarily through its Cloud Functions, abstracting some of the direct DFNS API interactions. However, understanding the underlying DFNS capabilities is beneficial for deeper integrations.</p>
+<h2 id="core-dfns-concepts">Core DFNS Concepts<a class="headerlink" href="#core-dfns-concepts" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Wallets</strong>: DFNS manages virtual "wallets," which are essentially key pairs (or key shares in MPC).</li>
+<li><strong>Signing Keys</strong>: Used for API authentication with DFNS.</li>
+<li><strong>Policies</strong>: Rules attached to wallets that dictate when a transaction can be signed and by whom.</li>
+<li><strong>Signer Authentication</strong>: DFNS supports various methods to authenticate the "signer" (the human or system authorizing an action), including FIDO, API keys, and more.</li>
+</ul>
+<h2 id="integration-methods">Integration Methods<a class="headerlink" href="#integration-methods" title="Permanent link">&para;</a></h2>
+<p>You can interact with DFNS through Gemforce in two primary ways:</p>
+<ol>
+<li>
+<p><strong>Via Gemforce Cloud Functions (Recommended for most cases)</strong>:
+    Gemforce's Cloud Functions (e.g., <code>dfns.ts</code>) encapsulate common DFNS operations, making it simpler to:</p>
+<ul>
+<li>Create and manage DFNS wallets.</li>
+<li>Initiate transaction signing requests.</li>
+<li>Monitor the status of signing operations.
+This method abstracts the direct DFNS API calls, allowing you to use your existing Parse Server authentication.</li>
+</ul>
+</li>
+<li>
+<p><strong>Direct DFNS API Integration (For advanced users)</strong>:
+    For highly customized workflows or scenarios where fine-grained control over DFNS is required, you can integrate directly with the DFNS API. This involves:</p>
+<ul>
+<li>Obtaining your own DFNS API credentials.</li>
+<li>Implementing DFNS SDKs or building direct API calls.</li>
+<li>Managing DFNS wallet IDs and policies externally.</li>
+</ul>
+</li>
+</ol>
+<h2 id="integration-via-gemforce-cloud-functions">Integration via Gemforce Cloud Functions<a class="headerlink" href="#integration-via-gemforce-cloud-functions" title="Permanent link">&para;</a></h2>
+<p>Gemforce provides several Cloud Functions that wrap DFNS operations. These functions require appropriate authentication (Parse session token or Master Key) to be invoked.</p>
+<h3 id="example-signing-a-transaction-via-gemforce-cloud-function">Example: Signing a Transaction via Gemforce Cloud Function<a class="headerlink" href="#example-signing-a-transaction-via-gemforce-cloud-function" title="Permanent link">&para;</a></h3>
+<p>Let's assume a Gemforce Cloud Function named <code>dfnsSignTransaction</code> exists, which takes a transaction payload and returns a signed transaction.</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Function: callCloudFunction (from Authentication guide)</span>
+<span class="c1">// This example assumes &#39;targetWalletId&#39; and &#39;transactionDetails&#39; are prepared by your backend service.</span>
+
+<span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">signTransactionViaGemforce</span><span class="p">(</span><span class="nx">sessionToken</span><span class="p">,</span><span class="w"> </span><span class="nx">targetWalletId</span><span class="p">,</span><span class="w"> </span><span class="nx">transactionDetails</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">callCloudFunction</span><span class="p">(</span><span class="s2">&quot;dfnsSignTransaction&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">walletId</span><span class="o">:</span><span class="w"> </span><span class="nx">targetWalletId</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">payload</span><span class="o">:</span><span class="w"> </span><span class="nx">transactionDetails</span><span class="w"> </span><span class="c1">// e.g., { to: &quot;0x...&quot;, value: &quot;0&quot;, data: &quot;0x...&quot; }</span>
+<span class="w">        </span><span class="p">},</span><span class="w"> </span><span class="nx">sessionToken</span><span class="p">);</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Signed transaction from Gemforce Cloud Function:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">result</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">result</span><span class="p">;</span><span class="w"> </span><span class="c1">// The signed, raw transaction string (e.g., &quot;0x...&quot;)</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;Error signing transaction via Gemforce Cloud Function:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">);</span>
+<span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="nx">error</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Example usage (assuming &#39;sessionToken&#39; is obtained from user login)</span>
+<span class="c1">// (async () =&gt; {</span>
+<span class="c1">//     const token = &quot;YOUR_SESSION_TOKEN&quot;; // Replace with actual session token</span>
+<span class="c1">//     const walletId = &quot;YOUR_DFNS_WALLET_UUID&quot;;</span>
+<span class="c1">//     const txPayload = {</span>
+<span class="c1">//         to: &quot;0xRecipientAddress&quot;,</span>
+<span class="c1">//         value: &quot;10000000000000000&quot;, // 0.01 ETH in wei</span>
+<span class="c1">//         gasLimit: &quot;21000&quot;,</span>
+<span class="c1">//         chainId: 11155111, // Sepolia</span>
+<span class="c1">//         nonce: 5, // Get current nonce</span>
+<span class="c1">//         // Add other fields like gasPrice, maxFeePerGas, maxPriorityFeePerGas for EIP-1559</span>
+<span class="c1">//     };</span>
+<span class="c1">//     try {</span>
+<span class="c1">//         const signedTx = await signTransactionViaGemforce(token, walletId, txPayload);</span>
+<span class="c1">//         // Now broadcast this signedTx to the blockchain using an Ethers.js or Web3.js provider</span>
+<span class="c1">//         // const provider = new ethers.providers.JsonRpcProvider(&quot;YOUR_RPC_URL&quot;);</span>
+<span class="c1">//         // await provider.sendTransaction(signedTx);</span>
+<span class="c1">//         // console.log(&quot;Transaction broadcasted:&quot;, signedTx);</span>
+<span class="c1">//     } catch (e) {</span>
+<span class="c1">//         console.error(&quot;DFNS Integration Example Failed:&quot;, e.message);</span>
+<span class="c1">//     }</span>
+<span class="c1">// })();</span>
+</code></pre></div>
+
+<h2 id="direct-dfns-api-integration-advanced">Direct DFNS API Integration (Advanced)<a class="headerlink" href="#direct-dfns-api-integration-advanced" title="Permanent link">&para;</a></h2>
+<p>If using Gemforce Cloud Functions doesn't meet your specific needs, you can integrate directly with the DFNS API. This path gives you full control but requires careful management of DFNS credentials and a deeper understanding of their SDK.</p>
+<h3 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h3>
+<ul>
+<li>A DFNS Account and Console Access.</li>
+<li>Your DFNS Application ID and a long-lived API signing key pair.</li>
+<li>DFNS SDK for your preferred language (e.g., TypeScript/JavaScript).</li>
+</ul>
+<h3 id="steps-involved">Steps Involved<a class="headerlink" href="#steps-involved" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>DFNS Client Initialization</strong>: Authenticate your application with the DFNS API using your signing key.</li>
+<li><strong>Wallet Management (Optional)</strong>: If you need to programmatically create or manage DFNS wallets, use their API.</li>
+<li><strong>Transaction Draft Creation</strong>: Prepare the transaction object (e.g., Ethereum transaction details).</li>
+<li><strong>Signing Request</strong>: Submit the transaction draft to DFNS for signing, potentially specifying policies or required authenticators.</li>
+<li><strong>Signer Authentication</strong>: Depending on your policy, DFNS might require additional authentication from a human signer (e.g., via FIDO device). This part is usually handled out-of-band by the DFNS platform.</li>
+<li><strong>Receive Signed Transaction</strong>: Once policies are met and signers authenticated, DFNS returns the cryptographically signed transaction.</li>
+<li><strong>Broadcast</strong>: Broadcast the signed transaction to the relevant blockchain network.</li>
+</ol>
+<h3 id="example-conceptual-direct-dfns-sdk-usage-typescript">Example (Conceptual Direct DFNS SDK Usage - TypeScript)<a class="headerlink" href="#example-conceptual-direct-dfns-sdk-usage-typescript" title="Permanent link">&para;</a></h3>
+<p>This example extends the conceptual example from the <a href="../authentication/">Authentication Guide</a>.</p>
+<div class="codehilite"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">DfnsApiClient</span><span class="p">,</span><span class="w"> </span><span class="nx">AsymmetricKeys</span><span class="p">,</span><span class="w"> </span><span class="nx">SignatureMechanism</span><span class="p">,</span><span class="w"> </span><span class="nx">SignTransactionRequest</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@dfns/sdk&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">EvmTransaction</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@dfns/sdk/codegen/datamodel/EvmTransaction&#39;</span><span class="p">;</span><span class="w"> </span><span class="c1">// Import specific type</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">DFNS_API_URL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;https://api.dfns.io&quot;</span><span class="p">;</span><span class="w"> </span><span class="c1">// or your specific DFNS API endpoint</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">DFNS_APP_ID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;YOUR_DFNS_APP_ID&quot;</span><span class="p">;</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">DFNS_PRIVATE_KEY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`-----BEGIN PRIVATE KEY-----</span>
+<span class="sb">... YOUR PRIVATE KEY ...</span>
+<span class="sb">-----END PRIVATE KEY-----`</span><span class="p">;</span><span class="w"> </span><span class="c1">// Load securely from environment variables, not hardcoded!</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">DFNS_SIGNING_KEY_ID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;sk-xxxxxxxxxxxxxxxxx&quot;</span><span class="p">;</span><span class="w"> </span><span class="c1">// Your API Signing Key ID from DFNS Console</span>
+
+<span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">signEvmTransactionDirectlyWithDFNS</span><span class="p">(</span><span class="nx">walletId</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">,</span><span class="w"> </span><span class="nx">chainId</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">,</span><span class="w"> </span><span class="nx">rawTransaction</span><span class="o">:</span><span class="w"> </span><span class="kt">EvmTransaction</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// 1. Initialize DFNS API Client with Asymmetric Key Authentication</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">dfnsClient</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">DfnsApiClient</span><span class="p">({</span>
+<span class="w">            </span><span class="nx">baseUrl</span><span class="o">:</span><span class="w"> </span><span class="kt">DFNS_API_URL</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">appId</span><span class="o">:</span><span class="w"> </span><span class="kt">DFNS_APP_ID</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">authMethod</span><span class="o">:</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="nx">AsymmetricKeys</span><span class="p">({</span>
+<span class="w">                </span><span class="nx">privateKey</span><span class="o">:</span><span class="w"> </span><span class="kt">DFNS_PRIVATE_KEY</span><span class="p">,</span>
+<span class="w">                </span><span class="nx">signingKeyId</span><span class="o">:</span><span class="w"> </span><span class="kt">DFNS_SIGNING_KEY_ID</span><span class="p">,</span>
+<span class="w">            </span><span class="p">})</span>
+<span class="w">        </span><span class="p">});</span>
+
+<span class="w">        </span><span class="c1">// 2. Prepare the signing request</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">signRequest</span><span class="o">:</span><span class="w"> </span><span class="kt">SignTransactionRequest</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">walletId</span><span class="o">:</span><span class="w"> </span><span class="kt">walletId</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">chainId</span><span class="o">:</span><span class="w"> </span><span class="kt">chainId</span><span class="p">,</span><span class="w"> </span><span class="c1">// e.g., &quot;eip155:11155111&quot; for Sepolia</span>
+<span class="w">            </span><span class="nx">payload</span><span class="o">:</span><span class="w"> </span><span class="kt">JSON.stringify</span><span class="p">(</span><span class="nx">rawTransaction</span><span class="p">),</span><span class="w"> </span><span class="c1">// DFNS expects stringified payload</span>
+<span class="w">            </span><span class="nx">signatureMechanism</span><span class="o">:</span><span class="w"> </span><span class="kt">SignatureMechanism.JsonRpc</span><span class="p">,</span><span class="w"> </span><span class="c1">// Or other mechanism like Eip1559, Legacy</span>
+<span class="w">            </span><span class="nx">transactionType</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;EvmTransaction&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1">// Specify EVM transaction</span>
+<span class="w">        </span><span class="p">};</span>
+
+<span class="w">        </span><span class="c1">// 3. Send the signing request</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">dfnsClient</span><span class="p">.</span><span class="nx">wallet</span><span class="p">.</span><span class="nx">signTransaction</span><span class="p">(</span><span class="nx">signRequest</span><span class="p">);</span>
+
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;DFNS direct signed data:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">signedData</span><span class="p">);</span>
+<span class="w">        </span><span class="c1">// response.signedData contains the fully signed transaction in hex format (e.g., &quot;0x...&quot;)</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">signedData</span><span class="p">;</span>
+
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;DFNS direct signing failed:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">);</span>
+<span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="nx">error</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Example Raw EVM Transaction Payload (fields depend on transaction type)</span>
+<span class="c1">// const exampleEvmTx: EvmTransaction = {</span>
+<span class="c1">//     from: &quot;0x...&quot;, // Optional, but good practice</span>
+<span class="c1">//     to: &quot;0xTargetContractAddress&quot;,</span>
+<span class="c1">//     value: &quot;0x00&quot;, // Hex value for 0 ETH</span>
+<span class="c1">//     data: &quot;0x...&quot;, // Calldata for contract interaction</span>
+<span class="c1">//     gasLimit: &quot;0x5208&quot;, // Hex value for 21000</span>
+<span class="c1">//     nonce: &quot;0x0&quot;, // Hex value for nonce</span>
+<span class="c1">//     gasPrice: &quot;0x...&quot;, // or maxFeePerGas/maxPriorityFeePerGas for EIP-1559</span>
+<span class="c1">//     type: &quot;0x0&quot; // For legacy transaction, &quot;0x2&quot; for EIP-1559</span>
+<span class="c1">// };</span>
+
+<span class="c1">// Example Usage:</span>
+<span class="c1">// (async () =&gt; {</span>
+<span class="c1">//     try {</span>
+<span class="c1">//         const dfnsWalletUuid = &quot;YOUR_DFNS_WALLET_UUID&quot;;</span>
+<span class="c1">//         const sepoliaChainId = &quot;eip155:11155111&quot;; // DFNS chain ID format</span>
+<span class="c1">//         const signedTxHex = await signEvmTransactionDirectlyWithDFNS(dfnsWalletUuid, sepoliaChainId, exampleEvmTx);</span>
+<span class="c1">//         console.log(&quot;Transaction ready to broadcast:&quot;, signedTxHex);</span>
+<span class="c1">//     } catch (e) {</span>
+<span class="c1">//         console.error(&quot;Direct DFNS Example Failed:&quot;, e.message);</span>
+<span class="c1">//     }</span>
+<span class="c1">// })();</span>
+</code></pre></div>
+
+<h2 id="security-considerations">Security Considerations<a class="headerlink" href="#security-considerations" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Master Key / Private Key Management</strong>: Never hardcode Master Keys or private keys into your application. Use environment variables, secure secret management services (like AWS Secrets Manager, HashiCorp Vault), or DFNS itself for storing and accessing sensitive credentials.</li>
+<li><strong>DFNS Policy Enforcement</strong>: Thoroughly define and test your DFNS policies to ensure that transactions are only signed under approved conditions.</li>
+<li><strong>API Key Rotation</strong>: Regularly rotate your DFNS API keys and any other API credentials you use.</li>
+<li><strong>Audit Logs</strong>: Regularly review DFNS audit trails for any suspicious activity.</li>
+<li><strong>Error Handling</strong>: Implement robust error handling for all DFNS API calls, as failures could indicate policy violations, service issues, or incorrect requests.</li>
+</ul>
+<h2 id="related-documentation">Related Documentation<a class="headerlink" href="#related-documentation" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../authentication/"> integrators-guide/authentication.md </a></li>
+<li><a href="../../cloud-functions/dfns/">Cloud Functions: DFNS Functions</a></li>
+<li><a href="https://docs.dfns.co/">DFNS Documentation</a> (External)</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../smart-contracts/" class="btn btn-neutral float-left" title="Smart Contracts"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../parse-server/" class="btn btn-neutral float-right" title="Parse Server Notes">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../smart-contracts/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../parse-server/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

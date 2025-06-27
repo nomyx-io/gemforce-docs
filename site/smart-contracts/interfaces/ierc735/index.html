@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Gemforce Team" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>IERC735 - Gemforce Documentation</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "IERC735";
+        var mkdocs_page_input_path = "smart-contracts/interfaces/ierc735.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../.." class="icon icon-home"> Gemforce Documentation
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../developer-setup-guide/">Developer Setup Guide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../system-architecture/gemforce-system-architecture/">System Architecture</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Smart Contracts</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../diamond/">Diamond Contract</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../diamond-factory/">Diamond Factory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../identity-factory/">Identity Factory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Facets</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/marketplace-facet/">Marketplace Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trade-deal-management-facet/">Trade Deal Management Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/carbon-credit-facet/">Carbon Credit Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/identity-registry-facet/">Identity Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trusted-issuers-registry-facet/">Trusted Issuers Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/fee-distributor-facet/">Fee Distributor Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/gemforce-minter-facet/">Gemforce Minter Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/multi-sale-facet/">Multi Sale Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/svg-templates-facet/">SVG Templates Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trade-deal-admin-facet/">Trade Deal Admin Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trade-deal-operations-facet/">Trade Deal Operations Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/collateral-token-factory-facet/">Collateral Token Factory Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/diamond-cut-facet/">Diamond Cut Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/diamond-loupe-facet/">Diamond Loupe Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/ownership-facet/">Ownership Facet</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" >Interfaces</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" href="../idiamond/">IDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../imarketplace/">IMarketplace</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../itradedeal/">ITradeDeal</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../icarbon-credit/">ICarbonCredit</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../ierc1155-mint/">IERC1155Mint</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../ierc734/">IERC734</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">IERC735</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#overview">Overview</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#key-features">Key Features</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#interface-definition">Interface Definition</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#claim-topic-constants">Claim Topic Constants</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#signature-scheme-constants">Signature Scheme Constants</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#core-functions">Core Functions</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#claim-management">Claim Management</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#query-functions">Query Functions</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#claim-information">Claim Information</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#integration-examples">Integration Examples</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#kycaml-verification-system">KYC/AML Verification System</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#professional-credentials-system">Professional Credentials System</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../ierc721a/">IERC721A</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../idiamond-factory/">IDiamondFactory</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../iidentity/">IIdentity</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../imultisale/">IMultiSale</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../ifee-distributor/">IFeeDistributor</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../igemforce-minter-facet/">IGemforceMinterFacet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../iidentity-registry/">IIdentityRegistry</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../itrusted-issuers-registry/">TRUSTEDIssuersRegistry</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../isvg/">ISVG</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../iattribute/">IAttribute</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../ivariable-price/">IVariablePrice</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Libraries</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/carbon-credit-lib/">Carbon Credit Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/trade-deal-lib/">Trade Deal Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/multi-sale-lib/">Multi Sale Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/diamond-factory-lib/">Diamond Factory Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/svg-templates-lib/">SVG Templates Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/attribute-lib/">Attribute Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/variable-price-lib/">Variable Price Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/merkle-prover/">Merkle Prover</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/fee-distributor-lib/">Fee Distributor Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/lib-diamond/">LibDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/diamond-lib/">DiamondLib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/erc721a-lib/">ERC721A Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/erc721a-enumeration-lib/">ERC721A Enumeration Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/strings-lib/">Strings Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/trusted-issuer-lib/">Trusted Issuer Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/set-libraries/">Set Libraries</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">SDK & Libraries</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/blockchain/">Blockchain Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/diamond/">Diamond Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/contract/">Contract Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/deploy/">Deployment Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/validation-utils/">Validation Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/nft-sale-utils/">NFT Sale Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/webhooks/">Webhooks Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../libraries/metadata-lib/">Metadata Library</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Cloud Functions</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/authentication/">Authentication Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/auth-functions/">Auth Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/blockchain/">Blockchain Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/bridge/">Bridge Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/contracts/">Contract Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/deploy/">Deploy Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/dfns/">DFNS Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/project/">Project Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/trade-deal/">Trade Deal Functions</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">API Documentation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../api-documentation/gemforce-api-documentation/">Full API Reference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../api-documentation/gemforce-api-quick-reference/">Quick Reference</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-external-services/">External Services</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-system-architecture/">System Architecture</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Operations Tasks</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/diamond/">Diamond Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/identities/">Identity Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/marketplace-management/">Marketplace Management Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/carbon-credit-management/">Carbon Credit Management Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/trade-deal/">Trade Deal Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/integration-test/">Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/integration-test-marketplace/">Marketplace Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/integration-test-trade-deal/">Trade Deal Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/admin-utils/">Admin Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/sync-diamond/">Sync Diamond Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/sync-events/">Sync Events Tasks</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">EIPs (Ethereum Improvement Proposals)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Diamond-Enhanced-Marketplace/">Diamond-Enhanced Marketplace</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Multi-Token-Sale-Standard/">Multi-Token Sale Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Collateralized-Trade-Deal-Standard/">Collateralized Trade Deal Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Enhanced-Identity-System/">Enhanced Identity System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Diamond-Factory-Standard/">Diamond Factory Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Carbon-Credit-Standard/">Carbon Credit Standard</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Developer Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/development-environment-setup/">Development Environment Setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/testing-frameworks/">Testing Frameworks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/debugging/">Debugging</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/performance-optimization/">Performance Optimization</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/test-case-specifications/">Test Case Specifications</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/test-data-management/">Test Data Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/automated-testing-setup/">Automated Testing Setup</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Deployment Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../deployment-guides/multi-network-deployment/">Multi-Network Deployment</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../deployment-guides/infrastructure-management/">Infrastructure Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../deployment-guides/monitoring-logging/">Monitoring and Logging</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">User Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-administrator-guide/">Administrator Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-deployer-guide/">Deployer Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-integrator-guide/">Integrator Guide</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Integrator's Guide</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/authentication/">Authentication</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/rest-api/">REST API</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/smart-contracts/">Smart Contracts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/dfns/">DFNS Integration</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/parse-server/">Parse Server Notes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/webhooks/">Webhooks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/error-handling/">Error Handling</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/sample-code/">Sample Code</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/integration-patterns/">Integration Patterns</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/testing/">Testing Considerations</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/security/">Security</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../external-services/gemforce-external-services/">External Services</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Security</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security/threat-model/">Threat Model and Risk Assessment</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security/incident-response/">Incident Response Procedures</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security/audit-compliance/">Security Audits and Compliance</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">External Developer Integration</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/api-rate-limiting/">API Rate Limiting</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/webhook-implementation-guidelines/">Webhook Implementation Guidelines</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/sdk-development-guidelines/">SDK Development Guidelines</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/partner-integration-guides/">Partner Integration Guides</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-documentation-gap-analysis/">Documentation Gap Analysis</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../documentation-progress-summary/">Documentation Progress Summary</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../documentation-plan/">Documentation Plan</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Configuration & Environment</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/gemforce-config/">Gemforce Config</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/environment-specific-guides/">Environment-Specific Guides</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/configuration-validation/">Configuration Validation Procedures</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/external-service-config-management/">External Service Configuration Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/database-schema-overview/">Database Schema Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/database-migration-procedures/">Database Migration Procedures</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">Gemforce Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Smart Contracts</li>
+          <li class="breadcrumb-item">Interfaces</li>
+      <li class="breadcrumb-item active">IERC735</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="ierc735-interface">IERC735 Interface<a class="headerlink" href="#ierc735-interface" title="Permanent link">&para;</a></h1>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>The <code>IERC735</code> interface defines the Claim Holder standard for decentralized identity management within the Gemforce platform. This interface implements the ERC-735 standard for managing identity claims, enabling attestations, verifications, and credential management through cryptographically signed claims from trusted issuers.</p>
+<h2 id="key-features">Key Features<a class="headerlink" href="#key-features" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Identity Claims Management</strong>: Add, modify, and remove identity claims</li>
+<li><strong>Cryptographic Verification</strong>: Support for multiple signature schemes</li>
+<li><strong>Trusted Issuer System</strong>: Claims issued by verified and trusted entities</li>
+<li><strong>Topic-Based Organization</strong>: Claims categorized by topics (KYC, credentials, etc.)</li>
+<li><strong>URI-Based Metadata</strong>: Support for off-chain claim data and documentation</li>
+<li><strong>Event Tracking</strong>: Comprehensive event emission for claim lifecycle operations</li>
+</ul>
+<h2 id="interface-definition">Interface Definition<a class="headerlink" href="#interface-definition" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span><code><span class="c1">// SPDX-License-Identifier: MIT</span>
+<span class="k">pragma solidity</span><span class="w"> </span><span class="o">^</span><span class="k">0.8.16</span><span class="p">;</span>
+
+interface<span class="w"> </span>IERC735<span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Events</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">ClaimRequested</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>claimRequestId<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>topic<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">scheme</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>issuer<span class="p">,</span><span class="w"> </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">signature</span><span class="p">,</span><span class="w"> </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">data</span><span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">uri</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">ClaimAdded</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>claimId<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>topic<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">scheme</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>issuer<span class="p">,</span><span class="w"> </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">signature</span><span class="p">,</span><span class="w"> </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">data</span><span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">uri</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">ClaimRemoved</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>claimId<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>topic<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">scheme</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>issuer<span class="p">,</span><span class="w"> </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">signature</span><span class="p">,</span><span class="w"> </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">data</span><span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">uri</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">ClaimChanged</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>claimId<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>topic<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">scheme</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>issuer<span class="p">,</span><span class="w"> </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">signature</span><span class="p">,</span><span class="w"> </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">data</span><span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">uri</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Core Functions</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getClaim</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">_claimId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">topic</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">scheme</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">issuer</span><span class="p">,</span><span class="w"> </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>signature<span class="p">,</span><span class="w"> </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>data<span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>uri<span class="p">);</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getClaimIdsByTopic</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_topic</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="p">(</span><span class="kt">bytes32</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>claimIds<span class="p">);</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">addClaim</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_topic</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_scheme</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">_issuer</span><span class="p">,</span><span class="w"> </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>_signature<span class="p">,</span><span class="w"> </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>_data<span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>_uri<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">claimRequestId</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">changeClaim</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">_claimId</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_topic</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_scheme</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">_issuer</span><span class="p">,</span><span class="w"> </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>_signature<span class="p">,</span><span class="w"> </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>_data<span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>_uri<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bool</span><span class="w"> </span><span class="nv">success</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">removeClaim</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">_claimId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bool</span><span class="w"> </span><span class="nv">success</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="claim-topic-constants">Claim Topic Constants<a class="headerlink" href="#claim-topic-constants" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Standard claim topics as defined in ERC-735</span>
+<span class="kt">uint256</span><span class="w"> </span><span class="k">public </span><span class="nv">constant</span><span class="w"> </span>BIOMETRIC_TOPIC<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">1</span><span class="p">;</span><span class="w">        </span><span class="c1">// Biometric verification</span>
+<span class="kt">uint256</span><span class="w"> </span><span class="k">public </span><span class="nv">constant</span><span class="w"> </span>RESIDENCE_TOPIC<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">2</span><span class="p">;</span><span class="w">        </span><span class="c1">// Proof of residence</span>
+<span class="kt">uint256</span><span class="w"> </span><span class="k">public </span><span class="nv">constant</span><span class="w"> </span>REGISTRY_TOPIC<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">3</span><span class="p">;</span><span class="w">         </span><span class="c1">// Registry inclusion</span>
+<span class="kt">uint256</span><span class="w"> </span><span class="k">public </span><span class="nv">constant</span><span class="w"> </span>PROFILE_TOPIC<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">4</span><span class="p">;</span><span class="w">          </span><span class="c1">// Profile information</span>
+<span class="kt">uint256</span><span class="w"> </span><span class="k">public </span><span class="nv">constant</span><span class="w"> </span>CONTRACT_TOPIC<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">5</span><span class="p">;</span><span class="w">         </span><span class="c1">// Contract interaction</span>
+<span class="kt">uint256</span><span class="w"> </span><span class="k">public </span><span class="nv">constant</span><span class="w"> </span>KYC_TOPIC<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">10001</span><span class="p">;</span><span class="w">          </span><span class="c1">// Know Your Customer</span>
+<span class="kt">uint256</span><span class="w"> </span><span class="k">public </span><span class="nv">constant</span><span class="w"> </span>AML_TOPIC<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">10002</span><span class="p">;</span><span class="w">          </span><span class="c1">// Anti-Money Laundering</span>
+<span class="kt">uint256</span><span class="w"> </span><span class="k">public </span><span class="nv">constant</span><span class="w"> </span>ACCREDITED_INVESTOR_TOPIC<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">10003</span><span class="p">;</span><span class="w"> </span><span class="c1">// Accredited investor status</span>
+<span class="kt">uint256</span><span class="w"> </span><span class="k">public </span><span class="nv">constant</span><span class="w"> </span>PROFESSIONAL_TOPIC<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">10004</span><span class="p">;</span><span class="w">  </span><span class="c1">// Professional credentials</span>
+</code></pre></div>
+
+<h2 id="signature-scheme-constants">Signature Scheme Constants<a class="headerlink" href="#signature-scheme-constants" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Standard signature schemes</span>
+<span class="kt">uint256</span><span class="w"> </span><span class="k">public </span><span class="nv">constant</span><span class="w"> </span>ECDSA_SCHEME<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">1</span><span class="p">;</span><span class="w">           </span><span class="c1">// ECDSA signature</span>
+<span class="kt">uint256</span><span class="w"> </span><span class="k">public </span><span class="nv">constant</span><span class="w"> </span>RSA_SCHEME<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">2</span><span class="p">;</span><span class="w">             </span><span class="c1">// RSA signature</span>
+<span class="kt">uint256</span><span class="w"> </span><span class="k">public </span><span class="nv">constant</span><span class="w"> </span>CONTRACT_SCHEME<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">3</span><span class="p">;</span><span class="w">        </span><span class="c1">// Contract-based verification</span>
+<span class="kt">uint256</span><span class="w"> </span><span class="k">public </span><span class="nv">constant</span><span class="w"> </span>MULTISIG_SCHEME<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">4</span><span class="p">;</span><span class="w">        </span><span class="c1">// Multi-signature scheme</span>
+</code></pre></div>
+
+<h2 id="core-functions">Core Functions<a class="headerlink" href="#core-functions" title="Permanent link">&para;</a></h2>
+<h3 id="claim-management">Claim Management<a class="headerlink" href="#claim-management" title="Permanent link">&para;</a></h3>
+<h4 id="addclaim"><code>addClaim()</code><a class="headerlink" href="#addclaim" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">addClaim</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_topic</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_scheme</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">_issuer</span><span class="p">,</span><span class="w"> </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>_signature<span class="p">,</span><span class="w"> </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>_data<span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>_uri<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">claimRequestId</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Add a new identity claim to the claim holder.</p>
+<p><strong>Parameters</strong>:
+- <code>_topic</code> (uint256): The claim topic identifier (KYC, AML, etc.)
+- <code>_scheme</code> (uint256): The signature scheme used for verification
+- <code>_issuer</code> (address): The address of the claim issuer
+- <code>_signature</code> (bytes): The cryptographic signature of the claim
+- <code>_data</code> (bytes): The claim data payload
+- <code>_uri</code> (string): URI pointing to additional claim metadata</p>
+<p><strong>Returns</strong>: 
+- <code>claimRequestId</code> (uint256): Unique identifier for the claim request</p>
+<p><strong>Requirements</strong>:
+- Issuer must be authorized for the claim topic
+- Signature must be valid for the claim data
+- Claim topic must be supported
+- Caller must have appropriate permissions</p>
+<p><strong>Events Emitted</strong>:
+- <code>ClaimRequested</code> initially when claim is submitted
+- <code>ClaimAdded</code> when claim is approved and added</p>
+<p><strong>Example Usage</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Add a KYC claim from a trusted issuer</span>
+<span class="kt">uint256</span><span class="w"> </span><span class="nv">topic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>KYC_TOPIC<span class="p">;</span>
+<span class="kt">uint256</span><span class="w"> </span><span class="nv">scheme</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>ECDSA_SCHEME<span class="p">;</span>
+<span class="kt">address</span><span class="w"> </span><span class="nv">issuer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x742d35Cc6634C0532925a3b8D4C9db96590c6C8C</span><span class="p">;</span>
+<span class="kt">bytes</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>signature<span class="w"> </span><span class="o">=</span><span class="w"> </span>abi<span class="p">.</span>encodePacked<span class="p">(</span>r<span class="p">,</span><span class="w"> </span>s<span class="p">,</span><span class="w"> </span>v<span class="p">);</span><span class="w"> </span><span class="c1">// ECDSA signature components</span>
+<span class="kt">bytes</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>data<span class="w"> </span><span class="o">=</span><span class="w"> </span>abi<span class="p">.</span>encode<span class="p">(</span><span class="s2">&quot;John Doe&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;US&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">block.timestamp</span><span class="p">);</span>
+<span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>uri<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;https://kyc-provider.com/claims/12345&quot;</span><span class="p">;</span>
+
+<span class="kt">uint256</span><span class="w"> </span><span class="nv">requestId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>IERC735<span class="p">(</span>identityContract<span class="p">).</span>addClaim<span class="p">(</span>
+<span class="w">    </span>topic<span class="p">,</span><span class="w"> </span>scheme<span class="p">,</span><span class="w"> </span>issuer<span class="p">,</span><span class="w"> </span>signature<span class="p">,</span><span class="w"> </span>data<span class="p">,</span><span class="w"> </span>uri
+<span class="p">);</span>
+console<span class="p">.</span>log<span class="p">(</span><span class="s2">&quot;KYC claim request ID:&quot;</span><span class="p">,</span><span class="w"> </span>requestId<span class="p">);</span>
+</code></pre></div>
+
+<h4 id="changeclaim"><code>changeClaim()</code><a class="headerlink" href="#changeclaim" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">changeClaim</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">_claimId</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_topic</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_scheme</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">_issuer</span><span class="p">,</span><span class="w"> </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>_signature<span class="p">,</span><span class="w"> </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>_data<span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>_uri<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bool</span><span class="w"> </span><span class="nv">success</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Modify an existing identity claim.</p>
+<p><strong>Parameters</strong>:
+- <code>_claimId</code> (bytes32): The unique identifier of the claim to modify
+- <code>_topic</code> (uint256): The updated claim topic
+- <code>_scheme</code> (uint256): The updated signature scheme
+- <code>_issuer</code> (address): The updated issuer address
+- <code>_signature</code> (bytes): The updated cryptographic signature
+- <code>_data</code> (bytes): The updated claim data
+- <code>_uri</code> (string): The updated metadata URI</p>
+<p><strong>Returns</strong>: Boolean indicating success of the operation</p>
+<p><strong>Requirements</strong>:
+- Claim must exist
+- Caller must have permission to modify the claim
+- New signature must be valid
+- Issuer must be authorized for the topic</p>
+<p><strong>Events Emitted</strong>:
+- <code>ClaimChanged</code> with old and new claim details</p>
+<p><strong>Example Usage</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Update an existing KYC claim with new information</span>
+<span class="kt">bytes32</span><span class="w"> </span><span class="nv">claimId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x1234567890abcdef</span><span class="p">...;</span>
+<span class="kt">uint256</span><span class="w"> </span><span class="nv">topic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>KYC_TOPIC<span class="p">;</span>
+<span class="kt">uint256</span><span class="w"> </span><span class="nv">scheme</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>ECDSA_SCHEME<span class="p">;</span>
+<span class="kt">address</span><span class="w"> </span><span class="nv">issuer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x742d35Cc6634C0532925a3b8D4C9db96590c6C8C</span><span class="p">;</span>
+<span class="kt">bytes</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>newSignature<span class="w"> </span><span class="o">=</span><span class="w"> </span>abi<span class="p">.</span>encodePacked<span class="p">(</span>r<span class="p">,</span><span class="w"> </span>s<span class="p">,</span><span class="w"> </span>v<span class="p">);</span>
+<span class="kt">bytes</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>newData<span class="w"> </span><span class="o">=</span><span class="w"> </span>abi<span class="p">.</span>encode<span class="p">(</span><span class="s2">&quot;John Doe&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;US&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">block.timestamp</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;updated&quot;</span><span class="p">);</span>
+<span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>newUri<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;https://kyc-provider.com/claims/12345-updated&quot;</span><span class="p">;</span>
+
+<span class="kt">bool</span><span class="w"> </span><span class="nv">success</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>IERC735<span class="p">(</span>identityContract<span class="p">).</span>changeClaim<span class="p">(</span>
+<span class="w">    </span>claimId<span class="p">,</span><span class="w"> </span>topic<span class="p">,</span><span class="w"> </span>scheme<span class="p">,</span><span class="w"> </span>issuer<span class="p">,</span><span class="w"> </span>newSignature<span class="p">,</span><span class="w"> </span>newData<span class="p">,</span><span class="w"> </span>newUri
+<span class="p">);</span>
+console<span class="p">.</span>log<span class="p">(</span><span class="s2">&quot;Claim update success:&quot;</span><span class="p">,</span><span class="w"> </span>success<span class="p">);</span>
+</code></pre></div>
+
+<h4 id="removeclaim"><code>removeClaim()</code><a class="headerlink" href="#removeclaim" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">removeClaim</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">_claimId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bool</span><span class="w"> </span><span class="nv">success</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Remove an identity claim from the claim holder.</p>
+<p><strong>Parameters</strong>:
+- <code>_claimId</code> (bytes32): The unique identifier of the claim to remove</p>
+<p><strong>Returns</strong>: Boolean indicating success of the operation</p>
+<p><strong>Requirements</strong>:
+- Claim must exist
+- Caller must have permission to remove the claim
+- Some claims may be required and cannot be removed</p>
+<p><strong>Events Emitted</strong>:
+- <code>ClaimRemoved</code> with claim details</p>
+<p><strong>Example Usage</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Remove an expired or invalid claim</span>
+<span class="kt">bytes32</span><span class="w"> </span><span class="nv">claimId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x1234567890abcdef</span><span class="p">...;</span>
+
+<span class="kt">bool</span><span class="w"> </span><span class="nv">success</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>IERC735<span class="p">(</span>identityContract<span class="p">).</span>removeClaim<span class="p">(</span>claimId<span class="p">);</span>
+console<span class="p">.</span>log<span class="p">(</span><span class="s2">&quot;Claim removal success:&quot;</span><span class="p">,</span><span class="w"> </span>success<span class="p">);</span>
+</code></pre></div>
+
+<h2 id="query-functions">Query Functions<a class="headerlink" href="#query-functions" title="Permanent link">&para;</a></h2>
+<h3 id="claim-information">Claim Information<a class="headerlink" href="#claim-information" title="Permanent link">&para;</a></h3>
+<h4 id="getclaim"><code>getClaim()</code><a class="headerlink" href="#getclaim" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">getClaim</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">_claimId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">topic</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">scheme</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">issuer</span><span class="p">,</span><span class="w"> </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>signature<span class="p">,</span><span class="w"> </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>data<span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>uri<span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Retrieve detailed information about a specific claim.</p>
+<p><strong>Parameters</strong>:
+- <code>_claimId</code> (bytes32): The unique identifier of the claim to query</p>
+<p><strong>Returns</strong>:
+- <code>topic</code> (uint256): The claim topic identifier
+- <code>scheme</code> (uint256): The signature scheme used
+- <code>issuer</code> (address): The address of the claim issuer
+- <code>signature</code> (bytes): The cryptographic signature
+- <code>data</code> (bytes): The claim data payload
+- <code>uri</code> (string): The metadata URI</p>
+<p><strong>Example Usage</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Get detailed claim information</span>
+<span class="kt">bytes32</span><span class="w"> </span><span class="nv">claimId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x1234567890abcdef</span><span class="p">...;</span>
+<span class="p">(</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">topic</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">scheme</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">issuer</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>signature<span class="p">,</span>
+<span class="w">    </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>data<span class="p">,</span>
+<span class="w">    </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>uri
+<span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>IERC735<span class="p">(</span>identityContract<span class="p">).</span>getClaim<span class="p">(</span>claimId<span class="p">);</span>
+
+console<span class="p">.</span>log<span class="p">(</span><span class="s2">&quot;Claim topic:&quot;</span><span class="p">,</span><span class="w"> </span>topic<span class="p">);</span>
+console<span class="p">.</span>log<span class="p">(</span><span class="s2">&quot;Claim issuer:&quot;</span><span class="p">,</span><span class="w"> </span>issuer<span class="p">);</span>
+console<span class="p">.</span>log<span class="p">(</span><span class="s2">&quot;Claim URI:&quot;</span><span class="p">,</span><span class="w"> </span>uri<span class="p">);</span>
+</code></pre></div>
+
+<h4 id="getclaimidsbytopic"><code>getClaimIdsByTopic()</code><a class="headerlink" href="#getclaimidsbytopic" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">getClaimIdsByTopic</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_topic</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="p">(</span><span class="kt">bytes32</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>claimIds<span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Get all claim IDs associated with a specific topic.</p>
+<p><strong>Parameters</strong>:
+- <code>_topic</code> (uint256): The topic to query claims for</p>
+<p><strong>Returns</strong>: Array of claim IDs for the specified topic</p>
+<p><strong>Example Usage</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Get all KYC claims for an identity</span>
+<span class="kt">uint256</span><span class="w"> </span><span class="nv">topic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>KYC_TOPIC<span class="p">;</span>
+<span class="kt">bytes32</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>kycClaims<span class="w"> </span><span class="o">=</span><span class="w"> </span>IERC735<span class="p">(</span>identityContract<span class="p">).</span>getClaimIdsByTopic<span class="p">(</span>topic<span class="p">);</span>
+
+console<span class="p">.</span>log<span class="p">(</span><span class="s2">&quot;KYC claims count:&quot;</span><span class="p">,</span><span class="w"> </span>kycClaims<span class="p">.</span>length<span class="p">);</span>
+<span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>kycClaims<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>console<span class="p">.</span>log<span class="p">(</span><span class="s2">&quot;KYC claim ID:&quot;</span><span class="p">,</span><span class="w"> </span>kycClaims<span class="p">[</span>i<span class="p">]);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="integration-examples">Integration Examples<a class="headerlink" href="#integration-examples" title="Permanent link">&para;</a></h2>
+<h3 id="kycaml-verification-system">KYC/AML Verification System<a class="headerlink" href="#kycaml-verification-system" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// KYC/AML verification system using ERC-735 claims</span>
+<span class="k">contract</span><span class="w"> </span><span class="ni">KYCAMLVerification</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>IERC735<span class="w"> </span><span class="kt">public</span><span class="w"> </span>claimHolder<span class="p">;</span>
+
+<span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">VerificationRequirement</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span>requiredTopics<span class="p">;</span>
+<span class="w">        </span><span class="kt">address</span><span class="p">[]</span><span class="w"> </span>trustedIssuers<span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">minValidityPeriod</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">active</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span>VerificationRequirement<span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>verificationLevels<span class="p">;</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">bool</span><span class="p">))</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>issuerTopicAuthorization<span class="p">;</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">uint256</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>claimExpirationTime<span class="p">;</span>
+
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">VerificationLevelCreated</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>levelId<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span>requiredTopics<span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">IssuerAuthorized</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>issuer<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>topic<span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="nv">authorized</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">IdentityVerified</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>identity<span class="p">,</span><span class="w"> </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>levelId<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">timestamp</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">VerificationFailed</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>identity<span class="p">,</span><span class="w"> </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>levelId<span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">reason</span><span class="p">);</span>
+
+<span class="w">    </span><span class="kt">constructor</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">_claimHolder</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>claimHolder<span class="w"> </span><span class="o">=</span><span class="w"> </span>IERC735<span class="p">(</span>_claimHolder<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">createVerificationLevel</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">levelId</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>requiredTopics<span class="p">,</span>
+<span class="w">        </span><span class="kt">address</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>trustedIssuers<span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">minValidityPeriod</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyAdmin<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>verificationLevels<span class="p">[</span>levelId<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>VerificationRequirement<span class="p">({</span>
+<span class="w">            </span>requiredTopics<span class="o">:</span><span class="w"> </span>requiredTopics<span class="p">,</span>
+<span class="w">            </span>trustedIssuers<span class="o">:</span><span class="w"> </span>trustedIssuers<span class="p">,</span>
+<span class="w">            </span>minValidityPeriod<span class="o">:</span><span class="w"> </span>minValidityPeriod<span class="p">,</span>
+<span class="w">            </span>active<span class="o">:</span><span class="w"> </span><span class="kt">true</span>
+<span class="w">        </span><span class="p">});</span>
+
+<span class="w">        </span>emit<span class="w"> </span>VerificationLevelCreated<span class="p">(</span>levelId<span class="p">,</span><span class="w"> </span>requiredTopics<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">authorizeIssuerForTopic</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">issuer</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">topic</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">authorized</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyAdmin<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>issuerTopicAuthorization<span class="p">[</span>issuer<span class="p">][</span>topic<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>authorized<span class="p">;</span>
+<span class="w">        </span>emit<span class="w"> </span>IssuerAuthorized<span class="p">(</span>issuer<span class="p">,</span><span class="w"> </span>topic<span class="p">,</span><span class="w"> </span>authorized<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">verifyIdentity</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">identity</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">levelId</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bool</span><span class="w"> </span><span class="nv">verified</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>VerificationRequirement<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>requirement<span class="w"> </span><span class="o">=</span><span class="w"> </span>verificationLevels<span class="p">[</span>levelId<span class="p">];</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>requirement<span class="p">.</span>active<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Verification level not active&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Check each required topic</span>
+<span class="w">        </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>requirement<span class="p">.</span>requiredTopics<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">topic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>requirement<span class="p">.</span>requiredTopics<span class="p">[</span>i<span class="p">];</span>
+
+<span class="w">            </span><span class="kt">bytes32</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>claimIds<span class="w"> </span><span class="o">=</span><span class="w"> </span>claimHolder<span class="p">.</span>getClaimIdsByTopic<span class="p">(</span>topic<span class="p">);</span>
+<span class="w">            </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>claimIds<span class="p">.</span>length<span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span>emit<span class="w"> </span>VerificationFailed<span class="p">(</span>identity<span class="p">,</span><span class="w"> </span>levelId<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Missing required claim topic&quot;</span><span class="p">);</span>
+<span class="w">                </span><span class="kt">return</span><span class="w"> </span><span class="kt">false</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+
+<span class="w">            </span><span class="kt">bool</span><span class="w"> </span><span class="nv">validClaimFound</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">false</span><span class="p">;</span>
+<span class="w">            </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>j<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>claimIds<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>j<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>_isClaimValid<span class="p">(</span>claimIds<span class="p">[</span>j<span class="p">],</span><span class="w"> </span>requirement<span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span>validClaimFound<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">true</span><span class="p">;</span>
+<span class="w">                    </span><span class="kt">break</span><span class="p">;</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+
+<span class="w">            </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span>validClaimFound<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span>emit<span class="w"> </span>VerificationFailed<span class="p">(</span>identity<span class="p">,</span><span class="w"> </span>levelId<span class="p">,</span><span class="w"> </span><span class="s2">&quot;No valid claim found for topic&quot;</span><span class="p">);</span>
+<span class="w">                </span><span class="kt">return</span><span class="w"> </span><span class="kt">false</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span>emit<span class="w"> </span>IdentityVerified<span class="p">(</span>identity<span class="p">,</span><span class="w"> </span>levelId<span class="p">,</span><span class="w"> </span><span class="k">block.timestamp</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span><span class="kt">true</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">_isClaimValid</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">claimId</span><span class="p">,</span>
+<span class="w">        </span>VerificationRequirement<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>requirement
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bool</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="p">(</span>
+<span class="w">            </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">topic</span><span class="p">,</span>
+<span class="w">            </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">scheme</span><span class="p">,</span>
+<span class="w">            </span><span class="kt">address</span><span class="w"> </span><span class="nv">issuer</span><span class="p">,</span>
+<span class="w">            </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>signature<span class="p">,</span>
+<span class="w">            </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>data<span class="p">,</span>
+<span class="w">            </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>uri
+<span class="w">        </span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>claimHolder<span class="p">.</span>getClaim<span class="p">(</span>claimId<span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Check if issuer is authorized for this topic</span>
+<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span>issuerTopicAuthorization<span class="p">[</span>issuer<span class="p">][</span>topic<span class="p">])</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">return</span><span class="w"> </span><span class="kt">false</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// Check if claim is not expired</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">expirationTime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>claimExpirationTime<span class="p">[</span>claimId<span class="p">];</span>
+<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>expirationTime<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="k">block.timestamp</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span>expirationTime<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">return</span><span class="w"> </span><span class="kt">false</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// Verify signature (simplified - would implement full signature verification)</span>
+<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>signature<span class="p">.</span>length<span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">return</span><span class="w"> </span><span class="kt">false</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span><span class="kt">true</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getVerificationStatus</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">identity</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">levelId</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">canVerify</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>missingTopics<span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>expiredClaims
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>VerificationRequirement<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>requirement<span class="w"> </span><span class="o">=</span><span class="w"> </span>verificationLevels<span class="p">[</span>levelId<span class="p">];</span>
+
+<span class="w">        </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>missing<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[](</span>requirement<span class="p">.</span>requiredTopics<span class="p">.</span>length<span class="p">);</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>expired<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[](</span>requirement<span class="p">.</span>requiredTopics<span class="p">.</span>length<span class="p">);</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">missingCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">expiredCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span>
+
+<span class="w">        </span>canVerify<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">true</span><span class="p">;</span>
+
+<span class="w">        </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>requirement<span class="p">.</span>requiredTopics<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">topic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>requirement<span class="p">.</span>requiredTopics<span class="p">[</span>i<span class="p">];</span>
+<span class="w">            </span><span class="kt">bytes32</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>claimIds<span class="w"> </span><span class="o">=</span><span class="w"> </span>claimHolder<span class="p">.</span>getClaimIdsByTopic<span class="p">(</span>topic<span class="p">);</span>
+
+<span class="w">            </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>claimIds<span class="p">.</span>length<span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span>missing<span class="p">[</span>missingCount<span class="o">++</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>topic<span class="p">;</span>
+<span class="w">                </span>canVerify<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">false</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="kt">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="kt">bool</span><span class="w"> </span><span class="nv">hasValidClaim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">false</span><span class="p">;</span>
+<span class="w">                </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>j<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>claimIds<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>j<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">expirationTime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>claimExpirationTime<span class="p">[</span>claimIds<span class="p">[</span>j<span class="p">]];</span>
+<span class="w">                    </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>expirationTime<span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="k">block.timestamp</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span>expirationTime<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                        </span>hasValidClaim<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">true</span><span class="p">;</span>
+<span class="w">                        </span><span class="kt">break</span><span class="p">;</span>
+<span class="w">                    </span><span class="p">}</span>
+<span class="w">                </span><span class="p">}</span>
+
+<span class="w">                </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span>hasValidClaim<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span>expired<span class="p">[</span>expiredCount<span class="o">++</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>topic<span class="p">;</span>
+<span class="w">                    </span>canVerify<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">false</span><span class="p">;</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// Resize arrays to actual counts</span>
+<span class="w">        </span>missingTopics<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[](</span>missingCount<span class="p">);</span>
+<span class="w">        </span>expiredClaims<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[](</span>expiredCount<span class="p">);</span>
+
+<span class="w">        </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>missingCount<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>missingTopics<span class="p">[</span>i<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>missing<span class="p">[</span>i<span class="p">];</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>expiredCount<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>expiredClaims<span class="p">[</span>i<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>expired<span class="p">[</span>i<span class="p">];</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">modifier</span><span class="w"> </span>onlyAdmin<span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Implementation would check for admin role</span>
+<span class="w">        </span>_<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="professional-credentials-system">Professional Credentials System<a class="headerlink" href="#professional-credentials-system" title="Permanent link">&para;</a></h3>
+<p>```solidity
+// Professional credentials and certification system
+contract ProfessionalCredentials {
+    IERC735 public claimHolder;</p>
+<div class="codehilite"><pre><span></span><code>struct Credential {
+    string name;
+    string description;
+    uint256 topic;
+    address issuingAuthority;
+    uint256 validityPeriod;
+    bool requiresRenewal;
+    uint256 renewalPeriod;
+}
+
+struct IssuedCredential {
+    bytes32 credentialId;
+    address holder;
+    uint256 issuedAt;
+    uint256 expiresAt;
+    bool active;
+    bytes32 claimId;
+}
+
+mapping(bytes32 =&gt; Credential) public credentials;
+mapping(bytes32 =&gt; IssuedCredential) public issuedCredentials;
+mapping(address =&gt; bytes32[]) public holderCredentials;
+mapping(address =&gt; bool) public authorizedIssuers;
+
+event CredentialDefined(bytes32 indexed credentialId, string name, uint256 topic);
+event CredentialIssued(bytes32 indexed credentialId, address indexed holder, bytes32 claimId);
+event CredentialRevoked(bytes32 indexed credentialId, address indexed holder, string reason);
+event CredentialRenewed(bytes32 indexed credentialId, address indexed holder, uint256 newExpirationTime);
+
+constructor(address _gameCards) {
+    claimHolder = IERC735(_gameCards);
+}
+
+function defineCredential(
+    bytes32 credentialId,
+    string memory name,
+    string memory description,
+    uint256 topic,
+    address issuingAuthority,
+    uint256 validityPeriod,
+    bool requiresRenewal,
+    uint256 renewalPeriod
+) external onlyAdmin {
+    credentials[credentialId] = Credential({
+        name: name,
+        description: description,
+        topic: topic,
+        issuingAuthority: issuingAuthority,
+        validityPeriod: validityPeriod,
+        requiresRenewal: requiresRenewal,
+        renewalPeriod: renewalPeriod
+    });
+
+    authorizedIssuers[issuingAuthority] = true;
+    emit CredentialDefined(credentialId, name, topic);
+}
+
+function issueCredential(
+    bytes32 credentialId,
+    address holder,
+    bytes memory credentialData,
+    bytes memory signature,
+    string memory uri
+) external onlyAuthorizedIssuer(credentialId) {
+    Credential memory credential = credentials[credentialId];
+    require(bytes(credential.name).length &gt; 0, &quot;Credential not defined&quot;);
+</code></pre></div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../ierc734/" class="btn btn-neutral float-left" title="IERC734"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../ierc721a/" class="btn btn-neutral float-right" title="IERC721A">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../ierc734/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../ierc721a/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

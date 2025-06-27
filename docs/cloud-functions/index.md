@@ -277,9 +277,9 @@ npm start
 ## Related Documentation
 
 - [Parse Server Documentation](https://docs.parseplatform.org/)
-- [Blockchain Integration Guide](../integration-guides/blockchain.md)
-- [DFNS Integration Guide](../integration-guides/dfns.md)
-- [Bridge API Integration Guide](../integration-guides/bridge-api.md)
+- [Smart Contracts (Integrator Guide)](../integrator-guide/smart-contracts.md)
+- [DFNS Integration (Integrator Guide)](../integrator-guide/dfns.md)
+- [Bridge API Functions (Cloud Functions)](./bridge.md)
 
 ---
 

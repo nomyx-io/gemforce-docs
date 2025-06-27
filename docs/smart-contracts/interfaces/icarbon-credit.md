@@ -2,7 +2,7 @@
 
 ## Overview
 
-The [`ICarbonCredit`](../../../contracts/interfaces/ICarbonCredit.sol) interface defines the standard contract for managing carbon credits associated with ERC721 tokens within the Gemforce platform. This interface enables the tokenization of environmental assets, allowing NFTs to represent carbon credits that can be tracked, managed, and retired for environmental impact purposes.
+The [`ICarbonCredit`](../../smart-contracts/interfaces/icarbon-credit.md) interface defines the standard contract for managing carbon credits associated with ERC721 tokens within the Gemforce platform. This interface enables the tokenization of environmental assets, allowing NFTs to represent carbon credits that can be tracked, managed, and retired for environmental impact purposes.
 
 ## Key Features
 
@@ -121,7 +121,7 @@ function getCarbonCreditStatus(uint256 tokenId) external view returns (CarbonCre
 - `tokenId` (uint256): The ID of the ERC721 token
 
 **Returns**: 
-- [`CarbonCreditStatus`](../libraries/carbon-credit-lib.md:4) enum value:
+- [`CarbonCreditStatus`](../libraries/carbon-credit-lib.md#carboncreditstatus-enum) enum value:
   - `ACTIVE`: Token has remaining carbon credits
   - `RETIRED`: All carbon credits have been retired
 
@@ -211,6 +211,8 @@ function getAllCarbonCreditBalances(uint256[] calldata tokenIds) external view r
 - `tokenIds` (uint256[]): Array of ERC721 token IDs to query
 
 **Returns**: Array of carbon credit balances corresponding to the input token IDs
+
+**Gas Optimization**: Single call instead of multiple individual queries
 
 **Example Usage**:
 ```solidity
@@ -500,146 +502,120 @@ contract CarbonCreditAnalytics {
             totalActiveCredits: totalActive,
             totalRetiredCredits: totalRetired,
             averageCreditsPerToken: tokensWithCredits > 0 ? totalActive / tokensWithCredits : 0,
-            retirementRate: (totalActive + totalRetired) > 0 ? (totalRetired * 100) / (totalActive + totalRetired) : 0
+            retirementRate: totalActive > 0 ? (totalRetired * 10000) / (totalRetired + totalActive) : 0 // in basis points
         });
         
         emit AnalyticsUpdated(data);
     }
     
-    function getTokenRetirementHistory(uint256 tokenId) external view returns (
-        uint256 initialBalance,
-        uint256 currentBalance,
-        uint256 totalRetired,
-        uint256 retirementPercentage
-    ) {
-        initialBalance = tokenInitialBalances[tokenId];
-        currentBalance = carbonCredit.getCarbonCreditBalance(tokenId);
-        totalRetired = initialBalance - currentBalance;
-        retirementPercentage = initialBalance > 0 ? (totalRetired * 100) / initialBalance : 0;
-    }
-    
-    function generateRetirementReport(uint256[] memory tokenIds) external view returns (
-        uint256 totalInitial,
-        uint256 totalCurrent,
-        uint256 totalRetired,
-        uint256 overallRetirementRate
-    ) {
-        uint256[] memory balances = carbonCredit.getAllCarbonCreditBalances(tokenIds);
+    function getAnalytics() external view returns (AnalyticsData memory) {
+        uint256[] memory balances = carbonCredit.getAllCarbonCreditBalances(trackedTokens);
         
-        for (uint256 i = 0; i < tokenIds.length; i++) {
-            uint256 initial = tokenInitialBalances[tokenIds[i]];
-            uint256 current = balances[i];
+        uint256 totalActive = 0;
+        uint256 totalRetired = 0;
+        uint256 tokensWithCredits = 0;
+        
+        for (uint256 i = 0; i < trackedTokens.length; i++) {
+            uint256 tokenId = trackedTokens[i];
+            uint256 currentBalance = balances[i];
+            uint256 initialBalance = tokenInitialBalances[tokenId];
             
-            totalInitial += initial;
-            totalCurrent += current;
-            totalRetired += (initial - current);
+            if (currentBalance > 0) {
+                tokensWithCredits++;
+            }
+            
+            totalActive += currentBalance;
+            totalRetired += (initialBalance - currentBalance);
         }
         
-        overallRetirementRate = totalInitial > 0 ? (totalRetired * 100) / totalInitial : 0;
+        return AnalyticsData({
+            totalTokensWithCredits: tokensWithCredits,
+            totalActiveCredits: totalActive,
+            totalRetiredCredits: totalRetired,
+            averageCreditsPerToken: tokensWithCredits > 0 ? totalActive / tokensWithCredits : 0,
+            retirementRate: totalActive > 0 ? (totalRetired * 10000) / (totalRetired + totalActive) : 0 // in basis points
+        });
     }
 }
 ```
 
-## Events
+## Carbon Credit Lifecycle Events
 
-### Carbon Credit Lifecycle Events
+### CarbonCreditsInitialized
 ```solidity
-event CarbonCreditsInitialized(
-    uint256 indexed tokenId,
-    uint256 initialBalance
-);
-
-event CarbonCreditsRetired(
-    uint256 indexed tokenId,
-    uint256 amount,
-    uint256 remainingBalance
-);
+event CarbonCreditsInitialized(uint256 indexed tokenId, uint256 initialBalance);
 ```
+Emitted when carbon credits are initialized for an NFT.
 
-## Data Types
+### CarbonCreditsRetired
+```solidity
+event CarbonCreditsRetired(uint256 indexed tokenId, uint256 amount, uint256 remainingBalance);
+```
+Emitted when carbon credits are retired from an NFT.
+
+## Core Data Structures
 
 ### CarbonCreditStatus Enum
 ```solidity
 enum CarbonCreditStatus {
-    ACTIVE,    // Token has remaining carbon credits
-    RETIRED    // All carbon credits have been retired
+    ACTIVE,
+    RETIRED
 }
 ```
 
 ## Security Considerations
 
 ### Access Control
-- Initialization requires appropriate permissions
-- Retirement operations must be authorized
-- Token existence validation before operations
-- Prevention of double initialization
+- **Authorized Initialization**: Only authorized entities can initialize carbon credits
+- **Owner-only Retirement**: Only NFT owner can retire associated carbon credits
+- **Token Existence Check**: Prevents operations on non-existent tokens
 
 ### Financial Security
-- Accurate balance tracking and calculations
-- Prevention of over-retirement
-- Secure state transitions
-- Immutable retirement records
+- **No Double-Spending**: Retired credits cannot be reused
+- **Balance Validation**: Ensures sufficient balance for retirement
+- **Overflow Prevention**: Safe math for all calculations
 
 ### Environmental Integrity
-- Prevention of double-counting retired credits
-- Permanent retirement to ensure environmental impact
-- Transparent tracking of credit lifecycle
-- Compliance with carbon accounting standards
+- **Permanent Retirement**: Ensures true carbon offsetting
+- **Transparent Tracking**: All credit movements are on-chain
+- **Auditability**: Full audit trail for compliance
 
 ## Gas Optimization
 
 ### Efficient Operations
-- Batch operations for multiple tokens
-- Optimized storage layout for balances
-- Minimal external calls in view functions
-- Efficient array operations for bulk queries
+- **Batch Functions**: `batchInitializeCarbonCredits` and `getAllCarbonCreditBalances` for efficiency
+- **Direct Storage Access**: Minimize overhead for data access
 
 ### Storage Optimization
-- Packed storage structures where possible
-- Efficient mapping usage for balance tracking
-- Optimized batch operations
-- Cached calculations for frequently accessed data
+- **Packed Structs**: Use tightly packed structs where feasible
+- **Mapping Usage**: Efficient use of mappings for dynamic data
 
 ## Error Handling
 
 ### Common Errors
-- Token does not exist
-- Carbon credits already initialized
-- Insufficient balance for retirement
-- Invalid amounts (zero or negative)
-- Array length mismatches in batch operations
+- `ICarbonCredit: Invalid Token ID`: Provided token ID is 0 or invalid
+- `ICarbonCredit: Invalid Amount`: Retirement amount is 0 or exceeds balance
+- `ICarbonCredit: Already Initialized`: Attempting to re-initialize credits for a token
+- `ICarbonCredit: Not Token Owner`: Caller is not the owner of the NFT when retiring
 
-### Best Practices
-- Validate token existence before operations
-- Check balances before retirement
-- Validate array parameters in batch operations
-- Provide clear error messages for debugging
-- Handle edge cases gracefully
+## Best Practices
 
-## Testing Considerations
+### Integration Checklist
+- Ensure proper NFT ownership and transfer mechanisms
+- Validate carbon credit amounts and status before use
+- Integrate with off-chain carbon registries for full traceability
+- Use batch operations for efficiency in dApps
 
-### Unit Tests
-- Interface compliance verification
-- Balance initialization and tracking
-- Retirement functionality and validation
-- Batch operation efficiency and correctness
-- Event emission verification
-
-### Integration Tests
-- Integration with ERC721 contracts
-- Environmental marketplace workflows
-- Carbon offset program functionality
-- Analytics and reporting accuracy
-- Cross-contract interaction testing
+### Development Guidelines
+- Write comprehensive unit tests for all functions
+- Implement robust error handling and user feedback mechanisms
+- Monitor events for real-time tracking and analytics
+- Follow secure coding practices for all smart contract interactions
 
 ## Related Documentation
 
-- [CarbonCreditFacet](../facets/carbon-credit-facet.md) - Implementation of carbon credit functionality
-- [CarbonCreditLib](../libraries/carbon-credit-lib.md) - Carbon credit utilities and data structures
-- [Environmental NFT Guide](../../guides/environmental-nfts.md) - Implementation guide for environmental assets
-- [Carbon Offset Integration](../../guides/carbon-offset-integration.md) - Integration with offset programs
-- [ERC721 Standards](../../standards/erc721-extensions.md) - Token standard extensions
-
----
-
-*This interface defines the standard contract for carbon credit management within the Gemforce platform, enabling the tokenization and retirement of environmental assets for sustainability and carbon offset programs.*
+- [Smart Contracts: Carbon Credit Facet](../../smart-contracts/facets/carbon-credit-facet.md) - Reference for the CarbonCreditFacet implementation.
+- [Smart Contracts: ICarbonCredit Interface](../../smart-contracts/interfaces/icarbon-credit.md) - Interface definition.
+- [Smart Contracts: Carbon Credit Lib](../../smart-contracts/libraries/carbon-credit-lib.md) - Supporting library functions.
+- [EIP-DRAFT-Carbon-Credit-Standard](../../eips/EIP-DRAFT-Carbon-Credit-Standard.md) - The full EIP specification.
+- [Developer Guides: Automated Testing Setup](../../developer-guides/automated-testing-setup.md)

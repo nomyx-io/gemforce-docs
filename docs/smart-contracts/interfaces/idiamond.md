@@ -2,7 +2,7 @@
 
 ## Overview
 
-The [`IDiamond.sol`](/Users/sschepis/Development/gem-base/contracts/interfaces/IDiamond.sol) defines the core interface and data structures for the Diamond Standard implementation within the Gemforce platform. This interface establishes the fundamental contract for diamond proxy functionality and provides essential data structures for diamond configuration and storage.
+The [`IDiamond.sol`](../../smart-contracts/interfaces/idiamond.md) defines the core interface and data structures for the Diamond Standard implementation within the Gemforce platform. This interface establishes the fundamental contract for diamond proxy functionality and provides essential data structures for diamond configuration and storage.
 
 ## Interface Details
 
@@ -79,20 +79,6 @@ struct DiamondContract {
 **Fields**:
 - **settings**: Core diamond configuration (DiamondSettings struct)
 - **metadata**: Key-value mapping for extensible metadata storage
-
-**Usage Example**:
-```solidity
-// Access diamond contract data
-DiamondContract storage diamond = diamondStorage().diamondContract;
-
-// Update settings
-diamond.settings.owner = newOwner;
-
-// Set metadata
-diamond.metadata["version"] = "1.0.0";
-diamond.metadata["description"] = "Trade deal diamond instance";
-diamond.metadata["category"] = "finance";
-```
 
 **Metadata Use Cases**:
 - **Version Information**: Track diamond version and upgrades
@@ -498,133 +484,127 @@ contract DiamondFactoryIntegration {
         DeploymentConfig memory config
     ) external onlyOwner {
         deploymentConfigs[factory] = config;
+        
         emit DiamondDeploymentConfigured(factory, config);
     }
     
-    function deployDiamondWithConfig(address factory) external returns (address diamond) {
+    function deployDiamond(address factory) external {
         DeploymentConfig memory config = deploymentConfigs[factory];
-        require(config.settings.owner != address(0), "No deployment config found");
+        require(config.settings.owner != address(0), "Deployment config not set");
         
-        // Deploy diamond through factory
-        // This would integrate with actual DiamondFactory contract
-        diamond = _deployDiamond(factory, config);
+        // Deploy diamond via factory
+        address diamond = IDiamondFactory(factory).deployDiamond({
+            templateName: "Custom",
+            salt: keccak256(abi.encodePacked(block.timestamp, msg.sender)),
+            initData: "",
+            owner: config.settings.owner,
+            gasLimit: 0
+        });
         
         factoryToDiamond[factory] = diamond;
+        
+        // Set initial facets and metadata
+        IDiamondCut(diamond).diamondCut(
+            _buildFacetCuts(config.initialFacets, config.facetSelectors),
+            address(0),
+            ""
+        );
+        
+        IDiamond(diamond).configureDiamond(config.settings, config.metadataKeys, config.metadataValues);
+        
         emit DiamondDeployed(factory, diamond, config.settings);
     }
     
-    function _deployDiamond(
-        address factory,
-        DeploymentConfig memory config
-    ) internal returns (address) {
-        // Placeholder for actual diamond deployment
-        // Would integrate with DiamondFactory contract
-        return address(0);
-    }
-    
-    function getDiamondByFactory(address factory) external view returns (address) {
-        return factoryToDiamond[factory];
-    }
-    
-    function getDeploymentConfig(address factory) external view returns (DeploymentConfig memory) {
-        return deploymentConfigs[factory];
+    function _buildFacetCuts(address[] memory facets, bytes4[][] memory selectors) internal pure returns (IDiamondCut.FacetCut[] memory) {
+        IDiamondCut.FacetCut[] memory cuts = new IDiamondCut.FacetCut[](facets.length);
+        for (uint i = 0; i < facets.length; i++) {
+            cuts[i] = IDiamondCut.FacetCut({
+                facetAddress: facets[i],
+                action: IDiamondCut.FacetCutAction.Add,
+                functionSelectors: selectors[i]
+            });
+        }
+        return cuts;
     }
 }
 ```
 
-## Integration Patterns
-
 ### Standard Diamond Implementation
 ```solidity
-// Standard implementation of IDiamond interface
-contract Diamond is IDiamond {
-    using LibDiamond for DiamondStorage;
-    
-    constructor(DiamondSettings memory settings) {
-        DiamondStorage storage ds = LibDiamond.diamondStorage();
-        ds.diamondContract.settings = settings;
+// Basic Diamond contract implementation adhering to IDiamond interface
+contract MyDiamond is IDiamond, Diamond, DiamondCutFacet, DiamondLoupeFacet, OwnershipFacet {
+    // Constructor initializes DiamondStorage
+    constructor(DiamondSettings memory initialSettings, address diamondInit, bytes memory initCalldata) {
+        // Perform initialization
+        LibDiamond.diamondStorage().diamondContract.settings = initialSettings;
         
-        // Set initial metadata
-        ds.diamondContract.metadata["version"] = "1.0.0";
-        ds.diamondContract.metadata["standard"] = "EIP-2535";
-        ds.diamondContract.metadata["created"] = block.timestamp.toString();
+        // Optional initialization call
+        if (diamondInit != address(0)) {
+            (bool success,) = diamondInit.delegatecall(initCalldata);
+            require(success, "Initialization failed");
+        }
     }
-    
-    function getDiamondAddress() external view override returns (address) {
-        return address(this);
-    }
-    
-    // Additional diamond functionality would be implemented through facets
 }
 ```
 
 ### Extended Diamond Interface
 ```solidity
-// Extended interface for additional diamond functionality
-interface IDiamondExtended is IDiamond {
-    function getDiamondSettings() external view returns (DiamondSettings memory);
-    function getMetadata(string memory key) external view returns (string memory);
-    function setMetadata(string memory key, string memory value) external;
-    function updateSettings(DiamondSettings memory newSettings) external;
+interface IExtendedDiamond is IDiamond {
+    // New functions can be added here
+    function version() external view returns (string memory);
+    function upgradeTo(address newImplementation) external;
 }
 ```
 
 ## Security Considerations
 
 ### Access Control
-- Owner validation for configuration changes
-- Factory address verification for deployment
-- Metadata modification restrictions
-- Settings update authorization
+- **Owner-Only Functions**: Sensitive operations restricted to the diamond owner
+- **Factory Restrictions**: Only trusted factories can create diamonds
+- **Delegated Calls**: Careful handling of delegatecall to prevent vulnerabilities
 
 ### Data Integrity
-- Validation of diamond settings parameters
-- Metadata key-value consistency
-- Storage slot collision prevention
-- Upgrade safety considerations
+- **Storage Collisions**: Prevention through Diamond Storage pattern
+- **Immutable Data**: Critical configuration once set is immutable
+- **Type Safety**: Enforcement of data types in structures
+- **Event Logging**: Comprehensive event logs for auditability
 
 ### Interface Compliance
-- EIP-2535 Diamond Standard compliance
-- Consistent interface implementation
-- Proper function selector management
-- Event emission standards
+- **EIP-2535 Adherence**: Full compliance with Diamond Standard
+- **EIP-165 Support**: Standard interface detection
+- **Consistent APIs**: Predictable and reliable contract interactions
 
 ## Gas Optimization
 
 ### Storage Efficiency
-- Packed storage structures where possible
-- Efficient metadata storage patterns
-- Minimal storage operations
-- Optimized diamond storage access
+- **Minimal Storage**: Only essential data stored on-chain
+- **Packed Structs**: Optimize storage layout for structs
+- **Lazy Initialization**: Initialize only when necessary
+- **View Functions**: No gas cost for read-only queries
 
 ### Function Optimization
-- View function gas efficiency
-- Minimal external calls
-- Efficient data retrieval patterns
-- Optimized event emission
+- **Internal Helper Functions**: Reduce external calls
+- **Delegatecall**: Minimize gas cost for cross-facet calls
+- **Batch Operations**: Efficient processing of multiple items
 
-## Testing Considerations
+## Testing
 
 ### Unit Tests
-- Interface compliance verification
-- Data structure validation
-- Function return value testing
-- Event emission verification
+- Test each core function in isolation
+- Verify data structure integrity
+- Simulate various configuration scenarios
 
 ### Integration Tests
-- Diamond deployment workflows
-- Factory integration testing
-- Metadata management scenarios
-- Multi-diamond interactions
+- Test deployment through Diamond Factory
+- Verify cross-facet and cross-contract interactions
+- Simulate upgrade scenarios and state preservation
 
 ## Related Documentation
 
-- [Diamond Standard (EIP-2535)](https://eips.ethereum.org/EIPS/eip-2535) - Diamond Standard specification
-- [LibDiamond](../libraries/lib-diamond.md) - Diamond utilities library
-- [DiamondFactory](../contracts/diamond-factory.md) - Diamond deployment factory
-- [Diamond Contract](../contracts/diamond.md) - Core diamond implementation
-- [Diamond Architecture Guide](../../guides/diamond-architecture.md) - Implementation guide
-
----
-
-*This interface defines the core contract for Diamond Standard implementation within the Gemforce platform, providing essential functionality for diamond proxy management and configuration.*
+- [Diamond Standard Overview](../../smart-contracts/diamond.md)
+- [Diamond Factory](../../smart-contracts/diamond-factory.md)
+- [Diamond Cut Facet](../../smart-contracts/facets/diamond-cut-facet.md)
+- [Diamond Loupe Facet](../../smart-contracts/facets/diamond-loupe-facet.md)
+- [Owner Facet](../../smart-contracts/facets/ownership-facet.md)
+- [Diamond Architecture](../../developer-guides/development-environment-setup.md)
+- [Integrator's Guide: Smart Contracts](../../integrator-guide/smart-contracts.md) - General smart contract integration guidance.

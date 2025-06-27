@@ -2,7 +2,7 @@
 
 ## Overview
 
-The [`ITradeDeal.sol`](/Users/sschepis/Development/gem-base/contracts/interfaces/ITradeDeal.sol) defines the comprehensive interface for trade deal functionality within the Gemforce platform. This interface establishes the standard contract for creating, managing, and operating collateralized trade deals with invoice backing, USDC funding, interest distribution, and participant management.
+The `ITradeDeal.sol` defines the comprehensive interface for trade deal functionality within the Gemforce platform. This interface establishes the standard contract for creating, managing, and operating collateralized trade deals with invoice backing, USDC funding, interest distribution, and participant management.
 
 ## Interface Details
 
@@ -1301,7 +1301,7 @@ event CollateralTokensRedeemed(uint256 indexed tradeDealId, address indexed rede
 - [TradeDealOperationsFacet](../facets/trade-deal-operations-facet.md) - Operational functions
 - [TradeDealLib](../libraries/trade-deal-lib.md) - Trade deal utilities
 - [CollateralTokenFactoryFacet](../facets/collateral-token-factory-facet.md) - Token factory integration
-- [Trade Deal Guide](../../guides/trade-deals.md) - Implementation guide
+- [Trade Deal Guide](../../developer-guides/automated-testing-setup.md) - Implementation guide
 
 ---
 

@@ -2,7 +2,7 @@
 
 ## Overview
 
-The [`MarketplaceFacet.sol`](/Users/sschepis/Development/gem-base/contracts/facets/MarketplaceFacet.sol) provides comprehensive NFT marketplace functionality for the Gemforce diamond system. This facet enables users to list, purchase, and manage NFT sales with support for both ETH and ERC20 token payments, featuring a sophisticated fee distribution system.
+The [`MarketplaceFacet.sol`](../../smart-contracts/facets/marketplace-facet.md) provides comprehensive NFT marketplace functionality for the Gemforce diamond system. This facet enables users to list, purchase, and manage NFT sales with support for both ETH and ERC20 token payments, featuring a sophisticated fee distribution system.
 
 ## Contract Details
 
@@ -352,6 +352,7 @@ Emitted when an NFT listing is removed.
 - Payment distribution logic
 - Access control validation
 - State transition correctness
+- Batch operation efficiency
 
 ### Integration Tests
 - End-to-end marketplace flows
@@ -361,8 +362,8 @@ Emitted when an NFT listing is removed.
 
 ## Related Documentation
 
-- [IMarketplace](../interfaces/imarketplace.md) - Marketplace interface
-- [IdentityStorage](../identity/identity-storage.md) - Identity system integration
+- [IMarketplace Interface](../interfaces/imarketplace.md) - Marketplace interface
+- [Identity Registry Facet](identity-registry-facet.md) - Identity system integration
 - [Diamond](../diamond.md) - Core diamond contract
 - [EIP-DRAFT-Diamond-Enhanced-Marketplace](../../eips/EIP-DRAFT-Diamond-Enhanced-Marketplace.md) - EIP specification
 

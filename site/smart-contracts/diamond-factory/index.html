@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Gemforce Team" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Diamond Factory - Gemforce Documentation</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Diamond Factory";
+        var mkdocs_page_input_path = "smart-contracts/diamond-factory.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Gemforce Documentation
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../developer-setup-guide/">Developer Setup Guide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../system-architecture/gemforce-system-architecture/">System Architecture</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Smart Contracts</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../diamond/">Diamond Contract</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Diamond Factory</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#key-features">Key Features</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#diamond-deployment">Diamond Deployment</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#template-management">Template Management</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#factory-patterns">Factory Patterns</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#core-interface">Core Interface</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#core-functions">Core Functions</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#deploydiamond">deployDiamond()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#registertemplate">registerTemplate()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#predictdiamondaddress">predictDiamondAddress()</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#implementation-example">Implementation Example</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#basic-diamond-factory">Basic Diamond Factory</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#advanced-factory-with-versioning">Advanced Factory with Versioning</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#template-patterns">Template Patterns</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#standard-nft-template">Standard NFT Template</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#defi-protocol-template">DeFi Protocol Template</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#security-considerations">Security Considerations</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#access-control">Access Control</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#template-security">Template Security</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#deployment-safety">Deployment Safety</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#best-practices">Best Practices</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#template-design">Template Design</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#factory-management">Factory Management</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#deployment-patterns">Deployment Patterns</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#integration-examples">Integration Examples</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#frontend-integration">Frontend Integration</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#cli-integration">CLI Integration</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#related-documentation">Related Documentation</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#standards-compliance">Standards Compliance</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../identity-factory/">Identity Factory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Facets</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../facets/marketplace-facet/">Marketplace Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../facets/trade-deal-management-facet/">Trade Deal Management Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../facets/carbon-credit-facet/">Carbon Credit Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../facets/identity-registry-facet/">Identity Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../facets/trusted-issuers-registry-facet/">Trusted Issuers Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../facets/fee-distributor-facet/">Fee Distributor Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../facets/gemforce-minter-facet/">Gemforce Minter Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../facets/multi-sale-facet/">Multi Sale Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../facets/svg-templates-facet/">SVG Templates Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../facets/trade-deal-admin-facet/">Trade Deal Admin Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../facets/trade-deal-operations-facet/">Trade Deal Operations Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../facets/collateral-token-factory-facet/">Collateral Token Factory Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../facets/diamond-cut-facet/">Diamond Cut Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../facets/diamond-loupe-facet/">Diamond Loupe Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../facets/ownership-facet/">Ownership Facet</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Interfaces</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../interfaces/idiamond/">IDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../interfaces/imarketplace/">IMarketplace</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../interfaces/itradedeal/">ITradeDeal</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../interfaces/icarbon-credit/">ICarbonCredit</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../interfaces/ierc1155-mint/">IERC1155Mint</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../interfaces/ierc734/">IERC734</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../interfaces/ierc735/">IERC735</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../interfaces/ierc721a/">IERC721A</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../interfaces/idiamond-factory/">IDiamondFactory</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../interfaces/iidentity/">IIdentity</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../interfaces/imultisale/">IMultiSale</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../interfaces/ifee-distributor/">IFeeDistributor</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../interfaces/igemforce-minter-facet/">IGemforceMinterFacet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../interfaces/iidentity-registry/">IIdentityRegistry</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../interfaces/itrusted-issuers-registry/">TRUSTEDIssuersRegistry</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../interfaces/isvg/">ISVG</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../interfaces/iattribute/">IAttribute</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../interfaces/ivariable-price/">IVariablePrice</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Libraries</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../libraries/carbon-credit-lib/">Carbon Credit Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../libraries/trade-deal-lib/">Trade Deal Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../libraries/multi-sale-lib/">Multi Sale Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../libraries/diamond-factory-lib/">Diamond Factory Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../libraries/svg-templates-lib/">SVG Templates Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../libraries/attribute-lib/">Attribute Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../libraries/variable-price-lib/">Variable Price Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../libraries/merkle-prover/">Merkle Prover</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../libraries/fee-distributor-lib/">Fee Distributor Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../libraries/lib-diamond/">LibDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../libraries/diamond-lib/">DiamondLib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../libraries/erc721a-lib/">ERC721A Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../libraries/erc721a-enumeration-lib/">ERC721A Enumeration Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../libraries/strings-lib/">Strings Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../libraries/trusted-issuer-lib/">Trusted Issuer Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../libraries/set-libraries/">Set Libraries</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">SDK & Libraries</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../sdk-libraries/blockchain/">Blockchain Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../sdk-libraries/diamond/">Diamond Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../sdk-libraries/contract/">Contract Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../sdk-libraries/deploy/">Deployment Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../sdk-libraries/validation-utils/">Validation Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../sdk-libraries/nft-sale-utils/">NFT Sale Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../sdk-libraries/webhooks/">Webhooks Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../libraries/metadata-lib/">Metadata Library</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Cloud Functions</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/authentication/">Authentication Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/auth-functions/">Auth Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/blockchain/">Blockchain Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/bridge/">Bridge Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/contracts/">Contract Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/deploy/">Deploy Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/dfns/">DFNS Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/project/">Project Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/trade-deal/">Trade Deal Functions</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">API Documentation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api-documentation/gemforce-api-documentation/">Full API Reference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api-documentation/gemforce-api-quick-reference/">Quick Reference</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../gemforce-external-services/">External Services</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../gemforce-system-architecture/">System Architecture</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Operations Tasks</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/diamond/">Diamond Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/identities/">Identity Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/marketplace-management/">Marketplace Management Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/carbon-credit-management/">Carbon Credit Management Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/trade-deal/">Trade Deal Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/integration-test/">Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/integration-test-marketplace/">Marketplace Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/integration-test-trade-deal/">Trade Deal Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/admin-utils/">Admin Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/sync-diamond/">Sync Diamond Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/sync-events/">Sync Events Tasks</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">EIPs (Ethereum Improvement Proposals)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../eips/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../eips/EIP-DRAFT-Diamond-Enhanced-Marketplace/">Diamond-Enhanced Marketplace</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../eips/EIP-DRAFT-Multi-Token-Sale-Standard/">Multi-Token Sale Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../eips/EIP-DRAFT-Collateralized-Trade-Deal-Standard/">Collateralized Trade Deal Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../eips/EIP-DRAFT-Enhanced-Identity-System/">Enhanced Identity System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../eips/EIP-DRAFT-Diamond-Factory-Standard/">Diamond Factory Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../eips/EIP-DRAFT-Carbon-Credit-Standard/">Carbon Credit Standard</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Developer Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../developer-guides/development-environment-setup/">Development Environment Setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../developer-guides/testing-frameworks/">Testing Frameworks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../developer-guides/debugging/">Debugging</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../developer-guides/performance-optimization/">Performance Optimization</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../developer-guides/test-case-specifications/">Test Case Specifications</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../developer-guides/test-data-management/">Test Data Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../developer-guides/automated-testing-setup/">Automated Testing Setup</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Deployment Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../deployment-guides/multi-network-deployment/">Multi-Network Deployment</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../deployment-guides/infrastructure-management/">Infrastructure Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../deployment-guides/monitoring-logging/">Monitoring and Logging</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">User Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../gemforce-administrator-guide/">Administrator Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../gemforce-deployer-guide/">Deployer Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../gemforce-integrator-guide/">Integrator Guide</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Integrator's Guide</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrator-guide/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrator-guide/authentication/">Authentication</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrator-guide/rest-api/">REST API</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrator-guide/smart-contracts/">Smart Contracts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrator-guide/dfns/">DFNS Integration</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrator-guide/parse-server/">Parse Server Notes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrator-guide/webhooks/">Webhooks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrator-guide/error-handling/">Error Handling</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrator-guide/sample-code/">Sample Code</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrator-guide/integration-patterns/">Integration Patterns</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrator-guide/testing/">Testing Considerations</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrator-guide/security/">Security</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../external-services/gemforce-external-services/">External Services</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Security</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../security/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../security/threat-model/">Threat Model and Risk Assessment</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../security/incident-response/">Incident Response Procedures</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../security/audit-compliance/">Security Audits and Compliance</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">External Developer Integration</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../external-developer-integration/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../external-developer-integration/api-rate-limiting/">API Rate Limiting</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../external-developer-integration/webhook-implementation-guidelines/">Webhook Implementation Guidelines</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../external-developer-integration/sdk-development-guidelines/">SDK Development Guidelines</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../external-developer-integration/partner-integration-guides/">Partner Integration Guides</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../gemforce-documentation-gap-analysis/">Documentation Gap Analysis</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../documentation-progress-summary/">Documentation Progress Summary</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../documentation-plan/">Documentation Plan</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Configuration & Environment</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../configuration-environment/gemforce-config/">Gemforce Config</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../configuration-environment/environment-specific-guides/">Environment-Specific Guides</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../configuration-environment/configuration-validation/">Configuration Validation Procedures</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../configuration-environment/external-service-config-management/">External Service Configuration Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../configuration-environment/database-schema-overview/">Database Schema Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../configuration-environment/database-migration-procedures/">Database Migration Procedures</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Gemforce Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Smart Contracts</li>
+      <li class="breadcrumb-item active">Diamond Factory</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="diamond-factory">Diamond Factory<a class="headerlink" href="#diamond-factory" title="Permanent link">&para;</a></h1>
+<p>The Diamond Factory is a contract deployment system that creates new diamond contracts with predefined facet configurations. It provides a standardized way to deploy diamonds with consistent initialization and upgrade patterns.</p>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>The Diamond Factory provides:</p>
+<ul>
+<li><strong>Standardized Deployment</strong>: Deploy diamonds with consistent configurations</li>
+<li><strong>Template Management</strong>: Manage diamond templates and facet combinations</li>
+<li><strong>Initialization Support</strong>: Handle complex initialization sequences</li>
+<li><strong>Upgrade Patterns</strong>: Support for upgradeable diamond deployments</li>
+<li><strong>Access Control</strong>: Manage who can deploy new diamonds</li>
+</ul>
+<h2 id="key-features">Key Features<a class="headerlink" href="#key-features" title="Permanent link">&para;</a></h2>
+<h3 id="diamond-deployment">Diamond Deployment<a class="headerlink" href="#diamond-deployment" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Template-Based</strong>: Deploy from predefined templates</li>
+<li><strong>Custom Configuration</strong>: Support custom facet combinations</li>
+<li><strong>Initialization</strong>: Handle complex initialization logic</li>
+<li><strong>Event Tracking</strong>: Track all deployed diamonds</li>
+</ul>
+<h3 id="template-management">Template Management<a class="headerlink" href="#template-management" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Template Registry</strong>: Store and manage diamond templates</li>
+<li><strong>Facet Combinations</strong>: Define standard facet sets</li>
+<li><strong>Version Control</strong>: Support multiple template versions</li>
+<li><strong>Validation</strong>: Validate template configurations</li>
+</ul>
+<h3 id="factory-patterns">Factory Patterns<a class="headerlink" href="#factory-patterns" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Clone Factory</strong>: Efficient diamond cloning</li>
+<li><strong>Minimal Proxy</strong>: Gas-efficient deployment patterns</li>
+<li><strong>Deterministic Addresses</strong>: Predictable diamond addresses</li>
+<li><strong>Batch Deployment</strong>: Deploy multiple diamonds efficiently</li>
+</ul>
+<h2 id="core-interface">Core Interface<a class="headerlink" href="#core-interface" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span><code>interface<span class="w"> </span>IDiamondFactory<span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">DiamondTemplate</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">name</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">version</span><span class="p">;</span>
+<span class="w">        </span>FacetCut<span class="p">[]</span><span class="w"> </span>facetCuts<span class="p">;</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">initContract</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">initData</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">active</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">DeploymentConfig</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">templateName</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">salt</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">initData</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">owner</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">DiamondDeployed</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>diamond<span class="p">,</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>owner<span class="p">,</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">templateName</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">salt</span>
+<span class="w">    </span><span class="p">);</span>
+
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">TemplateRegistered</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>name<span class="p">,</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">version</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>creator
+<span class="w">    </span><span class="p">);</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">deployDiamond</span><span class="p">(</span>DeploymentConfig<span class="w"> </span>calldata<span class="w"> </span>config<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">diamond</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">registerTemplate</span><span class="p">(</span>DiamondTemplate<span class="w"> </span>calldata<span class="w"> </span>template<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getTemplate</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">calldata</span><span class="w"> </span>name<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>DiamondTemplate<span class="w"> </span><span class="kt">memory</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">predictDiamondAddress</span><span class="p">(</span>DeploymentConfig<span class="w"> </span>calldata<span class="w"> </span>config<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">address</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="core-functions">Core Functions<a class="headerlink" href="#core-functions" title="Permanent link">&para;</a></h2>
+<h3 id="deploydiamond">deployDiamond()<a class="headerlink" href="#deploydiamond" title="Permanent link">&para;</a></h3>
+<p>Deploys a new diamond contract using a registered template.</p>
+<p><strong>Parameters:</strong>
+- <code>config</code>: Deployment configuration including template name, salt, and initialization data</p>
+<p><strong>Returns:</strong>
+- <code>address</code>: Address of the deployed diamond</p>
+<p><strong>Usage:</strong></p>
+<div class="codehilite"><pre><span></span><code>IDiamondFactory<span class="p">.</span>DeploymentConfig<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>config<span class="w"> </span><span class="o">=</span><span class="w"> </span>IDiamondFactory<span class="p">.</span>DeploymentConfig<span class="p">({</span>
+<span class="w">    </span>templateName<span class="o">:</span><span class="w"> </span><span class="s2">&quot;StandardNFT&quot;</span><span class="p">,</span>
+<span class="w">    </span>salt<span class="o">:</span><span class="w"> </span><span class="nb">keccak256</span><span class="p">(</span><span class="s2">&quot;unique-identifier&quot;</span><span class="p">),</span>
+<span class="w">    </span>initData<span class="o">:</span><span class="w"> </span>abi<span class="p">.</span>encode<span class="p">(</span>name<span class="p">,</span><span class="w"> </span>symbol<span class="p">,</span><span class="w"> </span>baseURI<span class="p">),</span>
+<span class="w">    </span>owner<span class="o">:</span><span class="w"> </span><span class="k">msg.sender</span>
+<span class="p">});</span>
+
+<span class="kt">address</span><span class="w"> </span><span class="nv">diamond</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>IDiamondFactory<span class="p">(</span>factory<span class="p">).</span>deployDiamond<span class="p">(</span>config<span class="p">);</span>
+</code></pre></div>
+
+<h3 id="registertemplate">registerTemplate()<a class="headerlink" href="#registertemplate" title="Permanent link">&para;</a></h3>
+<p>Registers a new diamond template for deployment.</p>
+<p><strong>Parameters:</strong>
+- <code>template</code>: Template configuration including facets and initialization</p>
+<p><strong>Access Control:</strong>
+- Restricted to authorized template creators</p>
+<p><strong>Usage:</strong></p>
+<div class="codehilite"><pre><span></span><code>IDiamondFactory<span class="p">.</span>DiamondTemplate<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>template<span class="w"> </span><span class="o">=</span><span class="w"> </span>IDiamondFactory<span class="p">.</span>DiamondTemplate<span class="p">({</span>
+<span class="w">    </span>name<span class="o">:</span><span class="w"> </span><span class="s2">&quot;StandardNFT&quot;</span><span class="p">,</span>
+<span class="w">    </span>version<span class="o">:</span><span class="w"> </span><span class="s2">&quot;1.0.0&quot;</span><span class="p">,</span>
+<span class="w">    </span>facetCuts<span class="o">:</span><span class="w"> </span>facetCuts<span class="p">,</span>
+<span class="w">    </span>initContract<span class="o">:</span><span class="w"> </span>initContract<span class="p">,</span>
+<span class="w">    </span>initData<span class="o">:</span><span class="w"> </span>initData<span class="p">,</span>
+<span class="w">    </span>active<span class="o">:</span><span class="w"> </span><span class="kt">true</span>
+<span class="p">});</span>
+
+IDiamondFactory<span class="p">(</span>factory<span class="p">).</span>registerTemplate<span class="p">(</span>template<span class="p">);</span>
+</code></pre></div>
+
+<h3 id="predictdiamondaddress">predictDiamondAddress()<a class="headerlink" href="#predictdiamondaddress" title="Permanent link">&para;</a></h3>
+<p>Predicts the address of a diamond before deployment.</p>
+<p><strong>Parameters:</strong>
+- <code>config</code>: Deployment configuration</p>
+<p><strong>Returns:</strong>
+- <code>address</code>: Predicted diamond address</p>
+<p><strong>Usage:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="kt">address</span><span class="w"> </span><span class="nv">predictedAddress</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>IDiamondFactory<span class="p">(</span>factory<span class="p">).</span>predictDiamondAddress<span class="p">(</span>config<span class="p">);</span>
+</code></pre></div>
+
+<h2 id="implementation-example">Implementation Example<a class="headerlink" href="#implementation-example" title="Permanent link">&para;</a></h2>
+<h3 id="basic-diamond-factory">Basic Diamond Factory<a class="headerlink" href="#basic-diamond-factory" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="k">contract</span><span class="w"> </span><span class="ni">DiamondFactory</span><span class="w"> </span><span class="kt">is</span><span class="w"> </span>IDiamondFactory<span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>using<span class="w"> </span>LibDiamondFactory<span class="w"> </span><span class="kt">for</span><span class="w"> </span>DiamondTemplate<span class="p">;</span>
+
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span>DiamondTemplate<span class="p">)</span><span class="w"> </span><span class="kt">private</span><span class="w"> </span>templates<span class="p">;</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">bool</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>templateCreators<span class="p">;</span>
+<span class="w">    </span><span class="kt">address</span><span class="p">[]</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>deployedDiamonds<span class="p">;</span>
+
+<span class="w">    </span><span class="kt">modifier</span><span class="w"> </span>onlyTemplateCreator<span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>templateCreators<span class="p">[</span><span class="k">msg.sender</span><span class="p">]</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="k">msg.sender</span><span class="w"> </span><span class="o">==</span><span class="w"> </span>owner<span class="p">(),</span><span class="w"> </span><span class="s2">&quot;Not authorized&quot;</span><span class="p">);</span>
+<span class="w">        </span>_<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">deployDiamond</span><span class="p">(</span>DeploymentConfig<span class="w"> </span>calldata<span class="w"> </span>config<span class="p">)</span><span class="w"> </span>
+<span class="w">        </span><span class="kt">external</span><span class="w"> </span>
+<span class="w">        </span>override<span class="w"> </span>
+<span class="w">        </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">diamond</span><span class="p">)</span><span class="w"> </span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span>DiamondTemplate<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>template<span class="w"> </span><span class="o">=</span><span class="w"> </span>templates<span class="p">[</span>config<span class="p">.</span>templateName<span class="p">];</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>template<span class="p">.</span>active<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Template not active&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Deploy diamond using CREATE2 for deterministic addresses</span>
+<span class="w">        </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">salt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">keccak256</span><span class="p">(</span>abi<span class="p">.</span>encodePacked<span class="p">(</span>config<span class="p">.</span>salt<span class="p">,</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">));</span>
+<span class="w">        </span>diamond<span class="w"> </span><span class="o">=</span><span class="w"> </span>Clones<span class="p">.</span>cloneDeterministic<span class="p">(</span>diamondImplementation<span class="p">,</span><span class="w"> </span>salt<span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Initialize diamond with template configuration</span>
+<span class="w">        </span>IDiamondCut<span class="p">(</span>diamond<span class="p">).</span>diamondCut<span class="p">(</span>
+<span class="w">            </span>template<span class="p">.</span>facetCuts<span class="p">,</span>
+<span class="w">            </span>template<span class="p">.</span>initContract<span class="p">,</span>
+<span class="w">            </span>abi<span class="p">.</span>encodePacked<span class="p">(</span>template<span class="p">.</span>initData<span class="p">,</span><span class="w"> </span>config<span class="p">.</span>initData<span class="p">)</span>
+<span class="w">        </span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Transfer ownership to specified owner</span>
+<span class="w">        </span>IOwnership<span class="p">(</span>diamond<span class="p">).</span>transferOwnership<span class="p">(</span>config<span class="p">.</span>owner<span class="p">);</span>
+
+<span class="w">        </span>deployedDiamonds<span class="p">.</span>push<span class="p">(</span>diamond<span class="p">);</span>
+
+<span class="w">        </span>emit<span class="w"> </span>DiamondDeployed<span class="p">(</span>diamond<span class="p">,</span><span class="w"> </span>config<span class="p">.</span>owner<span class="p">,</span><span class="w"> </span>config<span class="p">.</span>templateName<span class="p">,</span><span class="w"> </span>config<span class="p">.</span>salt<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">registerTemplate</span><span class="p">(</span>DiamondTemplate<span class="w"> </span>calldata<span class="w"> </span>template<span class="p">)</span><span class="w"> </span>
+<span class="w">        </span><span class="kt">external</span><span class="w"> </span>
+<span class="w">        </span>override<span class="w"> </span>
+<span class="w">        </span>onlyTemplateCreator<span class="w"> </span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span><span class="kt">bytes</span><span class="p">(</span>template<span class="p">.</span>name<span class="p">).</span>length<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Invalid template name&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>template<span class="p">.</span>facetCuts<span class="p">.</span>length<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;No facets specified&quot;</span><span class="p">);</span>
+
+<span class="w">        </span>templates<span class="p">[</span>template<span class="p">.</span>name<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>template<span class="p">;</span>
+
+<span class="w">        </span>emit<span class="w"> </span>TemplateRegistered<span class="p">(</span>template<span class="p">.</span>name<span class="p">,</span><span class="w"> </span>template<span class="p">.</span>version<span class="p">,</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="advanced-factory-with-versioning">Advanced Factory with Versioning<a class="headerlink" href="#advanced-factory-with-versioning" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="k">contract</span><span class="w"> </span><span class="ni">VersionedDiamondFactory</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">VersionedTemplate</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span>DiamondTemplate<span class="p">)</span><span class="w"> </span>versions<span class="p">;</span>
+<span class="w">        </span><span class="kt">string</span><span class="p">[]</span><span class="w"> </span>versionList<span class="p">;</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">latestVersion</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span>VersionedTemplate<span class="p">)</span><span class="w"> </span><span class="kt">private</span><span class="w"> </span>templates<span class="p">;</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">registerTemplateVersion</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">calldata</span><span class="w"> </span>name<span class="p">,</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">calldata</span><span class="w"> </span>version<span class="p">,</span>
+<span class="w">        </span>DiamondTemplate<span class="w"> </span>calldata<span class="w"> </span>template
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyTemplateCreator<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>VersionedTemplate<span class="w"> </span>storage<span class="w"> </span>versionedTemplate<span class="w"> </span><span class="o">=</span><span class="w"> </span>templates<span class="p">[</span>name<span class="p">];</span>
+
+<span class="w">        </span><span class="c1">// Check if version already exists</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>
+<span class="w">            </span><span class="kt">bytes</span><span class="p">(</span>versionedTemplate<span class="p">.</span>versions<span class="p">[</span>version<span class="p">].</span>name<span class="p">).</span>length<span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;Version already exists&quot;</span>
+<span class="w">        </span><span class="p">);</span>
+
+<span class="w">        </span>versionedTemplate<span class="p">.</span>versions<span class="p">[</span>version<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>template<span class="p">;</span>
+<span class="w">        </span>versionedTemplate<span class="p">.</span>versionList<span class="p">.</span>push<span class="p">(</span>version<span class="p">);</span>
+<span class="w">        </span>versionedTemplate<span class="p">.</span>latestVersion<span class="w"> </span><span class="o">=</span><span class="w"> </span>version<span class="p">;</span>
+
+<span class="w">        </span>emit<span class="w"> </span>TemplateVersionRegistered<span class="p">(</span>name<span class="p">,</span><span class="w"> </span>version<span class="p">,</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">deployDiamondVersion</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">calldata</span><span class="w"> </span>templateName<span class="p">,</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">calldata</span><span class="w"> </span>version<span class="p">,</span>
+<span class="w">        </span>DeploymentConfig<span class="w"> </span>calldata<span class="w"> </span>config
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">diamond</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>DiamondTemplate<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>template<span class="w"> </span><span class="o">=</span><span class="w"> </span>templates<span class="p">[</span>templateName<span class="p">].</span>versions<span class="p">[</span>version<span class="p">];</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>template<span class="p">.</span>active<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Template version not active&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Deploy with version-specific logic</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>_deployDiamondFromTemplate<span class="p">(</span>template<span class="p">,</span><span class="w"> </span>config<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="template-patterns">Template Patterns<a class="headerlink" href="#template-patterns" title="Permanent link">&para;</a></h2>
+<h3 id="standard-nft-template">Standard NFT Template<a class="headerlink" href="#standard-nft-template" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">createNFTTemplate</span><span class="p">()</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>pure<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>DiamondTemplate<span class="w"> </span><span class="kt">memory</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>FacetCut<span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>facetCuts<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span>FacetCut<span class="p">[](</span><span class="m m-Decimal">4</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// ERC721 Facet</span>
+<span class="w">    </span>facetCuts<span class="p">[</span><span class="m m-Decimal">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>FacetCut<span class="p">({</span>
+<span class="w">        </span>facetAddress<span class="o">:</span><span class="w"> </span>erc721FacetAddress<span class="p">,</span>
+<span class="w">        </span>action<span class="o">:</span><span class="w"> </span>FacetCutAction<span class="p">.</span>Add<span class="p">,</span>
+<span class="w">        </span>functionSelectors<span class="o">:</span><span class="w"> </span>getERC721Selectors<span class="p">()</span>
+<span class="w">    </span><span class="p">});</span>
+
+<span class="w">    </span><span class="c1">// Marketplace Facet</span>
+<span class="w">    </span>facetCuts<span class="p">[</span><span class="m m-Decimal">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>FacetCut<span class="p">({</span>
+<span class="w">        </span>facetAddress<span class="o">:</span><span class="w"> </span>marketplaceFacetAddress<span class="p">,</span>
+<span class="w">        </span>action<span class="o">:</span><span class="w"> </span>FacetCutAction<span class="p">.</span>Add<span class="p">,</span>
+<span class="w">        </span>functionSelectors<span class="o">:</span><span class="w"> </span>getMarketplaceSelectors<span class="p">()</span>
+<span class="w">    </span><span class="p">});</span>
+
+<span class="w">    </span><span class="c1">// Metadata Facet</span>
+<span class="w">    </span>facetCuts<span class="p">[</span><span class="m m-Decimal">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>FacetCut<span class="p">({</span>
+<span class="w">        </span>facetAddress<span class="o">:</span><span class="w"> </span>metadataFacetAddress<span class="p">,</span>
+<span class="w">        </span>action<span class="o">:</span><span class="w"> </span>FacetCutAction<span class="p">.</span>Add<span class="p">,</span>
+<span class="w">        </span>functionSelectors<span class="o">:</span><span class="w"> </span>getMetadataSelectors<span class="p">()</span>
+<span class="w">    </span><span class="p">});</span>
+
+<span class="w">    </span><span class="c1">// Ownership Facet</span>
+<span class="w">    </span>facetCuts<span class="p">[</span><span class="m m-Decimal">3</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>FacetCut<span class="p">({</span>
+<span class="w">        </span>facetAddress<span class="o">:</span><span class="w"> </span>ownershipFacetAddress<span class="p">,</span>
+<span class="w">        </span>action<span class="o">:</span><span class="w"> </span>FacetCutAction<span class="p">.</span>Add<span class="p">,</span>
+<span class="w">        </span>functionSelectors<span class="o">:</span><span class="w"> </span>getOwnershipSelectors<span class="p">()</span>
+<span class="w">    </span><span class="p">});</span>
+
+<span class="w">    </span><span class="kt">return</span><span class="w"> </span>DiamondTemplate<span class="p">({</span>
+<span class="w">        </span>name<span class="o">:</span><span class="w"> </span><span class="s2">&quot;StandardNFT&quot;</span><span class="p">,</span>
+<span class="w">        </span>version<span class="o">:</span><span class="w"> </span><span class="s2">&quot;1.0.0&quot;</span><span class="p">,</span>
+<span class="w">        </span>facetCuts<span class="o">:</span><span class="w"> </span>facetCuts<span class="p">,</span>
+<span class="w">        </span>initContract<span class="o">:</span><span class="w"> </span>nftInitContract<span class="p">,</span>
+<span class="w">        </span>initData<span class="o">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">        </span>active<span class="o">:</span><span class="w"> </span><span class="kt">true</span>
+<span class="w">    </span><span class="p">});</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="defi-protocol-template">DeFi Protocol Template<a class="headerlink" href="#defi-protocol-template" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">createDeFiTemplate</span><span class="p">()</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>pure<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>DiamondTemplate<span class="w"> </span><span class="kt">memory</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>FacetCut<span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>facetCuts<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span>FacetCut<span class="p">[](</span><span class="m m-Decimal">5</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Token Facet</span>
+<span class="w">    </span>facetCuts<span class="p">[</span><span class="m m-Decimal">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>FacetCut<span class="p">({</span>
+<span class="w">        </span>facetAddress<span class="o">:</span><span class="w"> </span>tokenFacetAddress<span class="p">,</span>
+<span class="w">        </span>action<span class="o">:</span><span class="w"> </span>FacetCutAction<span class="p">.</span>Add<span class="p">,</span>
+<span class="w">        </span>functionSelectors<span class="o">:</span><span class="w"> </span>getTokenSelectors<span class="p">()</span>
+<span class="w">    </span><span class="p">});</span>
+
+<span class="w">    </span><span class="c1">// Staking Facet</span>
+<span class="w">    </span>facetCuts<span class="p">[</span><span class="m m-Decimal">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>FacetCut<span class="p">({</span>
+<span class="w">        </span>facetAddress<span class="o">:</span><span class="w"> </span>stakingFacetAddress<span class="p">,</span>
+<span class="w">        </span>action<span class="o">:</span><span class="w"> </span>FacetCutAction<span class="p">.</span>Add<span class="p">,</span>
+<span class="w">        </span>functionSelectors<span class="o">:</span><span class="w"> </span>getStakingSelectors<span class="p">()</span>
+<span class="w">    </span><span class="p">});</span>
+
+<span class="w">    </span><span class="c1">// Governance Facet</span>
+<span class="w">    </span>facetCuts<span class="p">[</span><span class="m m-Decimal">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>FacetCut<span class="p">({</span>
+<span class="w">        </span>facetAddress<span class="o">:</span><span class="w"> </span>governanceFacetAddress<span class="p">,</span>
+<span class="w">        </span>action<span class="o">:</span><span class="w"> </span>FacetCutAction<span class="p">.</span>Add<span class="p">,</span>
+<span class="w">        </span>functionSelectors<span class="o">:</span><span class="w"> </span>getGovernanceSelectors<span class="p">()</span>
+<span class="w">    </span><span class="p">});</span>
+
+<span class="w">    </span><span class="c1">// Fee Distribution Facet</span>
+<span class="w">    </span>facetCuts<span class="p">[</span><span class="m m-Decimal">3</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>FacetCut<span class="p">({</span>
+<span class="w">        </span>facetAddress<span class="o">:</span><span class="w"> </span>feeDistributorFacetAddress<span class="p">,</span>
+<span class="w">        </span>action<span class="o">:</span><span class="w"> </span>FacetCutAction<span class="p">.</span>Add<span class="p">,</span>
+<span class="w">        </span>functionSelectors<span class="o">:</span><span class="w"> </span>getFeeDistributorSelectors<span class="p">()</span>
+<span class="w">    </span><span class="p">});</span>
+
+<span class="w">    </span><span class="c1">// Treasury Facet</span>
+<span class="w">    </span>facetCuts<span class="p">[</span><span class="m m-Decimal">4</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>FacetCut<span class="p">({</span>
+<span class="w">        </span>facetAddress<span class="o">:</span><span class="w"> </span>treasuryFacetAddress<span class="p">,</span>
+<span class="w">        </span>action<span class="o">:</span><span class="w"> </span>FacetCutAction<span class="p">.</span>Add<span class="p">,</span>
+<span class="w">        </span>functionSelectors<span class="o">:</span><span class="w"> </span>getTreasurySelectors<span class="p">()</span>
+<span class="w">    </span><span class="p">});</span>
+
+<span class="w">    </span><span class="kt">return</span><span class="w"> </span>DiamondTemplate<span class="p">({</span>
+<span class="w">        </span>name<span class="o">:</span><span class="w"> </span><span class="s2">&quot;DeFiProtocol&quot;</span><span class="p">,</span>
+<span class="w">        </span>version<span class="o">:</span><span class="w"> </span><span class="s2">&quot;1.0.0&quot;</span><span class="p">,</span>
+<span class="w">        </span>facetCuts<span class="o">:</span><span class="w"> </span>facetCuts<span class="p">,</span>
+<span class="w">        </span>initContract<span class="o">:</span><span class="w"> </span>defiInitContract<span class="p">,</span>
+<span class="w">        </span>initData<span class="o">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">        </span>active<span class="o">:</span><span class="w"> </span><span class="kt">true</span>
+<span class="w">    </span><span class="p">});</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="security-considerations">Security Considerations<a class="headerlink" href="#security-considerations" title="Permanent link">&para;</a></h2>
+<h3 id="access-control">Access Control<a class="headerlink" href="#access-control" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Template Creation</strong>: Restrict who can register templates</li>
+<li><strong>Deployment Permissions</strong>: Control diamond deployment access</li>
+<li><strong>Owner Assignment</strong>: Validate diamond ownership assignment</li>
+<li><strong>Template Validation</strong>: Validate template configurations</li>
+</ul>
+<h3 id="template-security">Template Security<a class="headerlink" href="#template-security" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Facet Validation</strong>: Ensure facet contracts are secure</li>
+<li><strong>Initialization Safety</strong>: Validate initialization logic</li>
+<li><strong>Upgrade Restrictions</strong>: Consider upgrade limitations</li>
+<li><strong>Version Control</strong>: Manage template versions securely</li>
+</ul>
+<h3 id="deployment-safety">Deployment Safety<a class="headerlink" href="#deployment-safety" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Address Prediction</strong>: Secure address prediction mechanisms</li>
+<li><strong>Salt Management</strong>: Prevent salt collision attacks</li>
+<li><strong>Initialization Atomicity</strong>: Ensure atomic initialization</li>
+<li><strong>Ownership Transfer</strong>: Secure ownership transfer process</li>
+</ul>
+<h2 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h2>
+<h3 id="template-design">Template Design<a class="headerlink" href="#template-design" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Modular Facets</strong>: Design reusable, modular facets</li>
+<li><strong>Standard Interfaces</strong>: Use standard interfaces for compatibility</li>
+<li><strong>Initialization Patterns</strong>: Follow consistent initialization patterns</li>
+<li><strong>Documentation</strong>: Document template capabilities and limitations</li>
+</ol>
+<h3 id="factory-management">Factory Management<a class="headerlink" href="#factory-management" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Access Control</strong>: Implement proper access controls</li>
+<li><strong>Template Validation</strong>: Validate all template configurations</li>
+<li><strong>Event Logging</strong>: Log all deployments and template changes</li>
+<li><strong>Upgrade Planning</strong>: Plan for factory upgrades</li>
+</ol>
+<h3 id="deployment-patterns">Deployment Patterns<a class="headerlink" href="#deployment-patterns" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Deterministic Addresses</strong>: Use CREATE2 for predictable addresses</li>
+<li><strong>Batch Operations</strong>: Support batch deployments for efficiency</li>
+<li><strong>Gas Optimization</strong>: Optimize deployment gas costs</li>
+<li><strong>Error Handling</strong>: Implement comprehensive error handling</li>
+</ol>
+<h2 id="integration-examples">Integration Examples<a class="headerlink" href="#integration-examples" title="Permanent link">&para;</a></h2>
+<h3 id="frontend-integration">Frontend Integration<a class="headerlink" href="#frontend-integration" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nx">DiamondFactory</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="nx">contract</span><span class="o">:</span><span class="w"> </span><span class="kt">Contract</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kr">constructor</span><span class="p">(</span><span class="nx">address</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">,</span><span class="w"> </span><span class="nx">provider</span><span class="o">:</span><span class="w"> </span><span class="kt">Provider</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">contract</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Contract</span><span class="p">(</span><span class="nx">address</span><span class="p">,</span><span class="w"> </span><span class="nx">DIAMOND_FACTORY_ABI</span><span class="p">,</span><span class="w"> </span><span class="nx">provider</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">async</span><span class="w"> </span><span class="nx">deployDiamond</span><span class="p">(</span><span class="nx">config</span><span class="o">:</span><span class="w"> </span><span class="kt">DeploymentConfig</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="kt">string</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">tx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">contract</span><span class="p">.</span><span class="nx">deployDiamond</span><span class="p">(</span><span class="nx">config</span><span class="p">);</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">receipt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">tx</span><span class="p">.</span><span class="nx">wait</span><span class="p">();</span>
+
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">event</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">receipt</span><span class="p">.</span><span class="nx">events</span><span class="o">?</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="nx">e</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">e</span><span class="p">.</span><span class="nx">event</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;DiamondDeployed&#39;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">event</span><span class="o">?</span><span class="p">.</span><span class="nx">args</span><span class="o">?</span><span class="p">.</span><span class="nx">diamond</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">async</span><span class="w"> </span><span class="nx">predictAddress</span><span class="p">(</span><span class="nx">config</span><span class="o">:</span><span class="w"> </span><span class="kt">DeploymentConfig</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="kt">string</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">contract</span><span class="p">.</span><span class="nx">predictDiamondAddress</span><span class="p">(</span><span class="nx">config</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">async</span><span class="w"> </span><span class="nx">getTemplate</span><span class="p">(</span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">DiamondTemplate</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">contract</span><span class="p">.</span><span class="nx">getTemplate</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="cli-integration">CLI Integration<a class="headerlink" href="#cli-integration" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Deploy a diamond using CLI</span>
+gemforce<span class="w"> </span>deploy-diamond<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--template<span class="w"> </span><span class="s2">&quot;StandardNFT&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--name<span class="w"> </span><span class="s2">&quot;My NFT Collection&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--symbol<span class="w"> </span><span class="s2">&quot;MNC&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--owner<span class="w"> </span><span class="s2">&quot;0x...&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--network<span class="w"> </span><span class="s2">&quot;sepolia&quot;</span>
+
+<span class="c1"># Register a new template</span>
+gemforce<span class="w"> </span>register-template<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--name<span class="w"> </span><span class="s2">&quot;CustomNFT&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--version<span class="w"> </span><span class="s2">&quot;1.0.0&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--config<span class="w"> </span><span class="s2">&quot;./templates/custom-nft.json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--network<span class="w"> </span><span class="s2">&quot;sepolia&quot;</span>
+</code></pre></div>
+
+<h2 id="related-documentation">Related Documentation<a class="headerlink" href="#related-documentation" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../diamond/">Diamond Standard Overview</a></li>
+<li><a href="../facets/diamond-cut-facet/">Diamond Cut Facet</a></li>
+<li><a href="../facets/diamond-loupe-facet/">Diamond Loupe Facet</a></li>
+<li><a href="../libraries/diamond-factory-lib/">Diamond Factory Library</a></li>
+<li><a href="../../deployment-guides/multi-network-deployment/">Deployment Guides: Multi-Network Deployment</a></li>
+<li><a href="../../developer-guides/development-environment-setup/">Developer Guides: Development Environment Setup</a></li>
+</ul>
+<h2 id="standards-compliance">Standards Compliance<a class="headerlink" href="#standards-compliance" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>EIP-2535</strong>: Diamond Standard implementation</li>
+<li><strong>EIP-1167</strong>: Minimal Proxy Standard for cloning</li>
+<li><strong>EIP-1014</strong>: CREATE2 for deterministic addresses</li>
+<li><strong>Factory Pattern</strong>: Standard factory design patterns</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../diamond/" class="btn btn-neutral float-left" title="Diamond Contract"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../identity-factory/" class="btn btn-neutral float-right" title="Identity Factory">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../diamond/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../identity-factory/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

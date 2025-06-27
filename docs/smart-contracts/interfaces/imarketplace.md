@@ -2,7 +2,7 @@
 
 ## Overview
 
-The [`IMarketplace.sol`](/Users/sschepis/Development/gem-base/contracts/interfaces/IMarketplace.sol) defines the core interface for NFT marketplace functionality within the Gemforce platform. This interface establishes the standard contract for marketplace operations including listing, purchasing, delisting, and fee management for NFT trading.
+The `IMarketplace.sol` interface defines the core interface for NFT marketplace functionality within the Gemforce platform. This interface establishes the standard contract for marketplace operations including listing, purchasing, delisting, and fee management for NFT trading.
 
 ## Interface Details
 
@@ -849,7 +849,7 @@ event Bids(uint256 indexed itemId, address bidder, uint256 amount);
 - [FeeDistributorFacet](../facets/fee-distributor-facet.md) - Fee management
 - [ERC721 Standard](https://eips.ethereum.org/EIPS/eip-721) - NFT standard
 - [ERC20 Standard](https://eips.ethereum.org/EIPS/eip-20) - Token standard
-- [Marketplace Guide](../../guides/marketplace-integration.md) - Implementation guide
+- [Marketplace Guide](../../developer-guides/automated-testing-setup.md) - Implementation guide
 
 ---
 

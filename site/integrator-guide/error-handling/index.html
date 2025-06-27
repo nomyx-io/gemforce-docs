@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Gemforce Team" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Error Handling - Gemforce Documentation</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Error Handling";
+        var mkdocs_page_input_path = "integrator-guide/error-handling.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Gemforce Documentation
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../developer-setup-guide/">Developer Setup Guide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../system-architecture/gemforce-system-architecture/">System Architecture</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Smart Contracts</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../smart-contracts/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../smart-contracts/diamond/">Diamond Contract</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../smart-contracts/diamond-factory/">Diamond Factory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../smart-contracts/identity-factory/">Identity Factory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Facets</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/marketplace-facet/">Marketplace Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/trade-deal-management-facet/">Trade Deal Management Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/carbon-credit-facet/">Carbon Credit Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/identity-registry-facet/">Identity Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/trusted-issuers-registry-facet/">Trusted Issuers Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/fee-distributor-facet/">Fee Distributor Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/gemforce-minter-facet/">Gemforce Minter Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/multi-sale-facet/">Multi Sale Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/svg-templates-facet/">SVG Templates Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/trade-deal-admin-facet/">Trade Deal Admin Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/trade-deal-operations-facet/">Trade Deal Operations Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/collateral-token-factory-facet/">Collateral Token Factory Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/diamond-cut-facet/">Diamond Cut Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/diamond-loupe-facet/">Diamond Loupe Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/ownership-facet/">Ownership Facet</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Interfaces</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/idiamond/">IDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/imarketplace/">IMarketplace</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/itradedeal/">ITradeDeal</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/icarbon-credit/">ICarbonCredit</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/ierc1155-mint/">IERC1155Mint</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/ierc734/">IERC734</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/ierc735/">IERC735</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/ierc721a/">IERC721A</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/idiamond-factory/">IDiamondFactory</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/iidentity/">IIdentity</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/imultisale/">IMultiSale</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/ifee-distributor/">IFeeDistributor</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/igemforce-minter-facet/">IGemforceMinterFacet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/iidentity-registry/">IIdentityRegistry</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/itrusted-issuers-registry/">TRUSTEDIssuersRegistry</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/isvg/">ISVG</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/iattribute/">IAttribute</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/ivariable-price/">IVariablePrice</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Libraries</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/carbon-credit-lib/">Carbon Credit Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/trade-deal-lib/">Trade Deal Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/multi-sale-lib/">Multi Sale Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/diamond-factory-lib/">Diamond Factory Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/svg-templates-lib/">SVG Templates Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/attribute-lib/">Attribute Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/variable-price-lib/">Variable Price Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/merkle-prover/">Merkle Prover</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/fee-distributor-lib/">Fee Distributor Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/lib-diamond/">LibDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/diamond-lib/">DiamondLib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/erc721a-lib/">ERC721A Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/erc721a-enumeration-lib/">ERC721A Enumeration Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/strings-lib/">Strings Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/trusted-issuer-lib/">Trusted Issuer Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/set-libraries/">Set Libraries</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">SDK & Libraries</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../sdk-libraries/blockchain/">Blockchain Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../sdk-libraries/diamond/">Diamond Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../sdk-libraries/contract/">Contract Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../sdk-libraries/deploy/">Deployment Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../sdk-libraries/validation-utils/">Validation Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../sdk-libraries/nft-sale-utils/">NFT Sale Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../sdk-libraries/webhooks/">Webhooks Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../smart-contracts/libraries/metadata-lib/">Metadata Library</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Cloud Functions</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/authentication/">Authentication Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/auth-functions/">Auth Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/blockchain/">Blockchain Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/bridge/">Bridge Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/contracts/">Contract Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/deploy/">Deploy Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/dfns/">DFNS Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/project/">Project Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/trade-deal/">Trade Deal Functions</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">API Documentation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api-documentation/gemforce-api-documentation/">Full API Reference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api-documentation/gemforce-api-quick-reference/">Quick Reference</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../gemforce-external-services/">External Services</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../gemforce-system-architecture/">System Architecture</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Operations Tasks</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/diamond/">Diamond Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/identities/">Identity Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/marketplace-management/">Marketplace Management Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/carbon-credit-management/">Carbon Credit Management Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/trade-deal/">Trade Deal Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/integration-test/">Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/integration-test-marketplace/">Marketplace Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/integration-test-trade-deal/">Trade Deal Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/admin-utils/">Admin Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/sync-diamond/">Sync Diamond Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/sync-events/">Sync Events Tasks</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">EIPs (Ethereum Improvement Proposals)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../eips/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../eips/EIP-DRAFT-Diamond-Enhanced-Marketplace/">Diamond-Enhanced Marketplace</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../eips/EIP-DRAFT-Multi-Token-Sale-Standard/">Multi-Token Sale Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../eips/EIP-DRAFT-Collateralized-Trade-Deal-Standard/">Collateralized Trade Deal Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../eips/EIP-DRAFT-Enhanced-Identity-System/">Enhanced Identity System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../eips/EIP-DRAFT-Diamond-Factory-Standard/">Diamond Factory Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../eips/EIP-DRAFT-Carbon-Credit-Standard/">Carbon Credit Standard</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Developer Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../developer-guides/development-environment-setup/">Development Environment Setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../developer-guides/testing-frameworks/">Testing Frameworks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../developer-guides/debugging/">Debugging</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../developer-guides/performance-optimization/">Performance Optimization</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../developer-guides/test-case-specifications/">Test Case Specifications</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../developer-guides/test-data-management/">Test Data Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../developer-guides/automated-testing-setup/">Automated Testing Setup</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Deployment Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../deployment-guides/multi-network-deployment/">Multi-Network Deployment</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../deployment-guides/infrastructure-management/">Infrastructure Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../deployment-guides/monitoring-logging/">Monitoring and Logging</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">User Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../gemforce-administrator-guide/">Administrator Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../gemforce-deployer-guide/">Deployer Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../gemforce-integrator-guide/">Integrator Guide</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Integrator's Guide</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../authentication/">Authentication</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../rest-api/">REST API</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../smart-contracts/">Smart Contracts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../dfns/">DFNS Integration</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../parse-server/">Parse Server Notes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../webhooks/">Webhooks</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Error Handling</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#overview-of-error-types">Overview of Error Types</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#1-smart-contract-error-handling">1. Smart Contract Error Handling</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#common-smart-contract-error-scenarios">Common Smart Contract Error Scenarios:</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example-ethersjs">Example (Ethers.js)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#best-practices-for-smart-contract-errors">Best Practices for Smart Contract Errors:</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2-rest-api-error-handling-parse-server">2. REST API Error Handling (Parse Server)</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#common-rest-api-error-status-codes">Common REST API Error Status Codes:</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#standard-parse-server-error-payload">Standard Parse Server Error Payload:</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example-javascript-fetch-api">Example (JavaScript Fetch API)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#best-practices-for-rest-api-errors">Best Practices for REST API Errors:</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#3-cloud-function-error-handling">3. Cloud Function Error Handling</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#example-javascript-parse-sdk-nodejs">Example (JavaScript Parse SDK - Node.js)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#best-practices-for-cloud-function-errors">Best Practices for Cloud Function Errors:</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#4-network-and-infrastructure-error-handling">4. Network and Infrastructure Error Handling</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#common-scenarios">Common Scenarios:</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#best-practices">Best Practices:</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#general-error-handling-principles">General Error Handling Principles</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#related-documentation">Related Documentation</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../sample-code/">Sample Code</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../integration-patterns/">Integration Patterns</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../testing/">Testing Considerations</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../security/">Security</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../external-services/gemforce-external-services/">External Services</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Security</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../security/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../security/threat-model/">Threat Model and Risk Assessment</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../security/incident-response/">Incident Response Procedures</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../security/audit-compliance/">Security Audits and Compliance</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">External Developer Integration</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../external-developer-integration/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../external-developer-integration/api-rate-limiting/">API Rate Limiting</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../external-developer-integration/webhook-implementation-guidelines/">Webhook Implementation Guidelines</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../external-developer-integration/sdk-development-guidelines/">SDK Development Guidelines</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../external-developer-integration/partner-integration-guides/">Partner Integration Guides</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../gemforce-documentation-gap-analysis/">Documentation Gap Analysis</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../documentation-progress-summary/">Documentation Progress Summary</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../documentation-plan/">Documentation Plan</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Configuration & Environment</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../configuration-environment/gemforce-config/">Gemforce Config</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../configuration-environment/environment-specific-guides/">Environment-Specific Guides</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../configuration-environment/configuration-validation/">Configuration Validation Procedures</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../configuration-environment/external-service-config-management/">External Service Configuration Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../configuration-environment/database-schema-overview/">Database Schema Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../configuration-environment/database-migration-procedures/">Database Migration Procedures</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Gemforce Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Integrator's Guide</li>
+      <li class="breadcrumb-item active">Error Handling</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="integrators-guide-error-handling">Integrator's Guide: Error Handling<a class="headerlink" href="#integrators-guide-error-handling" title="Permanent link">&para;</a></h1>
+<p>Robust error handling is crucial for building reliable integrations with the Gemforce platform. This guide provides an overview of common error types you might encounter when interacting with Gemforce's smart contracts, REST API, and cloud functions, along with strategies and best practices for managing them.</p>
+<h2 id="overview-of-error-types">Overview of Error Types<a class="headerlink" href="#overview-of-error-types" title="Permanent link">&para;</a></h2>
+<p>Errors in the Gemforce ecosystem can primarily originate from three layers:</p>
+<ol>
+<li><strong>Blockchain/Smart Contract Errors</strong>: Occur during on-chain transactions or calls. These include reverted transactions, out-of-gas errors, or custom revert messages from smart contracts.</li>
+<li><strong>REST API Errors (Parse Server)</strong>: Standard HTTP errors and custom Parse Server errors returned by the backend API.</li>
+<li><strong>Cloud Function Errors</strong>: Specific errors returned by Gemforce's custom Cloud Functions, often indicating business logic failures or invalid input.</li>
+<li><strong>Network/Infrastructure Errors</strong>: General network connectivity issues, timeouts, or problems with RPC providers.</li>
+</ol>
+<h2 id="1-smart-contract-error-handling">1. Smart Contract Error Handling<a class="headerlink" href="#1-smart-contract-error-handling" title="Permanent link">&para;</a></h2>
+<p>When interacting with Gemforce smart contracts, transactions can fail for several reasons. Web3 libraries like Ethers.js and Web3.js provide mechanisms to catch and interpret these errors.</p>
+<h3 id="common-smart-contract-error-scenarios">Common Smart Contract Error Scenarios:<a class="headerlink" href="#common-smart-contract-error-scenarios" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Transaction Revert</strong>: The most common error. A smart contract function execution fails due to a <code>require()</code>, <code>revert()</code>, or other exception.</li>
+<li><strong>Out of Gas</strong>: The transaction runs out of gas before completing.</li>
+<li><strong>Invalid Input</strong>: Parameters passed to a contract function are incorrect (e.g., wrong type, out of range).</li>
+<li><strong>Access Control Violations</strong>: The calling address does not have the necessary permissions (e.g., <code>Ownable</code> modifier failing).</li>
+</ul>
+<h3 id="example-ethersjs">Example (Ethers.js)<a class="headerlink" href="#example-ethersjs" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ethers</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;ethers&#39;</span><span class="p">;</span>
+<span class="c1">// Assuming ABI for a Gemforce contract with a `performAction` function that might revert</span>
+<span class="k">import</span><span class="w"> </span><span class="nx">GemforceContractABI</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./GemforceContract.json&#39;</span><span class="p">;</span><span class="w"> </span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">CONTRACT_ADDRESS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0x...&quot;</span><span class="p">;</span><span class="w"> </span><span class="c1">// Your Gemforce Diamond/facet address</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">PROVIDER_URL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;https://sepolia.base.org&quot;</span><span class="p">;</span><span class="w"> </span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">PRIVATE_KEY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;YOUR_PRIVATE_KEY&quot;</span><span class="p">;</span><span class="w"> </span><span class="c1">// For demonstration, use secure methods in production</span>
+
+<span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">executeSmartContractAction</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">provider</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">ethers</span><span class="p">.</span><span class="nx">JsonRpcProvider</span><span class="p">(</span><span class="nx">PROVIDER_URL</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">signer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">ethers</span><span class="p">.</span><span class="nx">Wallet</span><span class="p">(</span><span class="nx">PRIVATE_KEY</span><span class="p">,</span><span class="w"> </span><span class="nx">provider</span><span class="p">);</span><span class="w"> </span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">myContract</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">ethers</span><span class="p">.</span><span class="nx">Contract</span><span class="p">(</span><span class="nx">CONTRACT_ADDRESS</span><span class="p">,</span><span class="w"> </span><span class="nx">GemforceContractABI</span><span class="p">,</span><span class="w"> </span><span class="nx">signer</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Attempting to execute smart contract action...&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">tx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">myContract</span><span class="p">.</span><span class="nx">performAction</span><span class="p">(</span><span class="s2">&quot;invalid_param&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">gasLimit</span><span class="o">:</span><span class="w"> </span><span class="kt">300000</span><span class="w"> </span><span class="p">});</span><span class="w"> </span><span class="c1">// Example with potentially invalid param</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">receipt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">tx</span><span class="p">.</span><span class="nx">wait</span><span class="p">();</span><span class="w"> </span><span class="c1">// Wait for transaction to be mined</span>
+
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Transaction successful:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">receipt</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="o">:</span><span class="w"> </span><span class="kt">any</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;Smart Contract Transaction Failed!&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;Error message:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Ethers.js specific error parsing</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">.</span><span class="nx">code</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nx">ethers</span><span class="p">.</span><span class="nx">errors</span><span class="p">.</span><span class="nx">CALL_EXCEPTION</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;This is a contract call exception (revert).&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="c1">// Attempt to decode revert message (if available and standard)</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">.</span><span class="nx">data</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="c1">// This often works for custom revert strings if using ethers v5+ and target chain supports it</span>
+<span class="w">                    </span><span class="kd">const</span><span class="w"> </span><span class="nx">decodedError</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">myContract</span><span class="p">.</span><span class="kd">interface</span><span class="p">.</span><span class="nx">parseError</span><span class="p">(</span><span class="nx">error</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+<span class="w">                    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">decodedError</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                        </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;Decoded Revert Reason (Ethers.js v5+):&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">decodedError</span><span class="p">.</span><span class="nx">args</span><span class="p">[</span><span class="mf">0</span><span class="p">]);</span>
+<span class="w">                    </span><span class="p">}</span>
+<span class="w">                </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">decodeError</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;Could not decode revert reason from error.data&quot;</span><span class="p">);</span>
+<span class="w">                    </span><span class="c1">// Fallback for older ethers versions or non-standard reverts</span>
+<span class="w">                    </span><span class="kd">const</span><span class="w"> </span><span class="nx">revertReasonMatch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="sr">/reverted with reason string &#39;([^&#39;]*)&#39;/</span><span class="p">);</span>
+<span class="w">                    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">revertReasonMatch</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">revertReasonMatch</span><span class="p">[</span><span class="mf">1</span><span class="p">])</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                        </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;Fallback Revert Reason:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">revertReasonMatch</span><span class="p">[</span><span class="mf">1</span><span class="p">]);</span>
+<span class="w">                    </span><span class="p">}</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">.</span><span class="nx">reason</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// Ethers.js v5 error.reason</span>
+<span class="w">                </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;Revert Reason:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">.</span><span class="nx">reason</span><span class="p">);</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">.</span><span class="nx">code</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nx">ethers</span><span class="p">.</span><span class="nx">errors</span><span class="p">.</span><span class="nx">UNPREDICTABLE_GAS_LIMIT</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;Gas limit could not be estimated. This often implies a revert in a dry-run.&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;Raw error response:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">.</span><span class="nx">error</span><span class="o">?</span><span class="p">.</span><span class="nx">message</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nx">error</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">.</span><span class="nx">code</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;INSUFFICIENT_FUNDS&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;Account has insufficient funds for transaction.&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">.</span><span class="nx">code</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;NETWORK_ERROR&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;Network error encountered:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">.</span><span class="nx">reason</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;An unknown blockchain error occurred.&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="c1">// Provide user-friendly feedback based on error type</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// executeSmartContractAction();</span>
+</code></pre></div>
+
+<h3 id="best-practices-for-smart-contract-errors">Best Practices for Smart Contract Errors:<a class="headerlink" href="#best-practices-for-smart-contract-errors" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Catch All Errors</strong>: Always wrap transaction calls in <code>try-catch</code> blocks.</li>
+<li><strong>Parse Revert Messages</strong>: If possible, extract and display the custom revert reason string defined in <code>require("reason string")</code> within the contract.</li>
+<li><strong>Distinguish Errors</strong>: Differentiate between network errors, gas errors, and transaction reverts to provide precise feedback.</li>
+<li><strong>Gas Estimation</strong>: Use <code>contract.estimateGas.functionName()</code> before sending transactions to catch potential reverts early. If <code>estimateGas</code> fails, the transaction will almost certainly revert.</li>
+<li><strong>On-chain Validation</strong>: Ensure comprehensive validation within smart contracts using <code>require()</code> and <code>revert()</code> with informative messages.</li>
+</ul>
+<h2 id="2-rest-api-error-handling-parse-server">2. REST API Error Handling (Parse Server)<a class="headerlink" href="#2-rest-api-error-handling-parse-server" title="Permanent link">&para;</a></h2>
+<p>Gemforce's Parse Server REST API adheres to standard HTTP status codes but also includes specific JSON error payloads for more detail.</p>
+<h3 id="common-rest-api-error-status-codes">Common REST API Error Status Codes:<a class="headerlink" href="#common-rest-api-error-status-codes" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong><code>400 Bad Request</code></strong>: Invalid input format, missing required parameters.</li>
+<li><strong><code>401 Unauthorized</code></strong>: Missing or invalid <code>X-Parse-Application-Id</code>, <code>X-Parse-Session-Token</code>, or other authentication headers.</li>
+<li><strong><code>403 Forbidden</code></strong>: Insufficient permissions (ACL/CLP violation) for the authenticated user/keys.</li>
+<li><strong><code>404 Not Found</code></strong>: Endpoint or object not found.</li>
+<li><strong><code>500 Internal Server Error</code></strong>: General server-side error, often caused by uncaught exceptions in Cloud Functions.</li>
+</ul>
+<h3 id="standard-parse-server-error-payload">Standard Parse Server Error Payload:<a class="headerlink" href="#standard-parse-server-error-payload" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;code&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">101</span><span class="p">,</span><span class="w"> </span><span class="c1">// Parse-specific error code</span>
+<span class="w">  </span><span class="nt">&quot;error&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Object not found.&quot;</span><span class="w"> </span><span class="c1">// Human-readable error message</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="example-javascript-fetch-api">Example (JavaScript Fetch API)<a class="headerlink" href="#example-javascript-fetch-api" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">PARSE_SERVER_URL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;YOUR_GEMFORCE_PARSE_SERVER_URL/parse&quot;</span><span class="p">;</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">APP_ID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;YOUR_PARSE_APP_ID&quot;</span><span class="p">;</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">REST_API_KEY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;YOUR_PARSE_REST_API_KEY&quot;</span><span class="p">;</span><span class="w"> </span><span class="c1">// or session token for user</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">SESSION_TOKEN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;YOUR_SESSION_TOKEN&quot;</span><span class="p">;</span><span class="w"> </span><span class="c1">// if authenticated user</span>
+
+<span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">fetchProjectData</span><span class="p">(</span><span class="nx">projectId</span><span class="o">:</span><span class="w"> </span><span class="nx">string</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">fetch</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">PARSE_SERVER_URL</span><span class="si">}</span><span class="sb">/classes/Project/</span><span class="si">${</span><span class="nx">projectId</span><span class="si">}</span><span class="sb">`</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">method</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;GET&#39;</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">headers</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="s1">&#39;X-Parse-Application-Id&#39;</span><span class="o">:</span><span class="w"> </span><span class="nx">APP_ID</span><span class="p">,</span>
+<span class="w">                </span><span class="s1">&#39;X-Parse-REST-API-Key&#39;</span><span class="o">:</span><span class="w"> </span><span class="nx">REST_API_KEY</span><span class="p">,</span>
+<span class="w">                </span><span class="s1">&#39;X-Parse-Session-Token&#39;</span><span class="o">:</span><span class="w"> </span><span class="nx">SESSION_TOKEN</span><span class="w"> </span><span class="c1">// Include if fetching protected data</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">});</span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">response</span><span class="p">.</span><span class="nx">ok</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// Check for HTTP error status codes (4xx, 5xx)</span>
+<span class="w">            </span><span class="kd">const</span><span class="w"> </span><span class="nx">errorData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+<span class="w">            </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="sb">`API Error: HTTP Status </span><span class="si">${</span><span class="nx">response</span><span class="p">.</span><span class="nx">status</span><span class="si">}</span><span class="sb">, Parse Code </span><span class="si">${</span><span class="nx">errorData</span><span class="p">.</span><span class="nx">code</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="s1">&#39;N/A&#39;</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="w">            </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="sb">`Failed to fetch project: </span><span class="si">${</span><span class="nx">errorData</span><span class="p">.</span><span class="nx">error</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="s1">&#39;Unknown API error&#39;</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Project data:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">data</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">data</span><span class="p">;</span>
+
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;Network or parsing error:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">);</span>
+<span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="nx">error</span><span class="p">;</span><span class="w"> </span><span class="c1">// Re-throw to propagate for higher-level handling</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Example usage:</span>
+<span class="c1">// fetchProjectData(&quot;nonexistentProjectId&quot;)</span>
+<span class="c1">//   .catch(err =&gt; console.error(&quot;Caught error:&quot;, err.message));</span>
+</code></pre></div>
+
+<h3 id="best-practices-for-rest-api-errors">Best Practices for REST API Errors:<a class="headerlink" href="#best-practices-for-rest-api-errors" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Check <code>response.ok</code></strong>: Always check <code>response.ok</code> (or equivalent in your HTTP client) before parsing the JSON body.</li>
+<li><strong>Parse Error Payloads</strong>: Always parse the JSON error payload to extract the <code>code</code> and <code>error</code> messages for specific handling and user feedback.</li>
+<li><strong>Retry Logic</strong>: For transient errors (e.g., network issues, <code>5xx</code> server errors), implement exponential backoff and retry mechanisms.</li>
+<li><strong>Logging/Monitoring</strong>: Log API errors on your server-side for debugging and monitoring. Set up alerts for critical errors.</li>
+</ul>
+<h2 id="3-cloud-function-error-handling">3. Cloud Function Error Handling<a class="headerlink" href="#3-cloud-function-error-handling" title="Permanent link">&para;</a></h2>
+<p>Cloud Functions are custom code executed on the Parse Server. Errors from Cloud Functions are returned via the standard Parse REST API error payload, but their <code>error</code> messages can be more specific to your business logic.</p>
+<h3 id="example-javascript-parse-sdk-nodejs">Example (JavaScript Parse SDK - Node.js)<a class="headerlink" href="#example-javascript-parse-sdk-nodejs" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">Parse</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;parse/node&#39;</span><span class="p">);</span>
+
+<span class="c1">// Assuming Parse SDK is initialized</span>
+<span class="nx">Parse</span><span class="p">.</span><span class="nx">initialize</span><span class="p">(</span><span class="s2">&quot;YOUR_APP_ID&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;YOUR_JAVASCRIPT_KEY&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;YOUR_MASTER_KEY&quot;</span><span class="p">);</span>
+<span class="nx">Parse</span><span class="p">.</span><span class="nx">serverURL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;YOUR_GEMFORCE_PARSE_SERVER_URL/parse&quot;</span><span class="p">;</span>
+
+<span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">callCustomCloudFunction</span><span class="p">(</span><span class="nx">functionName</span><span class="o">:</span><span class="w"> </span><span class="nx">string</span><span class="p">,</span><span class="w"> </span><span class="nx">params</span><span class="o">:</span><span class="w"> </span><span class="nx">object</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Assume this cloud function &#39;processTradeDeal&#39; can throw specific errors</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="nx">functionName</span><span class="p">,</span><span class="w"> </span><span class="nx">params</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">useMasterKey</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">});</span><span class="w"> </span><span class="c1">// Example using Master Key</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Cloud function </span><span class="si">${</span><span class="nx">functionName</span><span class="si">}</span><span class="sb"> result:`</span><span class="p">,</span><span class="w"> </span><span class="nx">result</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">result</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="o">:</span><span class="w"> </span><span class="nx">any</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="sb">`Cloud function </span><span class="si">${</span><span class="nx">functionName</span><span class="si">}</span><span class="sb"> failed:`</span><span class="p">);</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="sb">`Parse Error Code: </span><span class="si">${</span><span class="nx">error</span><span class="p">.</span><span class="nx">code</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="sb">`Error Message: </span><span class="si">${</span><span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Handle specific Parse error codes or custom messages</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">.</span><span class="nx">code</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="mf">141</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// Example: Cloud Code function failed with specific error</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="s2">&quot;Invalid Trade Deal ID&quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;User-friendly message: The trade deal ID provided is not valid.&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="s2">&quot;Insufficient collateral&quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;User-friendly message: Not enough collateral for this trade deal.&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">.</span><span class="nx">code</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="mf">209</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// Session Token Expired</span>
+<span class="w">            </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;User-friendly message: Your session has expired. Please log in again.&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="c1">// Trigger re-authentication flow</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="nx">error</span><span class="p">;</span><span class="w"> </span><span class="c1">// Re-throw to propagate if needed</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Example usage:</span>
+<span class="c1">// callCustomCloudFunction(&quot;processTradeDeal&quot;, { tradeDealId: &quot;invalid&quot;, amount: 100 })</span>
+<span class="c1">//   .catch(err =&gt; console.error(&quot;Cloud function call failed at top level:&quot;, err.message));</span>
+</code></pre></div>
+
+<h3 id="best-practices-for-cloud-function-errors">Best Practices for Cloud Function Errors:<a class="headerlink" href="#best-practices-for-cloud-function-errors" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Consistent Error Responses</strong>: Design your Cloud Functions to return consistent error structures (e.g., <code>throw new Parse.Error(Parse.Error.SCRIPT_FAILED, "Custom error message");</code>) to make client-side handling predictable.</li>
+<li><strong>Informative Messages</strong>: Provide clear, descriptive error messages that help integrators understand the cause of the failure.</li>
+<li><strong>Specific Error Codes</strong>: For critical business logic failures, consider mapping them to custom error codes if <code>Parse.Error</code> doesn't cover them.</li>
+</ul>
+<h2 id="4-network-and-infrastructure-error-handling">4. Network and Infrastructure Error Handling<a class="headerlink" href="#4-network-and-infrastructure-error-handling" title="Permanent link">&para;</a></h2>
+<p>These are general issues that prevent successful communication with the Gemforce platform.</p>
+<h3 id="common-scenarios">Common Scenarios:<a class="headerlink" href="#common-scenarios" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Connection Refused</strong>: Server is down or inaccessible.</li>
+<li><strong>Timeout</strong>: Request takes too long to respond.</li>
+<li><strong>DNS Resolution Failure</strong>: Domain name cannot be resolved.</li>
+</ul>
+<h3 id="best-practices">Best Practices:<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Retry Logic</strong>: Implement robust retry mechanisms with exponential backoff and jitter for transient network failures.</li>
+<li><strong>Circuit Breaker Pattern</strong>: For persistent failures, consider a circuit breaker to prevent overwhelming a failing service and to fail fast.</li>
+<li><strong>Monitoring</strong>: Have monitoring and alerting in place for your integration points to detect widespread network issues.</li>
+<li><strong>Fallback Mechanisms</strong>: If critical, consider fallback mechanisms (e.g., alternative RPC providers, cached data) when the primary service is unavailable.</li>
+</ul>
+<h2 id="general-error-handling-principles">General Error Handling Principles<a class="headerlink" href="#general-error-handling-principles" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Fail Gracefully</strong>: Your application should not crash due to an expected error.</li>
+<li><strong>User Feedback</strong>: Translate technical errors into user-friendly messages.</li>
+<li><strong>Logging</strong>: Implement comprehensive logging (client-side and server-side) to record errors for debugging and analysis.</li>
+<li><strong>Alerting</strong>: Set up automated alerts for critical errors in production environments.</li>
+<li><strong>Debugging Tools</strong>: Utilize browser developer tools, server logs, and blockchain explorers (for smart contract transactions) to debug issues.</li>
+</ul>
+<h2 id="related-documentation">Related Documentation<a class="headerlink" href="#related-documentation" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../authentication/"> integrators-guide/authentication.md </a></li>
+<li><a href="https://docs.parseplatform.org/js/guide/#error-codes">Parse Server Error Codes</a> (External)</li>
+<li><a href="https://docs.ethers.io/v5/api/utils/errors/">Ethers.js Errors</a> (External)</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../webhooks/" class="btn btn-neutral float-left" title="Webhooks"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../sample-code/" class="btn btn-neutral float-right" title="Sample Code">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../webhooks/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../sample-code/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

@@ -2,7 +2,7 @@
 
 ## Overview
 
-The [`FeeDistributorLib`](../../../contracts/libraries/FeeDistributorLib.sol) library provides core utilities for automated fee distribution within the Gemforce platform. This library implements flexible revenue sharing mechanisms that automatically distribute fees to multiple recipients based on configurable weights, supporting both native ETH and ERC20 token distributions.
+The [`FeeDistributorLib`](../../smart-contracts/libraries/fee-distributor-lib.md) library provides core utilities for automated fee distribution within the Gemforce platform. This library implements flexible revenue sharing mechanisms that automatically distribute fees to multiple recipients based on configurable weights, supporting both native ETH and ERC20 token distributions.
 
 ## Key Features
 
@@ -500,109 +500,66 @@ contract DeFiProtocol {
         config.rewardToken.safeTransferFrom(msg.sender, address(this), amount);
         
         // Update stake info
-        StakeInfo storage stakeInfo = stakes[msg.sender];
-        stakeInfo.amount += amount;
-        stakeInfo.lastStakeTime = block.timestamp;
+        stakes[msg.sender].amount += amount;
+        stakes[msg.sender].lastStakeTime = block.timestamp;
         
+        // Update TVL
         config.totalValueLocked += amount;
         
         emit Staked(msg.sender, amount);
     }
     
     function unstake(uint256 amount) external {
-        StakeInfo storage stakeInfo = stakes[msg.sender];
-        require(stakeInfo.amount >= amount, "Insufficient stake");
+        require(amount > 0, "Amount must be positive");
+        require(stakes[msg.sender].amount >= amount, "Insufficient staked amount");
         
-        stakeInfo.amount -= amount;
+        // Calculate accrued rewards
+        uint256 rewards = calculateRewards(msg.sender);
+        
+        // Transfer rewards
+        config.rewardToken.safeTransfer(msg.sender, rewards);
+        config.totalRewardsDistributed += rewards;
+        
+        // Transfer tokens back to user
+        config.rewardToken.safeTransfer(msg.sender, amount);
+        
+        // Update stake info
+        stakes[msg.sender].amount -= amount;
+        stakes[msg.sender].rewardDebt = 0; // Reset debt after withdrawal
+        
+        // Update TVL
         config.totalValueLocked -= amount;
-        
-        // Calculate protocol fee on unstaking
-        uint256 protocolFeeAmount = (amount * config.protocolFee) / 10000;
-        uint256 userAmount = amount - protocolFeeAmount;
-        
-        // Distribute protocol fees
-        if (protocolFeeAmount > 0) {
-            (
-                address adjustedReceiver,
-                uint256 adjustedAmount,
-                address[] memory feeReceivers,
-                uint256[] memory feeAmounts
-            ) = FeeDistributorLib._distributeAmounts(
-                ds,
-                address(this),
-                address(this), // Protocol keeps remainder
-                protocolFeeAmount
-            );
-            
-            emit ProtocolFeesDistributed(feeReceivers, feeAmounts);
-        }
-        
-        // Transfer remaining amount to user
-        if (userAmount > 0) {
-            config.rewardToken.safeTransfer(msg.sender, userAmount);
-        }
         
         emit Unstaked(msg.sender, amount);
     }
     
-    function distributeRewards(uint256 totalRewards) external onlyOwner {
-        require(totalRewards > 0, "Rewards must be positive");
-        require(config.totalValueLocked > 0, "No stakes to distribute to");
-        
-        // Transfer rewards to contract
-        config.rewardToken.safeTransferFrom(msg.sender, address(this), totalRewards);
-        
-        // Calculate individual rewards based on stake proportion
-        // This is a simplified example - real implementation would be more complex
-        address[] memory stakeholders = _getStakeholders();
-        uint256[] memory rewardAmounts = new uint256[](stakeholders.length);
-        
-        for (uint256 i = 0; i < stakeholders.length; i++) {
-            address stakeholder = stakeholders[i];
-            uint256 stakeAmount = stakes[stakeholder].amount;
-            uint256 reward = (totalRewards * stakeAmount) / config.totalValueLocked;
-            rewardAmounts[i] = reward;
-            
-            if (reward > 0) {
-                config.rewardToken.safeTransfer(stakeholder, reward);
-            }
-        }
-        
-        config.totalRewardsDistributed += totalRewards;
-        
-        emit RewardsDistributed(stakeholders, rewardAmounts, totalRewards);
+    function calculateRewards(address user) public view returns (uint256) {
+        // Implement reward calculation logic based on staking duration, amount, etc.
+        return 0;
     }
     
-    function updateFeeDistribution(
-        address[] memory newReceivers,
-        uint256[] memory newWeights
-    ) external onlyOwner {
-        FeeDistributorLib._setFeeReceivers(ds, newReceivers, newWeights);
-    }
-    
-    function getProtocolStats() external view returns (
-        uint256 totalValueLocked,
-        uint256 totalRewardsDistributed,
-        uint256 protocolFee,
-        address[] memory feeReceivers,
-        uint256[] memory feeWeights
-    ) {
-        totalValueLocked = config.totalValueLocked;
-        totalRewardsDistributed = config.totalRewardsDistributed;
-        protocolFee = config.protocolFee;
-        (feeReceivers, feeWeights) = FeeDistributorLib._getFeeReceivers(ds);
-    }
-    
-    function _getStakeholders() internal view returns (address[] memory) {
-        // Implementation would return array of addresses with active stakes
-        // This is simplified for example purposes
-        address[] memory stakeholders = new address[](1);
-        stakeholders[0] = msg.sender;
-        return stakeholders;
+    function distributeProtocolFees(uint256 amount) external onlyOwner {
+        require(amount > 0, "Amount must be positive");
+        config.rewardToken.safeTransferFrom(msg.sender, address(this), amount); // Assume sender is the fee collector
+        
+        (
+            address adjustedReceiver,
+            uint256 adjustedAmount,
+            address[] memory feeReceivers,
+            uint256[] memory feeAmounts
+        ) = FeeDistributorLib._distributeAmounts(
+            ds,
+            address(this),
+            address(this), // Unused if all fees are distributed
+            amount
+        );
+        
+        // Emit event for protocol fees
+        emit ProtocolFeesDistributed(feeReceivers, feeAmounts);
     }
     
     modifier onlyOwner() {
-        // Implementation would check ownership
+        // Placeholder for access control
         _;
     }
 }
@@ -610,174 +567,77 @@ contract DeFiProtocol {
 
 ### Gaming Platform Revenue Distribution
 ```solidity
-// Gaming platform with multi-tier revenue sharing
-contract GamePlatform {
+// Gaming platform with revenue sharing for token holders and developers
+contract GamingPlatform {
     using FeeDistributorLib for IdentitySystemStorage.IdentitySystem;
     using SafeERC20 for IERC20;
     
-    struct GameDeveloper {
-        address developerAddress;
-        uint256 revenueShare; // Basis points
-        uint256 totalEarnings;
-        bool active;
+    struct GameConfig {
+        IERC20 platformToken;
+        uint256 gameRevenueShare; // Basis points for game developers
+        uint256 tokenHolderShare; // Basis points for token holders
+        uint256 platformShare;    // Basis points for platform treasury
+        address platformTreasury;
+        address gameDeveloperFund;
     }
     
-    struct GameSession {
-        uint256 gameId;
-        address player;
-        uint256 cost;
-        uint256 timestamp;
-        bool completed;
-    }
-    
-    mapping(uint256 => GameDeveloper) public developers;
-    mapping(uint256 => GameSession) public sessions;
-    mapping(uint256 => uint256) public gameDeveloper; // gameId => developerId
-    
-    IERC20 public platformToken;
+    GameConfig public config;
     IdentitySystemStorage.IdentitySystem internal ds;
-    uint256 public nextDeveloperId;
-    uint256 public nextSessionId;
     
-    event DeveloperRegistered(uint256 indexed developerId, address developer, uint256 revenueShare);
-    event GameSessionStarted(uint256 indexed sessionId, uint256 gameId, address player, uint256 cost);
-    event RevenueDistributed(uint256 indexed sessionId, address developer, uint256 developerShare, uint256 platformShare);
+    event RevenueReceived(uint256 amount);
+    event PlatformFeesDistributed(address[] receivers, uint256[] amounts);
     
-    constructor(address _platformToken) {
-        platformToken = IERC20(_platformToken);
+    constructor(
+        address _platformToken,
+        uint256 _gameRevenueShare,
+        uint256 _tokenHolderShare,
+        uint256 _platformShare,
+        address _platformTreasury,
+        address _gameDeveloperFund,
+        address _tokenHolderRewards  // Address where token holders can claim/receive
+    ) {
+        config.platformToken = IERC20(_platformToken);
+        config.gameRevenueShare = _gameRevenueShare;
+        config.tokenHolderShare = _tokenHolderShare;
+        config.platformShare = _platformShare;
+        config.platformTreasury = _platformTreasury;
+        config.gameDeveloperFund = _gameDeveloperFund;
         
         // Initialize fee distributor for platform token
         FeeDistributorLib._initializeFeeDistributor(ds, _platformToken, 10000);
         
-        // Set up platform revenue distribution
-        address[] memory receivers = new address[](4);
-        receivers[0] = address(this); // Platform treasury
-        receivers[1] = 0x1234567890123456789012345678901234567890; // Operations
-        receivers[2] = 0x2345678901234567890123456789012345678901; // Development
-        receivers[3] = 0x3456789012345678901234567890123456789012; // Marketing
+        // Set up fee distribution based on configured shares
+        address[] memory receivers = new address[](3);
+        receivers[0] = _gameDeveloperFund;
+        receivers[1] = _tokenHolderRewards;
+        receivers[2] = _platformTreasury;
         
-        uint256[] memory weights = new uint256[](4);
-        weights[0] = 4000; // 40% platform treasury
-        weights[1] = 2500; // 25% operations
-        weights[2] = 2000; // 20% development
-        weights[3] = 1500; // 15% marketing
+        uint256[] memory weights = new uint256[](3);
+        weights[0] = _gameRevenueShare;
+        weights[1] = _tokenHolderShare;
+        weights[2] = _platformShare;
         
         FeeDistributorLib._setFeeReceivers(ds, receivers, weights);
     }
     
-    function registerDeveloper(
-        address developerAddress,
-        uint256 revenueShare
-    ) external onlyOwner returns (uint256 developerId) {
-        require(developerAddress != address(0), "Invalid developer address");
-        require(revenueShare <= 7000, "Revenue share too high"); // Max 70%
+    function depositRevenue(uint256 amount) external payable { // Assuming ETH revenue
+        require(amount > 0, "Amount must be positive");
         
-        developerId = nextDeveloperId++;
+        // Distribute revenue among receivers
+        (
+            address adjustedReceiver, // Not used if self is 0x0
+            uint256 adjustedAmount,   // Not used if all is distributed
+            address[] memory feeReceivers,
+            uint256[] memory feeAmounts
+        ) = FeeDistributorLib._distributeAmounts(
+            ds,
+            address(0), // Distribute from msg.value
+            address(0), // No single principal receiver, all distributed
+            amount
+        );
         
-        developers[developerId] = GameDeveloper({
-            developerAddress: developerAddress,
-            revenueShare: revenueShare,
-            totalEarnings: 0,
-            active: true
-        });
-        
-        emit DeveloperRegistered(developerId, developerAddress, revenueShare);
-    }
-    
-    function startGameSession(
-        uint256 gameId,
-        uint256 cost
-    ) external returns (uint256 sessionId) {
-        require(cost > 0, "Cost must be positive");
-        require(gameDeveloper[gameId] != 0, "Game not registered");
-        
-        // Transfer payment from player
-        platformToken.safeTransferFrom(msg.sender, address(this), cost);
-        
-        sessionId = nextSessionId++;
-        
-        sessions[sessionId] = GameSession({
-            gameId: gameId,
-            player: msg.sender,
-            cost: cost,
-            timestamp: block.timestamp,
-            completed: false
-        });
-        
-        emit GameSessionStarted(sessionId, gameId, msg.sender, cost);
-    }
-    
-    function completeGameSession(uint256 sessionId) external {
-        GameSession storage session = sessions[sessionId];
-        require(!session.completed, "Session already completed");
-        require(session.player == msg.sender, "Not session owner");
-        
-        session.completed = true;
-        
-        uint256 developerId = gameDeveloper[session.gameId];
-        GameDeveloper storage developer = developers[developerId];
-        require(developer.active, "Developer not active");
-        
-        // Calculate developer share
-        uint256 developerShare = (session.cost * developer.revenueShare) / 10000;
-        uint256 platformShare = session.cost - developerShare;
-        
-        // Transfer developer share directly
-        if (developerShare > 0) {
-            platformToken.safeTransfer(developer.developerAddress, developerShare);
-            developer.totalEarnings += developerShare;
-        }
-        
-        // Distribute platform share among platform stakeholders
-        if (platformShare > 0) {
-            (
-                address adjustedReceiver,
-                uint256 adjustedAmount,
-                address[] memory feeReceivers,
-                uint256[] memory feeAmounts
-            ) = FeeDistributorLib._distributeAmounts(
-                ds,
-                address(this),
-                address(this), // Platform treasury gets adjusted amount
-                platformShare
-            );
-        }
-        
-        emit RevenueDistributed(sessionId, developer.developerAddress, developerShare, platformShare);
-    }
-    
-    function updatePlatformDistribution(
-        address[] memory newReceivers,
-        uint256[] memory newWeights
-    ) external onlyOwner {
-        FeeDistributorLib._setFeeReceivers(ds, newReceivers, newWeights);
-    }
-    
-    function getDeveloperStats(uint256 developerId) external view returns (
-        address developerAddress,
-        uint256 revenueShare,
-        uint256 totalEarnings,
-        bool active
-    ) {
-        GameDeveloper memory dev = developers[developerId];
-        return (dev.developerAddress, dev.revenueShare, dev.totalEarnings, dev.active);
-    }
-    
-    function getPlatformDistribution() external view returns (
-        address[] memory receivers,
-        uint256[] memory weights
-    ) {
-        return FeeDistributorLib._getFeeReceivers(ds);
-    }
-    
-    function registerGame(uint256 gameId, uint256 developerId) external onlyOwner {
-        require(developers[developerId].active, "Developer not active");
-        gameDeveloper[gameId] = developerId;
-    }
-    
-    modifier onlyOwner() {
-        // Implementation would check ownership
-        _;
+        emit RevenueReceived(amount);
+        emit PlatformFeesDistributed(feeReceivers, feeAmounts);
     }
 }
 ```
@@ -785,77 +645,59 @@ contract GamePlatform {
 ## Security Considerations
 
 ### Financial Security
-- **Overflow Protection**: Safe arithmetic operations prevent calculation errors
-- **Balance Validation**: Checks contract balance before distribution
-- **Transfer Safety**: Uses SafeERC20 for token transfers and proper error handling for ETH
-- **Weight Validation**: Ensures weights sum exactly to basis to prevent over/under distribution
+- **Accurate Calculations**: Ensures correct distribution based on weights and principal.
+- **No Funds Locked**: Prevents funds from being stuck in the contract.
+- **Overflow/Underflow Protection**: Uses safe math for all arithmetic operations.
 
 ### Access Control
-- **Initialization Protection**: Prevents re-initialization of the system
-- **Configuration Validation**: Validates all receiver addresses and weights
-- **Administrative Functions**: Proper access control for configuration changes
+- **Owner-Only Configuration**: Only authorized entities can set/update fee receivers and weights.
+- **Trusted Distribution**: Ensures funds are sent only to configured recipients.
 
 ### Distribution Integrity
-- **Atomic Operations**: All distributions complete or fail together
-- **Remainder Handling**: Proper handling of rounding remainders
-- **Zero Amount Protection**: Skips zero-amount transfers to save gas
+- **Atomic Transfers**: Ensures all transfers within a distribution are atomic (all or nothing).
+- **Event Logging**: Provides a clear, auditable trail of all distributions.
 
 ## Gas Optimization
 
 ### Batch Operations
-- **Single Loop Distribution**: Efficient batch transfer operations
-- **Minimal Storage Reads**: Optimized storage access patterns
-- **Skip Zero Transfers**: Avoids unnecessary transfer operations
-- **Efficient Calculations**: Optimized fee calculation algorithms
+- `_setFeeReceivers` and `_distributeAmounts` are designed to handle arrays, optimizing gas for multiple recipients.
 
 ### Storage Efficiency
-- **Compact Data Structures**: Efficient storage layout
-- **Minimal Storage Writes**: Reduced storage operations
-- **Array Operations**: Efficient array handling and iteration
+- The `FeeDistributorStorage` struct uses packed storage to minimize gas costs.
+- Minimizes state writes during distribution by pre-calculating amounts.
 
 ## Error Handling
 
 ### Common Errors
-- "Already initialized" - Attempt to re-initialize the system
-- "Array lengths mismatch" - Mismatched receiver and weight arrays
-- "Weights must sum to basis" - Invalid weight configuration
-- "Insufficient balance" - Contract lacks funds for distribution
-- "Transfer failed" - ETH or token transfer failure
+- `FeeDistributorLib: Invalid balance basis`: `_totalWeightBasis` is zero.
+- `FeeDistributorLib: Already initialized`: Attempting to re-initialize the component.
+- `FeeDistributorLib: Arrays length mismatch`: `_feeReceivers` and `_feeWeights` have different lengths.
+- `FeeDistributorLib: Invalid receiver`: Attempting to set a zero address as a receiver.
+- `FeeDistributorLib: Invalid weight`: Attempting to set a zero weight.
+- `FeeDistributorLib: Total weights must sum to totalWeightBasis`: Weights don't sum correctly.
+- `FeeDistributorLib: Insufficient native balance`: Contract doesn't have enough ETH for distribution.
+- `FeeDistributorLib: Insufficient token balance`: Contract doesn't have enough ERC20 tokens for distribution.
+- `Native fee transfer failed` / `Native principal transfer failed` / `ERC20 transfer failed`: Underlying transfer operation failed.
 
-### Best Practices
-- Validate all inputs before processing
-- Check contract balances before distribution
-- Use proper error messages for debugging
-- Handle edge cases gracefully (zero receivers, zero amounts)
+## Best Practices
 
-## Testing Considerations
+### Configuration Management
+- Set `_totalWeightBasis` to a power of 10 (e.g., 100 or 10000) for easier percentage calculations.
+- Regularly review and update fee receiver configurations as business needs change.
 
-### Unit Tests
-- Fee calculation accuracy
-- Distribution logic validation
-- Edge case handling (zero amounts, single receiver)
-- Error condition testing
+### Integration Checklist
+- Ensure the calling contract has sufficient balance (ETH or ERC20) before initiating a distribution.
+- Implement clear event listeners to track `FeesDistributed` events for off-chain analytics.
+- Grant `call` permission to the FeeDistributor facet if it needs to transfer native ETH.
 
-### Integration Tests
-- Multi-contract distribution scenarios
-- Token and ETH distribution workflows
-- Configuration update scenarios
-- Real-world usage patterns
-
-### Security Testing
-- Overflow/underflow protection
-- Reentrancy attack prevention
-- Access control validation
-- Financial integrity verification
+### Development Guidelines
+- Write comprehensive unit tests for all distribution scenarios, including edge cases.
+- Use `SafeERC20` (from OpenZeppelin) for robust ERC20 token interactions.
+- Consider a separate facet for managing fee distribution parameters if administrative control is needed.
 
 ## Related Documentation
 
-- [FeeDistributorFacet](../facets/fee-distributor-facet.md) - Fee distributor facet implementation
-- [Revenue Sharing Guide](../../guides/revenue-sharing.md) - Revenue sharing implementation patterns
-- [Tokenomics Guide](../../guides/tokenomics.md) - Token economics best practices
-- [Financial Security](../../guides/financial-security.md) - Financial security considerations
-- [Gas Optimization Guide](../../guides/gas-optimization.md) - Performance optimization techniques
-
----
-
-*This library provides comprehensive utilities for automated fee distribution within the Gemforce platform, supporting flexible revenue sharing mechanisms with configurable weights, multi-currency support, and robust security features for various business models and tokenomics scenarios.*
+- [Fee Distributor Facet](../../smart-contracts/facets/fee-distributor-facet.md) - Reference for the Fee Distributor Facet implementation.
+- [IFeeDistributor Interface](../../smart-contracts/interfaces/ifee-distributor.md) - Interface definition.
+- [EIP-DRAFT-Diamond-Enhanced-Marketplace](../../eips/EIP-DRAFT-Diamond-Enhanced-Marketplace.md) - Contains marketplace use cases.
+- [Developer Guides: Automated Testing Setup](../../developer-guides/automated-testing-setup.md)

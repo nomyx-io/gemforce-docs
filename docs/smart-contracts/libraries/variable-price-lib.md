@@ -2,7 +2,7 @@
 
 ## Overview
 
-The [`VariablePriceLib`](../../../contracts/libraries/VariablePriceLib.sol) library provides core utilities for managing dynamic pricing mechanisms within the Gemforce platform. This library implements flexible pricing strategies that automatically adjust prices based on configurable modifiers, supporting fixed increments, exponential growth, and inverse logarithmic scaling for various tokenomics scenarios.
+The [`VariablePriceLib`](../../smart-contracts/libraries/variable-price-lib.md) library provides core utilities for managing dynamic pricing mechanisms within the Gemforce platform. This library implements flexible pricing strategies that automatically adjust prices based on configurable modifiers, supporting fixed increments, exponential growth, and inverse logarithmic scaling for various tokenomics scenarios.
 
 ## Key Features
 
@@ -499,7 +499,7 @@ contract GameItemMarketplace {
     }
     
     modifier onlyGameMaster() {
-        // Implementation would check game master role
+        // Placeholder for access control
         _;
     }
 }
@@ -507,276 +507,187 @@ contract GameItemMarketplace {
 
 ### Auction System with Dynamic Reserve Prices
 ```solidity
-// Auction system with variable reserve pricing
-contract DynamicAuction {
+// Auction contract with reserve price adjusted dynamically
+contract DynamicReserveAuction {
     using VariablePriceLib for VariablePriceLib.VariablePriceStorage;
     
-    struct Auction {
-        uint256 tokenId;
-        address seller;
-        VariablePriceContract reservePricing;
-        uint256 startTime;
-        uint256 endTime;
-        address highestBidder;
-        uint256 highestBid;
-        bool ended;
-        uint256 auctionCount; // Number of times this item has been auctioned
+    struct AuctionConfig {
+        uint256 startingBid;
+        uint256 reservePrice;
+        uint256 buyNowPrice;
+        uint256 auctionEndTime;
+        VariablePriceContract reservePricing; // Dynamic reserve price
+        bool active;
     }
     
-    struct Bid {
-        address bidder;
-        uint256 amount;
-        uint256 timestamp;
-    }
-    
-    mapping(uint256 => Auction) public auctions;
-    mapping(uint256 => Bid[]) public auctionBids;
-    mapping(uint256 => bool) public tokenInAuction;
+    mapping(uint256 => AuctionConfig) public auctions;
     uint256 public nextAuctionId;
     
-    event AuctionCreated(uint256 indexed auctionId, uint256 indexed tokenId, uint256 reservePrice);
-    event BidPlaced(uint256 indexed auctionId, address indexed bidder, uint256 amount);
-    event AuctionEnded(uint256 indexed auctionId, address indexed winner, uint256 finalPrice);
-    event ReservePriceUpdated(uint256 indexed auctionId, uint256 newReservePrice);
+    event AuctionCreated(uint256 indexed auctionId, uint256 startingBid, uint256 reservePrice);
+    event BidPlaced(uint256 indexed auctionId, address indexed bidder, uint256 bidAmount);
+    event AuctionEnded(uint256 indexed auctionId, address winner, uint256 finalPrice);
+    event ReservePriceUpdated(uint256 indexed auctionId, uint256 oldPrice, uint256 newPrice);
     
     function createAuction(
-        uint256 tokenId,
-        uint256 duration,
-        uint256 initialReservePrice,
-        PriceModifier reserveStrategy,
-        uint256 reserveFactor,
+        uint256 startingBid,
+        uint256 reservePrice,
+        uint256 buyNowPrice,
+        uint256 auctionDuration,
+        PriceModifier priceStrategy,
+        uint256 modifierFactor,
         uint256 maxReservePrice
-    ) external returns (uint256 auctionId) {
-        require(!tokenInAuction[tokenId], "Token already in auction");
-        require(_isApprovedOrOwner(msg.sender, tokenId), "Not authorized");
-        
+    ) external onlyOwner returns (uint256 auctionId) {
         auctionId = nextAuctionId++;
         
-        auctions[auctionId] = Auction({
-            tokenId: tokenId,
-            seller: msg.sender,
+        auctions[auctionId] = AuctionConfig({
+            startingBid: startingBid,
+            reservePrice: reservePrice,
+            buyNowPrice: buyNowPrice,
+            auctionEndTime: block.timestamp + auctionDuration,
             reservePricing: VariablePriceContract({
-                price: initialReservePrice,
-                priceModifier: reserveStrategy,
-                priceModifierFactor: reserveFactor,
+                price: reservePrice,
+                priceModifier: priceStrategy,
+                priceModifierFactor: modifierFactor,
                 maxPrice: maxReservePrice
             }),
-            startTime: block.timestamp,
-            endTime: block.timestamp + duration,
-            highestBidder: address(0),
-            highestBid: 0,
-            ended: false,
-            auctionCount: _getAuctionCount(tokenId) + 1
+            active: true
         });
         
-        tokenInAuction[tokenId] = true;
-        
-        emit AuctionCreated(auctionId, tokenId, initialReservePrice);
+        emit AuctionCreated(auctionId, startingBid, reservePrice);
     }
     
     function placeBid(uint256 auctionId) external payable {
-        Auction storage auction = auctions[auctionId];
-        require(block.timestamp < auction.endTime, "Auction ended");
-        require(!auction.ended, "Auction already ended");
+        AuctionConfig storage auction = auctions[auctionId];
+        require(auction.active, "Auction not active");
+        require(block.timestamp <= auction.auctionEndTime, "Auction ended");
         
-        uint256 currentReserve = VariablePriceLib._currentPrice(auction.reservePricing);
-        require(msg.value >= currentReserve, "Bid below reserve price");
-        require(msg.value > auction.highestBid, "Bid too low");
+        uint256 currentBid = getCurrentBid(auctionId);
+        require(msg.value > currentBid, "Bid too low");
         
-        // Refund previous highest bidder
-        if (auction.highestBidder != address(0)) {
-            payable(auction.highestBidder).transfer(auction.highestBid);
-        }
-        
-        auction.highestBidder = msg.sender;
-        auction.highestBid = msg.value;
-        
-        // Record bid
-        auctionBids[auctionId].push(Bid({
-            bidder: msg.sender,
-            amount: msg.value,
-            timestamp: block.timestamp
-        }));
-        
-        // Increase reserve price for future auctions of this item
+        // Update reserve price (e.g., after each bid)
         (uint256 oldReserve, uint256 newReserve) = VariablePriceLib._updatePrice(auction.reservePricing);
+        emit ReservePriceUpdated(auctionId, oldReserve, newReserve);
         
+        _recordBid(auctionId, msg.sender, msg.value);
         emit BidPlaced(auctionId, msg.sender, msg.value);
-        emit ReservePriceUpdated(auctionId, newReserve);
     }
     
-    function endAuction(uint256 auctionId) external {
-        Auction storage auction = auctions[auctionId];
-        require(block.timestamp >= auction.endTime || msg.sender == auction.seller, "Auction not ended");
-        require(!auction.ended, "Auction already ended");
+    function endAuction(uint256 auctionId) external returns (address winner, uint256 finalPrice) {
+        AuctionConfig storage auction = auctions[auctionId];
+        require(auction.active, "Auction not active");
+        require(block.timestamp > auction.auctionEndTime, "Auction not ended");
         
-        auction.ended = true;
-        tokenInAuction[auction.tokenId] = false;
+        // Determine winner and final price
+        (winner, finalPrice) = _determineWinner(auctionId);
         
-        if (auction.highestBidder != address(0)) {
-            // Transfer token to winner
-            _transfer(auction.seller, auction.highestBidder, auction.tokenId);
-            
-            // Transfer payment to seller (minus fees)
-            uint256 fee = auction.highestBid * 25 / 1000; // 2.5% fee
-            payable(auction.seller).transfer(auction.highestBid - fee);
-            
-            emit AuctionEnded(auctionId, auction.highestBidder, auction.highestBid);
-        } else {
-            // No bids, return token to seller
-            emit AuctionEnded(auctionId, address(0), 0);
-        }
+        auction.active = false;
+        
+        _transferAssetToWinner(winner, auctionId);
+        _distributeFunds(finalPrice, auction.reservePrice, winner);
+        
+        emit AuctionEnded(auctionId, winner, finalPrice);
     }
     
-    function getCurrentReservePrice(uint256 auctionId) external view returns (uint256) {
+    function getReservePrice(uint256 auctionId) external view returns (uint256) {
         return VariablePriceLib._currentPrice(auctions[auctionId].reservePricing);
     }
     
     function getAuctionInfo(uint256 auctionId) external view returns (
-        uint256 tokenId,
-        address seller,
-        uint256 currentReserve,
-        uint256 nextReserve,
-        uint256 startTime,
+        uint256 currentBid,
+        uint256 reserve,
+        uint256 buyNow,
         uint256 endTime,
-        address highestBidder,
-        uint256 highestBid,
-        bool ended,
-        uint256 auctionCount
+        bool active
     ) {
-        Auction memory auction = auctions[auctionId];
-        tokenId = auction.tokenId;
-        seller = auction.seller;
-        currentReserve = auction.reservePricing.price;
-        startTime = auction.startTime;
-        endTime = auction.endTime;
-        highestBidder = auction.highestBidder;
-        highestBid = auction.highestBid;
-        ended = auction.ended;
-        auctionCount = auction.auctionCount;
-        
-        // Calculate next reserve price
-        PriceModifier strategy = auction.reservePricing.priceModifier;
-        uint256 factor = auction.reservePricing.priceModifierFactor;
-        
-        if (strategy == PriceModifier.Fixed) {
-            nextReserve = currentReserve + factor;
-        } else if (strategy == PriceModifier.Exponential) {
-            nextReserve = currentReserve + (currentReserve / factor);
-        } else if (strategy == PriceModifier.InverseLog) {
-            nextReserve = currentReserve + (currentReserve / (factor * currentReserve));
-        } else {
-            nextReserve = currentReserve;
-        }
-        
-        if (nextReserve > auction.reservePricing.maxPrice) {
-            nextReserve = auction.reservePricing.maxPrice;
-        }
+        AuctionConfig memory config = auctions[auctionId];
+        currentBid = getCurrentBid(auctionId);
+        reserve = VariablePriceLib._currentPrice(config.reservePricing);
+        buyNow = config.buyNowPrice;
+        endTime = config.auctionEndTime;
+        active = config.active;
     }
     
-    function getBidHistory(uint256 auctionId) external view returns (Bid[] memory) {
-        return auctionBids[auctionId];
-    }
-    
-    function _getAuctionCount(uint256 tokenId) internal view returns (uint256) {
-        // Implementation would track auction history
+    function getCurrentBid(uint256 auctionId) internal view returns (uint256) {
+        // Placeholder for internal logic to get highest bid
         return 0;
     }
     
-    function _isApprovedOrOwner(address spender, uint256 tokenId) internal view returns (bool) {
-        // Implementation would check ERC721 authorization
-        return true;
+    function _recordBid(uint256 auctionId, address bidder, uint256 bidAmount) internal {
+        // Placeholder for bid storage
     }
     
-    function _transfer(address from, address to, uint256 tokenId) internal {
-        // Implementation would transfer ERC721 token
+    function _determineWinner(uint256 auctionId) internal view returns (address, uint256) {
+        // Placeholder for winner determination
+        return (address(0), 0);
+    }
+    
+    function _transferAssetToWinner(address winner, uint256 auctionId) internal {
+        // Placeholder for asset transfer
+    }
+    
+    function _distributeFunds(uint256 amount, uint256 reserve, address winner) internal {
+        // Placeholder for fund distribution
+    }
+    
+    modifier onlyOwner() {
+        // Placeholder for access control
+        _;
     }
 }
-```
-
-## Events
-
-### Variable Price Events
-```solidity
-event VariablePriceChanged(address eventContract, VariablePriceContract price);
 ```
 
 ## Security Considerations
 
 ### Price Manipulation Protection
-- Maximum price limits prevent excessive pricing
-- Configurable modifier factors allow controlled growth
-- Transparent pricing algorithms prevent manipulation
-- Event emission for price change monitoring
+- **Input Validation**: Validate all price-related input, especially `priceModifierFactor`.
+- **Max Price Limits**: Enforce `maxPrice` to prevent runaway prices.
+- **Trusted Price Oracles**: If external factors influence price, use secure oracles.
 
-### Overflow Protection
-- Safe arithmetic operations for price calculations
-- Bounds checking for modifier factors
-- Maximum price enforcement
-- Graceful handling of edge cases
+### Floating Point Emulation
+- **Integer Math**: All calculations use integer arithmetic to avoid floating point inaccuracies.
+- **Precision**: Ensure sufficient precision (e.g., using `1 ether` as base unit for wei).
 
-### Economic Security
-- Predictable pricing algorithms
-- Configurable parameters for different use cases
-- Protection against price manipulation attacks
-- Fair pricing progression for all participants
+### Access Control
+- **Owner-Only Configuration**: Sensitive pricing parameters should be set by authorized entities.
+- **Price Modification**: Only authorized functions should be able to trigger price updates.
 
 ## Gas Optimization
 
 ### Calculation Efficiency
-- Optimized arithmetic operations
-- Minimal storage reads and writes
-- Efficient price update algorithms
-- Batch price operations where possible
+- Optimized mathematical operations for price modifications.
+- Minimal storage reads and writes during price updates.
 
 ### Storage Efficiency
-- Compact data structures
-- Minimal storage footprint
-- Efficient parameter encoding
-- Optimized Diamond storage access
+- `VariablePriceContract` uses packed storage to minimize gas costs.
+- Integrates with Diamond Storage for secure and efficient storage.
 
 ## Error Handling
 
 ### Common Errors
-- Division by zero in modifier calculations
-- Price overflow in exponential growth
-- Invalid modifier factor values
-- Maximum price exceeded
+- `Vpl: Invalid initial price`: Start price is zero or negative.
+- `Vpl: Quantity out of bounds`: Purchase quantity exceeds limits.
+- `Vpl: Insufficient payment`: Sent value is less than current price.
+- `Vpl: Max price exceeded`: Attempting to set price above `maxPrice`.
 
-### Best Practices
-- Validate modifier factors before use
-- Implement maximum price limits
-- Handle edge cases gracefully
-- Provide clear error messages for debugging
+## Best Practices
 
-## Testing Considerations
+### Pricing Strategy Design
+- Choose the correct `PriceModifier` based on desired tokenomics (e.g., `Fixed` for flat increases, `InverseLog` for diminishing returns).
+- Carefully select `priceModifierFactor` to achieve desired price curve.
 
-### Unit Tests
-- Price calculation accuracy for each modifier type
-- Boundary condition testing
-- Overflow and underflow protection
-- Storage operations verification
+### Integration Checklist
+- Ensure pricing logic is clearly communicated to users on the frontend.
+- Provide real-time price updates and projected future prices.
+- Handle excess ETH refunds gracefully on purchases.
 
-### Integration Tests
-- Multi-transaction pricing scenarios
-- Cross-contract price integration
-- Economic model validation
-- Long-term pricing behavior analysis
-
-### Economic Testing
-- Bonding curve validation
-- Market dynamics simulation
-- Price discovery mechanisms
-- Tokenomics model verification
+### Development Guidelines
+- Write comprehensive unit tests for all pricing strategies and edge cases.
+- Monitor price changes and ensure they align with expected curves.
+- Conduct economic simulations to validate pricing models.
 
 ## Related Documentation
 
-- [IVariablePrice Interface](../interfaces/ivariable-price.md) - Variable price interface definition
-- [MultiSaleLib](multi-sale-lib.md) - Multi-token sale integration
-- [Pricing Strategies Guide](../../guides/pricing-strategies.md) - Economic model implementation
-- [Tokenomics Guide](../../guides/tokenomics.md) - Token economics best practices
-- [Auction Systems Guide](../../guides/auction-systems.md) - Auction implementation patterns
-
----
-
-*This library provides comprehensive utilities for dynamic pricing mechanisms within the Gemforce platform, supporting flexible pricing strategies, automatic price adjustments, and configurable economic models for various tokenomics scenarios including bonding curves, auctions, and marketplace systems.*
+- [IVariablePrice Interface](../../smart-contracts/interfaces/ivariable-price.md) - Interface definition.
+- [Multi Sale Facet](../../smart-contracts/facets/multi-sale-facet.md) - For multi-token sales integrated with variable pricing.
+- [EIP-DRAFT-Multi-Token-Sale-Standard](../../eips/EIP-DRAFT-Multi-Token-Sale-Standard.md) - Contains dynamic pricing use cases.
+- [Developer Guides: Automated Testing Setup](../../developer-guides/automated-testing-setup.md)

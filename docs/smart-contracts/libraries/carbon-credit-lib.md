@@ -2,7 +2,7 @@
 
 ## Overview
 
-The [`CarbonCreditLib`](../../../contracts/libraries/CarbonCreditLib.sol) library provides core utilities and data structures for managing carbon credits associated with ERC721 tokens within the Gemforce platform. This library implements the Diamond Standard storage pattern and provides essential functions for carbon credit initialization, retirement, and status management.
+The [`CarbonCreditLib`](../../smart-contracts/libraries/carbon-credit-lib.md) library provides core utilities and data structures for managing carbon credits associated with ERC721 tokens within the Gemforce platform. This library implements the Diamond Standard storage pattern and provides essential functions for carbon credit initialization, retirement, and status management.
 
 ## Key Features
 
@@ -48,7 +48,7 @@ library CarbonCreditLib {
 ```solidity
 enum CarbonCreditStatus {
     ACTIVE,    // Token has remaining carbon credits
-    RETIRED    // All carbon credits have been retired
+    RETIRED    // All carbon credits have been permanently retired
 }
 ```
 
@@ -232,7 +232,7 @@ function getCarbonCreditStatus(CarbonCreditStorage storage self, uint256 tokenId
 - `self` (CarbonCreditStorage storage): Storage reference
 - `tokenId` (uint256): The ID of the ERC721 token
 
-**Returns**: [`CarbonCreditStatus`](carbon-credit-lib.md:4) enum value
+**Returns**: [`CarbonCreditStatus`](#carboncreditstatus-enum) enum value
 
 **Logic**:
 - Returns `RETIRED` if balance is zero
@@ -500,69 +500,52 @@ contract CarbonOffsetTracker {
 - Secure access control through internal functions only
 
 ### Validation Security
-- Token existence validation before operations
-- Balance validation before retirement
-- Prevention of double initialization
-- Overflow protection in balance calculations
+- Validates token existence and ownership before operations
+- Ensures sufficient balance for retirement
+- Prevents double-counting of credits
 
 ### Operational Security
-- Immutable retirement operations
-- Consistent state management
-- Safe external contract interactions
-- Error handling for edge cases
+- Immutable retirement ensures permanent offset
+- Transparent tracking for auditability
+- Efficient operations minimize attack surface
 
 ## Gas Optimization
 
 ### Storage Efficiency
-- Minimal storage footprint with single mapping
-- Efficient storage slot usage
-- Optimized for Diamond Standard pattern
+- The `CarbonCreditStorage` struct is designed to minimize storage slot usage.
+- Carbon credit balances are stored efficiently using a single mapping.
 
 ### Function Efficiency
-- Internal functions for gas savings
-- Minimal external calls
-- Efficient validation logic
-- Optimized assembly for storage access
+- `_tokenExists` uses try-catch for safe external calls.
+- `initializeBalance` and `retireCredits` perform direct storage updates.
 
 ## Error Handling
 
 ### Common Errors
-- "Carbon credits already initialized" - Attempting to initialize twice
-- "Token does not exist" - Operating on non-existent token
-- "Initial balance must be greater than zero" - Invalid initialization
-- "Amount must be greater than zero" - Invalid retirement amount
-- "Insufficient balance" - Attempting to retire more than available
+- `Cclib: Inital balance requires more than zero tokens`: Initial balance is zero.
+- `Cclib: Token has no carbon credits`: Attempting to operate on a token without initialized credits.
+- `Cclib: Insufficient balance`: Amount to retire exceeds available carbon credit balance.
+- `Cclib: Already initialized`: Attempting to initialize credits for an already initialized token.
+- `Cclib: Amount is zero`: Attempting to retire zero tokens.
 
-### Best Practices
-- Always validate token existence before operations
-- Check balances before retirement operations
-- Handle initialization state properly
-- Use appropriate error messages for debugging
+## Best Practices
 
-## Testing Considerations
+### Integration Guidelines
+- Ensure proper NFT ownership and transfer mechanisms in dApps.
+- Validate carbon credit amounts and status before initiating operations.
+- Integrate with off-chain carbon registries for full traceability.
+- Use the library's batch functions for efficient high-volume operations.
 
-### Unit Tests
-- Storage pattern implementation
-- Token existence validation
-- Balance initialization and management
-- Credit retirement functionality
-- Status determination logic
-
-### Integration Tests
-- Integration with ERC721 contracts
-- Diamond facet integration
-- Multi-token operations
-- Edge case handling
-- Gas usage optimization
+### Development Guidelines
+- Write comprehensive unit tests for all CarbonCreditLib functions.
+- Implement robust error handling and user feedback mechanisms in dApps.
+- Monitor events for real-time tracking and analytics of carbon credit movements.
+- Follow secure coding practices for all smart contract interactions.
 
 ## Related Documentation
 
-- [ICarbonCredit Interface](../interfaces/icarbon-credit.md) - Carbon credit interface definition
-- [CarbonCreditFacet](../facets/carbon-credit-facet.md) - Carbon credit facet implementation
-- [Diamond Standard Guide](../../guides/diamond-standard.md) - Diamond pattern implementation
-- [Environmental NFT Guide](../../guides/environmental-nfts.md) - Environmental asset tokenization
-- [Carbon Offset Integration](../../guides/carbon-offset-integration.md) - Carbon offset program integration
-
----
-
-*This library provides the core utilities and data structures for carbon credit management within the Gemforce platform, implementing secure storage patterns and essential operations for environmental asset tokenization.*
+- [Carbon Credit Facet](../../smart-contracts/facets/carbon-credit-facet.md) - Reference for the CarbonCreditFacet implementation.
+- [ICarbonCredit Interface ../../smart-contracts/interfaces/icarbon-credit.md) - Interface definition.
+- [EIP-DRAFT-Carbon-Credit-Standard](../../eips/EIP-DRAFT-Carbon-Credit-Standard.md) - The full EIP specification.
+- [Diamond Standard Overview](../../smart-contracts/diamond.md) - Overview of the Diamond Standard.
+- [Developer Guides: Automated Testing Setup](../../developer-guides/automated-testing-setup.md)

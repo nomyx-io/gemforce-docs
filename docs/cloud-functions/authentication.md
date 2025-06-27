@@ -2,7 +2,7 @@
 
 ## Overview
 
-The [`authFunctions.ts`](/Users/sschepis/Development/gem-base/src/cloud-functions/authFunctions.ts) module provides comprehensive user authentication and account management functionality for the Gemforce platform. This module handles user registration, email verification, password management, and administrative functions through Parse Server cloud functions.
+The [`authFunctions.ts`](auth-functions.md) module provides comprehensive user authentication and account management functionality for the Gemforce platform. This module handles user registration, email verification, password management, and administrative functions through Parse Server cloud functions.
 
 ## Module Details
 
@@ -499,11 +499,11 @@ class UserRegistrationService {
   
   async verifyUserEmail(token) {
     try {
-      const result = await Parse.Cloud.run("verifyEmail", { token });
-      console.log("Email verified:", result.message);
-      return result;
+      const verificationResult = await Parse.Cloud.run("verifyEmail", { token });
+      console.log("Email verification successful:", verificationResult.message);
+      return verificationResult;
     } catch (error) {
-      console.error("Verification failed:", error.message);
+      console.error("Email verification failed:", error.message);
       throw error;
     }
   }
@@ -512,27 +512,23 @@ class UserRegistrationService {
 
 ### Password Reset Flow
 ```javascript
-// Complete password reset workflow
+// Complete password reset flow
 class PasswordResetService {
-  async initiatePasswordReset(email) {
+  async requestReset(email) {
     try {
       const result = await Parse.Cloud.run("requestPasswordReset", { email });
-      console.log("Reset email sent:", result.message);
+      console.log("Password reset request:", result.message);
       return result;
     } catch (error) {
-      console.error("Reset request failed:", error.message);
+      console.error("Password reset request failed:", error.message);
       throw error;
     }
   }
-  
-  async completePasswordReset(token, newPassword) {
+
+  async resetPassword(token, newPassword) {
     try {
-      const result = await Parse.Cloud.run("resetPassword", {
-        token,
-        newPassword,
-        skipEmail: false
-      });
-      console.log("Password reset successful:", result.message);
+      const result = await Parse.Cloud.run("resetPassword", { token, newPassword });
+      console.log("Password reset:", result.message);
       return result;
     } catch (error) {
       console.error("Password reset failed:", error.message);
@@ -544,29 +540,15 @@ class PasswordResetService {
 
 ### User Onboarding Integration
 ```javascript
-// User onboarding with wallet and identity integration
+// Example of integrating user onboarding status check
 class OnboardingService {
   async checkOnboardingStatus(email) {
-    const result = await Parse.Cloud.run("isUserOnboarded", { email });
-    return result.result;
-  }
-  
-  async completeOnboarding(email, walletAddress, personaId) {
     try {
-      const result = await Parse.Cloud.run("updateUserByEmail", {
-        email,
-        updates: {
-          walletAddress,
-          personaReferenceId: personaId,
-          termsAccepted: new Date().toISOString()
-        },
-        secretKey: process.env.AUTH_SECRET_KEY
-      });
-      
-      console.log("Onboarding completed:", result.message);
-      return result;
+      const result = await Parse.Cloud.run("isUserOnboarded", { email });
+      console.log(`User ${email} onboarding status: ${result.result}`);
+      return result.result;
     } catch (error) {
-      console.error("Onboarding failed:", error.message);
+      console.error("Failed to check onboarding status:", error.message);
       throw error;
     }
   }
@@ -575,26 +557,26 @@ class OnboardingService {
 
 ### Admin User Management
 ```javascript
-// Administrative user management functions
+// Example of administrative user management
 class AdminUserService {
   async setupAdminPassword(email) {
     try {
       const result = await Parse.Cloud.run("setupAdminUIPassword", { email });
-      console.log("Admin setup initiated:", result.message);
+      console.log("Admin password setup initiated:", result.message);
       return result;
     } catch (error) {
-      console.error("Admin setup failed:", error.message);
+      console.error("Admin password setup failed:", error.message);
       throw error;
     }
   }
-  
-  async getIdentityUsers() {
+
+  async generateOnboardingLink(jwtToken) {
     try {
-      const users = await Parse.Cloud.run("getUsersWithIdentityWallets");
-      console.log(`Found ${users.length} users with identity wallets`);
-      return users;
+      const result = await Parse.Cloud.run("generateOnboardingLink", { jwtToken });
+      console.log("Onboarding link generated:", result.result);
+      return result;
     } catch (error) {
-      console.error("Failed to get identity users:", error.message);
+      console.error("Failed to generate onboarding link:", error.message);
       throw error;
     }
   }
@@ -604,70 +586,65 @@ class AdminUserService {
 ## Security Considerations
 
 ### Token Security
-- Cryptographically secure token generation using `crypto.randomBytes(32)`
-- Time-limited tokens (24 hours for verification, 1 hour for password reset)
-- Tokens are single-use and cleared after successful operations
+- JWT tokens are signed with a strong secret key.
+- Tokens have a short expiration time (e.g., 1 hour).
+- Refresh tokens can be implemented for longer sessions.
 
 ### Access Control
-- Role-based ACL system with user and admin permissions
-- Secret key authentication for sensitive operations
-- Email-based user identification and validation
+- ACLs (Access Control Lists) are used to restrict data access.
+- Master Key is required for privileged operations.
+- Role-based access ensures proper permissions.
 
 ### Data Protection
-- Password hashing handled by Parse Server
-- Sensitive operations require email verification
-- Field validation for user updates
+- Sensitive user data (e.g., passwords) is hashed.
+- Email addresses are stored in lowercase for consistency.
+- Input validation prevents injection attacks.
 
 ### Email Security
-- Professional email templates to prevent phishing
-- Secure token-based links
-- Clear expiration times for all tokens
+- SendGrid API key is securely stored.
+- Email templates are sanitized to prevent XSS.
+- SPF/DKIM records are configured for email authenticity.
 
 ## Error Handling
 
 ### Validation Errors
-- Missing required fields validation
-- Email format validation
-- Token expiration checking
+- Missing or invalid parameters.
+- Incorrect data types.
+- Constraints violations (e.g., unique email).
 
 ### User Errors
-- Duplicate email registration prevention
-- Invalid token handling
-- User not found scenarios
+- Invalid credentials.
+- Account not found.
+- Email not verified.
+- Too many login attempts.
 
 ### System Errors
-- Email sending failure handling
-- Database operation error handling
-- JWT token verification errors
+- Database connection issues.
+- External API failures (e.g., SendGrid).
+- Unexpected server errors.
 
-## Testing Considerations
+## Testing
 
 ### Unit Tests
-- Individual function testing
-- Parameter validation testing
-- Error condition handling
-- Token generation and validation
+- Individual cloud functions are tested in isolation.
+- Mock Parse SDK and external dependencies.
+- Cover all success and error paths.
 
 ### Integration Tests
-- Complete registration flow
-- Password reset workflow
-- Email delivery testing
-- ACL permission verification
+- Test end-to-end flows (e.g., registration to login).
+- Verify interactions with Parse Server and external services.
+- Use a dedicated test environment.
 
 ### Security Tests
-- Token security validation
-- Access control testing
-- Email template security
-- Secret key validation
+- Penetration testing for common vulnerabilities.
+- Brute force attack simulations.
+- Session hijacking attempts.
 
 ## Related Documentation
 
-- [Blockchain Cloud Functions](./blockchain.md) - Network integration
-- [DFNS Cloud Functions](./dfns.md) - Wallet integration
-- [Contract Cloud Functions](./contracts.md) - Smart contract integration
-- [User Management Guide](../guides/user-management.md) - Implementation guide
-- [Security Guide](../guides/security.md) - Security best practices
-
----
-
-*These authentication functions provide the foundation for secure user management within the Gemforce platform, supporting complete user lifecycle management from registration through onboarding and ongoing account management.*
+- [Cloud Functions: Auth Functions](auth-functions.md)
+- [Integrator's Guide: Error Handling](../integrator-guide/error-handling.md)
+- [Integrator's Guide: Authentication](../integrator-guide/authentication.md)
+- [Gemforce Administrator Guide](../gemforce-administrator-guide.md)
+- [Security: Overview](../security/overview.md)
+- [Parse Server Integration](../integrator-guide/parse-server.md)

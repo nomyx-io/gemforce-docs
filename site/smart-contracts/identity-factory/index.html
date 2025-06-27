@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Gemforce Team" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Identity Factory - Gemforce Documentation</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Identity Factory";
+        var mkdocs_page_input_path = "smart-contracts/identity-factory.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Gemforce Documentation
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../developer-setup-guide/">Developer Setup Guide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../system-architecture/gemforce-system-architecture/">System Architecture</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Smart Contracts</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../diamond/">Diamond Contract</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../diamond-factory/">Diamond Factory</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Identity Factory</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#key-features">Key Features</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#identity-contract-deployment">Identity Contract Deployment</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#key-management-integration">Key Management Integration</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#registry-integration">Registry Integration</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#core-interface">Core Interface</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#core-functions">Core Functions</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#deployidentity">deployIdentity()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#registertemplate">registerTemplate()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#predictidentityaddress">predictIdentityAddress()</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#implementation-example">Implementation Example</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#basic-identity-factory">Basic Identity Factory</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#advanced-identity-factory-with-governance">Advanced Identity Factory with Governance</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#template-patterns">Template Patterns</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#standard-identity-template">Standard Identity Template</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#corporate-identity-template">Corporate Identity Template</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#multi-signature-identity-template">Multi-Signature Identity Template</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#integration-patterns">Integration Patterns</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#registry-integration_1">Registry Integration</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#kyc-integration">KYC Integration</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#security-considerations">Security Considerations</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#access-control">Access Control</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#identity-security">Identity Security</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#factory-security">Factory Security</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#best-practices">Best Practices</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#template-design">Template Design</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#factory-management">Factory Management</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#identity-deployment">Identity Deployment</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#related-documentation">Related Documentation</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#standards-compliance">Standards Compliance</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Facets</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../facets/marketplace-facet/">Marketplace Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../facets/trade-deal-management-facet/">Trade Deal Management Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../facets/carbon-credit-facet/">Carbon Credit Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../facets/identity-registry-facet/">Identity Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../facets/trusted-issuers-registry-facet/">Trusted Issuers Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../facets/fee-distributor-facet/">Fee Distributor Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../facets/gemforce-minter-facet/">Gemforce Minter Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../facets/multi-sale-facet/">Multi Sale Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../facets/svg-templates-facet/">SVG Templates Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../facets/trade-deal-admin-facet/">Trade Deal Admin Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../facets/trade-deal-operations-facet/">Trade Deal Operations Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../facets/collateral-token-factory-facet/">Collateral Token Factory Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../facets/diamond-cut-facet/">Diamond Cut Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../facets/diamond-loupe-facet/">Diamond Loupe Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../facets/ownership-facet/">Ownership Facet</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Interfaces</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../interfaces/idiamond/">IDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../interfaces/imarketplace/">IMarketplace</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../interfaces/itradedeal/">ITradeDeal</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../interfaces/icarbon-credit/">ICarbonCredit</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../interfaces/ierc1155-mint/">IERC1155Mint</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../interfaces/ierc734/">IERC734</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../interfaces/ierc735/">IERC735</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../interfaces/ierc721a/">IERC721A</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../interfaces/idiamond-factory/">IDiamondFactory</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../interfaces/iidentity/">IIdentity</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../interfaces/imultisale/">IMultiSale</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../interfaces/ifee-distributor/">IFeeDistributor</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../interfaces/igemforce-minter-facet/">IGemforceMinterFacet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../interfaces/iidentity-registry/">IIdentityRegistry</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../interfaces/itrusted-issuers-registry/">TRUSTEDIssuersRegistry</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../interfaces/isvg/">ISVG</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../interfaces/iattribute/">IAttribute</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../interfaces/ivariable-price/">IVariablePrice</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Libraries</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../libraries/carbon-credit-lib/">Carbon Credit Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../libraries/trade-deal-lib/">Trade Deal Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../libraries/multi-sale-lib/">Multi Sale Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../libraries/diamond-factory-lib/">Diamond Factory Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../libraries/svg-templates-lib/">SVG Templates Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../libraries/attribute-lib/">Attribute Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../libraries/variable-price-lib/">Variable Price Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../libraries/merkle-prover/">Merkle Prover</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../libraries/fee-distributor-lib/">Fee Distributor Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../libraries/lib-diamond/">LibDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../libraries/diamond-lib/">DiamondLib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../libraries/erc721a-lib/">ERC721A Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../libraries/erc721a-enumeration-lib/">ERC721A Enumeration Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../libraries/strings-lib/">Strings Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../libraries/trusted-issuer-lib/">Trusted Issuer Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../libraries/set-libraries/">Set Libraries</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">SDK & Libraries</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../sdk-libraries/blockchain/">Blockchain Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../sdk-libraries/diamond/">Diamond Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../sdk-libraries/contract/">Contract Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../sdk-libraries/deploy/">Deployment Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../sdk-libraries/validation-utils/">Validation Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../sdk-libraries/nft-sale-utils/">NFT Sale Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../sdk-libraries/webhooks/">Webhooks Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../libraries/metadata-lib/">Metadata Library</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Cloud Functions</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/authentication/">Authentication Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/auth-functions/">Auth Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/blockchain/">Blockchain Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/bridge/">Bridge Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/contracts/">Contract Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/deploy/">Deploy Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/dfns/">DFNS Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/project/">Project Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/trade-deal/">Trade Deal Functions</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">API Documentation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api-documentation/gemforce-api-documentation/">Full API Reference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api-documentation/gemforce-api-quick-reference/">Quick Reference</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../gemforce-external-services/">External Services</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../gemforce-system-architecture/">System Architecture</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Operations Tasks</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/diamond/">Diamond Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/identities/">Identity Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/marketplace-management/">Marketplace Management Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/carbon-credit-management/">Carbon Credit Management Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/trade-deal/">Trade Deal Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/integration-test/">Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/integration-test-marketplace/">Marketplace Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/integration-test-trade-deal/">Trade Deal Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/admin-utils/">Admin Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/sync-diamond/">Sync Diamond Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/sync-events/">Sync Events Tasks</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">EIPs (Ethereum Improvement Proposals)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../eips/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../eips/EIP-DRAFT-Diamond-Enhanced-Marketplace/">Diamond-Enhanced Marketplace</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../eips/EIP-DRAFT-Multi-Token-Sale-Standard/">Multi-Token Sale Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../eips/EIP-DRAFT-Collateralized-Trade-Deal-Standard/">Collateralized Trade Deal Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../eips/EIP-DRAFT-Enhanced-Identity-System/">Enhanced Identity System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../eips/EIP-DRAFT-Diamond-Factory-Standard/">Diamond Factory Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../eips/EIP-DRAFT-Carbon-Credit-Standard/">Carbon Credit Standard</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Developer Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../developer-guides/development-environment-setup/">Development Environment Setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../developer-guides/testing-frameworks/">Testing Frameworks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../developer-guides/debugging/">Debugging</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../developer-guides/performance-optimization/">Performance Optimization</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../developer-guides/test-case-specifications/">Test Case Specifications</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../developer-guides/test-data-management/">Test Data Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../developer-guides/automated-testing-setup/">Automated Testing Setup</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Deployment Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../deployment-guides/multi-network-deployment/">Multi-Network Deployment</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../deployment-guides/infrastructure-management/">Infrastructure Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../deployment-guides/monitoring-logging/">Monitoring and Logging</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">User Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../gemforce-administrator-guide/">Administrator Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../gemforce-deployer-guide/">Deployer Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../gemforce-integrator-guide/">Integrator Guide</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Integrator's Guide</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrator-guide/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrator-guide/authentication/">Authentication</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrator-guide/rest-api/">REST API</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrator-guide/smart-contracts/">Smart Contracts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrator-guide/dfns/">DFNS Integration</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrator-guide/parse-server/">Parse Server Notes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrator-guide/webhooks/">Webhooks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrator-guide/error-handling/">Error Handling</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrator-guide/sample-code/">Sample Code</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrator-guide/integration-patterns/">Integration Patterns</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrator-guide/testing/">Testing Considerations</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrator-guide/security/">Security</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../external-services/gemforce-external-services/">External Services</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Security</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../security/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../security/threat-model/">Threat Model and Risk Assessment</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../security/incident-response/">Incident Response Procedures</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../security/audit-compliance/">Security Audits and Compliance</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">External Developer Integration</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../external-developer-integration/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../external-developer-integration/api-rate-limiting/">API Rate Limiting</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../external-developer-integration/webhook-implementation-guidelines/">Webhook Implementation Guidelines</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../external-developer-integration/sdk-development-guidelines/">SDK Development Guidelines</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../external-developer-integration/partner-integration-guides/">Partner Integration Guides</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../gemforce-documentation-gap-analysis/">Documentation Gap Analysis</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../documentation-progress-summary/">Documentation Progress Summary</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../documentation-plan/">Documentation Plan</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Configuration & Environment</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../configuration-environment/gemforce-config/">Gemforce Config</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../configuration-environment/environment-specific-guides/">Environment-Specific Guides</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../configuration-environment/configuration-validation/">Configuration Validation Procedures</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../configuration-environment/external-service-config-management/">External Service Configuration Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../configuration-environment/database-schema-overview/">Database Schema Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../configuration-environment/database-migration-procedures/">Database Migration Procedures</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Gemforce Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Smart Contracts</li>
+      <li class="breadcrumb-item active">Identity Factory</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="identity-factory">Identity Factory<a class="headerlink" href="#identity-factory" title="Permanent link">&para;</a></h1>
+<p>The Identity Factory is a specialized contract deployment system for creating ERC-734/ERC-735 compliant identity contracts. It provides standardized deployment of identity contracts with key management and claim verification capabilities.</p>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>The Identity Factory provides:</p>
+<ul>
+<li><strong>Identity Deployment</strong>: Deploy ERC-734/ERC-735 identity contracts</li>
+<li><strong>Key Management Setup</strong>: Initialize identity contracts with management keys</li>
+<li><strong>Claim Integration</strong>: Setup trusted issuer relationships</li>
+<li><strong>Registry Integration</strong>: Automatic registration with identity registries</li>
+<li><strong>Template Management</strong>: Manage different identity contract templates</li>
+</ul>
+<h2 id="key-features">Key Features<a class="headerlink" href="#key-features" title="Permanent link">&para;</a></h2>
+<h3 id="identity-contract-deployment">Identity Contract Deployment<a class="headerlink" href="#identity-contract-deployment" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>ERC-734 Compliance</strong>: Deploy key manager compliant contracts</li>
+<li><strong>ERC-735 Compliance</strong>: Deploy claim holder compliant contracts</li>
+<li><strong>Combined Implementation</strong>: Deploy contracts supporting both standards</li>
+<li><strong>Custom Configuration</strong>: Support custom identity configurations</li>
+</ul>
+<h3 id="key-management-integration">Key Management Integration<a class="headerlink" href="#key-management-integration" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Management Keys</strong>: Setup initial management keys</li>
+<li><strong>Action Keys</strong>: Configure action-specific keys</li>
+<li><strong>Claim Keys</strong>: Setup claim signing keys</li>
+<li><strong>Encryption Keys</strong>: Configure encryption capabilities</li>
+</ul>
+<h3 id="registry-integration">Registry Integration<a class="headerlink" href="#registry-integration" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Automatic Registration</strong>: Register identities with central registry</li>
+<li><strong>Trusted Issuer Setup</strong>: Configure trusted issuer relationships</li>
+<li><strong>Claim Verification</strong>: Setup claim verification mechanisms</li>
+<li><strong>Identity Linking</strong>: Link identities to external systems</li>
+</ul>
+<h2 id="core-interface">Core Interface<a class="headerlink" href="#core-interface" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span><code>interface<span class="w"> </span>IIdentityFactory<span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">IdentityConfig</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">owner</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">bytes32</span><span class="p">[]</span><span class="w"> </span>managementKeys<span class="p">;</span>
+<span class="w">        </span><span class="kt">bytes32</span><span class="p">[]</span><span class="w"> </span>actionKeys<span class="p">;</span>
+<span class="w">        </span><span class="kt">bytes32</span><span class="p">[]</span><span class="w"> </span>claimKeys<span class="p">;</span>
+<span class="w">        </span><span class="kt">address</span><span class="p">[]</span><span class="w"> </span>trustedIssuers<span class="p">;</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">registerWithRegistry</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">IdentityTemplate</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">name</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">version</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">implementation</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">initCode</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">active</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">IdentityDeployed</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>identity<span class="p">,</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>owner<span class="p">,</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">templateName</span>
+<span class="w">    </span><span class="p">);</span>
+
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">TemplateRegistered</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>name<span class="p">,</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">version</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>creator
+<span class="w">    </span><span class="p">);</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">deployIdentity</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">calldata</span><span class="w"> </span>templateName<span class="p">,</span>
+<span class="w">        </span>IdentityConfig<span class="w"> </span>calldata<span class="w"> </span>config
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">identity</span><span class="p">);</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">registerTemplate</span><span class="p">(</span>IdentityTemplate<span class="w"> </span>calldata<span class="w"> </span>template<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getTemplate</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">calldata</span><span class="w"> </span>name<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>IdentityTemplate<span class="w"> </span><span class="kt">memory</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">predictIdentityAddress</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">calldata</span><span class="w"> </span>templateName<span class="p">,</span>
+<span class="w">        </span>IdentityConfig<span class="w"> </span>calldata<span class="w"> </span>config
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">address</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="core-functions">Core Functions<a class="headerlink" href="#core-functions" title="Permanent link">&para;</a></h2>
+<h3 id="deployidentity">deployIdentity()<a class="headerlink" href="#deployidentity" title="Permanent link">&para;</a></h3>
+<p>Deploys a new identity contract using a registered template.</p>
+<p><strong>Parameters:</strong>
+- <code>templateName</code>: Name of the template to use
+- <code>config</code>: Identity configuration including keys and settings</p>
+<p><strong>Returns:</strong>
+- <code>address</code>: Address of the deployed identity contract</p>
+<p><strong>Usage:</strong></p>
+<div class="codehilite"><pre><span></span><code>IIdentityFactory<span class="p">.</span>IdentityConfig<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>config<span class="w"> </span><span class="o">=</span><span class="w"> </span>IIdentityFactory<span class="p">.</span>IdentityConfig<span class="p">({</span>
+<span class="w">    </span>owner<span class="o">:</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">,</span>
+<span class="w">    </span>managementKeys<span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nb">keccak256</span><span class="p">(</span>abi<span class="p">.</span>encodePacked<span class="p">(</span><span class="k">msg.sender</span><span class="p">))],</span>
+<span class="w">    </span>actionKeys<span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nb">keccak256</span><span class="p">(</span>abi<span class="p">.</span>encodePacked<span class="p">(</span>actionKey<span class="p">))],</span>
+<span class="w">    </span>claimKeys<span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nb">keccak256</span><span class="p">(</span>abi<span class="p">.</span>encodePacked<span class="p">(</span>claimKey<span class="p">))],</span>
+<span class="w">    </span>trustedIssuers<span class="o">:</span><span class="w"> </span><span class="p">[</span>trustedIssuerAddress<span class="p">],</span>
+<span class="w">    </span>registerWithRegistry<span class="o">:</span><span class="w"> </span><span class="kt">true</span>
+<span class="p">});</span>
+
+<span class="kt">address</span><span class="w"> </span><span class="nv">identity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>IIdentityFactory<span class="p">(</span>factory<span class="p">).</span>deployIdentity<span class="p">(</span><span class="s2">&quot;StandardIdentity&quot;</span><span class="p">,</span><span class="w"> </span>config<span class="p">);</span>
+</code></pre></div>
+
+<h3 id="registertemplate">registerTemplate()<a class="headerlink" href="#registertemplate" title="Permanent link">&para;</a></h3>
+<p>Registers a new identity template for deployment.</p>
+<p><strong>Parameters:</strong>
+- <code>template</code>: Template configuration including implementation and initialization</p>
+<p><strong>Access Control:</strong>
+- Restricted to authorized template creators</p>
+<h3 id="predictidentityaddress">predictIdentityAddress()<a class="headerlink" href="#predictidentityaddress" title="Permanent link">&para;</a></h3>
+<p>Predicts the address of an identity contract before deployment.</p>
+<p><strong>Parameters:</strong>
+- <code>templateName</code>: Name of the template
+- <code>config</code>: Identity configuration</p>
+<p><strong>Returns:</strong>
+- <code>address</code>: Predicted identity address</p>
+<h2 id="implementation-example">Implementation Example<a class="headerlink" href="#implementation-example" title="Permanent link">&para;</a></h2>
+<h3 id="basic-identity-factory">Basic Identity Factory<a class="headerlink" href="#basic-identity-factory" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="k">contract</span><span class="w"> </span><span class="ni">IdentityFactory</span><span class="w"> </span><span class="kt">is</span><span class="w"> </span>IIdentityFactory<span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>using<span class="w"> </span>Clones<span class="w"> </span><span class="kt">for</span><span class="w"> </span><span class="kt">address</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span>IdentityTemplate<span class="p">)</span><span class="w"> </span><span class="kt">private</span><span class="w"> </span>templates<span class="p">;</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">bool</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>templateCreators<span class="p">;</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="k">public </span><span class="nv">identityRegistry</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kt">modifier</span><span class="w"> </span>onlyTemplateCreator<span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>templateCreators<span class="p">[</span><span class="k">msg.sender</span><span class="p">]</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="k">msg.sender</span><span class="w"> </span><span class="o">==</span><span class="w"> </span>owner<span class="p">(),</span><span class="w"> </span><span class="s2">&quot;Not authorized&quot;</span><span class="p">);</span>
+<span class="w">        </span>_<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">deployIdentity</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">calldata</span><span class="w"> </span>templateName<span class="p">,</span>
+<span class="w">        </span>IdentityConfig<span class="w"> </span>calldata<span class="w"> </span>config
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>override<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">identity</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>IdentityTemplate<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>template<span class="w"> </span><span class="o">=</span><span class="w"> </span>templates<span class="p">[</span>templateName<span class="p">];</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>template<span class="p">.</span>active<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Template not active&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>config<span class="p">.</span>owner<span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">),</span><span class="w"> </span><span class="s2">&quot;Invalid owner&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Deploy identity using minimal proxy pattern</span>
+<span class="w">        </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">salt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">keccak256</span><span class="p">(</span>abi<span class="p">.</span>encodePacked<span class="p">(</span>config<span class="p">.</span>owner<span class="p">,</span><span class="w"> </span><span class="k">block.timestamp</span><span class="p">));</span>
+<span class="w">        </span>identity<span class="w"> </span><span class="o">=</span><span class="w"> </span>template<span class="p">.</span>implementation<span class="p">.</span>cloneDeterministic<span class="p">(</span>salt<span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Initialize identity with configuration</span>
+<span class="w">        </span>_initializeIdentity<span class="p">(</span>identity<span class="p">,</span><span class="w"> </span>config<span class="p">,</span><span class="w"> </span>template<span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Register with identity registry if requested</span>
+<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>config<span class="p">.</span>registerWithRegistry<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>identityRegistry<span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>IIdentityRegistry<span class="p">(</span>identityRegistry<span class="p">).</span>registerIdentity<span class="p">(</span>identity<span class="p">,</span><span class="w"> </span>config<span class="p">.</span>owner<span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span>emit<span class="w"> </span>IdentityDeployed<span class="p">(</span>identity<span class="p">,</span><span class="w"> </span>config<span class="p">.</span>owner<span class="p">,</span><span class="w"> </span>templateName<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">_initializeIdentity</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">identity</span><span class="p">,</span>
+<span class="w">        </span>IdentityConfig<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>config<span class="p">,</span>
+<span class="w">        </span>IdentityTemplate<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>template
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Initialize with template-specific logic</span>
+<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>template<span class="p">.</span>initCode<span class="p">.</span>length<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="p">(</span><span class="kt">bool</span><span class="w"> </span><span class="nv">success</span><span class="p">,)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>identity<span class="p">.</span>call<span class="p">(</span>
+<span class="w">                </span>abi<span class="p">.</span>encodePacked<span class="p">(</span>template<span class="p">.</span>initCode<span class="p">,</span><span class="w"> </span>abi<span class="p">.</span>encode<span class="p">(</span>config<span class="p">))</span>
+<span class="w">            </span><span class="p">);</span>
+<span class="w">            </span><span class="kt">require</span><span class="p">(</span>success<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Identity initialization failed&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// Setup management keys</span>
+<span class="w">        </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>config<span class="p">.</span>managementKeys<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>IERC734<span class="p">(</span>identity<span class="p">).</span>addKey<span class="p">(</span>
+<span class="w">                </span>config<span class="p">.</span>managementKeys<span class="p">[</span>i<span class="p">],</span>
+<span class="w">                </span><span class="m m-Decimal">1</span><span class="p">,</span><span class="w"> </span><span class="c1">// MANAGEMENT purpose</span>
+<span class="w">                </span><span class="m m-Decimal">1</span><span class="w">  </span><span class="c1">// ECDSA key type</span>
+<span class="w">            </span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// Setup action keys</span>
+<span class="w">        </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>config<span class="p">.</span>actionKeys<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>IERC734<span class="p">(</span>identity<span class="p">).</span>addKey<span class="p">(</span>
+<span class="w">                </span>config<span class="p">.</span>actionKeys<span class="p">[</span>i<span class="p">],</span>
+<span class="w">                </span><span class="m m-Decimal">2</span><span class="p">,</span><span class="w"> </span><span class="c1">// ACTION purpose</span>
+<span class="w">                </span><span class="m m-Decimal">1</span><span class="w">  </span><span class="c1">// ECDSA key type</span>
+<span class="w">            </span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// Setup claim keys</span>
+<span class="w">        </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>config<span class="p">.</span>claimKeys<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>IERC734<span class="p">(</span>identity<span class="p">).</span>addKey<span class="p">(</span>
+<span class="w">                </span>config<span class="p">.</span>claimKeys<span class="p">[</span>i<span class="p">],</span>
+<span class="w">                </span><span class="m m-Decimal">3</span><span class="p">,</span><span class="w"> </span><span class="c1">// CLAIM purpose</span>
+<span class="w">                </span><span class="m m-Decimal">1</span><span class="w">  </span><span class="c1">// ECDSA key type</span>
+<span class="w">            </span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// Setup trusted issuers</span>
+<span class="w">        </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>config<span class="p">.</span>trustedIssuers<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>IERC735<span class="p">(</span>identity<span class="p">).</span>addTrustedIssuer<span class="p">(</span>config<span class="p">.</span>trustedIssuers<span class="p">[</span>i<span class="p">]);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="advanced-identity-factory-with-governance">Advanced Identity Factory with Governance<a class="headerlink" href="#advanced-identity-factory-with-governance" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="k">contract</span><span class="w"> </span><span class="ni">GovernanceIdentityFactory</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">GovernanceConfig</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">requiredApprovals</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">address</span><span class="p">[]</span><span class="w"> </span>governors<span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">votingPeriod</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span>GovernanceConfig<span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>identityGovernance<span class="p">;</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">deployGovernedIdentity</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">calldata</span><span class="w"> </span>templateName<span class="p">,</span>
+<span class="w">        </span>IdentityConfig<span class="w"> </span>calldata<span class="w"> </span>config<span class="p">,</span>
+<span class="w">        </span>GovernanceConfig<span class="w"> </span>calldata<span class="w"> </span>governance
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">identity</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>identity<span class="w"> </span><span class="o">=</span><span class="w"> </span>deployIdentity<span class="p">(</span>templateName<span class="p">,</span><span class="w"> </span>config<span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Setup governance structure</span>
+<span class="w">        </span>identityGovernance<span class="p">[</span>identity<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>governance<span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// Initialize governance contract</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">governanceContract</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>_deployGovernanceContract<span class="p">(</span>identity<span class="p">,</span><span class="w"> </span>governance<span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Transfer identity ownership to governance contract</span>
+<span class="w">        </span>IOwnable<span class="p">(</span>identity<span class="p">).</span>transferOwnership<span class="p">(</span>governanceContract<span class="p">);</span>
+
+<span class="w">        </span>emit<span class="w"> </span>GovernedIdentityDeployed<span class="p">(</span>identity<span class="p">,</span><span class="w"> </span>governanceContract<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">_deployGovernanceContract</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">identity</span><span class="p">,</span>
+<span class="w">        </span>GovernanceConfig<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>config
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">governance</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Deploy governance contract for the identity</span>
+<span class="w">        </span>governance<span class="w"> </span><span class="o">=</span><span class="w"> </span>Clones<span class="p">.</span>clone<span class="p">(</span>governanceImplementation<span class="p">);</span>
+
+<span class="w">        </span>IGovernance<span class="p">(</span>governance<span class="p">).</span>initialize<span class="p">(</span>
+<span class="w">            </span>identity<span class="p">,</span>
+<span class="w">            </span>config<span class="p">.</span>governors<span class="p">,</span>
+<span class="w">            </span>config<span class="p">.</span>requiredApprovals<span class="p">,</span>
+<span class="w">            </span>config<span class="p">.</span>votingPeriod
+<span class="w">        </span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="template-patterns">Template Patterns<a class="headerlink" href="#template-patterns" title="Permanent link">&para;</a></h2>
+<h3 id="standard-identity-template">Standard Identity Template<a class="headerlink" href="#standard-identity-template" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">createStandardIdentityTemplate</span><span class="p">()</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>pure<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>IdentityTemplate<span class="w"> </span><span class="kt">memory</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">return</span><span class="w"> </span>IdentityTemplate<span class="p">({</span>
+<span class="w">        </span>name<span class="o">:</span><span class="w"> </span><span class="s2">&quot;StandardIdentity&quot;</span><span class="p">,</span>
+<span class="w">        </span>version<span class="o">:</span><span class="w"> </span><span class="s2">&quot;1.0.0&quot;</span><span class="p">,</span>
+<span class="w">        </span>implementation<span class="o">:</span><span class="w"> </span>standardIdentityImplementation<span class="p">,</span>
+<span class="w">        </span>initCode<span class="o">:</span><span class="w"> </span>abi<span class="p">.</span>encodeWithSignature<span class="p">(</span><span class="s2">&quot;initialize(address)&quot;</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">)),</span>
+<span class="w">        </span>active<span class="o">:</span><span class="w"> </span><span class="kt">true</span>
+<span class="w">    </span><span class="p">});</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="corporate-identity-template">Corporate Identity Template<a class="headerlink" href="#corporate-identity-template" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">createCorporateIdentityTemplate</span><span class="p">()</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>pure<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>IdentityTemplate<span class="w"> </span><span class="kt">memory</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">return</span><span class="w"> </span>IdentityTemplate<span class="p">({</span>
+<span class="w">        </span>name<span class="o">:</span><span class="w"> </span><span class="s2">&quot;CorporateIdentity&quot;</span><span class="p">,</span>
+<span class="w">        </span>version<span class="o">:</span><span class="w"> </span><span class="s2">&quot;1.0.0&quot;</span><span class="p">,</span>
+<span class="w">        </span>implementation<span class="o">:</span><span class="w"> </span>corporateIdentityImplementation<span class="p">,</span>
+<span class="w">        </span>initCode<span class="o">:</span><span class="w"> </span>abi<span class="p">.</span>encodeWithSignature<span class="p">(</span>
+<span class="w">            </span><span class="s2">&quot;initializeCorporate(address,string,string)&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">),</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
+<span class="w">        </span><span class="p">),</span>
+<span class="w">        </span>active<span class="o">:</span><span class="w"> </span><span class="kt">true</span>
+<span class="w">    </span><span class="p">});</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="multi-signature-identity-template">Multi-Signature Identity Template<a class="headerlink" href="#multi-signature-identity-template" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">createMultiSigIdentityTemplate</span><span class="p">()</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>pure<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>IdentityTemplate<span class="w"> </span><span class="kt">memory</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">return</span><span class="w"> </span>IdentityTemplate<span class="p">({</span>
+<span class="w">        </span>name<span class="o">:</span><span class="w"> </span><span class="s2">&quot;MultiSigIdentity&quot;</span><span class="p">,</span>
+<span class="w">        </span>version<span class="o">:</span><span class="w"> </span><span class="s2">&quot;1.0.0&quot;</span><span class="p">,</span>
+<span class="w">        </span>implementation<span class="o">:</span><span class="w"> </span>multiSigIdentityImplementation<span class="p">,</span>
+<span class="w">        </span>initCode<span class="o">:</span><span class="w"> </span>abi<span class="p">.</span>encodeWithSignature<span class="p">(</span>
+<span class="w">            </span><span class="s2">&quot;initializeMultiSig(address[],uint256)&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="kt">new</span><span class="w"> </span><span class="kt">address</span><span class="p">[](</span><span class="m m-Decimal">0</span><span class="p">),</span><span class="w"> </span><span class="m m-Decimal">0</span>
+<span class="w">        </span><span class="p">),</span>
+<span class="w">        </span>active<span class="o">:</span><span class="w"> </span><span class="kt">true</span>
+<span class="w">    </span><span class="p">});</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="integration-patterns">Integration Patterns<a class="headerlink" href="#integration-patterns" title="Permanent link">&para;</a></h2>
+<h3 id="registry-integration_1">Registry Integration<a class="headerlink" href="#registry-integration_1" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="k">contract</span><span class="w"> </span><span class="ni">IdentityRegistryIntegration</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="k">public </span><span class="nv">identityRegistry</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="k">public </span><span class="nv">trustedIssuersRegistry</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">deployWithRegistration</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">calldata</span><span class="w"> </span>templateName<span class="p">,</span>
+<span class="w">        </span>IdentityConfig<span class="w"> </span>calldata<span class="w"> </span>config
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">identity</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Deploy identity</span>
+<span class="w">        </span>identity<span class="w"> </span><span class="o">=</span><span class="w"> </span>deployIdentity<span class="p">(</span>templateName<span class="p">,</span><span class="w"> </span>config<span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Register with identity registry</span>
+<span class="w">        </span>IIdentityRegistry<span class="p">(</span>identityRegistry<span class="p">).</span>registerIdentity<span class="p">(</span>identity<span class="p">,</span><span class="w"> </span>config<span class="p">.</span>owner<span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Setup trusted issuer relationships</span>
+<span class="w">        </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>config<span class="p">.</span>trustedIssuers<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>ITrustedIssuersRegistry<span class="p">(</span>trustedIssuersRegistry<span class="p">).</span>addTrustedIssuer<span class="p">(</span>
+<span class="w">                </span>identity<span class="p">,</span>
+<span class="w">                </span>config<span class="p">.</span>trustedIssuers<span class="p">[</span>i<span class="p">]</span>
+<span class="w">            </span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span>emit<span class="w"> </span>IdentityRegistered<span class="p">(</span>identity<span class="p">,</span><span class="w"> </span>config<span class="p">.</span>owner<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="kyc-integration">KYC Integration<a class="headerlink" href="#kyc-integration" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="k">contract</span><span class="w"> </span><span class="ni">KYCIdentityFactory</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">bool</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>kycProviders<span class="p">;</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">deployKYCIdentity</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">calldata</span><span class="w"> </span>templateName<span class="p">,</span>
+<span class="w">        </span>IdentityConfig<span class="w"> </span>calldata<span class="w"> </span>config<span class="p">,</span>
+<span class="w">        </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">calldata</span><span class="w"> </span>kycProof
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">identity</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Verify KYC proof</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>_verifyKYCProof<span class="p">(</span>config<span class="p">.</span>owner<span class="p">,</span><span class="w"> </span>kycProof<span class="p">),</span><span class="w"> </span><span class="s2">&quot;Invalid KYC proof&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Deploy identity with KYC claim</span>
+<span class="w">        </span>identity<span class="w"> </span><span class="o">=</span><span class="w"> </span>deployIdentity<span class="p">(</span>templateName<span class="p">,</span><span class="w"> </span>config<span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Add KYC claim</span>
+<span class="w">        </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">claimId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">keccak256</span><span class="p">(</span><span class="s2">&quot;KYC_VERIFIED&quot;</span><span class="p">);</span>
+<span class="w">        </span>IERC735<span class="p">(</span>identity<span class="p">).</span>addClaim<span class="p">(</span>
+<span class="w">            </span>claimId<span class="p">,</span>
+<span class="w">            </span><span class="m m-Decimal">1</span><span class="p">,</span><span class="w"> </span><span class="c1">// KYC claim type</span>
+<span class="w">            </span><span class="k">msg.sender</span><span class="p">,</span><span class="w"> </span><span class="c1">// issuer</span>
+<span class="w">            </span>kycProof<span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1">// claim data</span>
+<span class="w">            </span><span class="s2">&quot;&quot;</span><span class="w">  </span><span class="c1">// URI</span>
+<span class="w">        </span><span class="p">);</span>
+
+<span class="w">        </span>emit<span class="w"> </span>KYCIdentityDeployed<span class="p">(</span>identity<span class="p">,</span><span class="w"> </span>config<span class="p">.</span>owner<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">_verifyKYCProof</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">user</span><span class="p">,</span><span class="w"> </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>proof<span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bool</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Implement KYC proof verification logic</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>kycProviders<span class="p">[</span><span class="k">msg.sender</span><span class="p">];</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="security-considerations">Security Considerations<a class="headerlink" href="#security-considerations" title="Permanent link">&para;</a></h2>
+<h3 id="access-control">Access Control<a class="headerlink" href="#access-control" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Template Creation</strong>: Restrict template registration to authorized users</li>
+<li><strong>Deployment Permissions</strong>: Control who can deploy identities</li>
+<li><strong>Key Management</strong>: Secure initial key setup</li>
+<li><strong>Registry Integration</strong>: Validate registry interactions</li>
+</ul>
+<h3 id="identity-security">Identity Security<a class="headerlink" href="#identity-security" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Key Validation</strong>: Validate all provided keys</li>
+<li><strong>Trusted Issuer Verification</strong>: Verify trusted issuer addresses</li>
+<li><strong>Initialization Safety</strong>: Ensure secure initialization process</li>
+<li><strong>Ownership Transfer</strong>: Secure ownership assignment</li>
+</ul>
+<h3 id="factory-security">Factory Security<a class="headerlink" href="#factory-security" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Template Validation</strong>: Validate template implementations</li>
+<li><strong>Implementation Security</strong>: Ensure implementation contract security</li>
+<li><strong>Upgrade Safety</strong>: Consider factory upgrade mechanisms</li>
+<li><strong>Event Logging</strong>: Log all deployments for auditing</li>
+</ul>
+<h2 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h2>
+<h3 id="template-design">Template Design<a class="headerlink" href="#template-design" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Standard Compliance</strong>: Ensure ERC-734/735 compliance</li>
+<li><strong>Modular Design</strong>: Create reusable template components</li>
+<li><strong>Security Audits</strong>: Audit all template implementations</li>
+<li><strong>Documentation</strong>: Document template capabilities</li>
+</ol>
+<h3 id="factory-management">Factory Management<a class="headerlink" href="#factory-management" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Access Controls</strong>: Implement proper access controls</li>
+<li><strong>Template Validation</strong>: Validate all template configurations</li>
+<li><strong>Event Logging</strong>: Log all deployments and changes</li>
+<li><strong>Upgrade Planning</strong>: Plan for factory upgrades</li>
+</ol>
+<h3 id="identity-deployment">Identity Deployment<a class="headerlink" href="#identity-deployment" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Key Management</strong>: Secure key generation and storage</li>
+<li><strong>Registry Integration</strong>: Integrate with identity registries</li>
+<li><strong>Claim Setup</strong>: Setup initial claims and trusted issuers</li>
+<li><strong>Governance</strong>: Consider governance mechanisms</li>
+</ol>
+<h2 id="related-documentation">Related Documentation<a class="headerlink" href="#related-documentation" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../interfaces/ierc734/">ERC-734 Interface</a></li>
+<li><a href="../interfaces/ierc735/">ERC-735 Interface</a></li>
+<li><a href="../facets/identity-registry-facet/">Identity Registry Facet</a></li>
+<li><a href="../facets/trusted-issuers-registry-facet/">Trusted Issuers Registry Facet</a></li>
+<li><a href="../../integrator-guide/authentication/">Integrator's Guide: Authentication</a></li>
+<li><a href="../../developer-guides/automated-testing-setup/">Developer Guides: Automated Testing Setup</a> (as a proxy for <code>kyc-integration</code> as no direct doc exists)</li>
+</ul>
+<h2 id="standards-compliance">Standards Compliance<a class="headerlink" href="#standards-compliance" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>ERC-734</strong>: Key Manager Standard</li>
+<li><strong>ERC-735</strong>: Claim Holder Standard</li>
+<li><strong>EIP-1167</strong>: Minimal Proxy Standard</li>
+<li><strong>EIP-1014</strong>: CREATE2 for deterministic addresses</li>
+<li><strong>Factory Pattern</strong>: Standard factory design patterns</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../diamond-factory/" class="btn btn-neutral float-left" title="Diamond Factory"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../facets/marketplace-facet/" class="btn btn-neutral float-right" title="Marketplace Facet">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../diamond-factory/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../facets/marketplace-facet/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

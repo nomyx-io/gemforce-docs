@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Gemforce Team" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>IFeeDistributor - Gemforce Documentation</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "IFeeDistributor";
+        var mkdocs_page_input_path = "smart-contracts/interfaces/ifee-distributor.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../.." class="icon icon-home"> Gemforce Documentation
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../developer-setup-guide/">Developer Setup Guide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../system-architecture/gemforce-system-architecture/">System Architecture</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Smart Contracts</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../diamond/">Diamond Contract</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../diamond-factory/">Diamond Factory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../identity-factory/">Identity Factory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Facets</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/marketplace-facet/">Marketplace Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trade-deal-management-facet/">Trade Deal Management Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/carbon-credit-facet/">Carbon Credit Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/identity-registry-facet/">Identity Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trusted-issuers-registry-facet/">Trusted Issuers Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/fee-distributor-facet/">Fee Distributor Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/gemforce-minter-facet/">Gemforce Minter Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/multi-sale-facet/">Multi Sale Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/svg-templates-facet/">SVG Templates Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trade-deal-admin-facet/">Trade Deal Admin Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trade-deal-operations-facet/">Trade Deal Operations Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/collateral-token-factory-facet/">Collateral Token Factory Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/diamond-cut-facet/">Diamond Cut Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/diamond-loupe-facet/">Diamond Loupe Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/ownership-facet/">Ownership Facet</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" >Interfaces</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" href="../idiamond/">IDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../imarketplace/">IMarketplace</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../itradedeal/">ITradeDeal</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../icarbon-credit/">ICarbonCredit</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../ierc1155-mint/">IERC1155Mint</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../ierc734/">IERC734</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../ierc735/">IERC735</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../ierc721a/">IERC721A</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../idiamond-factory/">IDiamondFactory</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../iidentity/">IIdentity</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../imultisale/">IMultiSale</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">IFeeDistributor</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#overview">Overview</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#key-features">Key Features</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#distribution-management">Distribution Management</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#recipient-and-share-management">Recipient and Share Management</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#fund-handling">Fund Handling</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#interface-definition">Interface Definition</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#core-functions">Core Functions</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#distributefees">distributeFees()</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#addrecipient">addRecipient()</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#updaterecipient">updateRecipient()</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#removerecipient">removeRecipient()</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#implementation-example">Implementation Example</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#basic-feedistributor-contract">Basic FeeDistributor Contract</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#security-considerations">Security Considerations</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#access-control">Access Control</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#fund-handling_1">Fund Handling</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#configuration">Configuration</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#best-practices">Best Practices</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#shares-configuration">Shares Configuration</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#modularity">Modularity</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#gas-efficiency">Gas Efficiency</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#integration-examples">Integration Examples</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#frontend-integration-reactweb3modal">Frontend Integration (React/Web3Modal)</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#backend-integration-nodejsethersjs">Backend Integration (Node.js/Ethers.js)</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#related-documentation">Related Documentation</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#standards-compliance">Standards Compliance</a>
+    </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../igemforce-minter-facet/">IGemforceMinterFacet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../iidentity-registry/">IIdentityRegistry</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../itrusted-issuers-registry/">TRUSTEDIssuersRegistry</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../isvg/">ISVG</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../iattribute/">IAttribute</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../ivariable-price/">IVariablePrice</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Libraries</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/carbon-credit-lib/">Carbon Credit Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/trade-deal-lib/">Trade Deal Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/multi-sale-lib/">Multi Sale Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/diamond-factory-lib/">Diamond Factory Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/svg-templates-lib/">SVG Templates Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/attribute-lib/">Attribute Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/variable-price-lib/">Variable Price Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/merkle-prover/">Merkle Prover</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/fee-distributor-lib/">Fee Distributor Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/lib-diamond/">LibDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/diamond-lib/">DiamondLib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/erc721a-lib/">ERC721A Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/erc721a-enumeration-lib/">ERC721A Enumeration Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/strings-lib/">Strings Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/trusted-issuer-lib/">Trusted Issuer Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/set-libraries/">Set Libraries</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">SDK & Libraries</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/blockchain/">Blockchain Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/diamond/">Diamond Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/contract/">Contract Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/deploy/">Deployment Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/validation-utils/">Validation Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/nft-sale-utils/">NFT Sale Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/webhooks/">Webhooks Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../libraries/metadata-lib/">Metadata Library</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Cloud Functions</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/authentication/">Authentication Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/auth-functions/">Auth Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/blockchain/">Blockchain Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/bridge/">Bridge Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/contracts/">Contract Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/deploy/">Deploy Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/dfns/">DFNS Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/project/">Project Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/trade-deal/">Trade Deal Functions</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">API Documentation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../api-documentation/gemforce-api-documentation/">Full API Reference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../api-documentation/gemforce-api-quick-reference/">Quick Reference</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-external-services/">External Services</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-system-architecture/">System Architecture</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Operations Tasks</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/diamond/">Diamond Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/identities/">Identity Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/marketplace-management/">Marketplace Management Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/carbon-credit-management/">Carbon Credit Management Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/trade-deal/">Trade Deal Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/integration-test/">Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/integration-test-marketplace/">Marketplace Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/integration-test-trade-deal/">Trade Deal Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/admin-utils/">Admin Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/sync-diamond/">Sync Diamond Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/sync-events/">Sync Events Tasks</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">EIPs (Ethereum Improvement Proposals)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Diamond-Enhanced-Marketplace/">Diamond-Enhanced Marketplace</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Multi-Token-Sale-Standard/">Multi-Token Sale Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Collateralized-Trade-Deal-Standard/">Collateralized Trade Deal Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Enhanced-Identity-System/">Enhanced Identity System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Diamond-Factory-Standard/">Diamond Factory Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Carbon-Credit-Standard/">Carbon Credit Standard</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Developer Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/development-environment-setup/">Development Environment Setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/testing-frameworks/">Testing Frameworks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/debugging/">Debugging</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/performance-optimization/">Performance Optimization</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/test-case-specifications/">Test Case Specifications</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/test-data-management/">Test Data Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/automated-testing-setup/">Automated Testing Setup</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Deployment Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../deployment-guides/multi-network-deployment/">Multi-Network Deployment</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../deployment-guides/infrastructure-management/">Infrastructure Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../deployment-guides/monitoring-logging/">Monitoring and Logging</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">User Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-administrator-guide/">Administrator Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-deployer-guide/">Deployer Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-integrator-guide/">Integrator Guide</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Integrator's Guide</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/authentication/">Authentication</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/rest-api/">REST API</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/smart-contracts/">Smart Contracts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/dfns/">DFNS Integration</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/parse-server/">Parse Server Notes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/webhooks/">Webhooks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/error-handling/">Error Handling</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/sample-code/">Sample Code</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/integration-patterns/">Integration Patterns</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/testing/">Testing Considerations</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/security/">Security</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../external-services/gemforce-external-services/">External Services</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Security</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security/threat-model/">Threat Model and Risk Assessment</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security/incident-response/">Incident Response Procedures</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security/audit-compliance/">Security Audits and Compliance</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">External Developer Integration</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/api-rate-limiting/">API Rate Limiting</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/webhook-implementation-guidelines/">Webhook Implementation Guidelines</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/sdk-development-guidelines/">SDK Development Guidelines</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/partner-integration-guides/">Partner Integration Guides</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-documentation-gap-analysis/">Documentation Gap Analysis</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../documentation-progress-summary/">Documentation Progress Summary</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../documentation-plan/">Documentation Plan</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Configuration & Environment</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/gemforce-config/">Gemforce Config</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/environment-specific-guides/">Environment-Specific Guides</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/configuration-validation/">Configuration Validation Procedures</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/external-service-config-management/">External Service Configuration Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/database-schema-overview/">Database Schema Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/database-migration-procedures/">Database Migration Procedures</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">Gemforce Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Smart Contracts</li>
+          <li class="breadcrumb-item">Interfaces</li>
+      <li class="breadcrumb-item active">IFeeDistributor</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="ifeedistributor-interface">IFeeDistributor Interface<a class="headerlink" href="#ifeedistributor-interface" title="Permanent link">&para;</a></h1>
+<p>The <code>IFeeDistributor</code> interface defines the standard for smart contracts responsible for distributing collected fees or revenues to multiple recipients based on predefined percentages or shares. This is a critical component for managing revenue sharing in various decentralized applications within the Gemforce ecosystem.</p>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p><code>IFeeDistributor</code> provides:</p>
+<ul>
+<li><strong>Configurable Shares</strong>: Define distribution percentages for multiple recipients.</li>
+<li><strong>Automated Distribution</strong>: Functions to trigger and manage fee distribution.</li>
+<li><strong>Recipient Management</strong>: Add, update, and remove recipients with their shares.</li>
+<li><strong>Event Logging</strong>: Comprehensive event tracking for all distribution activities.</li>
+</ul>
+<h2 id="key-features">Key Features<a class="headerlink" href="#key-features" title="Permanent link">&para;</a></h2>
+<h3 id="distribution-management">Distribution Management<a class="headerlink" href="#distribution-management" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Manual Trigger</strong>: Allow authorized parties to initiate distribution.</li>
+<li><strong>Automated Trigger (Optional)</strong>: Can be integrated with external mechanisms for time-based or volume-based distribution.</li>
+<li><strong>Share Calculation</strong>: Accurately calculate each recipient's share.</li>
+</ul>
+<h3 id="recipient-and-share-management">Recipient and Share Management<a class="headerlink" href="#recipient-and-share-management" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Add Recipient</strong>: Onboard new recipients with their respective shares.</li>
+<li><strong>Update Share</strong>: Adjust existing recipient shares.</li>
+<li><strong>Remove Recipient</strong>: Remove recipients from the distribution list.</li>
+</ul>
+<h3 id="fund-handling">Fund Handling<a class="headerlink" href="#fund-handling" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Multi-Token Support</strong>: Can be designed to distribute various ERC20 tokens or native currency (ETH).</li>
+<li><strong>Residual Handling</strong>: Mechanisms to manage any remaining dust or undistributed funds.</li>
+</ul>
+<h2 id="interface-definition">Interface Definition<a class="headerlink" href="#interface-definition" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span><code>interface<span class="w"> </span>IFeeDistributor<span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Events</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">FundsReceived</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>token<span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">amount</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>sender
+<span class="w">    </span><span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">FeesDistributed</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>token<span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalAmount</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">leftOverAmount</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>distributor
+<span class="w">    </span><span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">RecipientAdded</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>recipient<span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">share</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>manager
+<span class="w">    </span><span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">RecipientUpdated</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>recipient<span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">oldShare</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">newShare</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>manager
+<span class="w">    </span><span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">RecipientRemoved</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>recipient<span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">share</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>manager
+<span class="w">    </span><span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">FeeCollectorUpdated</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>oldCollector<span class="p">,</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>newCollector
+<span class="w">    </span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Structs</span>
+<span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">Recipient</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">addr</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">share</span><span class="p">;</span><span class="w"> </span><span class="c1">// Basis points (e.g., 100 = 1%)</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">lastDistributedAmount</span><span class="p">;</span><span class="w"> </span><span class="c1">// Amount last sent to this recipient</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Core Functions</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">distributeFees</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">token</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">distributedAmount</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">updateRecipient</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">recipientAddr</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">newShare</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">addRecipient</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">recipientAddr</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">share</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">removeRecipient</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">recipientAddr</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">setFeeCollector</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">collector</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// View Functions</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getTotalShare</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getRecipientShare</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">recipientAddr</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getRecipientCount</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getRecipientAddress</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">index</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">address</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getFeeCollector</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">address</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getBalance</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">token</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getRecipientDetails</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">recipientAddr</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>Recipient<span class="w"> </span><span class="kt">memory</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="core-functions">Core Functions<a class="headerlink" href="#core-functions" title="Permanent link">&para;</a></h2>
+<h3 id="distributefees">distributeFees()<a class="headerlink" href="#distributefees" title="Permanent link">&para;</a></h3>
+<p>Initiates the distribution of collected fees for a specific token to all registered recipients based on their shares.</p>
+<p><strong>Parameters:</strong>
+- <code>token</code>: The address of the ERC20 token to distribute. If <code>address(0)</code> is used, it refers to the native blockchain currency (e.g., ETH).</p>
+<p><strong>Returns:</strong>
+- <code>uint256</code>: The total amount of the token that was successfully distributed.</p>
+<p><strong>Usage:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Distribute ETH</span>
+feeDistributor<span class="p">.</span>distributeFees<span class="p">(</span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">));</span>
+
+<span class="c1">// Distribute DAI (ERC20 token)</span>
+feeDistributor<span class="p">.</span>distributeFees<span class="p">(</span>DAI_TOKEN_ADDRESS<span class="p">);</span>
+</code></pre></div>
+
+<h3 id="addrecipient">addRecipient()<a class="headerlink" href="#addrecipient" title="Permanent link">&para;</a></h3>
+<p>Adds a new address to the list of fee recipients with a specified share. Shares are typically defined in basis points (e.g., 100 = 1%).</p>
+<p><strong>Parameters:</strong>
+- <code>recipientAddr</code>: The address of the new recipient.
+- <code>share</code>: The share percentage of the recipient in basis points.</p>
+<p><strong>Access Control:</strong>
+- Typically restricted to the contract owner or an authorized <code>feeCollector</code>.</p>
+<h3 id="updaterecipient">updateRecipient()<a class="headerlink" href="#updaterecipient" title="Permanent link">&para;</a></h3>
+<p>Updates the share percentage of an existing recipient.</p>
+<p><strong>Parameters:</strong>
+- <code>recipientAddr</code>: The address of the recipient whose share is to be updated.
+- <code>newShare</code>: The new share percentage for the recipient.</p>
+<h3 id="removerecipient">removeRecipient()<a class="headerlink" href="#removerecipient" title="Permanent link">&para;</a></h3>
+<p>Removes an address from the list of fee recipients.</p>
+<p><strong>Parameters:</strong>
+- <code>recipientAddr</code>: The address of the recipient to be removed.</p>
+<h2 id="implementation-example">Implementation Example<a class="headerlink" href="#implementation-example" title="Permanent link">&para;</a></h2>
+<h3 id="basic-feedistributor-contract">Basic FeeDistributor Contract<a class="headerlink" href="#basic-feedistributor-contract" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">import</span><span class="w"> </span><span class="s2">&quot;@openzeppelin/contracts/access/Ownable.sol&quot;</span><span class="p">;</span>
+<span class="kt">import</span><span class="w"> </span><span class="s2">&quot;@openzeppelin/contracts/token/ERC20/IERC20.sol&quot;</span><span class="p">;</span>
+<span class="kt">import</span><span class="w"> </span><span class="s2">&quot;@openzeppelin/contracts/utils/math/SafeMath.sol&quot;</span><span class="p">;</span>
+
+<span class="k">contract</span><span class="w"> </span><span class="ni">FeeDistributor</span><span class="w"> </span><span class="kt">is</span><span class="w"> </span>IFeeDistributor<span class="p">,</span><span class="w"> </span>Ownable<span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>using<span class="w"> </span>SafeMath<span class="w"> </span><span class="kt">for</span><span class="w"> </span><span class="kt">uint256</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="k">public </span><span class="nv">constant</span><span class="w"> </span>TOTAL_BASIS_POINTS<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">10000</span><span class="p">;</span><span class="w"> </span><span class="c1">// 100%</span>
+
+<span class="w">    </span><span class="c1">// Mapping from recipient address to their share (in basis points)</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">uint256</span><span class="p">)</span><span class="w"> </span><span class="kt">private</span><span class="w"> </span>_recipientShares<span class="p">;</span>
+<span class="w">    </span><span class="c1">// Array to maintain order and iterate over recipients</span>
+<span class="w">    </span><span class="kt">address</span><span class="p">[]</span><span class="w"> </span><span class="kt">private</span><span class="w"> </span>_recipients<span class="p">;</span>
+<span class="w">    </span><span class="c1">// Total sum of all recipient shares</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="k">private </span><span class="nv">_totalShares</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="k">private </span><span class="nv">_feeCollector</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kt">constructor</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>_feeCollector<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">modifier</span><span class="w"> </span>onlyFeeCollector<span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span><span class="k">msg.sender</span><span class="w"> </span><span class="o">==</span><span class="w"> </span>_feeCollector<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Only fee collector can call this function&quot;</span><span class="p">);</span>
+<span class="w">        </span>_<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span>receive<span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">payable</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>emit<span class="w"> </span>FundsReceived<span class="p">(</span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">),</span><span class="w"> </span><span class="k">msg.value</span><span class="p">,</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Handles ERC20 transfers directly to the contract</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">onERC20Received</span><span class="p">(</span><span class="kt">address</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">amount</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bool</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>emit<span class="w"> </span>FundsReceived<span class="p">(</span><span class="k">msg.sender</span><span class="p">,</span><span class="w"> </span>amount<span class="p">,</span><span class="w"> </span><span class="k">tx.origin</span><span class="p">);</span><span class="w"> </span><span class="c1">// Assume msg.sender is the ERC20 token contract</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span><span class="kt">true</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">distributeFees</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">token</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>override<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">distributedAmount</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>_recipients<span class="p">.</span>length<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;No recipients to distribute to&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>_totalShares<span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span>TOTAL_BASIS_POINTS<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Invalid total shares configuration&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">contractBalance</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>token<span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>contractBalance<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="kt">this</span><span class="p">).</span>balance<span class="p">;</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="kt">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>contractBalance<span class="w"> </span><span class="o">=</span><span class="w"> </span>IERC20<span class="p">(</span>token<span class="p">).</span>balanceOf<span class="p">(</span><span class="kt">address</span><span class="p">(</span><span class="kt">this</span><span class="p">));</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>contractBalance<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;No funds to distribute&quot;</span><span class="p">);</span>
+
+<span class="w">        </span>distributedAmount<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">remainingAmount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>contractBalance<span class="p">;</span>
+
+<span class="w">        </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>_recipients<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">address</span><span class="w"> </span><span class="nv">recipientAddr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>_recipients<span class="p">[</span>i<span class="p">];</span>
+<span class="w">            </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">share</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>_recipientShares<span class="p">[</span>recipientAddr<span class="p">];</span>
+
+<span class="w">            </span><span class="c1">// Calculate amount for current recipient</span>
+<span class="w">            </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">amountToSend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>contractBalance<span class="p">.</span>mul<span class="p">(</span>share<span class="p">).</span>div<span class="p">(</span>TOTAL_BASIS_POINTS<span class="p">);</span>
+
+<span class="w">            </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>amountToSend<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>token<span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="c1">// Send ETH</span>
+<span class="w">                    </span><span class="kt">payable</span><span class="p">(</span>recipientAddr<span class="p">).</span>transfer<span class="p">(</span>amountToSend<span class="p">);</span>
+<span class="w">                </span><span class="p">}</span><span class="w"> </span><span class="kt">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="c1">// Send ERC20</span>
+<span class="w">                    </span>IERC20<span class="p">(</span>token<span class="p">).</span>transfer<span class="p">(</span>recipientAddr<span class="p">,</span><span class="w"> </span>amountToSend<span class="p">);</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">                </span>distributedAmount<span class="w"> </span><span class="o">=</span><span class="w"> </span>distributedAmount<span class="p">.</span>add<span class="p">(</span>amountToSend<span class="p">);</span>
+<span class="w">                </span>remainingAmount<span class="w"> </span><span class="o">=</span><span class="w"> </span>remainingAmount<span class="p">.</span>sub<span class="p">(</span>amountToSend<span class="p">);</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span>emit<span class="w"> </span>FeesDistributed<span class="p">(</span>token<span class="p">,</span><span class="w"> </span>distributedAmount<span class="p">,</span><span class="w"> </span>remainingAmount<span class="p">,</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">addRecipient</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">recipientAddr</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">share</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>override<span class="w"> </span>onlyFeeCollector<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>recipientAddr<span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">),</span><span class="w"> </span><span class="s2">&quot;Cannot add zero address&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>_recipientShares<span class="p">[</span>recipientAddr<span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Recipient already exists&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>_totalShares<span class="p">.</span>add<span class="p">(</span>share<span class="p">)</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span>TOTAL_BASIS_POINTS<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Total shares exceed 100%&quot;</span><span class="p">);</span>
+
+<span class="w">        </span>_recipientShares<span class="p">[</span>recipientAddr<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>share<span class="p">;</span>
+<span class="w">        </span>_recipients<span class="p">.</span>push<span class="p">(</span>recipientAddr<span class="p">);</span>
+<span class="w">        </span>_totalShares<span class="w"> </span><span class="o">=</span><span class="w"> </span>_totalShares<span class="p">.</span>add<span class="p">(</span>share<span class="p">);</span>
+<span class="w">        </span>emit<span class="w"> </span>RecipientAdded<span class="p">(</span>recipientAddr<span class="p">,</span><span class="w"> </span>share<span class="p">,</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">updateRecipient</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">recipientAddr</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">newShare</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>override<span class="w"> </span>onlyFeeCollector<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>recipientAddr<span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">),</span><span class="w"> </span><span class="s2">&quot;Cannot update zero address&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>_recipientShares<span class="p">[</span>recipientAddr<span class="p">]</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Recipient does not exist&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">oldShare</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>_recipientShares<span class="p">[</span>recipientAddr<span class="p">];</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>_totalShares<span class="p">.</span>sub<span class="p">(</span>oldShare<span class="p">).</span>add<span class="p">(</span>newShare<span class="p">)</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span>TOTAL_BASIS_POINTS<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Total shares exceed 100%&quot;</span><span class="p">);</span>
+
+<span class="w">        </span>_recipientShares<span class="p">[</span>recipientAddr<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>newShare<span class="p">;</span>
+<span class="w">        </span>_totalShares<span class="w"> </span><span class="o">=</span><span class="w"> </span>_totalShares<span class="p">.</span>sub<span class="p">(</span>oldShare<span class="p">).</span>add<span class="p">(</span>newShare<span class="p">);</span>
+<span class="w">        </span>emit<span class="w"> </span>RecipientUpdated<span class="p">(</span>recipientAddr<span class="p">,</span><span class="w"> </span>oldShare<span class="p">,</span><span class="w"> </span>newShare<span class="p">,</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">removeRecipient</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">recipientAddr</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>override<span class="w"> </span>onlyFeeCollector<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>recipientAddr<span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">),</span><span class="w"> </span><span class="s2">&quot;Cannot remove zero address&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">shareToRemove</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>_recipientShares<span class="p">[</span>recipientAddr<span class="p">];</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>shareToRemove<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Recipient does not exist&quot;</span><span class="p">);</span>
+
+<span class="w">        </span>delete<span class="w"> </span>_recipientShares<span class="p">[</span>recipientAddr<span class="p">];</span>
+<span class="w">        </span>_totalShares<span class="w"> </span><span class="o">=</span><span class="w"> </span>_totalShares<span class="p">.</span>sub<span class="p">(</span>shareToRemove<span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Remove from dynamic array by swapping with last element and popping</span>
+<span class="w">        </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>_recipients<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>_recipients<span class="p">[</span>i<span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span>recipientAddr<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span>_recipients<span class="p">[</span>i<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>_recipients<span class="p">[</span>_recipients<span class="p">.</span>length<span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m m-Decimal">1</span><span class="p">];</span>
+<span class="w">                </span>_recipients<span class="p">.</span>pop<span class="p">();</span>
+<span class="w">                </span><span class="kt">break</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span>emit<span class="w"> </span>RecipientRemoved<span class="p">(</span>recipientAddr<span class="p">,</span><span class="w"> </span>shareToRemove<span class="p">,</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">setFeeCollector</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">collector</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>override<span class="w"> </span>onlyOwner<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>collector<span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">),</span><span class="w"> </span><span class="s2">&quot;New fee collector cannot be the zero address&quot;</span><span class="p">);</span>
+<span class="w">        </span>emit<span class="w"> </span>FeeCollectorUpdated<span class="p">(</span>_feeCollector<span class="p">,</span><span class="w"> </span>collector<span class="p">);</span>
+<span class="w">        </span>_feeCollector<span class="w"> </span><span class="o">=</span><span class="w"> </span>collector<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getTotalShare</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span>override<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>_totalShares<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getRecipientShare</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">recipientAddr</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span>override<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>_recipientShares<span class="p">[</span>recipientAddr<span class="p">];</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getRecipientCount</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span>override<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>_recipients<span class="p">.</span>length<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getRecipientAddress</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">index</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span>override<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">address</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>index<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>_recipients<span class="p">.</span>length<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Index out of bounds&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>_recipients<span class="p">[</span>index<span class="p">];</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getFeeCollector</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span>override<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">address</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>_feeCollector<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getBalance</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">token</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span>override<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>token<span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">return</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="kt">this</span><span class="p">).</span>balance<span class="p">;</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="kt">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">return</span><span class="w"> </span>IERC20<span class="p">(</span>token<span class="p">).</span>balanceOf<span class="p">(</span><span class="kt">address</span><span class="p">(</span><span class="kt">this</span><span class="p">));</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getRecipientDetails</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">recipientAddr</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span>override<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>Recipient<span class="w"> </span><span class="kt">memory</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>Recipient<span class="p">({</span>
+<span class="w">            </span>addr<span class="o">:</span><span class="w"> </span>recipientAddr<span class="p">,</span>
+<span class="w">            </span>share<span class="o">:</span><span class="w"> </span>_recipientShares<span class="p">[</span>recipientAddr<span class="p">],</span>
+<span class="w">            </span>lastDistributedAmount<span class="o">:</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="w"> </span><span class="c1">// This would require more complex state tracking</span>
+<span class="w">        </span><span class="p">});</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="security-considerations">Security Considerations<a class="headerlink" href="#security-considerations" title="Permanent link">&para;</a></h2>
+<h3 id="access-control">Access Control<a class="headerlink" href="#access-control" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong><code>onlyOwner</code></strong>: Critical administrative functions (like changing the fee collector) should be restricted to the contract owner.</li>
+<li><strong><code>onlyFeeCollector</code></strong>: Functions modifying recipient lists or shares should be restricted to an authorized fee collector role.</li>
+</ul>
+<h3 id="fund-handling_1">Fund Handling<a class="headerlink" href="#fund-handling_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Reentrancy</strong>: Implement reentrancy guards for <code>distributeFees</code> if external calls are made that could re-enter the contract (though direct token transfers are less prone to this).</li>
+<li><strong>Exact Amounts</strong>: Ensure precise calculations to avoid sending unintended amounts or leaving dust. Using SafeMath is crucial.</li>
+<li><strong>Eth/Token Differences</strong>: Correctly handle native currency (ETH) transfers vs. ERC20 token transfers.</li>
+<li><strong>Dust Management</strong>: Consider a mechanism to handle small remaining amounts (dust) if total shares don't perfectly sum up to <code>TOTAL_BASIS_POINTS</code> or if precision issues arise.</li>
+</ul>
+<h3 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Share Validation</strong>: Prevent total shares from exceeding <code>TOTAL_BASIS_POINTS</code> (100%) to avoid potential over-distribution.</li>
+<li><strong>Zero Address Checks</strong>: Always validate non-zero addresses for recipients and collectors.</li>
+</ul>
+<h2 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h2>
+<h3 id="shares-configuration">Shares Configuration<a class="headerlink" href="#shares-configuration" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Basis Points</strong>: Use basis points (e.g., 10,000 for 100%) for share representation to avoid floating-point errors common in Solidity.</li>
+<li><strong>Sum to 100%</strong>: Ensure that the sum of all recipient shares equals <code>TOTAL_BASIS_POINTS</code> to guarantee full distribution and no residual funds left in the contract (unless intentional).</li>
+</ol>
+<h3 id="modularity">Modularity<a class="headerlink" href="#modularity" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Separation of Concerns</strong>: Keep fee distribution logic separate from other core application logic.</li>
+<li><strong>Upgradeable</strong>: Design the contract to be upgradeable if shares or recipients might change frequently or if new distribution logic is anticipated.</li>
+</ol>
+<h3 id="gas-efficiency">Gas Efficiency<a class="headerlink" href="#gas-efficiency" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Array Iteration</strong>: Be mindful of gas costs for iterating over a large number of recipients; large arrays can become expensive. Consider a pull-based mechanism for recipients to claim their funds if recipient count is very high.</li>
+</ol>
+<h2 id="integration-examples">Integration Examples<a class="headerlink" href="#integration-examples" title="Permanent link">&para;</a></h2>
+<h3 id="frontend-integration-reactweb3modal">Frontend Integration (React/Web3Modal)<a class="headerlink" href="#frontend-integration-reactweb3modal" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ethers</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;ethers&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="nx">feeDistributorABI</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./FeeDistributor.json&#39;</span><span class="p">;</span><span class="w"> </span><span class="c1">// ABI of the FeeDistributor contract</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">FEE_DISTRIBUTOR_ADDRESS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0x...&quot;</span><span class="p">;</span><span class="w"> </span><span class="c1">// Deploy address of your FeeDistributor contract</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">getProvider</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">ethers</span><span class="p">.</span><span class="nx">providers</span><span class="p">.</span><span class="nx">Web3Provider</span><span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">ethereum</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">getSigner</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">getProvider</span><span class="p">().</span><span class="nx">getSigner</span><span class="p">();</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">getFeeDistributorContract</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">ethers</span><span class="p">.</span><span class="nx">Contract</span><span class="p">(</span><span class="nx">FEE_DISTRIBUTOR_ADDRESS</span><span class="p">,</span><span class="w"> </span><span class="nx">feeDistributorABI</span><span class="p">,</span><span class="w"> </span><span class="nx">getSigner</span><span class="p">());</span>
+
+<span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">handleDistributeFees</span><span class="p">(</span><span class="nx">tokenAddress</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">feeDistributor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">getFeeDistributorContract</span><span class="p">();</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">tx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">feeDistributor</span><span class="p">.</span><span class="nx">distributeFees</span><span class="p">(</span><span class="nx">tokenAddress</span><span class="p">);</span>
+<span class="w">        </span><span class="k">await</span><span class="w"> </span><span class="nx">tx</span><span class="p">.</span><span class="nx">wait</span><span class="p">();</span>
+<span class="w">        </span><span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;Fees distributed successfully!&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;Error distributing fees:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">);</span>
+<span class="w">        </span><span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;Failed to distribute fees.&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">handleAddRecipient</span><span class="p">(</span><span class="nx">recipientAddress</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">,</span><span class="w"> </span><span class="nx">share</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">feeDistributor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">getFeeDistributorContract</span><span class="p">();</span>
+<span class="w">        </span><span class="c1">// Assuming share is in basis points, e.g., 2500 for 25%</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">tx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">feeDistributor</span><span class="p">.</span><span class="nx">addRecipient</span><span class="p">(</span><span class="nx">recipientAddress</span><span class="p">,</span><span class="w"> </span><span class="nx">share</span><span class="p">);</span>
+<span class="w">        </span><span class="k">await</span><span class="w"> </span><span class="nx">tx</span><span class="p">.</span><span class="nx">wait</span><span class="p">();</span>
+<span class="w">        </span><span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;Recipient added successfully!&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;Error adding recipient:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">);</span>
+<span class="w">        </span><span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;Failed to add recipient.&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Example usage in a React component</span>
+<span class="c1">// &lt;button onClick={() =&gt; handleDistributeFees(&quot;0x0000000000000000000000000000000000000000&quot;)}&gt;Distribute ETH Fees&lt;/button&gt;</span>
+<span class="c1">// &lt;button onClick={() =&gt; handleAddRecipient(&quot;0xRecipientAddress&quot;, 1000)}&gt;Add 10% Recipient&lt;/button&gt;</span>
+</code></pre></div>
+
+<h3 id="backend-integration-nodejsethersjs">Backend Integration (Node.js/Ethers.js)<a class="headerlink" href="#backend-integration-nodejsethersjs" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ethers</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s2">&quot;ethers&quot;</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">FeeDistributorABI</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s2">&quot;./FeeDistributor.json&quot;</span><span class="p">).</span><span class="nx">abi</span><span class="p">;</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">provider</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">ethers</span><span class="p">.</span><span class="nx">JsonRpcProvider</span><span class="p">(</span><span class="s2">&quot;YOUR_RPC_URL&quot;</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">wallet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">ethers</span><span class="p">.</span><span class="nx">Wallet</span><span class="p">(</span><span class="s2">&quot;YOUR_PRIVATE_KEY&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">provider</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">feeDistributorAddress</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0x...&quot;</span><span class="p">;</span><span class="w"> </span><span class="c1">// Your deployed FeeDistributor contract address</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">feeDistributorContract</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">ethers</span><span class="p">.</span><span class="nx">Contract</span><span class="p">(</span><span class="nx">feeDistributorAddress</span><span class="p">,</span><span class="w"> </span><span class="nx">FeeDistributorABI</span><span class="p">,</span><span class="w"> </span><span class="nx">wallet</span><span class="p">);</span>
+
+<span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">performFeeDistribution</span><span class="p">(</span><span class="nx">tokenAddress</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Initiating fee distribution for </span><span class="si">${</span><span class="nx">tokenAddress</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nx">ethers</span><span class="p">.</span><span class="nx">ZeroAddress</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s2">&quot;ETH&quot;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;ERC20 token&quot;</span><span class="si">}</span><span class="sb">...`</span><span class="p">);</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">tx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">feeDistributorContract</span><span class="p">.</span><span class="nx">distributeFees</span><span class="p">(</span><span class="nx">tokenAddress</span><span class="p">);</span>
+<span class="w">        </span><span class="k">await</span><span class="w"> </span><span class="nx">tx</span><span class="p">.</span><span class="nx">wait</span><span class="p">();</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Distribution transaction successful: </span><span class="si">${</span><span class="nx">tx</span><span class="p">.</span><span class="nx">hash</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;Error during fee distribution:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">);</span>
+<span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="nx">error</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">addNewRecipient</span><span class="p">(</span><span class="nx">address</span><span class="p">,</span><span class="w"> </span><span class="nx">share</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Adding new recipient </span><span class="si">${</span><span class="nx">address</span><span class="si">}</span><span class="sb"> with share </span><span class="si">${</span><span class="nx">share</span><span class="si">}</span><span class="sb">...`</span><span class="p">);</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">tx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">feeDistributorContract</span><span class="p">.</span><span class="nx">addRecipient</span><span class="p">(</span><span class="nx">address</span><span class="p">,</span><span class="w"> </span><span class="nx">share</span><span class="p">);</span>
+<span class="w">        </span><span class="k">await</span><span class="w"> </span><span class="nx">tx</span><span class="p">.</span><span class="nx">wait</span><span class="p">();</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Recipient added transaction successful: </span><span class="si">${</span><span class="nx">tx</span><span class="p">.</span><span class="nx">hash</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;Error adding new recipient:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">);</span>
+<span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="nx">error</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Example usage</span>
+<span class="c1">// performFeeDistribution(ethers.ZeroAddress); // Distribute ETH</span>
+<span class="c1">// addNewRecipient(&quot;0xNewRecipientAddress&quot;, 500); // Add a recipient with 5% share</span>
+</code></pre></div>
+
+<h2 id="related-documentation">Related Documentation<a class="headerlink" href="#related-documentation" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../../libraries/fee-distributor-lib/">Fee Distributor Library</a></li>
+<li><a href="https://eips.ethereum.org/EIPS/eip-20">ERC20 Standard</a></li>
+<li><a href="https://docs.openzeppelin.com/contracts/5.x/api/access#Ownable">Ownable Contract</a></li>
+<li><a href="https://docs.openzeppelin.com/contracts/2.x/api/math#SafeMath">Safemath Library</a></li>
+</ul>
+<h2 id="standards-compliance">Standards Compliance<a class="headerlink" href="#standards-compliance" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>ERC20</strong>: Compatible with ERC20 tokens for distribution.</li>
+<li><strong>Ownable</strong>: Utilizes OpenZeppelin's <code>Ownable</code> for administrative access control.</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../imultisale/" class="btn btn-neutral float-left" title="IMultiSale"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../igemforce-minter-facet/" class="btn btn-neutral float-right" title="IGemforceMinterFacet">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../imultisale/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../igemforce-minter-facet/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

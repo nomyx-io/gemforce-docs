@@ -186,9 +186,9 @@ Comprehensive test cases should cover:
 ## Reference Implementation
 
 The reference implementation includes:
-- [`MultiSaleFacet.sol`](../contracts/facets/MultiSaleFacet.sol) - Core multi-sale functionality
-- [`IMultiSale.sol`](../contracts/interfaces/IMultiSale.sol) - Interface definition
-- [`MultiSaleLib.sol`](../contracts/libraries/MultiSaleLib.sol) - Supporting library functions
+- [Multi Sale Facet](../smart-contracts/facets/multi-sale-facet.md) - Core multi-sale functionality
+- [IMultiSale Interface](../smart-contracts/interfaces/imultisale.md) - Interface definition
+- [Multi Sale Lib](../smart-contracts/libraries/multi-sale-lib.md) - Supporting library functions
 
 ## Copyright
 

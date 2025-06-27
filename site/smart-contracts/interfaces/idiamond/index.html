@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Gemforce Team" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>IDiamond - Gemforce Documentation</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "IDiamond";
+        var mkdocs_page_input_path = "smart-contracts/interfaces/idiamond.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../.." class="icon icon-home"> Gemforce Documentation
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../developer-setup-guide/">Developer Setup Guide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../system-architecture/gemforce-system-architecture/">System Architecture</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Smart Contracts</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../diamond/">Diamond Contract</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../diamond-factory/">Diamond Factory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../identity-factory/">Identity Factory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Facets</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/marketplace-facet/">Marketplace Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trade-deal-management-facet/">Trade Deal Management Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/carbon-credit-facet/">Carbon Credit Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/identity-registry-facet/">Identity Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trusted-issuers-registry-facet/">Trusted Issuers Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/fee-distributor-facet/">Fee Distributor Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/gemforce-minter-facet/">Gemforce Minter Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/multi-sale-facet/">Multi Sale Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/svg-templates-facet/">SVG Templates Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trade-deal-admin-facet/">Trade Deal Admin Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trade-deal-operations-facet/">Trade Deal Operations Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/collateral-token-factory-facet/">Collateral Token Factory Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/diamond-cut-facet/">Diamond Cut Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/diamond-loupe-facet/">Diamond Loupe Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/ownership-facet/">Ownership Facet</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" >Interfaces</a>
+    <ul class="current">
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">IDiamond</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#overview">Overview</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#interface-details">Interface Details</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#key-features">Key Features</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#diamond-standard-compliance">🔹 Diamond Standard Compliance</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#configuration-management">🔹 Configuration Management</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#storage-architecture">🔹 Storage Architecture</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#core-data-structures">Core Data Structures</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#diamondsettings">DiamondSettings</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#diamondcontract">DiamondContract</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#diamondstorage">DiamondStorage</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#core-interface-functions">Core Interface Functions</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#getdiamondaddress">getDiamondAddress()</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#implementation-examples">Implementation Examples</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#diamond-configuration-manager">Diamond Configuration Manager</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#diamond-registry-system">Diamond Registry System</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#diamond-metadata-manager">Diamond Metadata Manager</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#diamond-factory-integration">Diamond Factory Integration</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#standard-diamond-implementation">Standard Diamond Implementation</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#extended-diamond-interface">Extended Diamond Interface</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#security-considerations">Security Considerations</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#access-control">Access Control</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#data-integrity">Data Integrity</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#interface-compliance">Interface Compliance</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#gas-optimization">Gas Optimization</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#storage-efficiency">Storage Efficiency</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#function-optimization">Function Optimization</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#testing">Testing</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#unit-tests">Unit Tests</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#integration-tests">Integration Tests</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#related-documentation">Related Documentation</a>
+    </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../imarketplace/">IMarketplace</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../itradedeal/">ITradeDeal</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../icarbon-credit/">ICarbonCredit</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../ierc1155-mint/">IERC1155Mint</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../ierc734/">IERC734</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../ierc735/">IERC735</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../ierc721a/">IERC721A</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../idiamond-factory/">IDiamondFactory</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../iidentity/">IIdentity</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../imultisale/">IMultiSale</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../ifee-distributor/">IFeeDistributor</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../igemforce-minter-facet/">IGemforceMinterFacet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../iidentity-registry/">IIdentityRegistry</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../itrusted-issuers-registry/">TRUSTEDIssuersRegistry</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../isvg/">ISVG</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../iattribute/">IAttribute</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../ivariable-price/">IVariablePrice</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Libraries</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/carbon-credit-lib/">Carbon Credit Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/trade-deal-lib/">Trade Deal Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/multi-sale-lib/">Multi Sale Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/diamond-factory-lib/">Diamond Factory Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/svg-templates-lib/">SVG Templates Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/attribute-lib/">Attribute Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/variable-price-lib/">Variable Price Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/merkle-prover/">Merkle Prover</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/fee-distributor-lib/">Fee Distributor Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/lib-diamond/">LibDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/diamond-lib/">DiamondLib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/erc721a-lib/">ERC721A Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/erc721a-enumeration-lib/">ERC721A Enumeration Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/strings-lib/">Strings Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/trusted-issuer-lib/">Trusted Issuer Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/set-libraries/">Set Libraries</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">SDK & Libraries</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/blockchain/">Blockchain Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/diamond/">Diamond Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/contract/">Contract Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/deploy/">Deployment Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/validation-utils/">Validation Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/nft-sale-utils/">NFT Sale Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/webhooks/">Webhooks Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../libraries/metadata-lib/">Metadata Library</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Cloud Functions</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/authentication/">Authentication Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/auth-functions/">Auth Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/blockchain/">Blockchain Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/bridge/">Bridge Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/contracts/">Contract Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/deploy/">Deploy Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/dfns/">DFNS Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/project/">Project Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/trade-deal/">Trade Deal Functions</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">API Documentation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../api-documentation/gemforce-api-documentation/">Full API Reference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../api-documentation/gemforce-api-quick-reference/">Quick Reference</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-external-services/">External Services</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-system-architecture/">System Architecture</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Operations Tasks</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/diamond/">Diamond Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/identities/">Identity Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/marketplace-management/">Marketplace Management Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/carbon-credit-management/">Carbon Credit Management Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/trade-deal/">Trade Deal Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/integration-test/">Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/integration-test-marketplace/">Marketplace Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/integration-test-trade-deal/">Trade Deal Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/admin-utils/">Admin Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/sync-diamond/">Sync Diamond Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/sync-events/">Sync Events Tasks</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">EIPs (Ethereum Improvement Proposals)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Diamond-Enhanced-Marketplace/">Diamond-Enhanced Marketplace</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Multi-Token-Sale-Standard/">Multi-Token Sale Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Collateralized-Trade-Deal-Standard/">Collateralized Trade Deal Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Enhanced-Identity-System/">Enhanced Identity System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Diamond-Factory-Standard/">Diamond Factory Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Carbon-Credit-Standard/">Carbon Credit Standard</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Developer Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/development-environment-setup/">Development Environment Setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/testing-frameworks/">Testing Frameworks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/debugging/">Debugging</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/performance-optimization/">Performance Optimization</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/test-case-specifications/">Test Case Specifications</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/test-data-management/">Test Data Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/automated-testing-setup/">Automated Testing Setup</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Deployment Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../deployment-guides/multi-network-deployment/">Multi-Network Deployment</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../deployment-guides/infrastructure-management/">Infrastructure Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../deployment-guides/monitoring-logging/">Monitoring and Logging</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">User Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-administrator-guide/">Administrator Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-deployer-guide/">Deployer Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-integrator-guide/">Integrator Guide</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Integrator's Guide</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/authentication/">Authentication</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/rest-api/">REST API</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/smart-contracts/">Smart Contracts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/dfns/">DFNS Integration</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/parse-server/">Parse Server Notes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/webhooks/">Webhooks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/error-handling/">Error Handling</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/sample-code/">Sample Code</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/integration-patterns/">Integration Patterns</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/testing/">Testing Considerations</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/security/">Security</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../external-services/gemforce-external-services/">External Services</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Security</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security/threat-model/">Threat Model and Risk Assessment</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security/incident-response/">Incident Response Procedures</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security/audit-compliance/">Security Audits and Compliance</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">External Developer Integration</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/api-rate-limiting/">API Rate Limiting</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/webhook-implementation-guidelines/">Webhook Implementation Guidelines</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/sdk-development-guidelines/">SDK Development Guidelines</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/partner-integration-guides/">Partner Integration Guides</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-documentation-gap-analysis/">Documentation Gap Analysis</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../documentation-progress-summary/">Documentation Progress Summary</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../documentation-plan/">Documentation Plan</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Configuration & Environment</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/gemforce-config/">Gemforce Config</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/environment-specific-guides/">Environment-Specific Guides</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/configuration-validation/">Configuration Validation Procedures</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/external-service-config-management/">External Service Configuration Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/database-schema-overview/">Database Schema Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/database-migration-procedures/">Database Migration Procedures</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">Gemforce Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Smart Contracts</li>
+          <li class="breadcrumb-item">Interfaces</li>
+      <li class="breadcrumb-item active">IDiamond</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="idiamond-interface">IDiamond Interface<a class="headerlink" href="#idiamond-interface" title="Permanent link">&para;</a></h1>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>The <a href="./"><code>IDiamond.sol</code></a> defines the core interface and data structures for the Diamond Standard implementation within the Gemforce platform. This interface establishes the fundamental contract for diamond proxy functionality and provides essential data structures for diamond configuration and storage.</p>
+<h2 id="interface-details">Interface Details<a class="headerlink" href="#interface-details" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Interface Name</strong>: <code>IDiamond</code></li>
+<li><strong>License</strong>: MIT</li>
+<li><strong>Solidity Version</strong>: ^0.8.6</li>
+</ul>
+<h2 id="key-features">Key Features<a class="headerlink" href="#key-features" title="Permanent link">&para;</a></h2>
+<h3 id="diamond-standard-compliance">🔹 Diamond Standard Compliance<a class="headerlink" href="#diamond-standard-compliance" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Core interface for EIP-2535 Diamond Standard</li>
+<li>Standardized diamond proxy functionality</li>
+<li>Consistent diamond address resolution</li>
+<li>Integration with diamond storage patterns</li>
+</ul>
+<h3 id="configuration-management">🔹 Configuration Management<a class="headerlink" href="#configuration-management" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Comprehensive diamond settings structure</li>
+<li>Owner and factory address management</li>
+<li>SVG manager integration</li>
+<li>Metadata storage capabilities</li>
+</ul>
+<h3 id="storage-architecture">🔹 Storage Architecture<a class="headerlink" href="#storage-architecture" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Structured diamond storage layout</li>
+<li>Efficient metadata management</li>
+<li>Extensible configuration system</li>
+<li>Type-safe data structures</li>
+</ul>
+<h2 id="core-data-structures">Core Data Structures<a class="headerlink" href="#core-data-structures" title="Permanent link">&para;</a></h2>
+<h3 id="diamondsettings">DiamondSettings<a class="headerlink" href="#diamondsettings" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">struct</span><span class="w"> </span><span class="nv">DiamondSettings</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">owner</span><span class="p">;</span><span class="w">        </span><span class="c1">// Diamond contract owner</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">factory</span><span class="p">;</span><span class="w">      </span><span class="c1">// Factory contract that created this diamond</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">svgManager</span><span class="p">;</span><span class="w">   </span><span class="c1">// SVG template manager contract</span>
+<span class="w">    </span><span class="kt">string</span><span class="w"> </span><span class="nv">symbol</span><span class="p">;</span><span class="w">        </span><span class="c1">// Diamond symbol identifier</span>
+<span class="w">    </span><span class="kt">string</span><span class="w"> </span><span class="nv">name</span><span class="p">;</span><span class="w">          </span><span class="c1">// Human-readable diamond name</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Defines the core configuration parameters for a diamond instance.</p>
+<p><strong>Fields</strong>:
+- <strong>owner</strong>: Address with administrative control over the diamond
+- <strong>factory</strong>: Address of the factory contract that deployed this diamond
+- <strong>svgManager</strong>: Address of the SVG template manager for dynamic graphics
+- <strong>symbol</strong>: Short identifier for the diamond (typically 3-5 characters)
+- <strong>name</strong>: Descriptive name for the diamond instance</p>
+<p><strong>Usage Example</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Configure diamond settings</span>
+DiamondSettings<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>settings<span class="w"> </span><span class="o">=</span><span class="w"> </span>DiamondSettings<span class="p">({</span>
+<span class="w">    </span>owner<span class="o">:</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">,</span>
+<span class="w">    </span>factory<span class="o">:</span><span class="w"> </span>factoryAddress<span class="p">,</span>
+<span class="w">    </span>svgManager<span class="o">:</span><span class="w"> </span>svgManagerAddress<span class="p">,</span>
+<span class="w">    </span>symbol<span class="o">:</span><span class="w"> </span><span class="s2">&quot;GEM1&quot;</span><span class="p">,</span>
+<span class="w">    </span>name<span class="o">:</span><span class="w"> </span><span class="s2">&quot;Gemforce Diamond Instance 1&quot;</span>
+<span class="p">});</span>
+</code></pre></div>
+
+<hr />
+<h3 id="diamondcontract">DiamondContract<a class="headerlink" href="#diamondcontract" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">struct</span><span class="w"> </span><span class="nv">DiamondContract</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>DiamondSettings<span class="w"> </span>settings<span class="p">;</span><span class="w">           </span><span class="c1">// Core diamond configuration</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span><span class="w"> </span>metadata<span class="p">;</span><span class="w"> </span><span class="c1">// Extensible metadata storage</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Encapsulates the complete diamond contract state including settings and metadata.</p>
+<p><strong>Fields</strong>:
+- <strong>settings</strong>: Core diamond configuration (DiamondSettings struct)
+- <strong>metadata</strong>: Key-value mapping for extensible metadata storage</p>
+<p><strong>Metadata Use Cases</strong>:
+- <strong>Version Information</strong>: Track diamond version and upgrades
+- <strong>Business Logic</strong>: Store business-specific configuration
+- <strong>Integration Data</strong>: External service integration parameters
+- <strong>Audit Trail</strong>: Track important state changes and events</p>
+<hr />
+<h3 id="diamondstorage">DiamondStorage<a class="headerlink" href="#diamondstorage" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">struct</span><span class="w"> </span><span class="nv">DiamondStorage</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>DiamondContract<span class="w"> </span>diamondContract<span class="p">;</span><span class="w"> </span><span class="c1">// Complete diamond state</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Root storage structure for diamond state management using diamond storage pattern.</p>
+<p><strong>Fields</strong>:
+- <strong>diamondContract</strong>: Complete diamond contract state and configuration</p>
+<p><strong>Storage Pattern</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Diamond storage access pattern</span>
+<span class="kt">function</span><span class="w"> </span><span class="nv">diamondStorage</span><span class="p">()</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>pure<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>DiamondStorage<span class="w"> </span>storage<span class="w"> </span>ds<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">keccak256</span><span class="p">(</span><span class="s2">&quot;diamond.standard.diamond.storage&quot;</span><span class="p">);</span>
+<span class="w">    </span>assembly<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>ds<span class="p">.</span>slot<span class="w"> </span><span class="o">:=</span><span class="w"> </span>position
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="core-interface-functions">Core Interface Functions<a class="headerlink" href="#core-interface-functions" title="Permanent link">&para;</a></h2>
+<h3 id="getdiamondaddress"><code>getDiamondAddress()</code><a class="headerlink" href="#getdiamondaddress" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">getDiamondAddress</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">address</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Returns the address of the diamond contract instance.</p>
+<p><strong>Returns</strong>:
+- <code>address</code>: The address of the current diamond contract</p>
+<p><strong>Usage</strong>: This function provides a standardized way to retrieve the diamond's own address, which is essential for:
+- <strong>Self-Reference</strong>: When the diamond needs to reference itself
+- <strong>Integration</strong>: External contracts identifying the diamond
+- <strong>Logging</strong>: Event emission with diamond address
+- <strong>Validation</strong>: Confirming diamond identity in multi-diamond systems</p>
+<p><strong>Example Usage</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Get diamond address for integration</span>
+<span class="kt">address</span><span class="w"> </span><span class="nv">diamondAddr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>IDiamond<span class="p">(</span>diamond<span class="p">).</span>getDiamondAddress<span class="p">();</span>
+console<span class="p">.</span>log<span class="p">(</span><span class="s2">&quot;Diamond deployed at:&quot;</span><span class="p">,</span><span class="w"> </span>diamondAddr<span class="p">);</span>
+
+<span class="c1">// Use in external contract integration</span>
+ExternalContract<span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>ExternalContract<span class="p">(</span>externalAddress<span class="p">);</span>
+<span class="kt">external</span><span class="p">.</span>registerDiamond<span class="p">(</span>diamondAddr<span class="p">);</span>
+
+<span class="c1">// Self-reference in diamond functions</span>
+<span class="kt">function</span><span class="w"> </span><span class="nv">someInternalFunction</span><span class="p">()</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">self</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>IDiamond<span class="p">(</span><span class="kt">address</span><span class="p">(</span><span class="kt">this</span><span class="p">)).</span>getDiamondAddress<span class="p">();</span>
+<span class="w">    </span>emit<span class="w"> </span>DiamondOperation<span class="p">(</span>self<span class="p">,</span><span class="w"> </span><span class="s2">&quot;operation_completed&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="implementation-examples">Implementation Examples<a class="headerlink" href="#implementation-examples" title="Permanent link">&para;</a></h2>
+<h3 id="diamond-configuration-manager">Diamond Configuration Manager<a class="headerlink" href="#diamond-configuration-manager" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Comprehensive diamond configuration management</span>
+<span class="k">contract</span><span class="w"> </span><span class="ni">DiamondConfigManager</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>using<span class="w"> </span>LibDiamond<span class="w"> </span><span class="kt">for</span><span class="w"> </span>DiamondStorage<span class="p">;</span>
+
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">DiamondConfigured</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>diamond<span class="p">,</span><span class="w"> </span>DiamondSettings<span class="w"> </span>settings<span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">MetadataUpdated</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>diamond<span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">key</span><span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">value</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">OwnershipTransferred</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>diamond<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>previousOwner<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>newOwner<span class="p">);</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">configureDiamond</span><span class="p">(</span>
+<span class="w">        </span>DiamondSettings<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>settings<span class="p">,</span>
+<span class="w">        </span><span class="kt">string</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>metadataKeys<span class="p">,</span>
+<span class="w">        </span><span class="kt">string</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>metadataValues
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyOwner<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>metadataKeys<span class="p">.</span>length<span class="w"> </span><span class="o">==</span><span class="w"> </span>metadataValues<span class="p">.</span>length<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Metadata arrays length mismatch&quot;</span><span class="p">);</span>
+
+<span class="w">        </span>DiamondStorage<span class="w"> </span>storage<span class="w"> </span>ds<span class="w"> </span><span class="o">=</span><span class="w"> </span>LibDiamond<span class="p">.</span>diamondStorage<span class="p">();</span>
+
+<span class="w">        </span><span class="c1">// Set core settings</span>
+<span class="w">        </span>ds<span class="p">.</span>diamondContract<span class="p">.</span>settings<span class="w"> </span><span class="o">=</span><span class="w"> </span>settings<span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// Set metadata</span>
+<span class="w">        </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>metadataKeys<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>ds<span class="p">.</span>diamondContract<span class="p">.</span>metadata<span class="p">[</span>metadataKeys<span class="p">[</span>i<span class="p">]]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>metadataValues<span class="p">[</span>i<span class="p">];</span>
+<span class="w">            </span>emit<span class="w"> </span>MetadataUpdated<span class="p">(</span><span class="kt">address</span><span class="p">(</span><span class="kt">this</span><span class="p">),</span><span class="w"> </span>metadataKeys<span class="p">[</span>i<span class="p">],</span><span class="w"> </span>metadataValues<span class="p">[</span>i<span class="p">]);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span>emit<span class="w"> </span>DiamondConfigured<span class="p">(</span><span class="kt">address</span><span class="p">(</span><span class="kt">this</span><span class="p">),</span><span class="w"> </span>settings<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">updateDiamondSettings</span><span class="p">(</span>DiamondSettings<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>newSettings<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyOwner<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>DiamondStorage<span class="w"> </span>storage<span class="w"> </span>ds<span class="w"> </span><span class="o">=</span><span class="w"> </span>LibDiamond<span class="p">.</span>diamondStorage<span class="p">();</span>
+
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">previousOwner</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>ds<span class="p">.</span>diamondContract<span class="p">.</span>settings<span class="p">.</span>owner<span class="p">;</span>
+<span class="w">        </span>ds<span class="p">.</span>diamondContract<span class="p">.</span>settings<span class="w"> </span><span class="o">=</span><span class="w"> </span>newSettings<span class="p">;</span>
+
+<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>previousOwner<span class="w"> </span><span class="o">!=</span><span class="w"> </span>newSettings<span class="p">.</span>owner<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>emit<span class="w"> </span>OwnershipTransferred<span class="p">(</span><span class="kt">address</span><span class="p">(</span><span class="kt">this</span><span class="p">),</span><span class="w"> </span>previousOwner<span class="p">,</span><span class="w"> </span>newSettings<span class="p">.</span>owner<span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span>emit<span class="w"> </span>DiamondConfigured<span class="p">(</span><span class="kt">address</span><span class="p">(</span><span class="kt">this</span><span class="p">),</span><span class="w"> </span>newSettings<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">setMetadata</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>key<span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>value<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyOwner<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>DiamondStorage<span class="w"> </span>storage<span class="w"> </span>ds<span class="w"> </span><span class="o">=</span><span class="w"> </span>LibDiamond<span class="p">.</span>diamondStorage<span class="p">();</span>
+<span class="w">        </span>ds<span class="p">.</span>diamondContract<span class="p">.</span>metadata<span class="p">[</span>key<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>value<span class="p">;</span>
+
+<span class="w">        </span>emit<span class="w"> </span>MetadataUpdated<span class="p">(</span><span class="kt">address</span><span class="p">(</span><span class="kt">this</span><span class="p">),</span><span class="w"> </span>key<span class="p">,</span><span class="w"> </span>value<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getMetadata</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>key<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>DiamondStorage<span class="w"> </span>storage<span class="w"> </span>ds<span class="w"> </span><span class="o">=</span><span class="w"> </span>LibDiamond<span class="p">.</span>diamondStorage<span class="p">();</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>ds<span class="p">.</span>diamondContract<span class="p">.</span>metadata<span class="p">[</span>key<span class="p">];</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getDiamondSettings</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>DiamondSettings<span class="w"> </span><span class="kt">memory</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>DiamondStorage<span class="w"> </span>storage<span class="w"> </span>ds<span class="w"> </span><span class="o">=</span><span class="w"> </span>LibDiamond<span class="p">.</span>diamondStorage<span class="p">();</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>ds<span class="p">.</span>diamondContract<span class="p">.</span>settings<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getAllMetadata</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>keys<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>values<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>DiamondStorage<span class="w"> </span>storage<span class="w"> </span>ds<span class="w"> </span><span class="o">=</span><span class="w"> </span>LibDiamond<span class="p">.</span>diamondStorage<span class="p">();</span>
+<span class="w">        </span>values<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="kt">string</span><span class="p">[](</span>keys<span class="p">.</span>length<span class="p">);</span>
+
+<span class="w">        </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>keys<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>values<span class="p">[</span>i<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>ds<span class="p">.</span>diamondContract<span class="p">.</span>metadata<span class="p">[</span>keys<span class="p">[</span>i<span class="p">]];</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="diamond-registry-system">Diamond Registry System<a class="headerlink" href="#diamond-registry-system" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Registry for tracking multiple diamond instances</span>
+<span class="k">contract</span><span class="w"> </span><span class="ni">DiamondRegistry</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">DiamondInfo</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">diamondAddress</span><span class="p">;</span>
+<span class="w">        </span>DiamondSettings<span class="w"> </span>settings<span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">createdAt</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">active</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">category</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span>DiamondInfo<span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>diamonds<span class="p">;</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">address</span><span class="p">[])</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>diamondsByCategory<span class="p">;</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">address</span><span class="p">[])</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>diamondsByOwner<span class="p">;</span>
+<span class="w">    </span><span class="kt">address</span><span class="p">[]</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>allDiamonds<span class="p">;</span>
+
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">DiamondRegistered</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>diamond<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>owner<span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">category</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">DiamondDeactivated</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>diamond<span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">DiamondCategoryUpdated</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>diamond<span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">oldCategory</span><span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">newCategory</span><span class="p">);</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">registerDiamond</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">diamondAddress</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>category
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>diamondAddress<span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">),</span><span class="w"> </span><span class="s2">&quot;Invalid diamond address&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>diamonds<span class="p">[</span>diamondAddress<span class="p">].</span>diamondAddress<span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">),</span><span class="w"> </span><span class="s2">&quot;Diamond already registered&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Get diamond settings</span>
+<span class="w">        </span>DiamondSettings<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>settings<span class="p">;</span>
+<span class="w">        </span>try<span class="w"> </span>IDiamond<span class="p">(</span>diamondAddress<span class="p">).</span>getDiamondAddress<span class="p">()</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">addr</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">require</span><span class="p">(</span>addr<span class="w"> </span><span class="o">==</span><span class="w"> </span>diamondAddress<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Diamond address mismatch&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="c1">// Additional calls to get settings would require extended interface</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span>catch<span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>revert<span class="p">(</span><span class="s2">&quot;Invalid diamond contract&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// Register diamond</span>
+<span class="w">        </span>diamonds<span class="p">[</span>diamondAddress<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>DiamondInfo<span class="p">({</span>
+<span class="w">            </span>diamondAddress<span class="o">:</span><span class="w"> </span>diamondAddress<span class="p">,</span>
+<span class="w">            </span>settings<span class="o">:</span><span class="w"> </span>settings<span class="p">,</span>
+<span class="w">            </span>createdAt<span class="o">:</span><span class="w"> </span><span class="k">block.timestamp</span><span class="p">,</span>
+<span class="w">            </span>active<span class="o">:</span><span class="w"> </span><span class="kt">true</span><span class="p">,</span>
+<span class="w">            </span>category<span class="o">:</span><span class="w"> </span>category
+<span class="w">        </span><span class="p">});</span>
+
+<span class="w">        </span>allDiamonds<span class="p">.</span>push<span class="p">(</span>diamondAddress<span class="p">);</span>
+<span class="w">        </span>diamondsByCategory<span class="p">[</span>category<span class="p">].</span>push<span class="p">(</span>diamondAddress<span class="p">);</span>
+<span class="w">        </span>diamondsByOwner<span class="p">[</span>settings<span class="p">.</span>owner<span class="p">].</span>push<span class="p">(</span>diamondAddress<span class="p">);</span>
+
+<span class="w">        </span>emit<span class="w"> </span>DiamondRegistered<span class="p">(</span>diamondAddress<span class="p">,</span><span class="w"> </span>settings<span class="p">.</span>owner<span class="p">,</span><span class="w"> </span>category<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">deactivateDiamond</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">diamondAddress</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>DiamondInfo<span class="w"> </span>storage<span class="w"> </span>info<span class="w"> </span><span class="o">=</span><span class="w"> </span>diamonds<span class="p">[</span>diamondAddress<span class="p">];</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>info<span class="p">.</span>diamondAddress<span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">),</span><span class="w"> </span><span class="s2">&quot;Diamond not registered&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>info<span class="p">.</span>active<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Diamond already deactivated&quot;</span><span class="p">);</span>
+
+<span class="w">        </span>info<span class="p">.</span>active<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">false</span><span class="p">;</span>
+<span class="w">        </span>emit<span class="w"> </span>DiamondDeactivated<span class="p">(</span>diamondAddress<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">updateDiamondCategory</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">diamondAddress</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>newCategory
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>DiamondInfo<span class="w"> </span>storage<span class="w"> </span>info<span class="w"> </span><span class="o">=</span><span class="w"> </span>diamonds<span class="p">[</span>diamondAddress<span class="p">];</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>info<span class="p">.</span>diamondAddress<span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">),</span><span class="w"> </span><span class="s2">&quot;Diamond not registered&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>oldCategory<span class="w"> </span><span class="o">=</span><span class="w"> </span>info<span class="p">.</span>category<span class="p">;</span>
+<span class="w">        </span>info<span class="p">.</span>category<span class="w"> </span><span class="o">=</span><span class="w"> </span>newCategory<span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// Update category mapping</span>
+<span class="w">        </span>_removeFromCategoryArray<span class="p">(</span>oldCategory<span class="p">,</span><span class="w"> </span>diamondAddress<span class="p">);</span>
+<span class="w">        </span>diamondsByCategory<span class="p">[</span>newCategory<span class="p">].</span>push<span class="p">(</span>diamondAddress<span class="p">);</span>
+
+<span class="w">        </span>emit<span class="w"> </span>DiamondCategoryUpdated<span class="p">(</span>diamondAddress<span class="p">,</span><span class="w"> </span>oldCategory<span class="p">,</span><span class="w"> </span>newCategory<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getDiamondsByCategory</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>category<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">address</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>diamondsByCategory<span class="p">[</span>category<span class="p">];</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getDiamondsByOwner</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">owner</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">address</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>diamondsByOwner<span class="p">[</span>owner<span class="p">];</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getActiveDiamonds</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">address</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">activeCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// Count active diamonds</span>
+<span class="w">        </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>allDiamonds<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>diamonds<span class="p">[</span>allDiamonds<span class="p">[</span>i<span class="p">]].</span>active<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span>activeCount<span class="o">++</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// Build active diamonds array</span>
+<span class="w">        </span><span class="kt">address</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>activeDiamonds<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="kt">address</span><span class="p">[](</span>activeCount<span class="p">);</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">index</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span>
+
+<span class="w">        </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>allDiamonds<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>diamonds<span class="p">[</span>allDiamonds<span class="p">[</span>i<span class="p">]].</span>active<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span>activeDiamonds<span class="p">[</span>index<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>allDiamonds<span class="p">[</span>i<span class="p">];</span>
+<span class="w">                </span>index<span class="o">++</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>activeDiamonds<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">_removeFromCategoryArray</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>category<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">diamondAddress</span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">address</span><span class="p">[]</span><span class="w"> </span>storage<span class="w"> </span>categoryArray<span class="w"> </span><span class="o">=</span><span class="w"> </span>diamondsByCategory<span class="p">[</span>category<span class="p">];</span>
+
+<span class="w">        </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>categoryArray<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>categoryArray<span class="p">[</span>i<span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span>diamondAddress<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span>categoryArray<span class="p">[</span>i<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>categoryArray<span class="p">[</span>categoryArray<span class="p">.</span>length<span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m m-Decimal">1</span><span class="p">];</span>
+<span class="w">                </span>categoryArray<span class="p">.</span>pop<span class="p">();</span>
+<span class="w">                </span><span class="kt">break</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="diamond-metadata-manager">Diamond Metadata Manager<a class="headerlink" href="#diamond-metadata-manager" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Advanced metadata management for diamonds</span>
+<span class="k">contract</span><span class="w"> </span><span class="ni">DiamondMetadataManager</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">MetadataSchema</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">string</span><span class="p">[]</span><span class="w"> </span>requiredKeys<span class="p">;</span>
+<span class="w">        </span><span class="kt">string</span><span class="p">[]</span><span class="w"> </span>optionalKeys<span class="p">;</span>
+<span class="w">        </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span><span class="w"> </span>defaultValues<span class="p">;</span>
+<span class="w">        </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">bool</span><span class="p">)</span><span class="w"> </span>isRequired<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span>MetadataSchema<span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>schemas<span class="p">;</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>diamondSchemas<span class="p">;</span>
+
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">SchemaCreated</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>schemaName<span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="p">[]</span><span class="w"> </span>requiredKeys<span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="p">[]</span><span class="w"> </span>optionalKeys<span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">DiamondSchemaAssigned</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>diamond<span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">schemaName</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">MetadataValidated</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>diamond<span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="nv">isValid</span><span class="p">);</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">createMetadataSchema</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>schemaName<span class="p">,</span>
+<span class="w">        </span><span class="kt">string</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>requiredKeys<span class="p">,</span>
+<span class="w">        </span><span class="kt">string</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>optionalKeys<span class="p">,</span>
+<span class="w">        </span><span class="kt">string</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>defaultKeys<span class="p">,</span>
+<span class="w">        </span><span class="kt">string</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>defaultValues
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyOwner<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>defaultKeys<span class="p">.</span>length<span class="w"> </span><span class="o">==</span><span class="w"> </span>defaultValues<span class="p">.</span>length<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Default arrays length mismatch&quot;</span><span class="p">);</span>
+
+<span class="w">        </span>MetadataSchema<span class="w"> </span>storage<span class="w"> </span>schema<span class="w"> </span><span class="o">=</span><span class="w"> </span>schemas<span class="p">[</span>schemaName<span class="p">];</span>
+<span class="w">        </span>schema<span class="p">.</span>requiredKeys<span class="w"> </span><span class="o">=</span><span class="w"> </span>requiredKeys<span class="p">;</span>
+<span class="w">        </span>schema<span class="p">.</span>optionalKeys<span class="w"> </span><span class="o">=</span><span class="w"> </span>optionalKeys<span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// Set required flags</span>
+<span class="w">        </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>requiredKeys<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>schema<span class="p">.</span>isRequired<span class="p">[</span>requiredKeys<span class="p">[</span>i<span class="p">]]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">true</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// Set default values</span>
+<span class="w">        </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>defaultKeys<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>schema<span class="p">.</span>defaultValues<span class="p">[</span>defaultKeys<span class="p">[</span>i<span class="p">]]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>defaultValues<span class="p">[</span>i<span class="p">];</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span>emit<span class="w"> </span>SchemaCreated<span class="p">(</span>schemaName<span class="p">,</span><span class="w"> </span>requiredKeys<span class="p">,</span><span class="w"> </span>optionalKeys<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">assignSchemaToD</span><span class="w"> </span>diamond<span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">diamondAddress</span><span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>schemaName<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyOwner<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>schemas<span class="p">[</span>schemaName<span class="p">].</span>requiredKeys<span class="p">.</span>length<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Schema does not exist&quot;</span><span class="p">);</span>
+
+<span class="w">        </span>diamondSchemas<span class="p">[</span>diamondAddress<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>schemaName<span class="p">;</span>
+<span class="w">        </span>emit<span class="w"> </span>DiamondSchemaAssigned<span class="p">(</span>diamondAddress<span class="p">,</span><span class="w"> </span>schemaName<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">validateDiamondMetadata</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">diamondAddress</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">isValid</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">string</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>missingKeys<span class="p">,</span>
+<span class="w">        </span><span class="kt">string</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>suggestions
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>schemaName<span class="w"> </span><span class="o">=</span><span class="w"> </span>diamondSchemas<span class="p">[</span>diamondAddress<span class="p">];</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span><span class="kt">bytes</span><span class="p">(</span>schemaName<span class="p">).</span>length<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;No schema assigned to diamond&quot;</span><span class="p">);</span>
+
+<span class="w">        </span>MetadataSchema<span class="w"> </span>storage<span class="w"> </span>schema<span class="w"> </span><span class="o">=</span><span class="w"> </span>schemas<span class="p">[</span>schemaName<span class="p">];</span>
+<span class="w">        </span><span class="kt">string</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>missing<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="kt">string</span><span class="p">[](</span>schema<span class="p">.</span>requiredKeys<span class="p">.</span>length<span class="p">);</span>
+<span class="w">        </span><span class="kt">string</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>suggest<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="kt">string</span><span class="p">[](</span>schema<span class="p">.</span>requiredKeys<span class="p">.</span>length<span class="p">);</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">missingCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">suggestCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// Check required keys</span>
+<span class="w">        </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>schema<span class="p">.</span>requiredKeys<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>key<span class="w"> </span><span class="o">=</span><span class="w"> </span>schema<span class="p">.</span>requiredKeys<span class="p">[</span>i<span class="p">];</span>
+
+<span class="w">            </span><span class="c1">// This would require extended interface to get metadata</span>
+<span class="w">            </span><span class="c1">// For now, we&#39;ll simulate the check</span>
+<span class="w">            </span><span class="kt">bool</span><span class="w"> </span><span class="nv">hasKey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>_checkDiamondHasMetadata<span class="p">(</span>diamondAddress<span class="p">,</span><span class="w"> </span>key<span class="p">);</span>
+
+<span class="w">            </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span>hasKey<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span>missing<span class="p">[</span>missingCount<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>key<span class="p">;</span>
+<span class="w">                </span>missingCount<span class="o">++</span><span class="p">;</span>
+
+<span class="w">                </span><span class="c1">// Suggest default value if available</span>
+<span class="w">                </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span><span class="kt">bytes</span><span class="p">(</span>schema<span class="p">.</span>defaultValues<span class="p">[</span>key<span class="p">]).</span>length<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span>suggest<span class="p">[</span>suggestCount<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">string</span><span class="p">(</span>abi<span class="p">.</span>encodePacked<span class="p">(</span>key<span class="p">,</span><span class="w"> </span><span class="s2">&quot;=&quot;</span><span class="p">,</span><span class="w"> </span>schema<span class="p">.</span>defaultValues<span class="p">[</span>key<span class="p">]));</span>
+<span class="w">                    </span>suggestCount<span class="o">++</span><span class="p">;</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// Resize arrays</span>
+<span class="w">        </span>missingKeys<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="kt">string</span><span class="p">[](</span>missingCount<span class="p">);</span>
+<span class="w">        </span>suggestions<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="kt">string</span><span class="p">[](</span>suggestCount<span class="p">);</span>
+
+<span class="w">        </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>missingCount<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>missingKeys<span class="p">[</span>i<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>missing<span class="p">[</span>i<span class="p">];</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>suggestCount<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>suggestions<span class="p">[</span>i<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>suggest<span class="p">[</span>i<span class="p">];</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span>isValid<span class="w"> </span><span class="o">=</span><span class="w"> </span>missingCount<span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getSchemaInfo</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>schemaName<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>
+<span class="w">        </span><span class="kt">string</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>requiredKeys<span class="p">,</span>
+<span class="w">        </span><span class="kt">string</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>optionalKeys
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>MetadataSchema<span class="w"> </span>storage<span class="w"> </span>schema<span class="w"> </span><span class="o">=</span><span class="w"> </span>schemas<span class="p">[</span>schemaName<span class="p">];</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span><span class="p">(</span>schema<span class="p">.</span>requiredKeys<span class="p">,</span><span class="w"> </span>schema<span class="p">.</span>optionalKeys<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">_checkDiamondHasMetadata</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">diamondAddress</span><span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>key<span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bool</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// This would require extended interface or direct storage access</span>
+<span class="w">        </span><span class="c1">// Placeholder implementation</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span><span class="kt">true</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="diamond-factory-integration">Diamond Factory Integration<a class="headerlink" href="#diamond-factory-integration" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Integration with diamond factory for standardized deployment</span>
+<span class="k">contract</span><span class="w"> </span><span class="ni">DiamondFactoryIntegration</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">DeploymentConfig</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>DiamondSettings<span class="w"> </span>settings<span class="p">;</span>
+<span class="w">        </span><span class="kt">string</span><span class="p">[]</span><span class="w"> </span>metadataKeys<span class="p">;</span>
+<span class="w">        </span><span class="kt">string</span><span class="p">[]</span><span class="w"> </span>metadataValues<span class="p">;</span>
+<span class="w">        </span><span class="kt">address</span><span class="p">[]</span><span class="w"> </span>initialFacets<span class="p">;</span>
+<span class="w">        </span>bytes4<span class="p">[][]</span><span class="w"> </span>facetSelectors<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span>DeploymentConfig<span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>deploymentConfigs<span class="p">;</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">address</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>factoryToDiamond<span class="p">;</span>
+
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">DiamondDeploymentConfigured</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>factory<span class="p">,</span><span class="w"> </span>DeploymentConfig<span class="w"> </span>config<span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">DiamondDeployed</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>factory<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>diamond<span class="p">,</span><span class="w"> </span>DiamondSettings<span class="w"> </span>settings<span class="p">);</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">configureDeployment</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">factory</span><span class="p">,</span>
+<span class="w">        </span>DeploymentConfig<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>config
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyOwner<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>deploymentConfigs<span class="p">[</span>factory<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>config<span class="p">;</span>
+
+<span class="w">        </span>emit<span class="w"> </span>DiamondDeploymentConfigured<span class="p">(</span>factory<span class="p">,</span><span class="w"> </span>config<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">deployDiamond</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">factory</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>DeploymentConfig<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>config<span class="w"> </span><span class="o">=</span><span class="w"> </span>deploymentConfigs<span class="p">[</span>factory<span class="p">];</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>config<span class="p">.</span>settings<span class="p">.</span>owner<span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">),</span><span class="w"> </span><span class="s2">&quot;Deployment config not set&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Deploy diamond via factory</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">diamond</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>IDiamondFactory<span class="p">(</span>factory<span class="p">).</span>deployDiamond<span class="p">({</span>
+<span class="w">            </span>templateName<span class="o">:</span><span class="w"> </span><span class="s2">&quot;Custom&quot;</span><span class="p">,</span>
+<span class="w">            </span>salt<span class="o">:</span><span class="w"> </span><span class="nb">keccak256</span><span class="p">(</span>abi<span class="p">.</span>encodePacked<span class="p">(</span><span class="k">block.timestamp</span><span class="p">,</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">)),</span>
+<span class="w">            </span>initData<span class="o">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">            </span>owner<span class="o">:</span><span class="w"> </span>config<span class="p">.</span>settings<span class="p">.</span>owner<span class="p">,</span>
+<span class="w">            </span>gasLimit<span class="o">:</span><span class="w"> </span><span class="m m-Decimal">0</span>
+<span class="w">        </span><span class="p">});</span>
+
+<span class="w">        </span>factoryToDiamond<span class="p">[</span>factory<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>diamond<span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// Set initial facets and metadata</span>
+<span class="w">        </span>IDiamondCut<span class="p">(</span>diamond<span class="p">).</span>diamondCut<span class="p">(</span>
+<span class="w">            </span>_buildFacetCuts<span class="p">(</span>config<span class="p">.</span>initialFacets<span class="p">,</span><span class="w"> </span>config<span class="p">.</span>facetSelectors<span class="p">),</span>
+<span class="w">            </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">),</span>
+<span class="w">            </span><span class="s2">&quot;&quot;</span>
+<span class="w">        </span><span class="p">);</span>
+
+<span class="w">        </span>IDiamond<span class="p">(</span>diamond<span class="p">).</span>configureDiamond<span class="p">(</span>config<span class="p">.</span>settings<span class="p">,</span><span class="w"> </span>config<span class="p">.</span>metadataKeys<span class="p">,</span><span class="w"> </span>config<span class="p">.</span>metadataValues<span class="p">);</span>
+
+<span class="w">        </span>emit<span class="w"> </span>DiamondDeployed<span class="p">(</span>factory<span class="p">,</span><span class="w"> </span>diamond<span class="p">,</span><span class="w"> </span>config<span class="p">.</span>settings<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">_buildFacetCuts</span><span class="p">(</span><span class="kt">address</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>facets<span class="p">,</span><span class="w"> </span>bytes4<span class="p">[][]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>selectors<span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>pure<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>IDiamondCut<span class="p">.</span>FacetCut<span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>IDiamondCut<span class="p">.</span>FacetCut<span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>cuts<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span>IDiamondCut<span class="p">.</span>FacetCut<span class="p">[](</span>facets<span class="p">.</span>length<span class="p">);</span>
+<span class="w">        </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>facets<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>cuts<span class="p">[</span>i<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>IDiamondCut<span class="p">.</span>FacetCut<span class="p">({</span>
+<span class="w">                </span>facetAddress<span class="o">:</span><span class="w"> </span>facets<span class="p">[</span>i<span class="p">],</span>
+<span class="w">                </span>action<span class="o">:</span><span class="w"> </span>IDiamondCut<span class="p">.</span>FacetCutAction<span class="p">.</span>Add<span class="p">,</span>
+<span class="w">                </span>functionSelectors<span class="o">:</span><span class="w"> </span>selectors<span class="p">[</span>i<span class="p">]</span>
+<span class="w">            </span><span class="p">});</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>cuts<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="standard-diamond-implementation">Standard Diamond Implementation<a class="headerlink" href="#standard-diamond-implementation" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Basic Diamond contract implementation adhering to IDiamond interface</span>
+<span class="k">contract</span><span class="w"> </span><span class="ni">MyDiamond</span><span class="w"> </span><span class="kt">is</span><span class="w"> </span>IDiamond<span class="p">,</span><span class="w"> </span>Diamond<span class="p">,</span><span class="w"> </span>DiamondCutFacet<span class="p">,</span><span class="w"> </span>DiamondLoupeFacet<span class="p">,</span><span class="w"> </span>OwnershipFacet<span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Constructor initializes DiamondStorage</span>
+<span class="w">    </span><span class="kt">constructor</span><span class="p">(</span>DiamondSettings<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>initialSettings<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">diamondInit</span><span class="p">,</span><span class="w"> </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>initCalldata<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Perform initialization</span>
+<span class="w">        </span>LibDiamond<span class="p">.</span>diamondStorage<span class="p">().</span>diamondContract<span class="p">.</span>settings<span class="w"> </span><span class="o">=</span><span class="w"> </span>initialSettings<span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// Optional initialization call</span>
+<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>diamondInit<span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="p">(</span><span class="kt">bool</span><span class="w"> </span><span class="nv">success</span><span class="p">,)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>diamondInit<span class="p">.</span>delegatecall<span class="p">(</span>initCalldata<span class="p">);</span>
+<span class="w">            </span><span class="kt">require</span><span class="p">(</span>success<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Initialization failed&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="extended-diamond-interface">Extended Diamond Interface<a class="headerlink" href="#extended-diamond-interface" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code>interface<span class="w"> </span>IExtendedDiamond<span class="w"> </span><span class="kt">is</span><span class="w"> </span>IDiamond<span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// New functions can be added here</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">version</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">upgradeTo</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">newImplementation</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="security-considerations">Security Considerations<a class="headerlink" href="#security-considerations" title="Permanent link">&para;</a></h2>
+<h3 id="access-control">Access Control<a class="headerlink" href="#access-control" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Owner-Only Functions</strong>: Sensitive operations restricted to the diamond owner</li>
+<li><strong>Factory Restrictions</strong>: Only trusted factories can create diamonds</li>
+<li><strong>Delegated Calls</strong>: Careful handling of delegatecall to prevent vulnerabilities</li>
+</ul>
+<h3 id="data-integrity">Data Integrity<a class="headerlink" href="#data-integrity" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Storage Collisions</strong>: Prevention through Diamond Storage pattern</li>
+<li><strong>Immutable Data</strong>: Critical configuration once set is immutable</li>
+<li><strong>Type Safety</strong>: Enforcement of data types in structures</li>
+<li><strong>Event Logging</strong>: Comprehensive event logs for auditability</li>
+</ul>
+<h3 id="interface-compliance">Interface Compliance<a class="headerlink" href="#interface-compliance" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>EIP-2535 Adherence</strong>: Full compliance with Diamond Standard</li>
+<li><strong>EIP-165 Support</strong>: Standard interface detection</li>
+<li><strong>Consistent APIs</strong>: Predictable and reliable contract interactions</li>
+</ul>
+<h2 id="gas-optimization">Gas Optimization<a class="headerlink" href="#gas-optimization" title="Permanent link">&para;</a></h2>
+<h3 id="storage-efficiency">Storage Efficiency<a class="headerlink" href="#storage-efficiency" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Minimal Storage</strong>: Only essential data stored on-chain</li>
+<li><strong>Packed Structs</strong>: Optimize storage layout for structs</li>
+<li><strong>Lazy Initialization</strong>: Initialize only when necessary</li>
+<li><strong>View Functions</strong>: No gas cost for read-only queries</li>
+</ul>
+<h3 id="function-optimization">Function Optimization<a class="headerlink" href="#function-optimization" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Internal Helper Functions</strong>: Reduce external calls</li>
+<li><strong>Delegatecall</strong>: Minimize gas cost for cross-facet calls</li>
+<li><strong>Batch Operations</strong>: Efficient processing of multiple items</li>
+</ul>
+<h2 id="testing">Testing<a class="headerlink" href="#testing" title="Permanent link">&para;</a></h2>
+<h3 id="unit-tests">Unit Tests<a class="headerlink" href="#unit-tests" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Test each core function in isolation</li>
+<li>Verify data structure integrity</li>
+<li>Simulate various configuration scenarios</li>
+</ul>
+<h3 id="integration-tests">Integration Tests<a class="headerlink" href="#integration-tests" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Test deployment through Diamond Factory</li>
+<li>Verify cross-facet and cross-contract interactions</li>
+<li>Simulate upgrade scenarios and state preservation</li>
+</ul>
+<h2 id="related-documentation">Related Documentation<a class="headerlink" href="#related-documentation" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../../diamond/">Diamond Standard Overview</a></li>
+<li><a href="../../diamond-factory/">Diamond Factory</a></li>
+<li><a href="../../facets/diamond-cut-facet/">Diamond Cut Facet</a></li>
+<li><a href="../../facets/diamond-loupe-facet/">Diamond Loupe Facet</a></li>
+<li><a href="../../facets/ownership-facet/">Owner Facet</a></li>
+<li><a href="../../../developer-guides/development-environment-setup/">Diamond Architecture</a></li>
+<li><a href="../../../integrator-guide/smart-contracts/">Integrator's Guide: Smart Contracts</a> - General smart contract integration guidance.</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../facets/ownership-facet/" class="btn btn-neutral float-left" title="Ownership Facet"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../imarketplace/" class="btn btn-neutral float-right" title="IMarketplace">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../../facets/ownership-facet/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../imarketplace/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

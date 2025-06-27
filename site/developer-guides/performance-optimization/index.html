@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Gemforce Team" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Performance Optimization - Gemforce Documentation</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Performance Optimization";
+        var mkdocs_page_input_path = "developer-guides/performance-optimization.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Gemforce Documentation
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../developer-setup-guide/">Developer Setup Guide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../system-architecture/gemforce-system-architecture/">System Architecture</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Smart Contracts</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../smart-contracts/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../smart-contracts/diamond/">Diamond Contract</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../smart-contracts/diamond-factory/">Diamond Factory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../smart-contracts/identity-factory/">Identity Factory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Facets</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/marketplace-facet/">Marketplace Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/trade-deal-management-facet/">Trade Deal Management Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/carbon-credit-facet/">Carbon Credit Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/identity-registry-facet/">Identity Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/trusted-issuers-registry-facet/">Trusted Issuers Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/fee-distributor-facet/">Fee Distributor Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/gemforce-minter-facet/">Gemforce Minter Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/multi-sale-facet/">Multi Sale Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/svg-templates-facet/">SVG Templates Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/trade-deal-admin-facet/">Trade Deal Admin Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/trade-deal-operations-facet/">Trade Deal Operations Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/collateral-token-factory-facet/">Collateral Token Factory Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/diamond-cut-facet/">Diamond Cut Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/diamond-loupe-facet/">Diamond Loupe Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/ownership-facet/">Ownership Facet</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Interfaces</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/idiamond/">IDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/imarketplace/">IMarketplace</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/itradedeal/">ITradeDeal</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/icarbon-credit/">ICarbonCredit</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/ierc1155-mint/">IERC1155Mint</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/ierc734/">IERC734</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/ierc735/">IERC735</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/ierc721a/">IERC721A</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/idiamond-factory/">IDiamondFactory</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/iidentity/">IIdentity</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/imultisale/">IMultiSale</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/ifee-distributor/">IFeeDistributor</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/igemforce-minter-facet/">IGemforceMinterFacet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/iidentity-registry/">IIdentityRegistry</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/itrusted-issuers-registry/">TRUSTEDIssuersRegistry</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/isvg/">ISVG</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/iattribute/">IAttribute</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/ivariable-price/">IVariablePrice</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Libraries</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/carbon-credit-lib/">Carbon Credit Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/trade-deal-lib/">Trade Deal Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/multi-sale-lib/">Multi Sale Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/diamond-factory-lib/">Diamond Factory Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/svg-templates-lib/">SVG Templates Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/attribute-lib/">Attribute Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/variable-price-lib/">Variable Price Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/merkle-prover/">Merkle Prover</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/fee-distributor-lib/">Fee Distributor Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/lib-diamond/">LibDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/diamond-lib/">DiamondLib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/erc721a-lib/">ERC721A Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/erc721a-enumeration-lib/">ERC721A Enumeration Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/strings-lib/">Strings Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/trusted-issuer-lib/">Trusted Issuer Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/set-libraries/">Set Libraries</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">SDK & Libraries</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../sdk-libraries/blockchain/">Blockchain Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../sdk-libraries/diamond/">Diamond Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../sdk-libraries/contract/">Contract Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../sdk-libraries/deploy/">Deployment Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../sdk-libraries/validation-utils/">Validation Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../sdk-libraries/nft-sale-utils/">NFT Sale Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../sdk-libraries/webhooks/">Webhooks Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../smart-contracts/libraries/metadata-lib/">Metadata Library</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Cloud Functions</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/authentication/">Authentication Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/auth-functions/">Auth Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/blockchain/">Blockchain Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/bridge/">Bridge Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/contracts/">Contract Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/deploy/">Deploy Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/dfns/">DFNS Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/project/">Project Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/trade-deal/">Trade Deal Functions</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">API Documentation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api-documentation/gemforce-api-documentation/">Full API Reference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api-documentation/gemforce-api-quick-reference/">Quick Reference</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../gemforce-external-services/">External Services</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../gemforce-system-architecture/">System Architecture</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Operations Tasks</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/diamond/">Diamond Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/identities/">Identity Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/marketplace-management/">Marketplace Management Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/carbon-credit-management/">Carbon Credit Management Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/trade-deal/">Trade Deal Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/integration-test/">Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/integration-test-marketplace/">Marketplace Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/integration-test-trade-deal/">Trade Deal Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/admin-utils/">Admin Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/sync-diamond/">Sync Diamond Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cloud-functions/tasks/sync-events/">Sync Events Tasks</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">EIPs (Ethereum Improvement Proposals)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../eips/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../eips/EIP-DRAFT-Diamond-Enhanced-Marketplace/">Diamond-Enhanced Marketplace</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../eips/EIP-DRAFT-Multi-Token-Sale-Standard/">Multi-Token Sale Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../eips/EIP-DRAFT-Collateralized-Trade-Deal-Standard/">Collateralized Trade Deal Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../eips/EIP-DRAFT-Enhanced-Identity-System/">Enhanced Identity System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../eips/EIP-DRAFT-Diamond-Factory-Standard/">Diamond Factory Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../eips/EIP-DRAFT-Carbon-Credit-Standard/">Carbon Credit Standard</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Developer Guides</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../development-environment-setup/">Development Environment Setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../testing-frameworks/">Testing Frameworks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../debugging/">Debugging</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Performance Optimization</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#overview-of-performance-considerations">Overview of Performance Considerations</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#1-smart-contract-performance-optimization">1. Smart Contract Performance Optimization</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#best-practices">Best Practices</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example-gas-optimized-sstore-reduction">Example (Gas-optimized SSTORE reduction)</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2-cloud-function-backend-performance-optimization">2. Cloud Function &amp; Backend Performance Optimization</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#best-practices_1">Best Practices</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example-optimized-parse-query">Example (Optimized Parse Query)</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#3-frontendintegration-layer-optimization">3. Frontend/Integration Layer Optimization</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#best-practices_2">Best Practices</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#4-database-performance-mongodb">4. Database Performance (MongoDB)</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#best-practices_3">Best Practices</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#related-documentation">Related Documentation</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../test-case-specifications/">Test Case Specifications</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../test-data-management/">Test Data Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../automated-testing-setup/">Automated Testing Setup</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Deployment Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../deployment-guides/multi-network-deployment/">Multi-Network Deployment</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../deployment-guides/infrastructure-management/">Infrastructure Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../deployment-guides/monitoring-logging/">Monitoring and Logging</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">User Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../gemforce-administrator-guide/">Administrator Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../gemforce-deployer-guide/">Deployer Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../gemforce-integrator-guide/">Integrator Guide</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Integrator's Guide</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrator-guide/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrator-guide/authentication/">Authentication</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrator-guide/rest-api/">REST API</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrator-guide/smart-contracts/">Smart Contracts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrator-guide/dfns/">DFNS Integration</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrator-guide/parse-server/">Parse Server Notes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrator-guide/webhooks/">Webhooks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrator-guide/error-handling/">Error Handling</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrator-guide/sample-code/">Sample Code</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrator-guide/integration-patterns/">Integration Patterns</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrator-guide/testing/">Testing Considerations</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrator-guide/security/">Security</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../external-services/gemforce-external-services/">External Services</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Security</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../security/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../security/threat-model/">Threat Model and Risk Assessment</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../security/incident-response/">Incident Response Procedures</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../security/audit-compliance/">Security Audits and Compliance</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">External Developer Integration</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../external-developer-integration/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../external-developer-integration/api-rate-limiting/">API Rate Limiting</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../external-developer-integration/webhook-implementation-guidelines/">Webhook Implementation Guidelines</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../external-developer-integration/sdk-development-guidelines/">SDK Development Guidelines</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../external-developer-integration/partner-integration-guides/">Partner Integration Guides</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../gemforce-documentation-gap-analysis/">Documentation Gap Analysis</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../documentation-progress-summary/">Documentation Progress Summary</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../documentation-plan/">Documentation Plan</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Configuration & Environment</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../configuration-environment/gemforce-config/">Gemforce Config</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../configuration-environment/environment-specific-guides/">Environment-Specific Guides</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../configuration-environment/configuration-validation/">Configuration Validation Procedures</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../configuration-environment/external-service-config-management/">External Service Configuration Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../configuration-environment/database-schema-overview/">Database Schema Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../configuration-environment/database-migration-procedures/">Database Migration Procedures</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Gemforce Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Developer Guides</li>
+      <li class="breadcrumb-item active">Performance Optimization</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="developer-guides-performance-optimization">Developer Guides: Performance Optimization<a class="headerlink" href="#developer-guides-performance-optimization" title="Permanent link">&para;</a></h1>
+<p>Optimizing the performance of your applications built on the Gemforce platform is crucial for user experience, operational efficiency, and cost management. This guide explores strategies and best practices for identifying and addressing performance bottlenecks across smart contracts, cloud functions, and integration layers.</p>
+<h2 id="overview-of-performance-considerations">Overview of Performance Considerations<a class="headerlink" href="#overview-of-performance-considerations" title="Permanent link">&para;</a></h2>
+<p>Performance in a decentralized context has unique aspects:</p>
+<ul>
+<li><strong>Gas Costs</strong>: Every operation on the blockchain consumes gas, which directly translates to transaction fees. Minimizing gas usage is paramount.</li>
+<li><strong>Latency</strong>: Transaction confirmation times, RPC response times, and inter-service communication can introduce delays.</li>
+<li><strong>Scalability</strong>: Ensuring your application can handle increased user load and data volume without degrading performance.</li>
+</ul>
+<h2 id="1-smart-contract-performance-optimization">1. Smart Contract Performance Optimization<a class="headerlink" href="#1-smart-contract-performance-optimization" title="Permanent link">&para;</a></h2>
+<p>Optimizing Solidity code directly impacts gas costs and transaction speed.</p>
+<h3 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Minimize Storage Writes (<code>SSTORE</code>)</strong>: Writing to storage is the most expensive operation. Read-only (<code>view</code>/<code>pure</code>) functions are cheap.<ul>
+<li>Store only essential data on-chain.</li>
+<li>Batch updates where possible to reduce multiple <code>SSTORE</code> operations.</li>
+</ul>
+</li>
+<li><strong>Efficient Data Structures</strong>: Use <code>mapping</code> for direct lookups over iterating through arrays (if possible). When using arrays, optimize for appends rather than insertions/deletions in the middle.</li>
+<li><strong>Gas-Efficient Loops</strong>: Minimize loop iterations and complex calculations within loops.</li>
+<li><strong>External Calls (<code>CALL</code>, <code>DELEGATECALL</code>)</strong>: These are expensive and can be vulnerable to reentrancy. Use them judiciously.</li>
+<li><strong>Short-Circuiting Logic</strong>: Design functions to fail (revert) early if conditions are not met, saving gas.</li>
+<li><strong>Packed Storage Variables</strong>: Declare variables of the same type sequentially in <code>structs</code> or contract state to allow the Solidity compiler to pack them into fewer storage slots, reducing <code>SSTORE</code> operations.</li>
+<li><strong>Use <code>calldata</code></strong>: For external function parameters that don't need to be modified, use <code>calldata</code> instead of <code>memory</code> to save gas.</li>
+<li><strong>State vs. Memory/Calldata</strong>: Understand the cost implications of <code>storage</code> vs. <code>memory</code> vs. <code>calldata</code>.</li>
+<li><strong>Remove Unused Code</strong>: Ensure your deployed contract doesn't include unnecessary functions or variables.</li>
+<li><strong>Hardhat Gas Reporter/Foundry Gas Snapshots</strong>: Integrate Hardhat's <code>gasReporter</code> or Foundry's native gas estimation <code>(forge test --gas-report)</code> into your testing workflow to track and optimize gas costs per function.</li>
+</ul>
+<h3 id="example-gas-optimized-sstore-reduction">Example (Gas-optimized <code>SSTORE</code> reduction)<a class="headerlink" href="#example-gas-optimized-sstore-reduction" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Less optimized: Separate SSTORE operations</span>
+<span class="c1">// function updateUserInfo(address user, uint256 newAge, string memory newName) public {</span>
+<span class="c1">//     users[user].age = newAge; // SSTORE 1</span>
+<span class="c1">//     users[user].name = newName; // SSTORE 2</span>
+<span class="c1">// }</span>
+
+<span class="c1">// More optimized: Update struct once (simulated for simplicity, actual packing handled by compiler)</span>
+<span class="kt">struct</span><span class="w"> </span><span class="nv">UserInfo</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">age</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">string</span><span class="w"> </span><span class="nv">name</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">mapping</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span>UserInfo<span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>users<span class="p">;</span>
+
+<span class="kt">function</span><span class="w"> </span><span class="nv">updateUserInfoOptimized</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">user</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">newAge</span><span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>newName<span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>UserInfo<span class="w"> </span>storage<span class="w"> </span>userStorage<span class="w"> </span><span class="o">=</span><span class="w"> </span>users<span class="p">[</span>user<span class="p">];</span>
+<span class="w">    </span>userStorage<span class="p">.</span>age<span class="w"> </span><span class="o">=</span><span class="w"> </span>newAge<span class="p">;</span>
+<span class="w">    </span>userStorage<span class="p">.</span>name<span class="w"> </span><span class="o">=</span><span class="w"> </span>newName<span class="p">;</span><span class="w"> </span><span class="c1">// Only one effective SSTORE operation for the slot</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="2-cloud-function-backend-performance-optimization">2. Cloud Function &amp; Backend Performance Optimization<a class="headerlink" href="#2-cloud-function-backend-performance-optimization" title="Permanent link">&para;</a></h2>
+<p>Optimizing your Parse Server Cloud Functions and backend services is key for responsiveness and scalability.</p>
+<h3 id="best-practices_1">Best Practices<a class="headerlink" href="#best-practices_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Database Queries</strong>:<ul>
+<li><strong>Efficient Queries</strong>: Use Parse Server's query capabilities (<code>equalTo</code>, <code>greaterThan</code>, <code>containedIn</code>, <code>limit</code>, <code>skip</code>) efficiently.</li>
+<li><strong>Indexing</strong>: Ensure your Parse classes and MongoDB collections have appropriate indexes for frequently queried fields.</li>
+<li><strong>Reduce N+1 Queries</strong>: Avoid fetching data in loops. Use <code>include</code> to fetch related objects in a single query.</li>
+</ul>
+</li>
+<li><strong>Cloud Function Logic</strong>:<ul>
+<li><strong>Minimize External RPC Calls</strong>: Batch blockchain <code>view</code> calls where possible. Avoid unnecessary calls to external RPC nodes.</li>
+<li><strong>Asynchronous Operations</strong>: Use <code>async/await</code> and Promises effectively to prevent blocking the event loop.</li>
+<li><strong>Caching</strong>: Implement in-memory caches for frequently accessed, non-sensitive data (e.g., token prices, static configurations).</li>
+</ul>
+</li>
+<li><strong>Payload Size</strong>: Minimize the size of data transferred over the network (e.g., compress API responses).</li>
+<li><strong>Horizontal Scaling</strong>: Configure your Parse Server to scale horizontally (run multiple instances behind a load balancer) to handle increased load.</li>
+<li><strong>Background Jobs</strong>: For long-running or resource-intensive tasks (e.g., extensive data processing, event re-indexing), use Parse Server's background jobs instead of Cloud Functions triggered by API requests.</li>
+<li><strong>Logging</strong>: Optimize logging levels in production to reduce I/O overhead. Use structured logging for efficient analysis.</li>
+</ul>
+<h3 id="example-optimized-parse-query">Example (Optimized Parse Query)<a class="headerlink" href="#example-optimized-parse-query" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Less optimized: Separate queries for related data</span>
+<span class="c1">// const project = await new Parse.Query(&#39;Project&#39;).get(projectId);</span>
+<span class="c1">// const user = await project.get(&#39;owner&#39;).fetch(); </span>
+
+<span class="c1">// More optimized: Use &#39;include&#39; for compound queries</span>
+<span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s1">&#39;getProjectDetailsOptimized&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">(</span><span class="nx">request</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">projectId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">request</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">projectId</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Parse</span><span class="p">.</span><span class="nx">Query</span><span class="p">(</span><span class="s1">&#39;Project&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">query</span><span class="p">.</span><span class="nx">include</span><span class="p">(</span><span class="s1">&#39;owner&#39;</span><span class="p">);</span><span class="w"> </span><span class="c1">// Fetch the &#39;owner&#39; object along with the Project</span>
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">project</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">query</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">projectId</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">project</span><span class="p">.</span><span class="nx">toJSON</span><span class="p">();</span><span class="w"> </span><span class="c1">// Owner data will be embedded</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Parse</span><span class="p">.</span><span class="ne">Error</span><span class="p">(</span><span class="nx">Parse</span><span class="p">.</span><span class="ne">Error</span><span class="p">.</span><span class="nx">OBJECT_NOT_FOUND</span><span class="p">,</span><span class="w"> </span><span class="sb">`Project not found with ID </span><span class="si">${</span><span class="nx">projectId</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div>
+
+<h2 id="3-frontendintegration-layer-optimization">3. Frontend/Integration Layer Optimization<a class="headerlink" href="#3-frontendintegration-layer-optimization" title="Permanent link">&para;</a></h2>
+<p>Optimizing how your client applications and backend integration services interact with Gemforce.</p>
+<h3 id="best-practices_2">Best Practices<a class="headerlink" href="#best-practices_2" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Batching Transactions/Calls</strong>: Where possible, combine multiple on-chain actions into a single transaction (e.g., multi-calls, batch minting).</li>
+<li><strong>Off-chain Computation</strong>: Perform as much computation as possible off-chain to reduce gas costs and smart contract load.</li>
+<li><strong>Caching RPC Responses</strong>: Implement local caching for <code>view</code> and <code>pure</code> function calls to reduce redundant network requests to RPC nodes.</li>
+<li><strong>Optimistic UI/UX</strong>: For state-changing blockchain transactions, update the UI immediately and optimistically, then confirm with actual on-chain events. This improves perceived performance.</li>
+<li><strong>Efficient Event Streaming</strong>: Use WebSockets (<code>wss://</code>) for real-time event listening rather than frequent polling.</li>
+<li><strong>Lazy Loading</strong>: Load data and UI components only when needed.</li>
+<li><strong>Image/Asset Optimization</strong>: Optimize all off-chain assets (NFT images, web assets) for fast loading.</li>
+<li><strong>CDN Usage</strong>: Serve static assets from a Content Delivery Network (CDN).</li>
+<li><strong>Error Retries with Backoff</strong>: Implement exponential backoff for retrying failed API or RPC calls to handle transient network issues gracefully without overwhelming services.</li>
+</ul>
+<h2 id="4-database-performance-mongodb">4. Database Performance (MongoDB)<a class="headerlink" href="#4-database-performance-mongodb" title="Permanent link">&para;</a></h2>
+<p>Optimizing the MongoDB instance used by Parse Server.</p>
+<h3 id="best-practices_3">Best Practices<a class="headerlink" href="#best-practices_3" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Indexing</strong>: Critical for fast query performance. Use <code>db.collection.createIndex()</code> to create indexes on frequently queried fields. Monitor slow queries with <code>db.getProfilingStatus()</code> and <code>db.system.profile.find()</code>.</li>
+<li><strong>Schema Design</strong>: Design your MongoDB schema to align with query patterns (e.g., embedding frequently accessed related data, denormalization).</li>
+<li><strong>Sharding</strong>: For very large datasets and high write throughput, consider sharding your MongoDB cluster.</li>
+<li><strong>Replication</strong>: Use replica sets for high availability and read scalability.</li>
+<li><strong>Monitoring</strong>: Continuously monitor MongoDB performance metrics (CPU, memory, disk I/O, active connections, query times).</li>
+</ul>
+<h2 id="related-documentation">Related Documentation<a class="headerlink" href="#related-documentation" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../debugging/">Developer Guides: Debugging</a></li>
+<li><a href="../../integrator-guide/smart-contracts/">Integrator's Guide: Smart Contracts</a></li>
+<li><a href="../../integrator-guide/rest-api/">Integrator's Guide: REST API</a></li>
+<li><a href="https://docs.parseplatform.org/parse-server/guide/#scalability">Parse Server Scalability Guide</a> (External)</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../debugging/" class="btn btn-neutral float-left" title="Debugging"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../test-case-specifications/" class="btn btn-neutral float-right" title="Test Case Specifications">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../debugging/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../test-case-specifications/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

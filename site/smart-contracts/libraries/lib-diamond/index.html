@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Gemforce Team" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>LibDiamond - Gemforce Documentation</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "LibDiamond";
+        var mkdocs_page_input_path = "smart-contracts/libraries/lib-diamond.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../.." class="icon icon-home"> Gemforce Documentation
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../developer-setup-guide/">Developer Setup Guide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../system-architecture/gemforce-system-architecture/">System Architecture</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Smart Contracts</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../diamond/">Diamond Contract</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../diamond-factory/">Diamond Factory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../identity-factory/">Identity Factory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Facets</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/marketplace-facet/">Marketplace Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trade-deal-management-facet/">Trade Deal Management Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/carbon-credit-facet/">Carbon Credit Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/identity-registry-facet/">Identity Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trusted-issuers-registry-facet/">Trusted Issuers Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/fee-distributor-facet/">Fee Distributor Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/gemforce-minter-facet/">Gemforce Minter Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/multi-sale-facet/">Multi Sale Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/svg-templates-facet/">SVG Templates Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trade-deal-admin-facet/">Trade Deal Admin Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trade-deal-operations-facet/">Trade Deal Operations Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/collateral-token-factory-facet/">Collateral Token Factory Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/diamond-cut-facet/">Diamond Cut Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/diamond-loupe-facet/">Diamond Loupe Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/ownership-facet/">Ownership Facet</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Interfaces</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/idiamond/">IDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/imarketplace/">IMarketplace</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/itradedeal/">ITradeDeal</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/icarbon-credit/">ICarbonCredit</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ierc1155-mint/">IERC1155Mint</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ierc734/">IERC734</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ierc735/">IERC735</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ierc721a/">IERC721A</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/idiamond-factory/">IDiamondFactory</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/iidentity/">IIdentity</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/imultisale/">IMultiSale</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ifee-distributor/">IFeeDistributor</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/igemforce-minter-facet/">IGemforceMinterFacet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/iidentity-registry/">IIdentityRegistry</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/itrusted-issuers-registry/">TRUSTEDIssuersRegistry</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/isvg/">ISVG</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/iattribute/">IAttribute</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ivariable-price/">IVariablePrice</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" >Libraries</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" href="../carbon-credit-lib/">Carbon Credit Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../trade-deal-lib/">Trade Deal Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../multi-sale-lib/">Multi Sale Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../diamond-factory-lib/">Diamond Factory Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../svg-templates-lib/">SVG Templates Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../attribute-lib/">Attribute Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../variable-price-lib/">Variable Price Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../merkle-prover/">Merkle Prover</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../fee-distributor-lib/">Fee Distributor Lib</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">LibDiamond</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#overview">Overview</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#key-features">Key Features</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#core-data-structures">Core Data Structures</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#diamondstorage">DiamondStorage</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#facetaddressandposition">FacetAddressAndPosition</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#upgradeproposal">UpgradeProposal</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#core-functions">Core Functions</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#storage-access">Storage Access</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#ownership-management">Ownership Management</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#diamond-cut-operations">Diamond Cut Operations</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#facet-management">Facet Management</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#timelock-upgrade-system">Timelock Upgrade System</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#security-features">Security Features</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#access-control">Access Control</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#safety-checks">Safety Checks</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#gas-optimization">Gas Optimization</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#constants">Constants</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#events">Events</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usage-examples">Usage Examples</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#basic-diamond-cut">Basic Diamond Cut</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#timelock-upgrade-process">Timelock Upgrade Process</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#integration-points">Integration Points</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#best-practices">Best Practices</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#security-considerations">Security Considerations</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#related-documentation">Related Documentation</a>
+    </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../diamond-lib/">DiamondLib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../erc721a-lib/">ERC721A Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../erc721a-enumeration-lib/">ERC721A Enumeration Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../strings-lib/">Strings Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../trusted-issuer-lib/">Trusted Issuer Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../set-libraries/">Set Libraries</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">SDK & Libraries</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/blockchain/">Blockchain Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/diamond/">Diamond Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/contract/">Contract Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/deploy/">Deployment Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/validation-utils/">Validation Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/nft-sale-utils/">NFT Sale Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/webhooks/">Webhooks Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../metadata-lib/">Metadata Library</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Cloud Functions</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/authentication/">Authentication Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/auth-functions/">Auth Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/blockchain/">Blockchain Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/bridge/">Bridge Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/contracts/">Contract Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/deploy/">Deploy Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/dfns/">DFNS Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/project/">Project Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/trade-deal/">Trade Deal Functions</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">API Documentation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../api-documentation/gemforce-api-documentation/">Full API Reference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../api-documentation/gemforce-api-quick-reference/">Quick Reference</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-external-services/">External Services</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-system-architecture/">System Architecture</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Operations Tasks</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/diamond/">Diamond Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/identities/">Identity Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/marketplace-management/">Marketplace Management Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/carbon-credit-management/">Carbon Credit Management Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/trade-deal/">Trade Deal Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/integration-test/">Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/integration-test-marketplace/">Marketplace Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/integration-test-trade-deal/">Trade Deal Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/admin-utils/">Admin Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/sync-diamond/">Sync Diamond Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/sync-events/">Sync Events Tasks</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">EIPs (Ethereum Improvement Proposals)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Diamond-Enhanced-Marketplace/">Diamond-Enhanced Marketplace</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Multi-Token-Sale-Standard/">Multi-Token Sale Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Collateralized-Trade-Deal-Standard/">Collateralized Trade Deal Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Enhanced-Identity-System/">Enhanced Identity System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Diamond-Factory-Standard/">Diamond Factory Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Carbon-Credit-Standard/">Carbon Credit Standard</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Developer Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/development-environment-setup/">Development Environment Setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/testing-frameworks/">Testing Frameworks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/debugging/">Debugging</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/performance-optimization/">Performance Optimization</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/test-case-specifications/">Test Case Specifications</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/test-data-management/">Test Data Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/automated-testing-setup/">Automated Testing Setup</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Deployment Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../deployment-guides/multi-network-deployment/">Multi-Network Deployment</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../deployment-guides/infrastructure-management/">Infrastructure Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../deployment-guides/monitoring-logging/">Monitoring and Logging</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">User Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-administrator-guide/">Administrator Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-deployer-guide/">Deployer Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-integrator-guide/">Integrator Guide</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Integrator's Guide</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/authentication/">Authentication</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/rest-api/">REST API</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/smart-contracts/">Smart Contracts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/dfns/">DFNS Integration</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/parse-server/">Parse Server Notes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/webhooks/">Webhooks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/error-handling/">Error Handling</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/sample-code/">Sample Code</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/integration-patterns/">Integration Patterns</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/testing/">Testing Considerations</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/security/">Security</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../external-services/gemforce-external-services/">External Services</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Security</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security/threat-model/">Threat Model and Risk Assessment</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security/incident-response/">Incident Response Procedures</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security/audit-compliance/">Security Audits and Compliance</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">External Developer Integration</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/api-rate-limiting/">API Rate Limiting</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/webhook-implementation-guidelines/">Webhook Implementation Guidelines</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/sdk-development-guidelines/">SDK Development Guidelines</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/partner-integration-guides/">Partner Integration Guides</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-documentation-gap-analysis/">Documentation Gap Analysis</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../documentation-progress-summary/">Documentation Progress Summary</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../documentation-plan/">Documentation Plan</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Configuration & Environment</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/gemforce-config/">Gemforce Config</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/environment-specific-guides/">Environment-Specific Guides</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/configuration-validation/">Configuration Validation Procedures</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/external-service-config-management/">External Service Configuration Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/database-schema-overview/">Database Schema Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/database-migration-procedures/">Database Migration Procedures</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">Gemforce Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Smart Contracts</li>
+          <li class="breadcrumb-item">Libraries</li>
+      <li class="breadcrumb-item active">LibDiamond</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="libdiamond-library">LibDiamond Library<a class="headerlink" href="#libdiamond-library" title="Permanent link">&para;</a></h1>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p><a href="/Users/sschepis/Development/gem-base/contracts/libraries/LibDiamond.sol"><code>LibDiamond</code></a> is the core implementation library for the EIP-2535 Diamond Standard. This library provides all the essential functionality for managing upgradeable smart contracts using the Diamond pattern, including facet management, function selector routing, ownership control, and timelock-based upgrade proposals.</p>
+<h2 id="key-features">Key Features<a class="headerlink" href="#key-features" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Diamond Storage Management</strong>: Implements the diamond storage pattern for upgradeable contracts</li>
+<li><strong>Facet Management</strong>: Add, replace, and remove contract facets dynamically</li>
+<li><strong>Function Selector Routing</strong>: Maps function selectors to their corresponding facet addresses</li>
+<li><strong>Ownership Control</strong>: Manages contract ownership with proper access controls</li>
+<li><strong>Timelock Upgrades</strong>: Implements secure upgrade proposals with configurable timelock periods</li>
+<li><strong>ERC-165 Support</strong>: Interface detection for supported standards</li>
+</ul>
+<h2 id="core-data-structures">Core Data Structures<a class="headerlink" href="#core-data-structures" title="Permanent link">&para;</a></h2>
+<h3 id="diamondstorage">DiamondStorage<a class="headerlink" href="#diamondstorage" title="Permanent link">&para;</a></h3>
+<p>The main storage structure that holds all diamond-related data:</p>
+<div class="codehilite"><pre><span></span><code><span class="kt">struct</span><span class="w"> </span><span class="nv">DiamondStorage</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span>bytes4<span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span>FacetAddressAndPosition<span class="p">)</span><span class="w"> </span>selectorToFacetAndPosition<span class="p">;</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span>FacetFunctionSelectors<span class="p">)</span><span class="w"> </span>facetFunctionSelectors<span class="p">;</span>
+<span class="w">    </span><span class="kt">address</span><span class="p">[]</span><span class="w"> </span>facetAddresses<span class="p">;</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span>bytes4<span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">bool</span><span class="p">)</span><span class="w"> </span>supportedInterfaces<span class="p">;</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">contractOwner</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">upgradeTimelock</span><span class="p">;</span>
+<span class="w">    </span>UpgradeProposal<span class="w"> </span>upgradeProposal<span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="facetaddressandposition">FacetAddressAndPosition<a class="headerlink" href="#facetaddressandposition" title="Permanent link">&para;</a></h3>
+<p>Maps function selectors to their facet addresses and positions:</p>
+<div class="codehilite"><pre><span></span><code><span class="kt">struct</span><span class="w"> </span><span class="nv">FacetAddressAndPosition</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">facetAddress</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">uint96</span><span class="w"> </span><span class="nv">functionSelectorPosition</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="upgradeproposal">UpgradeProposal<a class="headerlink" href="#upgradeproposal" title="Permanent link">&para;</a></h3>
+<p>Stores timelock-based upgrade proposals:</p>
+<div class="codehilite"><pre><span></span><code><span class="kt">struct</span><span class="w"> </span><span class="nv">UpgradeProposal</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>IDiamondCut<span class="p">.</span>FacetCut<span class="p">[]</span><span class="w"> </span>diamondCut<span class="p">;</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">initAddress</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">initCalldata</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">proposalTime</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nv">exists</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="core-functions">Core Functions<a class="headerlink" href="#core-functions" title="Permanent link">&para;</a></h2>
+<h3 id="storage-access">Storage Access<a class="headerlink" href="#storage-access" title="Permanent link">&para;</a></h3>
+<h4 id="diamondstorage_1"><code>diamondStorage()</code><a class="headerlink" href="#diamondstorage_1" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">diamondStorage</span><span class="p">()</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>pure<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>DiamondStorage<span class="w"> </span>storage<span class="w"> </span>ds<span class="p">)</span>
+</code></pre></div>
+
+<p>Returns the diamond storage struct using assembly for gas efficiency.</p>
+<h3 id="ownership-management">Ownership Management<a class="headerlink" href="#ownership-management" title="Permanent link">&para;</a></h3>
+<h4 id="setcontractowneraddress-_newowner"><code>setContractOwner(address _newOwner)</code><a class="headerlink" href="#setcontractowneraddress-_newowner" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">setContractOwner</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">_newOwner</span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span>
+</code></pre></div>
+
+<p>Sets a new contract owner and emits the <code>OwnershipTransferred</code> event.</p>
+<h4 id="contractowner"><code>contractOwner()</code><a class="headerlink" href="#contractowner" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">contractOwner</span><span class="p">()</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">contractOwner_</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Returns the current contract owner address.</p>
+<h4 id="enforceiscontractowner"><code>enforceIsContractOwner()</code><a class="headerlink" href="#enforceiscontractowner" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">enforceIsContractOwner</span><span class="p">()</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>view
+</code></pre></div>
+
+<p>Reverts if the caller is not the contract owner.</p>
+<h3 id="diamond-cut-operations">Diamond Cut Operations<a class="headerlink" href="#diamond-cut-operations" title="Permanent link">&para;</a></h3>
+<h4 id="diamondcut"><code>diamondCut()</code><a class="headerlink" href="#diamondcut" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">diamondCut</span><span class="p">(</span>
+<span class="w">    </span>IDiamondCut<span class="p">.</span>FacetCut<span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>_diamondCut<span class="p">,</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">_init</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>_calldata
+<span class="p">)</span><span class="w"> </span><span class="kt">internal</span>
+</code></pre></div>
+
+<p>Executes diamond cut operations to add, replace, or remove functions.</p>
+<p><strong>Parameters:</strong>
+- <code>_diamondCut</code>: Array of facet cuts to execute
+- <code>_init</code>: Address of initialization contract (optional)
+- <code>_calldata</code>: Initialization function call data (optional)</p>
+<h3 id="facet-management">Facet Management<a class="headerlink" href="#facet-management" title="Permanent link">&para;</a></h3>
+<h4 id="addfunctions"><code>addFunctions()</code><a class="headerlink" href="#addfunctions" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">addFunctions</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">_facetAddress</span><span class="p">,</span><span class="w"> </span>bytes4<span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>_functionSelectors<span class="p">)</span><span class="w"> </span><span class="kt">internal</span>
+</code></pre></div>
+
+<p>Adds new functions to the diamond from a specific facet.</p>
+<h4 id="replacefunctions"><code>replaceFunctions()</code><a class="headerlink" href="#replacefunctions" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">replaceFunctions</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">_facetAddress</span><span class="p">,</span><span class="w"> </span>bytes4<span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>_functionSelectors<span class="p">)</span><span class="w"> </span><span class="kt">internal</span>
+</code></pre></div>
+
+<p>Replaces existing functions with new implementations from a facet.</p>
+<h4 id="removefunctions"><code>removeFunctions()</code><a class="headerlink" href="#removefunctions" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">removeFunctions</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">_facetAddress</span><span class="p">,</span><span class="w"> </span>bytes4<span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>_functionSelectors<span class="p">)</span><span class="w"> </span><span class="kt">internal</span>
+</code></pre></div>
+
+<p>Removes functions from the diamond.</p>
+<h3 id="timelock-upgrade-system">Timelock Upgrade System<a class="headerlink" href="#timelock-upgrade-system" title="Permanent link">&para;</a></h3>
+<h4 id="initializeupgradetimelock"><code>initializeUpgradeTimelock()</code><a class="headerlink" href="#initializeupgradetimelock" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">initializeUpgradeTimelock</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_timelock</span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span>
+</code></pre></div>
+
+<p>Initializes the upgrade timelock system with a specified delay period.</p>
+<h4 id="proposediamondcut"><code>proposeDiamondCut()</code><a class="headerlink" href="#proposediamondcut" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">proposeDiamondCut</span><span class="p">(</span>
+<span class="w">    </span>IDiamondCut<span class="p">.</span>FacetCut<span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>_diamondCut<span class="p">,</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">_init</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">bytes</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>_calldata
+<span class="p">)</span><span class="w"> </span><span class="kt">internal</span>
+</code></pre></div>
+
+<p>Proposes a diamond cut to be executed after the timelock period.</p>
+<h4 id="executediamondcut"><code>executeDiamondCut()</code><a class="headerlink" href="#executediamondcut" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">executeDiamondCut</span><span class="p">()</span><span class="w"> </span><span class="kt">internal</span>
+</code></pre></div>
+
+<p>Executes a previously proposed diamond cut after the timelock period has elapsed.</p>
+<h4 id="canceldiamondcut"><code>cancelDiamondCut()</code><a class="headerlink" href="#canceldiamondcut" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">cancelDiamondCut</span><span class="p">()</span><span class="w"> </span><span class="kt">internal</span>
+</code></pre></div>
+
+<p>Cancels a pending diamond cut proposal.</p>
+<h2 id="security-features">Security Features<a class="headerlink" href="#security-features" title="Permanent link">&para;</a></h2>
+<h3 id="access-control">Access Control<a class="headerlink" href="#access-control" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Owner-only operations</strong>: Critical functions require contract owner privileges</li>
+<li><strong>Timelock protection</strong>: Upgrades require a waiting period before execution</li>
+<li><strong>Proposal validation</strong>: Ensures only valid upgrade proposals can be executed</li>
+</ul>
+<h3 id="safety-checks">Safety Checks<a class="headerlink" href="#safety-checks" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Contract code validation</strong>: Ensures facets have actual contract code</li>
+<li><strong>Function selector conflicts</strong>: Prevents duplicate function selectors</li>
+<li><strong>Immutable function protection</strong>: Prevents removal of core diamond functions</li>
+</ul>
+<h3 id="gas-optimization">Gas Optimization<a class="headerlink" href="#gas-optimization" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Assembly usage</strong>: Direct storage slot access for gas efficiency</li>
+<li><strong>Efficient data structures</strong>: Optimized mappings and arrays for minimal gas costs</li>
+<li><strong>Batch operations</strong>: Process multiple facet cuts in a single transaction</li>
+</ul>
+<h2 id="constants">Constants<a class="headerlink" href="#constants" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span><code><span class="kt">bytes32</span><span class="w"> </span><span class="nv">constant</span><span class="w"> </span>DIAMOND_STORAGE_POSITION<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">keccak256</span><span class="p">(</span><span class="s2">&quot;diamond.standard.diamond.storage&quot;</span><span class="p">);</span>
+<span class="kt">uint256</span><span class="w"> </span><span class="nv">constant</span><span class="w"> </span>DEFAULT_UPGRADE_TIMELOCK<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">2</span><span class="w"> </span>days<span class="p">;</span>
+</code></pre></div>
+
+<h2 id="events">Events<a class="headerlink" href="#events" title="Permanent link">&para;</a></h2>
+<p>The library emits events defined in the IDiamondCut interface:
+- <code>DiamondCut</code>: Emitted when a diamond cut is executed
+- <code>DiamondCutProposed</code>: Emitted when an upgrade is proposed
+- <code>DiamondCutCancelled</code>: Emitted when an upgrade proposal is cancelled</p>
+<h2 id="usage-examples">Usage Examples<a class="headerlink" href="#usage-examples" title="Permanent link">&para;</a></h2>
+<h3 id="basic-diamond-cut">Basic Diamond Cut<a class="headerlink" href="#basic-diamond-cut" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Add a new facet</span>
+IDiamondCut<span class="p">.</span>FacetCut<span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>cuts<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span>IDiamondCut<span class="p">.</span>FacetCut<span class="p">[](</span><span class="m m-Decimal">1</span><span class="p">);</span>
+cuts<span class="p">[</span><span class="m m-Decimal">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>IDiamondCut<span class="p">.</span>FacetCut<span class="p">({</span>
+<span class="w">    </span>facetAddress<span class="o">:</span><span class="w"> </span>newFacetAddress<span class="p">,</span>
+<span class="w">    </span>action<span class="o">:</span><span class="w"> </span>IDiamondCut<span class="p">.</span>FacetCutAction<span class="p">.</span>Add<span class="p">,</span>
+<span class="w">    </span>functionSelectors<span class="o">:</span><span class="w"> </span>selectors
+<span class="p">});</span>
+
+LibDiamond<span class="p">.</span>diamondCut<span class="p">(</span>cuts<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">),</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">);</span>
+</code></pre></div>
+
+<h3 id="timelock-upgrade-process">Timelock Upgrade Process<a class="headerlink" href="#timelock-upgrade-process" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// 1. Initialize timelock (done once)</span>
+LibDiamond<span class="p">.</span>initializeUpgradeTimelock<span class="p">(</span><span class="m m-Decimal">7</span><span class="w"> </span>days<span class="p">);</span>
+
+<span class="c1">// 2. Propose upgrade</span>
+LibDiamond<span class="p">.</span>proposeDiamondCut<span class="p">(</span>cuts<span class="p">,</span><span class="w"> </span>initAddress<span class="p">,</span><span class="w"> </span>initCalldata<span class="p">);</span>
+
+<span class="c1">// 3. Wait for timelock period...</span>
+
+<span class="c1">// 4. Execute upgrade</span>
+LibDiamond<span class="p">.</span>executeDiamondCut<span class="p">();</span>
+</code></pre></div>
+
+<h2 id="integration-points">Integration Points<a class="headerlink" href="#integration-points" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Diamond Proxy</strong>: Used by the main Diamond contract for all upgrade operations</li>
+<li><strong>Diamond Cut Facet</strong>: Provides external interface for diamond cut operations</li>
+<li><strong>Diamond Loupe Facet</strong>: Uses storage structures for introspection functions</li>
+<li><strong>Ownership Facet</strong>: Integrates with ownership management functions</li>
+</ul>
+<h2 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Initialize Timelock</strong>: Always initialize upgrade timelock for production deployments</li>
+<li><strong>Validate Facets</strong>: Ensure facet contracts are properly tested before adding</li>
+<li><strong>Batch Operations</strong>: Group related function changes into single diamond cuts</li>
+<li><strong>Monitor Proposals</strong>: Track upgrade proposals and their execution status</li>
+<li><strong>Emergency Procedures</strong>: Have procedures for cancelling problematic upgrades</li>
+</ol>
+<h2 id="security-considerations">Security Considerations<a class="headerlink" href="#security-considerations" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Owner Key Security</strong>: Protect the contract owner private key with multi-sig or hardware wallets</li>
+<li><strong>Timelock Duration</strong>: Choose appropriate timelock periods based on security requirements</li>
+<li><strong>Facet Validation</strong>: Thoroughly audit facet contracts before deployment</li>
+<li><strong>Upgrade Testing</strong>: Test all upgrades on testnets before mainnet deployment</li>
+<li><strong>Emergency Response</strong>: Have procedures for handling upgrade emergencies</li>
+</ul>
+<h2 id="related-documentation">Related Documentation<a class="headerlink" href="#related-documentation" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../../diamond/">Diamond Standard Overview</a></li>
+<li><a href="../../interfaces/idiamond/">IDiamond Interface</a></li>
+<li><a href="../diamond-factory-lib/">Diamond Factory Library</a></li>
+<li><a href="../../../eips/EIP-DRAFT-Diamond-Enhanced-Marketplace/">EIP-2535 Diamond Standard</a></li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../fee-distributor-lib/" class="btn btn-neutral float-left" title="Fee Distributor Lib"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../diamond-lib/" class="btn btn-neutral float-right" title="DiamondLib">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../fee-distributor-lib/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../diamond-lib/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

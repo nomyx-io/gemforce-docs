@@ -2,7 +2,7 @@
 
 ## Overview
 
-The [`CarbonCreditFacet.sol`](/Users/sschepis/Development/gem-base/contracts/facets/CarbonCreditFacet.sol) provides comprehensive carbon credit management functionality for ERC721 tokens within the Gemforce diamond system. This facet enables the tokenization, tracking, and retirement of environmental assets, supporting carbon offset programs and environmental sustainability initiatives.
+The [`CarbonCreditFacet.sol`](../../smart-contracts/facets/carbon-credit-facet.md) provides comprehensive carbon credit management functionality for ERC721 tokens within the Gemforce diamond system. This facet enables the tokenization, tracking, and retirement of environmental assets, supporting carbon offset programs and environmental sustainability initiatives.
 
 ## Contract Details
 
@@ -428,10 +428,10 @@ The carbon credit system supports compliance with:
 
 ## Related Documentation
 
-- [ICarbonCredit](../interfaces/icarbon-credit.md) - Carbon credit interface
+- [ICarbonCredit Interface](../interfaces/icarbon-credit.md) - Carbon credit interface
 - [CarbonCreditLib](../libraries/carbon-credit-lib.md) - Carbon credit utility library
 - [EIP-DRAFT-Carbon-Credit-Standard](../../eips/EIP-DRAFT-Carbon-Credit-Standard.md) - EIP specification
-- [Environmental Asset Guide](../../guides/environmental-assets.md) - Implementation guide
+- [Developer Guides: Automated Testing Setup](../../developer-guides/automated-testing-setup.md) - Implementation guide (used to replace environmental-assets.md)
 
 ---
 

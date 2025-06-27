@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Gemforce Team" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>Trade Deal Operations Facet - Gemforce Documentation</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Trade Deal Operations Facet";
+        var mkdocs_page_input_path = "smart-contracts/facets/trade-deal-operations-facet.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../.." class="icon icon-home"> Gemforce Documentation
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../developer-setup-guide/">Developer Setup Guide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../system-architecture/gemforce-system-architecture/">System Architecture</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Smart Contracts</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../diamond/">Diamond Contract</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../diamond-factory/">Diamond Factory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../identity-factory/">Identity Factory</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" >Facets</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" href="../marketplace-facet/">Marketplace Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../trade-deal-management-facet/">Trade Deal Management Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../carbon-credit-facet/">Carbon Credit Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../identity-registry-facet/">Identity Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../trusted-issuers-registry-facet/">Trusted Issuers Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../fee-distributor-facet/">Fee Distributor Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../gemforce-minter-facet/">Gemforce Minter Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../multi-sale-facet/">Multi Sale Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../svg-templates-facet/">SVG Templates Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../trade-deal-admin-facet/">Trade Deal Admin Facet</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">Trade Deal Operations Facet</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#purpose">Purpose</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#key-features">Key Features</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#functions">Functions</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#createtradedealaddress-_lender-address-_collateraltoken-uint256-_collateralamount-uint256-_loanamount-uint256-_repaymentamount-uint256-_settlementtime-uint256-_graceperiod-bytes32-_invoicenftid">createTradeDeal(address _lender, address _collateralToken, uint256 _collateralAmount, uint256 _loanAmount, uint256 _repaymentAmount, uint256 _settlementTime, uint256 _gracePeriod, bytes32 _invoiceNFTId)</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#repaytradedealbytes32-_tradedealid">repayTradeDeal(bytes32 _tradeDealId)</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#liquidatetradedealbytes32-_tradedealid">liquidateTradeDeal(bytes32 _tradeDealId)</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#gettradedealbytes32-_tradedealid">getTradeDeal(bytes32 _tradeDealId)</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#events">Events</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#tradedealcreatedbytes32-indexed-tradedealid-address-indexed-borrower-address-indexed-lender-address-collateraltoken-uint256-collateralamount-uint256-loanamount-uint256-repaymentamount-uint256-settlementtime-uint256-graceperiod-bytes32-invoicenftid">TradeDealCreated(bytes32 indexed tradeDealId, address indexed borrower, address indexed lender, address collateralToken, uint256 collateralAmount, uint256 loanAmount, uint256 repaymentAmount, uint256 settlementTime, uint256 gracePeriod, bytes32 invoiceNFTId)</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#tradedealrepaidbytes32-indexed-tradedealid">TradeDealRepaid(bytes32 indexed tradeDealId)</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#tradedealliquidatedbytes32-indexed-tradedealid-address-indexed-liquidator">TradeDealLiquidated(bytes32 indexed tradeDealId, address indexed liquidator)</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usage-example">Usage Example</a>
+    </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../collateral-token-factory-facet/">Collateral Token Factory Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../diamond-cut-facet/">Diamond Cut Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../diamond-loupe-facet/">Diamond Loupe Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../ownership-facet/">Ownership Facet</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Interfaces</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/idiamond/">IDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/imarketplace/">IMarketplace</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/itradedeal/">ITradeDeal</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/icarbon-credit/">ICarbonCredit</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ierc1155-mint/">IERC1155Mint</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ierc734/">IERC734</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ierc735/">IERC735</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ierc721a/">IERC721A</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/idiamond-factory/">IDiamondFactory</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/iidentity/">IIdentity</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/imultisale/">IMultiSale</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ifee-distributor/">IFeeDistributor</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/igemforce-minter-facet/">IGemforceMinterFacet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/iidentity-registry/">IIdentityRegistry</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/itrusted-issuers-registry/">TRUSTEDIssuersRegistry</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/isvg/">ISVG</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/iattribute/">IAttribute</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ivariable-price/">IVariablePrice</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Libraries</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/carbon-credit-lib/">Carbon Credit Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/trade-deal-lib/">Trade Deal Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/multi-sale-lib/">Multi Sale Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/diamond-factory-lib/">Diamond Factory Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/svg-templates-lib/">SVG Templates Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/attribute-lib/">Attribute Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/variable-price-lib/">Variable Price Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/merkle-prover/">Merkle Prover</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/fee-distributor-lib/">Fee Distributor Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/lib-diamond/">LibDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/diamond-lib/">DiamondLib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/erc721a-lib/">ERC721A Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/erc721a-enumeration-lib/">ERC721A Enumeration Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/strings-lib/">Strings Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/trusted-issuer-lib/">Trusted Issuer Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/set-libraries/">Set Libraries</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">SDK & Libraries</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/blockchain/">Blockchain Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/diamond/">Diamond Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/contract/">Contract Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/deploy/">Deployment Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/validation-utils/">Validation Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/nft-sale-utils/">NFT Sale Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/webhooks/">Webhooks Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../libraries/metadata-lib/">Metadata Library</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Cloud Functions</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/authentication/">Authentication Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/auth-functions/">Auth Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/blockchain/">Blockchain Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/bridge/">Bridge Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/contracts/">Contract Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/deploy/">Deploy Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/dfns/">DFNS Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/project/">Project Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/trade-deal/">Trade Deal Functions</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">API Documentation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../api-documentation/gemforce-api-documentation/">Full API Reference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../api-documentation/gemforce-api-quick-reference/">Quick Reference</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-external-services/">External Services</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-system-architecture/">System Architecture</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Operations Tasks</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/diamond/">Diamond Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/identities/">Identity Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/marketplace-management/">Marketplace Management Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/carbon-credit-management/">Carbon Credit Management Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/trade-deal/">Trade Deal Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/integration-test/">Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/integration-test-marketplace/">Marketplace Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/integration-test-trade-deal/">Trade Deal Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/admin-utils/">Admin Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/sync-diamond/">Sync Diamond Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/sync-events/">Sync Events Tasks</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">EIPs (Ethereum Improvement Proposals)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Diamond-Enhanced-Marketplace/">Diamond-Enhanced Marketplace</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Multi-Token-Sale-Standard/">Multi-Token Sale Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Collateralized-Trade-Deal-Standard/">Collateralized Trade Deal Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Enhanced-Identity-System/">Enhanced Identity System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Diamond-Factory-Standard/">Diamond Factory Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Carbon-Credit-Standard/">Carbon Credit Standard</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Developer Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/development-environment-setup/">Development Environment Setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/testing-frameworks/">Testing Frameworks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/debugging/">Debugging</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/performance-optimization/">Performance Optimization</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/test-case-specifications/">Test Case Specifications</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/test-data-management/">Test Data Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/automated-testing-setup/">Automated Testing Setup</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Deployment Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../deployment-guides/multi-network-deployment/">Multi-Network Deployment</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../deployment-guides/infrastructure-management/">Infrastructure Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../deployment-guides/monitoring-logging/">Monitoring and Logging</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">User Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-administrator-guide/">Administrator Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-deployer-guide/">Deployer Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-integrator-guide/">Integrator Guide</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Integrator's Guide</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/authentication/">Authentication</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/rest-api/">REST API</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/smart-contracts/">Smart Contracts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/dfns/">DFNS Integration</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/parse-server/">Parse Server Notes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/webhooks/">Webhooks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/error-handling/">Error Handling</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/sample-code/">Sample Code</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/integration-patterns/">Integration Patterns</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/testing/">Testing Considerations</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/security/">Security</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../external-services/gemforce-external-services/">External Services</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Security</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security/threat-model/">Threat Model and Risk Assessment</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security/incident-response/">Incident Response Procedures</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security/audit-compliance/">Security Audits and Compliance</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">External Developer Integration</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/api-rate-limiting/">API Rate Limiting</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/webhook-implementation-guidelines/">Webhook Implementation Guidelines</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/sdk-development-guidelines/">SDK Development Guidelines</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/partner-integration-guides/">Partner Integration Guides</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-documentation-gap-analysis/">Documentation Gap Analysis</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../documentation-progress-summary/">Documentation Progress Summary</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../documentation-plan/">Documentation Plan</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Configuration & Environment</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/gemforce-config/">Gemforce Config</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/environment-specific-guides/">Environment-Specific Guides</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/configuration-validation/">Configuration Validation Procedures</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/external-service-config-management/">External Service Configuration Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/database-schema-overview/">Database Schema Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/database-migration-procedures/">Database Migration Procedures</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">Gemforce Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Smart Contracts</li>
+          <li class="breadcrumb-item">Facets</li>
+      <li class="breadcrumb-item active">Trade Deal Operations Facet</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="tradedealoperationsfacet">TradeDealOperationsFacet<a class="headerlink" href="#tradedealoperationsfacet" title="Permanent link">&para;</a></h1>
+<p>The <code>TradeDealOperationsFacet</code> is a core functional component within the Gemforce Diamond smart contract system, dedicated to the lifecycle management and execution of Trade Deals. It provides the necessary functions for creating, updating, settling, and liquidating trade deals, acting as the primary interface for users to interact with their trade agreements.</p>
+<h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h2>
+<p>The primary purpose of the <code>TradeDealOperationsFacet</code> is to facilitate secure and transparent digital asset financing through collateralized trade deals. It ensures that trade agreements are executed according to predefined terms, provides mechanisms for collateral management, and supports both successful settlement and automated liquidation in case of default. This facet is crucial for the platform's ability to support various forms of on-chain asset-backed lending or financing.</p>
+<h2 id="key-features">Key Features<a class="headerlink" href="#key-features" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Trade Deal Creation</strong>: Allows parties to initiate new trade deals with specified terms, collateral, and repayment schedules.</li>
+<li><strong>Collateral Management</strong>: Handles the locking and unlocking of collateral tokens associated with trade deals.</li>
+<li><strong>Settlement and Repayment</strong>: Enables the borrower to repay the loan and the lender to claim their principal and interest.</li>
+<li><strong>Liquidation Mechanism</strong>: Provides a process for lenders to liquidate collateral if a borrower defaults on their repayment obligations.</li>
+<li><strong>Status Tracking</strong>: Maintains the current state of each trade deal (e.g., active, settled, liquidated).</li>
+<li><strong>Permissioned Actions</strong>: Ensures that only authorized parties (borrower, lender, or designated liquidator) can perform specific actions on a trade deal.</li>
+<li><strong>Event Emission</strong>: Emits detailed events for every stage of a trade deal's lifecycle, providing complete transparency and auditability.</li>
+</ul>
+<h2 id="functions">Functions<a class="headerlink" href="#functions" title="Permanent link">&para;</a></h2>
+<h3 id="createtradedealaddress-_lender-address-_collateraltoken-uint256-_collateralamount-uint256-_loanamount-uint256-_repaymentamount-uint256-_settlementtime-uint256-_graceperiod-bytes32-_invoicenftid"><code>createTradeDeal(address _lender, address _collateralToken, uint256 _collateralAmount, uint256 _loanAmount, uint256 _repaymentAmount, uint256 _settlementTime, uint256 _gracePeriod, bytes32 _invoiceNFTId)</code><a class="headerlink" href="#createtradedealaddress-_lender-address-_collateraltoken-uint256-_collateralamount-uint256-_loanamount-uint256-_repaymentamount-uint256-_settlementtime-uint256-_graceperiod-bytes32-_invoicenftid" title="Permanent link">&para;</a></h3>
+<p>Creates a new trade deal. Callable by either party or an authorized third party.</p>
+<ul>
+<li><strong>Parameters</strong>:<ul>
+<li><code>_lender</code> (address): The address of the lender.</li>
+<li><code>_collateralToken</code> (address): The address of the ERC-20 token used as collateral.</li>
+<li><code>_collateralAmount</code> (uint256): The amount of collateral token to lock.</li>
+<li><code>_loanAmount</code> (uint256): The amount of the loan disbursed by the lender.</li>
+<li><code>_repaymentAmount</code> (uint256): The total amount to be repaid by the borrower (principal + interest).</li>
+<li><code>_settlementTime</code> (uint256): The timestamp by which the loan must be repaid.</li>
+<li><code>_gracePeriod</code> (uint256): Additional time after <code>_settlementTime</code> before collateral can be liquidated.</li>
+<li><code>_invoiceNFTId</code> (bytes32): A unique identifier for the invoice NFT associated with this trade deal.</li>
+</ul>
+</li>
+<li><strong>Requirements</strong>:<ul>
+<li><code>_collateralToken</code> must be a supported collateral token (checked via <code>TradeDealAdminFacet</code>).</li>
+<li><code>_collateralAmount</code> must be transferred to this facet prior to or during this call.</li>
+</ul>
+</li>
+<li><strong>Emits</strong>: <code>TradeDealCreated(bytes32 indexed tradeDealId, address indexed borrower, address indexed lender, ...)</code></li>
+</ul>
+<h3 id="repaytradedealbytes32-_tradedealid"><code>repayTradeDeal(bytes32 _tradeDealId)</code><a class="headerlink" href="#repaytradedealbytes32-_tradedealid" title="Permanent link">&para;</a></h3>
+<p>Allows the borrower to repay the loan and unlock their collateral.</p>
+<ul>
+<li><strong>Parameters</strong>:<ul>
+<li><code>_tradeDealId</code> (bytes32): The ID of the trade deal to repay.</li>
+</ul>
+</li>
+<li><strong>Requirements</strong>:<ul>
+<li>Caller must be the borrower of the <code>_tradeDealId</code>.</li>
+<li>The required <code>_repaymentAmount</code> must be sent to this facet (either via <code>msg.value</code> or ERC-20 <code>transferFrom</code>).</li>
+<li>Trade deal must be in an active state.</li>
+</ul>
+</li>
+<li><strong>Emits</strong>: <code>TradeDealRepaid(bytes32 indexed tradeDealId)</code></li>
+</ul>
+<h3 id="liquidatetradedealbytes32-_tradedealid"><code>liquidateTradeDeal(bytes32 _tradeDealId)</code><a class="headerlink" href="#liquidatetradedealbytes32-_tradedealid" title="Permanent link">&para;</a></h3>
+<p>Allows the lender or an authorized liquidator to claim the collateral if the borrower defaults.</p>
+<ul>
+<li><strong>Parameters</strong>:<ul>
+<li><code>_tradeDealId</code> (bytes32): The ID of the trade deal to liquidate.</li>
+</ul>
+</li>
+<li><strong>Requirements</strong>:<ul>
+<li>Caller must be the lender or an authorized liquidator.</li>
+<li>The trade deal must be past its <code>_settlementTime</code> + <code>_gracePeriod</code>.</li>
+<li>Trade deal must be in an active state.</li>
+</ul>
+</li>
+<li><strong>Emits</strong>: <code>TradeDealLiquidated(bytes32 indexed tradeDealId, address indexed liquidator)</code></li>
+</ul>
+<h3 id="gettradedealbytes32-_tradedealid"><code>getTradeDeal(bytes32 _tradeDealId)</code><a class="headerlink" href="#gettradedealbytes32-_tradedealid" title="Permanent link">&para;</a></h3>
+<p>Retrieves the current state and parameters of a trade deal.</p>
+<ul>
+<li><strong>Parameters</strong>:<ul>
+<li><code>_tradeDealId</code> (bytes32): The ID of the trade deal.</li>
+</ul>
+</li>
+<li><strong>Returns</strong>: (<code>TradeDealLib.TradeDeal memory</code>) A struct containing all details of the trade deal.</li>
+</ul>
+<h2 id="events">Events<a class="headerlink" href="#events" title="Permanent link">&para;</a></h2>
+<h3 id="tradedealcreatedbytes32-indexed-tradedealid-address-indexed-borrower-address-indexed-lender-address-collateraltoken-uint256-collateralamount-uint256-loanamount-uint256-repaymentamount-uint256-settlementtime-uint256-graceperiod-bytes32-invoicenftid"><code>TradeDealCreated(bytes32 indexed tradeDealId, address indexed borrower, address indexed lender, address collateralToken, uint256 collateralAmount, uint256 loanAmount, uint256 repaymentAmount, uint256 settlementTime, uint256 gracePeriod, bytes32 invoiceNFTId)</code><a class="headerlink" href="#tradedealcreatedbytes32-indexed-tradedealid-address-indexed-borrower-address-indexed-lender-address-collateraltoken-uint256-collateralamount-uint256-loanamount-uint256-repaymentamount-uint256-settlementtime-uint256-graceperiod-bytes32-invoicenftid" title="Permanent link">&para;</a></h3>
+<p>Emitted when a new trade deal is successfully created.</p>
+<ul>
+<li><strong>Parameters</strong>: Comprehensive details of the newly created trade deal.</li>
+</ul>
+<h3 id="tradedealrepaidbytes32-indexed-tradedealid"><code>TradeDealRepaid(bytes32 indexed tradeDealId)</code><a class="headerlink" href="#tradedealrepaidbytes32-indexed-tradedealid" title="Permanent link">&para;</a></h3>
+<p>Emitted when a trade deal is successfully repaid by the borrower.</p>
+<ul>
+<li><strong>Parameters</strong>:<ul>
+<li><code>tradeDealId</code> (bytes32): The ID of the repaid trade deal.</li>
+</ul>
+</li>
+</ul>
+<h3 id="tradedealliquidatedbytes32-indexed-tradedealid-address-indexed-liquidator"><code>TradeDealLiquidated(bytes32 indexed tradeDealId, address indexed liquidator)</code><a class="headerlink" href="#tradedealliquidatedbytes32-indexed-tradedealid-address-indexed-liquidator" title="Permanent link">&para;</a></h3>
+<p>Emitted when a trade deal is successfully liquidated due to borrower default.</p>
+<ul>
+<li><strong>Parameters</strong>:<ul>
+<li><code>tradeDealId</code> (bytes32): The ID of the liquidated trade deal.</li>
+<li><code>liquidator</code> (address): The address that executed the liquidation.</li>
+</ul>
+</li>
+</ul>
+<h2 id="usage-example">Usage Example<a class="headerlink" href="#usage-example" title="Permanent link">&para;</a></h2>
+<p>```solidity
+// Assuming 'diamond' is an instance of IDiamond, 'borrower' and 'lender' are addresses</p>
+<p>// Example: Create a new Trade Deal
+bytes32 invoiceId = keccak256("my_invoice_123");
+address collateralTok = 0xSomeERC20TokenAddress; // Address of a supported collateral token
+uint256 collateralAmt = 1000 * (10 ** 18); // 1000 tokens
+uint256 loanAmt = 500 * (10 ** 18);
+uint256 repaymentAmt = 520 * (10 ** 18);
+uint256 settlement = block.timestamp + 7 days;
+uint256 grace = 1 days;</p>
+<p>// Borrower approves transfer of collateral to the facet first
+// IERC20(collateralTok).approve(address(gemforceDiamond), collateralAmt);</p>
+<p>// Then create the trade deal (typically called by borrower or lender)
+bytes32 newTradeDealId = IDiamond(diamond).createTradeDeal(
+    lender,
+    collateralTok,
+    collateralAmt,
+    loanAmt,
+    repaymentAmt,
+    settlement,
+    grace,
+    invoiceId
+);</p>
+<p>// Example: Repay the Trade Deal (by borrower)
+// Borrower approves repayment token transfer to the facet first
+// IERC20(repaymentToken).approve(address(gemforceDiamond), repaymentAmt);
+IDiamond(diamond).repayTradeDeal(newTradeDealId);</p>
+<p>// Example: Liquidate the Trade Deal (by lender, after default)
+// Note: This call would only succeed if the settlement + grace period has passed
+// IDiamond(diamond).liquidateTradeDeal(newTradeDealId);</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../trade-deal-admin-facet/" class="btn btn-neutral float-left" title="Trade Deal Admin Facet"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../collateral-token-factory-facet/" class="btn btn-neutral float-right" title="Collateral Token Factory Facet">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../trade-deal-admin-facet/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../collateral-token-factory-facet/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

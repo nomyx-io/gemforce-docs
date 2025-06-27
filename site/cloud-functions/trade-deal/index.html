@@ -1,0 +1,1444 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Gemforce Team" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Trade Deal Functions - Gemforce Documentation</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Trade Deal Functions";
+        var mkdocs_page_input_path = "cloud-functions/trade-deal.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Gemforce Documentation
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../developer-setup-guide/">Developer Setup Guide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../system-architecture/gemforce-system-architecture/">System Architecture</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Smart Contracts</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../smart-contracts/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../smart-contracts/diamond/">Diamond Contract</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../smart-contracts/diamond-factory/">Diamond Factory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../smart-contracts/identity-factory/">Identity Factory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Facets</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/marketplace-facet/">Marketplace Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/trade-deal-management-facet/">Trade Deal Management Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/carbon-credit-facet/">Carbon Credit Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/identity-registry-facet/">Identity Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/trusted-issuers-registry-facet/">Trusted Issuers Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/fee-distributor-facet/">Fee Distributor Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/gemforce-minter-facet/">Gemforce Minter Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/multi-sale-facet/">Multi Sale Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/svg-templates-facet/">SVG Templates Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/trade-deal-admin-facet/">Trade Deal Admin Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/trade-deal-operations-facet/">Trade Deal Operations Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/collateral-token-factory-facet/">Collateral Token Factory Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/diamond-cut-facet/">Diamond Cut Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/diamond-loupe-facet/">Diamond Loupe Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/ownership-facet/">Ownership Facet</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Interfaces</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/idiamond/">IDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/imarketplace/">IMarketplace</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/itradedeal/">ITradeDeal</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/icarbon-credit/">ICarbonCredit</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/ierc1155-mint/">IERC1155Mint</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/ierc734/">IERC734</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/ierc735/">IERC735</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/ierc721a/">IERC721A</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/idiamond-factory/">IDiamondFactory</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/iidentity/">IIdentity</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/imultisale/">IMultiSale</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/ifee-distributor/">IFeeDistributor</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/igemforce-minter-facet/">IGemforceMinterFacet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/iidentity-registry/">IIdentityRegistry</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/itrusted-issuers-registry/">TRUSTEDIssuersRegistry</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/isvg/">ISVG</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/iattribute/">IAttribute</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/ivariable-price/">IVariablePrice</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Libraries</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/carbon-credit-lib/">Carbon Credit Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/trade-deal-lib/">Trade Deal Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/multi-sale-lib/">Multi Sale Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/diamond-factory-lib/">Diamond Factory Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/svg-templates-lib/">SVG Templates Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/attribute-lib/">Attribute Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/variable-price-lib/">Variable Price Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/merkle-prover/">Merkle Prover</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/fee-distributor-lib/">Fee Distributor Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/lib-diamond/">LibDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/diamond-lib/">DiamondLib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/erc721a-lib/">ERC721A Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/erc721a-enumeration-lib/">ERC721A Enumeration Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/strings-lib/">Strings Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/trusted-issuer-lib/">Trusted Issuer Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/set-libraries/">Set Libraries</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">SDK & Libraries</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../sdk-libraries/blockchain/">Blockchain Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../sdk-libraries/diamond/">Diamond Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../sdk-libraries/contract/">Contract Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../sdk-libraries/deploy/">Deployment Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../sdk-libraries/validation-utils/">Validation Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../sdk-libraries/nft-sale-utils/">NFT Sale Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../sdk-libraries/webhooks/">Webhooks Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../smart-contracts/libraries/metadata-lib/">Metadata Library</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Cloud Functions</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../authentication/">Authentication Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../auth-functions/">Auth Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../blockchain/">Blockchain Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../bridge/">Bridge Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../contracts/">Contract Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../deploy/">Deploy Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../dfns/">DFNS Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../project/">Project Functions</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Trade Deal Functions</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#key-features">Key Features</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#trade-deal-lifecycle">Trade Deal Lifecycle</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#financial-integration">Financial Integration</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#compliance-features">Compliance Features</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#core-functions">Core Functions</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#createtradedeal">createTradeDeal()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#depositcollateral">depositCollateral()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#generateinvoice">generateInvoice()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#settletradedeal">settleTradeDeal()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#gettradedeal">getTradeDeal()</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#implementation-example">Implementation Example</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#trade-deal-creation-with-smart-contract-deployment">Trade Deal Creation with Smart Contract Deployment</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#collateral-management">Collateral Management</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#invoice-nft-generation">Invoice NFT Generation</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#trade-deal-settlement">Trade Deal Settlement</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#compliance-and-reporting">Compliance and Reporting</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#kyc-integration">KYC Integration</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#aml-monitoring">AML Monitoring</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#integration-examples">Integration Examples</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#frontend-integration">Frontend Integration</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#react-component-example">React Component Example</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#error-handling">Error Handling</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#common-errors">Common Errors</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#error-recovery">Error Recovery</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#best-practices">Best Practices</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#trade-deal-management">Trade Deal Management</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#development-guidelines">Development Guidelines</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#related-documentation">Related Documentation</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#trade-deal-library">Trade Deal Library</a>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">API Documentation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api-documentation/gemforce-api-documentation/">Full API Reference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api-documentation/gemforce-api-quick-reference/">Quick Reference</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../gemforce-external-services/">External Services</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../gemforce-system-architecture/">System Architecture</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Operations Tasks</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../tasks/diamond/">Diamond Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../tasks/identities/">Identity Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../tasks/marketplace-management/">Marketplace Management Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../tasks/carbon-credit-management/">Carbon Credit Management Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../tasks/trade-deal/">Trade Deal Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../tasks/integration-test/">Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../tasks/integration-test-marketplace/">Marketplace Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../tasks/integration-test-trade-deal/">Trade Deal Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../tasks/admin-utils/">Admin Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../tasks/sync-diamond/">Sync Diamond Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../tasks/sync-events/">Sync Events Tasks</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">EIPs (Ethereum Improvement Proposals)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../eips/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../eips/EIP-DRAFT-Diamond-Enhanced-Marketplace/">Diamond-Enhanced Marketplace</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../eips/EIP-DRAFT-Multi-Token-Sale-Standard/">Multi-Token Sale Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../eips/EIP-DRAFT-Collateralized-Trade-Deal-Standard/">Collateralized Trade Deal Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../eips/EIP-DRAFT-Enhanced-Identity-System/">Enhanced Identity System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../eips/EIP-DRAFT-Diamond-Factory-Standard/">Diamond Factory Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../eips/EIP-DRAFT-Carbon-Credit-Standard/">Carbon Credit Standard</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Developer Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../developer-guides/development-environment-setup/">Development Environment Setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../developer-guides/testing-frameworks/">Testing Frameworks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../developer-guides/debugging/">Debugging</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../developer-guides/performance-optimization/">Performance Optimization</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../developer-guides/test-case-specifications/">Test Case Specifications</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../developer-guides/test-data-management/">Test Data Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../developer-guides/automated-testing-setup/">Automated Testing Setup</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Deployment Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../deployment-guides/multi-network-deployment/">Multi-Network Deployment</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../deployment-guides/infrastructure-management/">Infrastructure Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../deployment-guides/monitoring-logging/">Monitoring and Logging</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">User Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../gemforce-administrator-guide/">Administrator Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../gemforce-deployer-guide/">Deployer Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../gemforce-integrator-guide/">Integrator Guide</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Integrator's Guide</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrator-guide/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrator-guide/authentication/">Authentication</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrator-guide/rest-api/">REST API</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrator-guide/smart-contracts/">Smart Contracts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrator-guide/dfns/">DFNS Integration</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrator-guide/parse-server/">Parse Server Notes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrator-guide/webhooks/">Webhooks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrator-guide/error-handling/">Error Handling</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrator-guide/sample-code/">Sample Code</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrator-guide/integration-patterns/">Integration Patterns</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrator-guide/testing/">Testing Considerations</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrator-guide/security/">Security</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../external-services/gemforce-external-services/">External Services</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Security</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../security/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../security/threat-model/">Threat Model and Risk Assessment</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../security/incident-response/">Incident Response Procedures</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../security/audit-compliance/">Security Audits and Compliance</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">External Developer Integration</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../external-developer-integration/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../external-developer-integration/api-rate-limiting/">API Rate Limiting</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../external-developer-integration/webhook-implementation-guidelines/">Webhook Implementation Guidelines</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../external-developer-integration/sdk-development-guidelines/">SDK Development Guidelines</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../external-developer-integration/partner-integration-guides/">Partner Integration Guides</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../gemforce-documentation-gap-analysis/">Documentation Gap Analysis</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../documentation-progress-summary/">Documentation Progress Summary</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../documentation-plan/">Documentation Plan</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Configuration & Environment</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../configuration-environment/gemforce-config/">Gemforce Config</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../configuration-environment/environment-specific-guides/">Environment-Specific Guides</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../configuration-environment/configuration-validation/">Configuration Validation Procedures</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../configuration-environment/external-service-config-management/">External Service Configuration Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../configuration-environment/database-schema-overview/">Database Schema Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../configuration-environment/database-migration-procedures/">Database Migration Procedures</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Gemforce Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Cloud Functions</li>
+      <li class="breadcrumb-item active">Trade Deal Functions</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="trade-deal-functions">Trade Deal Functions<a class="headerlink" href="#trade-deal-functions" title="Permanent link">&para;</a></h1>
+<p>The Trade Deal Functions module provides comprehensive trade deal management capabilities for the Gemforce platform, enabling users to create, manage, and execute collateralized trade deals with invoice NFTs and automated settlement.</p>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>The Trade Deal Functions provide:</p>
+<ul>
+<li><strong>Trade Deal Creation</strong>: Create collateralized trade deals with customizable terms</li>
+<li><strong>Invoice Management</strong>: Generate and manage invoice NFTs for trade deals</li>
+<li><strong>Collateral Management</strong>: Handle collateral deposits and releases</li>
+<li><strong>Settlement Automation</strong>: Automated trade deal settlement and dispute resolution</li>
+<li><strong>Payment Processing</strong>: Integrate with various payment methods and currencies</li>
+<li><strong>Compliance</strong>: KYC/AML compliance and regulatory reporting</li>
+</ul>
+<h2 id="key-features">Key Features<a class="headerlink" href="#key-features" title="Permanent link">&para;</a></h2>
+<h3 id="trade-deal-lifecycle">Trade Deal Lifecycle<a class="headerlink" href="#trade-deal-lifecycle" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Deal Creation</strong>: Create trade deals with flexible terms and conditions</li>
+<li><strong>Collateral Handling</strong>: Secure collateral deposit and management</li>
+<li><strong>Invoice Generation</strong>: Automatic invoice NFT creation and management</li>
+<li><strong>Settlement Processing</strong>: Automated settlement upon deal completion</li>
+<li><strong>Dispute Resolution</strong>: Built-in dispute resolution mechanisms</li>
+</ul>
+<h3 id="financial-integration">Financial Integration<a class="headerlink" href="#financial-integration" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Multi-Currency Support</strong>: Support for various cryptocurrencies and stablecoins</li>
+<li><strong>Payment Rails</strong>: Integration with traditional and crypto payment systems</li>
+<li><strong>Escrow Services</strong>: Secure escrow for high-value transactions</li>
+<li><strong>Fee Management</strong>: Transparent fee structure and collection</li>
+</ul>
+<h3 id="compliance-features">Compliance Features<a class="headerlink" href="#compliance-features" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>KYC Integration</strong>: Know Your Customer verification</li>
+<li><strong>AML Monitoring</strong>: Anti-Money Laundering compliance</li>
+<li><strong>Regulatory Reporting</strong>: Automated compliance reporting</li>
+<li><strong>Audit Trail</strong>: Complete transaction audit trail</li>
+</ul>
+<h2 id="core-functions">Core Functions<a class="headerlink" href="#core-functions" title="Permanent link">&para;</a></h2>
+<h3 id="createtradedeal">createTradeDeal()<a class="headerlink" href="#createtradedeal" title="Permanent link">&para;</a></h3>
+<p>Creates a new trade deal with specified terms and collateral requirements.</p>
+<p><strong>Parameters:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="kd">interface</span><span class="w"> </span><span class="nx">CreateTradeDealRequest</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">dealType</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;purchase_order&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;service_agreement&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;supply_contract&#39;</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">buyer</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">seller</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">dealTerms</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">description</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">totalAmount</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">currency</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">deliveryDate</span><span class="o">:</span><span class="w"> </span><span class="kt">Date</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">paymentTerms</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">specifications?</span><span class="o">:</span><span class="w"> </span><span class="kt">any</span><span class="p">;</span>
+<span class="w">  </span><span class="p">};</span>
+<span class="w">  </span><span class="nx">collateralRequirements</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">buyerCollateral</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">sellerCollateral</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">collateralCurrency</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">  </span><span class="p">};</span>
+<span class="w">  </span><span class="nx">milestones?</span><span class="o">:</span><span class="w"> </span><span class="kt">TradeDealMilestone</span><span class="p">[];</span>
+<span class="w">  </span><span class="nx">disputeResolution?</span><span class="o">:</span><span class="w"> </span><span class="kt">DisputeResolutionTerms</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">interface</span><span class="w"> </span><span class="nx">TradeDealMilestone</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">description</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">amount</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">dueDate</span><span class="o">:</span><span class="w"> </span><span class="kt">Date</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">deliverables</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">[];</span>
+<span class="p">}</span>
+
+<span class="kd">interface</span><span class="w"> </span><span class="nx">DisputeResolutionTerms</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">arbitrator?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">timeoutPeriod</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">penaltyPercentage</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Returns:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="kd">interface</span><span class="w"> </span><span class="nx">CreateTradeDealResponse</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">success</span><span class="o">:</span><span class="w"> </span><span class="kt">boolean</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">dealId</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">contractAddress?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">collateralAddresses</span><span class="o">?:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">buyer</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">seller</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">  </span><span class="p">};</span>
+<span class="w">  </span><span class="nx">message</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Usage:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="s1">&#39;createTradeDeal&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">dealType</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;purchase_order&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">buyer</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;buyer@company.com&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">seller</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;seller@supplier.com&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">dealTerms</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">description</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Supply of 1000 units of Product X&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">totalAmount</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;50000&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">currency</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;USDC&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">deliveryDate</span><span class="o">:</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="nb">Date</span><span class="p">(</span><span class="s1">&#39;2024-12-31&#39;</span><span class="p">),</span>
+<span class="w">    </span><span class="nx">paymentTerms</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Net 30&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">specifications</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">quantity</span><span class="o">:</span><span class="w"> </span><span class="kt">1000</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">quality</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Grade A&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">packaging</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Standard&#39;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nx">collateralRequirements</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">buyerCollateral</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;5000&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">sellerCollateral</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;2500&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">collateralCurrency</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;USDC&#39;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div>
+
+<h3 id="depositcollateral">depositCollateral()<a class="headerlink" href="#depositcollateral" title="Permanent link">&para;</a></h3>
+<p>Deposits collateral for a trade deal.</p>
+<p><strong>Parameters:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="kd">interface</span><span class="w"> </span><span class="nx">DepositCollateralRequest</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">dealId</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">party</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;buyer&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;seller&#39;</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">amount</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">currency</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">paymentMethod</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;crypto&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;bank_transfer&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;credit_card&#39;</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Returns:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="kd">interface</span><span class="w"> </span><span class="nx">DepositCollateralResponse</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">success</span><span class="o">:</span><span class="w"> </span><span class="kt">boolean</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">transactionHash?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">escrowAddress?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">confirmationRequired?</span><span class="o">:</span><span class="w"> </span><span class="kt">boolean</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">message</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="generateinvoice">generateInvoice()<a class="headerlink" href="#generateinvoice" title="Permanent link">&para;</a></h3>
+<p>Generates an invoice NFT for a trade deal milestone.</p>
+<p><strong>Parameters:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="kd">interface</span><span class="w"> </span><span class="nx">GenerateInvoiceRequest</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">dealId</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">milestoneId?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">invoiceDetails</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">invoiceNumber</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">amount</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">currency</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">dueDate</span><span class="o">:</span><span class="w"> </span><span class="kt">Date</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">lineItems</span><span class="o">:</span><span class="w"> </span><span class="kt">InvoiceLineItem</span><span class="p">[];</span>
+<span class="w">    </span><span class="nx">taxDetails?</span><span class="o">:</span><span class="w"> </span><span class="kt">TaxDetails</span><span class="p">;</span>
+<span class="w">  </span><span class="p">};</span>
+<span class="w">  </span><span class="nx">recipient</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">interface</span><span class="w"> </span><span class="nx">InvoiceLineItem</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">description</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">quantity</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">unitPrice</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">totalPrice</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">interface</span><span class="w"> </span><span class="nx">TaxDetails</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">taxRate</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">taxAmount</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">taxJurisdiction</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Returns:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="kd">interface</span><span class="w"> </span><span class="nx">GenerateInvoiceResponse</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">success</span><span class="o">:</span><span class="w"> </span><span class="kt">boolean</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">invoiceId</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">nftTokenId?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">invoiceNFTAddress?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">metadataURI?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">message</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="settletradedeal">settleTradeDeal()<a class="headerlink" href="#settletradedeal" title="Permanent link">&para;</a></h3>
+<p>Settles a completed trade deal and releases collateral.</p>
+<p><strong>Parameters:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="kd">interface</span><span class="w"> </span><span class="nx">SettleTradeDealRequest</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">dealId</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">settlementType</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;successful&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;disputed&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;cancelled&#39;</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">settlementDetails</span><span class="o">?:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">actualDeliveryDate?</span><span class="o">:</span><span class="w"> </span><span class="kt">Date</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">qualityRating?</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">performanceNotes?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">  </span><span class="p">};</span>
+<span class="w">  </span><span class="nx">disputeResolution</span><span class="o">?:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">ruling</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">collateralDistribution</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">buyerReturn</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">      </span><span class="nx">sellerReturn</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">      </span><span class="nx">penaltyAmount</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">    </span><span class="p">};</span>
+<span class="w">  </span><span class="p">};</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Returns:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="kd">interface</span><span class="w"> </span><span class="nx">SettleTradeDealResponse</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">success</span><span class="o">:</span><span class="w"> </span><span class="kt">boolean</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">settlementTransactionHash?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">collateralReleaseHashes?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">[];</span>
+<span class="w">  </span><span class="nx">finalStatus</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">message</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="gettradedeal">getTradeDeal()<a class="headerlink" href="#gettradedeal" title="Permanent link">&para;</a></h3>
+<p>Retrieves trade deal information and current status.</p>
+<p><strong>Parameters:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="kd">interface</span><span class="w"> </span><span class="nx">GetTradeDealRequest</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">dealId</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Returns:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="kd">interface</span><span class="w"> </span><span class="nx">GetTradeDealResponse</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">success</span><span class="o">:</span><span class="w"> </span><span class="kt">boolean</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">tradeDeal</span><span class="o">?:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">dealType</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">buyer</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">seller</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">status</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;created&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;collateral_pending&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;active&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;completed&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;disputed&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;cancelled&#39;</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">dealTerms</span><span class="o">:</span><span class="w"> </span><span class="kt">any</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">collateralStatus</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">buyerDeposited</span><span class="o">:</span><span class="w"> </span><span class="kt">boolean</span><span class="p">;</span>
+<span class="w">      </span><span class="nx">sellerDeposited</span><span class="o">:</span><span class="w"> </span><span class="kt">boolean</span><span class="p">;</span>
+<span class="w">      </span><span class="nx">amounts</span><span class="o">:</span><span class="w"> </span><span class="kt">any</span><span class="p">;</span>
+<span class="w">    </span><span class="p">};</span>
+<span class="w">    </span><span class="nx">milestones</span><span class="o">:</span><span class="w"> </span><span class="kt">TradeDealMilestone</span><span class="p">[];</span>
+<span class="w">    </span><span class="nx">invoices</span><span class="o">:</span><span class="w"> </span><span class="kt">InvoiceInfo</span><span class="p">[];</span>
+<span class="w">    </span><span class="nx">timeline</span><span class="o">:</span><span class="w"> </span><span class="kt">TradeDealEvent</span><span class="p">[];</span>
+<span class="w">    </span><span class="nx">createdAt</span><span class="o">:</span><span class="w"> </span><span class="kt">Date</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">updatedAt</span><span class="o">:</span><span class="w"> </span><span class="kt">Date</span><span class="p">;</span>
+<span class="w">  </span><span class="p">};</span>
+<span class="w">  </span><span class="nx">message</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">interface</span><span class="w"> </span><span class="nx">InvoiceInfo</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">invoiceNumber</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">amount</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">status</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;generated&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;sent&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;paid&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;overdue&#39;</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">nftTokenId?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">createdAt</span><span class="o">:</span><span class="w"> </span><span class="kt">Date</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">interface</span><span class="w"> </span><span class="nx">TradeDealEvent</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kr">type</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">description</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">timestamp</span><span class="o">:</span><span class="w"> </span><span class="kt">Date</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">actor</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">transactionHash?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="implementation-example">Implementation Example<a class="headerlink" href="#implementation-example" title="Permanent link">&para;</a></h2>
+<h3 id="trade-deal-creation-with-smart-contract-deployment">Trade Deal Creation with Smart Contract Deployment<a class="headerlink" href="#trade-deal-creation-with-smart-contract-deployment" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s1">&#39;createTradeDeal&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">(</span><span class="nx">request</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">dealType</span><span class="p">,</span><span class="w"> </span><span class="nx">buyer</span><span class="p">,</span><span class="w"> </span><span class="nx">seller</span><span class="p">,</span><span class="w"> </span><span class="nx">dealTerms</span><span class="p">,</span><span class="w"> </span><span class="nx">collateralRequirements</span><span class="p">,</span><span class="w"> </span><span class="nx">milestones</span><span class="p">,</span><span class="w"> </span><span class="nx">disputeResolution</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">request</span><span class="p">.</span><span class="nx">params</span><span class="p">;</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">user</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">request</span><span class="p">.</span><span class="nx">user</span><span class="p">;</span>
+
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">user</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="s1">&#39;Authentication required&#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Validate participants</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">buyerUser</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">validateTradeDealParticipant</span><span class="p">(</span><span class="nx">buyer</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">sellerUser</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">validateTradeDealParticipant</span><span class="p">(</span><span class="nx">seller</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">buyerUser</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">!</span><span class="nx">sellerUser</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="s1">&#39;Invalid trade deal participants&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Check KYC compliance</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">buyerKYC</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">checkKYCStatus</span><span class="p">(</span><span class="nx">buyerUser</span><span class="p">.</span><span class="nx">id</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">sellerKYC</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">checkKYCStatus</span><span class="p">(</span><span class="nx">sellerUser</span><span class="p">.</span><span class="nx">id</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">buyerKYC</span><span class="p">.</span><span class="nx">verified</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">!</span><span class="nx">sellerKYC</span><span class="p">.</span><span class="nx">verified</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="s1">&#39;KYC verification required for all participants&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Validate deal terms</span>
+<span class="w">    </span><span class="k">await</span><span class="w"> </span><span class="nx">validateTradeDealTerms</span><span class="p">(</span><span class="nx">dealTerms</span><span class="p">,</span><span class="w"> </span><span class="nx">collateralRequirements</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Create trade deal record</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">tradeDeal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Parse</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s1">&#39;TradeDeal&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">tradeDeal</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;dealType&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">dealType</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">tradeDeal</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;buyer&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">buyerUser</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">tradeDeal</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;seller&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">sellerUser</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">tradeDeal</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;creator&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">user</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">tradeDeal</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;dealTerms&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">dealTerms</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">tradeDeal</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;collateralRequirements&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">collateralRequirements</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">tradeDeal</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;milestones&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">milestones</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="p">[]);</span>
+<span class="w">    </span><span class="nx">tradeDeal</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;disputeResolution&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">disputeResolution</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">tradeDeal</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;status&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;created&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">tradeDeal</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;createdAt&#39;</span><span class="p">,</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Date</span><span class="p">());</span>
+<span class="w">    </span><span class="nx">tradeDeal</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;updatedAt&#39;</span><span class="p">,</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Date</span><span class="p">());</span>
+
+<span class="w">    </span><span class="k">await</span><span class="w"> </span><span class="nx">tradeDeal</span><span class="p">.</span><span class="nx">save</span><span class="p">();</span>
+
+<span class="w">    </span><span class="c1">// Deploy trade deal smart contract</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">contractDeployment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">deployTradeDealContract</span><span class="p">({</span>
+<span class="w">      </span><span class="nx">dealId</span><span class="o">:</span><span class="w"> </span><span class="kt">tradeDeal.id</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">buyer</span><span class="o">:</span><span class="w"> </span><span class="kt">buyerUser.get</span><span class="p">(</span><span class="s1">&#39;walletAddress&#39;</span><span class="p">),</span>
+<span class="w">      </span><span class="nx">seller</span><span class="o">:</span><span class="w"> </span><span class="kt">sellerUser.get</span><span class="p">(</span><span class="s1">&#39;walletAddress&#39;</span><span class="p">),</span>
+<span class="w">      </span><span class="nx">dealTerms</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">collateralRequirements</span>
+<span class="w">    </span><span class="p">});</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">contractDeployment</span><span class="p">.</span><span class="nx">success</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">tradeDeal</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;status&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;failed&#39;</span><span class="p">);</span>
+<span class="w">      </span><span class="nx">tradeDeal</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;deploymentError&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">contractDeployment</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+<span class="w">      </span><span class="k">await</span><span class="w"> </span><span class="nx">tradeDeal</span><span class="p">.</span><span class="nx">save</span><span class="p">();</span>
+<span class="w">      </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="sb">`Contract deployment failed: </span><span class="si">${</span><span class="nx">contractDeployment</span><span class="p">.</span><span class="nx">message</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Update trade deal with contract information</span>
+<span class="w">    </span><span class="nx">tradeDeal</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;contractAddress&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">contractDeployment</span><span class="p">.</span><span class="nx">contractAddress</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">tradeDeal</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;deploymentTxHash&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">contractDeployment</span><span class="p">.</span><span class="nx">txHash</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">tradeDeal</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;status&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;collateral_pending&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="k">await</span><span class="w"> </span><span class="nx">tradeDeal</span><span class="p">.</span><span class="nx">save</span><span class="p">();</span>
+
+<span class="w">    </span><span class="c1">// Create collateral escrow contracts</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">escrowDeployment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">deployCollateralEscrows</span><span class="p">(</span><span class="nx">tradeDeal</span><span class="p">.</span><span class="nx">id</span><span class="p">,</span><span class="w"> </span><span class="nx">collateralRequirements</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">escrowDeployment</span><span class="p">.</span><span class="nx">success</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">tradeDeal</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;collateralAddresses&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">escrowDeployment</span><span class="p">.</span><span class="nx">addresses</span><span class="p">);</span>
+<span class="w">      </span><span class="k">await</span><span class="w"> </span><span class="nx">tradeDeal</span><span class="p">.</span><span class="nx">save</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Send notifications to participants</span>
+<span class="w">    </span><span class="k">await</span><span class="w"> </span><span class="nx">sendTradeDealNotifications</span><span class="p">(</span><span class="nx">tradeDeal</span><span class="p">.</span><span class="nx">id</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;created&#39;</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Log trade deal creation event</span>
+<span class="w">    </span><span class="k">await</span><span class="w"> </span><span class="nx">logTradeDealEvent</span><span class="p">(</span><span class="nx">tradeDeal</span><span class="p">.</span><span class="nx">id</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;deal_created&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Trade deal created successfully&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">user</span><span class="p">.</span><span class="nx">id</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">success</span><span class="o">:</span><span class="w"> </span><span class="kt">true</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">dealId</span><span class="o">:</span><span class="w"> </span><span class="kt">tradeDeal.id</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">contractAddress</span><span class="o">:</span><span class="w"> </span><span class="kt">contractDeployment.contractAddress</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">collateralAddresses</span><span class="o">:</span><span class="w"> </span><span class="kt">escrowDeployment.addresses</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">message</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Trade deal created successfully&#39;</span>
+<span class="w">    </span><span class="p">};</span>
+
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;Trade deal creation error:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">success</span><span class="o">:</span><span class="w"> </span><span class="kt">false</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">message</span><span class="o">:</span><span class="w"> </span><span class="kt">error.message</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="s1">&#39;Failed to create trade deal&#39;</span>
+<span class="w">    </span><span class="p">};</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div>
+
+<h3 id="collateral-management">Collateral Management<a class="headerlink" href="#collateral-management" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s1">&#39;depositCollateral&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">(</span><span class="nx">request</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">dealId</span><span class="p">,</span><span class="w"> </span><span class="nx">party</span><span class="p">,</span><span class="w"> </span><span class="nx">amount</span><span class="p">,</span><span class="w"> </span><span class="nx">currency</span><span class="p">,</span><span class="w"> </span><span class="nx">paymentMethod</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">request</span><span class="p">.</span><span class="nx">params</span><span class="p">;</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">user</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">request</span><span class="p">.</span><span class="nx">user</span><span class="p">;</span>
+
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">user</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="s1">&#39;Authentication required&#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Get trade deal</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">tradeDeal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Parse</span><span class="p">.</span><span class="nx">Query</span><span class="p">(</span><span class="s1">&#39;TradeDeal&#39;</span><span class="p">)</span>
+<span class="w">      </span><span class="p">.</span><span class="nx">equalTo</span><span class="p">(</span><span class="s1">&#39;objectId&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">dealId</span><span class="p">)</span>
+<span class="w">      </span><span class="p">.</span><span class="nx">first</span><span class="p">({</span><span class="w"> </span><span class="nx">useMasterKey</span><span class="o">:</span><span class="w"> </span><span class="kt">true</span><span class="w"> </span><span class="p">});</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">tradeDeal</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="s1">&#39;Trade deal not found&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Verify user is authorized party</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">isAuthorized</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">party</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;buyer&#39;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">tradeDeal</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;buyer&#39;</span><span class="p">).</span><span class="nx">id</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nx">user</span><span class="p">.</span><span class="nx">id</span><span class="p">)</span><span class="w"> </span><span class="o">||</span>
+<span class="w">                        </span><span class="p">(</span><span class="nx">party</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;seller&#39;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">tradeDeal</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;seller&#39;</span><span class="p">).</span><span class="nx">id</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nx">user</span><span class="p">.</span><span class="nx">id</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">isAuthorized</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="s1">&#39;Unauthorized to deposit collateral for this party&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Check if collateral already deposited</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">collateralStatus</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">tradeDeal</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;collateralStatus&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="p">{};</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">partyKey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`</span><span class="si">${</span><span class="nx">party</span><span class="si">}</span><span class="sb">Deposited`</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">collateralStatus</span><span class="p">[</span><span class="nx">partyKey</span><span class="p">])</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="s1">&#39;Collateral already deposited&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Validate collateral amount</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">requiredAmount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">tradeDeal</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;collateralRequirements&#39;</span><span class="p">)[</span><span class="sb">`</span><span class="si">${</span><span class="nx">party</span><span class="si">}</span><span class="sb">Collateral`</span><span class="p">];</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">amount</span><span class="w"> </span><span class="o">!==</span><span class="w"> </span><span class="nx">requiredAmount</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="sb">`Incorrect collateral amount. Required: </span><span class="si">${</span><span class="nx">requiredAmount</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Process collateral deposit based on payment method</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">depositResult</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="nx">paymentMethod</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">case</span><span class="w"> </span><span class="s1">&#39;crypto&#39;</span><span class="o">:</span>
+<span class="w">        </span><span class="nx">depositResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">processCryptoCollateralDeposit</span><span class="p">(</span><span class="nx">dealId</span><span class="p">,</span><span class="w"> </span><span class="nx">party</span><span class="p">,</span><span class="w"> </span><span class="nx">amount</span><span class="p">,</span><span class="w"> </span><span class="nx">currency</span><span class="p">,</span><span class="w"> </span><span class="nx">user</span><span class="p">);</span>
+<span class="w">        </span><span class="k">break</span><span class="p">;</span>
+<span class="w">      </span><span class="k">case</span><span class="w"> </span><span class="s1">&#39;bank_transfer&#39;</span><span class="o">:</span>
+<span class="w">        </span><span class="nx">depositResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">processBankTransferCollateral</span><span class="p">(</span><span class="nx">dealId</span><span class="p">,</span><span class="w"> </span><span class="nx">party</span><span class="p">,</span><span class="w"> </span><span class="nx">amount</span><span class="p">,</span><span class="w"> </span><span class="nx">currency</span><span class="p">,</span><span class="w"> </span><span class="nx">user</span><span class="p">);</span>
+<span class="w">        </span><span class="k">break</span><span class="p">;</span>
+<span class="w">      </span><span class="k">case</span><span class="w"> </span><span class="s1">&#39;credit_card&#39;</span><span class="o">:</span>
+<span class="w">        </span><span class="nx">depositResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">processCreditCardCollateral</span><span class="p">(</span><span class="nx">dealId</span><span class="p">,</span><span class="w"> </span><span class="nx">party</span><span class="p">,</span><span class="w"> </span><span class="nx">amount</span><span class="p">,</span><span class="w"> </span><span class="nx">currency</span><span class="p">,</span><span class="w"> </span><span class="nx">user</span><span class="p">);</span>
+<span class="w">        </span><span class="k">break</span><span class="p">;</span>
+<span class="w">      </span><span class="nx">default</span><span class="o">:</span>
+<span class="w">        </span><span class="kt">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="s1">&#39;Unsupported payment method&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">depositResult</span><span class="p">.</span><span class="nx">success</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="sb">`Collateral deposit failed: </span><span class="si">${</span><span class="nx">depositResult</span><span class="p">.</span><span class="nx">message</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Update collateral status</span>
+<span class="w">    </span><span class="nx">collateralStatus</span><span class="p">[</span><span class="nx">partyKey</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">collateralStatus</span><span class="p">[</span><span class="sb">`</span><span class="si">${</span><span class="nx">party</span><span class="si">}</span><span class="sb">Amount`</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">amount</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">collateralStatus</span><span class="p">[</span><span class="sb">`</span><span class="si">${</span><span class="nx">party</span><span class="si">}</span><span class="sb">TxHash`</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">depositResult</span><span class="p">.</span><span class="nx">transactionHash</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">collateralStatus</span><span class="p">[</span><span class="sb">`</span><span class="si">${</span><span class="nx">party</span><span class="si">}</span><span class="sb">DepositedAt`</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Date</span><span class="p">();</span>
+
+<span class="w">    </span><span class="nx">tradeDeal</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;collateralStatus&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">collateralStatus</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Check if both parties have deposited collateral</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">collateralStatus</span><span class="p">.</span><span class="nx">buyerDeposited</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">collateralStatus</span><span class="p">.</span><span class="nx">sellerDeposited</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">tradeDeal</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;status&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;active&#39;</span><span class="p">);</span>
+<span class="w">      </span><span class="nx">tradeDeal</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;activatedAt&#39;</span><span class="p">,</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Date</span><span class="p">());</span>
+
+<span class="w">      </span><span class="c1">// Activate the trade deal contract</span>
+<span class="w">      </span><span class="k">await</span><span class="w"> </span><span class="nx">activateTradeDealContract</span><span class="p">(</span><span class="nx">tradeDeal</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;contractAddress&#39;</span><span class="p">));</span>
+
+<span class="w">      </span><span class="c1">// Send activation notifications</span>
+<span class="w">      </span><span class="k">await</span><span class="w"> </span><span class="nx">sendTradeDealNotifications</span><span class="p">(</span><span class="nx">dealId</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;activated&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">await</span><span class="w"> </span><span class="nx">tradeDeal</span><span class="p">.</span><span class="nx">save</span><span class="p">();</span>
+
+<span class="w">    </span><span class="c1">// Log collateral deposit event</span>
+<span class="w">    </span><span class="k">await</span><span class="w"> </span><span class="nx">logTradeDealEvent</span><span class="p">(</span><span class="nx">dealId</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;collateral_deposited&#39;</span><span class="p">,</span><span class="w"> </span><span class="sb">`</span><span class="si">${</span><span class="nx">party</span><span class="si">}</span><span class="sb"> deposited collateral`</span><span class="p">,</span><span class="w"> </span><span class="nx">user</span><span class="p">.</span><span class="nx">id</span><span class="p">,</span><span class="w"> </span><span class="nx">depositResult</span><span class="p">.</span><span class="nx">transactionHash</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">success</span><span class="o">:</span><span class="w"> </span><span class="kt">true</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">transactionHash</span><span class="o">:</span><span class="w"> </span><span class="kt">depositResult.transactionHash</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">escrowAddress</span><span class="o">:</span><span class="w"> </span><span class="kt">depositResult.escrowAddress</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">confirmationRequired</span><span class="o">:</span><span class="w"> </span><span class="kt">depositResult.confirmationRequired</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">message</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Collateral deposited successfully&#39;</span>
+<span class="w">    </span><span class="p">};</span>
+
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;Collateral deposit error:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">success</span><span class="o">:</span><span class="w"> </span><span class="kt">false</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">message</span><span class="o">:</span><span class="w"> </span><span class="kt">error.message</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="s1">&#39;Failed to deposit collateral&#39;</span>
+<span class="w">    </span><span class="p">};</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div>
+
+<h3 id="invoice-nft-generation">Invoice NFT Generation<a class="headerlink" href="#invoice-nft-generation" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s1">&#39;generateInvoice&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">(</span><span class="nx">request</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">dealId</span><span class="p">,</span><span class="w"> </span><span class="nx">milestoneId</span><span class="p">,</span><span class="w"> </span><span class="nx">invoiceDetails</span><span class="p">,</span><span class="w"> </span><span class="nx">recipient</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">request</span><span class="p">.</span><span class="nx">params</span><span class="p">;</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">user</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">request</span><span class="p">.</span><span class="nx">user</span><span class="p">;</span>
+
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">user</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="s1">&#39;Authentication required&#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Get trade deal</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">tradeDeal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Parse</span><span class="p">.</span><span class="nx">Query</span><span class="p">(</span><span class="s1">&#39;TradeDeal&#39;</span><span class="p">)</span>
+<span class="w">      </span><span class="p">.</span><span class="nx">equalTo</span><span class="p">(</span><span class="s1">&#39;objectId&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">dealId</span><span class="p">)</span>
+<span class="w">      </span><span class="p">.</span><span class="nx">first</span><span class="p">({</span><span class="w"> </span><span class="nx">useMasterKey</span><span class="o">:</span><span class="w"> </span><span class="kt">true</span><span class="w"> </span><span class="p">});</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">tradeDeal</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="s1">&#39;Trade deal not found&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Verify user is authorized to generate invoice</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">isAuthorized</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">tradeDeal</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;seller&#39;</span><span class="p">).</span><span class="nx">id</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nx">user</span><span class="p">.</span><span class="nx">id</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nx">tradeDeal</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;buyer&#39;</span><span class="p">).</span><span class="nx">id</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nx">user</span><span class="p">.</span><span class="nx">id</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">isAuthorized</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="s1">&#39;Unauthorized to generate invoice for this trade deal&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Validate invoice details</span>
+<span class="w">    </span><span class="k">await</span><span class="w"> </span><span class="nx">validateInvoiceDetails</span><span class="p">(</span><span class="nx">invoiceDetails</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Create invoice record</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">invoice</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Parse</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s1">&#39;Invoice&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">invoice</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;tradeDeal&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">tradeDeal</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">invoice</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;milestoneId&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">milestoneId</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">invoice</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;invoiceNumber&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">invoiceDetails</span><span class="p">.</span><span class="nx">invoiceNumber</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">invoice</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;amount&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">invoiceDetails</span><span class="p">.</span><span class="nx">amount</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">invoice</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;currency&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">invoiceDetails</span><span class="p">.</span><span class="nx">currency</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">invoice</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;dueDate&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">invoiceDetails</span><span class="p">.</span><span class="nx">dueDate</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">invoice</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;lineItems&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">invoiceDetails</span><span class="p">.</span><span class="nx">lineItems</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">invoice</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;taxDetails&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">invoiceDetails</span><span class="p">.</span><span class="nx">taxDetails</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">invoice</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;recipient&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">recipient</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">invoice</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;issuer&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">user</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">invoice</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;status&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;generated&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">invoice</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;createdAt&#39;</span><span class="p">,</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Date</span><span class="p">());</span>
+
+<span class="w">    </span><span class="k">await</span><span class="w"> </span><span class="nx">invoice</span><span class="p">.</span><span class="nx">save</span><span class="p">();</span>
+
+<span class="w">    </span><span class="c1">// Generate invoice metadata</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">metadata</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">generateInvoiceMetadata</span><span class="p">(</span><span class="nx">invoice</span><span class="p">.</span><span class="nx">id</span><span class="p">,</span><span class="w"> </span><span class="nx">invoiceDetails</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Mint invoice NFT</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">nftMinting</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">mintInvoiceNFT</span><span class="p">({</span>
+<span class="w">      </span><span class="nx">invoiceId</span><span class="o">:</span><span class="w"> </span><span class="kt">invoice.id</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">recipient</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">metadata</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">tradeDealContract</span><span class="o">:</span><span class="w"> </span><span class="kt">tradeDeal.get</span><span class="p">(</span><span class="s1">&#39;contractAddress&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">});</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">nftMinting</span><span class="p">.</span><span class="nx">success</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">invoice</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;status&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;failed&#39;</span><span class="p">);</span>
+<span class="w">      </span><span class="nx">invoice</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;mintingError&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">nftMinting</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+<span class="w">      </span><span class="k">await</span><span class="w"> </span><span class="nx">invoice</span><span class="p">.</span><span class="nx">save</span><span class="p">();</span>
+<span class="w">      </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="sb">`Invoice NFT minting failed: </span><span class="si">${</span><span class="nx">nftMinting</span><span class="p">.</span><span class="nx">message</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Update invoice with NFT information</span>
+<span class="w">    </span><span class="nx">invoice</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;nftTokenId&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">nftMinting</span><span class="p">.</span><span class="nx">tokenId</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">invoice</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;nftAddress&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">nftMinting</span><span class="p">.</span><span class="nx">contractAddress</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">invoice</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;metadataURI&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">nftMinting</span><span class="p">.</span><span class="nx">metadataURI</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">invoice</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;mintingTxHash&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">nftMinting</span><span class="p">.</span><span class="nx">txHash</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">invoice</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;status&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;minted&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="k">await</span><span class="w"> </span><span class="nx">invoice</span><span class="p">.</span><span class="nx">save</span><span class="p">();</span>
+
+<span class="w">    </span><span class="c1">// Update trade deal with invoice reference</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">invoices</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">tradeDeal</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;invoices&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="p">[];</span>
+<span class="w">    </span><span class="nx">invoices</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span>
+<span class="w">      </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="kt">invoice.id</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">invoiceNumber</span><span class="o">:</span><span class="w"> </span><span class="kt">invoiceDetails.invoiceNumber</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">amount</span><span class="o">:</span><span class="w"> </span><span class="kt">invoiceDetails.amount</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">nftTokenId</span><span class="o">:</span><span class="w"> </span><span class="kt">nftMinting.tokenId</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">createdAt</span><span class="o">:</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="nb">Date</span><span class="p">()</span>
+<span class="w">    </span><span class="p">});</span>
+<span class="w">    </span><span class="nx">tradeDeal</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;invoices&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">invoices</span><span class="p">);</span>
+<span class="w">    </span><span class="k">await</span><span class="w"> </span><span class="nx">tradeDeal</span><span class="p">.</span><span class="nx">save</span><span class="p">();</span>
+
+<span class="w">    </span><span class="c1">// Send invoice notification</span>
+<span class="w">    </span><span class="k">await</span><span class="w"> </span><span class="nx">sendInvoiceNotification</span><span class="p">(</span><span class="nx">invoice</span><span class="p">.</span><span class="nx">id</span><span class="p">,</span><span class="w"> </span><span class="nx">recipient</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Log invoice generation event</span>
+<span class="w">    </span><span class="k">await</span><span class="w"> </span><span class="nx">logTradeDealEvent</span><span class="p">(</span><span class="nx">dealId</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;invoice_generated&#39;</span><span class="p">,</span><span class="w"> </span><span class="sb">`Invoice </span><span class="si">${</span><span class="nx">invoiceDetails</span><span class="p">.</span><span class="nx">invoiceNumber</span><span class="si">}</span><span class="sb"> generated`</span><span class="p">,</span><span class="w"> </span><span class="nx">user</span><span class="p">.</span><span class="nx">id</span><span class="p">,</span><span class="w"> </span><span class="nx">nftMinting</span><span class="p">.</span><span class="nx">txHash</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">success</span><span class="o">:</span><span class="w"> </span><span class="kt">true</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">invoiceId</span><span class="o">:</span><span class="w"> </span><span class="kt">invoice.id</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">nftTokenId</span><span class="o">:</span><span class="w"> </span><span class="kt">nftMinting.tokenId</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">invoiceNFTAddress</span><span class="o">:</span><span class="w"> </span><span class="kt">nftMinting.contractAddress</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">metadataURI</span><span class="o">:</span><span class="w"> </span><span class="kt">nftMinting.metadataURI</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">message</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Invoice generated successfully&#39;</span>
+<span class="w">    </span><span class="p">};</span>
+
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;Invoice generation error:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">success</span><span class="o">:</span><span class="w"> </span><span class="kt">false</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">message</span><span class="o">:</span><span class="w"> </span><span class="kt">error.message</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="s1">&#39;Failed to generate invoice&#39;</span>
+<span class="w">    </span><span class="p">};</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div>
+
+<h3 id="trade-deal-settlement">Trade Deal Settlement<a class="headerlink" href="#trade-deal-settlement" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s1">&#39;settleTradeDeal&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">(</span><span class="nx">request</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">dealId</span><span class="p">,</span><span class="w"> </span><span class="nx">settlementType</span><span class="p">,</span><span class="w"> </span><span class="nx">settlementDetails</span><span class="p">,</span><span class="w"> </span><span class="nx">disputeResolution</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">request</span><span class="p">.</span><span class="nx">params</span><span class="p">;</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">user</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">request</span><span class="p">.</span><span class="nx">user</span><span class="p">;</span>
+
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">user</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="s1">&#39;Authentication required&#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Get trade deal</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">tradeDeal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Parse</span><span class="p">.</span><span class="nx">Query</span><span class="p">(</span><span class="s1">&#39;TradeDeal&#39;</span><span class="p">)</span>
+<span class="w">      </span><span class="p">.</span><span class="nx">equalTo</span><span class="p">(</span><span class="s1">&#39;objectId&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">dealId</span><span class="p">)</span>
+<span class="w">      </span><span class="p">.</span><span class="nx">first</span><span class="p">({</span><span class="w"> </span><span class="nx">useMasterKey</span><span class="o">:</span><span class="w"> </span><span class="kt">true</span><span class="w"> </span><span class="p">});</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">tradeDeal</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="s1">&#39;Trade deal not found&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Verify user is authorized to settle</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">isAuthorized</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">tradeDeal</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;buyer&#39;</span><span class="p">).</span><span class="nx">id</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nx">user</span><span class="p">.</span><span class="nx">id</span><span class="w"> </span><span class="o">||</span><span class="w"> </span>
+<span class="w">                        </span><span class="nx">tradeDeal</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;seller&#39;</span><span class="p">).</span><span class="nx">id</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nx">user</span><span class="p">.</span><span class="nx">id</span><span class="w"> </span><span class="o">||</span>
+<span class="w">                        </span><span class="nx">isArbitrator</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">id</span><span class="p">,</span><span class="w"> </span><span class="nx">tradeDeal</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">isAuthorized</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="s1">&#39;Unauthorized to settle this trade deal&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Validate settlement type and current status</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">tradeDeal</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;status&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">!==</span><span class="w"> </span><span class="s1">&#39;active&#39;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">tradeDeal</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;status&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">!==</span><span class="w"> </span><span class="s1">&#39;disputed&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="s1">&#39;Trade deal is not in a settleable state&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Process settlement based on type</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">settlementResult</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="nx">settlementType</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">case</span><span class="w"> </span><span class="s1">&#39;successful&#39;</span><span class="o">:</span>
+<span class="w">        </span><span class="nx">settlementResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">processSuccessfulSettlement</span><span class="p">(</span><span class="nx">tradeDeal</span><span class="p">,</span><span class="w"> </span><span class="nx">settlementDetails</span><span class="p">);</span>
+<span class="w">        </span><span class="k">break</span><span class="p">;</span>
+<span class="w">      </span><span class="k">case</span><span class="w"> </span><span class="s1">&#39;disputed&#39;</span><span class="o">:</span>
+<span class="w">        </span><span class="nx">settlementResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">processDisputedSettlement</span><span class="p">(</span><span class="nx">tradeDeal</span><span class="p">,</span><span class="w"> </span><span class="nx">disputeResolution</span><span class="p">);</span>
+<span class="w">        </span><span class="k">break</span><span class="p">;</span>
+<span class="w">      </span><span class="k">case</span><span class="w"> </span><span class="s1">&#39;cancelled&#39;</span><span class="o">:</span>
+<span class="w">        </span><span class="nx">settlementResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">processCancelledSettlement</span><span class="p">(</span><span class="nx">tradeDeal</span><span class="p">);</span>
+<span class="w">        </span><span class="k">break</span><span class="p">;</span>
+<span class="w">      </span><span class="nx">default</span><span class="o">:</span>
+<span class="w">        </span><span class="kt">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="s1">&#39;Invalid settlement type&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">settlementResult</span><span class="p">.</span><span class="nx">success</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="sb">`Settlement failed: </span><span class="si">${</span><span class="nx">settlementResult</span><span class="p">.</span><span class="nx">message</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Update trade deal status</span>
+<span class="w">    </span><span class="nx">tradeDeal</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;status&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">settlementType</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;successful&#39;</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s1">&#39;completed&#39;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="nx">settlementType</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">tradeDeal</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;settlementType&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">settlementType</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">tradeDeal</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;settlementDetails&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">settlementDetails</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">tradeDeal</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;settlementTxHash&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">settlementResult</span><span class="p">.</span><span class="nx">transactionHash</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">tradeDeal</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;settledAt&#39;</span><span class="p">,</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Date</span><span class="p">());</span>
+<span class="w">    </span><span class="nx">tradeDeal</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;settledBy&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">user</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">disputeResolution</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">tradeDeal</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;disputeResolution&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">disputeResolution</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">await</span><span class="w"> </span><span class="nx">tradeDeal</span><span class="p">.</span><span class="nx">save</span><span class="p">();</span>
+
+<span class="w">    </span><span class="c1">// Release collateral according to settlement terms</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">collateralRelease</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">releaseCollateral</span><span class="p">(</span><span class="nx">tradeDeal</span><span class="p">,</span><span class="w"> </span><span class="nx">settlementType</span><span class="p">,</span><span class="w"> </span><span class="nx">disputeResolution</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Send settlement notifications</span>
+<span class="w">    </span><span class="k">await</span><span class="w"> </span><span class="nx">sendSettlementNotifications</span><span class="p">(</span><span class="nx">dealId</span><span class="p">,</span><span class="w"> </span><span class="nx">settlementType</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Update compliance records</span>
+<span class="w">    </span><span class="k">await</span><span class="w"> </span><span class="nx">updateComplianceRecords</span><span class="p">(</span><span class="nx">tradeDeal</span><span class="p">,</span><span class="w"> </span><span class="nx">settlementType</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Log settlement event</span>
+<span class="w">    </span><span class="k">await</span><span class="w"> </span><span class="nx">logTradeDealEvent</span><span class="p">(</span><span class="nx">dealId</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;deal_settled&#39;</span><span class="p">,</span><span class="w"> </span><span class="sb">`Trade deal settled: </span><span class="si">${</span><span class="nx">settlementType</span><span class="si">}</span><span class="sb">`</span><span class="p">,</span><span class="w"> </span><span class="nx">user</span><span class="p">.</span><span class="nx">id</span><span class="p">,</span><span class="w"> </span><span class="nx">settlementResult</span><span class="p">.</span><span class="nx">transactionHash</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">success</span><span class="o">:</span><span class="w"> </span><span class="kt">true</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">settlementTransactionHash</span><span class="o">:</span><span class="w"> </span><span class="kt">settlementResult.transactionHash</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">collateralReleaseHashes</span><span class="o">:</span><span class="w"> </span><span class="kt">collateralRelease.transactionHashes</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">finalStatus</span><span class="o">:</span><span class="w"> </span><span class="kt">tradeDeal.get</span><span class="p">(</span><span class="s1">&#39;status&#39;</span><span class="p">),</span>
+<span class="w">      </span><span class="nx">message</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Trade deal settled successfully&#39;</span>
+<span class="w">    </span><span class="p">};</span>
+
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;Trade deal settlement error:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">success</span><span class="o">:</span><span class="w"> </span><span class="kt">false</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">message</span><span class="o">:</span><span class="w"> </span><span class="kt">error.message</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="s1">&#39;Failed to settle trade deal&#39;</span>
+<span class="w">    </span><span class="p">};</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div>
+
+<h2 id="compliance-and-reporting">Compliance and Reporting<a class="headerlink" href="#compliance-and-reporting" title="Permanent link">&para;</a></h2>
+<h3 id="kyc-integration">KYC Integration<a class="headerlink" href="#kyc-integration" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">checkKYCStatus</span><span class="p">(</span><span class="nx">userId</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="p">{</span><span class="w"> </span><span class="nx">verified</span><span class="o">:</span><span class="w"> </span><span class="kt">boolean</span><span class="p">;</span><span class="w"> </span><span class="nx">level</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span><span class="w"> </span><span class="nx">expiresAt?</span><span class="o">:</span><span class="w"> </span><span class="kt">Date</span><span class="w"> </span><span class="p">}</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">kycRecord</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Parse</span><span class="p">.</span><span class="nx">Query</span><span class="p">(</span><span class="s1">&#39;KYCRecord&#39;</span><span class="p">)</span>
+<span class="w">      </span><span class="p">.</span><span class="nx">equalTo</span><span class="p">(</span><span class="s1">&#39;user&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">userId</span><span class="p">)</span>
+<span class="w">      </span><span class="p">.</span><span class="nx">first</span><span class="p">({</span><span class="w"> </span><span class="nx">useMasterKey</span><span class="o">:</span><span class="w"> </span><span class="kt">true</span><span class="w"> </span><span class="p">});</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">kycRecord</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">verified</span><span class="o">:</span><span class="w"> </span><span class="kt">false</span><span class="p">,</span><span class="w"> </span><span class="nx">level</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;none&#39;</span><span class="w"> </span><span class="p">};</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">kycRecord</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;status&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">kycRecord</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;level&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">expiresAt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">kycRecord</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;expiresAt&#39;</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Check if KYC is still valid</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">expiresAt</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Date</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nx">expiresAt</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">verified</span><span class="o">:</span><span class="w"> </span><span class="kt">false</span><span class="p">,</span><span class="w"> </span><span class="nx">level</span><span class="p">,</span><span class="w"> </span><span class="nx">expiresAt</span><span class="w"> </span><span class="p">};</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">verified</span><span class="o">:</span><span class="w"> </span><span class="kt">status</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;verified&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">level</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">expiresAt</span>
+<span class="w">    </span><span class="p">};</span>
+
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;KYC check error:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">verified</span><span class="o">:</span><span class="w"> </span><span class="kt">false</span><span class="p">,</span><span class="w"> </span><span class="nx">level</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;error&#39;</span><span class="w"> </span><span class="p">};</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="aml-monitoring">AML Monitoring<a class="headerlink" href="#aml-monitoring" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">performAMLCheck</span><span class="p">(</span><span class="nx">tradeDeal</span><span class="o">:</span><span class="w"> </span><span class="kt">any</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="p">{</span><span class="w"> </span><span class="nx">passed</span><span class="o">:</span><span class="w"> </span><span class="kt">boolean</span><span class="p">;</span><span class="w"> </span><span class="nx">riskScore</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span><span class="w"> </span><span class="nx">flags</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">[]</span><span class="w"> </span><span class="p">}</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">buyer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">tradeDeal</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;buyer&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">seller</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">tradeDeal</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;seller&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">dealAmount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">parseFloat</span><span class="p">(</span><span class="nx">tradeDeal</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;dealTerms&#39;</span><span class="p">).</span><span class="nx">totalAmount</span><span class="p">);</span>
+
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">riskScore</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">flags</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[];</span>
+
+<span class="w">    </span><span class="c1">// Check transaction amount</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">dealAmount</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">10000</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">riskScore</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mf">10</span><span class="p">;</span>
+<span class="w">      </span><span class="nx">flags</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s1">&#39;high_value_transaction&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Check user risk profiles</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">buyerRisk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">getUserRiskProfile</span><span class="p">(</span><span class="nx">buyer</span><span class="p">.</span><span class="nx">id</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">sellerRisk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">getUserRiskProfile</span><span class="p">(</span><span class="nx">seller</span><span class="p">.</span><span class="nx">id</span><span class="p">);</span>
+
+<span class="w">    </span><span class="nx">riskScore</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">buyerRisk</span><span class="p">.</span><span class="nx">score</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">sellerRisk</span><span class="p">.</span><span class="nx">score</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">flags</span><span class="p">.</span><span class="nx">push</span><span class="p">(...</span><span class="nx">buyerRisk</span><span class="p">.</span><span class="nx">flags</span><span class="p">,</span><span class="w"> </span><span class="p">...</span><span class="nx">sellerRisk</span><span class="p">.</span><span class="nx">flags</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Check for suspicious patterns</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">suspiciousActivity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">detectSuspiciousActivity</span><span class="p">(</span><span class="nx">buyer</span><span class="p">.</span><span class="nx">id</span><span class="p">,</span><span class="w"> </span><span class="nx">seller</span><span class="p">.</span><span class="nx">id</span><span class="p">,</span><span class="w"> </span><span class="nx">dealAmount</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">suspiciousActivity</span><span class="p">.</span><span class="nx">detected</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">riskScore</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mf">20</span><span class="p">;</span>
+<span class="w">      </span><span class="nx">flags</span><span class="p">.</span><span class="nx">push</span><span class="p">(...</span><span class="nx">suspiciousActivity</span><span class="p">.</span><span class="nx">flags</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Determine if AML check passed</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">passed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">riskScore</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">50</span><span class="p">;</span><span class="w"> </span><span class="c1">// Threshold for automatic approval</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">passed</span><span class="p">,</span><span class="w"> </span><span class="nx">riskScore</span><span class="p">,</span><span class="w"> </span><span class="nx">flags</span><span class="w"> </span><span class="p">};</span>
+
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;AML check error:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">passed</span><span class="o">:</span><span class="w"> </span><span class="kt">false</span><span class="p">,</span><span class="w"> </span><span class="nx">riskScore</span><span class="o">:</span><span class="w"> </span><span class="kt">100</span><span class="p">,</span><span class="w"> </span><span class="nx">flags</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;aml_check_error&#39;</span><span class="p">]</span><span class="w"> </span><span class="p">};</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="integration-examples">Integration Examples<a class="headerlink" href="#integration-examples" title="Permanent link">&para;</a></h2>
+<h3 id="frontend-integration">Frontend Integration<a class="headerlink" href="#frontend-integration" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nx">TradeDealService</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">async</span><span class="w"> </span><span class="nx">createTradeDeal</span><span class="p">(</span><span class="nx">dealData</span><span class="o">:</span><span class="w"> </span><span class="kt">CreateTradeDealRequest</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">CreateTradeDealResponse</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="s1">&#39;createTradeDeal&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">dealData</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="k">async</span><span class="w"> </span><span class="nx">depositCollateral</span><span class="p">(</span>
+<span class="w">    </span><span class="nx">dealId</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">party</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;buyer&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;seller&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">amount</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">currency</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">paymentMethod</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span>
+<span class="w">  </span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">DepositCollateralResponse</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="s1">&#39;depositCollateral&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">dealId</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">party</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">amount</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">currency</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">paymentMethod</span>
+<span class="w">    </span><span class="p">});</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="k">async</span><span class="w"> </span><span class="nx">generateInvoice</span><span class="p">(</span><span class="nx">invoiceData</span><span class="o">:</span><span class="w"> </span><span class="kt">GenerateInvoiceRequest</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">GenerateInvoiceResponse</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="s1">&#39;generateInvoice&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">invoiceData</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="k">async</span><span class="w"> </span><span class="nx">settleTradeDeal</span><span class="p">(</span><span class="nx">settlementData</span><span class="o">:</span><span class="w"> </span><span class="kt">SettleTradeDealRequest</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">SettleTradeDealResponse</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="s1">&#39;settleTradeDeal&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">settlementData</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="k">async</span><span class="w"> </span><span class="nx">getTradeDeal</span><span class="p">(</span><span class="nx">dealId</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">GetTradeDealResponse</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="s1">&#39;getTradeDeal&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">dealId</span><span class="w"> </span><span class="p">});</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="react-component-example">React Component Example<a class="headerlink" href="#react-component-example" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="k">export</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">TradeDealDashboard</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="p">[</span><span class="nx">tradeDeals</span><span class="p">,</span><span class="w"> </span><span class="nx">setTradeDeals</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">useState</span><span class="o">&lt;</span><span class="nx">any</span><span class="p">[]</span><span class="o">&gt;</span><span class="p">([]);</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="p">[</span><span class="nx">loading</span><span class="p">,</span><span class="w"> </span><span class="nx">setLoading</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">useState</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+
+<span class="w">  </span><span class="nx">useEffect</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">loadTradeDeals</span><span class="p">();</span>
+<span class="w">  </span><span class="p">},</span><span class="w"> </span><span class="p">[]);</span>
+
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">loadTradeDeals</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="s1">&#39;listTradeDeals&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">status</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;active&#39;</span><span class="w"> </span><span class="p">});</span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">success</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">setTradeDeals</span><span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">tradeDeals</span><span class="p">);</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;Failed to load trade deals:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">finally</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">setLoading</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">};</span>
+
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">handleSettlement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">(</span><span class="nx">dealId</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">,</span><span class="w"> </span><span class="nx">settlementType</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">TradeDealService</span><span class="p">().</span><span class="nx">settleTradeDeal</span><span class="p">({</span>
+<span class="w">        </span><span class="nx">dealId</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">settlementType</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">settlementDetails</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nx">actualDeliveryDate</span><span class="o">:</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="nb">Date</span><span class="p">(),</span>
+<span class="w">          </span><span class="nx">qualityRating</span><span class="o">:</span><span class="w"> </span><span class="kt">5</span><span class="p">,</span>
+<span class="w">          </span><span class="nx">performanceNotes</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Delivered as expected&#39;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">});</span>
+
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">success</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">await</span><span class="w"> </span><span class="nx">loadTradeDeals</span><span class="p">();</span><span class="w"> </span><span class="c1">// Refresh list</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;Settlement failed:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">};</span>
+
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
+<span class="w">      </span><span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="nx">Trade</span><span class="w"> </span><span class="nx">Deals</span><span class="o">&lt;</span><span class="err">/h1&gt;</span>
+<span class="w">      </span><span class="p">{</span><span class="nx">loading</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="p">(</span>
+<span class="w">        </span><span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span><span class="nx">Loading</span><span class="p">...</span><span class="o">&lt;</span><span class="err">/div&gt;</span>
+<span class="w">      </span><span class="p">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="p">(</span>
+<span class="w">        </span><span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
+<span class="w">          </span><span class="p">{</span><span class="nx">tradeDeals</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">deal</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">(</span>
+<span class="w">            </span><span class="o">&lt;</span><span class="nx">TradeDealCard</span><span class="w"> </span>
+<span class="w">              </span><span class="nx">key</span><span class="o">=</span><span class="p">{</span><span class="nx">deal</span><span class="p">.</span><span class="nx">id</span><span class="p">}</span><span class="w"> </span>
+<span class="w">              </span><span class="nx">deal</span><span class="o">=</span><span class="p">{</span><span class="nx">deal</span><span class="p">}</span><span class="w"> </span>
+<span class="w">              </span><span class="nx">onSettle</span><span class="o">=</span><span class="p">{</span><span class="nx">handleSettlement</span><span class="p">}</span>
+<span class="w">            </span><span class="o">/&gt;</span>
+<span class="w">          </span><span class="p">))}</span>
+<span class="w">        </span><span class="o">&lt;</span><span class="err">/div&gt;</span>
+<span class="w">      </span><span class="p">)}</span>
+<span class="w">    </span><span class="o">&lt;</span><span class="err">/div&gt;</span>
+<span class="w">  </span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="error-handling">Error Handling<a class="headerlink" href="#error-handling" title="Permanent link">&para;</a></h2>
+<h3 id="common-errors">Common Errors<a class="headerlink" href="#common-errors" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>"Authentication required"</code>: User not logged in</li>
+<li><code>"KYC verification required"</code>: KYC not completed</li>
+<li><code>"Invalid trade deal participants"</code>: Participant validation failed</li>
+<li><code>"Collateral already deposited"</code>: Attempting to deposit collateral twice</li>
+<li><code>"Unauthorized to settle"</code>: User lacks settlement permissions</li>
+<li><code>"Trade deal not in settleable state"</code>: Invalid status for settlement</li>
+</ul>
+<h3 id="error-recovery">Error Recovery<a class="headerlink" href="#error-recovery" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">handleTradeDealError</span><span class="p">(</span><span class="nx">dealId</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="o">:</span><span class="w"> </span><span class="kt">any</span><span class="p">,</span><span class="w"> </span><span class="nx">operation</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="ow">void</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">tradeDeal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Parse</span><span class="p">.</span><span class="nx">Query</span><span class="p">(</span><span class="s1">&#39;TradeDeal&#39;</span><span class="p">)</span>
+<span class="w">      </span><span class="p">.</span><span class="nx">equalTo</span><span class="p">(</span><span class="s1">&#39;objectId&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">dealId</span><span class="p">)</span>
+<span class="w">      </span><span class="p">.</span><span class="nx">first</span><span class="p">({</span><span class="w"> </span><span class="nx">useMasterKey</span><span class="o">:</span><span class="w"> </span><span class="kt">true</span><span class="w"> </span><span class="p">});</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">tradeDeal</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="c1">// Log error event</span>
+<span class="w">      </span><span class="k">await</span><span class="w"> </span><span class="nx">logTradeDealEvent</span><span class="p">(</span><span class="nx">dealId</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;error&#39;</span><span class="p">,</span><span class="w"> </span><span class="sb">`</span><span class="si">${</span><span class="nx">operation</span><span class="si">}</span><span class="sb"> failed: </span><span class="si">${</span><span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="si">}</span><span class="sb">`</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;system&#39;</span><span class="p">);</span>
+
+<span class="w">      </span><span class="c1">// Send error notification to participants</span>
+<span class="w">      </span><span class="k">await</span><span class="w"> </span><span class="nx">sendErrorNotification</span><span class="p">(</span><span class="nx">tradeDeal</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">,</span><span class="w"> </span><span class="nx">operation</span><span class="p">);</span>
+
+<span class="w">      </span><span class="c1">// Attempt automatic recovery for certain errors</span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">isRecoverableError</span><span class="p">(</span><span class="nx">error</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">await</span><span class="w"> </span><span class="nx">attemptErrorRecovery</span><span class="p">(</span><span class="nx">dealId</span><span class="p">,</span><span class="w"> </span><span class="nx">operation</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">);</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">recoveryError</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;Error recovery failed:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">recoveryError</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h2>
+<h3 id="trade-deal-management">Trade Deal Management<a class="headerlink" href="#trade-deal-management" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>KYC Compliance</strong>: Ensure all participants are KYC verified</li>
+<li><strong>Collateral Security</strong>: Use secure escrow for collateral management</li>
+<li><strong>Clear Terms</strong>: Define clear and unambiguous deal terms</li>
+<li><strong>Dispute Resolution</strong>: Establish clear dispute resolution mechanisms</li>
+</ol>
+<h3 id="development-guidelines">Development Guidelines<a class="headerlink" href="#development-guidelines" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Error Handling</strong>: Comprehensive error handling and recovery</li>
+<li><strong>Event Logging</strong>: Log all trade deal operations for auditing</li>
+<li><strong>Testing</strong>: Thorough testing of trade deal workflows</li>
+<li><strong>Security</strong>: Implement proper access controls and validation</li>
+</ol>
+<h2 id="related-documentation">Related Documentation<a class="headerlink" href="#related-documentation" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../../smart-contracts/facets/trade-deal-management-facet/">Trade Deal Management Facet</a></li>
+<li><a href="../../smart-contracts/facets/trade-deal-operations-facet/">Trade Deal Operations Facet</a></li>
+<li><a href="../../smart-contracts/facets/trade-deal-admin-facet/">Trade Deal Admin Facet</a></li>
+<li><a href="../../smart-contracts/interfaces/itradedeal/">ITradeDeal Interface</a></li>
+<li>
+<h2 id="trade-deal-library"><a href="../../smart-contracts/libraries/trade-deal-lib/">Trade Deal Library</a><a class="headerlink" href="#trade-deal-library" title="Permanent link">&para;</a></h2>
+</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../project/" class="btn btn-neutral float-left" title="Project Functions"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../api-documentation/gemforce-api-documentation/" class="btn btn-neutral float-right" title="Full API Reference">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../project/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../api-documentation/gemforce-api-documentation/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

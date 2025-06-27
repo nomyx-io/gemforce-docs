@@ -1,0 +1,1343 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Gemforce Team" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>IMarketplace - Gemforce Documentation</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "IMarketplace";
+        var mkdocs_page_input_path = "smart-contracts/interfaces/imarketplace.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../.." class="icon icon-home"> Gemforce Documentation
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../developer-setup-guide/">Developer Setup Guide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../system-architecture/gemforce-system-architecture/">System Architecture</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Smart Contracts</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../diamond/">Diamond Contract</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../diamond-factory/">Diamond Factory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../identity-factory/">Identity Factory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Facets</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/marketplace-facet/">Marketplace Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trade-deal-management-facet/">Trade Deal Management Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/carbon-credit-facet/">Carbon Credit Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/identity-registry-facet/">Identity Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trusted-issuers-registry-facet/">Trusted Issuers Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/fee-distributor-facet/">Fee Distributor Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/gemforce-minter-facet/">Gemforce Minter Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/multi-sale-facet/">Multi Sale Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/svg-templates-facet/">SVG Templates Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trade-deal-admin-facet/">Trade Deal Admin Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/trade-deal-operations-facet/">Trade Deal Operations Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/collateral-token-factory-facet/">Collateral Token Factory Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/diamond-cut-facet/">Diamond Cut Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/diamond-loupe-facet/">Diamond Loupe Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../facets/ownership-facet/">Ownership Facet</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" >Interfaces</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" href="../idiamond/">IDiamond</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">IMarketplace</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#overview">Overview</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#interface-details">Interface Details</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#key-features">Key Features</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#nft-trading-operations">🔹 NFT Trading Operations</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#fee-management-system">🔹 Fee Management System</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#multi-token-payment-support">🔹 Multi-Token Payment Support</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#comprehensive-item-management">🔹 Comprehensive Item Management</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#core-data-structures">Core Data Structures</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#feereceiver">FeeReceiver</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#marketitem">MarketItem</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#core-interface-functions">Core Interface Functions</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#listing-functions">Listing Functions</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#purchase-functions">Purchase Functions</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#query-functions">Query Functions</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#integration-examples">Integration Examples</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#complete-marketplace-integration">Complete Marketplace Integration</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#marketplace-analytics-system">Marketplace Analytics System</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#fee-management-system_1">Fee Management System</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#events">Events</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#listing-events">Listing Events</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#trading-events">Trading Events</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#security-considerations">Security Considerations</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#access-control">Access Control</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#payment-security">Payment Security</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#nft-security">NFT Security</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#gas-optimization">Gas Optimization</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#efficient-operations">Efficient Operations</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#query-optimization">Query Optimization</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#testing-considerations">Testing Considerations</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#unit-tests">Unit Tests</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#integration-tests">Integration Tests</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#related-documentation">Related Documentation</a>
+    </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../itradedeal/">ITradeDeal</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../icarbon-credit/">ICarbonCredit</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../ierc1155-mint/">IERC1155Mint</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../ierc734/">IERC734</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../ierc735/">IERC735</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../ierc721a/">IERC721A</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../idiamond-factory/">IDiamondFactory</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../iidentity/">IIdentity</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../imultisale/">IMultiSale</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../ifee-distributor/">IFeeDistributor</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../igemforce-minter-facet/">IGemforceMinterFacet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../iidentity-registry/">IIdentityRegistry</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../itrusted-issuers-registry/">TRUSTEDIssuersRegistry</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../isvg/">ISVG</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../iattribute/">IAttribute</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../ivariable-price/">IVariablePrice</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Libraries</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/carbon-credit-lib/">Carbon Credit Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/trade-deal-lib/">Trade Deal Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/multi-sale-lib/">Multi Sale Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/diamond-factory-lib/">Diamond Factory Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/svg-templates-lib/">SVG Templates Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/attribute-lib/">Attribute Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/variable-price-lib/">Variable Price Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/merkle-prover/">Merkle Prover</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/fee-distributor-lib/">Fee Distributor Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/lib-diamond/">LibDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/diamond-lib/">DiamondLib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/erc721a-lib/">ERC721A Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/erc721a-enumeration-lib/">ERC721A Enumeration Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/strings-lib/">Strings Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/trusted-issuer-lib/">Trusted Issuer Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../libraries/set-libraries/">Set Libraries</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">SDK & Libraries</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/blockchain/">Blockchain Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/diamond/">Diamond Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/contract/">Contract Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/deploy/">Deployment Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/validation-utils/">Validation Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/nft-sale-utils/">NFT Sale Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/webhooks/">Webhooks Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../libraries/metadata-lib/">Metadata Library</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Cloud Functions</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/authentication/">Authentication Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/auth-functions/">Auth Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/blockchain/">Blockchain Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/bridge/">Bridge Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/contracts/">Contract Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/deploy/">Deploy Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/dfns/">DFNS Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/project/">Project Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/trade-deal/">Trade Deal Functions</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">API Documentation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../api-documentation/gemforce-api-documentation/">Full API Reference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../api-documentation/gemforce-api-quick-reference/">Quick Reference</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-external-services/">External Services</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-system-architecture/">System Architecture</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Operations Tasks</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/diamond/">Diamond Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/identities/">Identity Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/marketplace-management/">Marketplace Management Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/carbon-credit-management/">Carbon Credit Management Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/trade-deal/">Trade Deal Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/integration-test/">Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/integration-test-marketplace/">Marketplace Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/integration-test-trade-deal/">Trade Deal Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/admin-utils/">Admin Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/sync-diamond/">Sync Diamond Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../cloud-functions/tasks/sync-events/">Sync Events Tasks</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">EIPs (Ethereum Improvement Proposals)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Diamond-Enhanced-Marketplace/">Diamond-Enhanced Marketplace</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Multi-Token-Sale-Standard/">Multi-Token Sale Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Collateralized-Trade-Deal-Standard/">Collateralized Trade Deal Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Enhanced-Identity-System/">Enhanced Identity System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Diamond-Factory-Standard/">Diamond Factory Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Carbon-Credit-Standard/">Carbon Credit Standard</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Developer Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/development-environment-setup/">Development Environment Setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/testing-frameworks/">Testing Frameworks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/debugging/">Debugging</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/performance-optimization/">Performance Optimization</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/test-case-specifications/">Test Case Specifications</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/test-data-management/">Test Data Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/automated-testing-setup/">Automated Testing Setup</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Deployment Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../deployment-guides/multi-network-deployment/">Multi-Network Deployment</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../deployment-guides/infrastructure-management/">Infrastructure Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../deployment-guides/monitoring-logging/">Monitoring and Logging</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">User Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-administrator-guide/">Administrator Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-deployer-guide/">Deployer Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-integrator-guide/">Integrator Guide</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Integrator's Guide</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/authentication/">Authentication</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/rest-api/">REST API</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/smart-contracts/">Smart Contracts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/dfns/">DFNS Integration</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/parse-server/">Parse Server Notes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/webhooks/">Webhooks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/error-handling/">Error Handling</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/sample-code/">Sample Code</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/integration-patterns/">Integration Patterns</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/testing/">Testing Considerations</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/security/">Security</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../external-services/gemforce-external-services/">External Services</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Security</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security/threat-model/">Threat Model and Risk Assessment</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security/incident-response/">Incident Response Procedures</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security/audit-compliance/">Security Audits and Compliance</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">External Developer Integration</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/api-rate-limiting/">API Rate Limiting</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/webhook-implementation-guidelines/">Webhook Implementation Guidelines</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/sdk-development-guidelines/">SDK Development Guidelines</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/partner-integration-guides/">Partner Integration Guides</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-documentation-gap-analysis/">Documentation Gap Analysis</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../documentation-progress-summary/">Documentation Progress Summary</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../documentation-plan/">Documentation Plan</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Configuration & Environment</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/gemforce-config/">Gemforce Config</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/environment-specific-guides/">Environment-Specific Guides</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/configuration-validation/">Configuration Validation Procedures</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/external-service-config-management/">External Service Configuration Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/database-schema-overview/">Database Schema Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/database-migration-procedures/">Database Migration Procedures</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">Gemforce Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Smart Contracts</li>
+          <li class="breadcrumb-item">Interfaces</li>
+      <li class="breadcrumb-item active">IMarketplace</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="imarketplace-interface">IMarketplace Interface<a class="headerlink" href="#imarketplace-interface" title="Permanent link">&para;</a></h1>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>The <code>IMarketplace.sol</code> interface defines the core interface for NFT marketplace functionality within the Gemforce platform. This interface establishes the standard contract for marketplace operations including listing, purchasing, delisting, and fee management for NFT trading.</p>
+<h2 id="interface-details">Interface Details<a class="headerlink" href="#interface-details" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Interface Name</strong>: <code>IMarketplace</code></li>
+<li><strong>License</strong>: MIT</li>
+<li><strong>Solidity Version</strong>: ^0.8.4</li>
+</ul>
+<h2 id="key-features">Key Features<a class="headerlink" href="#key-features" title="Permanent link">&para;</a></h2>
+<h3 id="nft-trading-operations">🔹 NFT Trading Operations<a class="headerlink" href="#nft-trading-operations" title="Permanent link">&para;</a></h3>
+<ul>
+<li>List NFTs for sale with flexible pricing</li>
+<li>Purchase NFTs with multiple payment methods</li>
+<li>Delist items from the marketplace</li>
+<li>Transfer management for NFT custody</li>
+</ul>
+<h3 id="fee-management-system">🔹 Fee Management System<a class="headerlink" href="#fee-management-system" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Configurable fee receivers and percentages</li>
+<li>Parts-per-million fee calculation</li>
+<li>Multiple fee recipient support</li>
+<li>Transparent fee distribution</li>
+</ul>
+<h3 id="multi-token-payment-support">🔹 Multi-Token Payment Support<a class="headerlink" href="#multi-token-payment-support" title="Permanent link">&para;</a></h3>
+<ul>
+<li>ETH payments for NFT purchases</li>
+<li>ERC20 token payment options</li>
+<li>Flexible payment token configuration</li>
+<li>Secure payment processing</li>
+</ul>
+<h3 id="comprehensive-item-management">🔹 Comprehensive Item Management<a class="headerlink" href="#comprehensive-item-management" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Detailed item metadata tracking</li>
+<li>Seller and owner management</li>
+<li>Sale status tracking</li>
+<li>Item discovery and querying</li>
+</ul>
+<h2 id="core-data-structures">Core Data Structures<a class="headerlink" href="#core-data-structures" title="Permanent link">&para;</a></h2>
+<h3 id="feereceiver">FeeReceiver<a class="headerlink" href="#feereceiver" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">struct</span><span class="w"> </span><span class="nv">FeeReceiver</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">payable</span><span class="w"> </span>receiver<span class="p">;</span><span class="w">    </span><span class="c1">// Address that will receive the fee</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">sharePerMillion</span><span class="p">;</span><span class="w">     </span><span class="c1">// Fee share in parts per million</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Defines fee distribution configuration for marketplace transactions.</p>
+<p><strong>Fields</strong>:
+- <strong>receiver</strong>: Address that will receive the fee payment
+- <strong>sharePerMillion</strong>: Fee percentage in parts per million (e.g., 10,000 = 1%)</p>
+<p><strong>Fee Calculation</strong>:
+- <strong>1% fee</strong>: <code>sharePerMillion = 10,000</code>
+- <strong>0.5% fee</strong>: <code>sharePerMillion = 5,000</code>
+- <strong>2.5% fee</strong>: <code>sharePerMillion = 25,000</code>
+- <strong>Maximum precision</strong>: Up to 0.0001% (1 part per million)</p>
+<p><strong>Usage Example</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Configure marketplace fees</span>
+FeeReceiver<span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>feeReceivers<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span>FeeReceiver<span class="p">[](</span><span class="m m-Decimal">2</span><span class="p">);</span>
+
+<span class="c1">// Platform fee: 2.5%</span>
+feeReceivers<span class="p">[</span><span class="m m-Decimal">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>FeeReceiver<span class="p">({</span>
+<span class="w">    </span>receiver<span class="o">:</span><span class="w"> </span><span class="kt">payable</span><span class="p">(</span>platformAddress<span class="p">),</span>
+<span class="w">    </span>sharePerMillion<span class="o">:</span><span class="w"> </span><span class="m m-Decimal">25000</span>
+<span class="p">});</span>
+
+<span class="c1">// Creator royalty: 5%</span>
+feeReceivers<span class="p">[</span><span class="m m-Decimal">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>FeeReceiver<span class="p">({</span>
+<span class="w">    </span>receiver<span class="o">:</span><span class="w"> </span><span class="kt">payable</span><span class="p">(</span>creatorAddress<span class="p">),</span>
+<span class="w">    </span>sharePerMillion<span class="o">:</span><span class="w"> </span><span class="m m-Decimal">50000</span>
+<span class="p">});</span>
+</code></pre></div>
+
+<hr />
+<h3 id="marketitem">MarketItem<a class="headerlink" href="#marketitem" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">struct</span><span class="w"> </span><span class="nv">MarketItem</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">nftContract</span><span class="p">;</span><span class="w">    </span><span class="c1">// NFT contract address</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">;</span><span class="w">        </span><span class="c1">// Token ID within the NFT contract</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">seller</span><span class="p">;</span><span class="w">         </span><span class="c1">// Address of the seller</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">owner</span><span class="p">;</span><span class="w">          </span><span class="c1">// Current owner of the NFT</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">price</span><span class="p">;</span><span class="w">          </span><span class="c1">// Sale price</span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nv">sold</span><span class="p">;</span><span class="w">              </span><span class="c1">// Whether the item has been sold</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">receiver</span><span class="p">;</span><span class="w">       </span><span class="c1">// Address to receive sale proceeds</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">paymentToken</span><span class="p">;</span><span class="w">   </span><span class="c1">// Token contract for payment (address(0) for ETH)</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Comprehensive data structure representing an NFT listing in the marketplace.</p>
+<p><strong>Fields</strong>:
+- <strong>nftContract</strong>: Address of the NFT contract containing the token
+- <strong>tokenId</strong>: Unique identifier of the NFT within its contract
+- <strong>seller</strong>: Address of the account that listed the item for sale
+- <strong>owner</strong>: Current owner of the NFT (may differ from seller)
+- <strong>price</strong>: Sale price in the specified payment token
+- <strong>sold</strong>: Boolean indicating if the item has been purchased
+- <strong>receiver</strong>: Address that will receive the sale proceeds
+- <strong>paymentToken</strong>: Address of the ERC20 token for payment (zero address for ETH)</p>
+<p><strong>Usage Example</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Create marketplace listing</span>
+MarketItem<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>item<span class="w"> </span><span class="o">=</span><span class="w"> </span>MarketItem<span class="p">({</span>
+<span class="w">    </span>nftContract<span class="o">:</span><span class="w"> </span>nftContractAddress<span class="p">,</span>
+<span class="w">    </span>tokenId<span class="o">:</span><span class="w"> </span><span class="m m-Decimal">123</span><span class="p">,</span>
+<span class="w">    </span>seller<span class="o">:</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">,</span>
+<span class="w">    </span>owner<span class="o">:</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">,</span>
+<span class="w">    </span>price<span class="o">:</span><span class="w"> </span><span class="m m-Decimal">1</span><span class="w"> </span>ether<span class="p">,</span>
+<span class="w">    </span>sold<span class="o">:</span><span class="w"> </span><span class="kt">false</span><span class="p">,</span>
+<span class="w">    </span>receiver<span class="o">:</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">,</span>
+<span class="w">    </span>paymentToken<span class="o">:</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">)</span><span class="w"> </span><span class="c1">// ETH payment</span>
+<span class="p">});</span>
+</code></pre></div>
+
+<h2 id="core-interface-functions">Core Interface Functions<a class="headerlink" href="#core-interface-functions" title="Permanent link">&para;</a></h2>
+<h3 id="listing-functions">Listing Functions<a class="headerlink" href="#listing-functions" title="Permanent link">&para;</a></h3>
+<h4 id="listitem"><code>listItem()</code><a class="headerlink" href="#listitem" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">listItem</span><span class="p">(</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">nftContract</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">payable</span><span class="w"> </span>receiver<span class="p">,</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">price</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nv">transferNFT</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">paymentToken</span>
+<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">payable</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Lists an NFT for sale on the marketplace with specified parameters.</p>
+<p><strong>Parameters</strong>:
+- <code>nftContract</code> (address): Address of the NFT contract
+- <code>receiver</code> (address payable): Address to receive sale proceeds
+- <code>tokenId</code> (uint256): ID of the token to list
+- <code>price</code> (uint256): Sale price in the specified payment token
+- <code>transferNFT</code> (bool): Whether to transfer NFT to marketplace custody
+- <code>paymentToken</code> (address): Token for payment (zero address for ETH)</p>
+<p><strong>Access Control</strong>: Public (with ownership validation)</p>
+<p><strong>Process</strong>:
+1. Validates caller owns the NFT or has approval
+2. Optionally transfers NFT to marketplace custody
+3. Creates marketplace listing with specified parameters
+4. Emits Listings event with complete item details
+5. Returns item ID for future reference</p>
+<p><strong>Events</strong>: <code>Listings(nftContract, tokenId, seller, receiver, owner, price, sold, paymentToken)</code></p>
+<p><strong>Example Usage</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// List NFT for sale with ETH payment</span>
+<span class="kt">address</span><span class="w"> </span><span class="nv">nftContract</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x1234567890123456789012345678901234567890</span><span class="p">;</span>
+<span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">123</span><span class="p">;</span>
+<span class="kt">uint256</span><span class="w"> </span><span class="nv">price</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">1</span><span class="w"> </span>ether<span class="p">;</span>
+
+<span class="c1">// First approve marketplace to transfer NFT</span>
+IERC721<span class="p">(</span>nftContract<span class="p">).</span>approve<span class="p">(</span>marketplaceAddress<span class="p">,</span><span class="w"> </span>tokenId<span class="p">);</span>
+
+<span class="c1">// List the item</span>
+IMarketplace<span class="p">(</span>marketplace<span class="p">).</span>listItem<span class="p">(</span>
+<span class="w">    </span>nftContract<span class="p">,</span>
+<span class="w">    </span><span class="kt">payable</span><span class="p">(</span><span class="k">msg.sender</span><span class="p">),</span><span class="w">  </span><span class="c1">// Receive proceeds</span>
+<span class="w">    </span>tokenId<span class="p">,</span>
+<span class="w">    </span>price<span class="p">,</span>
+<span class="w">    </span><span class="kt">true</span><span class="p">,</span><span class="w">                 </span><span class="c1">// Transfer NFT to marketplace</span>
+<span class="w">    </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">)</span><span class="w">            </span><span class="c1">// ETH payment</span>
+<span class="p">);</span>
+
+console<span class="p">.</span>log<span class="p">(</span><span class="s2">&quot;NFT listed for sale at&quot;</span><span class="p">,</span><span class="w"> </span>price<span class="p">,</span><span class="w"> </span><span class="s2">&quot;ETH&quot;</span><span class="p">);</span>
+</code></pre></div>
+
+<p><strong>Payment Token Options</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// List with USDC payment</span>
+<span class="kt">address</span><span class="w"> </span><span class="nv">usdcToken</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0xA0b86a33E6441e6e80A7181a02d0d25e8E687770</span><span class="p">;</span>
+<span class="kt">uint256</span><span class="w"> </span><span class="nv">usdcPrice</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">1000</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m m-Decimal">10</span><span class="o">**</span><span class="m m-Decimal">6</span><span class="p">;</span><span class="w"> </span><span class="c1">// 1000 USDC</span>
+
+IMarketplace<span class="p">(</span>marketplace<span class="p">).</span>listItem<span class="p">(</span>
+<span class="w">    </span>nftContract<span class="p">,</span>
+<span class="w">    </span><span class="kt">payable</span><span class="p">(</span><span class="k">msg.sender</span><span class="p">),</span>
+<span class="w">    </span>tokenId<span class="p">,</span>
+<span class="w">    </span>usdcPrice<span class="p">,</span>
+<span class="w">    </span><span class="kt">true</span><span class="p">,</span>
+<span class="w">    </span>usdcToken
+<span class="p">);</span>
+</code></pre></div>
+
+<hr />
+<h4 id="delistitem"><code>delistItem()</code><a class="headerlink" href="#delistitem" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">delistItem</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">nftContract</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">itemId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Removes an NFT listing from the marketplace.</p>
+<p><strong>Parameters</strong>:
+- <code>nftContract</code> (address): Address of the NFT contract
+- <code>itemId</code> (uint256): ID of the marketplace item to delist</p>
+<p><strong>Access Control</strong>: Seller or authorized party only</p>
+<p><strong>Process</strong>:
+1. Validates caller has permission to delist
+2. Removes item from active marketplace listings
+3. Returns NFT to seller if in marketplace custody
+4. Updates item status to delisted
+5. Emits Delisted event</p>
+<p><strong>Events</strong>: <code>Delisted(itemId)</code></p>
+<p><strong>Example Usage</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Delist an NFT from the marketplace</span>
+<span class="kt">uint256</span><span class="w"> </span><span class="nv">itemId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">456</span><span class="p">;</span>
+<span class="kt">address</span><span class="w"> </span><span class="nv">nftContract</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x1234567890123456789012345678901234567890</span><span class="p">;</span>
+
+IMarketplace<span class="p">(</span>marketplace<span class="p">).</span>delistItem<span class="p">(</span>nftContract<span class="p">,</span><span class="w"> </span>itemId<span class="p">);</span>
+console<span class="p">.</span>log<span class="p">(</span><span class="s2">&quot;Item&quot;</span><span class="p">,</span><span class="w"> </span>itemId<span class="p">,</span><span class="w"> </span><span class="s2">&quot;delisted from marketplace&quot;</span><span class="p">);</span>
+</code></pre></div>
+
+<h3 id="purchase-functions">Purchase Functions<a class="headerlink" href="#purchase-functions" title="Permanent link">&para;</a></h3>
+<h4 id="purchaseitem"><code>purchaseItem()</code><a class="headerlink" href="#purchaseitem" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">purchaseItem</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">nftContract</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">itemId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">payable</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Purchases an NFT from the marketplace.</p>
+<p><strong>Parameters</strong>:
+- <code>nftContract</code> (address): Address of the NFT contract
+- <code>itemId</code> (uint256): ID of the marketplace item to purchase</p>
+<p><strong>Access Control</strong>: Public (with payment validation)</p>
+<p><strong>Process</strong>:
+1. Validates item is available for purchase
+2. Processes payment according to item's payment token
+3. Calculates and distributes fees to configured receivers
+4. Transfers remaining proceeds to seller/receiver
+5. Transfers NFT to buyer
+6. Updates item status to sold
+7. Emits Sales event</p>
+<p><strong>Events</strong>: <code>Sales(tokenAddress, tokenId, owner)</code></p>
+<p><strong>Example Usage</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Purchase NFT with ETH</span>
+<span class="kt">uint256</span><span class="w"> </span><span class="nv">itemId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">456</span><span class="p">;</span>
+<span class="kt">address</span><span class="w"> </span><span class="nv">nftContract</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x1234567890123456789012345678901234567890</span><span class="p">;</span>
+
+<span class="c1">// Get item details first</span>
+MarketItem<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>item<span class="w"> </span><span class="o">=</span><span class="w"> </span>IMarketplace<span class="p">(</span>marketplace<span class="p">).</span>fetchItem<span class="p">(</span>nftContract<span class="p">,</span><span class="w"> </span>itemId<span class="p">);</span>
+<span class="kt">require</span><span class="p">(</span><span class="o">!</span>item<span class="p">.</span>sold<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Item already sold&quot;</span><span class="p">);</span>
+
+<span class="c1">// Purchase with ETH</span>
+IMarketplace<span class="p">(</span>marketplace<span class="p">).</span>purchaseItem<span class="p">{</span>value<span class="o">:</span><span class="w"> </span>item<span class="p">.</span>price<span class="p">}(</span>nftContract<span class="p">,</span><span class="w"> </span>itemId<span class="p">);</span>
+console<span class="p">.</span>log<span class="p">(</span><span class="s2">&quot;NFT purchased for&quot;</span><span class="p">,</span><span class="w"> </span>item<span class="p">.</span>price<span class="p">,</span><span class="w"> </span><span class="s2">&quot;ETH&quot;</span><span class="p">);</span>
+</code></pre></div>
+
+<p><strong>ERC20 Token Purchase</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Purchase NFT with ERC20 token</span>
+MarketItem<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>item<span class="w"> </span><span class="o">=</span><span class="w"> </span>IMarketplace<span class="p">(</span>marketplace<span class="p">).</span>fetchItem<span class="p">(</span>nftContract<span class="p">,</span><span class="w"> </span>itemId<span class="p">);</span>
+
+<span class="kt">if</span><span class="w"> </span><span class="p">(</span>item<span class="p">.</span>paymentToken<span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Approve token transfer first</span>
+<span class="w">    </span>IERC20<span class="p">(</span>item<span class="p">.</span>paymentToken<span class="p">).</span>approve<span class="p">(</span>marketplaceAddress<span class="p">,</span><span class="w"> </span>item<span class="p">.</span>price<span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Purchase (no ETH value needed)</span>
+<span class="w">    </span>IMarketplace<span class="p">(</span>marketplace<span class="p">).</span>purchaseItem<span class="p">(</span>nftContract<span class="p">,</span><span class="w"> </span>itemId<span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="query-functions">Query Functions<a class="headerlink" href="#query-functions" title="Permanent link">&para;</a></h3>
+<h4 id="fetchitems"><code>fetchItems()</code><a class="headerlink" href="#fetchitems" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">fetchItems</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>MarketItem<span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Retrieves all active marketplace listings.</p>
+<p><strong>Returns</strong>:
+- <code>MarketItem[]</code>: Array of all marketplace items</p>
+<p><strong>Example Usage</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Get all marketplace listings</span>
+MarketItem<span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>allItems<span class="w"> </span><span class="o">=</span><span class="w"> </span>IMarketplace<span class="p">(</span>marketplace<span class="p">).</span>fetchItems<span class="p">();</span>
+
+console<span class="p">.</span>log<span class="p">(</span><span class="s2">&quot;Total marketplace items:&quot;</span><span class="p">,</span><span class="w"> </span>allItems<span class="p">.</span>length<span class="p">);</span>
+
+<span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>allItems<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>MarketItem<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>item<span class="w"> </span><span class="o">=</span><span class="w"> </span>allItems<span class="p">[</span>i<span class="p">];</span>
+<span class="w">    </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span>item<span class="p">.</span>sold<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>console<span class="p">.</span>log<span class="p">(</span><span class="s2">&quot;Available NFT:&quot;</span><span class="p">,</span><span class="w"> </span>item<span class="p">.</span>nftContract<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Token ID:&quot;</span><span class="p">,</span><span class="w"> </span>item<span class="p">.</span>tokenId<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Price:&quot;</span><span class="p">,</span><span class="w"> </span>item<span class="p">.</span>price<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<hr />
+<h4 id="fetchitem"><code>fetchItem()</code><a class="headerlink" href="#fetchitem" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">fetchItem</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">nftContract</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>MarketItem<span class="w"> </span><span class="kt">memory</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Retrieves details for a specific NFT listing.</p>
+<p><strong>Parameters</strong>:
+- <code>nftContract</code> (address): Address of the NFT contract
+- <code>tokenId</code> (uint256): ID of the token</p>
+<p><strong>Returns</strong>:
+- <code>MarketItem</code>: Complete item details</p>
+<p><strong>Example Usage</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Get specific item details</span>
+<span class="kt">address</span><span class="w"> </span><span class="nv">nftContract</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x1234567890123456789012345678901234567890</span><span class="p">;</span>
+<span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">123</span><span class="p">;</span>
+
+MarketItem<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>item<span class="w"> </span><span class="o">=</span><span class="w"> </span>IMarketplace<span class="p">(</span>marketplace<span class="p">).</span>fetchItem<span class="p">(</span>nftContract<span class="p">,</span><span class="w"> </span>tokenId<span class="p">);</span>
+
+<span class="kt">if</span><span class="w"> </span><span class="p">(</span>item<span class="p">.</span>nftContract<span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>console<span class="p">.</span>log<span class="p">(</span><span class="s2">&quot;Item found:&quot;</span><span class="p">);</span>
+<span class="w">    </span>console<span class="p">.</span>log<span class="p">(</span><span class="s2">&quot;- Seller:&quot;</span><span class="p">,</span><span class="w"> </span>item<span class="p">.</span>seller<span class="p">);</span>
+<span class="w">    </span>console<span class="p">.</span>log<span class="p">(</span><span class="s2">&quot;- Price:&quot;</span><span class="p">,</span><span class="w"> </span>item<span class="p">.</span>price<span class="p">);</span>
+<span class="w">    </span>console<span class="p">.</span>log<span class="p">(</span><span class="s2">&quot;- Sold:&quot;</span><span class="p">,</span><span class="w"> </span>item<span class="p">.</span>sold<span class="p">);</span>
+<span class="w">    </span>console<span class="p">.</span>log<span class="p">(</span><span class="s2">&quot;- Payment Token:&quot;</span><span class="p">,</span><span class="w"> </span>item<span class="p">.</span>paymentToken<span class="p">);</span>
+<span class="p">}</span><span class="w"> </span><span class="kt">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>console<span class="p">.</span>log<span class="p">(</span><span class="s2">&quot;Item not found in marketplace&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<hr />
+<h4 id="getmarketplacefeereceivers"><code>getMarketplaceFeeReceivers()</code><a class="headerlink" href="#getmarketplacefeereceivers" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">getMarketplaceFeeReceivers</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>FeeReceiver<span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Purpose</strong>: Returns the current fee configuration for marketplace transactions.</p>
+<p><strong>Returns</strong>:
+- <code>FeeReceiver[]</code>: Array of fee receiver configurations</p>
+<p><strong>Example Usage</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Check marketplace fee structure</span>
+FeeReceiver<span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>feeReceivers<span class="w"> </span><span class="o">=</span><span class="w"> </span>IMarketplace<span class="p">(</span>marketplace<span class="p">).</span>getMarketplaceFeeReceivers<span class="p">();</span>
+
+console<span class="p">.</span>log<span class="p">(</span><span class="s2">&quot;Marketplace fee structure:&quot;</span><span class="p">);</span>
+<span class="kt">uint256</span><span class="w"> </span><span class="nv">totalFeePerMillion</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span>
+
+<span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>feeReceivers<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>FeeReceiver<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>fee<span class="w"> </span><span class="o">=</span><span class="w"> </span>feeReceivers<span class="p">[</span>i<span class="p">];</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">feePercentage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>fee<span class="p">.</span>sharePerMillion<span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m m-Decimal">10000</span><span class="p">;</span><span class="w"> </span><span class="c1">// Convert to basis points</span>
+
+<span class="w">    </span>console<span class="p">.</span>log<span class="p">(</span><span class="s2">&quot;- Receiver:&quot;</span><span class="p">,</span><span class="w"> </span>fee<span class="p">.</span>receiver<span class="p">);</span>
+<span class="w">    </span>console<span class="p">.</span>log<span class="p">(</span><span class="s2">&quot;- Fee:&quot;</span><span class="p">,</span><span class="w"> </span>feePercentage<span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m m-Decimal">100</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;.&quot;</span><span class="p">,</span><span class="w"> </span>feePercentage<span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="m m-Decimal">100</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;%&quot;</span><span class="p">);</span>
+
+<span class="w">    </span>totalFeePerMillion<span class="w"> </span><span class="o">+=</span><span class="w"> </span>fee<span class="p">.</span>sharePerMillion<span class="p">;</span>
+<span class="p">}</span>
+
+console<span class="p">.</span>log<span class="p">(</span><span class="s2">&quot;Total marketplace fee:&quot;</span><span class="p">,</span><span class="w"> </span>totalFeePerMillion<span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m m-Decimal">10000</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m m-Decimal">100</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;.&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span>totalFeePerMillion<span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m m-Decimal">10000</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="m m-Decimal">100</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;%&quot;</span><span class="p">);</span>
+</code></pre></div>
+
+<h2 id="integration-examples">Integration Examples<a class="headerlink" href="#integration-examples" title="Permanent link">&para;</a></h2>
+<h3 id="complete-marketplace-integration">Complete Marketplace Integration<a class="headerlink" href="#complete-marketplace-integration" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Comprehensive marketplace integration example</span>
+<span class="k">contract</span><span class="w"> </span><span class="ni">NFTMarketplaceIntegration</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>IMarketplace<span class="w"> </span><span class="kt">public</span><span class="w"> </span>marketplace<span class="p">;</span>
+
+<span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">ListingInfo</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">itemId</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">listingTime</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">views</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">featured</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span>ListingInfo<span class="p">))</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>listingInfo<span class="p">;</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[])</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>userListings<span class="p">;</span>
+
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">ItemListed</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>nftContract<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>tokenId<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>seller<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">price</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">ItemPurchased</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>nftContract<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>tokenId<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>buyer<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">price</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">ItemDelisted</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>nftContract<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>tokenId<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>seller<span class="p">);</span>
+
+<span class="w">    </span><span class="kt">constructor</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">_marketplace</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>marketplace<span class="w"> </span><span class="o">=</span><span class="w"> </span>IMarketplace<span class="p">(</span>_marketplace<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">listNFTForSale</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">nftContract</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">price</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">paymentToken</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">featured</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Verify ownership</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>IERC721<span class="p">(</span>nftContract<span class="p">).</span>ownerOf<span class="p">(</span>tokenId<span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Not token owner&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// List on marketplace</span>
+<span class="w">        </span>marketplace<span class="p">.</span>listItem<span class="p">(</span>
+<span class="w">            </span>nftContract<span class="p">,</span>
+<span class="w">            </span><span class="kt">payable</span><span class="p">(</span><span class="k">msg.sender</span><span class="p">),</span>
+<span class="w">            </span>tokenId<span class="p">,</span>
+<span class="w">            </span>price<span class="p">,</span>
+<span class="w">            </span><span class="kt">true</span><span class="p">,</span><span class="w"> </span><span class="c1">// Transfer to marketplace</span>
+<span class="w">            </span>paymentToken
+<span class="w">        </span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Track listing info</span>
+<span class="w">        </span>listingInfo<span class="p">[</span>nftContract<span class="p">][</span>tokenId<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>ListingInfo<span class="p">({</span>
+<span class="w">            </span>itemId<span class="o">:</span><span class="w"> </span>tokenId<span class="p">,</span><span class="w"> </span><span class="c1">// Simplified - would get actual item ID</span>
+<span class="w">            </span>listingTime<span class="o">:</span><span class="w"> </span><span class="k">block.timestamp</span><span class="p">,</span>
+<span class="w">            </span>views<span class="o">:</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">,</span>
+<span class="w">            </span>featured<span class="o">:</span><span class="w"> </span>featured
+<span class="w">        </span><span class="p">});</span>
+
+<span class="w">        </span>userListings<span class="p">[</span><span class="k">msg.sender</span><span class="p">].</span>push<span class="p">(</span>tokenId<span class="p">);</span>
+
+<span class="w">        </span>emit<span class="w"> </span>ItemListed<span class="p">(</span>nftContract<span class="p">,</span><span class="w"> </span>tokenId<span class="p">,</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">,</span><span class="w"> </span>price<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">purchaseNFT</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">nftContract</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">payable</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Get item details</span>
+<span class="w">        </span>MarketItem<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>item<span class="w"> </span><span class="o">=</span><span class="w"> </span>marketplace<span class="p">.</span>fetchItem<span class="p">(</span>nftContract<span class="p">,</span><span class="w"> </span>tokenId<span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span><span class="o">!</span>item<span class="p">.</span>sold<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Item already sold&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>item<span class="p">.</span>nftContract<span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">),</span><span class="w"> </span><span class="s2">&quot;Item not found&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Handle payment</span>
+<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>item<span class="p">.</span>paymentToken<span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">// ETH payment</span>
+<span class="w">            </span><span class="kt">require</span><span class="p">(</span><span class="k">msg.value</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span>item<span class="p">.</span>price<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Insufficient ETH&quot;</span><span class="p">);</span>
+<span class="w">            </span>marketplace<span class="p">.</span>purchaseItem<span class="p">{</span>value<span class="o">:</span><span class="w"> </span>item<span class="p">.</span>price<span class="p">}(</span>nftContract<span class="p">,</span><span class="w"> </span>tokenId<span class="p">);</span>
+
+<span class="w">            </span><span class="c1">// Refund excess ETH</span>
+<span class="w">            </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span><span class="k">msg.value</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span>item<span class="p">.</span>price<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="kt">payable</span><span class="p">(</span><span class="k">msg.sender</span><span class="p">).</span>transfer<span class="p">(</span><span class="k">msg.value</span><span class="w"> </span><span class="o">-</span><span class="w"> </span>item<span class="p">.</span>price<span class="p">);</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="kt">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">// ERC20 payment</span>
+<span class="w">            </span><span class="kt">require</span><span class="p">(</span><span class="k">msg.value</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Do not send ETH for token payments&quot;</span><span class="p">);</span>
+
+<span class="w">            </span><span class="c1">// Transfer tokens to this contract first, then to marketplace</span>
+<span class="w">            </span>IERC20<span class="p">(</span>item<span class="p">.</span>paymentToken<span class="p">).</span>transferFrom<span class="p">(</span><span class="k">msg.sender</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="kt">this</span><span class="p">),</span><span class="w"> </span>item<span class="p">.</span>price<span class="p">);</span>
+<span class="w">            </span>IERC20<span class="p">(</span>item<span class="p">.</span>paymentToken<span class="p">).</span>approve<span class="p">(</span><span class="kt">address</span><span class="p">(</span>marketplace<span class="p">),</span><span class="w"> </span>item<span class="p">.</span>price<span class="p">);</span>
+
+<span class="w">            </span>marketplace<span class="p">.</span>purchaseItem<span class="p">(</span>nftContract<span class="p">,</span><span class="w"> </span>tokenId<span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span>emit<span class="w"> </span>ItemPurchased<span class="p">(</span>nftContract<span class="p">,</span><span class="w"> </span>tokenId<span class="p">,</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">,</span><span class="w"> </span>item<span class="p">.</span>price<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">delistNFT</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">nftContract</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Verify seller</span>
+<span class="w">        </span>MarketItem<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>item<span class="w"> </span><span class="o">=</span><span class="w"> </span>marketplace<span class="p">.</span>fetchItem<span class="p">(</span>nftContract<span class="p">,</span><span class="w"> </span>tokenId<span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>item<span class="p">.</span>seller<span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Not the seller&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span><span class="o">!</span>item<span class="p">.</span>sold<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Item already sold&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Delist from marketplace</span>
+<span class="w">        </span>marketplace<span class="p">.</span>delistItem<span class="p">(</span>nftContract<span class="p">,</span><span class="w"> </span>tokenId<span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Clean up tracking</span>
+<span class="w">        </span>delete<span class="w"> </span>listingInfo<span class="p">[</span>nftContract<span class="p">][</span>tokenId<span class="p">];</span>
+<span class="w">        </span>_removeFromUserListings<span class="p">(</span><span class="k">msg.sender</span><span class="p">,</span><span class="w"> </span>tokenId<span class="p">);</span>
+
+<span class="w">        </span>emit<span class="w"> </span>ItemDelisted<span class="p">(</span>nftContract<span class="p">,</span><span class="w"> </span>tokenId<span class="p">,</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getMarketplaceOverview</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalListings</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalSold</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">averagePrice</span><span class="p">,</span>
+<span class="w">        </span>FeeReceiver<span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>feeStructure
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>MarketItem<span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>allItems<span class="w"> </span><span class="o">=</span><span class="w"> </span>marketplace<span class="p">.</span>fetchItems<span class="p">();</span>
+
+<span class="w">        </span>totalListings<span class="w"> </span><span class="o">=</span><span class="w"> </span>allItems<span class="p">.</span>length<span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalValue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span>
+
+<span class="w">        </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>allItems<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>allItems<span class="p">[</span>i<span class="p">].</span>sold<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span>totalSold<span class="o">++</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span>totalValue<span class="w"> </span><span class="o">+=</span><span class="w"> </span>allItems<span class="p">[</span>i<span class="p">].</span>price<span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>totalListings<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>averagePrice<span class="w"> </span><span class="o">=</span><span class="w"> </span>totalValue<span class="w"> </span><span class="o">/</span><span class="w"> </span>totalListings<span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span>feeStructure<span class="w"> </span><span class="o">=</span><span class="w"> </span>marketplace<span class="p">.</span>getMarketplaceFeeReceivers<span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getUserListings</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">user</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>tokenIds<span class="p">,</span>
+<span class="w">        </span>MarketItem<span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>items
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>userTokenIds<span class="w"> </span><span class="o">=</span><span class="w"> </span>userListings<span class="p">[</span>user<span class="p">];</span>
+<span class="w">        </span>tokenIds<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[](</span>userTokenIds<span class="p">.</span>length<span class="p">);</span>
+<span class="w">        </span>items<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span>MarketItem<span class="p">[](</span>userTokenIds<span class="p">.</span>length<span class="p">);</span>
+
+<span class="w">        </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>userTokenIds<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>tokenIds<span class="p">[</span>i<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>userTokenIds<span class="p">[</span>i<span class="p">];</span>
+<span class="w">            </span><span class="c1">// Would need to track NFT contract addresses for complete implementation</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">_removeFromUserListings</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">user</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span>storage<span class="w"> </span>listings<span class="w"> </span><span class="o">=</span><span class="w"> </span>userListings<span class="p">[</span>user<span class="p">];</span>
+
+<span class="w">        </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>listings<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>listings<span class="p">[</span>i<span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span>tokenId<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span>listings<span class="p">[</span>i<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>listings<span class="p">[</span>listings<span class="p">.</span>length<span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m m-Decimal">1</span><span class="p">];</span>
+<span class="w">                </span>listings<span class="p">.</span>pop<span class="p">();</span>
+<span class="w">                </span><span class="kt">break</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="marketplace-analytics-system">Marketplace Analytics System<a class="headerlink" href="#marketplace-analytics-system" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Analytics and reporting for marketplace activity</span>
+<span class="k">contract</span><span class="w"> </span><span class="ni">MarketplaceAnalytics</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>IMarketplace<span class="w"> </span><span class="kt">public</span><span class="w"> </span>marketplace<span class="p">;</span>
+
+<span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">SalesData</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalSales</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalVolume</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">averagePrice</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">uniqueBuyers</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">uniqueSellers</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">CollectionStats</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">nftContract</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalListings</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalSales</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalVolume</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">floorPrice</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">averagePrice</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span>SalesData<span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>collectionSales<span class="p">;</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">uint256</span><span class="p">))</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>dailyVolume<span class="p">;</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">bool</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>trackedBuyers<span class="p">;</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">bool</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>trackedSellers<span class="p">;</span>
+
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">SaleRecorded</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>nftContract<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>tokenId<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">price</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">buyer</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">seller</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">NewCollection</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>nftContract<span class="p">);</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">recordSale</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">nftContract</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">price</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">buyer</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">seller</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyAuthorized<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>SalesData<span class="w"> </span>storage<span class="w"> </span>data<span class="w"> </span><span class="o">=</span><span class="w"> </span>collectionSales<span class="p">[</span>nftContract<span class="p">];</span>
+
+<span class="w">        </span><span class="c1">// Update sales data</span>
+<span class="w">        </span>data<span class="p">.</span>totalSales<span class="o">++</span><span class="p">;</span>
+<span class="w">        </span>data<span class="p">.</span>totalVolume<span class="w"> </span><span class="o">+=</span><span class="w"> </span>price<span class="p">;</span>
+<span class="w">        </span>data<span class="p">.</span>averagePrice<span class="w"> </span><span class="o">=</span><span class="w"> </span>data<span class="p">.</span>totalVolume<span class="w"> </span><span class="o">/</span><span class="w"> </span>data<span class="p">.</span>totalSales<span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// Track unique participants</span>
+<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span>trackedBuyers<span class="p">[</span>buyer<span class="p">])</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>trackedBuyers<span class="p">[</span>buyer<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">true</span><span class="p">;</span>
+<span class="w">            </span>data<span class="p">.</span>uniqueBuyers<span class="o">++</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span>trackedSellers<span class="p">[</span>seller<span class="p">])</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>trackedSellers<span class="p">[</span>seller<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">true</span><span class="p">;</span>
+<span class="w">            </span>data<span class="p">.</span>uniqueSellers<span class="o">++</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// Update daily volume</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">today</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">block.timestamp</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m m-Decimal">1</span><span class="w"> </span>days<span class="p">;</span>
+<span class="w">        </span>dailyVolume<span class="p">[</span>nftContract<span class="p">][</span>today<span class="p">]</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span>price<span class="p">;</span>
+
+<span class="w">        </span>emit<span class="w"> </span>SaleRecorded<span class="p">(</span>nftContract<span class="p">,</span><span class="w"> </span>tokenId<span class="p">,</span><span class="w"> </span>price<span class="p">,</span><span class="w"> </span>buyer<span class="p">,</span><span class="w"> </span>seller<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getCollectionStats</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">nftContract</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>CollectionStats<span class="w"> </span><span class="kt">memory</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>MarketItem<span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>allItems<span class="w"> </span><span class="o">=</span><span class="w"> </span>marketplace<span class="p">.</span>fetchItems<span class="p">();</span>
+<span class="w">        </span>SalesData<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>salesData<span class="w"> </span><span class="o">=</span><span class="w"> </span>collectionSales<span class="p">[</span>nftContract<span class="p">];</span>
+
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalListings</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">floorPrice</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>type<span class="p">(</span><span class="kt">uint256</span><span class="p">).</span>max<span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalListingValue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// Analyze current listings</span>
+<span class="w">        </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>allItems<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>allItems<span class="p">[</span>i<span class="p">].</span>nftContract<span class="w"> </span><span class="o">==</span><span class="w"> </span>nftContract<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span>allItems<span class="p">[</span>i<span class="p">].</span>sold<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span>totalListings<span class="o">++</span><span class="p">;</span>
+<span class="w">                </span>totalListingValue<span class="w"> </span><span class="o">+=</span><span class="w"> </span>allItems<span class="p">[</span>i<span class="p">].</span>price<span class="p">;</span>
+
+<span class="w">                </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>allItems<span class="p">[</span>i<span class="p">].</span>price<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>floorPrice<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span>floorPrice<span class="w"> </span><span class="o">=</span><span class="w"> </span>allItems<span class="p">[</span>i<span class="p">].</span>price<span class="p">;</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>floorPrice<span class="w"> </span><span class="o">==</span><span class="w"> </span>type<span class="p">(</span><span class="kt">uint256</span><span class="p">).</span>max<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>floorPrice<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>CollectionStats<span class="p">({</span>
+<span class="w">            </span>nftContract<span class="o">:</span><span class="w"> </span>nftContract<span class="p">,</span>
+<span class="w">            </span>totalListings<span class="o">:</span><span class="w"> </span>totalListings<span class="p">,</span>
+<span class="w">            </span>totalSales<span class="o">:</span><span class="w"> </span>salesData<span class="p">.</span>totalSales<span class="p">,</span>
+<span class="w">            </span>totalVolume<span class="o">:</span><span class="w"> </span>salesData<span class="p">.</span>totalVolume<span class="p">,</span>
+<span class="w">            </span>floorPrice<span class="o">:</span><span class="w"> </span>floorPrice<span class="p">,</span>
+<span class="w">            </span>averagePrice<span class="o">:</span><span class="w"> </span>salesData<span class="p">.</span>averagePrice
+<span class="w">        </span><span class="p">});</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getDailyVolume</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">nftContract</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">daysBack</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>dates<span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>volumes
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>dates<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[](</span>daysBack<span class="p">);</span>
+<span class="w">        </span>volumes<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[](</span>daysBack<span class="p">);</span>
+
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">today</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">block.timestamp</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m m-Decimal">1</span><span class="w"> </span>days<span class="p">;</span>
+
+<span class="w">        </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>daysBack<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">date</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>today<span class="w"> </span><span class="o">-</span><span class="w"> </span>i<span class="p">;</span>
+<span class="w">            </span>dates<span class="p">[</span>i<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>date<span class="p">;</span>
+<span class="w">            </span>volumes<span class="p">[</span>i<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>dailyVolume<span class="p">[</span>nftContract<span class="p">][</span>date<span class="p">];</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getTopCollections</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">limit</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">address</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Simplified implementation - would need more sophisticated sorting</span>
+<span class="w">        </span><span class="kt">address</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>collections<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="kt">address</span><span class="p">[](</span>limit<span class="p">);</span>
+<span class="w">        </span><span class="c1">// Implementation would sort by volume or other metrics</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span>collections<span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="fee-management-system_1">Fee Management System<a class="headerlink" href="#fee-management-system_1" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Advanced fee management for marketplace</span>
+<span class="k">contract</span><span class="w"> </span><span class="ni">MarketplaceFeeManager</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">FeeConfig</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>FeeReceiver<span class="p">[]</span><span class="w"> </span>receivers<span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalFeePerMillion</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">active</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">lastUpdated</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span>FeeConfig<span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>collectionFees<span class="p">;</span>
+<span class="w">    </span>FeeConfig<span class="w"> </span><span class="kt">public</span><span class="w"> </span>defaultFees<span class="p">;</span>
+
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">FeeConfigUpdated</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>collection<span class="p">,</span><span class="w"> </span>FeeReceiver<span class="p">[]</span><span class="w"> </span>receivers<span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">FeeDistributed</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>collection<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalAmount</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="p">[]</span><span class="w"> </span>receivers<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span>amounts<span class="p">);</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">setDefaultFees</span><span class="p">(</span>FeeReceiver<span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>receivers<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyOwner<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>_validateFeeReceivers<span class="p">(</span>receivers<span class="p">);</span>
+
+<span class="w">        </span>delete<span class="w"> </span>defaultFees<span class="p">.</span>receivers<span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalFee</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span>
+
+<span class="w">        </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>receivers<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>defaultFees<span class="p">.</span>receivers<span class="p">.</span>push<span class="p">(</span>receivers<span class="p">[</span>i<span class="p">]);</span>
+<span class="w">            </span>totalFee<span class="w"> </span><span class="o">+=</span><span class="w"> </span>receivers<span class="p">[</span>i<span class="p">].</span>sharePerMillion<span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span>defaultFees<span class="p">.</span>totalFeePerMillion<span class="w"> </span><span class="o">=</span><span class="w"> </span>totalFee<span class="p">;</span>
+<span class="w">        </span>defaultFees<span class="p">.</span>active<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">true</span><span class="p">;</span>
+<span class="w">        </span>defaultFees<span class="p">.</span>lastUpdated<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">block.timestamp</span><span class="p">;</span>
+
+<span class="w">        </span>emit<span class="w"> </span>FeeConfigUpdated<span class="p">(</span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">),</span><span class="w"> </span>receivers<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">setCollectionFees</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">collection</span><span class="p">,</span><span class="w"> </span>FeeReceiver<span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>receivers<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyOwner<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>_validateFeeReceivers<span class="p">(</span>receivers<span class="p">);</span>
+
+<span class="w">        </span>delete<span class="w"> </span>collectionFees<span class="p">[</span>collection<span class="p">].</span>receivers<span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalFee</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span>
+
+<span class="w">        </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>receivers<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>collectionFees<span class="p">[</span>collection<span class="p">].</span>receivers<span class="p">.</span>push<span class="p">(</span>receivers<span class="p">[</span>i<span class="p">]);</span>
+<span class="w">            </span>totalFee<span class="w"> </span><span class="o">+=</span><span class="w"> </span>receivers<span class="p">[</span>i<span class="p">].</span>sharePerMillion<span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span>collectionFees<span class="p">[</span>collection<span class="p">].</span>totalFeePerMillion<span class="w"> </span><span class="o">=</span><span class="w"> </span>totalFee<span class="p">;</span>
+<span class="w">        </span>collectionFees<span class="p">[</span>collection<span class="p">].</span>active<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">true</span><span class="p">;</span>
+<span class="w">        </span>collectionFees<span class="p">[</span>collection<span class="p">].</span>lastUpdated<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">block.timestamp</span><span class="p">;</span>
+
+<span class="w">        </span>emit<span class="w"> </span>FeeConfigUpdated<span class="p">(</span>collection<span class="p">,</span><span class="w"> </span>receivers<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">calculateFees</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">collection</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">salePrice</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>
+<span class="w">        </span><span class="kt">address</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>receivers<span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>amounts<span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalFees</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>FeeConfig<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>config<span class="w"> </span><span class="o">=</span><span class="w"> </span>collectionFees<span class="p">[</span>collection<span class="p">].</span>active<span class="w"> </span>
+<span class="w">            </span><span class="o">?</span><span class="w"> </span>collectionFees<span class="p">[</span>collection<span class="p">]</span><span class="w"> </span>
+<span class="w">            </span><span class="o">:</span><span class="w"> </span>defaultFees<span class="p">;</span>
+
+<span class="w">        </span>receivers<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="kt">address</span><span class="p">[](</span>config<span class="p">.</span>receivers<span class="p">.</span>length<span class="p">);</span>
+<span class="w">        </span>amounts<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[](</span>config<span class="p">.</span>receivers<span class="p">.</span>length<span class="p">);</span>
+
+<span class="w">        </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>config<span class="p">.</span>receivers<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span>receivers<span class="p">[</span>i<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>config<span class="p">.</span>receivers<span class="p">[</span>i<span class="p">].</span>receiver<span class="p">;</span>
+<span class="w">            </span>amounts<span class="p">[</span>i<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span>salePrice<span class="w"> </span><span class="o">*</span><span class="w"> </span>config<span class="p">.</span>receivers<span class="p">[</span>i<span class="p">].</span>sharePerMillion<span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m m-Decimal">1000000</span><span class="p">;</span>
+<span class="w">            </span>totalFees<span class="w"> </span><span class="o">+=</span><span class="w"> </span>amounts<span class="p">[</span>i<span class="p">];</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">distributeFees</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">collection</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">salePrice</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">paymentToken</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">payable</span><span class="w"> </span>onlyAuthorized<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="p">(</span><span class="kt">address</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>receivers<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>amounts<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalFees</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>
+<span class="w">            </span><span class="kt">this</span><span class="p">.</span>calculateFees<span class="p">(</span>collection<span class="p">,</span><span class="w"> </span>salePrice<span class="p">);</span>
+
+<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>paymentToken<span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">// ETH distribution</span>
+<span class="w">            </span><span class="kt">require</span><span class="p">(</span><span class="k">msg.value</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span>totalFees<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Insufficient ETH for fees&quot;</span><span class="p">);</span>
+
+<span class="w">            </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>receivers<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="kt">payable</span><span class="p">(</span>receivers<span class="p">[</span>i<span class="p">]).</span>transfer<span class="p">(</span>amounts<span class="p">[</span>i<span class="p">]);</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="kt">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">// ERC20 distribution</span>
+<span class="w">            </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>receivers<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span>IERC20<span class="p">(</span>paymentToken<span class="p">).</span>transferFrom<span class="p">(</span><span class="k">msg.sender</span><span class="p">,</span><span class="w"> </span>receivers<span class="p">[</span>i<span class="p">],</span><span class="w"> </span>amounts<span class="p">[</span>i<span class="p">]);</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span>emit<span class="w"> </span>FeeDistributed<span class="p">(</span>collection<span class="p">,</span><span class="w"> </span>totalFees<span class="p">,</span><span class="w"> </span>receivers<span class="p">,</span><span class="w"> </span>amounts<span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">_validateFeeReceivers</span><span class="p">(</span>FeeReceiver<span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>receivers<span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>pure<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>receivers<span class="p">.</span>length<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;No fee receivers provided&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalFee</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>receivers<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">require</span><span class="p">(</span>receivers<span class="p">[</span>i<span class="p">].</span>receiver<span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">),</span><span class="w"> </span><span class="s2">&quot;Invalid receiver address&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="kt">require</span><span class="p">(</span>receivers<span class="p">[</span>i<span class="p">].</span>sharePerMillion<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Invalid fee share&quot;</span><span class="p">);</span>
+<span class="w">            </span>totalFee<span class="w"> </span><span class="o">+=</span><span class="w"> </span>receivers<span class="p">[</span>i<span class="p">].</span>sharePerMillion<span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>totalFee<span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="m m-Decimal">100000</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Total fees exceed 10%&quot;</span><span class="p">);</span><span class="w"> </span><span class="c1">// Max 10% total fees</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="events">Events<a class="headerlink" href="#events" title="Permanent link">&para;</a></h2>
+<h3 id="listing-events">Listing Events<a class="headerlink" href="#listing-events" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">event</span><span class="w"> </span><span class="nv">Listings</span><span class="p">(</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>nftContract<span class="p">,</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>tokenId<span class="p">,</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">seller</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">receiver</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">owner</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">price</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nv">sold</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">paymentToken</span>
+<span class="p">);</span>
+
+<span class="kt">event</span><span class="w"> </span><span class="nv">Delisted</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>itemId<span class="p">);</span>
+</code></pre></div>
+
+<h3 id="trading-events">Trading Events<a class="headerlink" href="#trading-events" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">event</span><span class="w"> </span><span class="nv">Sales</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>tokenAddress<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>tokenId<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>owner<span class="p">);</span>
+<span class="kt">event</span><span class="w"> </span><span class="nv">Bids</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>itemId<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">bidder</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">amount</span><span class="p">);</span>
+</code></pre></div>
+
+<h2 id="security-considerations">Security Considerations<a class="headerlink" href="#security-considerations" title="Permanent link">&para;</a></h2>
+<h3 id="access-control">Access Control<a class="headerlink" href="#access-control" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Ownership verification for listing and delisting</li>
+<li>Payment validation for purchases</li>
+<li>Fee receiver address validation</li>
+<li>Proper authorization for administrative functions</li>
+</ul>
+<h3 id="payment-security">Payment Security<a class="headerlink" href="#payment-security" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Secure ETH and ERC20 token handling</li>
+<li>Proper fee calculation and distribution</li>
+<li>Protection against reentrancy attacks</li>
+<li>Validation of payment amounts</li>
+</ul>
+<h3 id="nft-security">NFT Security<a class="headerlink" href="#nft-security" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Ownership verification before listing</li>
+<li>Secure NFT transfer mechanisms</li>
+<li>Protection against unauthorized transfers</li>
+<li>Proper custody management</li>
+</ul>
+<h2 id="gas-optimization">Gas Optimization<a class="headerlink" href="#gas-optimization" title="Permanent link">&para;</a></h2>
+<h3 id="efficient-operations">Efficient Operations<a class="headerlink" href="#efficient-operations" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Batch operations where possible</li>
+<li>Optimized storage layout for MarketItem</li>
+<li>Minimal external calls</li>
+<li>Efficient fee calculations</li>
+</ul>
+<h3 id="query-optimization">Query Optimization<a class="headerlink" href="#query-optimization" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Efficient item retrieval patterns</li>
+<li>Optimized array operations</li>
+<li>Minimal storage reads</li>
+<li>Cached calculations where appropriate</li>
+</ul>
+<h2 id="testing-considerations">Testing Considerations<a class="headerlink" href="#testing-considerations" title="Permanent link">&para;</a></h2>
+<h3 id="unit-tests">Unit Tests<a class="headerlink" href="#unit-tests" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Interface compliance verification</li>
+<li>Data structure validation</li>
+<li>Function behavior testing</li>
+<li>Event emission verification</li>
+</ul>
+<h3 id="integration-tests">Integration Tests<a class="headerlink" href="#integration-tests" title="Permanent link">&para;</a></h3>
+<ul>
+<li>End-to-end marketplace workflows</li>
+<li>Payment processing scenarios</li>
+<li>Fee distribution testing</li>
+<li>Multi-token payment testing</li>
+</ul>
+<h2 id="related-documentation">Related Documentation<a class="headerlink" href="#related-documentation" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../../facets/marketplace-facet/">MarketplaceFacet</a> - Marketplace implementation</li>
+<li><a href="../../facets/fee-distributor-facet/">FeeDistributorFacet</a> - Fee management</li>
+<li><a href="https://eips.ethereum.org/EIPS/eip-721">ERC721 Standard</a> - NFT standard</li>
+<li><a href="https://eips.ethereum.org/EIPS/eip-20">ERC20 Standard</a> - Token standard</li>
+<li><a href="../../../developer-guides/automated-testing-setup/">Marketplace Guide</a> - Implementation guide</li>
+</ul>
+<hr />
+<p><em>This interface defines the core contract for NFT marketplace functionality within the Gemforce platform, providing standardized trading operations with flexible payment and fee management.</em></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../idiamond/" class="btn btn-neutral float-left" title="IDiamond"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../itradedeal/" class="btn btn-neutral float-right" title="ITradeDeal">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../idiamond/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../itradedeal/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

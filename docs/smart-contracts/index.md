@@ -45,9 +45,10 @@ The Gemforce smart contract system consists of:
 ### Core Interfaces
 - [IDiamond](interfaces/idiamond.md) - Diamond standard interface
 - [IMarketplace](interfaces/imarketplace.md) - Marketplace interface
-- [ITradeDeal](interfaces/itrade-deal.md) - Trade deal interface
+- [ITradeDeal](interfaces/itradedeal.md) - Trade deal interface
 - [ICarbonCredit](interfaces/icarbon-credit.md) - Carbon credit interface
 - [IIdentity](interfaces/iidentity.md) - Identity interface
+- [IVariablePrice](interfaces/ivariable-price.md) - Variable Price interface (Added based on mkdocs.yml warning)
 
 ### Libraries
 - [DiamondLib](libraries/diamond-lib.md) - Diamond pattern utilities
@@ -59,14 +60,14 @@ The Gemforce smart contract system consists of:
 
 ### For Developers
 1. Start with the [Diamond](diamond.md) documentation to understand the core architecture
-2. Review the [Interfaces](interfaces/) to understand contract APIs
-3. Examine specific [Facets](facets/) for functionality you need to integrate
-4. Check [Libraries](libraries/) for utility functions
+2. Review the [Interfaces](interfaces/idiamond.md) to understand contract APIs
+3. Examine specific [Facets](facets/diamond-cut-facet.md) for functionality you need to integrate
+4. Check [Libraries](libraries/diamond-lib.md) for utility functions
 
 ### For Integrators
-1. Review the [Integration Guide](../integration-guide.md)
+1. Review the [Integrator's Guide](../integrator-guide/overview.md)
 2. Examine relevant interface documentation
-3. Check deployment procedures in [Deployment Guide](../deployment-guide.md)
+3. Check deployment procedures in [Deployment Guides: Multi-Network Deployment](../deployment-guides/multi-network-deployment.md)
 4. Review security considerations in each contract's documentation
 
 ## Security Considerations

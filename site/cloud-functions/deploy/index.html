@@ -1,0 +1,1432 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Gemforce Team" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Deploy Functions - Gemforce Documentation</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Deploy Functions";
+        var mkdocs_page_input_path = "cloud-functions/deploy.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Gemforce Documentation
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../developer-setup-guide/">Developer Setup Guide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../system-architecture/gemforce-system-architecture/">System Architecture</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Smart Contracts</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../smart-contracts/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../smart-contracts/diamond/">Diamond Contract</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../smart-contracts/diamond-factory/">Diamond Factory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../smart-contracts/identity-factory/">Identity Factory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Facets</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/marketplace-facet/">Marketplace Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/trade-deal-management-facet/">Trade Deal Management Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/carbon-credit-facet/">Carbon Credit Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/identity-registry-facet/">Identity Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/trusted-issuers-registry-facet/">Trusted Issuers Registry Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/fee-distributor-facet/">Fee Distributor Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/gemforce-minter-facet/">Gemforce Minter Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/multi-sale-facet/">Multi Sale Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/svg-templates-facet/">SVG Templates Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/trade-deal-admin-facet/">Trade Deal Admin Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/trade-deal-operations-facet/">Trade Deal Operations Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/collateral-token-factory-facet/">Collateral Token Factory Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/diamond-cut-facet/">Diamond Cut Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/diamond-loupe-facet/">Diamond Loupe Facet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/facets/ownership-facet/">Ownership Facet</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Interfaces</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/idiamond/">IDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/imarketplace/">IMarketplace</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/itradedeal/">ITradeDeal</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/icarbon-credit/">ICarbonCredit</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/ierc1155-mint/">IERC1155Mint</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/ierc734/">IERC734</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/ierc735/">IERC735</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/ierc721a/">IERC721A</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/idiamond-factory/">IDiamondFactory</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/iidentity/">IIdentity</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/imultisale/">IMultiSale</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/ifee-distributor/">IFeeDistributor</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/igemforce-minter-facet/">IGemforceMinterFacet</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/iidentity-registry/">IIdentityRegistry</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/itrusted-issuers-registry/">TRUSTEDIssuersRegistry</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/isvg/">ISVG</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/iattribute/">IAttribute</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/interfaces/ivariable-price/">IVariablePrice</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Libraries</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/carbon-credit-lib/">Carbon Credit Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/trade-deal-lib/">Trade Deal Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/multi-sale-lib/">Multi Sale Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/diamond-factory-lib/">Diamond Factory Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/svg-templates-lib/">SVG Templates Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/attribute-lib/">Attribute Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/variable-price-lib/">Variable Price Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/merkle-prover/">Merkle Prover</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/fee-distributor-lib/">Fee Distributor Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/lib-diamond/">LibDiamond</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/diamond-lib/">DiamondLib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/erc721a-lib/">ERC721A Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/erc721a-enumeration-lib/">ERC721A Enumeration Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/strings-lib/">Strings Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/trusted-issuer-lib/">Trusted Issuer Lib</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../smart-contracts/libraries/set-libraries/">Set Libraries</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">SDK & Libraries</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../sdk-libraries/blockchain/">Blockchain Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../sdk-libraries/diamond/">Diamond Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../sdk-libraries/contract/">Contract Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../sdk-libraries/deploy/">Deployment Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../sdk-libraries/validation-utils/">Validation Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../sdk-libraries/nft-sale-utils/">NFT Sale Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../sdk-libraries/webhooks/">Webhooks Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../smart-contracts/libraries/metadata-lib/">Metadata Library</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Cloud Functions</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../authentication/">Authentication Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../auth-functions/">Auth Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../blockchain/">Blockchain Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../bridge/">Bridge Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../contracts/">Contract Functions</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Deploy Functions</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#key-features">Key Features</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#deployment-types">Deployment Types</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#network-management">Network Management</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#automation-features">Automation Features</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#core-functions">Core Functions</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#deploycontract">deployContract()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#deploydiamond">deployDiamond()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#deployproject">deployProject()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#getdeploymentstatus">getDeploymentStatus()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#rollbackdeployment">rollbackDeployment()</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#implementation-example">Implementation Example</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#smart-contract-deployment">Smart Contract Deployment</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#diamond-deployment">Diamond Deployment</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#project-deployment">Project Deployment</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#deployment-templates">Deployment Templates</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#nft-collection-template">NFT Collection Template</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#defi-protocol-template">DeFi Protocol Template</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#verification-and-monitoring">Verification and Monitoring</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#contract-verification">Contract Verification</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#deployment-monitoring">Deployment Monitoring</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../dfns/">DFNS Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../project/">Project Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../trade-deal/">Trade Deal Functions</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">API Documentation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api-documentation/gemforce-api-documentation/">Full API Reference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api-documentation/gemforce-api-quick-reference/">Quick Reference</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../gemforce-external-services/">External Services</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../gemforce-system-architecture/">System Architecture</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Operations Tasks</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../tasks/diamond/">Diamond Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../tasks/identities/">Identity Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../tasks/marketplace-management/">Marketplace Management Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../tasks/carbon-credit-management/">Carbon Credit Management Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../tasks/trade-deal/">Trade Deal Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../tasks/integration-test/">Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../tasks/integration-test-marketplace/">Marketplace Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../tasks/integration-test-trade-deal/">Trade Deal Integration Test Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../tasks/admin-utils/">Admin Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../tasks/sync-diamond/">Sync Diamond Tasks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../tasks/sync-events/">Sync Events Tasks</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">EIPs (Ethereum Improvement Proposals)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../eips/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../eips/EIP-DRAFT-Diamond-Enhanced-Marketplace/">Diamond-Enhanced Marketplace</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../eips/EIP-DRAFT-Multi-Token-Sale-Standard/">Multi-Token Sale Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../eips/EIP-DRAFT-Collateralized-Trade-Deal-Standard/">Collateralized Trade Deal Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../eips/EIP-DRAFT-Enhanced-Identity-System/">Enhanced Identity System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../eips/EIP-DRAFT-Diamond-Factory-Standard/">Diamond Factory Standard</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../eips/EIP-DRAFT-Carbon-Credit-Standard/">Carbon Credit Standard</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Developer Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../developer-guides/development-environment-setup/">Development Environment Setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../developer-guides/testing-frameworks/">Testing Frameworks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../developer-guides/debugging/">Debugging</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../developer-guides/performance-optimization/">Performance Optimization</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../developer-guides/test-case-specifications/">Test Case Specifications</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../developer-guides/test-data-management/">Test Data Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../developer-guides/automated-testing-setup/">Automated Testing Setup</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Deployment Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../deployment-guides/multi-network-deployment/">Multi-Network Deployment</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../deployment-guides/infrastructure-management/">Infrastructure Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../deployment-guides/monitoring-logging/">Monitoring and Logging</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">User Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../gemforce-administrator-guide/">Administrator Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../gemforce-deployer-guide/">Deployer Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../gemforce-integrator-guide/">Integrator Guide</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Integrator's Guide</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrator-guide/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrator-guide/authentication/">Authentication</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrator-guide/rest-api/">REST API</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrator-guide/smart-contracts/">Smart Contracts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrator-guide/dfns/">DFNS Integration</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrator-guide/parse-server/">Parse Server Notes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrator-guide/webhooks/">Webhooks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrator-guide/error-handling/">Error Handling</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrator-guide/sample-code/">Sample Code</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrator-guide/integration-patterns/">Integration Patterns</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrator-guide/testing/">Testing Considerations</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../integrator-guide/security/">Security</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../external-services/gemforce-external-services/">External Services</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Security</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../security/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../security/threat-model/">Threat Model and Risk Assessment</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../security/incident-response/">Incident Response Procedures</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../security/audit-compliance/">Security Audits and Compliance</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">External Developer Integration</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../external-developer-integration/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../external-developer-integration/api-rate-limiting/">API Rate Limiting</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../external-developer-integration/webhook-implementation-guidelines/">Webhook Implementation Guidelines</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../external-developer-integration/sdk-development-guidelines/">SDK Development Guidelines</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../external-developer-integration/partner-integration-guides/">Partner Integration Guides</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../gemforce-documentation-gap-analysis/">Documentation Gap Analysis</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../documentation-progress-summary/">Documentation Progress Summary</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../documentation-plan/">Documentation Plan</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Configuration & Environment</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../configuration-environment/gemforce-config/">Gemforce Config</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../configuration-environment/environment-specific-guides/">Environment-Specific Guides</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../configuration-environment/configuration-validation/">Configuration Validation Procedures</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../configuration-environment/external-service-config-management/">External Service Configuration Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../configuration-environment/database-schema-overview/">Database Schema Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../configuration-environment/database-migration-procedures/">Database Migration Procedures</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Gemforce Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Cloud Functions</li>
+      <li class="breadcrumb-item active">Deploy Functions</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="deploy-functions">Deploy Functions<a class="headerlink" href="#deploy-functions" title="Permanent link">&para;</a></h1>
+<p>The Deploy Functions module provides comprehensive deployment capabilities for smart contracts, diamond proxies, and complete project infrastructures on multiple blockchain networks. It handles automated deployment pipelines, configuration management, and post-deployment verification.</p>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>The Deploy Functions provide:</p>
+<ul>
+<li><strong>Smart Contract Deployment</strong>: Deploy individual contracts and contract suites</li>
+<li><strong>Diamond Deployment</strong>: Deploy and configure diamond proxy contracts</li>
+<li><strong>Multi-Network Support</strong>: Deploy across multiple blockchain networks</li>
+<li><strong>Configuration Management</strong>: Manage deployment configurations and parameters</li>
+<li><strong>Verification</strong>: Automated contract verification and validation</li>
+<li><strong>Rollback Support</strong>: Rollback capabilities for failed deployments</li>
+</ul>
+<h2 id="key-features">Key Features<a class="headerlink" href="#key-features" title="Permanent link">&para;</a></h2>
+<h3 id="deployment-types">Deployment Types<a class="headerlink" href="#deployment-types" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Single Contract</strong>: Deploy individual smart contracts</li>
+<li><strong>Diamond Proxy</strong>: Deploy upgradeable diamond contracts</li>
+<li><strong>Project Suite</strong>: Deploy complete project infrastructures</li>
+<li><strong>Template Deployment</strong>: Deploy from predefined templates</li>
+</ul>
+<h3 id="network-management">Network Management<a class="headerlink" href="#network-management" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Multi-Network</strong>: Support for multiple blockchain networks</li>
+<li><strong>Gas Optimization</strong>: Automatic gas price optimization</li>
+<li><strong>Network Validation</strong>: Pre-deployment network validation</li>
+<li><strong>Cross-Chain Coordination</strong>: Coordinate deployments across networks</li>
+</ul>
+<h3 id="automation-features">Automation Features<a class="headerlink" href="#automation-features" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Pipeline Automation</strong>: Automated deployment pipelines</li>
+<li><strong>Configuration Validation</strong>: Validate deployment configurations</li>
+<li><strong>Post-Deployment Testing</strong>: Automated testing after deployment</li>
+<li><strong>Monitoring Integration</strong>: Integration with monitoring systems</li>
+</ul>
+<h2 id="core-functions">Core Functions<a class="headerlink" href="#core-functions" title="Permanent link">&para;</a></h2>
+<h3 id="deploycontract">deployContract()<a class="headerlink" href="#deploycontract" title="Permanent link">&para;</a></h3>
+<p>Deploys a single smart contract to a specified network.</p>
+<p><strong>Parameters:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="kd">interface</span><span class="w"> </span><span class="nx">DeployContractRequest</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">contractName</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">network</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">constructorArgs?</span><span class="o">:</span><span class="w"> </span><span class="kt">any</span><span class="p">[];</span>
+<span class="w">  </span><span class="nx">deploymentConfig</span><span class="o">?:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">gasLimit?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">gasPrice?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">confirmations?</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">timeout?</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
+<span class="w">  </span><span class="p">};</span>
+<span class="w">  </span><span class="nx">verificationConfig</span><span class="o">?:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">verify</span><span class="o">:</span><span class="w"> </span><span class="kt">boolean</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">apiKey?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">constructorArgsEncoded?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">  </span><span class="p">};</span>
+<span class="w">  </span><span class="nx">metadata</span><span class="o">?:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">projectId?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">version?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">description?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">  </span><span class="p">};</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Returns:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="kd">interface</span><span class="w"> </span><span class="nx">DeployContractResponse</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">success</span><span class="o">:</span><span class="w"> </span><span class="kt">boolean</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">contractAddress?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">transactionHash?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">gasUsed?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">deploymentCost?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">verificationStatus</span><span class="o">?:</span><span class="w"> </span><span class="s1">&#39;pending&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;verified&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;failed&#39;</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">message</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Usage:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="s1">&#39;deployContract&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">contractName</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;MyToken&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">network</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;polygon&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">constructorArgs</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;My Token&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;MTK&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">18</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1000000000000000000000000&#39;</span><span class="p">],</span>
+<span class="w">  </span><span class="nx">deploymentConfig</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">gasLimit</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;2000000&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">confirmations</span><span class="o">:</span><span class="w"> </span><span class="kt">3</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nx">verificationConfig</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">verify</span><span class="o">:</span><span class="w"> </span><span class="kt">true</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nx">metadata</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">projectId</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;proj_123&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">version</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;1.0.0&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">description</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;ERC20 token for my project&#39;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div>
+
+<h3 id="deploydiamond">deployDiamond()<a class="headerlink" href="#deploydiamond" title="Permanent link">&para;</a></h3>
+<p>Deploys a diamond proxy contract with specified facets.</p>
+<p><strong>Parameters:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="kd">interface</span><span class="w"> </span><span class="nx">DeployDiamondRequest</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">network</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">diamondName</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">facets</span><span class="o">:</span><span class="w"> </span><span class="kt">FacetDeployment</span><span class="p">[];</span>
+<span class="w">  </span><span class="nx">initContract?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">initData?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">owner?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">deploymentConfig?</span><span class="o">:</span><span class="w"> </span><span class="kt">DeploymentConfig</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">verificationConfig?</span><span class="o">:</span><span class="w"> </span><span class="kt">VerificationConfig</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">interface</span><span class="w"> </span><span class="nx">FacetDeployment</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">address?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span><span class="w"> </span><span class="c1">// If already deployed</span>
+<span class="w">  </span><span class="nx">constructorArgs?</span><span class="o">:</span><span class="w"> </span><span class="kt">any</span><span class="p">[];</span>
+<span class="w">  </span><span class="nx">functionSelectors?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">[];</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Returns:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="kd">interface</span><span class="w"> </span><span class="nx">DeployDiamondResponse</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">success</span><span class="o">:</span><span class="w"> </span><span class="kt">boolean</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">diamondAddress?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">facetAddresses</span><span class="o">?:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">[</span><span class="nx">facetName</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">]</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="p">};</span>
+<span class="w">  </span><span class="nx">transactionHashes?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">[];</span>
+<span class="w">  </span><span class="nx">totalGasUsed?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">deploymentCost?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">message</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="deployproject">deployProject()<a class="headerlink" href="#deployproject" title="Permanent link">&para;</a></h3>
+<p>Deploys a complete project infrastructure including all contracts and configurations.</p>
+<p><strong>Parameters:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="kd">interface</span><span class="w"> </span><span class="nx">DeployProjectRequest</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">projectId</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">network</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">deploymentTemplate</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">configuration</span><span class="o">:</span><span class="w"> </span><span class="kt">ProjectConfiguration</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">deploymentOptions</span><span class="o">?:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">skipVerification?</span><span class="o">:</span><span class="w"> </span><span class="kt">boolean</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">dryRun?</span><span class="o">:</span><span class="w"> </span><span class="kt">boolean</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">parallelDeployment?</span><span class="o">:</span><span class="w"> </span><span class="kt">boolean</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">rollbackOnFailure?</span><span class="o">:</span><span class="w"> </span><span class="kt">boolean</span><span class="p">;</span>
+<span class="w">  </span><span class="p">};</span>
+<span class="p">}</span>
+
+<span class="kd">interface</span><span class="w"> </span><span class="nx">ProjectConfiguration</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">contracts</span><span class="o">:</span><span class="w"> </span><span class="kt">ContractConfig</span><span class="p">[];</span>
+<span class="w">  </span><span class="nx">diamonds</span><span class="o">:</span><span class="w"> </span><span class="kt">DiamondConfig</span><span class="p">[];</span>
+<span class="w">  </span><span class="nx">initializations</span><span class="o">:</span><span class="w"> </span><span class="kt">InitializationStep</span><span class="p">[];</span>
+<span class="w">  </span><span class="nx">permissions</span><span class="o">:</span><span class="w"> </span><span class="kt">PermissionConfig</span><span class="p">[];</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Returns:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="kd">interface</span><span class="w"> </span><span class="nx">DeployProjectResponse</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">success</span><span class="o">:</span><span class="w"> </span><span class="kt">boolean</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">deploymentId</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">deployedContracts</span><span class="o">?:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">[</span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">]</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="p">};</span>
+<span class="w">  </span><span class="nx">deployedDiamonds</span><span class="o">?:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">[</span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">]</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="p">};</span>
+<span class="w">  </span><span class="nx">totalGasUsed?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">deploymentCost?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">deploymentTime?</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">message</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="getdeploymentstatus">getDeploymentStatus()<a class="headerlink" href="#getdeploymentstatus" title="Permanent link">&para;</a></h3>
+<p>Retrieves the status of an ongoing or completed deployment.</p>
+<p><strong>Parameters:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="kd">interface</span><span class="w"> </span><span class="nx">DeploymentStatusRequest</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">deploymentId</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Returns:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="kd">interface</span><span class="w"> </span><span class="nx">DeploymentStatusResponse</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">success</span><span class="o">:</span><span class="w"> </span><span class="kt">boolean</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">deployment</span><span class="o">?:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">status</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;pending&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;deploying&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;completed&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;failed&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;rolled_back&#39;</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">network</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">progress</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">currentStep?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">deployedContracts</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">[</span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">]</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="p">};</span>
+<span class="w">    </span><span class="nx">errors?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">[];</span>
+<span class="w">    </span><span class="nx">startedAt</span><span class="o">:</span><span class="w"> </span><span class="kt">Date</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">completedAt?</span><span class="o">:</span><span class="w"> </span><span class="kt">Date</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">gasUsed</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">cost</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">  </span><span class="p">};</span>
+<span class="w">  </span><span class="nx">message</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="rollbackdeployment">rollbackDeployment()<a class="headerlink" href="#rollbackdeployment" title="Permanent link">&para;</a></h3>
+<p>Rolls back a failed or problematic deployment.</p>
+<p><strong>Parameters:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="kd">interface</span><span class="w"> </span><span class="nx">RollbackDeploymentRequest</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">deploymentId</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">reason</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">preserveData?</span><span class="o">:</span><span class="w"> </span><span class="kt">boolean</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Returns:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="kd">interface</span><span class="w"> </span><span class="nx">RollbackDeploymentResponse</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">success</span><span class="o">:</span><span class="w"> </span><span class="kt">boolean</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">rollbackTransactionHashes?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">[];</span>
+<span class="w">  </span><span class="nx">message</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="implementation-example">Implementation Example<a class="headerlink" href="#implementation-example" title="Permanent link">&para;</a></h2>
+<h3 id="smart-contract-deployment">Smart Contract Deployment<a class="headerlink" href="#smart-contract-deployment" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s1">&#39;deployContract&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">(</span><span class="nx">request</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">contractName</span><span class="p">,</span><span class="w"> </span><span class="nx">network</span><span class="p">,</span><span class="w"> </span><span class="nx">constructorArgs</span><span class="p">,</span><span class="w"> </span><span class="nx">deploymentConfig</span><span class="p">,</span><span class="w"> </span><span class="nx">verificationConfig</span><span class="p">,</span><span class="w"> </span><span class="nx">metadata</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">request</span><span class="p">.</span><span class="nx">params</span><span class="p">;</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">user</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">request</span><span class="p">.</span><span class="nx">user</span><span class="p">;</span>
+
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">user</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="s1">&#39;Authentication required&#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Validate deployment permissions</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">hasPermission</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">checkDeploymentPermissions</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">id</span><span class="p">,</span><span class="w"> </span><span class="nx">network</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">hasPermission</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="s1">&#39;Insufficient permissions for deployment&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Validate network</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">isSupportedNetwork</span><span class="p">(</span><span class="nx">network</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="s1">&#39;Unsupported network&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Get contract artifacts</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">contractArtifacts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">getContractArtifacts</span><span class="p">(</span><span class="nx">contractName</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">contractArtifacts</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="s1">&#39;Contract artifacts not found&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Validate constructor arguments</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">constructorArgs</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">await</span><span class="w"> </span><span class="nx">validateConstructorArgs</span><span class="p">(</span><span class="nx">contractArtifacts</span><span class="p">.</span><span class="nx">abi</span><span class="p">,</span><span class="w"> </span><span class="nx">constructorArgs</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Create deployment record</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">deployment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Parse</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s1">&#39;Deployment&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">deployment</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;type&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;contract&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">deployment</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;contractName&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">contractName</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">deployment</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;network&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">network</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">deployment</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;deployer&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">user</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">deployment</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;status&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;pending&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">deployment</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;constructorArgs&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">constructorArgs</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">deployment</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;deploymentConfig&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">deploymentConfig</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">deployment</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;metadata&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">metadata</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">deployment</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;createdAt&#39;</span><span class="p">,</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Date</span><span class="p">());</span>
+
+<span class="w">    </span><span class="k">await</span><span class="w"> </span><span class="nx">deployment</span><span class="p">.</span><span class="nx">save</span><span class="p">();</span>
+
+<span class="w">    </span><span class="c1">// Get network configuration</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">networkConfig</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">getNetworkConfig</span><span class="p">(</span><span class="nx">network</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">provider</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">getProvider</span><span class="p">(</span><span class="nx">networkConfig</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">wallet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">getDeploymentWallet</span><span class="p">(</span><span class="nx">networkConfig</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Estimate gas</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">gasEstimate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">estimateDeploymentGas</span><span class="p">(</span>
+<span class="w">      </span><span class="nx">contractArtifacts</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">constructorArgs</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">provider</span>
+<span class="w">    </span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Configure deployment transaction</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">deploymentTx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">gasLimit</span><span class="o">:</span><span class="w"> </span><span class="kt">deploymentConfig?.gasLimit</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nx">gasEstimate</span><span class="p">.</span><span class="nx">mul</span><span class="p">(</span><span class="mf">120</span><span class="p">).</span><span class="nx">div</span><span class="p">(</span><span class="mf">100</span><span class="p">),</span><span class="w"> </span><span class="c1">// 20% buffer</span>
+<span class="w">      </span><span class="nx">gasPrice</span><span class="o">:</span><span class="w"> </span><span class="kt">deploymentConfig?.gasPrice</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">provider</span><span class="p">.</span><span class="nx">getGasPrice</span><span class="p">(),</span>
+<span class="w">      </span><span class="p">...</span><span class="nx">networkConfig</span><span class="p">.</span><span class="nx">deploymentDefaults</span>
+<span class="w">    </span><span class="p">};</span>
+
+<span class="w">    </span><span class="nx">deployment</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;estimatedGas&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">gasEstimate</span><span class="p">.</span><span class="nx">toString</span><span class="p">());</span>
+<span class="w">    </span><span class="nx">deployment</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;gasPrice&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">deploymentTx</span><span class="p">.</span><span class="nx">gasPrice</span><span class="p">.</span><span class="nx">toString</span><span class="p">());</span>
+<span class="w">    </span><span class="nx">deployment</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;status&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;deploying&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="k">await</span><span class="w"> </span><span class="nx">deployment</span><span class="p">.</span><span class="nx">save</span><span class="p">();</span>
+
+<span class="w">    </span><span class="c1">// Deploy contract</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">contractFactory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">ethers</span><span class="p">.</span><span class="nx">ContractFactory</span><span class="p">(</span>
+<span class="w">      </span><span class="nx">contractArtifacts</span><span class="p">.</span><span class="nx">abi</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">contractArtifacts</span><span class="p">.</span><span class="nx">bytecode</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">wallet</span>
+<span class="w">    </span><span class="p">);</span>
+
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">contract</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">contractFactory</span><span class="p">.</span><span class="nx">deploy</span><span class="p">(...(</span><span class="nx">constructorArgs</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="p">[]),</span><span class="w"> </span><span class="nx">deploymentTx</span><span class="p">);</span>
+
+<span class="w">    </span><span class="nx">deployment</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;transactionHash&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">contract</span><span class="p">.</span><span class="nx">deployTransaction</span><span class="p">.</span><span class="nx">hash</span><span class="p">);</span>
+<span class="w">    </span><span class="k">await</span><span class="w"> </span><span class="nx">deployment</span><span class="p">.</span><span class="nx">save</span><span class="p">();</span>
+
+<span class="w">    </span><span class="c1">// Wait for deployment confirmation</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">confirmations</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">deploymentConfig</span><span class="o">?</span><span class="p">.</span><span class="nx">confirmations</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="mf">3</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">receipt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">contract</span><span class="p">.</span><span class="nx">deployTransaction</span><span class="p">.</span><span class="nx">wait</span><span class="p">(</span><span class="nx">confirmations</span><span class="p">);</span>
+
+<span class="w">    </span><span class="nx">deployment</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;contractAddress&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">contract</span><span class="p">.</span><span class="nx">address</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">deployment</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;blockNumber&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">receipt</span><span class="p">.</span><span class="nx">blockNumber</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">deployment</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;gasUsed&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">receipt</span><span class="p">.</span><span class="nx">gasUsed</span><span class="p">.</span><span class="nx">toString</span><span class="p">());</span>
+<span class="w">    </span><span class="nx">deployment</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;deploymentCost&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">receipt</span><span class="p">.</span><span class="nx">gasUsed</span><span class="p">.</span><span class="nx">mul</span><span class="p">(</span><span class="nx">deploymentTx</span><span class="p">.</span><span class="nx">gasPrice</span><span class="p">).</span><span class="nx">toString</span><span class="p">());</span>
+<span class="w">    </span><span class="nx">deployment</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;status&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;deployed&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">deployment</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;deployedAt&#39;</span><span class="p">,</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Date</span><span class="p">());</span>
+<span class="w">    </span><span class="k">await</span><span class="w"> </span><span class="nx">deployment</span><span class="p">.</span><span class="nx">save</span><span class="p">();</span>
+
+<span class="w">    </span><span class="c1">// Verify contract if requested</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">verificationStatus</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;not_requested&#39;</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">verificationConfig</span><span class="o">?</span><span class="p">.</span><span class="nx">verify</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">verificationResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">verifyContract</span><span class="p">({</span>
+<span class="w">          </span><span class="nx">contractAddress</span><span class="o">:</span><span class="w"> </span><span class="kt">contract.address</span><span class="p">,</span>
+<span class="w">          </span><span class="nx">contractName</span><span class="p">,</span>
+<span class="w">          </span><span class="nx">network</span><span class="p">,</span>
+<span class="w">          </span><span class="nx">constructorArgs</span><span class="p">,</span>
+<span class="w">          </span><span class="nx">apiKey</span><span class="o">:</span><span class="w"> </span><span class="kt">verificationConfig.apiKey</span>
+<span class="w">        </span><span class="p">});</span>
+
+<span class="w">        </span><span class="nx">verificationStatus</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">verificationResult</span><span class="p">.</span><span class="nx">success</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s1">&#39;verified&#39;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;failed&#39;</span><span class="p">;</span>
+<span class="w">        </span><span class="nx">deployment</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;verificationStatus&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">verificationStatus</span><span class="p">);</span>
+<span class="w">        </span><span class="nx">deployment</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;verificationResult&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">verificationResult</span><span class="p">);</span>
+<span class="w">        </span><span class="k">await</span><span class="w"> </span><span class="nx">deployment</span><span class="p">.</span><span class="nx">save</span><span class="p">();</span>
+<span class="w">      </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">verificationError</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;Contract verification failed:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">verificationError</span><span class="p">);</span>
+<span class="w">        </span><span class="nx">verificationStatus</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;failed&#39;</span><span class="p">;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Update project if specified</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">metadata</span><span class="o">?</span><span class="p">.</span><span class="nx">projectId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">await</span><span class="w"> </span><span class="nx">updateProjectDeployment</span><span class="p">(</span><span class="nx">metadata</span><span class="p">.</span><span class="nx">projectId</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">contractName</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">contractAddress</span><span class="o">:</span><span class="w"> </span><span class="kt">contract.address</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">network</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">deploymentId</span><span class="o">:</span><span class="w"> </span><span class="kt">deployment.id</span>
+<span class="w">      </span><span class="p">});</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Send deployment notification</span>
+<span class="w">    </span><span class="k">await</span><span class="w"> </span><span class="nx">sendDeploymentNotification</span><span class="p">(</span><span class="nx">deployment</span><span class="p">.</span><span class="nx">id</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;completed&#39;</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">success</span><span class="o">:</span><span class="w"> </span><span class="kt">true</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">contractAddress</span><span class="o">:</span><span class="w"> </span><span class="kt">contract.address</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">transactionHash</span><span class="o">:</span><span class="w"> </span><span class="kt">contract.deployTransaction.hash</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">gasUsed</span><span class="o">:</span><span class="w"> </span><span class="kt">receipt.gasUsed.toString</span><span class="p">(),</span>
+<span class="w">      </span><span class="nx">deploymentCost</span><span class="o">:</span><span class="w"> </span><span class="kt">receipt.gasUsed.mul</span><span class="p">(</span><span class="nx">deploymentTx</span><span class="p">.</span><span class="nx">gasPrice</span><span class="p">).</span><span class="nx">toString</span><span class="p">(),</span>
+<span class="w">      </span><span class="nx">verificationStatus</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">message</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Contract deployed successfully&#39;</span>
+<span class="w">    </span><span class="p">};</span>
+
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;Contract deployment error:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Update deployment record with error</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">deployment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Parse</span><span class="p">.</span><span class="nx">Query</span><span class="p">(</span><span class="s1">&#39;Deployment&#39;</span><span class="p">)</span>
+<span class="w">      </span><span class="p">.</span><span class="nx">equalTo</span><span class="p">(</span><span class="s1">&#39;contractName&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">contractName</span><span class="p">)</span>
+<span class="w">      </span><span class="p">.</span><span class="nx">equalTo</span><span class="p">(</span><span class="s1">&#39;deployer&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">user</span><span class="p">)</span>
+<span class="w">      </span><span class="p">.</span><span class="nx">equalTo</span><span class="p">(</span><span class="s1">&#39;status&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;deploying&#39;</span><span class="p">)</span>
+<span class="w">      </span><span class="p">.</span><span class="nx">first</span><span class="p">({</span><span class="w"> </span><span class="nx">useMasterKey</span><span class="o">:</span><span class="w"> </span><span class="kt">true</span><span class="w"> </span><span class="p">});</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">deployment</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">deployment</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;status&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;failed&#39;</span><span class="p">);</span>
+<span class="w">      </span><span class="nx">deployment</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;errorMessage&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+<span class="w">      </span><span class="nx">deployment</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;failedAt&#39;</span><span class="p">,</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Date</span><span class="p">());</span>
+<span class="w">      </span><span class="k">await</span><span class="w"> </span><span class="nx">deployment</span><span class="p">.</span><span class="nx">save</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">success</span><span class="o">:</span><span class="w"> </span><span class="kt">false</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">message</span><span class="o">:</span><span class="w"> </span><span class="kt">error.message</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="s1">&#39;Contract deployment failed&#39;</span>
+<span class="w">    </span><span class="p">};</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div>
+
+<h3 id="diamond-deployment">Diamond Deployment<a class="headerlink" href="#diamond-deployment" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s1">&#39;deployDiamond&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">(</span><span class="nx">request</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">network</span><span class="p">,</span><span class="w"> </span><span class="nx">diamondName</span><span class="p">,</span><span class="w"> </span><span class="nx">facets</span><span class="p">,</span><span class="w"> </span><span class="nx">initContract</span><span class="p">,</span><span class="w"> </span><span class="nx">initData</span><span class="p">,</span><span class="w"> </span><span class="nx">owner</span><span class="p">,</span><span class="w"> </span><span class="nx">deploymentConfig</span><span class="p">,</span><span class="w"> </span><span class="nx">verificationConfig</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">request</span><span class="p">.</span><span class="nx">params</span><span class="p">;</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">user</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">request</span><span class="p">.</span><span class="nx">user</span><span class="p">;</span>
+
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">user</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="s1">&#39;Authentication required&#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Validate deployment permissions</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">hasPermission</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">checkDeploymentPermissions</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">id</span><span class="p">,</span><span class="w"> </span><span class="nx">network</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">hasPermission</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="s1">&#39;Insufficient permissions for deployment&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Create deployment record</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">deployment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Parse</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s1">&#39;Deployment&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">deployment</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;type&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;diamond&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">deployment</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;diamondName&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">diamondName</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">deployment</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;network&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">network</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">deployment</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;deployer&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">user</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">deployment</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;status&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;pending&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">deployment</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;facets&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">facets</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">deployment</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;createdAt&#39;</span><span class="p">,</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Date</span><span class="p">());</span>
+
+<span class="w">    </span><span class="k">await</span><span class="w"> </span><span class="nx">deployment</span><span class="p">.</span><span class="nx">save</span><span class="p">();</span>
+
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">deployedContracts</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">[</span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">]</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{};</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">transactionHashes</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[];</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">totalGasUsed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ethers</span><span class="p">.</span><span class="nx">BigNumber</span><span class="p">.</span><span class="kr">from</span><span class="p">(</span><span class="mf">0</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Get network configuration</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">networkConfig</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">getNetworkConfig</span><span class="p">(</span><span class="nx">network</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">provider</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">getProvider</span><span class="p">(</span><span class="nx">networkConfig</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">wallet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">getDeploymentWallet</span><span class="p">(</span><span class="nx">networkConfig</span><span class="p">);</span>
+
+<span class="w">    </span><span class="nx">deployment</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;status&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;deploying&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="k">await</span><span class="w"> </span><span class="nx">deployment</span><span class="p">.</span><span class="nx">save</span><span class="p">();</span>
+
+<span class="w">    </span><span class="c1">// Deploy core diamond contracts first</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">diamondCutFacet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">deployCoreFacet</span><span class="p">(</span><span class="s1">&#39;DiamondCutFacet&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">wallet</span><span class="p">,</span><span class="w"> </span><span class="nx">deploymentConfig</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">deployedContracts</span><span class="p">[</span><span class="s1">&#39;DiamondCutFacet&#39;</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">diamondCutFacet</span><span class="p">.</span><span class="nx">address</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">transactionHashes</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">diamondCutFacet</span><span class="p">.</span><span class="nx">deployTransaction</span><span class="p">.</span><span class="nx">hash</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">totalGasUsed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">totalGasUsed</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="k">await</span><span class="w"> </span><span class="nx">diamondCutFacet</span><span class="p">.</span><span class="nx">deployTransaction</span><span class="p">.</span><span class="nx">wait</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="nx">r</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">r</span><span class="p">.</span><span class="nx">gasUsed</span><span class="p">));</span>
+
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">diamondLoupeFacet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">deployCoreFacet</span><span class="p">(</span><span class="s1">&#39;DiamondLoupeFacet&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">wallet</span><span class="p">,</span><span class="w"> </span><span class="nx">deploymentConfig</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">deployedContracts</span><span class="p">[</span><span class="s1">&#39;DiamondLoupeFacet&#39;</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">diamondLoupeFacet</span><span class="p">.</span><span class="nx">address</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">transactionHashes</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">diamondLoupeFacet</span><span class="p">.</span><span class="nx">deployTransaction</span><span class="p">.</span><span class="nx">hash</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">totalGasUsed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">totalGasUsed</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="k">await</span><span class="w"> </span><span class="nx">diamondLoupeFacet</span><span class="p">.</span><span class="nx">deployTransaction</span><span class="p">.</span><span class="nx">wait</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="nx">r</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">r</span><span class="p">.</span><span class="nx">gasUsed</span><span class="p">));</span>
+
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">ownershipFacet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">deployCoreFacet</span><span class="p">(</span><span class="s1">&#39;OwnershipFacet&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">wallet</span><span class="p">,</span><span class="w"> </span><span class="nx">deploymentConfig</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">deployedContracts</span><span class="p">[</span><span class="s1">&#39;OwnershipFacet&#39;</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ownershipFacet</span><span class="p">.</span><span class="nx">address</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">transactionHashes</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">ownershipFacet</span><span class="p">.</span><span class="nx">deployTransaction</span><span class="p">.</span><span class="nx">hash</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">totalGasUsed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">totalGasUsed</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="k">await</span><span class="w"> </span><span class="nx">ownershipFacet</span><span class="p">.</span><span class="nx">deployTransaction</span><span class="p">.</span><span class="nx">wait</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="nx">r</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">r</span><span class="p">.</span><span class="nx">gasUsed</span><span class="p">));</span>
+
+<span class="w">    </span><span class="c1">// Deploy custom facets</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">const</span><span class="w"> </span><span class="nx">facet</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">facets</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">facet</span><span class="p">.</span><span class="nx">address</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">facetContract</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">deployFacet</span><span class="p">(</span><span class="nx">facet</span><span class="p">,</span><span class="w"> </span><span class="nx">wallet</span><span class="p">,</span><span class="w"> </span><span class="nx">deploymentConfig</span><span class="p">);</span>
+<span class="w">        </span><span class="nx">deployedContracts</span><span class="p">[</span><span class="nx">facet</span><span class="p">.</span><span class="nx">name</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">facetContract</span><span class="p">.</span><span class="nx">address</span><span class="p">;</span>
+<span class="w">        </span><span class="nx">transactionHashes</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">facetContract</span><span class="p">.</span><span class="nx">deployTransaction</span><span class="p">.</span><span class="nx">hash</span><span class="p">);</span>
+<span class="w">        </span><span class="nx">totalGasUsed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">totalGasUsed</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="k">await</span><span class="w"> </span><span class="nx">facetContract</span><span class="p">.</span><span class="nx">deployTransaction</span><span class="p">.</span><span class="nx">wait</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="nx">r</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">r</span><span class="p">.</span><span class="nx">gasUsed</span><span class="p">));</span>
+<span class="w">      </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">deployedContracts</span><span class="p">[</span><span class="nx">facet</span><span class="p">.</span><span class="nx">name</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">facet</span><span class="p">.</span><span class="nx">address</span><span class="p">;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Prepare diamond cut for initialization</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">diamondCut</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">prepareDiamondCut</span><span class="p">([</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">facetAddress</span><span class="o">:</span><span class="w"> </span><span class="kt">diamondCutFacet.address</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">action</span><span class="o">:</span><span class="w"> </span><span class="kt">0</span><span class="p">,</span><span class="w"> </span><span class="c1">// Add</span>
+<span class="w">        </span><span class="nx">functionSelectors</span><span class="o">:</span><span class="w"> </span><span class="kt">getDiamondCutSelectors</span><span class="p">()</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">facetAddress</span><span class="o">:</span><span class="w"> </span><span class="kt">diamondLoupeFacet.address</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">action</span><span class="o">:</span><span class="w"> </span><span class="kt">0</span><span class="p">,</span><span class="w"> </span><span class="c1">// Add</span>
+<span class="w">        </span><span class="nx">functionSelectors</span><span class="o">:</span><span class="w"> </span><span class="kt">getDiamondLoupeSelectors</span><span class="p">()</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">facetAddress</span><span class="o">:</span><span class="w"> </span><span class="kt">ownershipFacet.address</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">action</span><span class="o">:</span><span class="w"> </span><span class="kt">0</span><span class="p">,</span><span class="w"> </span><span class="c1">// Add</span>
+<span class="w">        </span><span class="nx">functionSelectors</span><span class="o">:</span><span class="w"> </span><span class="kt">getOwnershipSelectors</span><span class="p">()</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="p">...</span><span class="nx">facets</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">facet</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">({</span>
+<span class="w">        </span><span class="nx">facetAddress</span><span class="o">:</span><span class="w"> </span><span class="kt">deployedContracts</span><span class="p">[</span><span class="nx">facet</span><span class="p">.</span><span class="nx">name</span><span class="p">],</span>
+<span class="w">        </span><span class="nx">action</span><span class="o">:</span><span class="w"> </span><span class="kt">0</span><span class="p">,</span><span class="w"> </span><span class="c1">// Add</span>
+<span class="w">        </span><span class="nx">functionSelectors</span><span class="o">:</span><span class="w"> </span><span class="kt">facet.functionSelectors</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nx">getFacetSelectors</span><span class="p">(</span><span class="nx">facet</span><span class="p">.</span><span class="nx">name</span><span class="p">)</span>
+<span class="w">      </span><span class="p">}))</span>
+<span class="w">    </span><span class="p">]);</span>
+
+<span class="w">    </span><span class="c1">// Deploy diamond</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">diamondFactory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">getDiamondFactory</span><span class="p">(</span><span class="nx">wallet</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">diamondTx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">diamondFactory</span><span class="p">.</span><span class="nx">deployDiamond</span><span class="p">(</span>
+<span class="w">      </span><span class="nx">owner</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nx">wallet</span><span class="p">.</span><span class="nx">address</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">diamondCut</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">initContract</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nx">ethers</span><span class="p">.</span><span class="nx">constants</span><span class="p">.</span><span class="nx">AddressZero</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">initData</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="s1">&#39;0x&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">deploymentConfig</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="p">{}</span>
+<span class="w">    </span><span class="p">);</span>
+
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">diamondReceipt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">diamondTx</span><span class="p">.</span><span class="nx">wait</span><span class="p">();</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">diamondAddress</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">getDiamondAddressFromReceipt</span><span class="p">(</span><span class="nx">diamondReceipt</span><span class="p">);</span>
+
+<span class="w">    </span><span class="nx">deployedContracts</span><span class="p">[</span><span class="s1">&#39;Diamond&#39;</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">diamondAddress</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">transactionHashes</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">diamondTx</span><span class="p">.</span><span class="nx">hash</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">totalGasUsed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">totalGasUsed</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">diamondReceipt</span><span class="p">.</span><span class="nx">gasUsed</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Update deployment record</span>
+<span class="w">    </span><span class="nx">deployment</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;diamondAddress&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">diamondAddress</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">deployment</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;deployedContracts&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">deployedContracts</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">deployment</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;transactionHashes&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">transactionHashes</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">deployment</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;totalGasUsed&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">totalGasUsed</span><span class="p">.</span><span class="nx">toString</span><span class="p">());</span>
+<span class="w">    </span><span class="nx">deployment</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;status&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;deployed&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">deployment</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;deployedAt&#39;</span><span class="p">,</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Date</span><span class="p">());</span>
+<span class="w">    </span><span class="k">await</span><span class="w"> </span><span class="nx">deployment</span><span class="p">.</span><span class="nx">save</span><span class="p">();</span>
+
+<span class="w">    </span><span class="c1">// Verify contracts if requested</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">verificationConfig</span><span class="o">?</span><span class="p">.</span><span class="nx">verify</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">await</span><span class="w"> </span><span class="nx">verifyDiamondContracts</span><span class="p">(</span><span class="nx">deployedContracts</span><span class="p">,</span><span class="w"> </span><span class="nx">network</span><span class="p">,</span><span class="w"> </span><span class="nx">verificationConfig</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Send deployment notification</span>
+<span class="w">    </span><span class="k">await</span><span class="w"> </span><span class="nx">sendDeploymentNotification</span><span class="p">(</span><span class="nx">deployment</span><span class="p">.</span><span class="nx">id</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;completed&#39;</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">success</span><span class="o">:</span><span class="w"> </span><span class="kt">true</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">diamondAddress</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">facetAddresses</span><span class="o">:</span><span class="w"> </span><span class="kt">deployedContracts</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">transactionHashes</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">totalGasUsed</span><span class="o">:</span><span class="w"> </span><span class="kt">totalGasUsed.toString</span><span class="p">(),</span>
+<span class="w">      </span><span class="nx">deploymentCost</span><span class="o">:</span><span class="w"> </span><span class="kt">totalGasUsed.mul</span><span class="p">(</span><span class="k">await</span><span class="w"> </span><span class="nx">provider</span><span class="p">.</span><span class="nx">getGasPrice</span><span class="p">()).</span><span class="nx">toString</span><span class="p">(),</span>
+<span class="w">      </span><span class="nx">message</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Diamond deployed successfully&#39;</span>
+<span class="w">    </span><span class="p">};</span>
+
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;Diamond deployment error:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Update deployment record with error</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">deployment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Parse</span><span class="p">.</span><span class="nx">Query</span><span class="p">(</span><span class="s1">&#39;Deployment&#39;</span><span class="p">)</span>
+<span class="w">      </span><span class="p">.</span><span class="nx">equalTo</span><span class="p">(</span><span class="s1">&#39;diamondName&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">diamondName</span><span class="p">)</span>
+<span class="w">      </span><span class="p">.</span><span class="nx">equalTo</span><span class="p">(</span><span class="s1">&#39;deployer&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">user</span><span class="p">)</span>
+<span class="w">      </span><span class="p">.</span><span class="nx">equalTo</span><span class="p">(</span><span class="s1">&#39;status&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;deploying&#39;</span><span class="p">)</span>
+<span class="w">      </span><span class="p">.</span><span class="nx">first</span><span class="p">({</span><span class="w"> </span><span class="nx">useMasterKey</span><span class="o">:</span><span class="w"> </span><span class="kt">true</span><span class="w"> </span><span class="p">});</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">deployment</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">deployment</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;status&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;failed&#39;</span><span class="p">);</span>
+<span class="w">      </span><span class="nx">deployment</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;errorMessage&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+<span class="w">      </span><span class="nx">deployment</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;failedAt&#39;</span><span class="p">,</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Date</span><span class="p">());</span>
+<span class="w">      </span><span class="k">await</span><span class="w"> </span><span class="nx">deployment</span><span class="p">.</span><span class="nx">save</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">success</span><span class="o">:</span><span class="w"> </span><span class="kt">false</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">message</span><span class="o">:</span><span class="w"> </span><span class="kt">error.message</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="s1">&#39;Diamond deployment failed&#39;</span>
+<span class="w">    </span><span class="p">};</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div>
+
+<h3 id="project-deployment">Project Deployment<a class="headerlink" href="#project-deployment" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s1">&#39;deployProject&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">(</span><span class="nx">request</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">projectId</span><span class="p">,</span><span class="w"> </span><span class="nx">network</span><span class="p">,</span><span class="w"> </span><span class="nx">deploymentTemplate</span><span class="p">,</span><span class="w"> </span><span class="nx">configuration</span><span class="p">,</span><span class="w"> </span><span class="nx">deploymentOptions</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">request</span><span class="p">.</span><span class="nx">params</span><span class="p">;</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">user</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">request</span><span class="p">.</span><span class="nx">user</span><span class="p">;</span>
+
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">user</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="s1">&#39;Authentication required&#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Get project</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">project</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Parse</span><span class="p">.</span><span class="nx">Query</span><span class="p">(</span><span class="s1">&#39;Project&#39;</span><span class="p">)</span>
+<span class="w">      </span><span class="p">.</span><span class="nx">equalTo</span><span class="p">(</span><span class="s1">&#39;objectId&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">projectId</span><span class="p">)</span>
+<span class="w">      </span><span class="p">.</span><span class="nx">first</span><span class="p">({</span><span class="w"> </span><span class="nx">useMasterKey</span><span class="o">:</span><span class="w"> </span><span class="kt">true</span><span class="w"> </span><span class="p">});</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">project</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="s1">&#39;Project not found&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Check project access</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">hasAccess</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">checkProjectAccess</span><span class="p">(</span><span class="nx">projectId</span><span class="p">,</span><span class="w"> </span><span class="nx">user</span><span class="p">.</span><span class="nx">id</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">hasAccess</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="s1">&#39;Access denied&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Create deployment record</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">deploymentId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">generateDeploymentId</span><span class="p">();</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">deployment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Parse</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="s1">&#39;ProjectDeployment&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">deployment</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;deploymentId&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">deploymentId</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">deployment</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;project&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">project</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">deployment</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;network&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">network</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">deployment</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;template&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">deploymentTemplate</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">deployment</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;configuration&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">configuration</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">deployment</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;deployer&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">user</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">deployment</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;status&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;pending&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">deployment</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;createdAt&#39;</span><span class="p">,</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Date</span><span class="p">());</span>
+
+<span class="w">    </span><span class="k">await</span><span class="w"> </span><span class="nx">deployment</span><span class="p">.</span><span class="nx">save</span><span class="p">();</span>
+
+<span class="w">    </span><span class="c1">// Validate deployment configuration</span>
+<span class="w">    </span><span class="k">await</span><span class="w"> </span><span class="nx">validateProjectConfiguration</span><span class="p">(</span><span class="nx">configuration</span><span class="p">,</span><span class="w"> </span><span class="nx">deploymentTemplate</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Perform dry run if requested</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">deploymentOptions</span><span class="o">?</span><span class="p">.</span><span class="nx">dryRun</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">dryRunResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">performDryRun</span><span class="p">(</span><span class="nx">configuration</span><span class="p">,</span><span class="w"> </span><span class="nx">network</span><span class="p">);</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">success</span><span class="o">:</span><span class="w"> </span><span class="kt">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">deploymentId</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">dryRunResult</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">message</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Dry run completed successfully&#39;</span>
+<span class="w">      </span><span class="p">};</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nx">deployment</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;status&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;deploying&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="k">await</span><span class="w"> </span><span class="nx">deployment</span><span class="p">.</span><span class="nx">save</span><span class="p">();</span>
+
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">deployedContracts</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">[</span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">]</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{};</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">deployedDiamonds</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">[</span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">]</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{};</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">totalGasUsed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ethers</span><span class="p">.</span><span class="nx">BigNumber</span><span class="p">.</span><span class="kr">from</span><span class="p">(</span><span class="mf">0</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">startTime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">();</span>
+
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="c1">// Deploy contracts in dependency order</span>
+<span class="w">      </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">const</span><span class="w"> </span><span class="nx">contractConfig</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">configuration</span><span class="p">.</span><span class="nx">contracts</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">contractResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="s1">&#39;deployContract&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nx">contractName</span><span class="o">:</span><span class="w"> </span><span class="kt">contractConfig.name</span><span class="p">,</span>
+<span class="w">          </span><span class="nx">network</span><span class="p">,</span>
+<span class="w">          </span><span class="nx">constructorArgs</span><span class="o">:</span><span class="w"> </span><span class="kt">contractConfig.constructorArgs</span><span class="p">,</span>
+<span class="w">          </span><span class="nx">deploymentConfig</span><span class="o">:</span><span class="w"> </span><span class="kt">contractConfig.deploymentConfig</span><span class="p">,</span>
+<span class="w">          </span><span class="nx">verificationConfig</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">verify</span><span class="o">:</span><span class="w"> </span><span class="o">!</span><span class="nx">deploymentOptions</span><span class="o">?</span><span class="p">.</span><span class="nx">skipVerification</span><span class="w"> </span><span class="p">}</span>
+<span class="w">        </span><span class="p">});</span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">contractResult</span><span class="p">.</span><span class="nx">success</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="sb">`Failed to deploy </span><span class="si">${</span><span class="nx">contractConfig</span><span class="p">.</span><span class="nx">name</span><span class="si">}</span><span class="sb">: </span><span class="si">${</span><span class="nx">contractResult</span><span class="p">.</span><span class="nx">message</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="nx">deployedContracts</span><span class="p">[</span><span class="nx">contractConfig</span><span class="p">.</span><span class="nx">name</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">contractResult</span><span class="p">.</span><span class="nx">contractAddress</span><span class="p">;</span>
+<span class="w">        </span><span class="nx">totalGasUsed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">totalGasUsed</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">contractResult</span><span class="p">.</span><span class="nx">gasUsed</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="s1">&#39;0&#39;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Update deployment progress</span>
+<span class="w">        </span><span class="nx">deployment</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;currentStep&#39;</span><span class="p">,</span><span class="w"> </span><span class="sb">`Deployed </span><span class="si">${</span><span class="nx">contractConfig</span><span class="p">.</span><span class="nx">name</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="w">        </span><span class="nx">deployment</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;deployedContracts&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">deployedContracts</span><span class="p">);</span>
+<span class="w">        </span><span class="k">await</span><span class="w"> </span><span class="nx">deployment</span><span class="p">.</span><span class="nx">save</span><span class="p">();</span>
+<span class="w">      </span><span class="p">}</span>
+
+<span class="w">      </span><span class="c1">// Deploy diamonds</span>
+<span class="w">      </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">const</span><span class="w"> </span><span class="nx">diamondConfig</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">configuration</span><span class="p">.</span><span class="nx">diamonds</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">diamondResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="s1">&#39;deployDiamond&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nx">network</span><span class="p">,</span>
+<span class="w">          </span><span class="nx">diamondName</span><span class="o">:</span><span class="w"> </span><span class="kt">diamondConfig.name</span><span class="p">,</span>
+<span class="w">          </span><span class="nx">facets</span><span class="o">:</span><span class="w"> </span><span class="kt">diamondConfig.facets</span><span class="p">,</span>
+<span class="w">          </span><span class="nx">initContract</span><span class="o">:</span><span class="w"> </span><span class="kt">diamondConfig.initContract</span><span class="p">,</span>
+<span class="w">          </span><span class="nx">initData</span><span class="o">:</span><span class="w"> </span><span class="kt">diamondConfig.initData</span><span class="p">,</span>
+<span class="w">          </span><span class="nx">owner</span><span class="o">:</span><span class="w"> </span><span class="kt">diamondConfig.owner</span><span class="p">,</span>
+<span class="w">          </span><span class="nx">verificationConfig</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">verify</span><span class="o">:</span><span class="w"> </span><span class="o">!</span><span class="nx">deploymentOptions</span><span class="o">?</span><span class="p">.</span><span class="nx">skipVerification</span><span class="w"> </span><span class="p">}</span>
+<span class="w">        </span><span class="p">});</span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">diamondResult</span><span class="p">.</span><span class="nx">success</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="sb">`Failed to deploy </span><span class="si">${</span><span class="nx">diamondConfig</span><span class="p">.</span><span class="nx">name</span><span class="si">}</span><span class="sb">: </span><span class="si">${</span><span class="nx">diamondResult</span><span class="p">.</span><span class="nx">message</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="nx">deployedDiamonds</span><span class="p">[</span><span class="nx">diamondConfig</span><span class="p">.</span><span class="nx">name</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">diamondResult</span><span class="p">.</span><span class="nx">diamondAddress</span><span class="p">;</span>
+<span class="w">        </span><span class="nx">totalGasUsed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">totalGasUsed</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">diamondResult</span><span class="p">.</span><span class="nx">totalGasUsed</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="s1">&#39;0&#39;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Update deployment progress</span>
+<span class="w">        </span><span class="nx">deployment</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;currentStep&#39;</span><span class="p">,</span><span class="w"> </span><span class="sb">`Deployed </span><span class="si">${</span><span class="nx">diamondConfig</span><span class="p">.</span><span class="nx">name</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="w">        </span><span class="nx">deployment</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;deployedDiamonds&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">deployedDiamonds</span><span class="p">);</span>
+<span class="w">        </span><span class="k">await</span><span class="w"> </span><span class="nx">deployment</span><span class="p">.</span><span class="nx">save</span><span class="p">();</span>
+<span class="w">      </span><span class="p">}</span>
+
+<span class="w">      </span><span class="c1">// Execute initialization steps</span>
+<span class="w">      </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">const</span><span class="w"> </span><span class="nx">initStep</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">configuration</span><span class="p">.</span><span class="nx">initializations</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">await</span><span class="w"> </span><span class="nx">executeInitializationStep</span><span class="p">(</span><span class="nx">initStep</span><span class="p">,</span><span class="w"> </span><span class="nx">deployedContracts</span><span class="p">,</span><span class="w"> </span><span class="nx">deployedDiamonds</span><span class="p">,</span><span class="w"> </span><span class="nx">network</span><span class="p">);</span>
+
+<span class="w">        </span><span class="nx">deployment</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;currentStep&#39;</span><span class="p">,</span><span class="w"> </span><span class="sb">`Executed </span><span class="si">${</span><span class="nx">initStep</span><span class="p">.</span><span class="nx">name</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="w">        </span><span class="k">await</span><span class="w"> </span><span class="nx">deployment</span><span class="p">.</span><span class="nx">save</span><span class="p">();</span>
+<span class="w">      </span><span class="p">}</span>
+
+<span class="w">      </span><span class="c1">// Configure permissions</span>
+<span class="w">      </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">const</span><span class="w"> </span><span class="nx">permissionConfig</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">configuration</span><span class="p">.</span><span class="nx">permissions</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">await</span><span class="w"> </span><span class="nx">configurePermissions</span><span class="p">(</span><span class="nx">permissionConfig</span><span class="p">,</span><span class="w"> </span><span class="nx">deployedContracts</span><span class="p">,</span><span class="w"> </span><span class="nx">deployedDiamonds</span><span class="p">,</span><span class="w"> </span><span class="nx">network</span><span class="p">);</span>
+
+<span class="w">        </span><span class="nx">deployment</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;currentStep&#39;</span><span class="p">,</span><span class="w"> </span><span class="sb">`Configured </span><span class="si">${</span><span class="nx">permissionConfig</span><span class="p">.</span><span class="nx">name</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="w">        </span><span class="k">await</span><span class="w"> </span><span class="nx">deployment</span><span class="p">.</span><span class="nx">save</span><span class="p">();</span>
+<span class="w">      </span><span class="p">}</span>
+
+<span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">deploymentTime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">startTime</span><span class="p">;</span>
+
+<span class="w">      </span><span class="c1">// Update deployment record</span>
+<span class="w">      </span><span class="nx">deployment</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;status&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;completed&#39;</span><span class="p">);</span>
+<span class="w">      </span><span class="nx">deployment</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;deployedContracts&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">deployedContracts</span><span class="p">);</span>
+<span class="w">      </span><span class="nx">deployment</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;deployedDiamonds&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">deployedDiamonds</span><span class="p">);</span>
+<span class="w">      </span><span class="nx">deployment</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;totalGasUsed&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">totalGasUsed</span><span class="p">.</span><span class="nx">toString</span><span class="p">());</span>
+<span class="w">      </span><span class="nx">deployment</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;deploymentTime&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">deploymentTime</span><span class="p">);</span>
+<span class="w">      </span><span class="nx">deployment</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;completedAt&#39;</span><span class="p">,</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Date</span><span class="p">());</span>
+<span class="w">      </span><span class="k">await</span><span class="w"> </span><span class="nx">deployment</span><span class="p">.</span><span class="nx">save</span><span class="p">();</span>
+
+<span class="w">      </span><span class="c1">// Update project with deployment information</span>
+<span class="w">      </span><span class="nx">project</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;deployments&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">[...(</span><span class="nx">project</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;deployments&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="p">[]),</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">deploymentId</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">network</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">status</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;completed&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">deployedAt</span><span class="o">:</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="nb">Date</span><span class="p">(),</span>
+<span class="w">        </span><span class="nx">contracts</span><span class="o">:</span><span class="w"> </span><span class="kt">deployedContracts</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">diamonds</span><span class="o">:</span><span class="w"> </span><span class="kt">deployedDiamonds</span>
+<span class="w">      </span><span class="p">}]);</span>
+<span class="w">      </span><span class="k">await</span><span class="w"> </span><span class="nx">project</span><span class="p">.</span><span class="nx">save</span><span class="p">();</span>
+
+<span class="w">      </span><span class="c1">// Send deployment notification</span>
+<span class="w">      </span><span class="k">await</span><span class="w"> </span><span class="nx">sendDeploymentNotification</span><span class="p">(</span><span class="nx">deploymentId</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;completed&#39;</span><span class="p">);</span>
+
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">success</span><span class="o">:</span><span class="w"> </span><span class="kt">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">deploymentId</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">deployedContracts</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">deployedDiamonds</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">totalGasUsed</span><span class="o">:</span><span class="w"> </span><span class="kt">totalGasUsed.toString</span><span class="p">(),</span>
+<span class="w">        </span><span class="nx">deploymentCost</span><span class="o">:</span><span class="w"> </span><span class="kt">totalGasUsed.mul</span><span class="p">(</span><span class="k">await</span><span class="w"> </span><span class="nx">getNetworkGasPrice</span><span class="p">(</span><span class="nx">network</span><span class="p">)).</span><span class="nx">toString</span><span class="p">(),</span>
+<span class="w">        </span><span class="nx">deploymentTime</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">message</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Project deployed successfully&#39;</span>
+<span class="w">      </span><span class="p">};</span>
+
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">deploymentError</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="c1">// Handle deployment failure</span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">deploymentOptions</span><span class="o">?</span><span class="p">.</span><span class="nx">rollbackOnFailure</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">await</span><span class="w"> </span><span class="nx">rollbackProjectDeployment</span><span class="p">(</span><span class="nx">deploymentId</span><span class="p">,</span><span class="w"> </span><span class="nx">deployedContracts</span><span class="p">,</span><span class="w"> </span><span class="nx">deployedDiamonds</span><span class="p">);</span>
+<span class="w">      </span><span class="p">}</span>
+
+<span class="w">      </span><span class="nx">deployment</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;status&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;failed&#39;</span><span class="p">);</span>
+<span class="w">      </span><span class="nx">deployment</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;errorMessage&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">deploymentError</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+<span class="w">      </span><span class="nx">deployment</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;failedAt&#39;</span><span class="p">,</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Date</span><span class="p">());</span>
+<span class="w">      </span><span class="k">await</span><span class="w"> </span><span class="nx">deployment</span><span class="p">.</span><span class="nx">save</span><span class="p">();</span>
+
+<span class="w">      </span><span class="k">throw</span><span class="w"> </span><span class="nx">deploymentError</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;Project deployment error:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">success</span><span class="o">:</span><span class="w"> </span><span class="kt">false</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">message</span><span class="o">:</span><span class="w"> </span><span class="kt">error.message</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="s1">&#39;Project deployment failed&#39;</span>
+<span class="w">    </span><span class="p">};</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div>
+
+<h2 id="deployment-templates">Deployment Templates<a class="headerlink" href="#deployment-templates" title="Permanent link">&para;</a></h2>
+<h3 id="nft-collection-template">NFT Collection Template<a class="headerlink" href="#nft-collection-template" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">nftCollectionTemplate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;NFT Collection&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">description</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Complete NFT collection with marketplace&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">contracts</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;CollectionToken&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="kr">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;ERC721&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">constructorArgs</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;{{tokenName}}&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;{{tokenSymbol}}&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;{{baseURI}}&#39;</span><span class="p">],</span>
+<span class="w">      </span><span class="nx">deploymentConfig</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">gasLimit</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;3000000&#39;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nx">diamonds</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;CollectionDiamond&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">facets</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;ERC721Facet&#39;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;MarketplaceFacet&#39;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;MetadataFacet&#39;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;OwnershipFacet&#39;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">      </span><span class="p">],</span>
+<span class="w">      </span><span class="nx">initContract</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;CollectionInit&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">initData</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;{{initData}}&#39;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nx">initializations</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;SetupMarketplace&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">contract</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;CollectionDiamond&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="kd">function</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;setupMarketplace&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">args</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;{{marketplaceFee}}&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;{{feeRecipient}}&#39;</span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nx">permissions</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;MinterRole&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">contract</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;CollectionDiamond&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">role</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;MINTER_ROLE&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">accounts</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;{{owner}}&#39;</span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">};</span>
+</code></pre></div>
+
+<h3 id="defi-protocol-template">DeFi Protocol Template<a class="headerlink" href="#defi-protocol-template" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">defiProtocolTemplate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;DeFi Protocol&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">description</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;DeFi protocol with staking and governance&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">contracts</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;GovernanceToken&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="kr">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;ERC20&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">constructorArgs</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;{{tokenName}}&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;{{tokenSymbol}}&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;{{totalSupply}}&#39;</span><span class="p">]</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Timelock&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="kr">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;TimelockController&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">constructorArgs</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;{{timelockDelay}}&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;{{admin}}&#39;</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;{{admin}}&#39;</span><span class="p">],</span><span class="w"> </span><span class="s1">&#39;{{admin}}&#39;</span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nx">diamonds</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;ProtocolDiamond&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">facets</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;StakingFacet&#39;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;GovernanceFacet&#39;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;FeeDistributorFacet&#39;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;OwnershipFacet&#39;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">      </span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nx">initializations</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;SetupStaking&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">contract</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;ProtocolDiamond&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="kd">function</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;setupStaking&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">args</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;{{stakingToken}}&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;{{rewardRate}}&#39;</span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">};</span>
+</code></pre></div>
+
+<h2 id="verification-and-monitoring">Verification and Monitoring<a class="headerlink" href="#verification-and-monitoring" title="Permanent link">&para;</a></h2>
+<h3 id="contract-verification">Contract Verification<a class="headerlink" href="#contract-verification" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">verifyContract</span><span class="p">(</span><span class="nx">params</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">contractAddress</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">contractName</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">network</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">constructorArgs?</span><span class="o">:</span><span class="w"> </span><span class="kt">any</span><span class="p">[];</span>
+<span class="w">  </span><span class="nx">apiKey?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="p">})</span><span class="o">:</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="p">{</span><span class="w"> </span><span class="nx">success</span><span class="o">:</span><span class="w"> </span><span class="kt">boolean</span><span class="p">;</span><span class="w"> </span><span class="nx">message</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="p">}</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">contractAddress</span><span class="p">,</span><span class="w"> </span><span class="nx">contractName</span><span class="p">,</span><span class="w"> </span><span class="nx">network</span><span class="p">,</span><span class="w"> </span><span class="nx">constructorArgs</span><span class="p">,</span><span class="w"> </span><span class="nx">apiKey</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">params</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// Get network verification configuration</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">verificationConfig</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">getVerificationConfig</span><span class="p">(</span><span class="nx">network</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">explorerApiKey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">apiKey</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nx">verificationConfig</span><span class="p">.</span><span class="nx">defaultApiKey</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">explorerApiKey</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="s1">&#39;API key required for verification&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Get contract source code and metadata</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">contractArtifacts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">getContractArtifacts</span><span class="p">(</span><span class="nx">contractName</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">sourceCode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">getContractSourceCode</span><span class="p">(</span><span class="nx">contractName</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Prepare verification request</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">verificationRequest</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">apikey</span><span class="o">:</span><span class="w"> </span><span class="kt">explorerApiKey</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">module</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;contract&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">action</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;verifysourcecode&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">contractaddress</span><span class="o">:</span><span class="w"> </span><span class="kt">contractAddress</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">sourceCode</span><span class="o">:</span><span class="w"> </span><span class="kt">sourceCode</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">codeformat</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;solidity-single-file&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">contractname</span><span class="o">:</span><span class="w"> </span><span class="kt">contractName</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">compilerversion</span><span class="o">:</span><span class="w"> </span><span class="kt">contractArtifacts.compiler.version</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">optimizationUsed</span><span class="o">:</span><span class="w"> </span><span class="kt">contractArtifacts.compiler.optimizer.enabled</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="nx">1</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="kt">0</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">runs</span><span class="o">:</span><span class="w"> </span><span class="kt">contractArtifacts.compiler.optimizer.runs</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">constructorArguements</span><span class="o">:</span><span class="w"> </span><span class="kt">constructorArgs</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="nx">encodeConstructorArgs</span><span class="p">(</span><span class="nx">constructorArgs</span><span class="p">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;&#39;</span>
+<span class="w">    </span><span class="p">};</span>
+
+<span class="w">    </span><span class="c1">// Submit verification request</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">submitVerificationRequest</span><span class="p">(</span><span class="nx">verificationConfig</span><span class="p">.</span><span class="nx">apiUrl</span><span class="p">,</span><span class="w"> </span><span class="nx">verificationRequest</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">status</span><span class="w"> </span><span class="o">!==</span><span class="w"> </span><span class="s1">&#39;1&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="sb">`Verification submission failed: </span><span class="si">${</span><span class="nx">response</span><span class="p">.</span><span class="nx">result</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Poll for verification result</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">verificationResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">pollVerificationResult</span><span class="p">(</span>
+<span class="w">      </span><span class="nx">verificationConfig</span><span class="p">.</span><span class="nx">apiUrl</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">explorerApiKey</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">response</span><span class="p">.</span><span class="nx">result</span>
+<span class="w">    </span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">success</span><span class="o">:</span><span class="w"> </span><span class="kt">verificationResult.status</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;1&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">message</span><span class="o">:</span><span class="w"> </span><span class="kt">verificationResult.result</span>
+<span class="w">    </span><span class="p">};</span>
+
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;Contract verification error:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">success</span><span class="o">:</span><span class="w"> </span><span class="kt">false</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">message</span><span class="o">:</span><span class="w"> </span><span class="kt">error.message</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="s1">&#39;Verification failed&#39;</span>
+<span class="w">    </span><span class="p">};</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="deployment-monitoring">Deployment Monitoring<a class="headerlink" href="#deployment-monitoring" title="Permanent link">&para;</a></h3>
+<p>```typescript
+Parse.Cloud.define('getDeploymentStatus', async (request) =&gt; {
+  const { deploymentId } = request.params;
+  const user = request.user;</p>
+<p>if (!user) {
+    throw new Error('Authentication required');
+  }</p>
+<p>try {
+    // Get deployment record
+    const deployment = await new Parse.Query('Deployment')
+      .equalTo('deploymentId', deploymentId)
+      .first({ useMasterKey: true });</p>
+<div class="codehilite"><pre><span></span><code>if (!deployment) {
+  throw new Error(&#39;Deployment not found&#39;);
+}
+
+// Check access permissions
+if (deployment.get(&#39;deployer&#39;).id !== user.id) {
+  const hasAccess = await checkDeploymentAccess(deploymentId, user.id);
+  if (!hasAccess) {
+    throw new Error(&#39;Access denied&#39;);
+  }
+}
+
+// Calculate progress
+const progress = calculateDeploymentProgress(deployment);
+
+return {
+  success: true,
+  deployment: {
+    id: deployment.get(&#39;deploymentId&#39;),
+    status: deployment.get(&#39;status&#39;),
+    network: deployment.get(&#39;network&#39;),
+    progress,
+    currentStep: deployment.get(&#39;currentStep&#39;),
+    deployedContracts: deployment.get(&#39;deployedContracts&#39;) || {},
+    errors: deployment.get(&#39;errors&#39;) || [],
+    startedAt: deployment.get(&#39;createdAt&#39;),
+    completedAt: deployment.get(&#39;completedAt
+</code></pre></div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../contracts/" class="btn btn-neutral float-left" title="Contract Functions"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../dfns/" class="btn btn-neutral float-right" title="DFNS Functions">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../contracts/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../dfns/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
