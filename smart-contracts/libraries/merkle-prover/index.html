@@ -131,6 +131,8 @@
                 </li>
                 <li class="toctree-l2"><a class="reference internal" href="../../interfaces/iattribute/">IAttribute</a>
                 </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ivariable-price/">IVariablePrice</a>
+                </li>
     </ul>
                   </li>
                   <li class="toctree-l1 current"><a class="reference internal current" >Libraries</a>
@@ -197,17 +199,15 @@
         <ul>
     <li class="toctree-l4"><a class="reference internal" href="#common-errors">Common Errors</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#best-practices">Best Practices</a>
-    </li>
         </ul>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#testing-considerations">Testing Considerations</a>
+    <li class="toctree-l3"><a class="reference internal" href="#best-practices">Best Practices</a>
         <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#unit-tests">Unit Tests</a>
+    <li class="toctree-l4"><a class="reference internal" href="#merkle-tree-generation">Merkle Tree Generation</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#integration-tests">Integration Tests</a>
+    <li class="toctree-l4"><a class="reference internal" href="#leaf-data">Leaf Data</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#security-testing">Security Testing</a>
+    <li class="toctree-l4"><a class="reference internal" href="#integration-checklist">Integration Checklist</a>
     </li>
         </ul>
     </li>
@@ -248,6 +248,10 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/nft-sale-utils/">NFT Sale Utilities</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/webhooks/">Webhooks Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../metadata-lib/">Metadata Library</a>
+                  </li>
               </ul>
               <p class="caption"><span class="caption-text">Cloud Functions</span></p>
               <ul>
@@ -278,6 +282,14 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../../api-documentation/gemforce-api-quick-reference/">Quick Reference</a>
                   </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-external-services/">External Services</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-system-architecture/">System Architecture</a>
+                </li>
               </ul>
               <p class="caption"><span class="caption-text">Operations Tasks</span></p>
               <ul>
@@ -321,6 +333,32 @@
                   <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Carbon-Credit-Standard/">Carbon Credit Standard</a>
                   </li>
               </ul>
+              <p class="caption"><span class="caption-text">Developer Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/development-environment-setup/">Development Environment Setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/testing-frameworks/">Testing Frameworks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/debugging/">Debugging</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/performance-optimization/">Performance Optimization</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/test-case-specifications/">Test Case Specifications</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/test-data-management/">Test Data Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/automated-testing-setup/">Automated Testing Setup</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Deployment Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../deployment-guides/multi-network-deployment/">Multi-Network Deployment</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../deployment-guides/infrastructure-management/">Infrastructure Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../deployment-guides/monitoring-logging/">Monitoring and Logging</a>
+                  </li>
+              </ul>
               <p class="caption"><span class="caption-text">User Guides</span></p>
               <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-administrator-guide/">Administrator Guide</a>
@@ -342,6 +380,8 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/dfns/">DFNS Integration</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/parse-server/">Parse Server Notes</a>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/webhooks/">Webhooks</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/error-handling/">Error Handling</a>
@@ -350,12 +390,38 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/integration-patterns/">Integration Patterns</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/testing/">Testing Considerations</a>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/security/">Security</a>
                   </li>
               </ul>
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../../../external-services/gemforce-external-services/">External Services</a>
                 </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Security</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security/threat-model/">Threat Model and Risk Assessment</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security/incident-response/">Incident Response Procedures</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security/audit-compliance/">Security Audits and Compliance</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">External Developer Integration</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/api-rate-limiting/">API Rate Limiting</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/webhook-implementation-guidelines/">Webhook Implementation Guidelines</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/sdk-development-guidelines/">SDK Development Guidelines</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/partner-integration-guides/">Partner Integration Guides</a>
+                  </li>
               </ul>
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-documentation-gap-analysis/">Documentation Gap Analysis</a>
@@ -368,6 +434,21 @@
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../../../documentation-plan/">Documentation Plan</a>
                 </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Configuration & Environment</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/gemforce-config/">Gemforce Config</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/environment-specific-guides/">Environment-Specific Guides</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/configuration-validation/">Configuration Validation Procedures</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/external-service-config-management/">External Service Configuration Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/database-schema-overview/">Database Schema Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/database-migration-procedures/">Database Migration Procedures</a>
+                  </li>
               </ul>
       </div>
     </div>
@@ -396,7 +477,7 @@
               
                 <h1 id="merkleprover-library">MerkleProver Library<a class="headerlink" href="#merkleprover-library" title="Permanent link">&para;</a></h1>
 <h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
-<p>The <a href="../../../contracts/libraries/MerkleProver.sol"><code>MerkleProver</code></a> library provides core utilities for Merkle tree proof verification within the Gemforce platform. This library implements secure and gas-efficient Merkle proof validation, enabling whitelist systems, airdrop distributions, and other scenarios requiring cryptographic proof of inclusion in a dataset.</p>
+<p>The <a href="./"><code>MerkleProver</code></a> library provides core utilities for Merkle tree proof verification within the Gemforce platform. This library implements secure and gas-efficient Merkle proof validation, enabling whitelist systems, airdrop distributions, and other scenarios requiring cryptographic proof of inclusion in a dataset.</p>
 <h2 id="key-features">Key Features<a class="headerlink" href="#key-features" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>Secure Proof Verification</strong>: Cryptographically secure Merkle tree validation</li>
@@ -810,9 +891,9 @@
 <span class="w">        </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">leaf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>MerkleProver<span class="p">.</span>getHash<span class="p">(</span>user<span class="p">,</span><span class="w"> </span>amount<span class="p">);</span>
 
 <span class="w">        </span>isEligible<span class="w"> </span><span class="o">=</span><span class="w"> </span>round<span class="p">.</span>active<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>
-<span class="w">                    </span><span class="k">block.timestamp</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span>round<span class="p">.</span>startTime<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>
-<span class="w">                    </span><span class="k">block.timestamp</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span>round<span class="p">.</span>endTime<span class="w"> </span><span class="o">&amp;&amp;</span>
-<span class="w">                    </span>MerkleProver<span class="p">.</span>verify<span class="p">(</span>round<span class="p">.</span>merkleRoot<span class="p">,</span><span class="w"> </span>leaf<span class="p">,</span><span class="w"> </span>merkleProof<span class="p">);</span>
+<span class="w">                     </span><span class="k">block.timestamp</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span>round<span class="p">.</span>startTime<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>
+<span class="w">                     </span><span class="k">block.timestamp</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span>round<span class="p">.</span>endTime<span class="w"> </span><span class="o">&amp;&amp;</span>
+<span class="w">                     </span>MerkleProver<span class="p">.</span>verify<span class="p">(</span>round<span class="p">.</span>merkleRoot<span class="p">,</span><span class="w"> </span>leaf<span class="p">,</span><span class="w"> </span>merkleProof<span class="p">);</span>
 
 <span class="w">        </span>alreadyClaimed<span class="w"> </span><span class="o">=</span><span class="w"> </span>claimedLeaves<span class="p">[</span>roundId<span class="p">][</span>leaf<span class="p">];</span>
 <span class="w">    </span><span class="p">}</span>
@@ -871,171 +952,125 @@
 </code></pre></div>
 
 <h3 id="voting-system-with-merkle-proofs">Voting System with Merkle Proofs<a class="headerlink" href="#voting-system-with-merkle-proofs" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code><span class="c1">// Voting system with Merkle tree voter eligibility</span>
+<div class="codehilite"><pre><span></span><code><span class="c1">// On-chain voting system with Merkle proof voter registration</span>
 <span class="k">contract</span><span class="w"> </span><span class="ni">MerkleVoting</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span>using<span class="w"> </span>MerkleProver<span class="w"> </span><span class="kt">for</span><span class="w"> </span><span class="kt">bytes32</span><span class="p">;</span>
 
 <span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">Proposal</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">id</span><span class="p">;</span>
-<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">title</span><span class="p">;</span>
 <span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">description</span><span class="p">;</span>
-<span class="w">        </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">voterMerkleRoot</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">voteCountYay</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">voteCountNay</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalVotes</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">merkleRoot</span><span class="p">;</span><span class="w"> </span><span class="c1">// Whitelist of eligible voters</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">snapshotBlock</span><span class="p">;</span>
 <span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">startTime</span><span class="p">;</span>
 <span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">endTime</span><span class="p">;</span>
-<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">yesVotes</span><span class="p">;</span>
-<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">noVotes</span><span class="p">;</span>
-<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalVotingPower</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">active</span><span class="p">;</span>
 <span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">executed</span><span class="p">;</span>
-<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">passed</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">Vote</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">voter</span><span class="p">;</span>
-<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">support</span><span class="p">;</span>
-<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">votingPower</span><span class="p">;</span>
-<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">timestamp</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span>Proposal<span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>proposals<span class="p">;</span>
-<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">bytes32</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">bool</span><span class="p">))</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>hasVoted<span class="p">;</span>
-<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span>Vote<span class="p">[])</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>proposalVotes<span class="p">;</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">bool</span><span class="p">))</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>hasVoted<span class="p">;</span>
 <span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="k">public </span><span class="nv">nextProposalId</span><span class="p">;</span>
-<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="k">public </span><span class="nv">constant</span><span class="w"> </span>VOTING_DURATION<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">7</span><span class="w"> </span>days<span class="p">;</span>
-<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="k">public </span><span class="nv">constant</span><span class="w"> </span>EXECUTION_DELAY<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">2</span><span class="w"> </span>days<span class="p">;</span>
 
-<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">ProposalCreated</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>proposalId<span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">title</span><span class="p">,</span><span class="w"> </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">voterRoot</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">ProposalCreated</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>proposalId<span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">description</span><span class="p">,</span><span class="w"> </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">merkleRoot</span><span class="p">);</span>
 <span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">VoteCast</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>proposalId<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>voter<span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="nv">support</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">votingPower</span><span class="p">);</span>
-<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">ProposalExecuted</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>proposalId<span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="nv">passed</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">ProposalExecuted</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>proposalId<span class="p">);</span>
 
 <span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">createProposal</span><span class="p">(</span>
-<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>title<span class="p">,</span>
 <span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>description<span class="p">,</span>
-<span class="w">        </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">voterMerkleRoot</span><span class="p">,</span>
-<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalVotingPower</span>
-<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyGovernance<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">proposalId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">merkleRoot</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">snapshotBlock</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">startTime</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">endTime</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyOwner<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">proposalId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span>proposalId<span class="w"> </span><span class="o">=</span><span class="w"> </span>nextProposalId<span class="o">++</span><span class="p">;</span>
 
 <span class="w">        </span>proposals<span class="p">[</span>proposalId<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>Proposal<span class="p">({</span>
-<span class="w">            </span>id<span class="o">:</span><span class="w"> </span>proposalId<span class="p">,</span>
-<span class="w">            </span>title<span class="o">:</span><span class="w"> </span>title<span class="p">,</span>
 <span class="w">            </span>description<span class="o">:</span><span class="w"> </span>description<span class="p">,</span>
-<span class="w">            </span>voterMerkleRoot<span class="o">:</span><span class="w"> </span>voterMerkleRoot<span class="p">,</span>
-<span class="w">            </span>startTime<span class="o">:</span><span class="w"> </span><span class="k">block.timestamp</span><span class="p">,</span>
-<span class="w">            </span>endTime<span class="o">:</span><span class="w"> </span><span class="k">block.timestamp</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>VOTING_DURATION<span class="p">,</span>
-<span class="w">            </span>yesVotes<span class="o">:</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">,</span>
-<span class="w">            </span>noVotes<span class="o">:</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">,</span>
-<span class="w">            </span>totalVotingPower<span class="o">:</span><span class="w"> </span>totalVotingPower<span class="p">,</span>
-<span class="w">            </span>executed<span class="o">:</span><span class="w"> </span><span class="kt">false</span><span class="p">,</span>
-<span class="w">            </span>passed<span class="o">:</span><span class="w"> </span><span class="kt">false</span>
+<span class="w">            </span>voteCountYay<span class="o">:</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">,</span>
+<span class="w">            </span>voteCountNay<span class="o">:</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">,</span>
+<span class="w">            </span>totalVotes<span class="o">:</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">,</span>
+<span class="w">            </span>merkleRoot<span class="o">:</span><span class="w"> </span>merkleRoot<span class="p">,</span>
+<span class="w">            </span>snapshotBlock<span class="o">:</span><span class="w"> </span>snapshotBlock<span class="p">,</span>
+<span class="w">            </span>startTime<span class="o">:</span><span class="w"> </span>startTime<span class="p">,</span>
+<span class="w">            </span>endTime<span class="o">:</span><span class="w"> </span>endTime<span class="p">,</span>
+<span class="w">            </span>active<span class="o">:</span><span class="w"> </span><span class="kt">true</span><span class="p">,</span>
+<span class="w">            </span>executed<span class="o">:</span><span class="w"> </span><span class="kt">false</span>
 <span class="w">        </span><span class="p">});</span>
 
-<span class="w">        </span>emit<span class="w"> </span>ProposalCreated<span class="p">(</span>proposalId<span class="p">,</span><span class="w"> </span>title<span class="p">,</span><span class="w"> </span>voterMerkleRoot<span class="p">);</span>
+<span class="w">        </span>emit<span class="w"> </span>ProposalCreated<span class="p">(</span>proposalId<span class="p">,</span><span class="w"> </span>description<span class="p">,</span><span class="w"> </span>merkleRoot<span class="p">);</span>
 <span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">vote</span><span class="p">(</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">castVote</span><span class="p">(</span>
 <span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">proposalId</span><span class="p">,</span>
 <span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">support</span><span class="p">,</span>
 <span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">votingPower</span><span class="p">,</span>
 <span class="w">        </span><span class="kt">bytes32</span><span class="p">[]</span><span class="w"> </span>calldata<span class="w"> </span>merkleProof
 <span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span>Proposal<span class="w"> </span>storage<span class="w"> </span>proposal<span class="w"> </span><span class="o">=</span><span class="w"> </span>proposals<span class="p">[</span>proposalId<span class="p">];</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>proposal<span class="p">.</span>active<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Proposal not active&quot;</span><span class="p">);</span>
 <span class="w">        </span><span class="kt">require</span><span class="p">(</span><span class="k">block.timestamp</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span>proposal<span class="p">.</span>startTime<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Voting not started&quot;</span><span class="p">);</span>
 <span class="w">        </span><span class="kt">require</span><span class="p">(</span><span class="k">block.timestamp</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span>proposal<span class="p">.</span>endTime<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Voting ended&quot;</span><span class="p">);</span>
-<span class="w">        </span><span class="kt">require</span><span class="p">(</span><span class="o">!</span>proposal<span class="p">.</span>executed<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Proposal already executed&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span><span class="o">!</span>hasVoted<span class="p">[</span>proposalId<span class="p">][</span><span class="k">msg.sender</span><span class="p">],</span><span class="w"> </span><span class="s2">&quot;Already voted on this proposal&quot;</span><span class="p">);</span>
 
-<span class="w">        </span><span class="c1">// Generate leaf for voter eligibility</span>
+<span class="w">        </span><span class="c1">// Verify voter eligibility using Merkle proof</span>
 <span class="w">        </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">leaf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>MerkleProver<span class="p">.</span>getHash<span class="p">(</span><span class="k">msg.sender</span><span class="p">,</span><span class="w"> </span>votingPower<span class="p">);</span>
-
-<span class="w">        </span><span class="c1">// Verify voter eligibility</span>
-<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">isEligible</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>MerkleProver<span class="p">.</span>verify<span class="p">(</span>
-<span class="w">            </span>proposal<span class="p">.</span>voterMerkleRoot<span class="p">,</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">isValid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>MerkleProver<span class="p">.</span>verify<span class="p">(</span>
+<span class="w">            </span>proposal<span class="p">.</span>merkleRoot<span class="p">,</span>
 <span class="w">            </span>leaf<span class="p">,</span>
 <span class="w">            </span>merkleProof
 <span class="w">        </span><span class="p">);</span>
-<span class="w">        </span><span class="kt">require</span><span class="p">(</span>isEligible<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Invalid voting eligibility proof&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>isValid<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Invalid voter proof&quot;</span><span class="p">);</span>
 
-<span class="w">        </span><span class="c1">// Prevent double voting</span>
-<span class="w">        </span><span class="kt">require</span><span class="p">(</span><span class="o">!</span>hasVoted<span class="p">[</span>proposalId<span class="p">][</span>leaf<span class="p">],</span><span class="w"> </span><span class="s2">&quot;Already voted&quot;</span><span class="p">);</span>
-<span class="w">        </span>hasVoted<span class="p">[</span>proposalId<span class="p">][</span>leaf<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">true</span><span class="p">;</span>
+<span class="w">        </span>hasVoted<span class="p">[</span>proposalId<span class="p">][</span><span class="k">msg.sender</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">true</span><span class="p">;</span>
 
-<span class="w">        </span><span class="c1">// Record vote</span>
 <span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>support<span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span>proposal<span class="p">.</span>yesVotes<span class="w"> </span><span class="o">+=</span><span class="w"> </span>votingPower<span class="p">;</span>
+<span class="w">            </span>proposal<span class="p">.</span>voteCountYay<span class="w"> </span><span class="o">+=</span><span class="w"> </span>votingPower<span class="p">;</span>
 <span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="kt">else</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span>proposal<span class="p">.</span>noVotes<span class="w"> </span><span class="o">+=</span><span class="w"> </span>votingPower<span class="p">;</span>
+<span class="w">            </span>proposal<span class="p">.</span>voteCountNay<span class="w"> </span><span class="o">+=</span><span class="w"> </span>votingPower<span class="p">;</span>
 <span class="w">        </span><span class="p">}</span>
-
-<span class="w">        </span>proposalVotes<span class="p">[</span>proposalId<span class="p">].</span>push<span class="p">(</span>Vote<span class="p">({</span>
-<span class="w">            </span>voter<span class="o">:</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">,</span>
-<span class="w">            </span>support<span class="o">:</span><span class="w"> </span>support<span class="p">,</span>
-<span class="w">            </span>votingPower<span class="o">:</span><span class="w"> </span>votingPower<span class="p">,</span>
-<span class="w">            </span>timestamp<span class="o">:</span><span class="w"> </span><span class="k">block.timestamp</span>
-<span class="w">        </span><span class="p">}));</span>
+<span class="w">        </span>proposal<span class="p">.</span>totalVotes<span class="w"> </span><span class="o">+=</span><span class="w"> </span>votingPower<span class="p">;</span>
 
 <span class="w">        </span>emit<span class="w"> </span>VoteCast<span class="p">(</span>proposalId<span class="p">,</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">,</span><span class="w"> </span>support<span class="p">,</span><span class="w"> </span>votingPower<span class="p">);</span>
 <span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">executeProposal</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">proposalId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">executeProposal</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">proposalId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyOwner<span class="w"> </span><span class="p">{</span>
 <span class="w">        </span>Proposal<span class="w"> </span>storage<span class="w"> </span>proposal<span class="w"> </span><span class="o">=</span><span class="w"> </span>proposals<span class="p">[</span>proposalId<span class="p">];</span>
-<span class="w">        </span><span class="kt">require</span><span class="p">(</span><span class="k">block.timestamp</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span>proposal<span class="p">.</span>endTime<span class="w"> </span><span class="o">+</span><span class="w"> </span>EXECUTION_DELAY<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Execution delay not met&quot;</span><span class="p">);</span>
 <span class="w">        </span><span class="kt">require</span><span class="p">(</span><span class="o">!</span>proposal<span class="p">.</span>executed<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Proposal already executed&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span><span class="k">block.timestamp</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span>proposal<span class="p">.</span>endTime<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Voting not ended&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>proposal<span class="p">.</span>active<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Proposal not active for execution&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Example: simple majority</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>proposal<span class="p">.</span>voteCountYay<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span>proposal<span class="p">.</span>voteCountNay<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Proposal not passed&quot;</span><span class="p">);</span>
 
 <span class="w">        </span>proposal<span class="p">.</span>executed<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">true</span><span class="p">;</span>
+<span class="w">        </span>proposal<span class="p">.</span>active<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">false</span><span class="p">;</span><span class="w"> </span><span class="c1">// Deactivate after execution</span>
 
-<span class="w">        </span><span class="c1">// Determine if proposal passed (simple majority)</span>
-<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalVotes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>proposal<span class="p">.</span>yesVotes<span class="w"> </span><span class="o">+</span><span class="w"> </span>proposal<span class="p">.</span>noVotes<span class="p">;</span>
-<span class="w">        </span>proposal<span class="p">.</span>passed<span class="w"> </span><span class="o">=</span><span class="w"> </span>proposal<span class="p">.</span>yesVotes<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span>proposal<span class="p">.</span>noVotes<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>
-<span class="w">                          </span>totalVotes<span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="p">(</span>proposal<span class="p">.</span>totalVotingPower<span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m m-Decimal">4</span><span class="p">);</span><span class="w"> </span><span class="c1">// 25% quorum</span>
-
-<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>proposal<span class="p">.</span>passed<span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span>_executeProposalLogic<span class="p">(</span>proposalId<span class="p">);</span>
-<span class="w">        </span><span class="p">}</span>
-
-<span class="w">        </span>emit<span class="w"> </span>ProposalExecuted<span class="p">(</span>proposalId<span class="p">,</span><span class="w"> </span>proposal<span class="p">.</span>passed<span class="p">);</span>
+<span class="w">        </span>emit<span class="w"> </span>ProposalExecuted<span class="p">(</span>proposalId<span class="p">);</span>
 <span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">verifyVoterEligibility</span><span class="p">(</span>
-<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">proposalId</span><span class="p">,</span>
-<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">voter</span><span class="p">,</span>
-<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">votingPower</span><span class="p">,</span>
-<span class="w">        </span><span class="kt">bytes32</span><span class="p">[]</span><span class="w"> </span>calldata<span class="w"> </span>merkleProof
-<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bool</span><span class="w"> </span><span class="nv">isEligible</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="nv">hasAlreadyVoted</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span>Proposal<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>proposal<span class="w"> </span><span class="o">=</span><span class="w"> </span>proposals<span class="p">[</span>proposalId<span class="p">];</span>
-<span class="w">        </span><span class="kt">bytes32</span><span class="w"> </span><span class="nv">leaf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>MerkleProver<span class="p">.</span>getHash<span class="p">(</span>voter<span class="p">,</span><span class="w"> </span>votingPower<span class="p">);</span>
-
-<span class="w">        </span>isEligible<span class="w"> </span><span class="o">=</span><span class="w"> </span>MerkleProver<span class="p">.</span>verify<span class="p">(</span>proposal<span class="p">.</span>voterMerkleRoot<span class="p">,</span><span class="w"> </span>leaf<span class="p">,</span><span class="w"> </span>merkleProof<span class="p">);</span>
-<span class="w">        </span>hasAlreadyVoted<span class="w"> </span><span class="o">=</span><span class="w"> </span>hasVoted<span class="p">[</span>proposalId<span class="p">][</span>leaf<span class="p">];</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getProposalResults</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">proposalId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>
-<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">yesVotes</span><span class="p">,</span>
-<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">noVotes</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getVotingStatus</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">proposalId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>description<span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">voteYay</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">voteNay</span><span class="p">,</span>
 <span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalVotes</span><span class="p">,</span>
-<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">participationRate</span><span class="p">,</span>
-<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">canExecute</span><span class="p">,</span>
-<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">executed</span><span class="p">,</span>
-<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">passed</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">requiredVotesForPass</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">active</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">executed</span>
 <span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span>Proposal<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>proposal<span class="w"> </span><span class="o">=</span><span class="w"> </span>proposals<span class="p">[</span>proposalId<span class="p">];</span>
-<span class="w">        </span>yesVotes<span class="w"> </span><span class="o">=</span><span class="w"> </span>proposal<span class="p">.</span>yesVotes<span class="p">;</span>
-<span class="w">        </span>noVotes<span class="w"> </span><span class="o">=</span><span class="w"> </span>proposal<span class="p">.</span>noVotes<span class="p">;</span>
-<span class="w">        </span>totalVotes<span class="w"> </span><span class="o">=</span><span class="w"> </span>yesVotes<span class="w"> </span><span class="o">+</span><span class="w"> </span>noVotes<span class="p">;</span>
-<span class="w">        </span>participationRate<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span>totalVotes<span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m m-Decimal">100</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span>proposal<span class="p">.</span>totalVotingPower<span class="p">;</span>
-<span class="w">        </span>canExecute<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">block.timestamp</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span>proposal<span class="p">.</span>endTime<span class="w"> </span><span class="o">+</span><span class="w"> </span>EXECUTION_DELAY<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span>proposal<span class="p">.</span>executed<span class="p">;</span>
+<span class="w">        </span>description<span class="w"> </span><span class="o">=</span><span class="w"> </span>proposal<span class="p">.</span>description<span class="p">;</span>
+<span class="w">        </span>voteYay<span class="w"> </span><span class="o">=</span><span class="w"> </span>proposal<span class="p">.</span>voteCountYay<span class="p">;</span>
+<span class="w">        </span>voteNay<span class="w"> </span><span class="o">=</span><span class="w"> </span>proposal<span class="p">.</span>voteCountNay<span class="p">;</span>
+<span class="w">        </span>totalVotes<span class="w"> </span><span class="o">=</span><span class="w"> </span>proposal<span class="p">.</span>totalVotes<span class="p">;</span>
+<span class="w">        </span>requiredVotesForPass<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span>proposal<span class="p">.</span>totalVotes<span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m m-Decimal">2</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m m-Decimal">1</span><span class="p">;</span><span class="w"> </span><span class="c1">// Simple majority example</span>
+<span class="w">        </span>active<span class="w"> </span><span class="o">=</span><span class="w"> </span>proposal<span class="p">.</span>active<span class="p">;</span>
 <span class="w">        </span>executed<span class="w"> </span><span class="o">=</span><span class="w"> </span>proposal<span class="p">.</span>executed<span class="p">;</span>
-<span class="w">        </span>passed<span class="w"> </span><span class="o">=</span><span class="w"> </span>proposal<span class="p">.</span>passed<span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getProposalVotes</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">proposalId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>Vote<span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="kt">return</span><span class="w"> </span>proposalVotes<span class="p">[</span>proposalId<span class="p">];</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">_executeProposalLogic</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">proposalId</span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="c1">// Implementation would execute the actual proposal logic</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="kt">modifier</span><span class="w"> </span>onlyGovernance<span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="c1">// Implementation would check governance authorization</span>
+<span class="w">    </span><span class="kt">modifier</span><span class="w"> </span>onlyOwner<span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Implementation would check ownership</span>
 <span class="w">        </span>_<span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
@@ -1044,87 +1079,59 @@
 <h2 id="security-considerations">Security Considerations<a class="headerlink" href="#security-considerations" title="Permanent link">&para;</a></h2>
 <h3 id="proof-validation-security">Proof Validation Security<a class="headerlink" href="#proof-validation-security" title="Permanent link">&para;</a></h3>
 <ul>
-<li><strong>Empty Proof Protection</strong>: Prevents false positives when leaf equals root</li>
-<li><strong>Deterministic Ordering</strong>: Sorted hash combination prevents manipulation</li>
-<li><strong>Replay Attack Prevention</strong>: Leaf tracking prevents proof reuse</li>
-<li><strong>Input Validation</strong>: Proper bounds checking and parameter validation</li>
+<li><strong>Correct Root</strong>: Always ensure the Merkle root is correct and from a trusted source.</li>
+<li><strong>Uniqueness of Leaves</strong>: Prevent double-claiming by marking used leaves (hash of user+amount).</li>
+<li><strong>Correct Hashing</strong>: Ensure leaf node hashing matches the tree generation.</li>
 </ul>
 <h3 id="cryptographic-security">Cryptographic Security<a class="headerlink" href="#cryptographic-security" title="Permanent link">&para;</a></h3>
 <ul>
-<li><strong>Standard Algorithms</strong>: Uses keccak256 for cryptographic security</li>
-<li><strong>Collision Resistance</strong>: Merkle tree structure provides collision resistance</li>
-<li><strong>Preimage Resistance</strong>: Hash functions prevent reverse engineering</li>
-<li><strong>Second Preimage Resistance</strong>: Protects against proof forgery</li>
+<li><strong>Strong Hashing</strong>: Use collision-resistant hash functions (e.g., keccak256).</li>
+<li><strong>No Predictable Randomness</strong>: Avoid on-chain randomness for critical parameters.</li>
 </ul>
 <h3 id="implementation-security">Implementation Security<a class="headerlink" href="#implementation-security" title="Permanent link">&para;</a></h3>
 <ul>
-<li><strong>Pure Functions</strong>: Stateless operations prevent state manipulation</li>
-<li><strong>Gas Efficiency</strong>: Optimized algorithms prevent DoS attacks</li>
-<li><strong>Overflow Protection</strong>: Safe arithmetic operations</li>
-<li><strong>Memory Safety</strong>: Proper array bounds checking</li>
+<li><strong>Access Control</strong>: Secure functions that set Merkle roots or control airdrop parameters.</li>
+<li><strong>Reentrancy Protection</strong>: Critical for functions that transfer tokens.</li>
 </ul>
 <h2 id="gas-optimization">Gas Optimization<a class="headerlink" href="#gas-optimization" title="Permanent link">&para;</a></h2>
 <h3 id="verification-efficiency">Verification Efficiency<a class="headerlink" href="#verification-efficiency" title="Permanent link">&para;</a></h3>
 <ul>
-<li><strong>Minimal Storage</strong>: Pure functions with no storage operations</li>
-<li><strong>Optimized Loops</strong>: Efficient proof iteration</li>
-<li><strong>Reduced Hashing</strong>: Minimal hash operations per verification</li>
-<li><strong>Batch Operations</strong>: Support for batch proof verification</li>
+<li>The <code>verify()</code> function is highly optimized for gas, computing hashes iteratively.</li>
 </ul>
 <h3 id="memory-efficiency">Memory Efficiency<a class="headerlink" href="#memory-efficiency" title="Permanent link">&para;</a></h3>
 <ul>
-<li><strong>Stack Operations</strong>: Minimal memory allocation</li>
-<li><strong>Efficient Encoding</strong>: Optimized abi.encodePacked usage</li>
-<li><strong>Proof Size</strong>: Logarithmic proof size relative to tree size</li>
-<li><strong>Reusable Functions</strong>: Pure functions for maximum reusability</li>
+<li><code>proof</code> array is passed as <code>memory</code> to prevent unnecessary storage writes.</li>
 </ul>
 <h2 id="error-handling">Error Handling<a class="headerlink" href="#error-handling" title="Permanent link">&para;</a></h2>
 <h3 id="common-errors">Common Errors<a class="headerlink" href="#common-errors" title="Permanent link">&para;</a></h3>
 <ul>
-<li>Invalid Merkle proof verification failure</li>
-<li>Empty proof with leaf equal to root</li>
-<li>Array bounds errors in proof iteration</li>
-<li>Hash computation failures</li>
+<li><code>Invalid Merkle proof</code>: The provided proof does not validate against the root.</li>
+<li><code>Proof already used</code>: The leaf has already been claimed/used.</li>
+<li><code>Not active</code>: The sale/airdrop is not active or has ended.</li>
+<li><code>Insufficient allocation</code>: Attempting to claim more than whitelisted amount.</li>
 </ul>
-<h3 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h3>
+<h2 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h2>
+<h3 id="merkle-tree-generation">Merkle Tree Generation<a class="headerlink" href="#merkle-tree-generation" title="Permanent link">&para;</a></h3>
 <ul>
-<li>Always validate proof arrays before processing</li>
-<li>Check for edge cases (empty proofs, single-element trees)</li>
-<li>Implement proper error messages for debugging</li>
-<li>Use safe arithmetic operations</li>
+<li>Generate Merkle trees off-chain using a secure and reliable process.</li>
+<li>The Merkle root must be committed on-chain in a timely and secure manner.</li>
 </ul>
-<h2 id="testing-considerations">Testing Considerations<a class="headerlink" href="#testing-considerations" title="Permanent link">&para;</a></h2>
-<h3 id="unit-tests">Unit Tests<a class="headerlink" href="#unit-tests" title="Permanent link">&para;</a></h3>
+<h3 id="leaf-data">Leaf Data<a class="headerlink" href="#leaf-data" title="Permanent link">&para;</a></h3>
 <ul>
-<li>Proof verification accuracy for various tree sizes</li>
-<li>Edge case handling (empty proofs, single nodes)</li>
-<li>Hash generation consistency</li>
-<li>Security vulnerability testing</li>
+<li>Standardize the data structure for leaves (e.g., <code>keccak256(abi.encodePacked(address, amount))</code>).</li>
+<li>Ensure the off-chain system that generates leaves and proofs matches the on-chain logic.</li>
 </ul>
-<h3 id="integration-tests">Integration Tests<a class="headerlink" href="#integration-tests" title="Permanent link">&para;</a></h3>
+<h3 id="integration-checklist">Integration Checklist<a class="headerlink" href="#integration-checklist" title="Permanent link">&para;</a></h3>
 <ul>
-<li>Whitelist system integration</li>
-<li>Airdrop distribution workflows</li>
-<li>Voting system integration</li>
-<li>Cross-contract proof verification</li>
-</ul>
-<h3 id="security-testing">Security Testing<a class="headerlink" href="#security-testing" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Proof forgery attempts</li>
-<li>Replay attack prevention</li>
-<li>Edge case exploitation</li>
-<li>Gas consumption analysis</li>
+<li>Verify proof generation and verification across all environments (local, testnet, production).</li>
+<li>Clearly communicate to users how to generate their participation data (e.g., wallet address + allocation).</li>
 </ul>
 <h2 id="related-documentation">Related Documentation<a class="headerlink" href="#related-documentation" title="Permanent link">&para;</a></h2>
 <ul>
-<li><a href="../multi-sale-lib/">MultiSaleLib</a> - Multi-token sale whitelist integration</li>
-<li><a href="../../guides/whitelist-systems.md">Whitelist Systems Guide</a> - Whitelist implementation patterns</li>
-<li><a href="../../guides/airdrop-systems.md">Airdrop Guide</a> - Airdrop distribution best practices</li>
-<li><a href="../../guides/cryptographic-security.md">Cryptographic Security</a> - Security considerations</li>
-<li><a href="../../guides/gas-optimization.md">Gas Optimization Guide</a> - Performance optimization techniques</li>
+<li><a href="../../facets/multi-sale-facet/">Multi Sale Facet</a> - For token sales integration.</li>
+<li><a href="../../../sdk-libraries/blockchain/">SDK &amp; Libraries: Blockchain Utilities</a> - General blockchain interaction utilities.</li>
+<li><a href="../../../developer-guides/automated-testing-setup/">Developer Guides: Automated Testing Setup</a></li>
 </ul>
-<hr />
-<p><em>This library provides secure and efficient Merkle proof verification utilities for the Gemforce platform, enabling whitelist systems, airdrop distributions, voting mechanisms, and other scenarios requiring cryptographic proof of inclusion with protection against common attack vectors.</em></p>
               
             </div>
           </div><footer>

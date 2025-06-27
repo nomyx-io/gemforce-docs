@@ -5,14 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Gemforce Team" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Gemforce External Services Integration - Gemforce Documentation</title>
+    <title>External Services - Gemforce Documentation</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Gemforce External Services Integration";
+        var mkdocs_page_name = "External Services";
         var mkdocs_page_input_path = "gemforce-external-services.md";
         var mkdocs_page_url = null;
       </script>
@@ -131,6 +131,8 @@
                 </li>
                 <li class="toctree-l2"><a class="reference internal" href="../smart-contracts/interfaces/iattribute/">IAttribute</a>
                 </li>
+                <li class="toctree-l2"><a class="reference internal" href="../smart-contracts/interfaces/ivariable-price/">IVariablePrice</a>
+                </li>
     </ul>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" >Libraries</a>
@@ -184,6 +186,10 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../sdk-libraries/nft-sale-utils/">NFT Sale Utilities</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../sdk-libraries/webhooks/">Webhooks Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../smart-contracts/libraries/metadata-lib/">Metadata Library</a>
+                  </li>
               </ul>
               <p class="caption"><span class="caption-text">Cloud Functions</span></p>
               <ul>
@@ -214,6 +220,136 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../api-documentation/gemforce-api-quick-reference/">Quick Reference</a>
                   </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">External Services</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#dfns-wallet-as-a-service">DFNS Wallet-as-a-Service</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#overview">Overview</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#integration-points">Integration Points</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#key-features-used">Key Features Used</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#api-flow">API Flow</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#configuration">Configuration</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#bridge-api-integration">Bridge API Integration</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#overview_1">Overview</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#integration-points_1">Integration Points</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#key-features-used_1">Key Features Used</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#api-flow_1">API Flow</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#configuration_1">Configuration</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#parse-server">Parse Server</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#overview_2">Overview</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#integration-points_2">Integration Points</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#key-features-used_2">Key Features Used</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#configuration_2">Configuration</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#ethereum-blockchain-networks">Ethereum Blockchain Networks</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#overview_3">Overview</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#integration-points_3">Integration Points</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#key-features-used_3">Key Features Used</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#configuration_3">Configuration</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#sendgrid-email-service">SendGrid Email Service</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#overview_4">Overview</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#integration-points_4">Integration Points</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#key-features-used_4">Key Features Used</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#configuration_4">Configuration</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#plaid-via-bridge-api">Plaid (via Bridge API)</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#overview_5">Overview</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#integration-points_5">Integration Points</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#key-features-used_5">Key Features Used</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#api-flow_2">API Flow</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#integration-diagram">Integration Diagram</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#authentication-flows">Authentication Flows</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#user-registration-login">User Registration &amp; Login</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#dfns-registration">DFNS Registration</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#bridge-api-authentication">Bridge API Authentication</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#security-considerations">Security Considerations</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#api-keys-secrets">API Keys &amp; Secrets</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#delegated-authentication">Delegated Authentication</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#idempotency">Idempotency</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#rate-limiting">Rate Limiting</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#dfns">DFNS</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#bridge-api">Bridge API</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#error-handling">Error Handling</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#dfns-errors">DFNS Errors</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#bridge-api-errors">Bridge API Errors</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#blockchain-errors">Blockchain Errors</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#monitoring-logging">Monitoring &amp; Logging</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#conclusion">Conclusion</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../gemforce-system-architecture/">System Architecture</a>
+                </li>
               </ul>
               <p class="caption"><span class="caption-text">Operations Tasks</span></p>
               <ul>
@@ -257,6 +393,32 @@
                   <li class="toctree-l1"><a class="reference internal" href="../eips/EIP-DRAFT-Carbon-Credit-Standard/">Carbon Credit Standard</a>
                   </li>
               </ul>
+              <p class="caption"><span class="caption-text">Developer Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../developer-guides/development-environment-setup/">Development Environment Setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../developer-guides/testing-frameworks/">Testing Frameworks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../developer-guides/debugging/">Debugging</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../developer-guides/performance-optimization/">Performance Optimization</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../developer-guides/test-case-specifications/">Test Case Specifications</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../developer-guides/test-data-management/">Test Data Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../developer-guides/automated-testing-setup/">Automated Testing Setup</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Deployment Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../deployment-guides/multi-network-deployment/">Multi-Network Deployment</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../deployment-guides/infrastructure-management/">Infrastructure Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../deployment-guides/monitoring-logging/">Monitoring and Logging</a>
+                  </li>
+              </ul>
               <p class="caption"><span class="caption-text">User Guides</span></p>
               <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../gemforce-administrator-guide/">Administrator Guide</a>
@@ -278,6 +440,8 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../integrator-guide/dfns/">DFNS Integration</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../integrator-guide/parse-server/">Parse Server Notes</a>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../integrator-guide/webhooks/">Webhooks</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../integrator-guide/error-handling/">Error Handling</a>
@@ -286,12 +450,38 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../integrator-guide/integration-patterns/">Integration Patterns</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../integrator-guide/testing/">Testing Considerations</a>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../integrator-guide/security/">Security</a>
                   </li>
               </ul>
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../external-services/gemforce-external-services/">External Services</a>
                 </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Security</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../security/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../security/threat-model/">Threat Model and Risk Assessment</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../security/incident-response/">Incident Response Procedures</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../security/audit-compliance/">Security Audits and Compliance</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">External Developer Integration</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../external-developer-integration/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../external-developer-integration/api-rate-limiting/">API Rate Limiting</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../external-developer-integration/webhook-implementation-guidelines/">Webhook Implementation Guidelines</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../external-developer-integration/sdk-development-guidelines/">SDK Development Guidelines</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../external-developer-integration/partner-integration-guides/">Partner Integration Guides</a>
+                  </li>
               </ul>
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../gemforce-documentation-gap-analysis/">Documentation Gap Analysis</a>
@@ -304,6 +494,21 @@
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../documentation-plan/">Documentation Plan</a>
                 </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Configuration & Environment</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../configuration-environment/gemforce-config/">Gemforce Config</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../configuration-environment/environment-specific-guides/">Environment-Specific Guides</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../configuration-environment/configuration-validation/">Configuration Validation Procedures</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../configuration-environment/external-service-config-management/">External Service Configuration Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../configuration-environment/database-schema-overview/">Database Schema Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../configuration-environment/database-migration-procedures/">Database Migration Procedures</a>
+                  </li>
               </ul>
       </div>
     </div>
@@ -319,7 +524,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
-      <li class="breadcrumb-item active">Gemforce External Services Integration</li>
+      <li class="breadcrumb-item active">External Services</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -732,6 +937,10 @@
               
             </div>
           </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../api-documentation/gemforce-api-quick-reference/" class="btn btn-neutral float-left" title="Quick Reference"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../gemforce-system-architecture/" class="btn btn-neutral float-right" title="System Architecture">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
 
   <hr/>
 
@@ -753,6 +962,10 @@
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
+      <span><a href="../api-documentation/gemforce-api-quick-reference/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../gemforce-system-architecture/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

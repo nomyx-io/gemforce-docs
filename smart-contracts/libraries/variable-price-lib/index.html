@@ -131,6 +131,8 @@
                 </li>
                 <li class="toctree-l2"><a class="reference internal" href="../../interfaces/iattribute/">IAttribute</a>
                 </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ivariable-price/">IVariablePrice</a>
+                </li>
     </ul>
                   </li>
                   <li class="toctree-l1 current"><a class="reference internal current" >Libraries</a>
@@ -185,19 +187,13 @@
     </li>
         </ul>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#events">Events</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#variable-price-events">Variable Price Events</a>
-    </li>
-        </ul>
-    </li>
     <li class="toctree-l3"><a class="reference internal" href="#security-considerations">Security Considerations</a>
         <ul>
     <li class="toctree-l4"><a class="reference internal" href="#price-manipulation-protection">Price Manipulation Protection</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#overflow-protection">Overflow Protection</a>
+    <li class="toctree-l4"><a class="reference internal" href="#floating-point-emulation">Floating Point Emulation</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#economic-security">Economic Security</a>
+    <li class="toctree-l4"><a class="reference internal" href="#access-control">Access Control</a>
     </li>
         </ul>
     </li>
@@ -213,17 +209,15 @@
         <ul>
     <li class="toctree-l4"><a class="reference internal" href="#common-errors">Common Errors</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#best-practices">Best Practices</a>
-    </li>
         </ul>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#testing-considerations">Testing Considerations</a>
+    <li class="toctree-l3"><a class="reference internal" href="#best-practices">Best Practices</a>
         <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#unit-tests">Unit Tests</a>
+    <li class="toctree-l4"><a class="reference internal" href="#pricing-strategy-design">Pricing Strategy Design</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#integration-tests">Integration Tests</a>
+    <li class="toctree-l4"><a class="reference internal" href="#integration-checklist">Integration Checklist</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#economic-testing">Economic Testing</a>
+    <li class="toctree-l4"><a class="reference internal" href="#development-guidelines">Development Guidelines</a>
     </li>
         </ul>
     </li>
@@ -266,6 +260,10 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/nft-sale-utils/">NFT Sale Utilities</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/webhooks/">Webhooks Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../metadata-lib/">Metadata Library</a>
+                  </li>
               </ul>
               <p class="caption"><span class="caption-text">Cloud Functions</span></p>
               <ul>
@@ -296,6 +294,14 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../../api-documentation/gemforce-api-quick-reference/">Quick Reference</a>
                   </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-external-services/">External Services</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-system-architecture/">System Architecture</a>
+                </li>
               </ul>
               <p class="caption"><span class="caption-text">Operations Tasks</span></p>
               <ul>
@@ -339,6 +345,32 @@
                   <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Carbon-Credit-Standard/">Carbon Credit Standard</a>
                   </li>
               </ul>
+              <p class="caption"><span class="caption-text">Developer Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/development-environment-setup/">Development Environment Setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/testing-frameworks/">Testing Frameworks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/debugging/">Debugging</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/performance-optimization/">Performance Optimization</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/test-case-specifications/">Test Case Specifications</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/test-data-management/">Test Data Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/automated-testing-setup/">Automated Testing Setup</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Deployment Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../deployment-guides/multi-network-deployment/">Multi-Network Deployment</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../deployment-guides/infrastructure-management/">Infrastructure Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../deployment-guides/monitoring-logging/">Monitoring and Logging</a>
+                  </li>
+              </ul>
               <p class="caption"><span class="caption-text">User Guides</span></p>
               <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-administrator-guide/">Administrator Guide</a>
@@ -360,6 +392,8 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/dfns/">DFNS Integration</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/parse-server/">Parse Server Notes</a>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/webhooks/">Webhooks</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/error-handling/">Error Handling</a>
@@ -368,12 +402,38 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/integration-patterns/">Integration Patterns</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/testing/">Testing Considerations</a>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/security/">Security</a>
                   </li>
               </ul>
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../../../external-services/gemforce-external-services/">External Services</a>
                 </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Security</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security/threat-model/">Threat Model and Risk Assessment</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security/incident-response/">Incident Response Procedures</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security/audit-compliance/">Security Audits and Compliance</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">External Developer Integration</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/api-rate-limiting/">API Rate Limiting</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/webhook-implementation-guidelines/">Webhook Implementation Guidelines</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/sdk-development-guidelines/">SDK Development Guidelines</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/partner-integration-guides/">Partner Integration Guides</a>
+                  </li>
               </ul>
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-documentation-gap-analysis/">Documentation Gap Analysis</a>
@@ -386,6 +446,21 @@
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../../../documentation-plan/">Documentation Plan</a>
                 </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Configuration & Environment</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/gemforce-config/">Gemforce Config</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/environment-specific-guides/">Environment-Specific Guides</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/configuration-validation/">Configuration Validation Procedures</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/external-service-config-management/">External Service Configuration Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/database-schema-overview/">Database Schema Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/database-migration-procedures/">Database Migration Procedures</a>
+                  </li>
               </ul>
       </div>
     </div>
@@ -414,7 +489,7 @@
               
                 <h1 id="variablepricelib-library">VariablePriceLib Library<a class="headerlink" href="#variablepricelib-library" title="Permanent link">&para;</a></h1>
 <h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
-<p>The <a href="../../../contracts/libraries/VariablePriceLib.sol"><code>VariablePriceLib</code></a> library provides core utilities for managing dynamic pricing mechanisms within the Gemforce platform. This library implements flexible pricing strategies that automatically adjust prices based on configurable modifiers, supporting fixed increments, exponential growth, and inverse logarithmic scaling for various tokenomics scenarios.</p>
+<p>The <a href="./"><code>VariablePriceLib</code></a> library provides core utilities for managing dynamic pricing mechanisms within the Gemforce platform. This library implements flexible pricing strategies that automatically adjust prices based on configurable modifiers, supporting fixed increments, exponential growth, and inverse logarithmic scaling for various tokenomics scenarios.</p>
 <h2 id="key-features">Key Features<a class="headerlink" href="#key-features" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>Dynamic Pricing</strong>: Automatic price adjustments after each transaction</li>
@@ -867,289 +942,203 @@ emit<span class="w"> </span>PriceIncreased<span class="p">(</span>tokenId<span c
 <span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="kt">modifier</span><span class="w"> </span>onlyGameMaster<span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="c1">// Implementation would check game master role</span>
+<span class="w">        </span><span class="c1">// Placeholder for access control</span>
 <span class="w">        </span>_<span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 
 <h3 id="auction-system-with-dynamic-reserve-prices">Auction System with Dynamic Reserve Prices<a class="headerlink" href="#auction-system-with-dynamic-reserve-prices" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code><span class="c1">// Auction system with variable reserve pricing</span>
-<span class="k">contract</span><span class="w"> </span><span class="ni">DynamicAuction</span><span class="w"> </span><span class="p">{</span>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Auction contract with reserve price adjusted dynamically</span>
+<span class="k">contract</span><span class="w"> </span><span class="ni">DynamicReserveAuction</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span>using<span class="w"> </span>VariablePriceLib<span class="w"> </span><span class="kt">for</span><span class="w"> </span>VariablePriceLib<span class="p">.</span>VariablePriceStorage<span class="p">;</span>
 
-<span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">Auction</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">;</span>
-<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">seller</span><span class="p">;</span>
-<span class="w">        </span>VariablePriceContract<span class="w"> </span>reservePricing<span class="p">;</span>
-<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">startTime</span><span class="p">;</span>
-<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">endTime</span><span class="p">;</span>
-<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">highestBidder</span><span class="p">;</span>
-<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">highestBid</span><span class="p">;</span>
-<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">ended</span><span class="p">;</span>
-<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">auctionCount</span><span class="p">;</span><span class="w"> </span><span class="c1">// Number of times this item has been auctioned</span>
+<span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">AuctionConfig</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">startingBid</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">reservePrice</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">buyNowPrice</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">auctionEndTime</span><span class="p">;</span>
+<span class="w">        </span>VariablePriceContract<span class="w"> </span>reservePricing<span class="p">;</span><span class="w"> </span><span class="c1">// Dynamic reserve price</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">active</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">Bid</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">bidder</span><span class="p">;</span>
-<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">amount</span><span class="p">;</span>
-<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">timestamp</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span>Auction<span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>auctions<span class="p">;</span>
-<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span>Bid<span class="p">[])</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>auctionBids<span class="p">;</span>
-<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">bool</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>tokenInAuction<span class="p">;</span>
+<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span>AuctionConfig<span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>auctions<span class="p">;</span>
 <span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="k">public </span><span class="nv">nextAuctionId</span><span class="p">;</span>
 
-<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">AuctionCreated</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>auctionId<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>tokenId<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">reservePrice</span><span class="p">);</span>
-<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">BidPlaced</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>auctionId<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>bidder<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">amount</span><span class="p">);</span>
-<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">AuctionEnded</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>auctionId<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>winner<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">finalPrice</span><span class="p">);</span>
-<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">ReservePriceUpdated</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>auctionId<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">newReservePrice</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">AuctionCreated</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>auctionId<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">startingBid</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">reservePrice</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">BidPlaced</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>auctionId<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>bidder<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">bidAmount</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">AuctionEnded</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>auctionId<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">winner</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">finalPrice</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">ReservePriceUpdated</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>auctionId<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">oldPrice</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">newPrice</span><span class="p">);</span>
 
 <span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">createAuction</span><span class="p">(</span>
-<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">,</span>
-<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">duration</span><span class="p">,</span>
-<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">initialReservePrice</span><span class="p">,</span>
-<span class="w">        </span>PriceModifier<span class="w"> </span>reserveStrategy<span class="p">,</span>
-<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">reserveFactor</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">startingBid</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">reservePrice</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">buyNowPrice</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">auctionDuration</span><span class="p">,</span>
+<span class="w">        </span>PriceModifier<span class="w"> </span>priceStrategy<span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">modifierFactor</span><span class="p">,</span>
 <span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">maxReservePrice</span>
-<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">auctionId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="kt">require</span><span class="p">(</span><span class="o">!</span>tokenInAuction<span class="p">[</span>tokenId<span class="p">],</span><span class="w"> </span><span class="s2">&quot;Token already in auction&quot;</span><span class="p">);</span>
-<span class="w">        </span><span class="kt">require</span><span class="p">(</span>_isApprovedOrOwner<span class="p">(</span><span class="k">msg.sender</span><span class="p">,</span><span class="w"> </span>tokenId<span class="p">),</span><span class="w"> </span><span class="s2">&quot;Not authorized&quot;</span><span class="p">);</span>
-
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyOwner<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">auctionId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span>auctionId<span class="w"> </span><span class="o">=</span><span class="w"> </span>nextAuctionId<span class="o">++</span><span class="p">;</span>
 
-<span class="w">        </span>auctions<span class="p">[</span>auctionId<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>Auction<span class="p">({</span>
-<span class="w">            </span>tokenId<span class="o">:</span><span class="w"> </span>tokenId<span class="p">,</span>
-<span class="w">            </span>seller<span class="o">:</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">,</span>
+<span class="w">        </span>auctions<span class="p">[</span>auctionId<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>AuctionConfig<span class="p">({</span>
+<span class="w">            </span>startingBid<span class="o">:</span><span class="w"> </span>startingBid<span class="p">,</span>
+<span class="w">            </span>reservePrice<span class="o">:</span><span class="w"> </span>reservePrice<span class="p">,</span>
+<span class="w">            </span>buyNowPrice<span class="o">:</span><span class="w"> </span>buyNowPrice<span class="p">,</span>
+<span class="w">            </span>auctionEndTime<span class="o">:</span><span class="w"> </span><span class="k">block.timestamp</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>auctionDuration<span class="p">,</span>
 <span class="w">            </span>reservePricing<span class="o">:</span><span class="w"> </span>VariablePriceContract<span class="p">({</span>
-<span class="w">                </span>price<span class="o">:</span><span class="w"> </span>initialReservePrice<span class="p">,</span>
-<span class="w">                </span>priceModifier<span class="o">:</span><span class="w"> </span>reserveStrategy<span class="p">,</span>
-<span class="w">                </span>priceModifierFactor<span class="o">:</span><span class="w"> </span>reserveFactor<span class="p">,</span>
+<span class="w">                </span>price<span class="o">:</span><span class="w"> </span>reservePrice<span class="p">,</span>
+<span class="w">                </span>priceModifier<span class="o">:</span><span class="w"> </span>priceStrategy<span class="p">,</span>
+<span class="w">                </span>priceModifierFactor<span class="o">:</span><span class="w"> </span>modifierFactor<span class="p">,</span>
 <span class="w">                </span>maxPrice<span class="o">:</span><span class="w"> </span>maxReservePrice
 <span class="w">            </span><span class="p">}),</span>
-<span class="w">            </span>startTime<span class="o">:</span><span class="w"> </span><span class="k">block.timestamp</span><span class="p">,</span>
-<span class="w">            </span>endTime<span class="o">:</span><span class="w"> </span><span class="k">block.timestamp</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>duration<span class="p">,</span>
-<span class="w">            </span>highestBidder<span class="o">:</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">),</span>
-<span class="w">            </span>highestBid<span class="o">:</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">,</span>
-<span class="w">            </span>ended<span class="o">:</span><span class="w"> </span><span class="kt">false</span><span class="p">,</span>
-<span class="w">            </span>auctionCount<span class="o">:</span><span class="w"> </span>_getAuctionCount<span class="p">(</span>tokenId<span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m m-Decimal">1</span>
+<span class="w">            </span>active<span class="o">:</span><span class="w"> </span><span class="kt">true</span>
 <span class="w">        </span><span class="p">});</span>
 
-<span class="w">        </span>tokenInAuction<span class="p">[</span>tokenId<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">true</span><span class="p">;</span>
-
-<span class="w">        </span>emit<span class="w"> </span>AuctionCreated<span class="p">(</span>auctionId<span class="p">,</span><span class="w"> </span>tokenId<span class="p">,</span><span class="w"> </span>initialReservePrice<span class="p">);</span>
+<span class="w">        </span>emit<span class="w"> </span>AuctionCreated<span class="p">(</span>auctionId<span class="p">,</span><span class="w"> </span>startingBid<span class="p">,</span><span class="w"> </span>reservePrice<span class="p">);</span>
 <span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">placeBid</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">auctionId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">payable</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span>Auction<span class="w"> </span>storage<span class="w"> </span>auction<span class="w"> </span><span class="o">=</span><span class="w"> </span>auctions<span class="p">[</span>auctionId<span class="p">];</span>
-<span class="w">        </span><span class="kt">require</span><span class="p">(</span><span class="k">block.timestamp</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>auction<span class="p">.</span>endTime<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Auction ended&quot;</span><span class="p">);</span>
-<span class="w">        </span><span class="kt">require</span><span class="p">(</span><span class="o">!</span>auction<span class="p">.</span>ended<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Auction already ended&quot;</span><span class="p">);</span>
+<span class="w">        </span>AuctionConfig<span class="w"> </span>storage<span class="w"> </span>auction<span class="w"> </span><span class="o">=</span><span class="w"> </span>auctions<span class="p">[</span>auctionId<span class="p">];</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>auction<span class="p">.</span>active<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Auction not active&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span><span class="k">block.timestamp</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span>auction<span class="p">.</span>auctionEndTime<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Auction ended&quot;</span><span class="p">);</span>
 
-<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">currentReserve</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>VariablePriceLib<span class="p">.</span>_currentPrice<span class="p">(</span>auction<span class="p">.</span>reservePricing<span class="p">);</span>
-<span class="w">        </span><span class="kt">require</span><span class="p">(</span><span class="k">msg.value</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span>currentReserve<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Bid below reserve price&quot;</span><span class="p">);</span>
-<span class="w">        </span><span class="kt">require</span><span class="p">(</span><span class="k">msg.value</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span>auction<span class="p">.</span>highestBid<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Bid too low&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">currentBid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>getCurrentBid<span class="p">(</span>auctionId<span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span><span class="k">msg.value</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span>currentBid<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Bid too low&quot;</span><span class="p">);</span>
 
-<span class="w">        </span><span class="c1">// Refund previous highest bidder</span>
-<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>auction<span class="p">.</span>highestBidder<span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="kt">payable</span><span class="p">(</span>auction<span class="p">.</span>highestBidder<span class="p">).</span>transfer<span class="p">(</span>auction<span class="p">.</span>highestBid<span class="p">);</span>
-<span class="w">        </span><span class="p">}</span>
-
-<span class="w">        </span>auction<span class="p">.</span>highestBidder<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">;</span>
-<span class="w">        </span>auction<span class="p">.</span>highestBid<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">msg.value</span><span class="p">;</span>
-
-<span class="w">        </span><span class="c1">// Record bid</span>
-<span class="w">        </span>auctionBids<span class="p">[</span>auctionId<span class="p">].</span>push<span class="p">(</span>Bid<span class="p">({</span>
-<span class="w">            </span>bidder<span class="o">:</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">,</span>
-<span class="w">            </span>amount<span class="o">:</span><span class="w"> </span><span class="k">msg.value</span><span class="p">,</span>
-<span class="w">            </span>timestamp<span class="o">:</span><span class="w"> </span><span class="k">block.timestamp</span>
-<span class="w">        </span><span class="p">}));</span>
-
-<span class="w">        </span><span class="c1">// Increase reserve price for future auctions of this item</span>
+<span class="w">        </span><span class="c1">// Update reserve price (e.g., after each bid)</span>
 <span class="w">        </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">oldReserve</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">newReserve</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>VariablePriceLib<span class="p">.</span>_updatePrice<span class="p">(</span>auction<span class="p">.</span>reservePricing<span class="p">);</span>
+<span class="w">        </span>emit<span class="w"> </span>ReservePriceUpdated<span class="p">(</span>auctionId<span class="p">,</span><span class="w"> </span>oldReserve<span class="p">,</span><span class="w"> </span>newReserve<span class="p">);</span>
 
+<span class="w">        </span>_recordBid<span class="p">(</span>auctionId<span class="p">,</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">,</span><span class="w"> </span><span class="k">msg.value</span><span class="p">);</span>
 <span class="w">        </span>emit<span class="w"> </span>BidPlaced<span class="p">(</span>auctionId<span class="p">,</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">,</span><span class="w"> </span><span class="k">msg.value</span><span class="p">);</span>
-<span class="w">        </span>emit<span class="w"> </span>ReservePriceUpdated<span class="p">(</span>auctionId<span class="p">,</span><span class="w"> </span>newReserve<span class="p">);</span>
 <span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">endAuction</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">auctionId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span>Auction<span class="w"> </span>storage<span class="w"> </span>auction<span class="w"> </span><span class="o">=</span><span class="w"> </span>auctions<span class="p">[</span>auctionId<span class="p">];</span>
-<span class="w">        </span><span class="kt">require</span><span class="p">(</span><span class="k">block.timestamp</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span>auction<span class="p">.</span>endTime<span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="k">msg.sender</span><span class="w"> </span><span class="o">==</span><span class="w"> </span>auction<span class="p">.</span>seller<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Auction not ended&quot;</span><span class="p">);</span>
-<span class="w">        </span><span class="kt">require</span><span class="p">(</span><span class="o">!</span>auction<span class="p">.</span>ended<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Auction already ended&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">endAuction</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">auctionId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">winner</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">finalPrice</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span>AuctionConfig<span class="w"> </span>storage<span class="w"> </span>auction<span class="w"> </span><span class="o">=</span><span class="w"> </span>auctions<span class="p">[</span>auctionId<span class="p">];</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span>auction<span class="p">.</span>active<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Auction not active&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">require</span><span class="p">(</span><span class="k">block.timestamp</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span>auction<span class="p">.</span>auctionEndTime<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Auction not ended&quot;</span><span class="p">);</span>
 
-<span class="w">        </span>auction<span class="p">.</span>ended<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">true</span><span class="p">;</span>
-<span class="w">        </span>tokenInAuction<span class="p">[</span>auction<span class="p">.</span>tokenId<span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">false</span><span class="p">;</span>
+<span class="w">        </span><span class="c1">// Determine winner and final price</span>
+<span class="w">        </span><span class="p">(</span>winner<span class="p">,</span><span class="w"> </span>finalPrice<span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>_determineWinner<span class="p">(</span>auctionId<span class="p">);</span>
 
-<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>auction<span class="p">.</span>highestBidder<span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="c1">// Transfer token to winner</span>
-<span class="w">            </span>_transfer<span class="p">(</span>auction<span class="p">.</span>seller<span class="p">,</span><span class="w"> </span>auction<span class="p">.</span>highestBidder<span class="p">,</span><span class="w"> </span>auction<span class="p">.</span>tokenId<span class="p">);</span>
+<span class="w">        </span>auction<span class="p">.</span>active<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">false</span><span class="p">;</span>
 
-<span class="w">            </span><span class="c1">// Transfer payment to seller (minus fees)</span>
-<span class="w">            </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">fee</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>auction<span class="p">.</span>highestBid<span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m m-Decimal">25</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m m-Decimal">1000</span><span class="p">;</span><span class="w"> </span><span class="c1">// 2.5% fee</span>
-<span class="w">            </span><span class="kt">payable</span><span class="p">(</span>auction<span class="p">.</span>seller<span class="p">).</span>transfer<span class="p">(</span>auction<span class="p">.</span>highestBid<span class="w"> </span><span class="o">-</span><span class="w"> </span>fee<span class="p">);</span>
+<span class="w">        </span>_transferAssetToWinner<span class="p">(</span>winner<span class="p">,</span><span class="w"> </span>auctionId<span class="p">);</span>
+<span class="w">        </span>_distributeFunds<span class="p">(</span>finalPrice<span class="p">,</span><span class="w"> </span>auction<span class="p">.</span>reservePrice<span class="p">,</span><span class="w"> </span>winner<span class="p">);</span>
 
-<span class="w">            </span>emit<span class="w"> </span>AuctionEnded<span class="p">(</span>auctionId<span class="p">,</span><span class="w"> </span>auction<span class="p">.</span>highestBidder<span class="p">,</span><span class="w"> </span>auction<span class="p">.</span>highestBid<span class="p">);</span>
-<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="kt">else</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="c1">// No bids, return token to seller</span>
-<span class="w">            </span>emit<span class="w"> </span>AuctionEnded<span class="p">(</span>auctionId<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">),</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">);</span>
-<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span>emit<span class="w"> </span>AuctionEnded<span class="p">(</span>auctionId<span class="p">,</span><span class="w"> </span>winner<span class="p">,</span><span class="w"> </span>finalPrice<span class="p">);</span>
 <span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getCurrentReservePrice</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">auctionId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getReservePrice</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">auctionId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="kt">return</span><span class="w"> </span>VariablePriceLib<span class="p">.</span>_currentPrice<span class="p">(</span>auctions<span class="p">[</span>auctionId<span class="p">].</span>reservePricing<span class="p">);</span>
 <span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getAuctionInfo</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">auctionId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>
-<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">,</span>
-<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">seller</span><span class="p">,</span>
-<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">currentReserve</span><span class="p">,</span>
-<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">nextReserve</span><span class="p">,</span>
-<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">startTime</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">currentBid</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">reserve</span><span class="p">,</span>
+<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">buyNow</span><span class="p">,</span>
 <span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">endTime</span><span class="p">,</span>
-<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">highestBidder</span><span class="p">,</span>
-<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">highestBid</span><span class="p">,</span>
-<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">ended</span><span class="p">,</span>
-<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">auctionCount</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nv">active</span>
 <span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span>Auction<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>auction<span class="w"> </span><span class="o">=</span><span class="w"> </span>auctions<span class="p">[</span>auctionId<span class="p">];</span>
-<span class="w">        </span>tokenId<span class="w"> </span><span class="o">=</span><span class="w"> </span>auction<span class="p">.</span>tokenId<span class="p">;</span>
-<span class="w">        </span>seller<span class="w"> </span><span class="o">=</span><span class="w"> </span>auction<span class="p">.</span>seller<span class="p">;</span>
-<span class="w">        </span>currentReserve<span class="w"> </span><span class="o">=</span><span class="w"> </span>auction<span class="p">.</span>reservePricing<span class="p">.</span>price<span class="p">;</span>
-<span class="w">        </span>startTime<span class="w"> </span><span class="o">=</span><span class="w"> </span>auction<span class="p">.</span>startTime<span class="p">;</span>
-<span class="w">        </span>endTime<span class="w"> </span><span class="o">=</span><span class="w"> </span>auction<span class="p">.</span>endTime<span class="p">;</span>
-<span class="w">        </span>highestBidder<span class="w"> </span><span class="o">=</span><span class="w"> </span>auction<span class="p">.</span>highestBidder<span class="p">;</span>
-<span class="w">        </span>highestBid<span class="w"> </span><span class="o">=</span><span class="w"> </span>auction<span class="p">.</span>highestBid<span class="p">;</span>
-<span class="w">        </span>ended<span class="w"> </span><span class="o">=</span><span class="w"> </span>auction<span class="p">.</span>ended<span class="p">;</span>
-<span class="w">        </span>auctionCount<span class="w"> </span><span class="o">=</span><span class="w"> </span>auction<span class="p">.</span>auctionCount<span class="p">;</span>
-
-<span class="w">        </span><span class="c1">// Calculate next reserve price</span>
-<span class="w">        </span>PriceModifier<span class="w"> </span>strategy<span class="w"> </span><span class="o">=</span><span class="w"> </span>auction<span class="p">.</span>reservePricing<span class="p">.</span>priceModifier<span class="p">;</span>
-<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">factor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>auction<span class="p">.</span>reservePricing<span class="p">.</span>priceModifierFactor<span class="p">;</span>
-
-<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>strategy<span class="w"> </span><span class="o">==</span><span class="w"> </span>PriceModifier<span class="p">.</span>Fixed<span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span>nextReserve<span class="w"> </span><span class="o">=</span><span class="w"> </span>currentReserve<span class="w"> </span><span class="o">+</span><span class="w"> </span>factor<span class="p">;</span>
-<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="kt">else</span><span class="w"> </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>strategy<span class="w"> </span><span class="o">==</span><span class="w"> </span>PriceModifier<span class="p">.</span>Exponential<span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span>nextReserve<span class="w"> </span><span class="o">=</span><span class="w"> </span>currentReserve<span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span>currentReserve<span class="w"> </span><span class="o">/</span><span class="w"> </span>factor<span class="p">);</span>
-<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="kt">else</span><span class="w"> </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>strategy<span class="w"> </span><span class="o">==</span><span class="w"> </span>PriceModifier<span class="p">.</span>InverseLog<span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span>nextReserve<span class="w"> </span><span class="o">=</span><span class="w"> </span>currentReserve<span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span>currentReserve<span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span>factor<span class="w"> </span><span class="o">*</span><span class="w"> </span>currentReserve<span class="p">));</span>
-<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="kt">else</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span>nextReserve<span class="w"> </span><span class="o">=</span><span class="w"> </span>currentReserve<span class="p">;</span>
-<span class="w">        </span><span class="p">}</span>
-
-<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>nextReserve<span class="w"> </span><span class="o">&gt;</span><span class="w"> </span>auction<span class="p">.</span>reservePricing<span class="p">.</span>maxPrice<span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span>nextReserve<span class="w"> </span><span class="o">=</span><span class="w"> </span>auction<span class="p">.</span>reservePricing<span class="p">.</span>maxPrice<span class="p">;</span>
-<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span>AuctionConfig<span class="w"> </span><span class="kt">memory</span><span class="w"> </span>config<span class="w"> </span><span class="o">=</span><span class="w"> </span>auctions<span class="p">[</span>auctionId<span class="p">];</span>
+<span class="w">        </span>currentBid<span class="w"> </span><span class="o">=</span><span class="w"> </span>getCurrentBid<span class="p">(</span>auctionId<span class="p">);</span>
+<span class="w">        </span>reserve<span class="w"> </span><span class="o">=</span><span class="w"> </span>VariablePriceLib<span class="p">.</span>_currentPrice<span class="p">(</span>config<span class="p">.</span>reservePricing<span class="p">);</span>
+<span class="w">        </span>buyNow<span class="w"> </span><span class="o">=</span><span class="w"> </span>config<span class="p">.</span>buyNowPrice<span class="p">;</span>
+<span class="w">        </span>endTime<span class="w"> </span><span class="o">=</span><span class="w"> </span>config<span class="p">.</span>auctionEndTime<span class="p">;</span>
+<span class="w">        </span>active<span class="w"> </span><span class="o">=</span><span class="w"> </span>config<span class="p">.</span>active<span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getBidHistory</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">auctionId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>Bid<span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="kt">return</span><span class="w"> </span>auctionBids<span class="p">[</span>auctionId<span class="p">];</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">_getAuctionCount</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="c1">// Implementation would track auction history</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getCurrentBid</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">auctionId</span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Placeholder for internal logic to get highest bid</span>
 <span class="w">        </span><span class="kt">return</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">_isApprovedOrOwner</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">spender</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">bool</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="c1">// Implementation would check ERC721 authorization</span>
-<span class="w">        </span><span class="kt">return</span><span class="w"> </span><span class="kt">true</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">_recordBid</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">auctionId</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">bidder</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">bidAmount</span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Placeholder for bid storage</span>
 <span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">_transfer</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">from</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">to</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="c1">// Implementation would transfer ERC721 token</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">_determineWinner</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">auctionId</span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">address</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Placeholder for winner determination</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span><span class="p">(</span><span class="kt">address</span><span class="p">(</span><span class="m m-Decimal">0</span><span class="p">),</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">_transferAssetToWinner</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">winner</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">auctionId</span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Placeholder for asset transfer</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">_distributeFunds</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">amount</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">reserve</span><span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">winner</span><span class="p">)</span><span class="w"> </span><span class="kt">internal</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Placeholder for fund distribution</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">modifier</span><span class="w"> </span>onlyOwner<span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Placeholder for access control</span>
+<span class="w">        </span>_<span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
-</code></pre></div>
-
-<h2 id="events">Events<a class="headerlink" href="#events" title="Permanent link">&para;</a></h2>
-<h3 id="variable-price-events">Variable Price Events<a class="headerlink" href="#variable-price-events" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code><span class="kt">event</span><span class="w"> </span><span class="nv">VariablePriceChanged</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">eventContract</span><span class="p">,</span><span class="w"> </span>VariablePriceContract<span class="w"> </span>price<span class="p">);</span>
 </code></pre></div>
 
 <h2 id="security-considerations">Security Considerations<a class="headerlink" href="#security-considerations" title="Permanent link">&para;</a></h2>
 <h3 id="price-manipulation-protection">Price Manipulation Protection<a class="headerlink" href="#price-manipulation-protection" title="Permanent link">&para;</a></h3>
 <ul>
-<li>Maximum price limits prevent excessive pricing</li>
-<li>Configurable modifier factors allow controlled growth</li>
-<li>Transparent pricing algorithms prevent manipulation</li>
-<li>Event emission for price change monitoring</li>
+<li><strong>Input Validation</strong>: Validate all price-related input, especially <code>priceModifierFactor</code>.</li>
+<li><strong>Max Price Limits</strong>: Enforce <code>maxPrice</code> to prevent runaway prices.</li>
+<li><strong>Trusted Price Oracles</strong>: If external factors influence price, use secure oracles.</li>
 </ul>
-<h3 id="overflow-protection">Overflow Protection<a class="headerlink" href="#overflow-protection" title="Permanent link">&para;</a></h3>
+<h3 id="floating-point-emulation">Floating Point Emulation<a class="headerlink" href="#floating-point-emulation" title="Permanent link">&para;</a></h3>
 <ul>
-<li>Safe arithmetic operations for price calculations</li>
-<li>Bounds checking for modifier factors</li>
-<li>Maximum price enforcement</li>
-<li>Graceful handling of edge cases</li>
+<li><strong>Integer Math</strong>: All calculations use integer arithmetic to avoid floating point inaccuracies.</li>
+<li><strong>Precision</strong>: Ensure sufficient precision (e.g., using <code>1 ether</code> as base unit for wei).</li>
 </ul>
-<h3 id="economic-security">Economic Security<a class="headerlink" href="#economic-security" title="Permanent link">&para;</a></h3>
+<h3 id="access-control">Access Control<a class="headerlink" href="#access-control" title="Permanent link">&para;</a></h3>
 <ul>
-<li>Predictable pricing algorithms</li>
-<li>Configurable parameters for different use cases</li>
-<li>Protection against price manipulation attacks</li>
-<li>Fair pricing progression for all participants</li>
+<li><strong>Owner-Only Configuration</strong>: Sensitive pricing parameters should be set by authorized entities.</li>
+<li><strong>Price Modification</strong>: Only authorized functions should be able to trigger price updates.</li>
 </ul>
 <h2 id="gas-optimization">Gas Optimization<a class="headerlink" href="#gas-optimization" title="Permanent link">&para;</a></h2>
 <h3 id="calculation-efficiency">Calculation Efficiency<a class="headerlink" href="#calculation-efficiency" title="Permanent link">&para;</a></h3>
 <ul>
-<li>Optimized arithmetic operations</li>
-<li>Minimal storage reads and writes</li>
-<li>Efficient price update algorithms</li>
-<li>Batch price operations where possible</li>
+<li>Optimized mathematical operations for price modifications.</li>
+<li>Minimal storage reads and writes during price updates.</li>
 </ul>
 <h3 id="storage-efficiency">Storage Efficiency<a class="headerlink" href="#storage-efficiency" title="Permanent link">&para;</a></h3>
 <ul>
-<li>Compact data structures</li>
-<li>Minimal storage footprint</li>
-<li>Efficient parameter encoding</li>
-<li>Optimized Diamond storage access</li>
+<li><code>VariablePriceContract</code> uses packed storage to minimize gas costs.</li>
+<li>Integrates with Diamond Storage for secure and efficient storage.</li>
 </ul>
 <h2 id="error-handling">Error Handling<a class="headerlink" href="#error-handling" title="Permanent link">&para;</a></h2>
 <h3 id="common-errors">Common Errors<a class="headerlink" href="#common-errors" title="Permanent link">&para;</a></h3>
 <ul>
-<li>Division by zero in modifier calculations</li>
-<li>Price overflow in exponential growth</li>
-<li>Invalid modifier factor values</li>
-<li>Maximum price exceeded</li>
+<li><code>Vpl: Invalid initial price</code>: Start price is zero or negative.</li>
+<li><code>Vpl: Quantity out of bounds</code>: Purchase quantity exceeds limits.</li>
+<li><code>Vpl: Insufficient payment</code>: Sent value is less than current price.</li>
+<li><code>Vpl: Max price exceeded</code>: Attempting to set price above <code>maxPrice</code>.</li>
 </ul>
-<h3 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h3>
+<h2 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h2>
+<h3 id="pricing-strategy-design">Pricing Strategy Design<a class="headerlink" href="#pricing-strategy-design" title="Permanent link">&para;</a></h3>
 <ul>
-<li>Validate modifier factors before use</li>
-<li>Implement maximum price limits</li>
-<li>Handle edge cases gracefully</li>
-<li>Provide clear error messages for debugging</li>
+<li>Choose the correct <code>PriceModifier</code> based on desired tokenomics (e.g., <code>Fixed</code> for flat increases, <code>InverseLog</code> for diminishing returns).</li>
+<li>Carefully select <code>priceModifierFactor</code> to achieve desired price curve.</li>
 </ul>
-<h2 id="testing-considerations">Testing Considerations<a class="headerlink" href="#testing-considerations" title="Permanent link">&para;</a></h2>
-<h3 id="unit-tests">Unit Tests<a class="headerlink" href="#unit-tests" title="Permanent link">&para;</a></h3>
+<h3 id="integration-checklist">Integration Checklist<a class="headerlink" href="#integration-checklist" title="Permanent link">&para;</a></h3>
 <ul>
-<li>Price calculation accuracy for each modifier type</li>
-<li>Boundary condition testing</li>
-<li>Overflow and underflow protection</li>
-<li>Storage operations verification</li>
+<li>Ensure pricing logic is clearly communicated to users on the frontend.</li>
+<li>Provide real-time price updates and projected future prices.</li>
+<li>Handle excess ETH refunds gracefully on purchases.</li>
 </ul>
-<h3 id="integration-tests">Integration Tests<a class="headerlink" href="#integration-tests" title="Permanent link">&para;</a></h3>
+<h3 id="development-guidelines">Development Guidelines<a class="headerlink" href="#development-guidelines" title="Permanent link">&para;</a></h3>
 <ul>
-<li>Multi-transaction pricing scenarios</li>
-<li>Cross-contract price integration</li>
-<li>Economic model validation</li>
-<li>Long-term pricing behavior analysis</li>
-</ul>
-<h3 id="economic-testing">Economic Testing<a class="headerlink" href="#economic-testing" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Bonding curve validation</li>
-<li>Market dynamics simulation</li>
-<li>Price discovery mechanisms</li>
-<li>Tokenomics model verification</li>
+<li>Write comprehensive unit tests for all pricing strategies and edge cases.</li>
+<li>Monitor price changes and ensure they align with expected curves.</li>
+<li>Conduct economic simulations to validate pricing models.</li>
 </ul>
 <h2 id="related-documentation">Related Documentation<a class="headerlink" href="#related-documentation" title="Permanent link">&para;</a></h2>
 <ul>
-<li><a href="../../interfaces/ivariable-price/">IVariablePrice Interface</a> - Variable price interface definition</li>
-<li><a href="../multi-sale-lib/">MultiSaleLib</a> - Multi-token sale integration</li>
-<li><a href="../../guides/pricing-strategies.md">Pricing Strategies Guide</a> - Economic model implementation</li>
-<li><a href="../../guides/tokenomics.md">Tokenomics Guide</a> - Token economics best practices</li>
-<li><a href="../../guides/auction-systems.md">Auction Systems Guide</a> - Auction implementation patterns</li>
+<li><a href="../../interfaces/ivariable-price/">IVariablePrice Interface</a> - Interface definition.</li>
+<li><a href="../../facets/multi-sale-facet/">Multi Sale Facet</a> - For multi-token sales integrated with variable pricing.</li>
+<li><a href="../../../eips/EIP-DRAFT-Multi-Token-Sale-Standard/">EIP-DRAFT-Multi-Token-Sale-Standard</a> - Contains dynamic pricing use cases.</li>
+<li><a href="../../../developer-guides/automated-testing-setup/">Developer Guides: Automated Testing Setup</a></li>
 </ul>
-<hr />
-<p><em>This library provides comprehensive utilities for dynamic pricing mechanisms within the Gemforce platform, supporting flexible pricing strategies, automatic price adjustments, and configurable economic models for various tokenomics scenarios including bonding curves, auctions, and marketplace systems.</em></p>
               
             </div>
           </div><footer>

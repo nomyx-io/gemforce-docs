@@ -75,99 +75,27 @@
                 </li>
                 <li class="toctree-l2 current"><a class="reference internal current" href="#">Fee Distributor Facet</a>
     <ul class="current">
-    <li class="toctree-l3"><a class="reference internal" href="#overview">Overview</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#contract-details">Contract Details</a>
+    <li class="toctree-l3"><a class="reference internal" href="#purpose">Purpose</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#key-features">Key Features</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#functions">Functions</a>
         <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#flexible-fee-distribution">🔹 Flexible Fee Distribution</a>
+    <li class="toctree-l4"><a class="reference internal" href="#setfeedistributorsaddress-calldata-_recipients-uint256-calldata-_weights">setFeeDistributors(address[] calldata _recipients, uint256[] calldata _weights)</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#revenue-sharing-models">🔹 Revenue Sharing Models</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#transparent-calculations">🔹 Transparent Calculations</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#secure-operations">🔹 Secure Operations</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#core-data-structures">Core Data Structures</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#fee-distribution-configuration">Fee Distribution Configuration</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#storage-pattern">Storage Pattern</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#core-functions">Core Functions</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#initialization-functions">Initialization Functions</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#configuration-functions">Configuration Functions</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#query-functions">Query Functions</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#distribution-functions">Distribution Functions</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#integration-examples">Integration Examples</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#marketplace-integration">Marketplace Integration</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#trade-deal-fee-distribution">Trade Deal Fee Distribution</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#dynamic-fee-configuration">Dynamic Fee Configuration</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#multi-token-fee-distribution">Multi-Token Fee Distribution</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#fee-analytics-and-reporting">Fee Analytics and Reporting</a>
+    <li class="toctree-l4"><a class="reference internal" href="#distributefeesaddress-_tokenaddress-uint256-_amount">distributeFees(address _tokenAddress, uint256 _amount)</a>
     </li>
         </ul>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#events">Events</a>
         <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#configuration-events">Configuration Events</a>
+    <li class="toctree-l4"><a class="reference internal" href="#feedistributorssetaddress-recipients-uint256-weights">FeeDistributorsSet(address[] recipients, uint256[] weights)</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#distribution-events">Distribution Events</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#security-considerations">Security Considerations</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#access-control">Access Control</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#financial-security">Financial Security</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#configuration-validation">Configuration Validation</a>
+    <li class="toctree-l4"><a class="reference internal" href="#feesdistributedaddress-tokenaddress-uint256-amount">FeesDistributed(address tokenAddress, uint256 amount)</a>
     </li>
         </ul>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#gas-optimization">Gas Optimization</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#efficient-calculations">Efficient Calculations</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#batch-operations">Batch Operations</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#error-handling">Error Handling</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#configuration-errors">Configuration Errors</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#distribution-errors">Distribution Errors</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#testing-considerations">Testing Considerations</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#unit-tests">Unit Tests</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#integration-tests">Integration Tests</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#related-documentation">Related Documentation</a>
+    <li class="toctree-l3"><a class="reference internal" href="#usage-example">Usage Example</a>
     </li>
     </ul>
                 </li>
@@ -227,6 +155,8 @@
                 </li>
                 <li class="toctree-l2"><a class="reference internal" href="../../interfaces/iattribute/">IAttribute</a>
                 </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../interfaces/ivariable-price/">IVariablePrice</a>
+                </li>
     </ul>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" >Libraries</a>
@@ -280,6 +210,10 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/nft-sale-utils/">NFT Sale Utilities</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../sdk-libraries/webhooks/">Webhooks Utilities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../libraries/metadata-lib/">Metadata Library</a>
+                  </li>
               </ul>
               <p class="caption"><span class="caption-text">Cloud Functions</span></p>
               <ul>
@@ -310,6 +244,14 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../../api-documentation/gemforce-api-quick-reference/">Quick Reference</a>
                   </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-external-services/">External Services</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-system-architecture/">System Architecture</a>
+                </li>
               </ul>
               <p class="caption"><span class="caption-text">Operations Tasks</span></p>
               <ul>
@@ -353,6 +295,32 @@
                   <li class="toctree-l1"><a class="reference internal" href="../../../eips/EIP-DRAFT-Carbon-Credit-Standard/">Carbon Credit Standard</a>
                   </li>
               </ul>
+              <p class="caption"><span class="caption-text">Developer Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/development-environment-setup/">Development Environment Setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/testing-frameworks/">Testing Frameworks</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/debugging/">Debugging</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/performance-optimization/">Performance Optimization</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/test-case-specifications/">Test Case Specifications</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/test-data-management/">Test Data Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../developer-guides/automated-testing-setup/">Automated Testing Setup</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Deployment Guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../deployment-guides/multi-network-deployment/">Multi-Network Deployment</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../deployment-guides/infrastructure-management/">Infrastructure Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../deployment-guides/monitoring-logging/">Monitoring and Logging</a>
+                  </li>
+              </ul>
               <p class="caption"><span class="caption-text">User Guides</span></p>
               <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-administrator-guide/">Administrator Guide</a>
@@ -374,6 +342,8 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/dfns/">DFNS Integration</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/parse-server/">Parse Server Notes</a>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/webhooks/">Webhooks</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/error-handling/">Error Handling</a>
@@ -382,12 +352,38 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/integration-patterns/">Integration Patterns</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/testing/">Testing Considerations</a>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../../integrator-guide/security/">Security</a>
                   </li>
               </ul>
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../../../external-services/gemforce-external-services/">External Services</a>
                 </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Security</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security/threat-model/">Threat Model and Risk Assessment</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security/incident-response/">Incident Response Procedures</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../security/audit-compliance/">Security Audits and Compliance</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">External Developer Integration</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/api-rate-limiting/">API Rate Limiting</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/webhook-implementation-guidelines/">Webhook Implementation Guidelines</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/sdk-development-guidelines/">SDK Development Guidelines</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../external-developer-integration/partner-integration-guides/">Partner Integration Guides</a>
+                  </li>
               </ul>
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../../../gemforce-documentation-gap-analysis/">Documentation Gap Analysis</a>
@@ -400,6 +396,21 @@
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../../../documentation-plan/">Documentation Plan</a>
                 </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Configuration & Environment</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/gemforce-config/">Gemforce Config</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/environment-specific-guides/">Environment-Specific Guides</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/configuration-validation/">Configuration Validation Procedures</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/external-service-config-management/">External Service Configuration Management</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/database-schema-overview/">Database Schema Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../configuration-environment/database-migration-procedures/">Database Migration Procedures</a>
+                  </li>
               </ul>
       </div>
     </div>
@@ -427,510 +438,84 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="feedistributorfacet">FeeDistributorFacet<a class="headerlink" href="#feedistributorfacet" title="Permanent link">&para;</a></h1>
-<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
-<p>The <a href="/Users/sschepis/Development/gem-base/contracts/facets/FeeDistributorFacet.sol"><code>FeeDistributorFacet.sol</code></a> provides comprehensive fee distribution functionality within the Gemforce diamond system. This facet enables automated distribution of fees and revenues to multiple recipients based on configurable weights, supporting complex revenue sharing models for marketplace operations, trade deals, and other platform activities.</p>
-<h2 id="contract-details">Contract Details<a class="headerlink" href="#contract-details" title="Permanent link">&para;</a></h2>
-<ul>
-<li><strong>Contract Name</strong>: <code>FeeDistributorFacet</code></li>
-<li><strong>Inheritance</strong>: <code>IFeeDistributor</code>, <code>Modifiers</code></li>
-<li><strong>License</strong>: MIT</li>
-<li><strong>Solidity Version</strong>: ^0.8.0</li>
-</ul>
+<p>The <code>FeeDistributorFacet</code> is a core component of the Gemforce Diamond smart contract system, responsible for managing the distribution of fees collected from various operations within the platform. It provides functionalities for setting fee recipients, defining distribution weights, and initiating the fee distribution process.</p>
+<h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h2>
+<p>The primary purpose of the <code>FeeDistributorFacet</code> is to enable a flexible and transparent mechanism for revenue sharing and incentive distribution. It allows the platform to collect fees (e.g., from marketplace transactions, NFT mints) and
+distribute them to designated beneficiaries (e.g., development teams, liquidity providers, ecosystem contributors) based on predefined percentages.</p>
 <h2 id="key-features">Key Features<a class="headerlink" href="#key-features" title="Permanent link">&para;</a></h2>
-<h3 id="flexible-fee-distribution">🔹 Flexible Fee Distribution<a class="headerlink" href="#flexible-fee-distribution" title="Permanent link">&para;</a></h3>
 <ul>
-<li>Configure multiple fee recipients with custom weights</li>
-<li>Proportional distribution based on weight ratios</li>
-<li>Support for any ERC20 token distribution</li>
-<li>Automated calculation and distribution</li>
+<li><strong>Configurable Fee Recipients</strong>: Allows setting multiple addresses as fee recipients.</li>
+<li><strong>Weighted Distribution</strong>: Enables assigning a specific percentage (weight) to each recipient, ensuring a proportional distribution of collected fees.</li>
+<li><strong>Ownership Control</strong>: Only authorized administrators (Diamond owner) can modify fee distribution settings.</li>
+<li><strong>Event Emission</strong>: Emits events for every significant action, such as setting fee distributors or initiating fee distribution, providing transparency and traceability.</li>
 </ul>
-<h3 id="revenue-sharing-models">🔹 Revenue Sharing Models<a class="headerlink" href="#revenue-sharing-models" title="Permanent link">&para;</a></h3>
+<h2 id="functions">Functions<a class="headerlink" href="#functions" title="Permanent link">&para;</a></h2>
+<h3 id="setfeedistributorsaddress-calldata-_recipients-uint256-calldata-_weights"><code>setFeeDistributors(address[] calldata _recipients, uint256[] calldata _weights)</code><a class="headerlink" href="#setfeedistributorsaddress-calldata-_recipients-uint256-calldata-_weights" title="Permanent link">&para;</a></h3>
+<p>This function allows the owner to set or update the list of fee recipients and their corresponding distribution weights.</p>
 <ul>
-<li>Marketplace commission distribution</li>
-<li>Trade deal fee sharing</li>
-<li>Platform revenue allocation</li>
-<li>Partner revenue sharing</li>
+<li><strong>Parameters</strong>:<ul>
+<li><code>_recipients</code> (address[] calldata): An array of addresses that will receive the fees.</li>
+<li><code>_weights</code> (uint256[] calldata): An array of <code>uint256</code> values representing the distribution weight (percentage) for each recipient. The sum of all weights must equal 10,000 (representing 100%).</li>
 </ul>
-<h3 id="transparent-calculations">🔹 Transparent Calculations<a class="headerlink" href="#transparent-calculations" title="Permanent link">&para;</a></h3>
+</li>
+<li><strong>Requirements</strong>:<ul>
+<li>Only the <code>Diamond</code> owner can call this function.</li>
+<li>The length of <code>_recipients</code> array must be equal to the length of <code>_weights</code> array.</li>
+<li>All weights must be non-zero.</li>
+<li>The sum of <code>_weights</code> must be exactly 10,000.</li>
+</ul>
+</li>
+<li><strong>Emits</strong>: <code>FeeDistributorsSet(address[] recipients, uint256[] weights)</code></li>
+</ul>
+<h3 id="distributefeesaddress-_tokenaddress-uint256-_amount"><code>distributeFees(address _tokenAddress, uint256 _amount)</code><a class="headerlink" href="#distributefeesaddress-_tokenaddress-uint256-_amount" title="Permanent link">&para;</a></h3>
+<p>Initiates the distribution of a specified amount of a given token to the configured fee recipients based on their weights.</p>
 <ul>
-<li>View-only calculation functions</li>
-<li>Precise fee amount calculations</li>
-<li>Adjustable weight basis for flexibility</li>
-<li>Real-time distribution previews</li>
+<li><strong>Parameters</strong>:<ul>
+<li><code>_tokenAddress</code> (address): The address of the ERC-20 token to be distributed.</li>
+<li><code>_amount</code> (uint256): The total amount of the token to distribute.</li>
 </ul>
-<h3 id="secure-operations">🔹 Secure Operations<a class="headerlink" href="#secure-operations" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Owner-only configuration functions</li>
-<li>Validation of all parameters</li>
-<li>Event logging for transparency</li>
-<li>Integration with diamond access control</li>
+</li>
+<li><strong>Requirements</strong>:<ul>
+<li>The <code>FeeDistributorFacet</code> must have sufficient balance of <code>_tokenAddress</code> to fulfill the distribution.</li>
+<li><code>_amount</code> must be greater than 0.</li>
+<li>There must be at least one fee distributor configured.</li>
 </ul>
-<h2 id="core-data-structures">Core Data Structures<a class="headerlink" href="#core-data-structures" title="Permanent link">&para;</a></h2>
-<h3 id="fee-distribution-configuration">Fee Distribution Configuration<a class="headerlink" href="#fee-distribution-configuration" title="Permanent link">&para;</a></h3>
-<ul>
-<li><strong>Distribution Token</strong>: ERC20 token used for fee payments (e.g., USDC)</li>
-<li><strong>Total Weight Basis</strong>: Denominator for weight calculations (e.g., 10000 for basis points)</li>
-<li><strong>Fee Receivers</strong>: Array of addresses that receive fee distributions</li>
-<li><strong>Fee Weights</strong>: Corresponding weights for each receiver</li>
+</li>
+<li><strong>Emits</strong>: <code>FeesDistributed(address tokenAddress, uint256 amount)</code></li>
 </ul>
-<h3 id="storage-pattern">Storage Pattern<a class="headerlink" href="#storage-pattern" title="Permanent link">&para;</a></h3>
-<p>Uses diamond storage pattern via <a href="../../libraries/fee-distributor-lib/"><code>FeeDistributorLib</code></a>:
-- Prevents storage collisions in diamond architecture
-- Efficient storage of fee configuration
-- Persistent settings across contract upgrades</p>
-<h2 id="core-functions">Core Functions<a class="headerlink" href="#core-functions" title="Permanent link">&para;</a></h2>
-<h3 id="initialization-functions">Initialization Functions<a class="headerlink" href="#initialization-functions" title="Permanent link">&para;</a></h3>
-<h4 id="initializefeedistributor"><code>initializeFeeDistributor()</code><a class="headerlink" href="#initializefeedistributor" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">initializeFeeDistributor</span><span class="p">(</span>
-<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">_distributionToken</span><span class="p">,</span>
-<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_totalWeightBasis</span>
-<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyOwner
-</code></pre></div>
-
-<p><strong>Purpose</strong>: Initializes the fee distributor with token and weight basis configuration.</p>
-<p><strong>Parameters</strong>:
-- <code>_distributionToken</code> (address): ERC20 token address for fee distributions
-- <code>_totalWeightBasis</code> (uint256): Total weight basis for calculations (e.g., 10000)</p>
-<p><strong>Access Control</strong>: Owner only</p>
-<p><strong>Validation</strong>:
-- Distribution token cannot be zero address
-- Total weight basis must be greater than zero
-- Can only be called once during deployment</p>
-<p><strong>Process</strong>:
-1. Validates input parameters
-2. Initializes fee distributor storage
-3. Sets distribution token and weight basis
-4. Emits FeeDistributorInitialized event</p>
-<p><strong>Events</strong>: <code>FeeDistributorInitialized(distributionToken, totalWeightBasis)</code></p>
-<p><strong>Example Usage</strong>:</p>
-<div class="codehilite"><pre><span></span><code><span class="c1">// Initialize with USDC and basis points (10000)</span>
-IFeeDistributor<span class="p">(</span>diamond<span class="p">).</span>initializeFeeDistributor<span class="p">(</span>
-<span class="w">    </span>usdcAddress<span class="p">,</span>
-<span class="w">    </span><span class="m m-Decimal">10000</span><span class="w">  </span><span class="c1">// 10000 basis points = 100%</span>
-<span class="p">);</span>
-</code></pre></div>
-
-<p><strong>Error Conditions</strong>:
-- <code>"FeeDistributor: Distribution token cannot be zero address"</code> - Invalid token address
-- Already initialized error from library</p>
-<hr />
-<h3 id="configuration-functions">Configuration Functions<a class="headerlink" href="#configuration-functions" title="Permanent link">&para;</a></h3>
-<h4 id="setfeereceivers"><code>setFeeReceivers()</code><a class="headerlink" href="#setfeereceivers" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">setFeeReceivers</span><span class="p">(</span>
-<span class="w">    </span><span class="kt">address</span><span class="p">[]</span><span class="w"> </span>calldata<span class="w"> </span>_feeReceivers<span class="p">,</span>
-<span class="w">    </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span>calldata<span class="w"> </span>_feeWeights
-<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>override<span class="w"> </span>onlyOwner
-</code></pre></div>
-
-<p><strong>Purpose</strong>: Configures the addresses and weights for fee distribution.</p>
-<p><strong>Parameters</strong>:
-- <code>_feeReceivers</code> (address[]): Array of addresses to receive fees
-- <code>_feeWeights</code> (uint256[]): Array of weights corresponding to each receiver</p>
-<p><strong>Access Control</strong>: Owner only</p>
-<p><strong>Validation</strong>:
-- Arrays must have equal length
-- No zero addresses in receivers
-- Weights must be greater than zero
-- Total weights should not exceed weight basis</p>
-<p><strong>Process</strong>:
-1. Validates input arrays
-2. Updates fee receiver configuration
-3. Stores receivers and weights
-4. Emits FeeReceiversSet event</p>
-<p><strong>Events</strong>: <code>FeeReceiversSet(receivers, weights)</code></p>
-<p><strong>Example Usage</strong>:</p>
-<div class="codehilite"><pre><span></span><code><span class="c1">// Set up fee distribution: 70% to treasury, 20% to team, 10% to marketing</span>
-<span class="kt">address</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>receivers<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="kt">address</span><span class="p">[](</span><span class="m m-Decimal">3</span><span class="p">);</span>
-receivers<span class="p">[</span><span class="m m-Decimal">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>treasuryAddress<span class="p">;</span>
-receivers<span class="p">[</span><span class="m m-Decimal">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>teamAddress<span class="p">;</span>
-receivers<span class="p">[</span><span class="m m-Decimal">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>marketingAddress<span class="p">;</span>
-
-<span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>weights<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[](</span><span class="m m-Decimal">3</span><span class="p">);</span>
-weights<span class="p">[</span><span class="m m-Decimal">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">7000</span><span class="p">;</span><span class="w">  </span><span class="c1">// 70%</span>
-weights<span class="p">[</span><span class="m m-Decimal">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">2000</span><span class="p">;</span><span class="w">  </span><span class="c1">// 20%</span>
-weights<span class="p">[</span><span class="m m-Decimal">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">1000</span><span class="p">;</span><span class="w">  </span><span class="c1">// 10%</span>
-
-IFeeDistributor<span class="p">(</span>diamond<span class="p">).</span>setFeeReceivers<span class="p">(</span>receivers<span class="p">,</span><span class="w"> </span>weights<span class="p">);</span>
-</code></pre></div>
-
-<p><strong>Weight Calculation Example</strong>:</p>
-<div class="codehilite"><pre><span></span><code><span class="c1">// With totalWeightBasis = 10000</span>
-<span class="c1">// Treasury: 7000/10000 = 70%</span>
-<span class="c1">// Team: 2000/10000 = 20%</span>
-<span class="c1">// Marketing: 1000/10000 = 10%</span>
-</code></pre></div>
-
-<hr />
-<h3 id="query-functions">Query Functions<a class="headerlink" href="#query-functions" title="Permanent link">&para;</a></h3>
-<h4 id="getfeereceivers"><code>getFeeReceivers()</code><a class="headerlink" href="#getfeereceivers" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">getFeeReceivers</span><span class="p">()</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span>override<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>
-<span class="w">    </span><span class="kt">address</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>feeReceivers<span class="p">,</span>
-<span class="w">    </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>feeWeights
-<span class="p">)</span>
-</code></pre></div>
-
-<p><strong>Purpose</strong>: Returns the current fee receiver configuration.</p>
-<p><strong>Returns</strong>:
-- <code>feeReceivers</code> (address[]): Array of fee recipient addresses
-- <code>feeWeights</code> (uint256[]): Array of corresponding weights</p>
-<p><strong>Example Usage</strong>:</p>
-<div class="codehilite"><pre><span></span><code><span class="p">(</span><span class="kt">address</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>receivers<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>weights<span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>
-<span class="w">    </span>IFeeDistributor<span class="p">(</span>diamond<span class="p">).</span>getFeeReceivers<span class="p">();</span>
-
-<span class="kt">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">0</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>receivers<span class="p">.</span>length<span class="p">;</span><span class="w"> </span>i<span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span>console<span class="p">.</span>log<span class="p">(</span><span class="s2">&quot;Receiver:&quot;</span><span class="p">,</span><span class="w"> </span>receivers<span class="p">[</span>i<span class="p">]);</span>
-<span class="w">    </span>console<span class="p">.</span>log<span class="p">(</span><span class="s2">&quot;Weight:&quot;</span><span class="p">,</span><span class="w"> </span>weights<span class="p">[</span>i<span class="p">]);</span>
-<span class="p">}</span>
-</code></pre></div>
-
-<hr />
-<h4 id="calculateamounts"><code>calculateAmounts()</code><a class="headerlink" href="#calculateamounts" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">calculateAmounts</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">principalAmount</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span>override<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>
-<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">adjustedAmount</span><span class="p">,</span>
-<span class="w">    </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>feeAmounts
-<span class="p">)</span>
-</code></pre></div>
-
-<p><strong>Purpose</strong>: Calculates fee distribution amounts without executing transfers.</p>
-<p><strong>Parameters</strong>:
-- <code>principalAmount</code> (uint256): Total amount before fee deduction</p>
-<p><strong>Returns</strong>:
-- <code>adjustedAmount</code> (uint256): Principal amount after deducting fees
-- <code>feeAmounts</code> (uint256[]): Individual fee amounts for each receiver</p>
-<p><strong>Example Usage</strong>:</p>
-<div class="codehilite"><pre><span></span><code><span class="c1">// Calculate fees for a $1000 transaction</span>
-<span class="kt">uint256</span><span class="w"> </span><span class="nv">totalAmount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">1000</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m m-Decimal">10</span><span class="o">**</span><span class="m m-Decimal">6</span><span class="p">;</span><span class="w"> </span><span class="c1">// 1000 USDC (6 decimals)</span>
-
-<span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">adjustedAmount</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>feeAmounts<span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>
-<span class="w">    </span>IFeeDistributor<span class="p">(</span>diamond<span class="p">).</span>calculateAmounts<span class="p">(</span>totalAmount<span class="p">);</span>
-
-console<span class="p">.</span>log<span class="p">(</span><span class="s2">&quot;Amount after fees:&quot;</span><span class="p">,</span><span class="w"> </span>adjustedAmount<span class="p">);</span>
-console<span class="p">.</span>log<span class="p">(</span><span class="s2">&quot;Treasury fee:&quot;</span><span class="p">,</span><span class="w"> </span>feeAmounts<span class="p">[</span><span class="m m-Decimal">0</span><span class="p">]);</span>
-console<span class="p">.</span>log<span class="p">(</span><span class="s2">&quot;Team fee:&quot;</span><span class="p">,</span><span class="w"> </span>feeAmounts<span class="p">[</span><span class="m m-Decimal">1</span><span class="p">]);</span>
-console<span class="p">.</span>log<span class="p">(</span><span class="s2">&quot;Marketing fee:&quot;</span><span class="p">,</span><span class="w"> </span>feeAmounts<span class="p">[</span><span class="m m-Decimal">2</span><span class="p">]);</span>
-</code></pre></div>
-
-<p><strong>Calculation Logic</strong>:</p>
-<div class="codehilite"><pre><span></span><code><span class="c1">// Example with 1000 USDC and weights [7000, 2000, 1000]</span>
-<span class="c1">// Total fee weight: 10000 (100%)</span>
-<span class="c1">// Treasury fee: 1000 * 7000 / 10000 = 700 USDC</span>
-<span class="c1">// Team fee: 1000 * 2000 / 10000 = 200 USDC</span>
-<span class="c1">// Marketing fee: 1000 * 1000 / 10000 = 100 USDC</span>
-<span class="c1">// Adjusted amount: 1000 - (700 + 200 + 100) = 0 USDC</span>
-</code></pre></div>
-
-<hr />
-<h3 id="distribution-functions">Distribution Functions<a class="headerlink" href="#distribution-functions" title="Permanent link">&para;</a></h3>
-<h4 id="distributeamounts"><code>distributeAmounts()</code><a class="headerlink" href="#distributeamounts" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">distributeAmounts</span><span class="p">(</span>
-<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">principalAmountReceiver</span><span class="p">,</span>
-<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">_principalAmount</span>
-<span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>override<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>
-<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">adjustedAmountReceiver</span><span class="p">,</span>
-<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">adjustedAmount</span><span class="p">,</span>
-<span class="w">    </span><span class="kt">address</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>feeReceivers<span class="p">,</span>
-<span class="w">    </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>feeAmounts
-<span class="p">)</span>
-</code></pre></div>
-
-<p><strong>Purpose</strong>: Executes fee distribution by transferring calculated amounts to recipients.</p>
-<p><strong>Parameters</strong>:
-- <code>principalAmountReceiver</code> (address): Address to receive the adjusted principal amount
-- <code>_principalAmount</code> (uint256): Total amount to distribute</p>
-<p><strong>Returns</strong>:
-- <code>adjustedAmountReceiver</code> (address): Address that received the adjusted amount
-- <code>adjustedAmount</code> (uint256): Adjusted principal amount transferred
-- <code>feeReceivers</code> (address[]): Addresses that received fee amounts
-- <code>feeAmounts</code> (uint256[]): Individual fee amounts transferred</p>
-<p><strong>Access Control</strong>: Can be called by authorized contracts (marketplace, trade deals)</p>
-<p><strong>Requirements</strong>:
-- Contract must have sufficient token balance or allowance
-- All recipient addresses must be valid
-- Distribution token must be properly configured</p>
-<p><strong>Process</strong>:
-1. Calculates fee amounts using internal logic
-2. Transfers fees to each configured receiver
-3. Transfers adjusted amount to principal receiver
-4. Emits AmountsDistributed event
-5. Returns distribution details</p>
-<p><strong>Events</strong>: <code>AmountsDistributed(principalReceiver, originalAmount, adjustedReceiver, adjustedAmount, feeReceivers, feeAmounts)</code></p>
-<p><strong>Example Usage</strong>:</p>
-<div class="codehilite"><pre><span></span><code><span class="c1">// Distribute marketplace sale proceeds</span>
-<span class="p">(</span>
-<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">adjustedReceiver</span><span class="p">,</span>
-<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">adjustedAmount</span><span class="p">,</span>
-<span class="w">    </span><span class="kt">address</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>feeReceivers<span class="p">,</span>
-<span class="w">    </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>feeAmounts
-<span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>IFeeDistributor<span class="p">(</span>diamond<span class="p">).</span>distributeAmounts<span class="p">(</span>
-<span class="w">    </span>sellerAddress<span class="p">,</span>
-<span class="w">    </span>saleAmount
-<span class="p">);</span>
-
-console<span class="p">.</span>log<span class="p">(</span><span class="s2">&quot;Seller received:&quot;</span><span class="p">,</span><span class="w"> </span>adjustedAmount<span class="p">);</span>
-console<span class="p">.</span>log<span class="p">(</span><span class="s2">&quot;Fees distributed to&quot;</span><span class="p">,</span><span class="w"> </span>feeReceivers<span class="p">.</span>length<span class="p">,</span><span class="w"> </span><span class="s2">&quot;recipients&quot;</span><span class="p">);</span>
-</code></pre></div>
-
-<h2 id="integration-examples">Integration Examples<a class="headerlink" href="#integration-examples" title="Permanent link">&para;</a></h2>
-<h3 id="marketplace-integration">Marketplace Integration<a class="headerlink" href="#marketplace-integration" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code><span class="c1">// Integrate fee distribution with marketplace sales</span>
-<span class="k">contract</span><span class="w"> </span><span class="ni">MarketplaceIntegration</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">completeSale</span><span class="p">(</span>
-<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tokenId</span><span class="p">,</span>
-<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">salePrice</span><span class="p">,</span>
-<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">seller</span><span class="p">,</span>
-<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">buyer</span>
-<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="c1">// Transfer payment from buyer to contract</span>
-<span class="w">        </span>IERC20<span class="p">(</span>paymentToken<span class="p">).</span>transferFrom<span class="p">(</span>buyer<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="p">(</span><span class="kt">this</span><span class="p">),</span><span class="w"> </span>salePrice<span class="p">);</span>
-
-<span class="w">        </span><span class="c1">// Distribute fees and pay seller</span>
-<span class="w">        </span><span class="p">(</span>
-<span class="w">            </span><span class="kt">address</span><span class="w"> </span><span class="nv">adjustedReceiver</span><span class="p">,</span>
-<span class="w">            </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">sellerAmount</span><span class="p">,</span>
-<span class="w">            </span><span class="kt">address</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>feeReceivers<span class="p">,</span>
-<span class="w">            </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>feeAmounts
-<span class="w">        </span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>IFeeDistributor<span class="p">(</span>diamond<span class="p">).</span>distributeAmounts<span class="p">(</span>seller<span class="p">,</span><span class="w"> </span>salePrice<span class="p">);</span>
-
-<span class="w">        </span><span class="c1">// Transfer NFT to buyer</span>
-<span class="w">        </span>IERC721<span class="p">(</span>nftContract<span class="p">).</span>transferFrom<span class="p">(</span>seller<span class="p">,</span><span class="w"> </span>buyer<span class="p">,</span><span class="w"> </span>tokenId<span class="p">);</span>
-
-<span class="w">        </span><span class="c1">// Log the transaction</span>
-<span class="w">        </span>emit<span class="w"> </span>SaleCompleted<span class="p">(</span>
-<span class="w">            </span>tokenId<span class="p">,</span>
-<span class="w">            </span>salePrice<span class="p">,</span>
-<span class="w">            </span>seller<span class="p">,</span>
-<span class="w">            </span>buyer<span class="p">,</span>
-<span class="w">            </span>sellerAmount<span class="p">,</span>
-<span class="w">            </span>feeReceivers<span class="p">,</span>
-<span class="w">            </span>feeAmounts
-<span class="w">        </span><span class="p">);</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-
-<h3 id="trade-deal-fee-distribution">Trade Deal Fee Distribution<a class="headerlink" href="#trade-deal-fee-distribution" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code><span class="c1">// Distribute trade deal fees and interest</span>
-<span class="k">contract</span><span class="w"> </span><span class="ni">TradeDealFeeDistribution</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">distributeInterestPayment</span><span class="p">(</span>
-<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">tradeDealId</span><span class="p">,</span>
-<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">interestAmount</span><span class="p">,</span>
-<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">borrower</span>
-<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="c1">// Calculate and distribute fees from interest payment</span>
-<span class="w">        </span><span class="p">(</span>
-<span class="w">            </span><span class="kt">address</span><span class="w"> </span><span class="nv">adjustedReceiver</span><span class="p">,</span>
-<span class="w">            </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">netInterest</span><span class="p">,</span>
-<span class="w">            </span><span class="kt">address</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>feeReceivers<span class="p">,</span>
-<span class="w">            </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>feeAmounts
-<span class="w">        </span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>IFeeDistributor<span class="p">(</span>diamond<span class="p">).</span>distributeAmounts<span class="p">(</span>
-<span class="w">            </span>getTradeDealLender<span class="p">(</span>tradeDealId<span class="p">),</span>
-<span class="w">            </span>interestAmount
-<span class="w">        </span><span class="p">);</span>
-
-<span class="w">        </span><span class="c1">// Record interest distribution</span>
-<span class="w">        </span>emit<span class="w"> </span>InterestDistributed<span class="p">(</span>
-<span class="w">            </span>tradeDealId<span class="p">,</span>
-<span class="w">            </span>interestAmount<span class="p">,</span>
-<span class="w">            </span>netInterest<span class="p">,</span>
-<span class="w">            </span>feeReceivers<span class="p">,</span>
-<span class="w">            </span>feeAmounts
-<span class="w">        </span><span class="p">);</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-
-<h3 id="dynamic-fee-configuration">Dynamic Fee Configuration<a class="headerlink" href="#dynamic-fee-configuration" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code><span class="c1">// Dynamically adjust fee structure based on conditions</span>
-<span class="k">contract</span><span class="w"> </span><span class="ni">DynamicFeeManager</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">updateFeeStructure</span><span class="p">(</span>
-<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">marketCondition</span><span class="p">,</span>
-<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">volumeTier</span>
-<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>onlyOwner<span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="kt">address</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>receivers<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="kt">address</span><span class="p">[](</span><span class="m m-Decimal">4</span><span class="p">);</span>
-<span class="w">        </span>receivers<span class="p">[</span><span class="m m-Decimal">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>treasuryAddress<span class="p">;</span>
-<span class="w">        </span>receivers<span class="p">[</span><span class="m m-Decimal">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>teamAddress<span class="p">;</span>
-<span class="w">        </span>receivers<span class="p">[</span><span class="m m-Decimal">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>marketingAddress<span class="p">;</span>
-<span class="w">        </span>receivers<span class="p">[</span><span class="m m-Decimal">3</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>developmentAddress<span class="p">;</span>
-
-<span class="w">        </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>weights<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">new</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[](</span><span class="m m-Decimal">4</span><span class="p">);</span>
-
-<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>marketCondition<span class="w"> </span><span class="o">==</span><span class="w"> </span>HIGH_VOLUME<span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="c1">// Reduce fees during high volume periods</span>
-<span class="w">            </span>weights<span class="p">[</span><span class="m m-Decimal">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">5000</span><span class="p">;</span><span class="w">  </span><span class="c1">// 50% treasury</span>
-<span class="w">            </span>weights<span class="p">[</span><span class="m m-Decimal">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">1500</span><span class="p">;</span><span class="w">  </span><span class="c1">// 15% team</span>
-<span class="w">            </span>weights<span class="p">[</span><span class="m m-Decimal">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">1000</span><span class="p">;</span><span class="w">  </span><span class="c1">// 10% marketing</span>
-<span class="w">            </span>weights<span class="p">[</span><span class="m m-Decimal">3</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">2500</span><span class="p">;</span><span class="w">  </span><span class="c1">// 25% development</span>
-<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="kt">else</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="c1">// Standard fee structure</span>
-<span class="w">            </span>weights<span class="p">[</span><span class="m m-Decimal">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">6000</span><span class="p">;</span><span class="w">  </span><span class="c1">// 60% treasury</span>
-<span class="w">            </span>weights<span class="p">[</span><span class="m m-Decimal">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">2000</span><span class="p">;</span><span class="w">  </span><span class="c1">// 20% team</span>
-<span class="w">            </span>weights<span class="p">[</span><span class="m m-Decimal">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">1000</span><span class="p">;</span><span class="w">  </span><span class="c1">// 10% marketing</span>
-<span class="w">            </span>weights<span class="p">[</span><span class="m m-Decimal">3</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m m-Decimal">1000</span><span class="p">;</span><span class="w">  </span><span class="c1">// 10% development</span>
-<span class="w">        </span><span class="p">}</span>
-
-<span class="w">        </span>IFeeDistributor<span class="p">(</span>diamond<span class="p">).</span>setFeeReceivers<span class="p">(</span>receivers<span class="p">,</span><span class="w"> </span>weights<span class="p">);</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-
-<h3 id="multi-token-fee-distribution">Multi-Token Fee Distribution<a class="headerlink" href="#multi-token-fee-distribution" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code><span class="c1">// Handle fee distribution for multiple tokens</span>
-<span class="k">contract</span><span class="w"> </span><span class="ni">MultiTokenFeeDistribution</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kt">mapping</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kt">bool</span><span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>supportedTokens<span class="p">;</span>
-
-<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">distributeFees</span><span class="p">(</span>
-<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">token</span><span class="p">,</span>
-<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">amount</span><span class="p">,</span>
-<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">principalReceiver</span>
-<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="kt">require</span><span class="p">(</span>supportedTokens<span class="p">[</span>token<span class="p">],</span><span class="w"> </span><span class="s2">&quot;Token not supported&quot;</span><span class="p">);</span>
-
-<span class="w">        </span><span class="c1">// Temporarily set distribution token if different</span>
-<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">currentToken</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>getCurrentDistributionToken<span class="p">();</span>
-<span class="w">        </span><span class="kt">if</span><span class="w"> </span><span class="p">(</span>currentToken<span class="w"> </span><span class="o">!=</span><span class="w"> </span>token<span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="c1">// Would need additional function to change distribution token</span>
-<span class="w">            </span><span class="c1">// or handle multiple tokens in the fee distributor</span>
-<span class="w">        </span><span class="p">}</span>
-
-<span class="w">        </span>IFeeDistributor<span class="p">(</span>diamond<span class="p">).</span>distributeAmounts<span class="p">(</span>principalReceiver<span class="p">,</span><span class="w"> </span>amount<span class="p">);</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-
-<h3 id="fee-analytics-and-reporting">Fee Analytics and Reporting<a class="headerlink" href="#fee-analytics-and-reporting" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code><span class="c1">// Track and report fee distribution analytics</span>
-<span class="k">contract</span><span class="w"> </span><span class="ni">FeeAnalytics</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kt">struct</span><span class="w"> </span><span class="nv">FeeReport</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalDistributed</span><span class="p">;</span>
-<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalFees</span><span class="p">;</span>
-<span class="w">        </span><span class="kt">address</span><span class="p">[]</span><span class="w"> </span>recipients<span class="p">;</span>
-<span class="w">        </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span>amounts<span class="p">;</span>
-<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">timestamp</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span>FeeReport<span class="p">[]</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>feeReports<span class="p">;</span>
-
-<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">recordFeeDistribution</span><span class="p">(</span>
-<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">originalAmount</span><span class="p">,</span>
-<span class="w">        </span><span class="kt">address</span><span class="w"> </span><span class="nv">principalReceiver</span>
-<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">reportId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="p">(</span>
-<span class="w">            </span><span class="kt">address</span><span class="w"> </span><span class="nv">adjustedReceiver</span><span class="p">,</span>
-<span class="w">            </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">adjustedAmount</span><span class="p">,</span>
-<span class="w">            </span><span class="kt">address</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>feeReceivers<span class="p">,</span>
-<span class="w">            </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span><span class="kt">memory</span><span class="w"> </span>feeAmounts
-<span class="w">        </span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>IFeeDistributor<span class="p">(</span>diamond<span class="p">).</span>distributeAmounts<span class="p">(</span>
-<span class="w">            </span>principalReceiver<span class="p">,</span>
-<span class="w">            </span>originalAmount
-<span class="w">        </span><span class="p">);</span>
-
-<span class="w">        </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalFees</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>originalAmount<span class="w"> </span><span class="o">-</span><span class="w"> </span>adjustedAmount<span class="p">;</span>
-
-<span class="w">        </span>feeReports<span class="p">.</span>push<span class="p">(</span>FeeReport<span class="p">({</span>
-<span class="w">            </span>totalDistributed<span class="o">:</span><span class="w"> </span>originalAmount<span class="p">,</span>
-<span class="w">            </span>totalFees<span class="o">:</span><span class="w"> </span>totalFees<span class="p">,</span>
-<span class="w">            </span>recipients<span class="o">:</span><span class="w"> </span>feeReceivers<span class="p">,</span>
-<span class="w">            </span>amounts<span class="o">:</span><span class="w"> </span>feeAmounts<span class="p">,</span>
-<span class="w">            </span>timestamp<span class="o">:</span><span class="w"> </span><span class="k">block.timestamp</span>
-<span class="w">        </span><span class="p">}));</span>
-
-<span class="w">        </span><span class="kt">return</span><span class="w"> </span>feeReports<span class="p">.</span>length<span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m m-Decimal">1</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">getFeeReport</span><span class="p">(</span><span class="kt">uint256</span><span class="w"> </span><span class="nv">reportId</span><span class="p">)</span><span class="w"> </span><span class="kt">external</span><span class="w"> </span>view<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span>FeeReport<span class="w"> </span><span class="kt">memory</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="kt">require</span><span class="p">(</span>reportId<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>feeReports<span class="p">.</span>length<span class="p">,</span><span class="w"> </span><span class="s2">&quot;Invalid report ID&quot;</span><span class="p">);</span>
-<span class="w">        </span><span class="kt">return</span><span class="w"> </span>feeReports<span class="p">[</span>reportId<span class="p">];</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-
 <h2 id="events">Events<a class="headerlink" href="#events" title="Permanent link">&para;</a></h2>
-<h3 id="configuration-events">Configuration Events<a class="headerlink" href="#configuration-events" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code><span class="kt">event</span><span class="w"> </span><span class="nv">FeeDistributorInitialized</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>distributionToken<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">totalWeightBasis</span><span class="p">);</span>
-<span class="kt">event</span><span class="w"> </span><span class="nv">FeeReceiversSet</span><span class="p">(</span><span class="kt">address</span><span class="p">[]</span><span class="w"> </span>receivers<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span>weights<span class="p">);</span>
-</code></pre></div>
-
-<h3 id="distribution-events">Distribution Events<a class="headerlink" href="#distribution-events" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code><span class="kt">event</span><span class="w"> </span><span class="nv">AmountsDistributed</span><span class="p">(</span>
-<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>principalReceiver<span class="p">,</span>
-<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">originalAmount</span><span class="p">,</span>
-<span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>adjustedReceiver<span class="p">,</span>
-<span class="w">    </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">adjustedAmount</span><span class="p">,</span>
-<span class="w">    </span><span class="kt">address</span><span class="p">[]</span><span class="w"> </span>feeReceivers<span class="p">,</span>
-<span class="w">    </span><span class="kt">uint256</span><span class="p">[]</span><span class="w"> </span>feeAmounts
-<span class="p">);</span>
-</code></pre></div>
-
-<h2 id="security-considerations">Security Considerations<a class="headerlink" href="#security-considerations" title="Permanent link">&para;</a></h2>
-<h3 id="access-control">Access Control<a class="headerlink" href="#access-control" title="Permanent link">&para;</a></h3>
+<h3 id="feedistributorssetaddress-recipients-uint256-weights"><code>FeeDistributorsSet(address[] recipients, uint256[] weights)</code><a class="headerlink" href="#feedistributorssetaddress-recipients-uint256-weights" title="Permanent link">&para;</a></h3>
+<p>Emitted when the fee recipients and their weights are set or updated.</p>
 <ul>
-<li>Only contract owner can initialize and configure fee distribution</li>
-<li>Distribution function can be called by authorized contracts</li>
-<li>Validation of all addresses and amounts</li>
+<li><strong>Parameters</strong>:<ul>
+<li><code>recipients</code> (address[]): The new array of fee recipient addresses.</li>
+<li><code>weights</code> (uint256[]): The new array of distribution weights for the recipients.</li>
 </ul>
-<h3 id="financial-security">Financial Security<a class="headerlink" href="#financial-security" title="Permanent link">&para;</a></h3>
+</li>
+</ul>
+<h3 id="feesdistributedaddress-tokenaddress-uint256-amount"><code>FeesDistributed(address tokenAddress, uint256 amount)</code><a class="headerlink" href="#feesdistributedaddress-tokenaddress-uint256-amount" title="Permanent link">&para;</a></h3>
+<p>Emitted when fees are successfully distributed to the recipients.</p>
 <ul>
-<li>Requires sufficient token balance or allowance for distributions</li>
-<li>Atomic transfers ensure all-or-nothing distribution</li>
-<li>Precise calculations prevent rounding errors</li>
+<li><strong>Parameters</strong>:<ul>
+<li><code>tokenAddress</code> (address): The address of the token that was distributed.</li>
+<li><code>amount</code> (uint256): The total amount of the token that was distributed.</li>
 </ul>
-<h3 id="configuration-validation">Configuration Validation<a class="headerlink" href="#configuration-validation" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Prevents zero addresses in fee receivers</li>
-<li>Validates weight arrays match receiver arrays</li>
-<li>Ensures total weights don't exceed basis</li>
+</li>
 </ul>
-<h2 id="gas-optimization">Gas Optimization<a class="headerlink" href="#gas-optimization" title="Permanent link">&para;</a></h2>
-<h3 id="efficient-calculations">Efficient Calculations<a class="headerlink" href="#efficient-calculations" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Single-pass calculation of all fee amounts</li>
-<li>Minimal storage reads and writes</li>
-<li>Optimized array operations</li>
-</ul>
-<h3 id="batch-operations">Batch Operations<a class="headerlink" href="#batch-operations" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Single transaction for all fee distributions</li>
-<li>Reduced gas costs compared to individual transfers</li>
-<li>Efficient event emission</li>
-</ul>
-<h2 id="error-handling">Error Handling<a class="headerlink" href="#error-handling" title="Permanent link">&para;</a></h2>
-<h3 id="configuration-errors">Configuration Errors<a class="headerlink" href="#configuration-errors" title="Permanent link">&para;</a></h3>
-<ul>
-<li><code>"FeeDistributor: Distribution token cannot be zero address"</code> - Invalid token</li>
-<li>Array length mismatch errors</li>
-<li>Invalid weight configuration errors</li>
-</ul>
-<h3 id="distribution-errors">Distribution Errors<a class="headerlink" href="#distribution-errors" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Insufficient balance or allowance errors</li>
-<li>Transfer failure errors</li>
-<li>Invalid recipient address errors</li>
-</ul>
-<h2 id="testing-considerations">Testing Considerations<a class="headerlink" href="#testing-considerations" title="Permanent link">&para;</a></h2>
-<h3 id="unit-tests">Unit Tests<a class="headerlink" href="#unit-tests" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Fee calculation accuracy</li>
-<li>Distribution execution</li>
-<li>Configuration validation</li>
-<li>Access control enforcement</li>
-</ul>
-<h3 id="integration-tests">Integration Tests<a class="headerlink" href="#integration-tests" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Marketplace integration</li>
-<li>Trade deal integration</li>
-<li>Multi-contract workflows</li>
-<li>Event emission verification</li>
-</ul>
-<h2 id="related-documentation">Related Documentation<a class="headerlink" href="#related-documentation" title="Permanent link">&para;</a></h2>
-<ul>
-<li><a href="../../interfaces/ifee-distributor/">IFeeDistributor</a> - Fee distributor interface</li>
-<li><a href="../../libraries/fee-distributor-lib/">FeeDistributorLib</a> - Fee distribution utilities</li>
-<li><a href="../marketplace-facet/">MarketplaceFacet</a> - Marketplace integration</li>
-<li><a href="../trade-deal-management-facet/">TradeDealManagementFacet</a> - Trade deal integration</li>
-<li><a href="../../guides/revenue-sharing.md">Revenue Sharing Guide</a> - Implementation guide</li>
-</ul>
-<hr />
-<p><em>This facet provides the foundation for flexible and transparent fee distribution within the Gemforce platform, enabling complex revenue sharing models and automated fee management across all platform operations.</em></p>
+<h2 id="usage-example">Usage Example<a class="headerlink" href="#usage-example" title="Permanent link">&para;</a></h2>
+<p>```solidity
+// Example of setting fee distributors
+address[] memory recipients = new address<a href="2"></a>;
+recipients[0] = 0xRecipient1Address;
+recipients[1] = 0xRecipient2Address;</p>
+<p>uint256[] memory weights = new uint256<a href="2"></a>;
+weights[0] = 7000; // 70%
+weights[1] = 3000; // 30%</p>
+<p>// Assuming 'diamond' is an instance of IDiamond and 'owner' is the diamond owner
+IDiamond(diamond).setFeeDistributors(recipients, weights);</p>
+<p>// Example of distributing fees
+IERC20(tokenAddress).transfer(address(this), amountToDistribute); // Transfer tokens to the facet first
+IDiamond(diamond).distributeFees(tokenAddress, amountToDistribute);</p>
               
             </div>
           </div><footer>
